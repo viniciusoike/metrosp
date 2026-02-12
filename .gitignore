@@ -1,0 +1,18 @@
+# R project
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
+# Raw data (too large for git, ~46MB)
+data-raw/metro_sp/
+
+# Build artifacts
+*.tar.gz
+*.Rcheck/
+
+# IDE
+.vscode/

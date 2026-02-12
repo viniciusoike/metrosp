@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^\.github$
+^LICENSE\.md$
+^README\.Rmd$
+^CLAUDE\.md$
+^PLAN\.md$
+^\.DS_Store$

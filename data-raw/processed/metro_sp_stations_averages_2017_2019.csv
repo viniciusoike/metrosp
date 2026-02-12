@@ -1,0 +1,1712 @@
+date,year,month,line_name_full,name_station,metric_abb,value
+2017-10-01,2017,Outubro,Linha 1 - Azul,Jabaquara,mdu,92
+2017-10-01,2017,Outubro,Linha 1 - Azul,Conceição,mdu,41
+2017-10-01,2017,Outubro,Linha 1 - Azul,São Judas,mdu,21
+2017-10-01,2017,Outubro,Linha 1 - Azul,Saúde,mdu,37
+2017-10-01,2017,Outubro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-10-01,2017,Outubro,Linha 1 - Azul,Santa Cruz,mdu,62
+2017-10-01,2017,Outubro,Linha 1 - Azul,Vila Mariana,mdu,33
+2017-10-01,2017,Outubro,Linha 1 - Azul,Ana Rosa,mdu,90
+2017-10-01,2017,Outubro,Linha 1 - Azul,Paraíso,mdu,116
+2017-10-01,2017,Outubro,Linha 1 - Azul,Vergueiro,mdu,34
+2017-10-01,2017,Outubro,Linha 1 - Azul,São Joaquim,mdu,53
+2017-10-01,2017,Outubro,Linha 1 - Azul,Liberdade,mdu,30
+2017-10-01,2017,Outubro,Linha 1 - Azul,Sé,mdu,255
+2017-10-01,2017,Outubro,Linha 1 - Azul,São Bento,mdu,76
+2017-10-01,2017,Outubro,Linha 1 - Azul,Luz,mdu,169
+2017-10-01,2017,Outubro,Linha 1 - Azul,Tiradentes,mdu,18
+2017-10-01,2017,Outubro,Linha 1 - Azul,Armênia,mdu,31
+2017-10-01,2017,Outubro,Linha 1 - Azul,Portuguesa-Tietê,mdu,65
+2017-10-01,2017,Outubro,Linha 1 - Azul,Carandiru,mdu,16
+2017-10-01,2017,Outubro,Linha 1 - Azul,Santana,mdu,67
+2017-10-01,2017,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-10-01,2017,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-10-01,2017,Outubro,Linha 1 - Azul,Tucuruvi,mdu,71
+2017-10-01,2017,Outubro,Linha 2 - Verde,Vila Prudente,mdu,54
+2017-10-01,2017,Outubro,Linha 2 - Verde,Tamanduateí,mdu,67
+2017-10-01,2017,Outubro,Linha 2 - Verde,Sacomã,mdu,41
+2017-10-01,2017,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-10-01,2017,Outubro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2017-10-01,2017,Outubro,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-10-01,2017,Outubro,Linha 2 - Verde,Ana Rosa,mdu,83
+2017-10-01,2017,Outubro,Linha 2 - Verde,Paraíso,mdu,76
+2017-10-01,2017,Outubro,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-10-01,2017,Outubro,Linha 2 - Verde,Trianon-Masp,mdu,55
+2017-10-01,2017,Outubro,Linha 2 - Verde,Consolação,mdu,144
+2017-10-01,2017,Outubro,Linha 2 - Verde,Clínicas,mdu,30
+2017-10-01,2017,Outubro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-10-01,2017,Outubro,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,102
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Penha,mdu,39
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Carrão,mdu,61
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Tatuapé,mdu,93
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Belém,mdu,49
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Brás,mdu,98
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Pedro II,mdu,27
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Sé,mdu,274
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,79
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,República,mdu,151
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,37
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,207
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Capão Redondo,mdu,71
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Campo Limpo,mdu,31
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Santo Amaro,mdu,85
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Largo Treze,mdu,33
+2017-10-01,2017,Outubro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,13
+2017-10-01,2017,Outubro,Linha 15 - Prata,Vila Prudente,mdu,11
+2017-10-01,2017,Outubro,Linha 15 - Prata,Oratório,mdu,9
+2017-11-01,2017,Novembro,Linha 1 - Azul,Jabaquara,mdu,93
+2017-11-01,2017,Novembro,Linha 1 - Azul,Conceição,mdu,42
+2017-11-01,2017,Novembro,Linha 1 - Azul,São Judas,mdu,22
+2017-11-01,2017,Novembro,Linha 1 - Azul,Saúde,mdu,37
+2017-11-01,2017,Novembro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-11-01,2017,Novembro,Linha 1 - Azul,Santa Cruz,mdu,63
+2017-11-01,2017,Novembro,Linha 1 - Azul,Vila Mariana,mdu,33
+2017-11-01,2017,Novembro,Linha 1 - Azul,Ana Rosa,mdu,91
+2017-11-01,2017,Novembro,Linha 1 - Azul,Paraíso,mdu,117
+2017-11-01,2017,Novembro,Linha 1 - Azul,Vergueiro,mdu,34
+2017-11-01,2017,Novembro,Linha 1 - Azul,São Joaquim,mdu,51
+2017-11-01,2017,Novembro,Linha 1 - Azul,Liberdade,mdu,30
+2017-11-01,2017,Novembro,Linha 1 - Azul,Sé,mdu,259
+2017-11-01,2017,Novembro,Linha 1 - Azul,São Bento,mdu,79
+2017-11-01,2017,Novembro,Linha 1 - Azul,Luz,mdu,176
+2017-11-01,2017,Novembro,Linha 1 - Azul,Tiradentes,mdu,19
+2017-11-01,2017,Novembro,Linha 1 - Azul,Armênia,mdu,31
+2017-11-01,2017,Novembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,65
+2017-11-01,2017,Novembro,Linha 1 - Azul,Carandiru,mdu,16
+2017-11-01,2017,Novembro,Linha 1 - Azul,Santana,mdu,68
+2017-11-01,2017,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-11-01,2017,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,18
+2017-11-01,2017,Novembro,Linha 1 - Azul,Tucuruvi,mdu,71
+2017-11-01,2017,Novembro,Linha 2 - Verde,Vila Prudente,mdu,55
+2017-11-01,2017,Novembro,Linha 2 - Verde,Tamanduateí,mdu,68
+2017-11-01,2017,Novembro,Linha 2 - Verde,Sacomã,mdu,42
+2017-11-01,2017,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-11-01,2017,Novembro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2017-11-01,2017,Novembro,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-11-01,2017,Novembro,Linha 2 - Verde,Ana Rosa,mdu,84
+2017-11-01,2017,Novembro,Linha 2 - Verde,Paraíso,mdu,77
+2017-11-01,2017,Novembro,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-11-01,2017,Novembro,Linha 2 - Verde,Trianon-Masp,mdu,55
+2017-11-01,2017,Novembro,Linha 2 - Verde,Consolação,mdu,145
+2017-11-01,2017,Novembro,Linha 2 - Verde,Clínicas,mdu,31
+2017-11-01,2017,Novembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-11-01,2017,Novembro,Linha 2 - Verde,Vila Madalena,mdu,28
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,103
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Artur Alvim,mdu,71
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Penha,mdu,40
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Carrão,mdu,61
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Tatuapé,mdu,95
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Belém,mdu,50
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Brás,mdu,102
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Pedro II,mdu,27
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Sé,mdu,278
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,80
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,República,mdu,153
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,37
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Capão Redondo,mdu,74
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Campo Limpo,mdu,32
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Vila das Belezas,mdu,11
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Santo Amaro,mdu,88
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Largo Treze,mdu,33
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,13
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Borba Gato,mdu,4
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Brooklin,mdu,8
+2017-11-01,2017,Novembro,Linha 15 - Prata,Vila Prudente,mdu,11
+2017-11-01,2017,Novembro,Linha 15 - Prata,Oratório,mdu,11
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Jabaquara,mdu,89
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Conceição,mdu,38
+2017-12-01,2017,Dezembro,Linha 1 - Azul,São Judas,mdu,20
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Saúde,mdu,35
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Praça da Árvore,mdu,21
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Santa Cruz,mdu,58
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Vila Mariana,mdu,26
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Ana Rosa,mdu,81
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Paraíso,mdu,104
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Vergueiro,mdu,29
+2017-12-01,2017,Dezembro,Linha 1 - Azul,São Joaquim,mdu,34
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Liberdade,mdu,28
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Sé,mdu,240
+2017-12-01,2017,Dezembro,Linha 1 - Azul,São Bento,mdu,81
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Luz,mdu,169
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Tiradentes,mdu,15
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Armênia,mdu,28
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,66
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Carandiru,mdu,14
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Santana,mdu,63
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,13
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,16
+2017-12-01,2017,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,67
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,49
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,60
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Sacomã,mdu,38
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,18
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Santos-Imigrantes,mdu,14
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Chácara Klabin,mdu,6
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Ana Rosa,mdu,77
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Paraíso,mdu,70
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Brigadeiro,mdu,57
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Trianon-Masp,mdu,51
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Consolação,mdu,131
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Clínicas,mdu,27
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,13
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Vila Madalena,mdu,25
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Patriarca,mdu,24
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Vila Matilde,mdu,29
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Penha,mdu,36
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Carrão,mdu,48
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Tatuapé,mdu,92
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Belém,mdu,45
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,38
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Brás,mdu,109
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,25
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Sé,mdu,256
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,74
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,República,mdu,141
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,35
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,193
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Capão Redondo,mdu,71
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Campo Limpo,mdu,31
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Giovanni Gronchi,mdu,18
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Santo Amaro,mdu,82
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Largo Treze,mdu,30
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,7
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Borba Gato,mdu,4
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Brooklin,mdu,9
+2017-12-01,2017,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-12-01,2017,Dezembro,Linha 15 - Prata,Oratório,mdu,10
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Jabaquara,mdu,80
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Conceição,mdu,34
+2018-01-01,2018,Janeiro,Linha 1 - Azul,São Judas,mdu,17
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Saúde,mdu,30
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Praça da Árvore,mdu,18
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Santa Cruz,mdu,51
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Vila Mariana,mdu,21
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Ana Rosa,mdu,72
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Paraíso,mdu,94
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Vergueiro,mdu,26
+2018-01-01,2018,Janeiro,Linha 1 - Azul,São Joaquim,mdu,23
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Liberdade,mdu,24
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Sé,mdu,211
+2018-01-01,2018,Janeiro,Linha 1 - Azul,São Bento,mdu,69
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Luz,mdu,150
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Tiradentes,mdu,11
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Armênia,mdu,26
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Carandiru,mdu,12
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Santana,mdu,55
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,12
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Parada Inglesa,mdu,14
+2018-01-01,2018,Janeiro,Linha 1 - Azul,Tucuruvi,mdu,58
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Vila Prudente,mdu,43
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Tamanduateí,mdu,56
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Sacomã,mdu,34
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Alto do Ipiranga,mdu,16
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Santos-Imigrantes,mdu,13
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Chácara Klabin,mdu,6
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Ana Rosa,mdu,67
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Paraíso,mdu,62
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Brigadeiro,mdu,51
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Trianon-Masp,mdu,47
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Consolação,mdu,119
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Clínicas,mdu,25
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,11
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Vila Madalena,mdu,22
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,86
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Artur Alvim,mdu,58
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Patriarca,mdu,21
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,22
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Vila Matilde,mdu,26
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Penha,mdu,31
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Carrão,mdu,42
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Tatuapé,mdu,78
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Belém,mdu,39
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,30
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Brás,mdu,87
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Pedro II,mdu,23
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Sé,mdu,225
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Anhangabaú,mdu,67
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,República,mdu,128
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Santa Cecília,mdu,29
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,31
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,172
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Capão Redondo,mdu,60
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Campo Limpo,mdu,27
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Vila das Belezas,mdu,8
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Giovanni Gronchi,mdu,16
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Santo Amaro,mdu,72
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Largo Treze,mdu,23
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,6
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Borba Gato,mdu,4
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Brooklin,mdu,8
+2018-01-01,2018,Janeiro,Linha 15 - Prata,Vila Prudente,mdu,10
+2018-01-01,2018,Janeiro,Linha 15 - Prata,Oratório,mdu,8
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Jabaquara,mdu,87
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Conceição,mdu,40
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,São Judas,mdu,20
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Saúde,mdu,36
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Praça da Árvore,mdu,22
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Santa Cruz,mdu,61
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Vila Mariana,mdu,30
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Ana Rosa,mdu,88
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Paraíso,mdu,113
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Vergueiro,mdu,32
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,São Joaquim,mdu,44
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Liberdade,mdu,29
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Sé,mdu,243
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,São Bento,mdu,73
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Luz,mdu,170
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Tiradentes,mdu,17
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Armênia,mdu,30
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Carandiru,mdu,15
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Santana,mdu,64
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-02-01,2018,Fevereiro,Linha 1 - Azul,Tucuruvi,mdu,67
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Vila Prudente,mdu,53
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Tamanduateí,mdu,66
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Sacomã,mdu,40
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Alto do Ipiranga,mdu,20
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Chácara Klabin,mdu,7
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Ana Rosa,mdu,80
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Paraíso,mdu,73
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Brigadeiro,mdu,59
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Trianon-Masp,mdu,55
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Consolação,mdu,143
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Clínicas,mdu,29
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Vila Madalena,mdu,26
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Patriarca,mdu,25
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Vila Matilde,mdu,30
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Penha,mdu,37
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Carrão,mdu,53
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Tatuapé,mdu,87
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Belém,mdu,46
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,41
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Brás,mdu,96
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Sé,mdu,264
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Anhangabaú,mdu,76
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,República,mdu,146
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,201
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Capão Redondo,mdu,70
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Campo Limpo,mdu,31
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Giovanni Gronchi,mdu,19
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Santo Amaro,mdu,84
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Largo Treze,mdu,28
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Alto da Boa Vista,mdu,4
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Borba Gato,mdu,6
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Brooklin,mdu,10
+2018-02-01,2018,Fevereiro,Linha 15 - Prata,Vila Prudente,mdu,11
+2018-02-01,2018,Fevereiro,Linha 15 - Prata,Oratório,mdu,9
+2018-03-01,2018,Março,Linha 1 - Azul,Jabaquara,mdu,91
+2018-03-01,2018,Março,Linha 1 - Azul,Conceição,mdu,41
+2018-03-01,2018,Março,Linha 1 - Azul,São Judas,mdu,21
+2018-03-01,2018,Março,Linha 1 - Azul,Saúde,mdu,37
+2018-03-01,2018,Março,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-03-01,2018,Março,Linha 1 - Azul,Santa Cruz,mdu,63
+2018-03-01,2018,Março,Linha 1 - Azul,Vila Mariana,mdu,34
+2018-03-01,2018,Março,Linha 1 - Azul,Ana Rosa,mdu,92
+2018-03-01,2018,Março,Linha 1 - Azul,Paraíso,mdu,120
+2018-03-01,2018,Março,Linha 1 - Azul,Vergueiro,mdu,34
+2018-03-01,2018,Março,Linha 1 - Azul,São Joaquim,mdu,57
+2018-03-01,2018,Março,Linha 1 - Azul,Liberdade,mdu,31
+2018-03-01,2018,Março,Linha 1 - Azul,Sé,mdu,257
+2018-03-01,2018,Março,Linha 1 - Azul,São Bento,mdu,72
+2018-03-01,2018,Março,Linha 1 - Azul,Luz,mdu,180
+2018-03-01,2018,Março,Linha 1 - Azul,Tiradentes,mdu,19
+2018-03-01,2018,Março,Linha 1 - Azul,Armênia,mdu,31
+2018-03-01,2018,Março,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2018-03-01,2018,Março,Linha 1 - Azul,Carandiru,mdu,16
+2018-03-01,2018,Março,Linha 1 - Azul,Santana,mdu,67
+2018-03-01,2018,Março,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-03-01,2018,Março,Linha 1 - Azul,Parada Inglesa,mdu,18
+2018-03-01,2018,Março,Linha 1 - Azul,Tucuruvi,mdu,70
+2018-03-01,2018,Março,Linha 2 - Verde,Vila Prudente,mdu,57
+2018-03-01,2018,Março,Linha 2 - Verde,Tamanduateí,mdu,69
+2018-03-01,2018,Março,Linha 2 - Verde,Sacomã,mdu,42
+2018-03-01,2018,Março,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-03-01,2018,Março,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-03-01,2018,Março,Linha 2 - Verde,Chácara Klabin,mdu,7
+2018-03-01,2018,Março,Linha 2 - Verde,Ana Rosa,mdu,84
+2018-03-01,2018,Março,Linha 2 - Verde,Paraíso,mdu,77
+2018-03-01,2018,Março,Linha 2 - Verde,Brigadeiro,mdu,60
+2018-03-01,2018,Março,Linha 2 - Verde,Trianon-Masp,mdu,58
+2018-03-01,2018,Março,Linha 2 - Verde,Consolação,mdu,147
+2018-03-01,2018,Março,Linha 2 - Verde,Clínicas,mdu,31
+2018-03-01,2018,Março,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-03-01,2018,Março,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-03-01,2018,Março,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,102
+2018-03-01,2018,Março,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2018-03-01,2018,Março,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-03-01,2018,Março,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2018-03-01,2018,Março,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-03-01,2018,Março,Linha 3 - Vermelha,Penha,mdu,38
+2018-03-01,2018,Março,Linha 3 - Vermelha,Carrão,mdu,64
+2018-03-01,2018,Março,Linha 3 - Vermelha,Tatuapé,mdu,92
+2018-03-01,2018,Março,Linha 3 - Vermelha,Belém,mdu,49
+2018-03-01,2018,Março,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2018-03-01,2018,Março,Linha 3 - Vermelha,Brás,mdu,99
+2018-03-01,2018,Março,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-03-01,2018,Março,Linha 3 - Vermelha,Sé,mdu,278
+2018-03-01,2018,Março,Linha 3 - Vermelha,Anhangabaú,mdu,79
+2018-03-01,2018,Março,Linha 3 - Vermelha,República,mdu,153
+2018-03-01,2018,Março,Linha 3 - Vermelha,Santa Cecília,mdu,34
+2018-03-01,2018,Março,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2018-03-01,2018,Março,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
+2018-03-01,2018,Março,Linha 5 - Lilás,Capão Redondo,mdu,75
+2018-03-01,2018,Março,Linha 5 - Lilás,Campo Limpo,mdu,33
+2018-03-01,2018,Março,Linha 5 - Lilás,Vila das Belezas,mdu,11
+2018-03-01,2018,Março,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2018-03-01,2018,Março,Linha 5 - Lilás,Santo Amaro,mdu,90
+2018-03-01,2018,Março,Linha 5 - Lilás,Largo Treze,mdu,31
+2018-03-01,2018,Março,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
+2018-03-01,2018,Março,Linha 5 - Lilás,Alto da Boa Vista,mdu,4
+2018-03-01,2018,Março,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-03-01,2018,Março,Linha 5 - Lilás,Brooklin,mdu,13
+2018-03-01,2018,Março,Linha 15 - Prata,Vila Prudente,mdu,11
+2018-03-01,2018,Março,Linha 15 - Prata,Oratório,mdu,10
+2018-04-01,2018,Abril,Linha 1 - Azul,Jabaquara,mdu,91
+2018-04-01,2018,Abril,Linha 1 - Azul,Conceição,mdu,42
+2018-04-01,2018,Abril,Linha 1 - Azul,São Judas,mdu,21
+2018-04-01,2018,Abril,Linha 1 - Azul,Saúde,mdu,38
+2018-04-01,2018,Abril,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-04-01,2018,Abril,Linha 1 - Azul,Santa Cruz,mdu,63
+2018-04-01,2018,Abril,Linha 1 - Azul,Vila Mariana,mdu,33
+2018-04-01,2018,Abril,Linha 1 - Azul,Ana Rosa,mdu,93
+2018-04-01,2018,Abril,Linha 1 - Azul,Paraíso,mdu,119
+2018-04-01,2018,Abril,Linha 1 - Azul,Vergueiro,mdu,34
+2018-04-01,2018,Abril,Linha 1 - Azul,São Joaquim,mdu,57
+2018-04-01,2018,Abril,Linha 1 - Azul,Liberdade,mdu,30
+2018-04-01,2018,Abril,Linha 1 - Azul,Sé,mdu,257
+2018-04-01,2018,Abril,Linha 1 - Azul,São Bento,mdu,72
+2018-04-01,2018,Abril,Linha 1 - Azul,Luz,mdu,182
+2018-04-01,2018,Abril,Linha 1 - Azul,Tiradentes,mdu,19
+2018-04-01,2018,Abril,Linha 1 - Azul,Armênia,mdu,31
+2018-04-01,2018,Abril,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2018-04-01,2018,Abril,Linha 1 - Azul,Carandiru,mdu,16
+2018-04-01,2018,Abril,Linha 1 - Azul,Santana,mdu,67
+2018-04-01,2018,Abril,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-04-01,2018,Abril,Linha 1 - Azul,Parada Inglesa,mdu,18
+2018-04-01,2018,Abril,Linha 1 - Azul,Tucuruvi,mdu,71
+2018-04-01,2018,Abril,Linha 2 - Verde,Vila Prudente,mdu,58
+2018-04-01,2018,Abril,Linha 2 - Verde,Tamanduateí,mdu,71
+2018-04-01,2018,Abril,Linha 2 - Verde,Sacomã,mdu,42
+2018-04-01,2018,Abril,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-04-01,2018,Abril,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-04-01,2018,Abril,Linha 2 - Verde,Chácara Klabin,mdu,7
+2018-04-01,2018,Abril,Linha 2 - Verde,Ana Rosa,mdu,84
+2018-04-01,2018,Abril,Linha 2 - Verde,Paraíso,mdu,77
+2018-04-01,2018,Abril,Linha 2 - Verde,Brigadeiro,mdu,60
+2018-04-01,2018,Abril,Linha 2 - Verde,Trianon-Masp,mdu,58
+2018-04-01,2018,Abril,Linha 2 - Verde,Consolação,mdu,146
+2018-04-01,2018,Abril,Linha 2 - Verde,Clínicas,mdu,30
+2018-04-01,2018,Abril,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-04-01,2018,Abril,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,101
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Artur Alvim,mdu,71
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Penha,mdu,39
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Carrão,mdu,63
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Tatuapé,mdu,91
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Belém,mdu,49
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Brás,mdu,99
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Sé,mdu,278
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Anhangabaú,mdu,77
+2018-04-01,2018,Abril,Linha 3 - Vermelha,República,mdu,153
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,219
+2018-04-01,2018,Abril,Linha 5 - Lilás,Capão Redondo,mdu,78
+2018-04-01,2018,Abril,Linha 5 - Lilás,Campo Limpo,mdu,34
+2018-04-01,2018,Abril,Linha 5 - Lilás,Vila das Belezas,mdu,11
+2018-04-01,2018,Abril,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2018-04-01,2018,Abril,Linha 5 - Lilás,Santo Amaro,mdu,92
+2018-04-01,2018,Abril,Linha 5 - Lilás,Largo Treze,mdu,32
+2018-04-01,2018,Abril,Linha 5 - Lilás,Adolfo Pinheiro,mdu,9
+2018-04-01,2018,Abril,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-04-01,2018,Abril,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-04-01,2018,Abril,Linha 5 - Lilás,Brooklin,mdu,12
+2018-04-01,2018,Abril,Linha 5 - Lilás,Eucaliptos,mdu,17
+2018-04-01,2018,Abril,Linha 15 - Prata,Vila Prudente,mdu,11
+2018-04-01,2018,Abril,Linha 15 - Prata,Oratório,mdu,10
+2018-05-01,2018,Maio,Linha 1 - Azul,Jabaquara,mdu,90
+2018-05-01,2018,Maio,Linha 1 - Azul,Conceição,mdu,42
+2018-05-01,2018,Maio,Linha 1 - Azul,São Judas,mdu,21
+2018-05-01,2018,Maio,Linha 1 - Azul,Saúde,mdu,37
+2018-05-01,2018,Maio,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-05-01,2018,Maio,Linha 1 - Azul,Santa Cruz,mdu,63
+2018-05-01,2018,Maio,Linha 1 - Azul,Vila Mariana,mdu,32
+2018-05-01,2018,Maio,Linha 1 - Azul,Ana Rosa,mdu,91
+2018-05-01,2018,Maio,Linha 1 - Azul,Paraíso,mdu,118
+2018-05-01,2018,Maio,Linha 1 - Azul,Vergueiro,mdu,34
+2018-05-01,2018,Maio,Linha 1 - Azul,São Joaquim,mdu,51
+2018-05-01,2018,Maio,Linha 1 - Azul,Liberdade,mdu,30
+2018-05-01,2018,Maio,Linha 1 - Azul,Sé,mdu,254
+2018-05-01,2018,Maio,Linha 1 - Azul,São Bento,mdu,73
+2018-05-01,2018,Maio,Linha 1 - Azul,Luz,mdu,177
+2018-05-01,2018,Maio,Linha 1 - Azul,Tiradentes,mdu,18
+2018-05-01,2018,Maio,Linha 1 - Azul,Armênia,mdu,30
+2018-05-01,2018,Maio,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2018-05-01,2018,Maio,Linha 1 - Azul,Carandiru,mdu,15
+2018-05-01,2018,Maio,Linha 1 - Azul,Santana,mdu,68
+2018-05-01,2018,Maio,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-05-01,2018,Maio,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-05-01,2018,Maio,Linha 1 - Azul,Tucuruvi,mdu,70
+2018-05-01,2018,Maio,Linha 2 - Verde,Vila Prudente,mdu,56
+2018-05-01,2018,Maio,Linha 2 - Verde,Tamanduateí,mdu,71
+2018-05-01,2018,Maio,Linha 2 - Verde,Sacomã,mdu,42
+2018-05-01,2018,Maio,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-05-01,2018,Maio,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-05-01,2018,Maio,Linha 2 - Verde,Chácara Klabin,mdu,8
+2018-05-01,2018,Maio,Linha 2 - Verde,Ana Rosa,mdu,83
+2018-05-01,2018,Maio,Linha 2 - Verde,Paraíso,mdu,76
+2018-05-01,2018,Maio,Linha 2 - Verde,Brigadeiro,mdu,62
+2018-05-01,2018,Maio,Linha 2 - Verde,Trianon-Masp,mdu,58
+2018-05-01,2018,Maio,Linha 2 - Verde,Consolação,mdu,142
+2018-05-01,2018,Maio,Linha 2 - Verde,Clínicas,mdu,28
+2018-05-01,2018,Maio,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-05-01,2018,Maio,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,100
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Penha,mdu,38
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Carrão,mdu,61
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Tatuapé,mdu,93
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Belém,mdu,49
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Brás,mdu,99
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Sé,mdu,274
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Anhangabaú,mdu,76
+2018-05-01,2018,Maio,Linha 3 - Vermelha,República,mdu,152
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
+2018-05-01,2018,Maio,Linha 5 - Lilás,Capão Redondo,mdu,80
+2018-05-01,2018,Maio,Linha 5 - Lilás,Campo Limpo,mdu,34
+2018-05-01,2018,Maio,Linha 5 - Lilás,Vila das Belezas,mdu,12
+2018-05-01,2018,Maio,Linha 5 - Lilás,Giovanni Gronchi,mdu,22
+2018-05-01,2018,Maio,Linha 5 - Lilás,Santo Amaro,mdu,93
+2018-05-01,2018,Maio,Linha 5 - Lilás,Largo Treze,mdu,31
+2018-05-01,2018,Maio,Linha 5 - Lilás,Adolfo Pinheiro,mdu,9
+2018-05-01,2018,Maio,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-05-01,2018,Maio,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-05-01,2018,Maio,Linha 5 - Lilás,Brooklin,mdu,12
+2018-05-01,2018,Maio,Linha 5 - Lilás,Eucaliptos,mdu,19
+2018-05-01,2018,Maio,Linha 15 - Prata,Vila Prudente,mdu,12
+2018-05-01,2018,Maio,Linha 15 - Prata,Oratório,mdu,10
+2018-06-01,2018,Junho,Linha 1 - Azul,Jabaquara,mdu,88
+2018-06-01,2018,Junho,Linha 1 - Azul,Conceição,mdu,41
+2018-06-01,2018,Junho,Linha 1 - Azul,São Judas,mdu,21
+2018-06-01,2018,Junho,Linha 1 - Azul,Saúde,mdu,37
+2018-06-01,2018,Junho,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-06-01,2018,Junho,Linha 1 - Azul,Santa Cruz,mdu,62
+2018-06-01,2018,Junho,Linha 1 - Azul,Vila Mariana,mdu,31
+2018-06-01,2018,Junho,Linha 1 - Azul,Ana Rosa,mdu,88
+2018-06-01,2018,Junho,Linha 1 - Azul,Paraíso,mdu,114
+2018-06-01,2018,Junho,Linha 1 - Azul,Vergueiro,mdu,32
+2018-06-01,2018,Junho,Linha 1 - Azul,São Joaquim,mdu,44
+2018-06-01,2018,Junho,Linha 1 - Azul,Liberdade,mdu,28
+2018-06-01,2018,Junho,Linha 1 - Azul,Sé,mdu,249
+2018-06-01,2018,Junho,Linha 1 - Azul,São Bento,mdu,74
+2018-06-01,2018,Junho,Linha 1 - Azul,Luz,mdu,173
+2018-06-01,2018,Junho,Linha 1 - Azul,Tiradentes,mdu,18
+2018-06-01,2018,Junho,Linha 1 - Azul,Armênia,mdu,29
+2018-06-01,2018,Junho,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2018-06-01,2018,Junho,Linha 1 - Azul,Carandiru,mdu,15
+2018-06-01,2018,Junho,Linha 1 - Azul,Santana,mdu,66
+2018-06-01,2018,Junho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-06-01,2018,Junho,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-06-01,2018,Junho,Linha 1 - Azul,Tucuruvi,mdu,69
+2018-06-01,2018,Junho,Linha 2 - Verde,Vila Prudente,mdu,53
+2018-06-01,2018,Junho,Linha 2 - Verde,Tamanduateí,mdu,69
+2018-06-01,2018,Junho,Linha 2 - Verde,Sacomã,mdu,41
+2018-06-01,2018,Junho,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-06-01,2018,Junho,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2018-06-01,2018,Junho,Linha 2 - Verde,Chácara Klabin,mdu,7
+2018-06-01,2018,Junho,Linha 2 - Verde,Ana Rosa,mdu,81
+2018-06-01,2018,Junho,Linha 2 - Verde,Paraíso,mdu,74
+2018-06-01,2018,Junho,Linha 2 - Verde,Brigadeiro,mdu,60
+2018-06-01,2018,Junho,Linha 2 - Verde,Trianon-Masp,mdu,56
+2018-06-01,2018,Junho,Linha 2 - Verde,Consolação,mdu,138
+2018-06-01,2018,Junho,Linha 2 - Verde,Clínicas,mdu,27
+2018-06-01,2018,Junho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2018-06-01,2018,Junho,Linha 2 - Verde,Vila Madalena,mdu,27
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,98
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Patriarca,mdu,25
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Penha,mdu,38
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Carrão,mdu,57
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Tatuapé,mdu,92
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Belém,mdu,47
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Brás,mdu,100
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Sé,mdu,266
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Anhangabaú,mdu,76
+2018-06-01,2018,Junho,Linha 3 - Vermelha,República,mdu,149
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,210
+2018-06-01,2018,Junho,Linha 5 - Lilás,Capão Redondo,mdu,76
+2018-06-01,2018,Junho,Linha 5 - Lilás,Campo Limpo,mdu,33
+2018-06-01,2018,Junho,Linha 5 - Lilás,Vila das Belezas,mdu,11
+2018-06-01,2018,Junho,Linha 5 - Lilás,Giovanni Gronchi,mdu,20
+2018-06-01,2018,Junho,Linha 5 - Lilás,Santo Amaro,mdu,87
+2018-06-01,2018,Junho,Linha 5 - Lilás,Largo Treze,mdu,28
+2018-06-01,2018,Junho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
+2018-06-01,2018,Junho,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-06-01,2018,Junho,Linha 5 - Lilás,Borba Gato,mdu,7
+2018-06-01,2018,Junho,Linha 5 - Lilás,Brooklin,mdu,12
+2018-06-01,2018,Junho,Linha 5 - Lilás,Eucaliptos,mdu,20
+2018-06-01,2018,Junho,Linha 15 - Prata,Vila Prudente,mdu,12
+2018-06-01,2018,Junho,Linha 15 - Prata,Oratório,mdu,10
+2018-07-01,2018,Julho,Linha 1 - Azul,Jabaquara,mdu,83
+2018-07-01,2018,Julho,Linha 1 - Azul,Conceição,mdu,38
+2018-07-01,2018,Julho,Linha 1 - Azul,São Judas,mdu,19
+2018-07-01,2018,Julho,Linha 1 - Azul,Saúde,mdu,33
+2018-07-01,2018,Julho,Linha 1 - Azul,Praça da Árvore,mdu,20
+2018-07-01,2018,Julho,Linha 1 - Azul,Santa Cruz,mdu,56
+2018-07-01,2018,Julho,Linha 1 - Azul,Vila Mariana,mdu,24
+2018-07-01,2018,Julho,Linha 1 - Azul,Ana Rosa,mdu,79
+2018-07-01,2018,Julho,Linha 1 - Azul,Paraíso,mdu,104
+2018-07-01,2018,Julho,Linha 1 - Azul,Vergueiro,mdu,29
+2018-07-01,2018,Julho,Linha 1 - Azul,São Joaquim,mdu,26
+2018-07-01,2018,Julho,Linha 1 - Azul,Liberdade,mdu,27
+2018-07-01,2018,Julho,Linha 1 - Azul,Sé,mdu,232
+2018-07-01,2018,Julho,Linha 1 - Azul,São Bento,mdu,74
+2018-07-01,2018,Julho,Linha 1 - Azul,Luz,mdu,165
+2018-07-01,2018,Julho,Linha 1 - Azul,Tiradentes,mdu,15
+2018-07-01,2018,Julho,Linha 1 - Azul,Armênia,mdu,27
+2018-07-01,2018,Julho,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2018-07-01,2018,Julho,Linha 1 - Azul,Carandiru,mdu,14
+2018-07-01,2018,Julho,Linha 1 - Azul,Santana,mdu,60
+2018-07-01,2018,Julho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
+2018-07-01,2018,Julho,Linha 1 - Azul,Parada Inglesa,mdu,15
+2018-07-01,2018,Julho,Linha 1 - Azul,Tucuruvi,mdu,65
+2018-07-01,2018,Julho,Linha 2 - Verde,Vila Prudente,mdu,48
+2018-07-01,2018,Julho,Linha 2 - Verde,Tamanduateí,mdu,64
+2018-07-01,2018,Julho,Linha 2 - Verde,Sacomã,mdu,38
+2018-07-01,2018,Julho,Linha 2 - Verde,Alto do Ipiranga,mdu,18
+2018-07-01,2018,Julho,Linha 2 - Verde,Santos-Imigrantes,mdu,14
+2018-07-01,2018,Julho,Linha 2 - Verde,Chácara Klabin,mdu,7
+2018-07-01,2018,Julho,Linha 2 - Verde,Ana Rosa,mdu,73
+2018-07-01,2018,Julho,Linha 2 - Verde,Paraíso,mdu,67
+2018-07-01,2018,Julho,Linha 2 - Verde,Brigadeiro,mdu,58
+2018-07-01,2018,Julho,Linha 2 - Verde,Trianon-Masp,mdu,52
+2018-07-01,2018,Julho,Linha 2 - Verde,Consolação,mdu,126
+2018-07-01,2018,Julho,Linha 2 - Verde,Clínicas,mdu,24
+2018-07-01,2018,Julho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,13
+2018-07-01,2018,Julho,Linha 2 - Verde,Vila Madalena,mdu,25
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,93
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Artur Alvim,mdu,64
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Patriarca,mdu,24
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,24
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Vila Matilde,mdu,29
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Penha,mdu,34
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Carrão,mdu,47
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Tatuapé,mdu,87
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Belém,mdu,43
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Bresser-Moóca,mdu,34
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Brás,mdu,96
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Pedro II,mdu,25
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Sé,mdu,246
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Anhangabaú,mdu,73
+2018-07-01,2018,Julho,Linha 3 - Vermelha,República,mdu,141
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Santa Cecília,mdu,30
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Marechal Deodoro,mdu,35
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,194
+2018-07-01,2018,Julho,Linha 5 - Lilás,Capão Redondo,mdu,70
+2018-07-01,2018,Julho,Linha 5 - Lilás,Campo Limpo,mdu,31
+2018-07-01,2018,Julho,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2018-07-01,2018,Julho,Linha 5 - Lilás,Giovanni Gronchi,mdu,18
+2018-07-01,2018,Julho,Linha 5 - Lilás,Santo Amaro,mdu,82
+2018-07-01,2018,Julho,Linha 5 - Lilás,Largo Treze,mdu,24
+2018-07-01,2018,Julho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,6
+2018-07-01,2018,Julho,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-07-01,2018,Julho,Linha 5 - Lilás,Borba Gato,mdu,5
+2018-07-01,2018,Julho,Linha 5 - Lilás,Brooklin,mdu,10
+2018-07-01,2018,Julho,Linha 5 - Lilás,Eucaliptos,mdu,19
+2018-07-01,2018,Julho,Linha 15 - Prata,Vila Prudente,mdu,11
+2018-07-01,2018,Julho,Linha 15 - Prata,Oratório,mdu,9
+2018-08-01,2018,Agosto,Linha 1 - Azul,Jabaquara,mdu,89
+2018-08-01,2018,Agosto,Linha 1 - Azul,Conceição,mdu,42
+2018-08-01,2018,Agosto,Linha 1 - Azul,São Judas,mdu,21
+2018-08-01,2018,Agosto,Linha 1 - Azul,Saúde,mdu,37
+2018-08-01,2018,Agosto,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-08-01,2018,Agosto,Linha 1 - Azul,Santa Cruz,mdu,62
+2018-08-01,2018,Agosto,Linha 1 - Azul,Vila Mariana,mdu,32
+2018-08-01,2018,Agosto,Linha 1 - Azul,Ana Rosa,mdu,90
+2018-08-01,2018,Agosto,Linha 1 - Azul,Paraíso,mdu,117
+2018-08-01,2018,Agosto,Linha 1 - Azul,Vergueiro,mdu,33
+2018-08-01,2018,Agosto,Linha 1 - Azul,São Joaquim,mdu,50
+2018-08-01,2018,Agosto,Linha 1 - Azul,Liberdade,mdu,29
+2018-08-01,2018,Agosto,Linha 1 - Azul,Sé,mdu,252
+2018-08-01,2018,Agosto,Linha 1 - Azul,São Bento,mdu,72
+2018-08-01,2018,Agosto,Linha 1 - Azul,Luz,mdu,175
+2018-08-01,2018,Agosto,Linha 1 - Azul,Tiradentes,mdu,19
+2018-08-01,2018,Agosto,Linha 1 - Azul,Armênia,mdu,30
+2018-08-01,2018,Agosto,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2018-08-01,2018,Agosto,Linha 1 - Azul,Carandiru,mdu,16
+2018-08-01,2018,Agosto,Linha 1 - Azul,Santana,mdu,67
+2018-08-01,2018,Agosto,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-08-01,2018,Agosto,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-08-01,2018,Agosto,Linha 1 - Azul,Tucuruvi,mdu,71
+2018-08-01,2018,Agosto,Linha 2 - Verde,Vila Prudente,mdu,56
+2018-08-01,2018,Agosto,Linha 2 - Verde,Tamanduateí,mdu,71
+2018-08-01,2018,Agosto,Linha 2 - Verde,Sacomã,mdu,42
+2018-08-01,2018,Agosto,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-08-01,2018,Agosto,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-08-01,2018,Agosto,Linha 2 - Verde,Chácara Klabin,mdu,8
+2018-08-01,2018,Agosto,Linha 2 - Verde,Ana Rosa,mdu,82
+2018-08-01,2018,Agosto,Linha 2 - Verde,Paraíso,mdu,75
+2018-08-01,2018,Agosto,Linha 2 - Verde,Brigadeiro,mdu,61
+2018-08-01,2018,Agosto,Linha 2 - Verde,Trianon-Masp,mdu,58
+2018-08-01,2018,Agosto,Linha 2 - Verde,Consolação,mdu,142
+2018-08-01,2018,Agosto,Linha 2 - Verde,Clínicas,mdu,27
+2018-08-01,2018,Agosto,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-08-01,2018,Agosto,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,98
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Patriarca,mdu,25
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Penha,mdu,38
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Carrão,mdu,61
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Tatuapé,mdu,92
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Belém,mdu,48
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Brás,mdu,99
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Sé,mdu,271
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Anhangabaú,mdu,78
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,República,mdu,152
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,213
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Capão Redondo,mdu,73
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Campo Limpo,mdu,31
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Vila das Belezas,mdu,10
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Giovanni Gronchi,mdu,20
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Santo Amaro,mdu,86
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Largo Treze,mdu,24
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Adolfo Pinheiro,mdu,7
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Alto da Boa Vista,mdu,3
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Borba Gato,mdu,5
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Brooklin,mdu,11
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Eucaliptos,mdu,21
+2018-08-01,2018,Agosto,Linha 15 - Prata,Vila Prudente,mdu,12
+2018-08-01,2018,Agosto,Linha 15 - Prata,Oratório,mdu,10
+2018-09-01,2018,Setembro,Linha 1 - Azul,Jabaquara,mdu,91
+2018-09-01,2018,Setembro,Linha 1 - Azul,Conceição,mdu,42
+2018-09-01,2018,Setembro,Linha 1 - Azul,São Judas,mdu,21
+2018-09-01,2018,Setembro,Linha 1 - Azul,Saúde,mdu,37
+2018-09-01,2018,Setembro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-09-01,2018,Setembro,Linha 1 - Azul,Santa Cruz,mdu,63
+2018-09-01,2018,Setembro,Linha 1 - Azul,Vila Mariana,mdu,32
+2018-09-01,2018,Setembro,Linha 1 - Azul,Ana Rosa,mdu,90
+2018-09-01,2018,Setembro,Linha 1 - Azul,Paraíso,mdu,118
+2018-09-01,2018,Setembro,Linha 1 - Azul,Vergueiro,mdu,33
+2018-09-01,2018,Setembro,Linha 1 - Azul,São Joaquim,mdu,54
+2018-09-01,2018,Setembro,Linha 1 - Azul,Liberdade,mdu,30
+2018-09-01,2018,Setembro,Linha 1 - Azul,Sé,mdu,254
+2018-09-01,2018,Setembro,Linha 1 - Azul,São Bento,mdu,74
+2018-09-01,2018,Setembro,Linha 1 - Azul,Luz,mdu,177
+2018-09-01,2018,Setembro,Linha 1 - Azul,Tiradentes,mdu,19
+2018-09-01,2018,Setembro,Linha 1 - Azul,Armênia,mdu,30
+2018-09-01,2018,Setembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,66
+2018-09-01,2018,Setembro,Linha 1 - Azul,Carandiru,mdu,16
+2018-09-01,2018,Setembro,Linha 1 - Azul,Santana,mdu,68
+2018-09-01,2018,Setembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-09-01,2018,Setembro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-09-01,2018,Setembro,Linha 1 - Azul,Tucuruvi,mdu,72
+2018-09-01,2018,Setembro,Linha 2 - Verde,Vila Prudente,mdu,57
+2018-09-01,2018,Setembro,Linha 2 - Verde,Tamanduateí,mdu,73
+2018-09-01,2018,Setembro,Linha 2 - Verde,Sacomã,mdu,43
+2018-09-01,2018,Setembro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2018-09-01,2018,Setembro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-09-01,2018,Setembro,Linha 2 - Verde,Chácara Klabin,mdu,8
+2018-09-01,2018,Setembro,Linha 2 - Verde,Ana Rosa,mdu,83
+2018-09-01,2018,Setembro,Linha 2 - Verde,Paraíso,mdu,76
+2018-09-01,2018,Setembro,Linha 2 - Verde,Brigadeiro,mdu,61
+2018-09-01,2018,Setembro,Linha 2 - Verde,Trianon-Masp,mdu,57
+2018-09-01,2018,Setembro,Linha 2 - Verde,Consolação,mdu,142
+2018-09-01,2018,Setembro,Linha 2 - Verde,Clínicas,mdu,27
+2018-09-01,2018,Setembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-09-01,2018,Setembro,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Penha,mdu,38
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Carrão,mdu,62
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Tatuapé,mdu,93
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Belém,mdu,49
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Brás,mdu,100
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Sé,mdu,275
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Anhangabaú,mdu,77
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,República,mdu,153
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
+2018-09-01,2018,Setembro,Linha 15 - Prata,Vila Prudente,mdu,13
+2018-09-01,2018,Setembro,Linha 15 - Prata,Oratório,mdu,10
+2018-10-01,2018,Outubro,Linha 1 - Azul,Jabaquara,mdu,92
+2018-10-01,2018,Outubro,Linha 1 - Azul,Conceição,mdu,43
+2018-10-01,2018,Outubro,Linha 1 - Azul,São Judas,mdu,20
+2018-10-01,2018,Outubro,Linha 1 - Azul,Saúde,mdu,38
+2018-10-01,2018,Outubro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2018-10-01,2018,Outubro,Linha 1 - Azul,Santa Cruz,mdu,92
+2018-10-01,2018,Outubro,Linha 1 - Azul,Vila Mariana,mdu,31
+2018-10-01,2018,Outubro,Linha 1 - Azul,Ana Rosa,mdu,93
+2018-10-01,2018,Outubro,Linha 1 - Azul,Paraíso,mdu,121
+2018-10-01,2018,Outubro,Linha 1 - Azul,Vergueiro,mdu,33
+2018-10-01,2018,Outubro,Linha 1 - Azul,São Joaquim,mdu,53
+2018-10-01,2018,Outubro,Linha 1 - Azul,Liberdade,mdu,30
+2018-10-01,2018,Outubro,Linha 1 - Azul,Sé,mdu,254
+2018-10-01,2018,Outubro,Linha 1 - Azul,São Bento,mdu,77
+2018-10-01,2018,Outubro,Linha 1 - Azul,Luz,mdu,178
+2018-10-01,2018,Outubro,Linha 1 - Azul,Tiradentes,mdu,19
+2018-10-01,2018,Outubro,Linha 1 - Azul,Armênia,mdu,30
+2018-10-01,2018,Outubro,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2018-10-01,2018,Outubro,Linha 1 - Azul,Carandiru,mdu,16
+2018-10-01,2018,Outubro,Linha 1 - Azul,Santana,mdu,68
+2018-10-01,2018,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2018-10-01,2018,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2018-10-01,2018,Outubro,Linha 1 - Azul,Tucuruvi,mdu,72
+2018-10-01,2018,Outubro,Linha 2 - Verde,Vila Prudente,mdu,57
+2018-10-01,2018,Outubro,Linha 2 - Verde,Tamanduateí,mdu,74
+2018-10-01,2018,Outubro,Linha 2 - Verde,Sacomã,mdu,43
+2018-10-01,2018,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2018-10-01,2018,Outubro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2018-10-01,2018,Outubro,Linha 2 - Verde,Chácara Klabin,mdu,34
+2018-10-01,2018,Outubro,Linha 2 - Verde,Ana Rosa,mdu,85
+2018-10-01,2018,Outubro,Linha 2 - Verde,Paraíso,mdu,78
+2018-10-01,2018,Outubro,Linha 2 - Verde,Brigadeiro,mdu,61
+2018-10-01,2018,Outubro,Linha 2 - Verde,Trianon-Masp,mdu,57
+2018-10-01,2018,Outubro,Linha 2 - Verde,Consolação,mdu,135
+2018-10-01,2018,Outubro,Linha 2 - Verde,Clínicas,mdu,27
+2018-10-01,2018,Outubro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-10-01,2018,Outubro,Linha 2 - Verde,Vila Madalena,mdu,28
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Penha,mdu,38
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Carrão,mdu,61
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Tatuapé,mdu,93
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Belém,mdu,48
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Brás,mdu,100
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Pedro II,mdu,26
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Sé,mdu,281
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,78
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,República,mdu,151
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,216
+2018-10-01,2018,Outubro,Linha 15 - Prata,Vila Prudente,mdu,13
+2018-10-01,2018,Outubro,Linha 15 - Prata,Oratório,mdu,9
+2018-11-01,2018,Novembro,Linha 1 - Azul,Jabaquara,mdu,95
+2018-11-01,2018,Novembro,Linha 1 - Azul,Conceição,mdu,44
+2018-11-01,2018,Novembro,Linha 1 - Azul,São Judas,mdu,21
+2018-11-01,2018,Novembro,Linha 1 - Azul,Saúde,mdu,39
+2018-11-01,2018,Novembro,Linha 1 - Azul,Praça da Árvore,mdu,24
+2018-11-01,2018,Novembro,Linha 1 - Azul,Santa Cruz,mdu,113
+2018-11-01,2018,Novembro,Linha 1 - Azul,Vila Mariana,mdu,32
+2018-11-01,2018,Novembro,Linha 1 - Azul,Ana Rosa,mdu,97
+2018-11-01,2018,Novembro,Linha 1 - Azul,Paraíso,mdu,127
+2018-11-01,2018,Novembro,Linha 1 - Azul,Vergueiro,mdu,34
+2018-11-01,2018,Novembro,Linha 1 - Azul,São Joaquim,mdu,53
+2018-11-01,2018,Novembro,Linha 1 - Azul,Liberdade,mdu,31
+2018-11-01,2018,Novembro,Linha 1 - Azul,Sé,mdu,258
+2018-11-01,2018,Novembro,Linha 1 - Azul,São Bento,mdu,80
+2018-11-01,2018,Novembro,Linha 1 - Azul,Luz,mdu,182
+2018-11-01,2018,Novembro,Linha 1 - Azul,Tiradentes,mdu,19
+2018-11-01,2018,Novembro,Linha 1 - Azul,Armênia,mdu,31
+2018-11-01,2018,Novembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,66
+2018-11-01,2018,Novembro,Linha 1 - Azul,Carandiru,mdu,16
+2018-11-01,2018,Novembro,Linha 1 - Azul,Santana,mdu,69
+2018-11-01,2018,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2018-11-01,2018,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,18
+2018-11-01,2018,Novembro,Linha 1 - Azul,Tucuruvi,mdu,74
+2018-11-01,2018,Novembro,Linha 2 - Verde,Vila Prudente,mdu,58
+2018-11-01,2018,Novembro,Linha 2 - Verde,Tamanduateí,mdu,76
+2018-11-01,2018,Novembro,Linha 2 - Verde,Sacomã,mdu,44
+2018-11-01,2018,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2018-11-01,2018,Novembro,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2018-11-01,2018,Novembro,Linha 2 - Verde,Chácara Klabin,mdu,57
+2018-11-01,2018,Novembro,Linha 2 - Verde,Ana Rosa,mdu,87
+2018-11-01,2018,Novembro,Linha 2 - Verde,Paraíso,mdu,81
+2018-11-01,2018,Novembro,Linha 2 - Verde,Brigadeiro,mdu,63
+2018-11-01,2018,Novembro,Linha 2 - Verde,Trianon-Masp,mdu,59
+2018-11-01,2018,Novembro,Linha 2 - Verde,Consolação,mdu,134
+2018-11-01,2018,Novembro,Linha 2 - Verde,Clínicas,mdu,28
+2018-11-01,2018,Novembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2018-11-01,2018,Novembro,Linha 2 - Verde,Vila Madalena,mdu,29
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,101
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Artur Alvim,mdu,71
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Penha,mdu,39
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Carrão,mdu,63
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Tatuapé,mdu,94
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Belém,mdu,50
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Brás,mdu,103
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Pedro II,mdu,27
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Sé,mdu,293
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,77
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,República,mdu,153
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,220
+2018-11-01,2018,Novembro,Linha 15 - Prata,Vila Prudente,mdu,13
+2018-11-01,2018,Novembro,Linha 15 - Prata,Oratório,mdu,9
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Jabaquara,mdu,90
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Conceição,mdu,40
+2018-12-01,2018,Dezembro,Linha 1 - Azul,São Judas,mdu,20
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Saúde,mdu,36
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Praça da Árvore,mdu,22
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Santa Cruz,mdu,108
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Vila Mariana,mdu,25
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Ana Rosa,mdu,88
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Paraíso,mdu,115
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Vergueiro,mdu,30
+2018-12-01,2018,Dezembro,Linha 1 - Azul,São Joaquim,mdu,34
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Liberdade,mdu,28
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Sé,mdu,243
+2018-12-01,2018,Dezembro,Linha 1 - Azul,São Bento,mdu,83
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Luz,mdu,173
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Tiradentes,mdu,16
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Armênia,mdu,28
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,68
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Carandiru,mdu,15
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Santana,mdu,64
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,16
+2018-12-01,2018,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,70
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,52
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,67
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Sacomã,mdu,42
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,20
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Chácara Klabin,mdu,57
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Ana Rosa,mdu,81
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Paraíso,mdu,75
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Brigadeiro,mdu,60
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Trianon-Masp,mdu,56
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Consolação,mdu,124
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Clínicas,mdu,24
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Vila Madalena,mdu,27
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Patriarca,mdu,25
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Vila Matilde,mdu,30
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Penha,mdu,35
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Carrão,mdu,51
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Tatuapé,mdu,94
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Belém,mdu,45
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,40
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Brás,mdu,110
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,25
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Sé,mdu,272
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,71
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,República,mdu,145
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,31
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,35
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,204
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,17
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Oratório,mdu,3
+2018-12-01,2018,Dezembro,Linha 15 - Prata,São Lucas,mdu,3
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Camilo Haddad,mdu,2
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Vila Tolstói,mdu,2
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Vila União,mdu,5
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Jabaquara,mdu,81
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Conceição,mdu,36
+2019-01-01,2019,Janeiro,Linha 1 - Azul,São Judas,mdu,18
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Saúde,mdu,31
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Praça da Árvore,mdu,19
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Santa Cruz,mdu,98
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Vila Mariana,mdu,21
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Ana Rosa,mdu,79
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Paraíso,mdu,104
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Vergueiro,mdu,27
+2019-01-01,2019,Janeiro,Linha 1 - Azul,São Joaquim,mdu,24
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Liberdade,mdu,24
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Sé,mdu,214
+2019-01-01,2019,Janeiro,Linha 1 - Azul,São Bento,mdu,70
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Luz,mdu,154
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Tiradentes,mdu,13
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Armênia,mdu,26
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Carandiru,mdu,13
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Santana,mdu,57
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,12
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Parada Inglesa,mdu,14
+2019-01-01,2019,Janeiro,Linha 1 - Azul,Tucuruvi,mdu,62
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Vila Prudente,mdu,51
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Tamanduateí,mdu,61
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Sacomã,mdu,38
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Alto do Ipiranga,mdu,17
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Santos-Imigrantes,mdu,14
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Chácara Klabin,mdu,55
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Ana Rosa,mdu,70
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Paraíso,mdu,65
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Brigadeiro,mdu,56
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Trianon-Masp,mdu,51
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Consolação,mdu,112
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Clínicas,mdu,23
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,12
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Vila Madalena,mdu,23
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,86
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Artur Alvim,mdu,59
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Patriarca,mdu,22
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,22
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Vila Matilde,mdu,27
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Penha,mdu,31
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Carrão,mdu,44
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Tatuapé,mdu,81
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Belém,mdu,41
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,31
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Brás,mdu,90
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Pedro II,mdu,23
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Sé,mdu,241
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Anhangabaú,mdu,65
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,República,mdu,132
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Santa Cecília,mdu,25
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,32
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,181
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Vila Prudente,mdu,19
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Oratório,mdu,4
+2019-01-01,2019,Janeiro,Linha 15 - Prata,São Lucas,mdu,3
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Camilo Haddad,mdu,2
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Vila Tolstói,mdu,3
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Vila União,mdu,6
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Jabaquara,mdu,88
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Conceição,mdu,42
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,São Judas,mdu,20
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Saúde,mdu,37
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Santa Cruz,mdu,113
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Vila Mariana,mdu,30
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Ana Rosa,mdu,96
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Paraíso,mdu,125
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Vergueiro,mdu,33
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,São Joaquim,mdu,48
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Liberdade,mdu,29
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Sé,mdu,245
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,São Bento,mdu,73
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Luz,mdu,171
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Tiradentes,mdu,18
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Armênia,mdu,29
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Carandiru,mdu,16
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Santana,mdu,66
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-02-01,2019,Fevereiro,Linha 1 - Azul,Tucuruvi,mdu,71
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Vila Prudente,mdu,61
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Tamanduateí,mdu,72
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Sacomã,mdu,45
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Chácara Klabin,mdu,67
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Ana Rosa,mdu,83
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Paraíso,mdu,77
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Brigadeiro,mdu,63
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Trianon-Masp,mdu,59
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Consolação,mdu,135
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Clínicas,mdu,26
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Vila Madalena,mdu,29
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Patriarca,mdu,25
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Penha,mdu,36
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Carrão,mdu,59
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Tatuapé,mdu,90
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Belém,mdu,47
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,43
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Brás,mdu,96
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Pedro II,mdu,25
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Sé,mdu,279
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Anhangabaú,mdu,73
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,República,mdu,150
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Vila Prudente,mdu,25
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Oratório,mdu,6
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,São Lucas,mdu,4
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Vila Tolstói,mdu,3
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Vila União,mdu,8
+2019-03-01,2019,Março,Linha 1 - Azul,Jabaquara,mdu,91
+2019-03-01,2019,Março,Linha 1 - Azul,Conceição,mdu,43
+2019-03-01,2019,Março,Linha 1 - Azul,São Judas,mdu,21
+2019-03-01,2019,Março,Linha 1 - Azul,Saúde,mdu,39
+2019-03-01,2019,Março,Linha 1 - Azul,Praça da Árvore,mdu,24
+2019-03-01,2019,Março,Linha 1 - Azul,Santa Cruz,mdu,119
+2019-03-01,2019,Março,Linha 1 - Azul,Vila Mariana,mdu,32
+2019-03-01,2019,Março,Linha 1 - Azul,Ana Rosa,mdu,100
+2019-03-01,2019,Março,Linha 1 - Azul,Paraíso,mdu,130
+2019-03-01,2019,Março,Linha 1 - Azul,Vergueiro,mdu,34
+2019-03-01,2019,Março,Linha 1 - Azul,São Joaquim,mdu,55
+2019-03-01,2019,Março,Linha 1 - Azul,Liberdade,mdu,30
+2019-03-01,2019,Março,Linha 1 - Azul,Sé,mdu,254
+2019-03-01,2019,Março,Linha 1 - Azul,São Bento,mdu,72
+2019-03-01,2019,Março,Linha 1 - Azul,Luz,mdu,174
+2019-03-01,2019,Março,Linha 1 - Azul,Tiradentes,mdu,19
+2019-03-01,2019,Março,Linha 1 - Azul,Armênia,mdu,30
+2019-03-01,2019,Março,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2019-03-01,2019,Março,Linha 1 - Azul,Carandiru,mdu,16
+2019-03-01,2019,Março,Linha 1 - Azul,Santana,mdu,68
+2019-03-01,2019,Março,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-03-01,2019,Março,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-03-01,2019,Março,Linha 1 - Azul,Tucuruvi,mdu,73
+2019-03-01,2019,Março,Linha 2 - Verde,Vila Prudente,mdu,71
+2019-03-01,2019,Março,Linha 2 - Verde,Tamanduateí,mdu,73
+2019-03-01,2019,Março,Linha 2 - Verde,Sacomã,mdu,47
+2019-03-01,2019,Março,Linha 2 - Verde,Alto do Ipiranga,mdu,23
+2019-03-01,2019,Março,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-03-01,2019,Março,Linha 2 - Verde,Chácara Klabin,mdu,70
+2019-03-01,2019,Março,Linha 2 - Verde,Ana Rosa,mdu,86
+2019-03-01,2019,Março,Linha 2 - Verde,Paraíso,mdu,80
+2019-03-01,2019,Março,Linha 2 - Verde,Brigadeiro,mdu,64
+2019-03-01,2019,Março,Linha 2 - Verde,Trianon-Masp,mdu,62
+2019-03-01,2019,Março,Linha 2 - Verde,Consolação,mdu,141
+2019-03-01,2019,Março,Linha 2 - Verde,Clínicas,mdu,27
+2019-03-01,2019,Março,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,16
+2019-03-01,2019,Março,Linha 2 - Verde,Vila Madalena,mdu,30
+2019-03-01,2019,Março,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2019-03-01,2019,Março,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2019-03-01,2019,Março,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-03-01,2019,Março,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2019-03-01,2019,Março,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2019-03-01,2019,Março,Linha 3 - Vermelha,Penha,mdu,38
+2019-03-01,2019,Março,Linha 3 - Vermelha,Carrão,mdu,63
+2019-03-01,2019,Março,Linha 3 - Vermelha,Tatuapé,mdu,93
+2019-03-01,2019,Março,Linha 3 - Vermelha,Belém,mdu,49
+2019-03-01,2019,Março,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
+2019-03-01,2019,Março,Linha 3 - Vermelha,Brás,mdu,98
+2019-03-01,2019,Março,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-03-01,2019,Março,Linha 3 - Vermelha,Sé,mdu,288
+2019-03-01,2019,Março,Linha 3 - Vermelha,Anhangabaú,mdu,73
+2019-03-01,2019,Março,Linha 3 - Vermelha,República,mdu,156
+2019-03-01,2019,Março,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2019-03-01,2019,Março,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2019-03-01,2019,Março,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,217
+2019-03-01,2019,Março,Linha 15 - Prata,Vila Prudente,mdu,32
+2019-03-01,2019,Março,Linha 15 - Prata,Oratório,mdu,7
+2019-03-01,2019,Março,Linha 15 - Prata,São Lucas,mdu,4
+2019-03-01,2019,Março,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-03-01,2019,Março,Linha 15 - Prata,Vila Tolstói,mdu,4
+2019-03-01,2019,Março,Linha 15 - Prata,Vila União,mdu,11
+2019-04-01,2019,Abril,Linha 1 - Azul,Jabaquara,mdu,93
+2019-04-01,2019,Abril,Linha 1 - Azul,Conceição,mdu,43
+2019-04-01,2019,Abril,Linha 1 - Azul,São Judas,mdu,21
+2019-04-01,2019,Abril,Linha 1 - Azul,Saúde,mdu,39
+2019-04-01,2019,Abril,Linha 1 - Azul,Praça da Árvore,mdu,24
+2019-04-01,2019,Abril,Linha 1 - Azul,Santa Cruz,mdu,121
+2019-04-01,2019,Abril,Linha 1 - Azul,Vila Mariana,mdu,31
+2019-04-01,2019,Abril,Linha 1 - Azul,Ana Rosa,mdu,101
+2019-04-01,2019,Abril,Linha 1 - Azul,Paraíso,mdu,132
+2019-04-01,2019,Abril,Linha 1 - Azul,Vergueiro,mdu,35
+2019-04-01,2019,Abril,Linha 1 - Azul,São Joaquim,mdu,57
+2019-04-01,2019,Abril,Linha 1 - Azul,Liberdade,mdu,30
+2019-04-01,2019,Abril,Linha 1 - Azul,Sé,mdu,254
+2019-04-01,2019,Abril,Linha 1 - Azul,São Bento,mdu,72
+2019-04-01,2019,Abril,Linha 1 - Azul,Luz,mdu,167
+2019-04-01,2019,Abril,Linha 1 - Azul,Tiradentes,mdu,19
+2019-04-01,2019,Abril,Linha 1 - Azul,Armênia,mdu,30
+2019-04-01,2019,Abril,Linha 1 - Azul,Portuguesa-Tietê,mdu,65
+2019-04-01,2019,Abril,Linha 1 - Azul,Carandiru,mdu,17
+2019-04-01,2019,Abril,Linha 1 - Azul,Santana,mdu,68
+2019-04-01,2019,Abril,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-04-01,2019,Abril,Linha 1 - Azul,Parada Inglesa,mdu,18
+2019-04-01,2019,Abril,Linha 1 - Azul,Tucuruvi,mdu,73
+2019-04-01,2019,Abril,Linha 2 - Verde,Vila Prudente,mdu,72
+2019-04-01,2019,Abril,Linha 2 - Verde,Tamanduateí,mdu,78
+2019-04-01,2019,Abril,Linha 2 - Verde,Sacomã,mdu,48
+2019-04-01,2019,Abril,Linha 2 - Verde,Alto do Ipiranga,mdu,23
+2019-04-01,2019,Abril,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-04-01,2019,Abril,Linha 2 - Verde,Chácara Klabin,mdu,73
+2019-04-01,2019,Abril,Linha 2 - Verde,Ana Rosa,mdu,87
+2019-04-01,2019,Abril,Linha 2 - Verde,Paraíso,mdu,80
+2019-04-01,2019,Abril,Linha 2 - Verde,Brigadeiro,mdu,63
+2019-04-01,2019,Abril,Linha 2 - Verde,Trianon-Masp,mdu,63
+2019-04-01,2019,Abril,Linha 2 - Verde,Consolação,mdu,141
+2019-04-01,2019,Abril,Linha 2 - Verde,Clínicas,mdu,27
+2019-04-01,2019,Abril,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,16
+2019-04-01,2019,Abril,Linha 2 - Verde,Vila Madalena,mdu,30
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Penha,mdu,38
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Carrão,mdu,64
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Tatuapé,mdu,95
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Belém,mdu,49
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Brás,mdu,99
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Pedro II,mdu,25
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Sé,mdu,289
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Anhangabaú,mdu,72
+2019-04-01,2019,Abril,Linha 3 - Vermelha,República,mdu,157
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,221
+2019-04-01,2019,Abril,Linha 15 - Prata,Vila Prudente,mdu,34
+2019-04-01,2019,Abril,Linha 15 - Prata,Oratório,mdu,7
+2019-04-01,2019,Abril,Linha 15 - Prata,São Lucas,mdu,5
+2019-04-01,2019,Abril,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-04-01,2019,Abril,Linha 15 - Prata,Vila Tolstói,mdu,4
+2019-04-01,2019,Abril,Linha 15 - Prata,Vila União,mdu,12
+2019-05-01,2019,Maio,Linha 1 - Azul,Jabaquara,mdu,91
+2019-05-01,2019,Maio,Linha 1 - Azul,Conceição,mdu,42
+2019-05-01,2019,Maio,Linha 1 - Azul,São Judas,mdu,21
+2019-05-01,2019,Maio,Linha 1 - Azul,Saúde,mdu,39
+2019-05-01,2019,Maio,Linha 1 - Azul,Praça da Árvore,mdu,24
+2019-05-01,2019,Maio,Linha 1 - Azul,Santa Cruz,mdu,120
+2019-05-01,2019,Maio,Linha 1 - Azul,Vila Mariana,mdu,30
+2019-05-01,2019,Maio,Linha 1 - Azul,Ana Rosa,mdu,98
+2019-05-01,2019,Maio,Linha 1 - Azul,Paraíso,mdu,129
+2019-05-01,2019,Maio,Linha 1 - Azul,Vergueiro,mdu,34
+2019-05-01,2019,Maio,Linha 1 - Azul,São Joaquim,mdu,54
+2019-05-01,2019,Maio,Linha 1 - Azul,Liberdade,mdu,29
+2019-05-01,2019,Maio,Linha 1 - Azul,Sé,mdu,252
+2019-05-01,2019,Maio,Linha 1 - Azul,São Bento,mdu,72
+2019-05-01,2019,Maio,Linha 1 - Azul,Luz,mdu,159
+2019-05-01,2019,Maio,Linha 1 - Azul,Tiradentes,mdu,19
+2019-05-01,2019,Maio,Linha 1 - Azul,Armênia,mdu,30
+2019-05-01,2019,Maio,Linha 1 - Azul,Portuguesa-Tietê,mdu,63
+2019-05-01,2019,Maio,Linha 1 - Azul,Carandiru,mdu,16
+2019-05-01,2019,Maio,Linha 1 - Azul,Santana,mdu,68
+2019-05-01,2019,Maio,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-05-01,2019,Maio,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-05-01,2019,Maio,Linha 1 - Azul,Tucuruvi,mdu,74
+2019-05-01,2019,Maio,Linha 2 - Verde,Vila Prudente,mdu,71
+2019-05-01,2019,Maio,Linha 2 - Verde,Tamanduateí,mdu,61
+2019-05-01,2019,Maio,Linha 2 - Verde,Sacomã,mdu,48
+2019-05-01,2019,Maio,Linha 2 - Verde,Alto do Ipiranga,mdu,23
+2019-05-01,2019,Maio,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-05-01,2019,Maio,Linha 2 - Verde,Chácara Klabin,mdu,75
+2019-05-01,2019,Maio,Linha 2 - Verde,Ana Rosa,mdu,85
+2019-05-01,2019,Maio,Linha 2 - Verde,Paraíso,mdu,79
+2019-05-01,2019,Maio,Linha 2 - Verde,Brigadeiro,mdu,63
+2019-05-01,2019,Maio,Linha 2 - Verde,Trianon-Masp,mdu,62
+2019-05-01,2019,Maio,Linha 2 - Verde,Consolação,mdu,139
+2019-05-01,2019,Maio,Linha 2 - Verde,Clínicas,mdu,27
+2019-05-01,2019,Maio,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,16
+2019-05-01,2019,Maio,Linha 2 - Verde,Vila Madalena,mdu,30
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,98
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Artur Alvim,mdu,68
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Penha,mdu,37
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Carrão,mdu,63
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Tatuapé,mdu,92
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Belém,mdu,48
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Brás,mdu,99
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Sé,mdu,283
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Anhangabaú,mdu,71
+2019-05-01,2019,Maio,Linha 3 - Vermelha,República,mdu,155
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,221
+2019-05-01,2019,Maio,Linha 15 - Prata,Vila Prudente,mdu,41
+2019-05-01,2019,Maio,Linha 15 - Prata,Oratório,mdu,7
+2019-05-01,2019,Maio,Linha 15 - Prata,São Lucas,mdu,5
+2019-05-01,2019,Maio,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-05-01,2019,Maio,Linha 15 - Prata,Vila Tolstói,mdu,4
+2019-05-01,2019,Maio,Linha 15 - Prata,Vila União,mdu,13
+2019-06-01,2019,Junho,Linha 1 - Azul,Jabaquara,mdu,87
+2019-06-01,2019,Junho,Linha 1 - Azul,Conceição,mdu,41
+2019-06-01,2019,Junho,Linha 1 - Azul,São Judas,mdu,21
+2019-06-01,2019,Junho,Linha 1 - Azul,Saúde,mdu,38
+2019-06-01,2019,Junho,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-06-01,2019,Junho,Linha 1 - Azul,Santa Cruz,mdu,117
+2019-06-01,2019,Junho,Linha 1 - Azul,Vila Mariana,mdu,28
+2019-06-01,2019,Junho,Linha 1 - Azul,Ana Rosa,mdu,95
+2019-06-01,2019,Junho,Linha 1 - Azul,Paraíso,mdu,123
+2019-06-01,2019,Junho,Linha 1 - Azul,Vergueiro,mdu,31
+2019-06-01,2019,Junho,Linha 1 - Azul,São Joaquim,mdu,44
+2019-06-01,2019,Junho,Linha 1 - Azul,Liberdade,mdu,28
+2019-06-01,2019,Junho,Linha 1 - Azul,Sé,mdu,245
+2019-06-01,2019,Junho,Linha 1 - Azul,São Bento,mdu,73
+2019-06-01,2019,Junho,Linha 1 - Azul,Luz,mdu,149
+2019-06-01,2019,Junho,Linha 1 - Azul,Tiradentes,mdu,19
+2019-06-01,2019,Junho,Linha 1 - Azul,Armênia,mdu,29
+2019-06-01,2019,Junho,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2019-06-01,2019,Junho,Linha 1 - Azul,Carandiru,mdu,16
+2019-06-01,2019,Junho,Linha 1 - Azul,Santana,mdu,65
+2019-06-01,2019,Junho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-06-01,2019,Junho,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-06-01,2019,Junho,Linha 1 - Azul,Tucuruvi,mdu,72
+2019-06-01,2019,Junho,Linha 2 - Verde,Vila Prudente,mdu,66
+2019-06-01,2019,Junho,Linha 2 - Verde,Tamanduateí,mdu,60
+2019-06-01,2019,Junho,Linha 2 - Verde,Sacomã,mdu,46
+2019-06-01,2019,Junho,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2019-06-01,2019,Junho,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-06-01,2019,Junho,Linha 2 - Verde,Chácara Klabin,mdu,73
+2019-06-01,2019,Junho,Linha 2 - Verde,Ana Rosa,mdu,82
+2019-06-01,2019,Junho,Linha 2 - Verde,Paraíso,mdu,75
+2019-06-01,2019,Junho,Linha 2 - Verde,Brigadeiro,mdu,63
+2019-06-01,2019,Junho,Linha 2 - Verde,Trianon-Masp,mdu,59
+2019-06-01,2019,Junho,Linha 2 - Verde,Consolação,mdu,135
+2019-06-01,2019,Junho,Linha 2 - Verde,Clínicas,mdu,27
+2019-06-01,2019,Junho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2019-06-01,2019,Junho,Linha 2 - Verde,Vila Madalena,mdu,29
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,94
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Patriarca,mdu,25
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Penha,mdu,36
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Carrão,mdu,56
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Tatuapé,mdu,91
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Belém,mdu,46
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Bresser-Moóca,mdu,43
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Brás,mdu,99
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Sé,mdu,273
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Anhangabaú,mdu,70
+2019-06-01,2019,Junho,Linha 3 - Vermelha,República,mdu,152
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
+2019-06-01,2019,Junho,Linha 15 - Prata,Vila Prudente,mdu,46
+2019-06-01,2019,Junho,Linha 15 - Prata,Oratório,mdu,7
+2019-06-01,2019,Junho,Linha 15 - Prata,São Lucas,mdu,5
+2019-06-01,2019,Junho,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-06-01,2019,Junho,Linha 15 - Prata,Vila Tolstói,mdu,4
+2019-06-01,2019,Junho,Linha 15 - Prata,Vila União,mdu,12
+2019-07-01,2019,Julho,Linha 1 - Azul,Jabaquara,mdu,81
+2019-07-01,2019,Julho,Linha 1 - Azul,Conceição,mdu,37
+2019-07-01,2019,Julho,Linha 1 - Azul,São Judas,mdu,19
+2019-07-01,2019,Julho,Linha 1 - Azul,Saúde,mdu,34
+2019-07-01,2019,Julho,Linha 1 - Azul,Praça da Árvore,mdu,20
+2019-07-01,2019,Julho,Linha 1 - Azul,Santa Cruz,mdu,108
+2019-07-01,2019,Julho,Linha 1 - Azul,Vila Mariana,mdu,22
+2019-07-01,2019,Julho,Linha 1 - Azul,Ana Rosa,mdu,85
+2019-07-01,2019,Julho,Linha 1 - Azul,Paraíso,mdu,111
+2019-07-01,2019,Julho,Linha 1 - Azul,Vergueiro,mdu,28
+2019-07-01,2019,Julho,Linha 1 - Azul,São Joaquim,mdu,26
+2019-07-01,2019,Julho,Linha 1 - Azul,Liberdade,mdu,25
+2019-07-01,2019,Julho,Linha 1 - Azul,Sé,mdu,226
+2019-07-01,2019,Julho,Linha 1 - Azul,São Bento,mdu,71
+2019-07-01,2019,Julho,Linha 1 - Azul,Luz,mdu,137
+2019-07-01,2019,Julho,Linha 1 - Azul,Tiradentes,mdu,15
+2019-07-01,2019,Julho,Linha 1 - Azul,Armênia,mdu,26
+2019-07-01,2019,Julho,Linha 1 - Azul,Portuguesa-Tietê,mdu,59
+2019-07-01,2019,Julho,Linha 1 - Azul,Carandiru,mdu,14
+2019-07-01,2019,Julho,Linha 1 - Azul,Santana,mdu,60
+2019-07-01,2019,Julho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
+2019-07-01,2019,Julho,Linha 1 - Azul,Parada Inglesa,mdu,15
+2019-07-01,2019,Julho,Linha 1 - Azul,Tucuruvi,mdu,66
+2019-07-01,2019,Julho,Linha 2 - Verde,Vila Prudente,mdu,60
+2019-07-01,2019,Julho,Linha 2 - Verde,Tamanduateí,mdu,56
+2019-07-01,2019,Julho,Linha 2 - Verde,Sacomã,mdu,42
+2019-07-01,2019,Julho,Linha 2 - Verde,Alto do Ipiranga,mdu,19
+2019-07-01,2019,Julho,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2019-07-01,2019,Julho,Linha 2 - Verde,Chácara Klabin,mdu,68
+2019-07-01,2019,Julho,Linha 2 - Verde,Ana Rosa,mdu,73
+2019-07-01,2019,Julho,Linha 2 - Verde,Paraíso,mdu,68
+2019-07-01,2019,Julho,Linha 2 - Verde,Brigadeiro,mdu,60
+2019-07-01,2019,Julho,Linha 2 - Verde,Trianon-Masp,mdu,55
+2019-07-01,2019,Julho,Linha 2 - Verde,Consolação,mdu,124
+2019-07-01,2019,Julho,Linha 2 - Verde,Clínicas,mdu,25
+2019-07-01,2019,Julho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,12
+2019-07-01,2019,Julho,Linha 2 - Verde,Vila Madalena,mdu,24
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,88
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Artur Alvim,mdu,61
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Patriarca,mdu,23
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,23
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Vila Matilde,mdu,29
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Penha,mdu,33
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Carrão,mdu,47
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Tatuapé,mdu,85
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Belém,mdu,41
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Bresser-Moóca,mdu,33
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Brás,mdu,95
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Pedro II,mdu,23
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Sé,mdu,247
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Anhangabaú,mdu,66
+2019-07-01,2019,Julho,Linha 3 - Vermelha,República,mdu,143
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Santa Cecília,mdu,30
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Marechal Deodoro,mdu,33
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,194
+2019-07-01,2019,Julho,Linha 15 - Prata,Vila Prudente,mdu,44
+2019-07-01,2019,Julho,Linha 15 - Prata,Oratório,mdu,6
+2019-07-01,2019,Julho,Linha 15 - Prata,São Lucas,mdu,4
+2019-07-01,2019,Julho,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-07-01,2019,Julho,Linha 15 - Prata,Vila Tolstói,mdu,4
+2019-07-01,2019,Julho,Linha 15 - Prata,Vila União,mdu,12
+2019-08-01,2019,Agosto,Linha 1 - Azul,Jabaquara,mdu,89
+2019-08-01,2019,Agosto,Linha 1 - Azul,Conceição,mdu,41
+2019-08-01,2019,Agosto,Linha 1 - Azul,São Judas,mdu,21
+2019-08-01,2019,Agosto,Linha 1 - Azul,Saúde,mdu,37
+2019-08-01,2019,Agosto,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-08-01,2019,Agosto,Linha 1 - Azul,Santa Cruz,mdu,117
+2019-08-01,2019,Agosto,Linha 1 - Azul,Vila Mariana,mdu,29
+2019-08-01,2019,Agosto,Linha 1 - Azul,Ana Rosa,mdu,96
+2019-08-01,2019,Agosto,Linha 1 - Azul,Paraíso,mdu,126
+2019-08-01,2019,Agosto,Linha 1 - Azul,Vergueiro,mdu,33
+2019-08-01,2019,Agosto,Linha 1 - Azul,São Joaquim,mdu,50
+2019-08-01,2019,Agosto,Linha 1 - Azul,Liberdade,mdu,29
+2019-08-01,2019,Agosto,Linha 1 - Azul,Sé,mdu,246
+2019-08-01,2019,Agosto,Linha 1 - Azul,São Bento,mdu,71
+2019-08-01,2019,Agosto,Linha 1 - Azul,Luz,mdu,150
+2019-08-01,2019,Agosto,Linha 1 - Azul,Tiradentes,mdu,19
+2019-08-01,2019,Agosto,Linha 1 - Azul,Armênia,mdu,29
+2019-08-01,2019,Agosto,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2019-08-01,2019,Agosto,Linha 1 - Azul,Carandiru,mdu,16
+2019-08-01,2019,Agosto,Linha 1 - Azul,Santana,mdu,66
+2019-08-01,2019,Agosto,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-08-01,2019,Agosto,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-08-01,2019,Agosto,Linha 1 - Azul,Tucuruvi,mdu,72
+2019-08-01,2019,Agosto,Linha 2 - Verde,Vila Prudente,mdu,69
+2019-08-01,2019,Agosto,Linha 2 - Verde,Tamanduateí,mdu,61
+2019-08-01,2019,Agosto,Linha 2 - Verde,Sacomã,mdu,46
+2019-08-01,2019,Agosto,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2019-08-01,2019,Agosto,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-08-01,2019,Agosto,Linha 2 - Verde,Chácara Klabin,mdu,76
+2019-08-01,2019,Agosto,Linha 2 - Verde,Ana Rosa,mdu,83
+2019-08-01,2019,Agosto,Linha 2 - Verde,Paraíso,mdu,76
+2019-08-01,2019,Agosto,Linha 2 - Verde,Brigadeiro,mdu,64
+2019-08-01,2019,Agosto,Linha 2 - Verde,Trianon-Masp,mdu,59
+2019-08-01,2019,Agosto,Linha 2 - Verde,Consolação,mdu,141
+2019-08-01,2019,Agosto,Linha 2 - Verde,Clínicas,mdu,27
+2019-08-01,2019,Agosto,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2019-08-01,2019,Agosto,Linha 2 - Verde,Vila Madalena,mdu,28
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,25
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Penha,mdu,37
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Carrão,mdu,61
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Tatuapé,mdu,91
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Belém,mdu,47
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Bresser-Moóca,mdu,44
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Brás,mdu,98
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Sé,mdu,276
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Anhangabaú,mdu,69
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,República,mdu,154
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,211
+2019-08-01,2019,Agosto,Linha 15 - Prata,Vila Prudente,mdu,49
+2019-08-01,2019,Agosto,Linha 15 - Prata,Oratório,mdu,6
+2019-08-01,2019,Agosto,Linha 15 - Prata,São Lucas,mdu,5
+2019-08-01,2019,Agosto,Linha 15 - Prata,Camilo Haddad,mdu,4
+2019-08-01,2019,Agosto,Linha 15 - Prata,Vila Tolstói,mdu,5
+2019-08-01,2019,Agosto,Linha 15 - Prata,Vila União,mdu,12
+2019-08-01,2019,Agosto,Linha 15 - Prata,Jardim Planalto,mdu,8
+2019-09-01,2019,Setembro,Linha 1 - Azul,Jabaquara,mdu,90
+2019-09-01,2019,Setembro,Linha 1 - Azul,Conceição,mdu,42
+2019-09-01,2019,Setembro,Linha 1 - Azul,São Judas,mdu,21
+2019-09-01,2019,Setembro,Linha 1 - Azul,Saúde,mdu,37
+2019-09-01,2019,Setembro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-09-01,2019,Setembro,Linha 1 - Azul,Santa Cruz,mdu,116
+2019-09-01,2019,Setembro,Linha 1 - Azul,Vila Mariana,mdu,29
+2019-09-01,2019,Setembro,Linha 1 - Azul,Ana Rosa,mdu,95
+2019-09-01,2019,Setembro,Linha 1 - Azul,Paraíso,mdu,117
+2019-09-01,2019,Setembro,Linha 1 - Azul,Vergueiro,mdu,33
+2019-09-01,2019,Setembro,Linha 1 - Azul,São Joaquim,mdu,53
+2019-09-01,2019,Setembro,Linha 1 - Azul,Liberdade,mdu,29
+2019-09-01,2019,Setembro,Linha 1 - Azul,Sé,mdu,240
+2019-09-01,2019,Setembro,Linha 1 - Azul,São Bento,mdu,73
+2019-09-01,2019,Setembro,Linha 1 - Azul,Luz,mdu,147
+2019-09-01,2019,Setembro,Linha 1 - Azul,Tiradentes,mdu,19
+2019-09-01,2019,Setembro,Linha 1 - Azul,Armênia,mdu,29
+2019-09-01,2019,Setembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,63
+2019-09-01,2019,Setembro,Linha 1 - Azul,Carandiru,mdu,16
+2019-09-01,2019,Setembro,Linha 1 - Azul,Santana,mdu,66
+2019-09-01,2019,Setembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-09-01,2019,Setembro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-09-01,2019,Setembro,Linha 1 - Azul,Tucuruvi,mdu,73
+2019-09-01,2019,Setembro,Linha 2 - Verde,Vila Prudente,mdu,71
+2019-09-01,2019,Setembro,Linha 2 - Verde,Tamanduateí,mdu,69
+2019-09-01,2019,Setembro,Linha 2 - Verde,Sacomã,mdu,47
+2019-09-01,2019,Setembro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2019-09-01,2019,Setembro,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-09-01,2019,Setembro,Linha 2 - Verde,Chácara Klabin,mdu,80
+2019-09-01,2019,Setembro,Linha 2 - Verde,Ana Rosa,mdu,81
+2019-09-01,2019,Setembro,Linha 2 - Verde,Paraíso,mdu,84
+2019-09-01,2019,Setembro,Linha 2 - Verde,Brigadeiro,mdu,65
+2019-09-01,2019,Setembro,Linha 2 - Verde,Trianon-Masp,mdu,60
+2019-09-01,2019,Setembro,Linha 2 - Verde,Consolação,mdu,140
+2019-09-01,2019,Setembro,Linha 2 - Verde,Clínicas,mdu,27
+2019-09-01,2019,Setembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2019-09-01,2019,Setembro,Linha 2 - Verde,Vila Madalena,mdu,29
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Penha,mdu,37
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Carrão,mdu,63
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Tatuapé,mdu,91
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Belém,mdu,47
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Brás,mdu,100
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Sé,mdu,273
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Anhangabaú,mdu,69
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,República,mdu,165
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,216
+2019-09-01,2019,Setembro,Linha 15 - Prata,Vila Prudente,mdu,52
+2019-09-01,2019,Setembro,Linha 15 - Prata,Oratório,mdu,7
+2019-09-01,2019,Setembro,Linha 15 - Prata,São Lucas,mdu,5
+2019-09-01,2019,Setembro,Linha 15 - Prata,Camilo Haddad,mdu,4
+2019-09-01,2019,Setembro,Linha 15 - Prata,Vila Tolstói,mdu,5
+2019-09-01,2019,Setembro,Linha 15 - Prata,Vila União,mdu,6
+2019-09-01,2019,Setembro,Linha 15 - Prata,Jardim Planalto,mdu,12
+2019-10-01,2019,Outubro,Linha 1 - Azul,Jabaquara,mdu,91
+2019-10-01,2019,Outubro,Linha 1 - Azul,Conceição,mdu,42
+2019-10-01,2019,Outubro,Linha 1 - Azul,São Judas,mdu,22
+2019-10-01,2019,Outubro,Linha 1 - Azul,Saúde,mdu,38
+2019-10-01,2019,Outubro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-10-01,2019,Outubro,Linha 1 - Azul,Santa Cruz,mdu,116
+2019-10-01,2019,Outubro,Linha 1 - Azul,Vila Mariana,mdu,29
+2019-10-01,2019,Outubro,Linha 1 - Azul,Ana Rosa,mdu,97
+2019-10-01,2019,Outubro,Linha 1 - Azul,Paraíso,mdu,119
+2019-10-01,2019,Outubro,Linha 1 - Azul,Vergueiro,mdu,32
+2019-10-01,2019,Outubro,Linha 1 - Azul,São Joaquim,mdu,52
+2019-10-01,2019,Outubro,Linha 1 - Azul,Liberdade,mdu,29
+2019-10-01,2019,Outubro,Linha 1 - Azul,Sé,mdu,240
+2019-10-01,2019,Outubro,Linha 1 - Azul,São Bento,mdu,76
+2019-10-01,2019,Outubro,Linha 1 - Azul,Luz,mdu,176
+2019-10-01,2019,Outubro,Linha 1 - Azul,Tiradentes,mdu,19
+2019-10-01,2019,Outubro,Linha 1 - Azul,Armênia,mdu,29
+2019-10-01,2019,Outubro,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2019-10-01,2019,Outubro,Linha 1 - Azul,Carandiru,mdu,16
+2019-10-01,2019,Outubro,Linha 1 - Azul,Santana,mdu,66
+2019-10-01,2019,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-10-01,2019,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-10-01,2019,Outubro,Linha 1 - Azul,Tucuruvi,mdu,73
+2019-10-01,2019,Outubro,Linha 2 - Verde,Vila Prudente,mdu,73
+2019-10-01,2019,Outubro,Linha 2 - Verde,Tamanduateí,mdu,81
+2019-10-01,2019,Outubro,Linha 2 - Verde,Sacomã,mdu,48
+2019-10-01,2019,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
+2019-10-01,2019,Outubro,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-10-01,2019,Outubro,Linha 2 - Verde,Chácara Klabin,mdu,80
+2019-10-01,2019,Outubro,Linha 2 - Verde,Ana Rosa,mdu,83
+2019-10-01,2019,Outubro,Linha 2 - Verde,Paraíso,mdu,86
+2019-10-01,2019,Outubro,Linha 2 - Verde,Brigadeiro,mdu,66
+2019-10-01,2019,Outubro,Linha 2 - Verde,Trianon-Masp,mdu,61
+2019-10-01,2019,Outubro,Linha 2 - Verde,Consolação,mdu,138
+2019-10-01,2019,Outubro,Linha 2 - Verde,Clínicas,mdu,26
+2019-10-01,2019,Outubro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2019-10-01,2019,Outubro,Linha 2 - Verde,Vila Madalena,mdu,29
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,95
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Patriarca,mdu,25
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Penha,mdu,37
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Carrão,mdu,62
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Tatuapé,mdu,91
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Belém,mdu,47
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Brás,mdu,101
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Sé,mdu,280
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,69
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,República,mdu,168
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,32
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Marechal Deodoro,mdu,36
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,218
+2019-10-01,2019,Outubro,Linha 15 - Prata,Vila Prudente,mdu,52
+2019-10-01,2019,Outubro,Linha 15 - Prata,Oratório,mdu,7
+2019-10-01,2019,Outubro,Linha 15 - Prata,São Lucas,mdu,5
+2019-10-01,2019,Outubro,Linha 15 - Prata,Camilo Haddad,mdu,4
+2019-10-01,2019,Outubro,Linha 15 - Prata,Vila Tolstói,mdu,5
+2019-10-01,2019,Outubro,Linha 15 - Prata,Vila União,mdu,6
+2019-10-01,2019,Outubro,Linha 15 - Prata,Jardim Planalto,mdu,14
+2019-11-01,2019,Novembro,Linha 1 - Azul,Jabaquara,mdu,92
+2019-11-01,2019,Novembro,Linha 1 - Azul,Conceição,mdu,42
+2019-11-01,2019,Novembro,Linha 1 - Azul,São Judas,mdu,21
+2019-11-01,2019,Novembro,Linha 1 - Azul,Saúde,mdu,38
+2019-11-01,2019,Novembro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2019-11-01,2019,Novembro,Linha 1 - Azul,Santa Cruz,mdu,119
+2019-11-01,2019,Novembro,Linha 1 - Azul,Vila Mariana,mdu,29
+2019-11-01,2019,Novembro,Linha 1 - Azul,Ana Rosa,mdu,96
+2019-11-01,2019,Novembro,Linha 1 - Azul,Paraíso,mdu,120
+2019-11-01,2019,Novembro,Linha 1 - Azul,Vergueiro,mdu,31
+2019-11-01,2019,Novembro,Linha 1 - Azul,São Joaquim,mdu,49
+2019-11-01,2019,Novembro,Linha 1 - Azul,Liberdade,mdu,29
+2019-11-01,2019,Novembro,Linha 1 - Azul,Sé,mdu,242
+2019-11-01,2019,Novembro,Linha 1 - Azul,São Bento,mdu,77
+2019-11-01,2019,Novembro,Linha 1 - Azul,Luz,mdu,164
+2019-11-01,2019,Novembro,Linha 1 - Azul,Tiradentes,mdu,20
+2019-11-01,2019,Novembro,Linha 1 - Azul,Armênia,mdu,30
+2019-11-01,2019,Novembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,64
+2019-11-01,2019,Novembro,Linha 1 - Azul,Carandiru,mdu,16
+2019-11-01,2019,Novembro,Linha 1 - Azul,Santana,mdu,68
+2019-11-01,2019,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2019-11-01,2019,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2019-11-01,2019,Novembro,Linha 1 - Azul,Tucuruvi,mdu,75
+2019-11-01,2019,Novembro,Linha 2 - Verde,Vila Prudente,mdu,74
+2019-11-01,2019,Novembro,Linha 2 - Verde,Tamanduateí,mdu,83
+2019-11-01,2019,Novembro,Linha 2 - Verde,Sacomã,mdu,47
+2019-11-01,2019,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,23
+2019-11-01,2019,Novembro,Linha 2 - Verde,Santos-Imigrantes,mdu,17
+2019-11-01,2019,Novembro,Linha 2 - Verde,Chácara Klabin,mdu,83
+2019-11-01,2019,Novembro,Linha 2 - Verde,Ana Rosa,mdu,83
+2019-11-01,2019,Novembro,Linha 2 - Verde,Paraíso,mdu,86
+2019-11-01,2019,Novembro,Linha 2 - Verde,Brigadeiro,mdu,65
+2019-11-01,2019,Novembro,Linha 2 - Verde,Trianon-Masp,mdu,60
+2019-11-01,2019,Novembro,Linha 2 - Verde,Consolação,mdu,137
+2019-11-01,2019,Novembro,Linha 2 - Verde,Clínicas,mdu,27
+2019-11-01,2019,Novembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,16
+2019-11-01,2019,Novembro,Linha 2 - Verde,Vila Madalena,mdu,29
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,96
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Penha,mdu,37
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Carrão,mdu,61
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Tatuapé,mdu,96
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Belém,mdu,47
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Brás,mdu,100
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Pedro II,mdu,24
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Sé,mdu,280
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,70
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,República,mdu,170
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
+2019-11-01,2019,Novembro,Linha 15 - Prata,Vila Prudente,mdu,51
+2019-11-01,2019,Novembro,Linha 15 - Prata,Oratório,mdu,7
+2019-11-01,2019,Novembro,Linha 15 - Prata,São Lucas,mdu,5
+2019-11-01,2019,Novembro,Linha 15 - Prata,Camilo Haddad,mdu,4
+2019-11-01,2019,Novembro,Linha 15 - Prata,Vila Tolstói,mdu,5
+2019-11-01,2019,Novembro,Linha 15 - Prata,Vila União,mdu,7
+2019-11-01,2019,Novembro,Linha 15 - Prata,Jardim Planalto,mdu,15
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Jabaquara,mdu,87
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Conceição,mdu,37
+2019-12-01,2019,Dezembro,Linha 1 - Azul,São Judas,mdu,19
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Saúde,mdu,34
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Praça da Árvore,mdu,21
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Santa Cruz,mdu,112
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Vila Mariana,mdu,21
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Ana Rosa,mdu,85
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Paraíso,mdu,106
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Vergueiro,mdu,26
+2019-12-01,2019,Dezembro,Linha 1 - Azul,São Joaquim,mdu,31
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Liberdade,mdu,26
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Sé,mdu,222
+2019-12-01,2019,Dezembro,Linha 1 - Azul,São Bento,mdu,79
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Luz,mdu,146
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Tiradentes,mdu,15
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Armênia,mdu,26
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Carandiru,mdu,14
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Santana,mdu,61
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,15
+2019-12-01,2019,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,69
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,66
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,74
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Sacomã,mdu,43
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,19
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Chácara Klabin,mdu,75
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Ana Rosa,mdu,74
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Paraíso,mdu,77
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Brigadeiro,mdu,61
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Trianon-Masp,mdu,54
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Consolação,mdu,124
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Clínicas,mdu,24
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,13
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Vila Madalena,mdu,26
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,89
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Artur Alvim,mdu,63
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Patriarca,mdu,24
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,24
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Vila Matilde,mdu,28
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Penha,mdu,33
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Carrão,mdu,48
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Tatuapé,mdu,90
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Belém,mdu,42
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,37
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Brás,mdu,110
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,22
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Sé,mdu,253
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,64
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,República,mdu,155
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,25
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,33
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,192
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,47
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Oratório,mdu,6
+2019-12-01,2019,Dezembro,Linha 15 - Prata,São Lucas,mdu,5
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Camilo Haddad,mdu,3
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Vila Tolstói,mdu,5
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Vila União,mdu,6
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Jardim Planalto,mdu,13
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Sapopemba,mdu,2
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Fazenda da Juta,mdu,1
+2019-12-01,2019,Dezembro,Linha 15 - Prata,São Mateus,mdu,3
