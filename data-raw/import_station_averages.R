@@ -1,3 +1,14 @@
+# import_station_averages.R
+# -------------------------------------------------------
+# Imports station-level average weekday passenger entries (2020-2025).
+# Reads from: data-raw/metro_sp/metro/csv/demanda_de_passageiros_por_estacao_media_dias_uteis_*.csv
+# Writes to:  data-raw/processed/metro_sp_stations_averages_2020_2025.csv
+#
+# Processes lines 1 (Azul), 2 (Verde), 3 (Vermelha), and 15 (Prata).
+# Each line has a different skip/n_max in the CSV due to variable layout.
+# The 2025 CSVs have slightly different skip offsets.
+# -------------------------------------------------------
+
 import_csv_stations_average <- function(
   variable = "stations",
   year = 2020,

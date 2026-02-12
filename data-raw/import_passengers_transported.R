@@ -1,3 +1,17 @@
+# import_passengers_transported.R
+# -------------------------------------------------------
+# Imports passengers transported data by metro line (2020-2025).
+# Reads from: data-raw/metro_sp/metro/csv/passageiros_transportados_por_linha_*.csv
+# Writes to:  data-raw/processed/metro_sp_passengers_tranported_2020_2025.csv
+#
+# Structure is identical to import_passengers_entrance.R but reads
+# "transport" instead of "entrance" variable from get_path_csv().
+#
+# Note: read_csv_passengers() and clean_csv_passengers() are duplicated
+# from import_passengers_entrance.R. A future cleanup could move them
+# to utils.R.
+# -------------------------------------------------------
+
 library(dplyr)
 library(readr)
 source(here::here("data-raw/utils.R"))

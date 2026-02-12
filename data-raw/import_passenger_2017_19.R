@@ -1,3 +1,18 @@
+# import_passenger_2017_19.R
+# -------------------------------------------------------
+# Imports passenger data by metro line (2017-2019): both entrance and
+# transported measures.
+# Reads from: data-raw/metro_sp/metro/{2017,2018,demanda_2019}/**/*.csv
+# Writes to:  data-raw/processed/metro_sp_passengers_2017_2019.csv
+#
+# Data quirks:
+# - 2017 CSVs have inconsistent skip rows per file (handled in read_psg_line)
+# - June 2018 uses UTF-8 encoding; all others use Latin-1
+# - Line 5 (Lilas) column name varies: "linha_5_lilas" vs "linha_5_lilas2"
+# - 2017 format differs from 2018-2019 in how metric labels are stored
+# - Contains both "entrance" and "transport" measures in a single output
+# -------------------------------------------------------
+
 library(dplyr)
 library(stringr)
 
@@ -8,6 +23,7 @@ import::from(tidyr, pivot_longer)
 import::from(janitor, clean_names, make_clean_names)
 import::from(lubridate, month)
 source(here("data-raw/utils.R"))
+
 # 2017-2019 ----------------------------------------------------------------
 
 ## Passageiros transportados por linha -------------------------------------

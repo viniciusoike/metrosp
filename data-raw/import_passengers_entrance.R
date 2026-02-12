@@ -1,3 +1,18 @@
+# import_passengers_entrance.R
+# -------------------------------------------------------
+# Imports passenger entrance data by metro line (2020-2025).
+# Reads from: data-raw/metro_sp/metro/csv/entrada_de_passageiros_por_linha_*.csv
+# Writes to:  data-raw/processed/metro_sp_passengers_entrance_2020_2025.csv
+#
+# The raw CSVs are semicolon-delimited with ISO-8859-1 encoding.
+# Each file contains 3 sections (batches) for different line groups,
+# read separately and bound by column.
+#
+# Note: read_csv_passengers() and clean_csv_passengers() are duplicated
+# in import_passengers_transported.R. A future cleanup could move them
+# to utils.R.
+# -------------------------------------------------------
+
 library(dplyr)
 library(readr)
 source(here::here("data-raw/utils.R"))

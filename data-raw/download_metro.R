@@ -1,6 +1,14 @@
-# Downloads zip, csv, and pdf files from METRO SP
-# https://transparencia.metrosp.com.br/
-# Script should be followed by metro_sp_csvs.R and/or metro_sp_pdfs.R
+# download_metro.R
+# -------------------------------------------------------
+# Downloads raw data files (zip, csv, pdf) from the METRO SP
+# transparency portal: https://transparencia.metrosp.com.br/dataset/demanda
+#
+# Scrapes download links from the portal page using rvest, then
+# downloads files to data-raw/metro_sp/metro/ organized by type.
+#
+# Only needs to be run once to populate the raw data directory.
+# The downloaded files (~46MB total) are gitignored.
+# -------------------------------------------------------
 
 library(dplyr)
 library(stringr)

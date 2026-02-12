@@ -1,3 +1,16 @@
+# import_daily_2017_19.R
+# -------------------------------------------------------
+# Imports station-level average weekday passenger entries (2017-2019).
+# Reads from: data-raw/metro_sp/metro/{2017,2018,demanda_2019}/**/*.csv
+# Writes to:  data-raw/processed/metro_sp_stations_averages_2017_2019.csv
+#
+# Data quirks:
+# - June/July 2018 files use UTF-8 encoding; all others use ISO-8859-1
+# - Line 5 (Lilas) data has a "Lilas9" typo in some files
+# - Only weekday average (mdu) metric is available at station level
+# - 2017 data only covers Oct-Dec (partial year)
+# -------------------------------------------------------
+
 library(dplyr)
 library(stringr)
 import::from(here, here)

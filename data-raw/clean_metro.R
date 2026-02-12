@@ -1,3 +1,18 @@
+# clean_metro.R
+# -------------------------------------------------------
+# ARCHIVE: This file contains the original scratch/exploration code
+# used during initial development. The working ETL pipeline is now
+# split across the other data-raw/ scripts:
+#   - utils.R (dimension tables and utilities)
+#   - import_passengers_entrance.R (2020-2025 entrance)
+#   - import_passengers_transported.R (2020-2025 transported)
+#   - import_station_averages.R (2020-2025 station averages)
+#   - import_passenger_2017_19.R (2017-2019 passengers)
+#   - import_daily_2017_19.R (2017-2019 station averages)
+#
+# Kept for reference only. Do not source this file.
+# -------------------------------------------------------
+
 library(readr)
 library(dplyr)
 library(tidyr)
