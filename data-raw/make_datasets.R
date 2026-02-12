@@ -59,19 +59,23 @@ psg_17_19 <- read_csv(
   show_col_types = FALSE
 )
 
-# Map Portuguese variable names to metric abbreviations
-metric_map <- c(
-  "Total" = "total",
-  "Média dos dias úteis" = "mdu",
-  "Média dos Sábados" = "msa",
-  "Média dos Domingos" = "mdo",
-  "Máxima Diária" = "max"
+# Map Portuguese variable names to metric abbreviations (case-insensitive)
+metric_map_keys <- c(
+  "total" = "total",
+  "média dos dias úteis" = "mdu",
+  "média dos sábados" = "msa",
+  "média dos domingos" = "mdo",
+  "máxima diária" = "max"
 )
+
+map_metric <- function(x) {
+  metric_map_keys[tolower(trimws(x))]
+}
 
 entrance_17_19 <- psg_17_19 |>
   filter(measure == "entrance") |>
   mutate(
-    metric_abb = metric_map[variable],
+    metric_abb = map_metric(variable),
     metric = variable
   ) |>
   select(
@@ -121,7 +125,7 @@ passengers_entrance <- bind_rows(entrance_17_19, entrance_20_25) |>
 transported_17_19 <- psg_17_19 |>
   filter(measure == "transport") |>
   mutate(
-    metric_abb = metric_map[variable],
+    metric_abb = map_metric(variable),
     metric = variable
   ) |>
   select(
@@ -180,10 +184,25 @@ line_lookup <- c(
   "Linha 15 - Prata" = 15L
 )
 
+# Station name standardization: update old short names to current full names
+# (dim_station_name_change is defined in utils.R but not loaded here,
+# so we define the mapping inline)
+station_renames <- c(
+  "Carrão" = "Carrão-Assaí Atacadista",
+  "Penha" = "Penha-Lojas Besni",
+  "Saúde" = "Saúde-Ultrafarma",
+  "Patriarca" = "Patriarca-Vila Ré"
+)
+
 stations_17_19 <- stations_17_19 |>
   mutate(
     line_number = line_lookup[line_name_full],
-    station_name = name_station
+    station_name = name_station,
+    station_name = if_else(
+      station_name %in% names(station_renames),
+      station_renames[station_name],
+      station_name
+    )
   ) |>
   rename(avg_passenger = value) |>
   filter(!is.na(avg_passenger)) |>
@@ -203,6 +222,13 @@ station_averages <- bind_rows(stations_17_19, stations_20_25) |>
     year = as.integer(year),
     line_number = as.integer(line_number)
   ) |>
+  # Add line names for consistency with passengers datasets
+  left_join(
+    metro_lines |> select(line_number, line_name_pt, line_name),
+    by = "line_number"
+  ) |>
+  select(date, year, line_number, line_name_pt, line_name,
+         station_name, avg_passenger) |>
   arrange(date, line_number, station_name)
 
 # --- Sanity checks -----------------------------------------------------------
