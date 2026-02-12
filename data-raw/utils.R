@@ -152,6 +152,31 @@ dim_line <- tibble(
   line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L)
 )
 
+# CPTM train line reference table: maps Portuguese/English names to line numbers.
+dim_train_line <- tibble(
+  line_name_pt = c(
+    "Rubi",
+    "Diamante",
+    "Esmeralda",
+    "Turquesa",
+    "Coral",
+    "Safira",
+    "Jade",
+    "Onix"
+  ),
+  line_name = c(
+    "Ruby",
+    "Diamond",
+    "Emerald",
+    "Turquoise",
+    "Coral",
+    "Sapphire",
+    "Jade",
+    "Onyx"
+  ),
+  line_number = c(7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L)
+)
+
 # Stations that were renamed (original short name -> current full name).
 dim_station_name_change <- tibble(
   station_name = c("Carrão", "Penha", "Saúde", "Patriarca"),

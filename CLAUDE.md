@@ -19,6 +19,8 @@ metrosp/
 │   ├── import_passengers_transported.R # Passenger transported ETL (2020-2025)
 │   ├── import_station_averages.R       # Station averages ETL (2020-2025)
 │   ├── import_station_daily.R          # INCOMPLETE: daily station data
+│   ├── import_geosampa.R              # GeoSampa spatial data ETL (metro + train)
+│   ├── geosampa/               # GeoSampa GPKG source files (9 files)
 │   ├── processed/              # Intermediate CSVs (committed to git, ~600KB)
 │   └── metro_sp/               # Raw source files (gitignored, ~46MB)
 ├── tests/testthat/
@@ -36,6 +38,11 @@ metrosp/
 | `passengers_transported` | Monthly passengers transported by metro line (2017-2025) |
 | `station_averages` | Average weekday passenger entries by station (2017-2025) |
 | `metro_lines` | Reference table: line number, Portuguese/English names |
+| `metro_lines_geo` | Metro line route geometries (sf, current + planned) |
+| `metro_stations_geo` | Metro station point locations (sf, current + planned) |
+| `train_lines` | Reference table: CPTM train line numbers and names |
+| `train_lines_geo` | CPTM train line route geometries (sf, current + planned) |
+| `train_stations_geo` | CPTM train station point locations (sf, current + planned) |
 
 ## Key Rules
 
@@ -45,11 +52,10 @@ metrosp/
 - `data-raw/processed/` IS committed (intermediate CSVs, ~600KB)
 - The 2017-2019 and 2020-2025 CSVs have different column schemas. `make_datasets.R` handles harmonization.
 
-## Data Source
+## Data Sources
 
-All data from: https://transparencia.metrosp.com.br/dataset/demanda
-
-Companhia do Metropolitano de Sao Paulo (METRO).
+- Passenger demand data: https://transparencia.metrosp.com.br/dataset/demanda (Companhia do Metropolitano de Sao Paulo)
+- Spatial data (lines/stations): https://geosampa.prefeitura.sp.gov.br/ (Prefeitura de Sao Paulo)
 
 ## Known Data Gaps
 

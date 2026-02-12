@@ -8,10 +8,12 @@
 # Flags (edit before running):
 #   download   - set TRUE to re-download raw files from the METRO portal
 #   historical - set TRUE to re-import 2017-2019 data (rarely needed)
+#   geosampa   - set TRUE to re-import GeoSampa shapefiles (rarely needed)
 # -------------------------------------------------------
 
 download   <- FALSE
 historical <- FALSE
+geosampa   <- FALSE
 
 import::from(here, here)
 
@@ -53,11 +55,17 @@ source(here("data-raw/import_passengers_transported.R"), local = TRUE)
 cli::cli_h2("Importing station averages (2020-2025)")
 source(here("data-raw/import_station_averages.R"), local = TRUE)
 
-# -- 4. Assemble .rda datasets ------------------------------------------------
+# -- 4. Import GeoSampa spatial data -------------------------------------------
+if (geosampa) {
+  cli::cli_h2("Importing GeoSampa spatial data (metro + train)")
+  source(here("data-raw/import_geosampa.R"), local = TRUE)
+}
+
+# -- 5. Assemble .rda datasets ------------------------------------------------
 cli::cli_h2("Assembling final datasets")
 source(here("data-raw/make_datasets.R"), local = TRUE)
 
-# -- 5. Regenerate documentation -----------------------------------------------
+# -- 6. Regenerate documentation -----------------------------------------------
 cli::cli_h2("Generating documentation")
 devtools::document(here())
 

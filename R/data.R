@@ -115,3 +115,149 @@
 #'
 #' @source Companhia do Metropolitano de Sao Paulo (METRO).
 "metro_lines"
+
+#' Metro SP Line Routes (Spatial)
+#'
+#' Spatial line geometries for Sao Paulo metro lines, including both
+#' currently operating lines and planned future expansions. Sourced from
+#' GeoSampa (Prefeitura de Sao Paulo).
+#'
+#' @format An sf data frame with LINESTRING geometry (CRS: WGS84 / EPSG:4326)
+#'   and the following columns:
+#' \describe{
+#'   \item{line_number}{Official line number (integer).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
+#'   \item{line_name}{English color name of the line (character).}
+#'   \item{company}{Operating company name (character).}
+#'   \item{status}{Either \code{"current"} (operating) or \code{"planned"}
+#'     (future expansion) (character).}
+#'   \item{geometry}{Line route geometry (sfc_LINESTRING).}
+#' }
+#'
+#' @details
+#' Current lines: Azul (1), Verde (2), Vermelha (3), Amarela (4),
+#' Lilas (5), and Prata (15). Planned lines include future extensions and
+#' new lines (Laranja, Violeta, Ouro, Celeste, Rosa, Marrom).
+#'
+#' Some lines have multiple geometry segments (rows) representing
+#' different route sections.
+#'
+#' Requires the \pkg{sf} package to work with spatial features.
+#'
+#' @source GeoSampa, Prefeitura de Sao Paulo.
+#'   \url{https://geosampa.prefeitura.sp.gov.br/}
+#'
+#' @seealso \code{\link{metro_lines}} for the non-spatial reference table,
+#'   \code{\link{metro_stations_geo}} for station point locations.
+"metro_lines_geo"
+
+#' Metro SP Station Locations (Spatial)
+#'
+#' Spatial point locations for Sao Paulo metro stations, including both
+#' currently operating stations and planned future stations. Sourced from
+#' GeoSampa (Prefeitura de Sao Paulo).
+#'
+#' @format An sf data frame with POINT geometry (CRS: WGS84 / EPSG:4326)
+#'   and the following columns:
+#' \describe{
+#'   \item{station_name}{Station name in title case (character).}
+#'   \item{line_number}{Line number the station belongs to (integer).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
+#'   \item{line_name}{English color name of the line (character).}
+#'   \item{company}{Operating company name (character).}
+#'   \item{status}{Either \code{"current"} (operating) or \code{"planned"}
+#'     (future expansion) (character).}
+#'   \item{geometry}{Station location (sfc_POINT).}
+#' }
+#'
+#' @details
+#' Requires the \pkg{sf} package to work with spatial features.
+#'
+#' @source GeoSampa, Prefeitura de Sao Paulo.
+#'   \url{https://geosampa.prefeitura.sp.gov.br/}
+#'
+#' @seealso \code{\link{metro_lines_geo}} for line route geometries,
+#'   \code{\link{station_averages}} for passenger data by station.
+"metro_stations_geo"
+
+#' CPTM Train Line Routes (Spatial)
+#'
+#' Spatial line geometries for Sao Paulo CPTM commuter train lines,
+#' including both currently operating lines and planned future expansions.
+#' Sourced from GeoSampa (Prefeitura de Sao Paulo).
+#'
+#' @format An sf data frame with LINESTRING geometry (CRS: WGS84 / EPSG:4326)
+#'   and the following columns:
+#' \describe{
+#'   \item{line_number}{Official line number (integer). \code{NA} for planned
+#'     lines without an assigned number.}
+#'   \item{line_name_pt}{Portuguese name of the line (character).}
+#'   \item{line_name}{English name of the line (character). \code{NA} for
+#'     planned lines not in the reference table.}
+#'   \item{company}{Operating company name (character).}
+#'   \item{status}{Either \code{"current"} (operating) or \code{"planned"}
+#'     (future expansion) (character).}
+#'   \item{geometry}{Line route geometry (sfc_LINESTRING).}
+#' }
+#'
+#' @details
+#' Current CPTM lines: Rubi (7), Diamante (8), Esmeralda (9),
+#' Turquesa (10), Coral (11), Safira (12), Jade (13).
+#'
+#' Some lines have multiple geometry segments (rows).
+#'
+#' Requires the \pkg{sf} package to work with spatial features.
+#'
+#' @source GeoSampa, Prefeitura de Sao Paulo.
+#'   \url{https://geosampa.prefeitura.sp.gov.br/}
+#'
+#' @seealso \code{\link{train_lines}} for the non-spatial reference table,
+#'   \code{\link{train_stations_geo}} for station point locations.
+"train_lines_geo"
+
+#' CPTM Train Station Locations (Spatial)
+#'
+#' Spatial point locations for Sao Paulo CPTM commuter train stations,
+#' including both currently operating and planned future stations.
+#' Sourced from GeoSampa (Prefeitura de Sao Paulo).
+#'
+#' @format An sf data frame with POINT geometry (CRS: WGS84 / EPSG:4326)
+#'   and the following columns:
+#' \describe{
+#'   \item{station_name}{Station name in title case (character).}
+#'   \item{line_number}{Line number the station belongs to (integer).
+#'     \code{NA} for planned stations on lines without assigned numbers.}
+#'   \item{line_name_pt}{Portuguese name of the line (character).}
+#'   \item{line_name}{English name of the line (character). \code{NA} for
+#'     planned lines not in the reference table.}
+#'   \item{company}{Operating company name (character).}
+#'   \item{status}{Either \code{"current"} (operating) or \code{"planned"}
+#'     (future expansion) (character).}
+#'   \item{geometry}{Station location (sfc_POINT).}
+#' }
+#'
+#' @details
+#' Requires the \pkg{sf} package to work with spatial features.
+#'
+#' @source GeoSampa, Prefeitura de Sao Paulo.
+#'   \url{https://geosampa.prefeitura.sp.gov.br/}
+#'
+#' @seealso \code{\link{train_lines_geo}} for line route geometries.
+"train_stations_geo"
+
+#' CPTM Train Lines Reference Table
+#'
+#' Reference table mapping line numbers to Portuguese and English names
+#' for Sao Paulo CPTM commuter train lines.
+#'
+#' @format A data frame with 8 rows and 3 columns:
+#' \describe{
+#'   \item{line_number}{Official line number (integer).}
+#'   \item{line_name_pt}{Portuguese gemstone/color name (character).}
+#'   \item{line_name}{English gemstone/color name (character).}
+#' }
+#'
+#' @source GeoSampa, Prefeitura de Sao Paulo.
+#'
+#' @seealso \code{\link{metro_lines}} for metro line reference table.
+"train_lines"
