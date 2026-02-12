@@ -6,8 +6,8 @@
 # Scrapes download links from the portal page using rvest, then
 # downloads files to data-raw/metro_sp/metro/ organized by type.
 #
-# Only needs to be run once to populate the raw data directory.
-# The downloaded files (~46MB total) are gitignored.
+# Safe to re-run: skips files that already exist locally and only
+# downloads new ones. The downloaded files (~46MB total) are gitignored.
 # -------------------------------------------------------
 
 library(dplyr)
@@ -38,8 +38,6 @@ link_download <- page |>
 # Subset only https links
 link_download = link_download[str_detect(link_download, "^https")]
 
-# link_download = link_download[str_detect(link_download, "\\.csv$|\\.pdf$")]
-
 link_title = page |>
   html_elements(xpath = "//*[@id='data-and-resources']/div/div/ul/li/div/a") |>
   html_attr(name = "title")
@@ -49,6 +47,8 @@ params = tibble(
   title = link_title
 )
 
+fld <- here("data-raw/metro_sp/metro")
+
 params <- params |>
   mutate(
     name_file = str_remove_all(title, " -"),
@@ -56,66 +56,57 @@ params <- params |>
     name_file = str_remove_all(name_file, "/"),
     type_file = str_extract(url, "\\.[a-z]{3}$"),
     year = as.numeric(str_extract(url, "(?<=20)[0-9]{4}")),
-    year = if_else(is.na(year), as.numeric(str_extract(name_file, "[0-9]{4}")), year)
+    year = if_else(is.na(year), as.numeric(str_extract(name_file, "[0-9]{4}")), year),
+    dest_path = case_when(
+      type_file == ".zip" ~ here(fld, paste0(name_file, ".zip")),
+      type_file == ".csv" ~ here(fld, "csv", paste0(name_file, ".csv")),
+      type_file == ".pdf" ~ here(fld, "pdf", paste0(name_file, ".pdf")),
+      .default = NA_character_
+    )
   )
 
-zipped_files <- params |>
-  filter(type_file == ".zip") |>
+# Create all output directories
+fs::dir_create(c(fld, here(fld, "csv"), here(fld, "pdf")))
+
+# Check which files already exist locally
+# Always re-download files from the most recent year since they are updated
+# in-place on the portal as new months are published
+max_year <- max(params$year, na.rm = TRUE)
+
+params <- params |>
+  mutate(file_exists = fs::file_exists(dest_path) & year != max_year)
+
+n_total <- nrow(params)
+n_existing <- sum(params$file_exists)
+n_new <- n_total - n_existing
+n_refreshed <- sum(params$year == max_year, na.rm = TRUE)
+
+cli::cli_alert_info("Found {n_total} file{?s} on portal")
+cli::cli_alert_success("{n_existing} file{?s} already downloaded (skipping)")
+cli::cli_alert_info("Refreshing {n_refreshed} file{?s} from {max_year} (latest year)")
+cli::cli_alert_warning("{n_new} new file{?s} to download")
+
+# Download only new files
+to_download <- params |>
+  filter(!file_exists) |>
   arrange(year)
 
-fld <- here("data-raw/metro_sp/metro")
+if (nrow(to_download) > 0) {
 
-fs::dir_create(fld)
+  cli::cli_progress_bar("Downloading", total = nrow(to_download))
 
-# Only needs to be downloaded once
+  for (i in seq_len(nrow(to_download))) {
+    download.file(to_download$url[[i]], destfile = to_download$dest_path[[i]])
+    Sys.sleep(2)
+    cli::cli_progress_update()
+  }
 
-for (i in seq_along(zipped_files$url)) {
+  cli::cli_progress_done()
+  cli::cli_alert_success("Done! Downloaded {nrow(to_download)} file{?s}.")
 
-  download.file(
-    zipped_files$url[[i]],
-    destfile = here(fld, paste0(zipped_files$name_file[[i]], ".zip"))
-  )
-
-  Sys.sleep(2)
-
+} else {
+  cli::cli_alert_success("All files are up to date.")
 }
 
-# Easier to unzip manually or using terminal
+# Zip files need to be unzipped manually or using terminal
 list.files(fld, pattern = "\\.csv$", recursive = TRUE)
-
-csv_files <- params |>
-  filter(type_file == ".csv") |>
-  arrange(year)
-
-out_dir <- fs::dir_create(here::here(fld, "csv"))
-
-for (i in seq_along(csv_files$url)) {
-
-  download.file(
-    csv_files$url[[i]],
-    destfile = here(fld, "csv", paste0(csv_files$name_file[[i]], ".csv"))
-  )
-
-  Sys.sleep(2)
-
-}
-
-pdf_files <- params |>
-  filter(type_file == ".pdf") |>
-  arrange(year)
-
-out_dir <- fs::dir_create(here(fld, "pdf"))
-
-cli::cli_progress_bar("Downloading", total = length(pdf_files$url))
-
-for (i in seq_along(pdf_files$url)) {
-
-  download.file(
-    pdf_files$url[[i]],
-    destfile = here(fld, "pdf", paste0(pdf_files$name_file[[i]], ".pdf"))
-  )
-
-  Sys.sleep(2)
-  cli::cli_progress_update()
-
-}

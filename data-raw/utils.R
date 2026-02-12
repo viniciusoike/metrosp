@@ -120,13 +120,33 @@ get_path_flds <- function(year, variable = "transport") {
 # Line 99 represents the network total ("Sistema METRO").
 dim_line <- tibble(
   line_name_pt = c(
-    "Azul", "Verde", "Vermelha", "Amarela", "Lilás", "Laranja",
-    "Prata", "Violeta", "Ouro", "Celeste", "Rosa", "Marrom",
+    "Azul",
+    "Verde",
+    "Vermelha",
+    "Amarela",
+    "Lilás",
+    "Laranja",
+    "Prata",
+    "Violeta",
+    "Ouro",
+    "Celeste",
+    "Rosa",
+    "Marrom",
     "Sistema METRÔ"
   ),
   line_name = c(
-    "Blue", "Green", "Red", "Yellow", "Lilac", "Orange",
-    "Silver", "Violet", "Gold", "Sky Blue", "Pink", "Brown",
+    "Blue",
+    "Green",
+    "Red",
+    "Yellow",
+    "Lilac",
+    "Orange",
+    "Silver",
+    "Violet",
+    "Gold",
+    "Sky Blue",
+    "Pink",
+    "Brown",
     "METRÔ System"
   ),
   line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L)
@@ -208,6 +228,9 @@ read_csv_passengers <- function(path, year = 2020) {
       na = c("- ", "-", " - "),
       locale = readr::locale(encoding = "ISO-8859-1", grouping_mark = "."),
       col_names = col_names[[i]],
+      # Experimental: try to remove warnings
+      #col_types = readr::cols(.default = readr::col_character()),
+      #name_repair = janitor::make_clean_names,
       show_col_types = FALSE
     )
   }
