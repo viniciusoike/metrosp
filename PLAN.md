@@ -84,11 +84,25 @@ date, line_number, station_name, avg_passenger, year
 ## Data Coverage Audit
 
 ### Raw data inventory (data-raw/metro_sp/metro/)
-- **106 raw CSV files** across 2017-2025
-- **2017**: 10 files (Oct-Dec only, partial year)
+- **107 raw CSV files** across 2017-2025
+- **2017**: 10 files (Oct-Dec only; 9 regular + 1 Line 5 assisted operation)
 - **2018**: 36 files (12 months x 3 metrics)
 - **2019**: 36 files (12 months x 3 metrics)
 - **2020-2025**: 24 files (6 years x 4 types)
+- **Jan-Sep 2017**: PDF only (no CSVs available)
+
+### Import coverage: 101 of 107 CSVs imported
+
+| Location | Total | Imported | Import script |
+|---|---|---|---|
+| `2017/` | 10 | 9 | `import_passenger_2017_19.R`, `import_daily_2017_19.R` |
+| `2018/*/` | 36 | 36 | same scripts |
+| `demanda_2019/*/` | 36 | 36 | same scripts |
+| `csv/` (2020-2025) | 24 | 18 | `import_passengers_entrance.R`, `import_passengers_transported.R`, `import_station_averages.R` |
+
+**Not imported (7 CSVs):**
+1. `2017/29-Demanda Diária de Visitantes...Linha 5-Lilás.csv` — Line 5 assisted operation daily visitors (niche)
+2. `csv/entrada_de_passageiros_por_estacao_diaria_*.csv` (6 files, 2020-2025) — daily station data; script incomplete
 
 ### Processed data (data-raw/processed/)
 | Processed CSV | Rows | Source files | Status |
@@ -103,9 +117,10 @@ date, line_number, station_name, avg_passenger, year
 ### Unprocessed raw data
 | Raw data type | Files | Status | Notes |
 |---|---|---|---|
-| Daily station entries 2020-2025 | 5 CSVs (2024 missing) | NOT PROCESSED | `import_station_daily.R` is incomplete |
+| Daily station entries 2020-2025 | 6 CSVs (all present) | NOT PROCESSED | `import_station_daily.R` incomplete |
+| Line 5 assisted operation 2017 | 1 CSV | NOT PROCESSED | Niche data, low priority |
 | Assisted operations 2018 | PDFs only | NOT PROCESSED | Line 5 and Line 15 supervised ops |
-| Indicators (indicadores) | PDFs only | NOT PROCESSED | Additional system metrics |
+| Indicators (indicadores) 2020-2025 | 6 PDFs | NOT PROCESSED | System metrics, PDF only |
 
 ### Known data gaps
 - **Line 5 (Lilas)**: Present in 2017-2019, missing from 2020-2025 raw data
@@ -113,7 +128,7 @@ date, line_number, station_name, avg_passenger, year
 - **2017**: Only Oct-Dec available (not full year)
 - **2025**: Trailing months have NA values (data not yet published)
 - **Station metrics**: Only weekday average (mdu) available at station level
-- **Daily station 2024**: Raw CSV file is missing from data-raw/metro_sp/metro/csv/
+- **Line 15 stations**: 10 stations in 2020, 11 from 2021 onward
 
 ---
 

@@ -10,6 +10,8 @@ A data frame with the following columns:
 \item{date}{First day of the month (Date).}
 \item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number (integer).}
+\item{line_name_pt}{Portuguese name of the metro line (character).}
+\item{line_name}{English name of the metro line (character).}
 \item{station_name}{Name of the metro station (character).}
 \item{avg_passenger}{Average weekday passenger entries in thousands
 (numeric).}
@@ -28,15 +30,16 @@ station in the Sao Paulo metro system. Data covers October 2017 through
 2025, sourced from the METRO SP transparency portal.
 }
 \details{
-Only the weekday average metric is available at the station level.
+Only the weekday average (mdu) metric is available at the station level.
+For line-level data with all 5 metrics, see \code{\link{passengers_entrance}}.
 
 Station coverage varies by line:
 \itemize{
 \item Line 1 (Azul/Blue): 23 stations
 \item Line 2 (Verde/Green): 14 stations
 \item Line 3 (Vermelha/Red): 18 stations
-\item Line 5 (Lilas/Lilac): available 2017-2019 only
-\item Line 15 (Prata/Silver): 10-11 stations
+\item Line 5 (Lilas/Lilac): available October 2017 - December 2019 only
+\item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
 }
 }
 \keyword{datasets}
