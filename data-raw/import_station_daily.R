@@ -5,7 +5,7 @@
 #
 # The daily data format is complex: each monthly section has a variable
 # number of rows (matching days in the month), with different skip offsets.
-# The 2024 daily file is also missing from the raw data.
+# All 6 daily CSVs (2020-2025) exist in data-raw/metro_sp/metro/csv/.
 #
 # Not needed for the current package release (v0.1.0) which uses
 # monthly averages from import_station_averages.R instead.

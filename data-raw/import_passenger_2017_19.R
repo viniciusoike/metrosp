@@ -120,12 +120,6 @@ read_psg_line <- function(path, force_names = FALSE) {
 }
 
 clean_psg_line <- function(dat) {
-  as_numeric_pt <- Vectorize(function(x) {
-    if (is.character(x)) {
-      as.numeric(gsub("\\.", "", x))
-    }
-  })
-
   cols_rename <- c(
     "linha_5_lilas" = "linha_5_lilas2"
   )
@@ -141,10 +135,6 @@ clean_psg_line <- function(dat) {
     # Remove columns where all values are missing
     select(where(~ !all(is.na(.x))))
 
-  # dat <- dat |>
-  #   mutate(across(2:last_col(), as_numeric_pt)) |>
-  #   select(where(~!all(is.na(.x))))
-
   return(clean_dat)
 }
 
@@ -158,22 +148,6 @@ stack_passengers <- function(ls, year = 2018, unite = TRUE) {
   )
   #> Stack tables
   tbl <- bind_rows(ls, .id = "month")
-
-  # if (unite) {
-  #   col_names <- names(tbl)
-  #   unite_cols <- col_names[str_detect(col_names, "^linha_5_lil")]
-  #
-  #   if (length(unite_cols) == 0) {
-  #     warning("No columns to unite found.")
-  #   } else {
-  #     tbl <- tbl |>
-  #       unite(
-  #         "linha_5_lilas",
-  #         all_of(unite_cols),
-  #         na.rm = TRUE
-  #       )
-  #   }
-  # }
 
   #> Manually replace the 'demanda_milhares' column and convert to long
 
@@ -248,19 +222,3 @@ write_csv(
   passengers_line,
   "data-raw/processed/metro_sp_passengers_2017_2019.csv"
 )
-
-# library(insperplot)
-#
-#
-# passengers_line |>
-#   count(variable, measure, metro_line) |>
-#   filter(n < 27)
-#
-# passengers_line |>
-#   filter(variable == "Total", measure == "entrance", metro_line != "rede") |>
-#   ggplot(aes(date, value)) +
-#   geom_line(lwd = 0.8, color = insperplot::get_insper_colors("reds3")) +
-#   geom_hline(yintercept = 0) +
-#   geom_smooth(se = FALSE, color = insperplot::get_insper_colors("oranges2")) +
-#   facet_wrap(vars(metro_line), scales = "free_y") +
-#   theme_insper()

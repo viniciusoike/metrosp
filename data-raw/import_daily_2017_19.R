@@ -88,12 +88,6 @@ import_stn_avg <- function(year) {
 
   cli::cli_alert_info("Number of files: {nrow(df_path)}")
 
-  # ls <- list()
-
-  # for (i in 1:nrow(df_path)) {
-  #   dat <- read_clean_stn_avg(df_path$path[i])
-  # }
-
   # Import data
   dat <- purrr::map(df_path$path, \(x) suppressMessages(read_clean_stn_avg(x)))
   dat <- rlang::set_names(dat, df_path$name)
@@ -125,31 +119,3 @@ readr::write_csv(
   avg_psg_station,
   "data-raw/processed/metro_sp_stations_averages_2017_2019.csv"
 )
-
-# library(ggplot2)
-
-# avg_psg_station |>
-#   filter(name_station == "Luz") |>
-#   ggplot(aes(date, value)) +
-#   geom_line()
-
-# avg_psg_station |>
-#   count(name_station, sort = TRUE)
-
-# avg_psg_station |>
-#   filter(is.na(name_station))
-
-# # Count NAs per row across all columns
-# avg_psg_station |>
-#   summarise(across(everything(), ~ sum(is.na(.x))))
-
-# df_path <- get_path_flds(year = 2018, variable = "daily")
-
-# df_path$path[7] |>
-#   readr::read_csv2(
-#     skip = 5,
-#     locale = readr::locale(encoding = "UTF-8"),
-#     name_repair = janitor::make_clean_names,
-#     na = c("- ", "-", " - "),
-#     n_max = 10,
-#   )

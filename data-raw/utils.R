@@ -168,3 +168,95 @@ as_numeric_pt <- Vectorize(function(x) {
     as.numeric(gsub("\\.", "", x))
   }
 })
+
+# --- Passenger CSV import functions ------------------------------------------
+# Used by import_passengers_entrance.R and import_passengers_transported.R
+# to read and clean the 2020-2025 passenger data by line.
+
+#' Read a raw passenger CSV file for 2020-2025.
+#'
+#' Each file contains 3 sections (batches) for different line groups,
+#' read separately with different skip rows and bound by column.
+#'
+#' @param path Path to the raw CSV file.
+#' @param year Integer year (affects skip offsets; 2025 differs from others).
+#' @return A wide data frame with one row per month.
+read_csv_passengers <- function(path, year = 2020) {
+  skip <- c(6, 25, 45)
+  if (year == 2025) {
+    skip <- c(7, 23, 39)
+  }
+
+  metric_names <- c("month", "total", "mdu", "msa", "mdo", "max")
+  line_names <- c("azul", "verde", "vermelha", "prata", "rede")
+  comb_names <- paste(rep(line_names, each = 6), metric_names, sep = "_")
+
+  col_names <- list(
+    c1 = c(comb_names[1:6], "drop_col", comb_names[7:12]),
+    c2 = c(comb_names[13:18], "drop_col", comb_names[19:24]),
+    c3 = comb_names[25:30]
+  )
+
+  parcels <- list()
+
+  for (i in 1:3) {
+    parcels[[i]] <- readr::read_delim(
+      path,
+      delim = ";",
+      skip = skip[i],
+      n_max = 12,
+      na = c("- ", "-", " - "),
+      locale = readr::locale(encoding = "ISO-8859-1", grouping_mark = "."),
+      col_names = col_names[[i]],
+      show_col_types = FALSE
+    )
+  }
+
+  # Remove empty columns and bind by column
+  parcels <- purrr::map(parcels, \(dat) select(dat, where(~ !all(is.na(.x)))))
+  dat <- bind_cols(parcels)
+  return(dat)
+}
+
+#' Clean a wide passenger data frame into long tidy format.
+#'
+#' Pivots the wide data from read_csv_passengers() to long format,
+#' separates line and metric columns, and joins dimension tables.
+#'
+#' @param dat Wide data frame from read_csv_passengers().
+#' @param year Integer year for date construction.
+#' @return A tidy data frame with columns: date, line_number, metric_abb,
+#'   metric, value, year.
+clean_csv_passengers <- function(dat, year = 2020) {
+  dim_line <- dim_line |>
+    mutate(
+      line = tolower(line_name_pt)
+    )
+
+  clean_dat <- dat |>
+    select(-matches("month$")) |>
+    mutate(month = month.abb) |>
+    tidyr::pivot_longer(cols = -month, values_transform = as.numeric) |>
+    tidyr::separate(name, into = c("line", "metric_abb"), sep = "_") |>
+    mutate(
+      year = local(year),
+      date = readr::parse_date(
+        glue::glue("{year}-{month}-01"),
+        format = "%Y-%b-%d"
+      )
+    )
+
+  clean_dat <- clean_dat |>
+    left_join(dim_metric, by = join_by(metric_abb)) |>
+    left_join(dim_line, by = join_by(line)) |>
+    select(
+      date,
+      line_number,
+      metric_abb,
+      metric,
+      value,
+      year
+    )
+
+  return(clean_dat)
+}
