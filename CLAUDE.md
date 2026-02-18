@@ -18,7 +18,7 @@ metrosp/
 │   ├── import_passengers_entrance.R    # Passenger entrance ETL (2020-2025)
 │   ├── import_passengers_transported.R # Passenger transported ETL (2020-2025)
 │   ├── import_station_averages.R       # Station averages ETL (2020-2025)
-│   ├── import_station_daily.R          # INCOMPLETE: daily station data
+│   ├── import_station_daily.R          # Daily station entries ETL (2020-2025)
 │   ├── import_geosampa.R              # GeoSampa spatial data ETL (metro + train)
 │   ├── geosampa/               # GeoSampa GPKG source files (9 files)
 │   ├── processed/              # Intermediate CSVs (committed to git, ~600KB)
@@ -37,6 +37,7 @@ metrosp/
 | `passengers_entrance` | Monthly passenger entries by metro line (2017-2025) |
 | `passengers_transported` | Monthly passengers transported by metro line (2017-2025) |
 | `station_averages` | Average weekday passenger entries by station (2017-2025) |
+| `station_daily` | Daily passenger entries by station (2020-2025) |
 | `metro_lines` | Reference table: line number, Portuguese/English names |
 | `metro_lines_geo` | Metro line route geometries (sf, current + planned) |
 | `metro_stations_geo` | Metro station point locations (sf, current + planned) |
@@ -62,7 +63,7 @@ metrosp/
 - **Line 5 (Lilas)**: Available in 2017-2019, missing from 2020-2025
 - **2017**: Only Oct-Dec available (not full year)
 - **2025**: Trailing months may have NA values (data not yet published)
-- **Daily station data**: Raw CSVs exist but import script is incomplete (not in v0.1.0)
+- **Daily station data**: Available for Lines 1, 2, 3, 15 only (2020-2025)
 - **Station metrics**: Only weekday average (mdu) available at station level
 
 ## Development Workflow
