@@ -16,3 +16,7 @@ data-raw/metro_sp/
 
 # IDE
 .vscode/
+
+# Local dev config
+.Rprofile
+.claude/
