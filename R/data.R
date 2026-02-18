@@ -100,6 +100,49 @@
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 "station_averages"
 
+#' Daily Passenger Entries by Metro SP Station
+#'
+#' Daily passenger entries at each station in the Sao Paulo metro system.
+#' Data covers 2020 through 2025, sourced from the METRO SP transparency
+#' portal. Covers Lines 1, 2, 3, and 15 only (the lines operated by METRO).
+#'
+#' @format A data frame with the following columns:
+#' \describe{
+#'   \item{date}{Date of observation (Date).}
+#'   \item{year}{Calendar year (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, or 15 (integer).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{station_code}{Three-letter station abbreviation used internally
+#'     by METRO (character).}
+#'   \item{station_name}{Full station name (character).}
+#'   \item{passengers}{Daily passenger entries in thousands (numeric).}
+#' }
+#'
+#' @details
+#' Values represent thousands of passengers (e.g., a value of 50 means
+#' 50,000 passengers entering the station that day).
+#'
+#' Station coverage by line:
+#' \itemize{
+#'   \item Line 1 (Azul/Blue): 23 stations
+#'   \item Line 2 (Verde/Green): 14 stations
+#'   \item Line 3 (Vermelha/Red): 18 stations
+#'   \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
+#'     (Jardim Colonial added)
+#' }
+#'
+#' Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
+#' Paraiso on Lines 1 and 2, Se on Lines 1 and 3). These are recorded
+#' separately for each line.
+#'
+#' @source Companhia do Metropolitano de Sao Paulo (METRO).
+#'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
+#'
+#' @seealso \code{\link{station_averages}} for monthly weekday averages,
+#'   \code{\link{passengers_entrance}} for monthly line-level totals.
+"station_daily"
+
 #' Metro SP Lines Reference Table
 #'
 #' Reference table mapping line numbers to Portuguese and English names

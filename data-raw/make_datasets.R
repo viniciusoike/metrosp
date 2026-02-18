@@ -231,6 +231,25 @@ station_averages <- bind_rows(stations_17_19, stations_20_25) |>
          station_name, avg_passenger) |>
   arrange(date, line_number, station_name)
 
+# --- station_daily ------------------------------------------------------------
+
+station_daily <- read_csv(
+  here::here("data-raw/processed/metro_sp_stations_daily_2020_2025.csv"),
+  show_col_types = FALSE
+) |>
+  mutate(
+    year = as.integer(year),
+    line_number = as.integer(line_number)
+  ) |>
+  left_join(
+    metro_lines |> select(line_number, line_name_pt, line_name),
+    by = "line_number"
+  ) |>
+  filter(!is.na(passengers), !is.na(date)) |>
+  select(date, year, line_number, line_name_pt, line_name,
+         station_code, station_name, passengers) |>
+  arrange(date, line_number, station_code)
+
 # --- Sanity checks -----------------------------------------------------------
 
 stopifnot(
@@ -242,6 +261,7 @@ stopifnot(
   ))
 )
 stopifnot("NA dates in station_averages" = !any(is.na(station_averages$date)))
+stopifnot("NA dates in station_daily" = !any(is.na(station_daily$date)))
 
 valid_lines <- metro_lines$line_number
 stopifnot(
@@ -259,6 +279,11 @@ stopifnot(
     station_averages$line_number %in% valid_lines
   )
 )
+stopifnot(
+  "Invalid line_number in station_daily" = all(
+    station_daily$line_number %in% valid_lines
+  )
+)
 
 stopifnot(
   "Date range too early" = min(passengers_entrance$date) >=
@@ -268,6 +293,40 @@ stopifnot(
   "Date range too late" = max(passengers_entrance$date) <= as.Date("2025-12-31")
 )
 
+# station_daily specific checks
+stopifnot(
+  "station_daily date range starts before 2020" =
+    min(station_daily$date) >= as.Date("2020-01-01")
+)
+stopifnot(
+  "station_daily date range ends after 2025" =
+    max(station_daily$date) <= as.Date("2025-12-31")
+)
+stopifnot(
+  "station_daily should only have lines 1, 2, 3, 15" =
+    all(station_daily$line_number %in% c(1L, 2L, 3L, 15L))
+)
+stopifnot(
+  "station_daily has negative passengers" =
+    all(station_daily$passengers >= 0)
+)
+stopifnot(
+  "station_daily missing station_name" =
+    !any(is.na(station_daily$station_name))
+)
+stopifnot(
+  "station_daily missing station_code" =
+    !any(is.na(station_daily$station_code))
+)
+stopifnot(
+  "station_daily has duplicate date/line/station" = nrow(station_daily) ==
+    nrow(distinct(station_daily, date, line_number, station_code))
+)
+stopifnot(
+  "station_daily too few rows (expect > 100k)" =
+    nrow(station_daily) > 100000
+)
+
 message("Sanity checks passed.")
 message(sprintf("passengers_entrance:    %d rows", nrow(passengers_entrance)))
 message(sprintf(
@@ -275,6 +334,7 @@ message(sprintf(
   nrow(passengers_transported)
 ))
 message(sprintf("station_averages:       %d rows", nrow(station_averages)))
+message(sprintf("station_daily:          %d rows", nrow(station_daily)))
 message(sprintf("metro_lines:            %d rows", nrow(metro_lines)))
 
 # --- Save datasets -----------------------------------------------------------
@@ -282,6 +342,7 @@ message(sprintf("metro_lines:            %d rows", nrow(metro_lines)))
 usethis::use_data(passengers_entrance, overwrite = TRUE)
 usethis::use_data(passengers_transported, overwrite = TRUE)
 usethis::use_data(station_averages, overwrite = TRUE)
+usethis::use_data(station_daily, overwrite = TRUE)
 usethis::use_data(metro_lines, overwrite = TRUE)
 
 message("All datasets saved to data/")

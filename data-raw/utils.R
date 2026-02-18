@@ -202,6 +202,59 @@ dim_metric <- tibble(
   )
 )
 
+# Station code lookup: maps 3-letter abbreviations used in the daily
+# passenger CSVs to full station names and line numbers.
+# Codes are lowercased to match janitor::make_clean_names output.
+# Station names use the latest/current form (including renames).
+# fmt: skip
+dim_station_code <- tibble(
+  station_code = c(
+    # Line 1 - Azul (23 stations, south to north)
+    "jab", "con", "jud", "sau", "arv", "scz", "vmn", "anr", "pso",
+    "vgo", "jqm", "lib", "pse", "bto", "luz", "trd", "ppq", "tte",
+    "cdu", "san", "jpa", "pig", "tuc",
+    # Line 2 - Verde (14 stations, east to west)
+    "vpt", "tti", "sac", "aip", "img", "ckb", "anr", "pso",
+    "bgd", "tri", "cns", "cli", "sum", "vmd",
+    # Line 3 - Vermelha (18 stations, east to west)
+    "itq", "art", "pca", "vpa", "vtd", "pen", "car", "tat",
+    "bel", "bre", "bas", "pds", "pse", "gbu", "rep", "cec", "deo", "bfu",
+    # Line 15 - Prata (11 stations, west to east)
+    "vpm", "ort", "slu", "cad", "vtl", "vun", "jpl", "sap", "fjt", "mat",
+    "igt"
+  ),
+  station_name = c(
+    # Line 1 - Azul
+    "Jabaquara", "Conceição", "São Judas", "Saúde",
+    "Praça da Árvore", "Santa Cruz", "Vila Mariana", "Ana Rosa",
+    "Paraíso", "Vergueiro", "São Joaquim", "Japão-Liberdade",
+    "Sé", "São Bento", "Luz", "Tiradentes", "Armênia",
+    "Portuguesa-Tietê", "Carandiru", "Santana",
+    "Jardim São Paulo-Ayrton Senna", "Parada Inglesa", "Tucuruvi",
+    # Line 2 - Verde
+    "Vila Prudente", "Tamanduateí", "Sacomã", "Alto do Ipiranga",
+    "Santos-Imigrantes", "Chácara Klabin", "Ana Rosa", "Paraíso",
+    "Brigadeiro", "Trianon-Masp", "Consolação", "Clínicas",
+    "Sumaré", "Vila Madalena",
+    # Line 3 - Vermelha
+    "Corinthians-Itaquera", "Artur Alvim", "Patriarca",
+    "Guilhermina-Esperança", "Vila Matilde", "Penha", "Carrão",
+    "Tatuapé", "Belém", "Bresser-Moóca", "Brás", "Pedro II",
+    "Sé", "Anhangabaú", "República", "Santa Cecília",
+    "Marechal Deodoro", "Palmeiras-Barra Funda",
+    # Line 15 - Prata
+    "Vila Prudente", "Oratório", "São Lucas", "Camilo Haddad",
+    "Vila Tolstói", "Vila União", "Jardim Planalto", "Sapopemba",
+    "Fazenda da Juta", "São Mateus", "Jardim Colonial"
+  ),
+  line_number = c(
+    rep(1L, 23),
+    rep(2L, 14),
+    rep(3L, 18),
+    rep(15L, 11)
+  )
+)
+
 # --- Utility functions -------------------------------------------------------
 
 #' Convert Portuguese-formatted numbers to numeric.

@@ -55,6 +55,9 @@ source(here("data-raw/import_passengers_transported.R"), local = TRUE)
 cli::cli_h2("Importing station averages (2020-2025)")
 source(here("data-raw/import_station_averages.R"), local = TRUE)
 
+cli::cli_h2("Importing station daily entries (2020-2025)")
+source(here("data-raw/import_station_daily.R"), local = TRUE)
+
 # -- 4. Import GeoSampa spatial data -------------------------------------------
 if (geosampa) {
   cli::cli_h2("Importing GeoSampa spatial data (metro + train)")
