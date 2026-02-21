@@ -17,7 +17,7 @@ source(here::here("data-raw/utils.R"))
 
 import_passengers_entrance <- function(year = 2020) {
   path <- get_path_csv(year, "entrance")
-  dat <- read_csv_passengers(path)
+  dat <- read_csv_passengers(path, year = year)
   clean_dat <- clean_csv_passengers(dat, year = year)
   return(clean_dat)
 }
@@ -28,10 +28,11 @@ passengers <- purrr::map(grid_year, safe_import_passengers)
 n_errors <- sum(sapply(passengers, \(x) !is.null(x$error)))
 
 if (n_errors == 0) {
-  passengers <- purrr::map(passengers, \(x) x$result)
-  passengers <- dplyr::bind_rows(passengers)
+  passengers_entrance <- purrr::map(passengers, \(x) x$result)
+  passengers_entrance <- dplyr::bind_rows(passengers_entrance)
   readr::write_csv(
-    passengers,
+    passengers_entrance,
     here::here("data-raw/processed/metro_sp_passengers_entrance_2020_2025.csv")
   )
+  cli::cli_alert_success("Passengers entrance processed.")
 }
