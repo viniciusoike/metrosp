@@ -263,8 +263,9 @@ dim_station_code <- tibble(
 #' This function removes the dots and converts to numeric.
 as_numeric_pt <- Vectorize(function(x) {
   if (is.character(x)) {
-    as.numeric(gsub("\\.", "", x))
+    y <- as.numeric(gsub("\\.", "", x))
   }
+  return(y)
 })
 
 # --- Passenger CSV import functions ------------------------------------------
@@ -282,7 +283,7 @@ as_numeric_pt <- Vectorize(function(x) {
 read_csv_passengers <- function(path, year = 2020) {
   skip <- c(6, 25, 45)
   if (year == 2025) {
-    skip <- c(7, 23, 39)
+    skip <- c(6, 22, 38)
   }
 
   metric_names <- c("month", "total", "mdu", "msa", "mdo", "max")
@@ -307,14 +308,24 @@ read_csv_passengers <- function(path, year = 2020) {
       locale = readr::locale(encoding = "ISO-8859-1", grouping_mark = "."),
       col_names = col_names[[i]],
       # Experimental: try to remove warnings
-      #col_types = readr::cols(.default = readr::col_character()),
-      #name_repair = janitor::make_clean_names,
+      col_types = readr::cols(.default = readr::col_character()),
+      name_repair = janitor::make_clean_names,
       show_col_types = FALSE
     )
   }
 
   # Remove empty columns and bind by column
-  parcels <- purrr::map(parcels, \(dat) select(dat, where(~ !all(is.na(.x)))))
+  # parcels <- purrr::map(parcels, \(dat) select(dat, where(~ !all(is.na(.x)))))
+
+  # Replace empty strings with NAs and drop columns with all NAs
+  parcels <- purrr::map(parcels, \(dat) {
+    d <- dat |>
+      mutate(across(where(is.character), ~ replace_values(.x, "" ~ NA))) |>
+      select(where(~ !all(is.na(.x))))
+
+    return(d)
+  })
+
   dat <- bind_cols(parcels)
   return(dat)
 }
@@ -337,7 +348,7 @@ clean_csv_passengers <- function(dat, year = 2020) {
   clean_dat <- dat |>
     select(-matches("month$")) |>
     mutate(month = month.abb) |>
-    tidyr::pivot_longer(cols = -month, values_transform = as.numeric) |>
+    tidyr::pivot_longer(cols = -month, values_transform = as_numeric_pt) |>
     tidyr::separate(name, into = c("line", "metric_abb"), sep = "_") |>
     mutate(
       year = local(year),
