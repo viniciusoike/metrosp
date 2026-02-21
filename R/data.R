@@ -7,17 +7,17 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
 #'     network total (integer).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{metric}{Measurement type in Portuguese (character). One of:
-#'     "Total", "Media dos Dias Uteis", "Media dos Sabados",
-#'     "Media dos Domingos", "Maxima Diaria".}
 #'   \item{metric_abb}{Abbreviated metric code (character). One of:
 #'     "total", "mdu", "msa", "mdo", "max".}
 #'   \item{value}{Passenger count in thousands (numeric).}
+#'   \item{metric}{Measurement type in Portuguese (character). One of:
+#'     "Total", "Media dos Dias Uteis", "Media dos Sabados",
+#'     "Media dos Domingos", "Maxima Diaria".}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{year}{Calendar year (integer).}
 #' }
 #'
 #' @details
@@ -49,14 +49,14 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
 #'     network total (integer).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{metric}{Measurement type in Portuguese (character).}
 #'   \item{metric_abb}{Abbreviated metric code (character).}
 #'   \item{value}{Passenger count in thousands (numeric).}
+#'   \item{metric}{Measurement type in Portuguese (character).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{year}{Calendar year (integer).}
 #' }
 #'
 #' @inherit passengers_entrance details
@@ -74,13 +74,13 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number (integer).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{line_name}{English name of the metro line (character).}
 #'   \item{station_name}{Name of the metro station (character).}
 #'   \item{avg_passenger}{Average weekday passenger entries in thousands
 #'     (numeric).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{year}{Calendar year (integer).}
 #' }
 #'
 #' @details
@@ -109,14 +109,14 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{Date of observation (Date).}
-#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, or 15 (integer).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{station_code}{Three-letter station abbreviation used internally
-#'     by METRO (character).}
 #'   \item{station_name}{Full station name (character).}
 #'   \item{passengers}{Daily passenger entries in thousands (numeric).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{station_code}{Three-letter station abbreviation used internally
+#'     by METRO (character).}
+#'   \item{year}{Calendar year (integer).}
 #' }
 #'
 #' @details

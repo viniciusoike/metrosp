@@ -8,14 +8,14 @@
 A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
-\item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
 network total (integer).}
-\item{line_name_pt}{Portuguese name of the metro line (character).}
-\item{line_name}{English name of the metro line (character).}
-\item{metric}{Measurement type in Portuguese (character).}
 \item{metric_abb}{Abbreviated metric code (character).}
 \item{value}{Passenger count in thousands (numeric).}
+\item{metric}{Measurement type in Portuguese (character).}
+\item{line_name}{English name of the metro line (character).}
+\item{line_name_pt}{Portuguese name of the metro line (character).}
+\item{year}{Calendar year (integer).}
 }
 }
 \source{
