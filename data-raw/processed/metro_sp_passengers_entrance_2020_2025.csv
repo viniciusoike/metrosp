@@ -319,11 +319,11 @@ date,line_number,metric_abb,metric,value,year
 2021-01-01,15,msa,Média dos Sábados,21,2021
 2021-01-01,15,mdo,Média dos Domingos,12,2021
 2021-01-01,15,max,Máxima Diária,42,2021
-2021-01-01,NA,total,Total,34018,2021
-2021-01-01,NA,mdu,Média dos Dias Úteis,1464,2021
-2021-01-01,NA,msa,Média dos Sábados,850,2021
-2021-01-01,NA,mdo,Média dos Domingos,463,2021
-2021-01-01,NA,max,Máxima Diária,1506,2021
+2021-01-01,NA,total,Total,32995,2021
+2021-01-01,NA,mdu,Média dos Dias Úteis,1384,2021
+2021-01-01,NA,msa,Média dos Sábados,733,2021
+2021-01-01,NA,mdo,Média dos Domingos,439,2021
+2021-01-01,NA,max,Máxima Diária,1468,2021
 2021-02-01,1,total,Total,11870,2021
 2021-02-01,1,mdu,Média dos Dias Úteis,509,2021
 2021-02-01,1,msa,Média dos Sábados,304,2021
@@ -344,11 +344,11 @@ date,line_number,metric_abb,metric,value,year
 2021-02-01,15,msa,Média dos Sábados,24,2021
 2021-02-01,15,mdo,Média dos Domingos,13,2021
 2021-02-01,15,max,Máxima Diária,43,2021
-2021-02-01,NA,total,Total,28951,2021
-2021-02-01,NA,mdu,Média dos Dias Úteis,1175,2021
-2021-02-01,NA,msa,Média dos Sábados,566,2021
-2021-02-01,NA,mdo,Média dos Domingos,306,2021
-2021-02-01,NA,max,Máxima Diária,1523,2021
+2021-02-01,NA,total,Total,34018,2021
+2021-02-01,NA,mdu,Média dos Dias Úteis,1464,2021
+2021-02-01,NA,msa,Média dos Sábados,850,2021
+2021-02-01,NA,mdo,Média dos Domingos,463,2021
+2021-02-01,NA,max,Máxima Diária,1506,2021
 2021-03-01,1,total,Total,9795,2021
 2021-03-01,1,mdu,Média dos Dias Úteis,398,2021
 2021-03-01,1,msa,Média dos Sábados,192,2021
@@ -369,11 +369,11 @@ date,line_number,metric_abb,metric,value,year
 2021-03-01,15,msa,Média dos Sábados,18,2021
 2021-03-01,15,mdo,Média dos Domingos,10,2021
 2021-03-01,15,max,Máxima Diária,43,2021
-2021-03-01,NA,total,Total,26992,2021
-2021-03-01,NA,mdu,Média dos Dias Úteis,1136,2021
-2021-03-01,NA,msa,Média dos Sábados,595,2021
-2021-03-01,NA,mdo,Média dos Domingos,333,2021
-2021-03-01,NA,max,Máxima Diária,1304,2021
+2021-03-01,NA,total,Total,28951,2021
+2021-03-01,NA,mdu,Média dos Dias Úteis,1175,2021
+2021-03-01,NA,msa,Média dos Sábados,566,2021
+2021-03-01,NA,mdo,Média dos Domingos,306,2021
+2021-03-01,NA,max,Máxima Diária,1523,2021
 2021-04-01,1,total,Total,9192,2021
 2021-04-01,1,mdu,Média dos Dias Úteis,388,2021
 2021-04-01,1,msa,Média dos Sábados,204,2021
@@ -394,11 +394,11 @@ date,line_number,metric_abb,metric,value,year
 2021-04-01,15,msa,Média dos Sábados,19,2021
 2021-04-01,15,mdo,Média dos Domingos,10,2021
 2021-04-01,15,max,Máxima Diária,39,2021
-2021-04-01,NA,total,Total,32897,2021
-2021-04-01,NA,mdu,Média dos Dias Úteis,1322,2021
-2021-04-01,NA,msa,Média dos Sábados,833,2021
-2021-04-01,NA,mdo,Média dos Domingos,427,2021
-2021-04-01,NA,max,Máxima Diária,1367,2021
+2021-04-01,NA,total,Total,26992,2021
+2021-04-01,NA,mdu,Média dos Dias Úteis,1136,2021
+2021-04-01,NA,msa,Média dos Sábados,595,2021
+2021-04-01,NA,mdo,Média dos Domingos,333,2021
+2021-04-01,NA,max,Máxima Diária,1304,2021
 2021-05-01,1,total,Total,11414,2021
 2021-05-01,1,mdu,Média dos Dias Úteis,459,2021
 2021-05-01,1,msa,Média dos Sábados,295,2021
@@ -419,11 +419,11 @@ date,line_number,metric_abb,metric,value,year
 2021-05-01,15,msa,Média dos Sábados,25,2021
 2021-05-01,15,mdo,Média dos Domingos,13,2021
 2021-05-01,15,max,Máxima Diária,41,2021
-2021-05-01,NA,total,Total,35117,2021
-2021-05-01,NA,mdu,Média dos Dias Úteis,1376,2021
-2021-05-01,NA,msa,Média dos Sábados,876,2021
-2021-05-01,NA,mdo,Média dos Domingos,442,2021
-2021-05-01,NA,max,Máxima Diária,1431,2021
+2021-05-01,NA,total,Total,32897,2021
+2021-05-01,NA,mdu,Média dos Dias Úteis,1322,2021
+2021-05-01,NA,msa,Média dos Sábados,833,2021
+2021-05-01,NA,mdo,Média dos Domingos,427,2021
+2021-05-01,NA,max,Máxima Diária,1367,2021
 2021-06-01,1,total,Total,12216,2021
 2021-06-01,1,mdu,Média dos Dias Úteis,476,2021
 2021-06-01,1,msa,Média dos Sábados,311,2021
@@ -444,11 +444,11 @@ date,line_number,metric_abb,metric,value,year
 2021-06-01,15,msa,Média dos Sábados,26,2021
 2021-06-01,15,mdo,Média dos Domingos,14,2021
 2021-06-01,15,max,Máxima Diária,43,2021
-2021-06-01,NA,total,Total,36681,2021
-2021-06-01,NA,mdu,Média dos Dias Úteis,1411,2021
-2021-06-01,NA,msa,Média dos Sábados,884,2021
-2021-06-01,NA,mdo,Média dos Domingos,467,2021
-2021-06-01,NA,max,Máxima Diária,1484,2021
+2021-06-01,NA,total,Total,35117,2021
+2021-06-01,NA,mdu,Média dos Dias Úteis,1376,2021
+2021-06-01,NA,msa,Média dos Sábados,876,2021
+2021-06-01,NA,mdo,Média dos Domingos,442,2021
+2021-06-01,NA,max,Máxima Diária,1431,2021
 2021-07-01,1,total,Total,12800,2021
 2021-07-01,1,mdu,Média dos Dias Úteis,489,2021
 2021-07-01,1,msa,Média dos Sábados,318,2021
@@ -469,11 +469,11 @@ date,line_number,metric_abb,metric,value,year
 2021-07-01,15,msa,Média dos Sábados,17,2021
 2021-07-01,15,mdo,Média dos Domingos,9,2021
 2021-07-01,15,max,Máxima Diária,46,2021
-2021-07-01,NA,total,Total,39903,2021
-2021-07-01,NA,mdu,Média dos Dias Úteis,1534,2021
-2021-07-01,NA,msa,Média dos Sábados,925,2021
-2021-07-01,NA,mdo,Média dos Domingos,493,2021
-2021-07-01,NA,max,Máxima Diária,1596,2021
+2021-07-01,NA,total,Total,36681,2021
+2021-07-01,NA,mdu,Média dos Dias Úteis,1411,2021
+2021-07-01,NA,msa,Média dos Sábados,884,2021
+2021-07-01,NA,mdo,Média dos Domingos,467,2021
+2021-07-01,NA,max,Máxima Diária,1484,2021
 2021-08-01,1,total,Total,13887,2021
 2021-08-01,1,mdu,Média dos Dias Úteis,531,2021
 2021-08-01,1,msa,Média dos Sábados,336,2021
@@ -494,11 +494,11 @@ date,line_number,metric_abb,metric,value,year
 2021-08-01,15,msa,Média dos Sábados,23,2021
 2021-08-01,15,mdo,Média dos Domingos,10,2021
 2021-08-01,15,max,Máxima Diária,50,2021
-2021-08-01,NA,total,Total,41308,2021
-2021-08-01,NA,mdu,Média dos Dias Úteis,1649,2021
-2021-08-01,NA,msa,Média dos Sábados,1013,2021
-2021-08-01,NA,mdo,Média dos Domingos,562,2021
-2021-08-01,NA,max,Máxima Diária,1697,2021
+2021-08-01,NA,total,Total,39903,2021
+2021-08-01,NA,mdu,Média dos Dias Úteis,1534,2021
+2021-08-01,NA,msa,Média dos Sábados,925,2021
+2021-08-01,NA,mdo,Média dos Domingos,493,2021
+2021-08-01,NA,max,Máxima Diária,1596,2021
 2021-09-01,1,total,Total,14620,2021
 2021-09-01,1,mdu,Média dos Dias Úteis,580,2021
 2021-09-01,1,msa,Média dos Sábados,373,2021
@@ -519,11 +519,11 @@ date,line_number,metric_abb,metric,value,year
 2021-09-01,15,msa,Média dos Sábados,30,2021
 2021-09-01,15,mdo,Média dos Domingos,11,2021
 2021-09-01,15,max,Máxima Diária,51,2021
-2021-09-01,NA,total,Total,43193,2021
-2021-09-01,NA,mdu,Média dos Dias Úteis,1736,2021
-2021-09-01,NA,msa,Média dos Sábados,1084,2021
-2021-09-01,NA,mdo,Média dos Domingos,559,2021
-2021-09-01,NA,max,Máxima Diária,1835,2021
+2021-09-01,NA,total,Total,41308,2021
+2021-09-01,NA,mdu,Média dos Dias Úteis,1649,2021
+2021-09-01,NA,msa,Média dos Sábados,1013,2021
+2021-09-01,NA,mdo,Média dos Domingos,562,2021
+2021-09-01,NA,max,Máxima Diária,1697,2021
 2021-10-01,1,total,Total,15384,2021
 2021-10-01,1,mdu,Média dos Dias Úteis,614,2021
 2021-10-01,1,msa,Média dos Sábados,403,2021
@@ -544,11 +544,11 @@ date,line_number,metric_abb,metric,value,year
 2021-10-01,15,msa,Média dos Sábados,23,2021
 2021-10-01,15,mdo,Média dos Domingos,8,2021
 2021-10-01,15,max,Máxima Diária,55,2021
-2021-10-01,NA,total,Total,45702,2021
-2021-10-01,NA,mdu,Média dos Dias Úteis,1860,2021
-2021-10-01,NA,msa,Média dos Sábados,1197,2021
-2021-10-01,NA,mdo,Média dos Domingos,693,2021
-2021-10-01,NA,max,Máxima Diária,1897,2021
+2021-10-01,NA,total,Total,43193,2021
+2021-10-01,NA,mdu,Média dos Dias Úteis,1736,2021
+2021-10-01,NA,msa,Média dos Sábados,1084,2021
+2021-10-01,NA,mdo,Média dos Domingos,559,2021
+2021-10-01,NA,max,Máxima Diária,1835,2021
 2021-11-01,1,total,Total,16326,2021
 2021-11-01,1,mdu,Média dos Dias Úteis,662,2021
 2021-11-01,1,msa,Média dos Sábados,443,2021
@@ -569,11 +569,11 @@ date,line_number,metric_abb,metric,value,year
 2021-11-01,15,msa,Média dos Sábados,33,2021
 2021-11-01,15,mdo,Média dos Domingos,18,2021
 2021-11-01,15,max,Máxima Diária,57,2021
-2021-11-01,NA,total,Total,45780,2021
-2021-11-01,NA,mdu,Média dos Dias Úteis,1764,2021
-2021-11-01,NA,msa,Média dos Sábados,1338,2021
-2021-11-01,NA,mdo,Média dos Domingos,711,2021
-2021-11-01,NA,max,Máxima Diária,2000,2021
+2021-11-01,NA,total,Total,45702,2021
+2021-11-01,NA,mdu,Média dos Dias Úteis,1860,2021
+2021-11-01,NA,msa,Média dos Sábados,1197,2021
+2021-11-01,NA,mdo,Média dos Domingos,693,2021
+2021-11-01,NA,max,Máxima Diária,1897,2021
 2021-12-01,1,total,Total,16317,2021
 2021-12-01,1,mdu,Média dos Dias Úteis,627,2021
 2021-12-01,1,msa,Média dos Sábados,495,2021
@@ -594,10 +594,10 @@ date,line_number,metric_abb,metric,value,year
 2021-12-01,15,msa,Média dos Sábados,37,2021
 2021-12-01,15,mdo,Média dos Domingos,14,2021
 2021-12-01,15,max,Máxima Diária,59,2021
-2021-12-01,NA,total,Total,443537,2021
-2021-12-01,NA,mdu,Média dos Dias Úteis,1484,2021
-2021-12-01,NA,msa,Média dos Sábados,908,2021
-2021-12-01,NA,mdo,Média dos Domingos,491,2021
+2021-12-01,NA,total,Total,45780,2021
+2021-12-01,NA,mdu,Média dos Dias Úteis,1764,2021
+2021-12-01,NA,msa,Média dos Sábados,1338,2021
+2021-12-01,NA,mdo,Média dos Domingos,711,2021
 2021-12-01,NA,max,Máxima Diária,2000,2021
 2022-01-01,1,total,Total,13688,2022
 2022-01-01,1,mdu,Média dos Dias Úteis,542,2022
@@ -619,11 +619,11 @@ date,line_number,metric_abb,metric,value,year
 2022-01-01,15,msa,Média dos Sábados,28,2022
 2022-01-01,15,mdo,Média dos Domingos,14,2022
 2022-01-01,15,max,Máxima Diária,50,2022
-2022-01-01,NA,total,Total,42301,2022
-2022-01-01,NA,mdu,Média dos Dias Úteis,1800,2022
-2022-01-01,NA,msa,Média dos Sábados,1124,2022
-2022-01-01,NA,mdo,Média dos Domingos,632,2022
-2022-01-01,NA,max,Máxima Diária,1884,2022
+2022-01-01,NA,total,Total,38540,2022
+2022-01-01,NA,mdu,Média dos Dias Úteis,1529,2022
+2022-01-01,NA,msa,Média dos Sábados,959,2022
+2022-01-01,NA,mdo,Média dos Domingos,539,2022
+2022-01-01,NA,max,Máxima Diária,1652,2022
 2022-02-01,1,total,Total,14891,2022
 2022-02-01,1,mdu,Média dos Dias Úteis,634,2022
 2022-02-01,1,msa,Média dos Sábados,415,2022
@@ -644,11 +644,11 @@ date,line_number,metric_abb,metric,value,year
 2022-02-01,15,msa,Média dos Sábados,34,2022
 2022-02-01,15,mdo,Média dos Domingos,18,2022
 2022-02-01,15,max,Máxima Diária,59,2022
-2022-02-01,NA,total,Total,52377,2022
-2022-02-01,NA,mdu,Média dos Dias Úteis,2031,2022
-2022-02-01,NA,msa,Média dos Sábados,1200,2022
-2022-02-01,NA,mdo,Média dos Domingos,634,2022
-2022-02-01,NA,max,Máxima Diária,2106,2022
+2022-02-01,NA,total,Total,42301,2022
+2022-02-01,NA,mdu,Média dos Dias Úteis,1800,2022
+2022-02-01,NA,msa,Média dos Sábados,1124,2022
+2022-02-01,NA,mdo,Média dos Domingos,632,2022
+2022-02-01,NA,max,Máxima Diária,1884,2022
 2022-03-01,1,total,Total,18216,2022
 2022-03-01,1,mdu,Média dos Dias Úteis,706,2022
 2022-03-01,1,msa,Média dos Sábados,436,2022
@@ -669,11 +669,11 @@ date,line_number,metric_abb,metric,value,year
 2022-03-01,15,msa,Média dos Sábados,36,2022
 2022-03-01,15,mdo,Média dos Domingos,18,2022
 2022-03-01,15,max,Máxima Diária,64,2022
-2022-03-01,NA,total,Total,49759,2022
-2022-03-01,NA,mdu,Média dos Dias Úteis,2110,2022
-2022-03-01,NA,msa,Média dos Sábados,1176,2022
-2022-03-01,NA,mdo,Média dos Domingos,697,2022
-2022-03-01,NA,max,Máxima Diária,2173,2022
+2022-03-01,NA,total,Total,52377,2022
+2022-03-01,NA,mdu,Média dos Dias Úteis,2031,2022
+2022-03-01,NA,msa,Média dos Sábados,1200,2022
+2022-03-01,NA,mdo,Média dos Domingos,634,2022
+2022-03-01,NA,max,Máxima Diária,2106,2022
 2022-04-01,1,total,Total,17547,2022
 2022-04-01,1,mdu,Média dos Dias Úteis,742,2022
 2022-04-01,1,msa,Média dos Sábados,430,2022
@@ -694,11 +694,11 @@ date,line_number,metric_abb,metric,value,year
 2022-04-01,15,msa,Média dos Sábados,36,2022
 2022-04-01,15,mdo,Média dos Domingos,19,2022
 2022-04-01,15,max,Máxima Diária,69,2022
-2022-04-01,NA,total,Total,54925,2022
-2022-04-01,NA,mdu,Média dos Dias Úteis,2097,2022
-2022-04-01,NA,msa,Média dos Sábados,1282,2022
-2022-04-01,NA,mdo,Média dos Domingos,721,2022
-2022-04-01,NA,max,Máxima Diária,2170,2022
+2022-04-01,NA,total,Total,49759,2022
+2022-04-01,NA,mdu,Média dos Dias Úteis,2110,2022
+2022-04-01,NA,msa,Média dos Sábados,1176,2022
+2022-04-01,NA,mdo,Média dos Domingos,697,2022
+2022-04-01,NA,max,Máxima Diária,2173,2022
 2022-05-01,1,total,Total,19350,2022
 2022-05-01,1,mdu,Média dos Dias Úteis,738,2022
 2022-05-01,1,msa,Média dos Sábados,473,2022
@@ -719,11 +719,11 @@ date,line_number,metric_abb,metric,value,year
 2022-05-01,15,msa,Média dos Sábados,39,2022
 2022-05-01,15,mdo,Média dos Domingos,20,2022
 2022-05-01,15,max,Máxima Diária,66,2022
-2022-05-01,NA,total,Total,51118,2022
-2022-05-01,NA,mdu,Média dos Dias Úteis,2029,2022
-2022-05-01,NA,msa,Média dos Sábados,1200,2022
-2022-05-01,NA,mdo,Média dos Domingos,737,2022
-2022-05-01,NA,max,Máxima Diária,2113,2022
+2022-05-01,NA,total,Total,54925,2022
+2022-05-01,NA,mdu,Média dos Dias Úteis,2097,2022
+2022-05-01,NA,msa,Média dos Sábados,1282,2022
+2022-05-01,NA,mdo,Média dos Domingos,721,2022
+2022-05-01,NA,max,Máxima Diária,2170,2022
 2022-06-01,1,total,Total,17926,2022
 2022-06-01,1,mdu,Média dos Dias Úteis,710,2022
 2022-06-01,1,msa,Média dos Sábados,437,2022
@@ -744,11 +744,11 @@ date,line_number,metric_abb,metric,value,year
 2022-06-01,15,msa,Média dos Sábados,35,2022
 2022-06-01,15,mdo,Média dos Domingos,20,2022
 2022-06-01,15,max,Máxima Diária,70,2022
-2022-06-01,NA,total,Total,50928,2022
-2022-06-01,NA,mdu,Média dos Dias Úteis,1960,2022
-2022-06-01,NA,msa,Média dos Sábados,1218,2022
-2022-06-01,NA,mdo,Média dos Domingos,731,2022
-2022-06-01,NA,max,Máxima Diária,2058,2022
+2022-06-01,NA,total,Total,51118,2022
+2022-06-01,NA,mdu,Média dos Dias Úteis,2029,2022
+2022-06-01,NA,msa,Média dos Sábados,1200,2022
+2022-06-01,NA,mdo,Média dos Domingos,737,2022
+2022-06-01,NA,max,Máxima Diária,2113,2022
 2022-07-01,1,total,Total,18175,2022
 2022-07-01,1,mdu,Média dos Dias Úteis,690,2022
 2022-07-01,1,msa,Média dos Sábados,459,2022
@@ -769,11 +769,11 @@ date,line_number,metric_abb,metric,value,year
 2022-07-01,15,msa,Média dos Sábados,26,2022
 2022-07-01,15,mdo,Média dos Domingos,16,2022
 2022-07-01,15,max,Máxima Diária,64,2022
-2022-07-01,NA,total,Total,56481,2022
-2022-07-01,NA,mdu,Média dos Dias Úteis,2122,2022
-2022-07-01,NA,msa,Média dos Sábados,1226,2022
-2022-07-01,NA,mdo,Média dos Domingos,691,2022
-2022-07-01,NA,max,Máxima Diária,2216,2022
+2022-07-01,NA,total,Total,50928,2022
+2022-07-01,NA,mdu,Média dos Dias Úteis,1960,2022
+2022-07-01,NA,msa,Média dos Sábados,1218,2022
+2022-07-01,NA,mdo,Média dos Domingos,731,2022
+2022-07-01,NA,max,Máxima Diária,2058,2022
 2022-08-01,1,total,Total,19922,2022
 2022-08-01,1,mdu,Média dos Dias Úteis,747,2022
 2022-08-01,1,msa,Média dos Sábados,454,2022
@@ -794,11 +794,11 @@ date,line_number,metric_abb,metric,value,year
 2022-08-01,15,msa,Média dos Sábados,28,2022
 2022-08-01,15,mdo,Média dos Domingos,17,2022
 2022-08-01,15,max,Máxima Diária,69,2022
-2022-08-01,NA,total,Total,54054,2022
-2022-08-01,NA,mdu,Média dos Dias Úteis,2164,2022
-2022-08-01,NA,msa,Média dos Sábados,1269,2022
-2022-08-01,NA,mdo,Média dos Domingos,681,2022
-2022-08-01,NA,max,Máxima Diária,2248,2022
+2022-08-01,NA,total,Total,56481,2022
+2022-08-01,NA,mdu,Média dos Dias Úteis,2122,2022
+2022-08-01,NA,msa,Média dos Sábados,1226,2022
+2022-08-01,NA,mdo,Média dos Domingos,691,2022
+2022-08-01,NA,max,Máxima Diária,2216,2022
 2022-09-01,1,total,Total,19046,2022
 2022-09-01,1,mdu,Média dos Dias Úteis,761,2022
 2022-09-01,1,msa,Média dos Sábados,466,2022
@@ -819,11 +819,11 @@ date,line_number,metric_abb,metric,value,year
 2022-09-01,15,msa,Média dos Sábados,34,2022
 2022-09-01,15,mdo,Média dos Domingos,20,2022
 2022-09-01,15,max,Máxima Diária,74,2022
-2022-09-01,NA,total,Total,55234,2022
-2022-09-01,NA,mdu,Média dos Dias Úteis,2203,2022
-2022-09-01,NA,msa,Média dos Sábados,1279,2022
-2022-09-01,NA,mdo,Média dos Domingos,731,2022
-2022-09-01,NA,max,Máxima Diária,2308,2022
+2022-09-01,NA,total,Total,54054,2022
+2022-09-01,NA,mdu,Média dos Dias Úteis,2164,2022
+2022-09-01,NA,msa,Média dos Sábados,1269,2022
+2022-09-01,NA,mdo,Média dos Domingos,681,2022
+2022-09-01,NA,max,Máxima Diária,2248,2022
 2022-10-01,1,total,Total,19679,2022
 2022-10-01,1,mdu,Média dos Dias Úteis,782,2022
 2022-10-01,1,msa,Média dos Sábados,475,2022
@@ -844,11 +844,11 @@ date,line_number,metric_abb,metric,value,year
 2022-10-01,15,msa,Média dos Sábados,33,2022
 2022-10-01,15,mdo,Média dos Domingos,19,2022
 2022-10-01,15,max,Máxima Diária,71,2022
-2022-10-01,NA,total,Total,52791,2022
-2022-10-01,NA,mdu,Média dos Dias Úteis,2220,2022
-2022-10-01,NA,msa,Média dos Sábados,1316,2022
-2022-10-01,NA,mdo,Média dos Domingos,749,2022
-2022-10-01,NA,max,Máxima Diária,2313,2022
+2022-10-01,NA,total,Total,55234,2022
+2022-10-01,NA,mdu,Média dos Dias Úteis,2203,2022
+2022-10-01,NA,msa,Média dos Sábados,1279,2022
+2022-10-01,NA,mdo,Média dos Domingos,731,2022
+2022-10-01,NA,max,Máxima Diária,2308,2022
 2022-11-01,1,total,Total,18677,2022
 2022-11-01,1,mdu,Média dos Dias Úteis,782,2022
 2022-11-01,1,msa,Média dos Sábados,484,2022
@@ -869,11 +869,11 @@ date,line_number,metric_abb,metric,value,year
 2022-11-01,15,msa,Média dos Sábados,34,2022
 2022-11-01,15,mdo,Média dos Domingos,22,2022
 2022-11-01,15,max,Máxima Diária,74,2022
-2022-11-01,NA,total,Total,51030,2022
-2022-11-01,NA,mdu,Média dos Dias Úteis,1942,2022
-2022-11-01,NA,msa,Média dos Sábados,1427,2022
-2022-11-01,NA,mdo,Média dos Domingos,808,2022
-2022-11-01,NA,max,Máxima Diária,2374,2022
+2022-11-01,NA,total,Total,52791,2022
+2022-11-01,NA,mdu,Média dos Dias Úteis,2220,2022
+2022-11-01,NA,msa,Média dos Sábados,1316,2022
+2022-11-01,NA,mdo,Média dos Domingos,749,2022
+2022-11-01,NA,max,Máxima Diária,2313,2022
 2022-12-01,1,total,Total,18176,2022
 2022-12-01,1,mdu,Média dos Dias Úteis,691,2022
 2022-12-01,1,msa,Média dos Sábados,511,2022
@@ -894,10 +894,10 @@ date,line_number,metric_abb,metric,value,year
 2022-12-01,15,msa,Média dos Sábados,25,2022
 2022-12-01,15,mdo,Média dos Domingos,19,2022
 2022-12-01,15,max,Máxima Diária,75,2022
-2022-12-01,NA,total,Total,609535,2022
-2022-12-01,NA,mdu,Média dos Dias Úteis,2017,2022
-2022-12-01,NA,msa,Média dos Sábados,1223,2022
-2022-12-01,NA,mdo,Média dos Domingos,696,2022
+2022-12-01,NA,total,Total,51030,2022
+2022-12-01,NA,mdu,Média dos Dias Úteis,1942,2022
+2022-12-01,NA,msa,Média dos Sábados,1427,2022
+2022-12-01,NA,mdo,Média dos Domingos,808,2022
 2022-12-01,NA,max,Máxima Diária,2374,2022
 2023-01-01,1,total,Total,17163,2023
 2023-01-01,1,mdu,Média dos Dias Úteis,659,2023
@@ -919,11 +919,11 @@ date,line_number,metric_abb,metric,value,year
 2023-01-01,15,msa,Média dos Sábados,35,2023
 2023-01-01,15,mdo,Média dos Domingos,20,2023
 2023-01-01,15,max,Máxima Diária,66,2023
-2023-01-01,NA,total,Total,47941,2023
-2023-01-01,NA,mdu,Média dos Dias Úteis,2132,2023
-2023-01-01,NA,msa,Média dos Sábados,1261,2023
-2023-01-01,NA,mdo,Média dos Domingos,745,2023
-2023-01-01,NA,max,Máxima Diária,2241,2023
+2023-01-01,NA,total,Total,47781,2023
+2023-01-01,NA,mdu,Média dos Dias Úteis,1850,2023
+2023-01-01,NA,msa,Média dos Sábados,1169,2023
+2023-01-01,NA,mdo,Média dos Domingos,706,2023
+2023-01-01,NA,max,Máxima Diária,2047,2023
 2023-02-01,1,total,Total,17057,2023
 2023-02-01,1,mdu,Média dos Dias Úteis,757,2023
 2023-02-01,1,msa,Média dos Sábados,465,2023
@@ -944,11 +944,11 @@ date,line_number,metric_abb,metric,value,year
 2023-02-01,15,msa,Média dos Sábados,38,2023
 2023-02-01,15,mdo,Média dos Domingos,21,2023
 2023-02-01,15,max,Máxima Diária,76,2023
-2023-02-01,NA,total,Total,56849,2023
-2023-02-01,NA,mdu,Média dos Dias Úteis,2256,2023
-2023-02-01,NA,msa,Média dos Sábados,1310,2023
-2023-02-01,NA,mdo,Média dos Domingos,750,2023
-2023-02-01,NA,max,Máxima Diária,2321,2023
+2023-02-01,NA,total,Total,47941,2023
+2023-02-01,NA,mdu,Média dos Dias Úteis,2132,2023
+2023-02-01,NA,msa,Média dos Sábados,1261,2023
+2023-02-01,NA,mdo,Média dos Domingos,745,2023
+2023-02-01,NA,max,Máxima Diária,2241,2023
 2023-03-01,1,total,Total,20324,2023
 2023-03-01,1,mdu,Média dos Dias Úteis,803,2023
 2023-03-01,1,msa,Média dos Sábados,491,2023
@@ -969,11 +969,11 @@ date,line_number,metric_abb,metric,value,year
 2023-03-01,15,msa,Média dos Sábados,40,2023
 2023-03-01,15,mdo,Média dos Domingos,21,2023
 2023-03-01,15,max,Máxima Diária,74,2023
-2023-03-01,NA,total,Total,51917,2023
-2023-03-01,NA,mdu,Média dos Dias Úteis,2258,2023
-2023-03-01,NA,msa,Média dos Sábados,1211,2023
-2023-03-01,NA,mdo,Média dos Domingos,720,2023
-2023-03-01,NA,max,Máxima Diária,2372,2023
+2023-03-01,NA,total,Total,56849,2023
+2023-03-01,NA,mdu,Média dos Dias Úteis,2256,2023
+2023-03-01,NA,msa,Média dos Sábados,1310,2023
+2023-03-01,NA,mdo,Média dos Domingos,750,2023
+2023-03-01,NA,max,Máxima Diária,2321,2023
 2023-04-01,1,total,Total,18701,2023
 2023-04-01,1,mdu,Média dos Dias Úteis,808,2023
 2023-04-01,1,msa,Média dos Sábados,453,2023
@@ -994,11 +994,11 @@ date,line_number,metric_abb,metric,value,year
 2023-04-01,15,msa,Média dos Sábados,37,2023
 2023-04-01,15,mdo,Média dos Domingos,22,2023
 2023-04-01,15,max,Máxima Diária,74,2023
-2023-04-01,NA,total,Total,58553,2023
-2023-04-01,NA,mdu,Média dos Dias Úteis,2249,2023
-2023-04-01,NA,msa,Média dos Sábados,1328,2023
-2023-04-01,NA,mdo,Média dos Domingos,752,2023
-2023-04-01,NA,max,Máxima Diária,2303,2023
+2023-04-01,NA,total,Total,51917,2023
+2023-04-01,NA,mdu,Média dos Dias Úteis,2258,2023
+2023-04-01,NA,msa,Média dos Sábados,1211,2023
+2023-04-01,NA,mdo,Média dos Domingos,720,2023
+2023-04-01,NA,max,Máxima Diária,2372,2023
 2023-05-01,1,total,Total,20998,2023
 2023-05-01,1,mdu,Média dos Dias Úteis,804,2023
 2023-05-01,1,msa,Média dos Sábados,496,2023
@@ -1019,11 +1019,11 @@ date,line_number,metric_abb,metric,value,year
 2023-05-01,15,msa,Média dos Sábados,43,2023
 2023-05-01,15,mdo,Média dos Domingos,23,2023
 2023-05-01,15,max,Máxima Diária,75,2023
-2023-05-01,NA,total,Total,55033,2023
-2023-05-01,NA,mdu,Média dos Dias Úteis,2194,2023
-2023-05-01,NA,msa,Média dos Sábados,1316,2023
-2023-05-01,NA,mdo,Média dos Domingos,794,2023
-2023-05-01,NA,max,Máxima Diária,2376,2023
+2023-05-01,NA,total,Total,58553,2023
+2023-05-01,NA,mdu,Média dos Dias Úteis,2249,2023
+2023-05-01,NA,msa,Média dos Sábados,1328,2023
+2023-05-01,NA,mdo,Média dos Domingos,752,2023
+2023-05-01,NA,max,Máxima Diária,2303,2023
 2023-06-01,1,total,Total,19720,2023
 2023-06-01,1,mdu,Média dos Dias Úteis,785,2023
 2023-06-01,1,msa,Média dos Sábados,484,2023
@@ -1044,11 +1044,11 @@ date,line_number,metric_abb,metric,value,year
 2023-06-01,15,msa,Média dos Sábados,30,2023
 2023-06-01,15,mdo,Média dos Domingos,18,2023
 2023-06-01,15,max,Máxima Diária,77,2023
-2023-06-01,NA,total,Total,53657,2023
-2023-06-01,NA,mdu,Média dos Dias Úteis,2072,2023
-2023-06-01,NA,msa,Média dos Sábados,1289,2023
-2023-06-01,NA,mdo,Média dos Domingos,738,2023
-2023-06-01,NA,max,Máxima Diária,2140,2023
+2023-06-01,NA,total,Total,55033,2023
+2023-06-01,NA,mdu,Média dos Dias Úteis,2194,2023
+2023-06-01,NA,msa,Média dos Sábados,1316,2023
+2023-06-01,NA,mdo,Média dos Domingos,794,2023
+2023-06-01,NA,max,Máxima Diária,2376,2023
 2023-07-01,1,total,Total,19187,2023
 2023-07-01,1,mdu,Média dos Dias Úteis,735,2023
 2023-07-01,1,msa,Média dos Sábados,485,2023
@@ -1069,11 +1069,11 @@ date,line_number,metric_abb,metric,value,year
 2023-07-01,15,msa,Média dos Sábados,28,2023
 2023-07-01,15,mdo,Média dos Domingos,17,2023
 2023-07-01,15,max,Máxima Diária,71,2023
-2023-07-01,NA,total,Total,60365,2023
-2023-07-01,NA,mdu,Média dos Dias Úteis,2272,2023
-2023-07-01,NA,msa,Média dos Sábados,1304,2023
-2023-07-01,NA,mdo,Média dos Domingos,724,2023
-2023-07-01,NA,max,Máxima Diária,2374,2023
+2023-07-01,NA,total,Total,53657,2023
+2023-07-01,NA,mdu,Média dos Dias Úteis,2072,2023
+2023-07-01,NA,msa,Média dos Sábados,1289,2023
+2023-07-01,NA,mdo,Média dos Domingos,738,2023
+2023-07-01,NA,max,Máxima Diária,2140,2023
 2023-08-01,1,total,Total,21408,2023
 2023-08-01,1,mdu,Média dos Dias Úteis,802,2023
 2023-08-01,1,msa,Média dos Sábados,484,2023
@@ -1094,11 +1094,11 @@ date,line_number,metric_abb,metric,value,year
 2023-08-01,15,msa,Média dos Sábados,41,2023
 2023-08-01,15,mdo,Média dos Domingos,22,2023
 2023-08-01,15,max,Máxima Diária,78,2023
-2023-08-01,NA,total,Total,56680,2023
-2023-08-01,NA,mdu,Média dos Dias Úteis,2337,2023
-2023-08-01,NA,msa,Média dos Sábados,1309,2023
-2023-08-01,NA,mdo,Média dos Domingos,776,2023
-2023-08-01,NA,max,Máxima Diária,2419,2023
+2023-08-01,NA,total,Total,60365,2023
+2023-08-01,NA,mdu,Média dos Dias Úteis,2272,2023
+2023-08-01,NA,msa,Média dos Sábados,1304,2023
+2023-08-01,NA,mdo,Média dos Domingos,724,2023
+2023-08-01,NA,max,Máxima Diária,2374,2023
 2023-09-01,1,total,Total,20269,2023
 2023-09-01,1,mdu,Média dos Dias Úteis,829,2023
 2023-09-01,1,msa,Média dos Sábados,487,2023
@@ -1119,11 +1119,11 @@ date,line_number,metric_abb,metric,value,year
 2023-09-01,15,msa,Média dos Sábados,40,2023
 2023-09-01,15,mdo,Média dos Domingos,23,2023
 2023-09-01,15,max,Máxima Diária,79,2023
-2023-09-01,NA,total,Total,55169,2023
-2023-09-01,NA,mdu,Média dos Dias Úteis,2321,2023
-2023-09-01,NA,msa,Média dos Sábados,1310,2023
-2023-09-01,NA,mdo,Média dos Domingos,707,2023
-2023-09-01,NA,max,Máxima Diária,2445,2023
+2023-09-01,NA,total,Total,56680,2023
+2023-09-01,NA,mdu,Média dos Dias Úteis,2337,2023
+2023-09-01,NA,msa,Média dos Sábados,1309,2023
+2023-09-01,NA,mdo,Média dos Domingos,776,2023
+2023-09-01,NA,max,Máxima Diária,2419,2023
 2023-10-01,1,total,Total,19754,2023
 2023-10-01,1,mdu,Média dos Dias Úteis,826,2023
 2023-10-01,1,msa,Média dos Sábados,494,2023
@@ -1144,11 +1144,11 @@ date,line_number,metric_abb,metric,value,year
 2023-10-01,15,msa,Média dos Sábados,30,2023
 2023-10-01,15,mdo,Média dos Domingos,19,2023
 2023-10-01,15,max,Máxima Diária,79,2023
-2023-10-01,NA,total,Total,54188,2023
-2023-10-01,NA,mdu,Média dos Dias Úteis,2384,2023
-2023-10-01,NA,msa,Média dos Sábados,1354,2023
-2023-10-01,NA,mdo,Média dos Domingos,878,2023
-2023-10-01,NA,max,Máxima Diária,2446,2023
+2023-10-01,NA,total,Total,55169,2023
+2023-10-01,NA,mdu,Média dos Dias Úteis,2321,2023
+2023-10-01,NA,msa,Média dos Sábados,1310,2023
+2023-10-01,NA,mdo,Média dos Domingos,707,2023
+2023-10-01,NA,max,Máxima Diária,2445,2023
 2023-11-01,1,total,Total,19241,2023
 2023-11-01,1,mdu,Média dos Dias Úteis,846,2023
 2023-11-01,1,msa,Média dos Sábados,500,2023
@@ -1169,11 +1169,11 @@ date,line_number,metric_abb,metric,value,year
 2023-11-01,15,msa,Média dos Sábados,41,2023
 2023-11-01,15,mdo,Média dos Domingos,24,2023
 2023-11-01,15,max,Máxima Diária,79,2023
-2023-11-01,NA,total,Total,53942,2023
-2023-11-01,NA,mdu,Média dos Dias Úteis,2146,2023
-2023-11-01,NA,msa,Média dos Sábados,1341,2023
-2023-11-01,NA,mdo,Média dos Domingos,911,2023
-2023-11-01,NA,max,Máxima Diária,2448,2023
+2023-11-01,NA,total,Total,54188,2023
+2023-11-01,NA,mdu,Média dos Dias Úteis,2384,2023
+2023-11-01,NA,msa,Média dos Sábados,1354,2023
+2023-11-01,NA,mdo,Média dos Domingos,878,2023
+2023-11-01,NA,max,Máxima Diária,2446,2023
 2023-12-01,1,total,Total,19243,2023
 2023-12-01,1,mdu,Média dos Dias Úteis,765,2023
 2023-12-01,1,msa,Média dos Sábados,488,2023
@@ -1194,10 +1194,10 @@ date,line_number,metric_abb,metric,value,year
 2023-12-01,15,msa,Média dos Sábados,31,2023
 2023-12-01,15,mdo,Média dos Domingos,22,2023
 2023-12-01,15,max,Máxima Diária,80,2023
-2023-12-01,NA,total,Total,652076,2023
-2023-12-01,NA,mdu,Média dos Dias Úteis,2206,2023
-2023-12-01,NA,msa,Média dos Sábados,1292,2023
-2023-12-01,NA,mdo,Média dos Domingos,767,2023
+2023-12-01,NA,total,Total,53942,2023
+2023-12-01,NA,mdu,Média dos Dias Úteis,2146,2023
+2023-12-01,NA,msa,Média dos Sábados,1341,2023
+2023-12-01,NA,mdo,Média dos Domingos,911,2023
 2023-12-01,NA,max,Máxima Diária,2448,2023
 2024-01-01,1,total,Total,17684,2024
 2024-01-01,1,mdu,Média dos Dias Úteis,687,2024
@@ -1219,11 +1219,11 @@ date,line_number,metric_abb,metric,value,year
 2024-01-01,15,msa,Média dos Sábados,28,2024
 2024-01-01,15,mdo,Média dos Domingos,20,2024
 2024-01-01,15,max,Máxima Diária,71,2024
-2024-01-01,NA,total,Total,52741,2024
-2024-01-01,NA,mdu,Média dos Dias Úteis,2248,2024
-2024-01-01,NA,msa,Média dos Sábados,1299,2024
-2024-01-01,NA,mdo,Média dos Domingos,831,2024
-2024-01-01,NA,max,Máxima Diária,2348,2024
+2024-01-01,NA,total,Total,50158,2024
+2024-01-01,NA,mdu,Média dos Dias Úteis,1969,2024
+2024-01-01,NA,msa,Média dos Sábados,1194,2024
+2024-01-01,NA,mdo,Média dos Domingos,711,2024
+2024-01-01,NA,max,Máxima Diária,2215,2024
 2024-02-01,1,total,Total,18558,2024
 2024-02-01,1,mdu,Média dos Dias Úteis,789,2024
 2024-02-01,1,msa,Média dos Sábados,476,2024
@@ -1244,11 +1244,11 @@ date,line_number,metric_abb,metric,value,year
 2024-02-01,15,msa,Média dos Sábados,41,2024
 2024-02-01,15,mdo,Média dos Domingos,23,2024
 2024-02-01,15,max,Máxima Diária,79,2024
-2024-02-01,NA,total,Total,57350,2024
-2024-02-01,NA,mdu,Média dos Dias Úteis,2345,2024
-2024-02-01,NA,msa,Média dos Sábados,1241,2024
-2024-02-01,NA,mdo,Média dos Domingos,698,2024
-2024-02-01,NA,max,Máxima Diária,2414,2024
+2024-02-01,NA,total,Total,52741,2024
+2024-02-01,NA,mdu,Média dos Dias Úteis,2248,2024
+2024-02-01,NA,msa,Média dos Sábados,1299,2024
+2024-02-01,NA,mdo,Média dos Domingos,831,2024
+2024-02-01,NA,max,Máxima Diária,2348,2024
 2024-03-01,1,total,Total,20437,2024
 2024-03-01,1,mdu,Média dos Dias Úteis,830,2024
 2024-03-01,1,msa,Média dos Sábados,459,2024
@@ -1269,11 +1269,11 @@ date,line_number,metric_abb,metric,value,year
 2024-03-01,15,msa,Média dos Sábados,37,2024
 2024-03-01,15,mdo,Média dos Domingos,21,2024
 2024-03-01,15,max,Máxima Diária,81,2024
-2024-03-01,NA,total,Total,59743,2024
-2024-03-01,NA,mdu,Média dos Dias Úteis,2339,2024
-2024-03-01,NA,msa,Média dos Sábados,1327,2024
-2024-03-01,NA,mdo,Média dos Domingos,748,2024
-2024-03-01,NA,max,Máxima Diária,2403,2024
+2024-03-01,NA,total,Total,57350,2024
+2024-03-01,NA,mdu,Média dos Dias Úteis,2345,2024
+2024-03-01,NA,msa,Média dos Sábados,1241,2024
+2024-03-01,NA,mdo,Média dos Domingos,698,2024
+2024-03-01,NA,max,Máxima Diária,2414,2024
 2024-04-01,1,total,Total,21247,2024
 2024-04-01,1,mdu,Média dos Dias Úteis,828,2024
 2024-04-01,1,msa,Média dos Sábados,494,2024
@@ -1294,11 +1294,11 @@ date,line_number,metric_abb,metric,value,year
 2024-04-01,15,msa,Média dos Sábados,44,2024
 2024-04-01,15,mdo,Média dos Domingos,23,2024
 2024-04-01,15,max,Máxima Diária,83,2024
-2024-04-01,NA,total,Total,57924,2024
-2024-04-01,NA,mdu,Média dos Dias Úteis,2320,2024
-2024-04-01,NA,msa,Média dos Sábados,1316,2024
-2024-04-01,NA,mdo,Média dos Domingos,699,2024
-2024-04-01,NA,max,Máxima Diária,2388,2024
+2024-04-01,NA,total,Total,59743,2024
+2024-04-01,NA,mdu,Média dos Dias Úteis,2339,2024
+2024-04-01,NA,msa,Média dos Sábados,1327,2024
+2024-04-01,NA,mdo,Média dos Domingos,748,2024
+2024-04-01,NA,max,Máxima Diária,2403,2024
 2024-05-01,1,total,Total,20623,2024
 2024-05-01,1,mdu,Média dos Dias Úteis,820,2024
 2024-05-01,1,msa,Média dos Sábados,486,2024
@@ -1319,11 +1319,11 @@ date,line_number,metric_abb,metric,value,year
 2024-05-01,15,msa,Média dos Sábados,44,2024
 2024-05-01,15,mdo,Média dos Domingos,22,2024
 2024-05-01,15,max,Máxima Diária,84,2024
-2024-05-01,NA,total,Total,56271,2024
-2024-05-01,NA,mdu,Média dos Dias Úteis,2286,2024
-2024-05-01,NA,msa,Média dos Sábados,1334,2024
-2024-05-01,NA,mdo,Média dos Domingos,774,2024
-2024-05-01,NA,max,Máxima Diária,2393,2024
+2024-05-01,NA,total,Total,57924,2024
+2024-05-01,NA,mdu,Média dos Dias Úteis,2320,2024
+2024-05-01,NA,msa,Média dos Sábados,1316,2024
+2024-05-01,NA,mdo,Média dos Domingos,699,2024
+2024-05-01,NA,max,Máxima Diária,2388,2024
 2024-06-01,1,total,Total,19934,2024
 2024-06-01,1,mdu,Média dos Dias Úteis,806,2024
 2024-06-01,1,msa,Média dos Sábados,493,2024
@@ -1344,11 +1344,11 @@ date,line_number,metric_abb,metric,value,year
 2024-06-01,15,msa,Média dos Sábados,43,2024
 2024-06-01,15,mdo,Média dos Domingos,17,2024
 2024-06-01,15,max,Máxima Diária,84,2024
-2024-06-01,NA,total,Total,55306,2024
-2024-06-01,NA,mdu,Média dos Dias Úteis,2127,2024
-2024-06-01,NA,msa,Média dos Sábados,1309,2024
-2024-06-01,NA,mdo,Média dos Domingos,764,2024
-2024-06-01,NA,max,Máxima Diária,2226,2024
+2024-06-01,NA,total,Total,56271,2024
+2024-06-01,NA,mdu,Média dos Dias Úteis,2286,2024
+2024-06-01,NA,msa,Média dos Sábados,1334,2024
+2024-06-01,NA,mdo,Média dos Domingos,774,2024
+2024-06-01,NA,max,Máxima Diária,2393,2024
 2024-07-01,1,total,Total,19649,2024
 2024-07-01,1,mdu,Média dos Dias Úteis,746,2024
 2024-07-01,1,msa,Média dos Sábados,507,2024
@@ -1369,11 +1369,11 @@ date,line_number,metric_abb,metric,value,year
 2024-07-01,15,msa,Média dos Sábados,39,2024
 2024-07-01,15,mdo,Média dos Domingos,22,2024
 2024-07-01,15,max,Máxima Diária,81,2024
-2024-07-01,NA,total,Total,60047,2024
-2024-07-01,NA,mdu,Média dos Dias Úteis,2307,2024
-2024-07-01,NA,msa,Média dos Sábados,1296,2024
-2024-07-01,NA,mdo,Média dos Domingos,700,2024
-2024-07-01,NA,max,Máxima Diária,2424,2024
+2024-07-01,NA,total,Total,55306,2024
+2024-07-01,NA,mdu,Média dos Dias Úteis,2127,2024
+2024-07-01,NA,msa,Média dos Sábados,1309,2024
+2024-07-01,NA,mdo,Média dos Domingos,764,2024
+2024-07-01,NA,max,Máxima Diária,2226,2024
 2024-08-01,1,total,Total,21265,2024
 2024-08-01,1,mdu,Média dos Dias Úteis,812,2024
 2024-08-01,1,msa,Média dos Sábados,480,2024
@@ -1394,11 +1394,11 @@ date,line_number,metric_abb,metric,value,year
 2024-08-01,15,msa,Média dos Sábados,44,2024
 2024-08-01,15,mdo,Média dos Domingos,22,2024
 2024-08-01,15,max,Máxima Diária,86,2024
-2024-08-01,NA,total,Total,58710,2024
-2024-08-01,NA,mdu,Média dos Dias Úteis,2353,2024
-2024-08-01,NA,msa,Média dos Sábados,1357,2024
-2024-08-01,NA,mdo,Média dos Domingos,799,2024
-2024-08-01,NA,max,Máxima Diária,2447,2024
+2024-08-01,NA,total,Total,60047,2024
+2024-08-01,NA,mdu,Média dos Dias Úteis,2307,2024
+2024-08-01,NA,msa,Média dos Sábados,1296,2024
+2024-08-01,NA,mdo,Média dos Domingos,700,2024
+2024-08-01,NA,max,Máxima Diária,2424,2024
 2024-09-01,1,total,Total,20995,2024
 2024-09-01,1,mdu,Média dos Dias Úteis,833,2024
 2024-09-01,1,msa,Média dos Sábados,512,2024
@@ -1419,11 +1419,11 @@ date,line_number,metric_abb,metric,value,year
 2024-09-01,15,msa,Média dos Sábados,46,2024
 2024-09-01,15,mdo,Média dos Domingos,16,2024
 2024-09-01,15,max,Máxima Diária,88,2024
-2024-09-01,NA,total,Total,62452,2024
-2024-09-01,NA,mdu,Média dos Dias Úteis,2351,2024
-2024-09-01,NA,msa,Média dos Sábados,1317,2024
-2024-09-01,NA,mdo,Média dos Domingos,833,2024
-2024-09-01,NA,max,Máxima Diária,2449,2024
+2024-09-01,NA,total,Total,58710,2024
+2024-09-01,NA,mdu,Média dos Dias Úteis,2353,2024
+2024-09-01,NA,msa,Média dos Sábados,1357,2024
+2024-09-01,NA,mdo,Média dos Domingos,799,2024
+2024-09-01,NA,max,Máxima Diária,2447,2024
 2024-10-01,1,total,Total,22206,2024
 2024-10-01,1,mdu,Média dos Dias Úteis,832,2024
 2024-10-01,1,msa,Média dos Sábados,478,2024
@@ -1444,11 +1444,11 @@ date,line_number,metric_abb,metric,value,year
 2024-10-01,15,msa,Média dos Sábados,45,2024
 2024-10-01,15,mdo,Média dos Domingos,28,2024
 2024-10-01,15,max,Máxima Diária,88,2024
-2024-10-01,NA,total,Total,57253,2024
-2024-10-01,NA,mdu,Média dos Dias Úteis,2388,2024
-2024-10-01,NA,msa,Média dos Sábados,1367,2024
-2024-10-01,NA,mdo,Média dos Domingos,808,2024
-2024-10-01,NA,max,Máxima Diária,2472,2024
+2024-10-01,NA,total,Total,62452,2024
+2024-10-01,NA,mdu,Média dos Dias Úteis,2351,2024
+2024-10-01,NA,msa,Média dos Sábados,1317,2024
+2024-10-01,NA,mdo,Média dos Domingos,833,2024
+2024-10-01,NA,max,Máxima Diária,2449,2024
 2024-11-01,1,total,Total,20460,2024
 2024-11-01,1,mdu,Média dos Dias Úteis,847,2024
 2024-11-01,1,msa,Média dos Sábados,511,2024
@@ -1469,11 +1469,11 @@ date,line_number,metric_abb,metric,value,year
 2024-11-01,15,msa,Média dos Sábados,47,2024
 2024-11-01,15,mdo,Média dos Domingos,26,2024
 2024-11-01,15,max,Máxima Diária,89,2024
-2024-11-01,NA,total,Total,52815,2024
-2024-11-01,NA,mdu,Média dos Dias Úteis,2160,2024
-2024-11-01,NA,msa,Média dos Sábados,1386,2024
-2024-11-01,NA,mdo,Média dos Domingos,832,2024
-2024-11-01,NA,max,Máxima Diária,2459,2024
+2024-11-01,NA,total,Total,57253,2024
+2024-11-01,NA,mdu,Média dos Dias Úteis,2388,2024
+2024-11-01,NA,msa,Média dos Sábados,1367,2024
+2024-11-01,NA,mdo,Média dos Domingos,808,2024
+2024-11-01,NA,max,Máxima Diária,2472,2024
 2024-12-01,1,total,Total,18840,2024
 2024-12-01,1,mdu,Média dos Dias Úteis,765,2024
 2024-12-01,1,msa,Média dos Sábados,517,2024
@@ -1494,11 +1494,11 @@ date,line_number,metric_abb,metric,value,year
 2024-12-01,15,msa,Média dos Sábados,47,2024
 2024-12-01,15,mdo,Média dos Domingos,26,2024
 2024-12-01,15,max,Máxima Diária,89,2024
-2024-12-01,NA,total,Total,680769,2024
-2024-12-01,NA,mdu,Média dos Dias Úteis,2266,2024
-2024-12-01,NA,msa,Média dos Sábados,1312,2024
-2024-12-01,NA,mdo,Média dos Domingos,766,2024
-2024-12-01,NA,max,Máxima Diária,2472,2024
+2024-12-01,NA,total,Total,52815,2024
+2024-12-01,NA,mdu,Média dos Dias Úteis,2160,2024
+2024-12-01,NA,msa,Média dos Sábados,1386,2024
+2024-12-01,NA,mdo,Média dos Domingos,832,2024
+2024-12-01,NA,max,Máxima Diária,2459,2024
 2025-01-01,1,total,Total,18128,2025
 2025-01-01,1,mdu,Média dos Dias Úteis,695,2025
 2025-01-01,1,msa,Média dos Sábados,439,2025

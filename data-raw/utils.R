@@ -282,6 +282,11 @@ as_numeric_pt <- Vectorize(function(x) {
 #' @return A wide data frame with one row per month.
 read_csv_passengers <- function(path, year = 2020) {
   skip <- c(6, 25, 45)
+
+  if (year %in% c(2021, 2022, 2023, 2024)) {
+    skip <- c(6, 25, 44)
+  }
+
   if (year == 2025) {
     skip <- c(6, 22, 38)
   }
