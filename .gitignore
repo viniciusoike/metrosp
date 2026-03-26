@@ -20,3 +20,4 @@ data-raw/metro_sp/
 # Local dev config
 .Rprofile
 .claude/
+.positai
