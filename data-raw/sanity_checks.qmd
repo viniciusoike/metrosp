@@ -1,0 +1,52 @@
+---
+title: "sanity_checks"
+format:
+  html:
+    theme: cosmo
+
+---
+
+```{r}
+library(metrosp)
+library(ggplot2)
+library(dplyr)
+
+theme_metro <- theme_minimal(base_family = "Lato", base_size = 11) +
+  theme_sub_panel(
+    grid.minor = element_blank()
+  ) +
+  theme_sub_axis_x(
+    line = element_line(color = "gray40", linewidth = 0.5),
+    ticks = element_line(color = "gray40")
+  )
+
+```
+
+# Visual inspection
+
+```{r}
+plot_metric <- function(dat, metric) {
+  
+  subdat <- dplyr::filter(dat, metric_abb == !!metric)
+  
+  ggplot(subdat, aes(date, value)) +
+    geom_line() +
+    facet_wrap(vars(line_number)) +
+    labs(
+      title = stringr::str_glue("Plotting: {metric}"),
+      x = NULL,
+      y = NULL
+    ) +
+    theme_metro
+  
+  
+}
+```
+
+```{r}
+valid_metrics <- unique(passengers_entrance$metric_abb)
+
+plot_metric(passengers_entrance, valid_metrics[5])
+```
+
+
