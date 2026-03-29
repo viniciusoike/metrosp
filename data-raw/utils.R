@@ -118,7 +118,7 @@ get_path_flds <- function(year, variable = "transport") {
 
 # Metro line reference table: maps Portuguese/English names to line numbers.
 # Line 99 represents the network total ("Sistema METRO").
-dim_line <- tibble(
+dim_metro_line <- tibble(
   line_name_pt = c(
     "Azul",
     "Verde",
@@ -175,6 +175,11 @@ dim_train_line <- tibble(
     "Onyx"
   ),
   line_number = c(7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L)
+)
+
+dim_line <- bind_rows(
+  list("metro" = dim_metro_line, "train" = dim_train_line),
+  .id = "type"
 )
 
 # Stations that were renamed (original short name -> current full name).
@@ -252,6 +257,30 @@ dim_station_code <- tibble(
     rep(2L, 14),
     rep(3L, 18),
     rep(15L, 11)
+  )
+)
+
+# Old metro stations that were handed over to ViaMobilidade
+dim_station_lilac <- tibble(
+  line_number = 5L,
+  station_name = c(
+    "Capão Redondo",
+    "Campo Limpo",
+    "Vila das Belezas",
+    "Giovanni Gronchi",
+    "Santo Amaro",
+    "Largo Treze",
+    "Adolfo Pinheiro",
+    "Alto da Boa Vista",
+    "Borba Gato",
+    "Brooklin",
+    "Campo Belo",
+    "Eucaliptos",
+    "Moema",
+    "AACD-Servidor",
+    "Hospital São Paulo",
+    "Santa Cruz",
+    "Chácara Klabin"
   )
 )
 

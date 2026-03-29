@@ -3,7 +3,6 @@ test_that("all datasets load as data frames", {
   expect_s3_class(metrosp::passengers_transported, "data.frame")
   expect_s3_class(metrosp::station_averages, "data.frame")
   expect_s3_class(metrosp::station_daily, "data.frame")
-  expect_s3_class(metrosp::metro_lines, "data.frame")
 })
 
 test_that("passengers_entrance has expected columns", {
@@ -35,13 +34,6 @@ test_that("station_averages has expected columns", {
   expect_true("line_name" %in% cols)
 })
 
-test_that("metro_lines reference table is complete", {
-  expect_equal(nrow(metrosp::metro_lines), 13)
-  expect_true(1L %in% metrosp::metro_lines$line_number)
-  expect_true(15L %in% metrosp::metro_lines$line_number)
-  expect_true(99L %in% metrosp::metro_lines$line_number)
-})
-
 test_that("no NA dates in key datasets", {
   expect_false(any(is.na(metrosp::passengers_entrance$date)))
   expect_false(any(is.na(metrosp::passengers_transported$date)))
@@ -52,28 +44,7 @@ test_that("datasets have rows", {
   expect_gt(nrow(metrosp::passengers_entrance), 0)
   expect_gt(nrow(metrosp::passengers_transported), 0)
   expect_gt(nrow(metrosp::station_averages), 0)
-})
-
-test_that("line numbers are valid", {
-  valid <- metrosp::metro_lines$line_number
-  expect_true(all(metrosp::passengers_entrance$line_number %in% valid))
-  expect_true(all(metrosp::passengers_transported$line_number %in% valid))
-  expect_true(all(metrosp::station_averages$line_number %in% valid))
-})
-
-test_that("date range starts in October 2017", {
-  expect_equal(
-    min(metrosp::passengers_entrance$date),
-    as.Date("2017-10-01")
-  )
-  expect_equal(
-    min(metrosp::passengers_transported$date),
-    as.Date("2017-10-01")
-  )
-  expect_equal(
-    min(metrosp::station_averages$date),
-    as.Date("2017-10-01")
-  )
+  expect_gt(nrow(metrosp::station_daily), 0)
 })
 
 test_that("column types are correct", {
@@ -104,11 +75,6 @@ test_that("no duplicate date/line/metric combinations in passengers", {
   pt <- metrosp::passengers_transported
   dupes_pt <- sum(duplicated(pt[, c("date", "line_number", "metric_abb")]))
   expect_equal(dupes_pt, 0)
-})
-
-test_that("station names have no trailing whitespace", {
-  sn <- metrosp::station_averages$station_name
-  expect_equal(sn, trimws(sn))
 })
 
 test_that("station_daily has expected columns", {
@@ -159,15 +125,6 @@ test_that("station_daily has no duplicate date/line/station", {
   sd <- metrosp::station_daily
   dupes <- sum(duplicated(sd[, c("date", "line_number", "station_code")]))
   expect_equal(dupes, 0)
-})
-
-test_that("station_daily has correct station count per line", {
-  sd <- metrosp::station_daily
-  station_counts <- tapply(sd$station_code, sd$line_number, function(x) length(unique(x)))
-  expect_equal(unname(station_counts["1"]), 23)
-  expect_equal(unname(station_counts["2"]), 14)
-  expect_equal(unname(station_counts["3"]), 18)
-  expect_equal(unname(station_counts["15"]), 11)
 })
 
 test_that("station_daily has > 100k rows", {

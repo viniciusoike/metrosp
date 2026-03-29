@@ -14,18 +14,21 @@ remotes::install_github("viniciusoike/metrosp")
 
 ## Datasets
 
-| Dataset | Description | Rows |
-|---|---|---|
-| `passengers_entrance` | Monthly passenger entries by metro line (2017-2025) | 2,425 |
-| `passengers_transported` | Monthly passengers transported by metro line (2017-2025) | 2,425 |
-| `station_averages` | Average weekday station entries (2017-2025) | 6,222 |
-| `metro_lines` | Reference table: line numbers and names | 13 |
+| Dataset                | Description                                          | Frequency | Spatial |
+|------------------------|------------------------------------------------------|-----------|---------|
+| passengers_entrance    | Daily average passenger entries across lines         | Monthly   | No      |
+| passengers_transported | Daily average passengers transported across lines    | Monthly   | No      |
+| station_averages       | Daily average passenger entries across stations      | Monthly   | No      |
+| station_daily          | Daily count of passenger entries across stations     | Daily     | No      |
+| lines                  | Shapefile of current and future metro/train lines    |           | Yes     |
+| stations               | Shapefile of current and future metro/train stations |           | Yes     |
 
 ## Usage
 
 ```r
 library(metrosp)
-# library(sf) -> to better load the metro stations and lines shapefile
+# To load the spatial files (lines, stations)
+library(sf)
 
 # Passenger entries by line
 head(passengers_entrance)
@@ -34,7 +37,7 @@ head(passengers_entrance)
 head(station_averages)
 
 # Reference table for metro lines
-metro_lines
+lines
 ```
 
 ## Data source
