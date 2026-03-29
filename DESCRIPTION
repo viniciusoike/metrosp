@@ -1,7 +1,7 @@
 Package: metrosp
 Type: Package
 Title: Sao Paulo Metro Passenger Demand Data
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person(
       "Vinicius", "Oike",
@@ -9,10 +9,13 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Monthly passenger demand data for the Sao Paulo metro system
-    (Companhia do Metropolitano de Sao Paulo - METRO), sourced from the
-    METRO transparency portal. Includes passengers entering and transported
-    by line, and average station entries from 2017 to 2025.
+Description: Passenger demand data for the Sao Paulo metro system, covering
+    2017 to 2025. Provides monthly passenger entries and transported counts
+    by line, average weekday station entries, daily station entries, and
+    spatial geometries for metro and commuter train lines and stations.
+    Data sourced from the METRO SP transparency portal
+    <https://transparencia.metrosp.com.br/dataset/demanda> and GeoSampa
+    <https://geosampa.prefeitura.sp.gov.br/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

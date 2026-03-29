@@ -10,3 +10,4 @@
 ^\.claude$
 ^IMPROVEMENTS\.md$
 ^\.positai$
+^cran-comments\.md$
