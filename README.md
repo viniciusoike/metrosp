@@ -13,10 +13,10 @@ on the data cleaning process see the R scripts inside `data-raw`.
 |    1 | Azul (Blue)      | METRÔ         | 2017–2025 | Available   |
 |    2 | Verde (Green)    | METRÔ         | 2017–2025 | Available   |
 |    3 | Vermelha (Red)   | METRÔ         | 2017–2025 | Available   |
-|    5 | Lilás (Lilac)    | ViaMobilidade | 2017–2019 | Available   |
+|    5 | Lilás (Lilac)    | METRÔ         | 2017–2018 | Available   |
 |   15 | Prata (Silver)   | METRÔ         | 2017–2025 | Available   |
-|    4 | Amarela (Yellow) | ViaQuatro     | —         | Coming soon |
-|    5 | Lilás (Lilac)    | ViaMobilidade | 2020–2025 | Coming soon |
+|    4 | Amarela (Yellow) | ViaQuatro     | 2012-2025 | Coming soon |
+|    5 | Lilás (Lilac)    | ViaMobilidade | 2019–2025 | Coming soon |
 
 ## Installation
 
