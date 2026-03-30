@@ -260,6 +260,22 @@ dim_station_code <- tibble(
   )
 )
 
+# Business unit → line mapping for Lines 4 (ViaQuatro) and 5 (ViaMobilidade).
+# Used to join Dataverse embarques_diarios data with standard line metadata.
+dim_bus <- tibble(
+  business_unit = c("ViaMobilidade - Linha 5", "ViaQuatro"),
+  line_name_pt = c("Lilás", "Amarela"),
+  line_number = c(5L, 4L),
+  line_name = c("Lilac", "Yellow")
+)
+
+# Maps the Portuguese day-type label in Dataverse data to metric abbreviations.
+dim_convert_metric <- tibble(
+  tipo_dia = c("Dias Úteis", "Sábado", "Domingo"),
+  metric_abb = c("mdu", "msa", "mdo"),
+  metric = c("Média dos Dias Úteis", "Média dos Sábados", "Média dos Domingos")
+)
+
 # Old metro stations that were handed over to ViaMobilidade
 dim_station_lilac <- tibble(
   line_number = 5L,
