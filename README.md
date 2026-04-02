@@ -1,4 +1,4 @@
-# metrosp: metro ridership in São Paulo
+# metrosp: metro ridership in São Paulo <img src="man/figures/logo.png" align="right" height="139" />
 
 This package makes demand data from the São Paulo metro and train system easily
 available inside R. Data is sourced from multiple operators and spans 2017–2025.
