@@ -172,16 +172,3 @@ readr::write_csv(
 cli::cli_alert_success(
   "Lines 4 and 5 CSVs written to {.path data-raw/processed/}."
 )
-
-
-raw |>
-  rename(value = embarques, date = data) |>
-  left_join(dim_bus, by = join_by(business_unit)) |>
-  filter(business_unit == "ViaQuatro") |>
-  mutate(
-    year = year(date),
-    month = month(date),
-    is_business_day = as.integer(is.bizday(date, cal = "Brazil/ANBIMA")),
-    station_name = fix_station_names_line5(station_name)
-  ) |>
-  filter(station_name == "Luz", date >= as.Date("2023-08-01"))

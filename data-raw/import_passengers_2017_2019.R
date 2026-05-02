@@ -223,7 +223,3 @@ write_csv(
   passengers_line,
   "data-raw/processed/metro_sp_passengers_2017_2019.csv"
 )
-
-passengers_line |>
-  filter(measure == "entrance") |>
-  count(line_name)
