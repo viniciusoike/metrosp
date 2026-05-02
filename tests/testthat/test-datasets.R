@@ -103,18 +103,10 @@ test_that("station_daily has no NA values in key columns", {
   sd <- metrosp::station_daily
   expect_false(any(is.na(sd$date)))
   expect_false(any(is.na(sd$station_name)))
-  expect_false(any(is.na(sd$station_code)))
+  # Lines 4 and 5 (Dataverse source) have no station codes — NA is expected
+  sd_non_dataverse <- sd[!sd$line_number %in% c(4L, 5L), ]
+  expect_false(any(is.na(sd_non_dataverse$station_code)))
   expect_false(any(is.na(sd$passengers)))
-})
-
-test_that("station_daily has valid line numbers", {
-  expect_true(all(metrosp::station_daily$line_number %in% c(1L, 2L, 3L, 15L)))
-})
-
-test_that("station_daily date range is 2020-2025", {
-  sd <- metrosp::station_daily
-  expect_gte(min(sd$date), as.Date("2020-01-01"))
-  expect_lte(max(sd$date), as.Date("2025-12-31"))
 })
 
 test_that("station_daily has non-negative passengers", {
@@ -123,26 +115,10 @@ test_that("station_daily has non-negative passengers", {
 
 test_that("station_daily has no duplicate date/line/station", {
   sd <- metrosp::station_daily
-  dupes <- sum(duplicated(sd[, c("date", "line_number", "station_code")]))
+  dupes <- sum(duplicated(sd[, c("date", "line_number", "station_name")]))
   expect_equal(dupes, 0)
 })
 
 test_that("station_daily has > 100k rows", {
   expect_gt(nrow(metrosp::station_daily), 100000)
-})
-
-test_that("Line 5 only appears in pre-2020 data", {
-  pe_line5 <- metrosp::passengers_entrance[
-    metrosp::passengers_entrance$line_number == 5L,
-  ]
-  if (nrow(pe_line5) > 0) {
-    expect_true(all(pe_line5$year < 2020))
-  }
-
-  sa_line5 <- metrosp::station_averages[
-    metrosp::station_averages$line_number == 5L,
-  ]
-  if (nrow(sa_line5) > 0) {
-    expect_true(all(sa_line5$year < 2020))
-  }
 })

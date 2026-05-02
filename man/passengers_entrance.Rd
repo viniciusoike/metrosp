@@ -8,7 +8,7 @@
 A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
-\item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
+\item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
 network total (integer).}
 \item{metric_abb}{Abbreviated metric code (character). One of:
 "total", "mdu", "msa", "mdo", "max".}
@@ -34,8 +34,10 @@ by metro line. Data covers October 2017 through 2025, sourced from the
 METRO SP transparency portal.
 }
 \details{
-Line 5 (Lilas) is only available for the 2017-2019 period. The network
-total (line_number = 99) may not be available for all years.
+Lines 1, 2, 3, and 15 come from the METRO transparency portal (2017-2025).
+Lines 4 (Amarela) and 5 (Lilas) come from the Insper Dataverse source
+(2020-2025). The network total (line_number = 99) may not be available for
+all years.
 
 Values represent thousands of passengers (e.g., a value of 900 means
 900,000 passengers).

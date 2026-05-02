@@ -38,7 +38,9 @@ Station coverage varies by line:
 \item Line 1 (Azul/Blue): 23 stations
 \item Line 2 (Verde/Green): 14 stations
 \item Line 3 (Vermelha/Red): 18 stations
-\item Line 5 (Lilas/Lilac): available October 2017 - December 2019 only
+\item Line 4 (Amarela/Yellow): available 2020-2025 (Insper Dataverse source)
+\item Line 5 (Lilas/Lilac): October 2017 - December 2019 (METRO portal)
+and 2020-2025 (Insper Dataverse source)
 \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
 }
 }

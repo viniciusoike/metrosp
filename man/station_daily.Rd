@@ -8,13 +8,13 @@
 A data frame with the following columns:
 \describe{
 \item{date}{Date of observation (Date).}
-\item{line_number}{Metro line number: 1, 2, 3, or 15 (integer).}
+\item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 \item{station_name}{Full station name (character).}
 \item{passengers}{Daily passenger entries in thousands (numeric).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{station_code}{Three-letter station abbreviation used internally
-by METRO (character).}
+by METRO (character). \code{NA} for Lines 4 and 5 (Dataverse source).}
 \item{year}{Calendar year (integer).}
 }
 }
@@ -27,8 +27,8 @@ station_daily
 }
 \description{
 Daily passenger entries at each station in the Sao Paulo metro system.
-Data covers 2020 through 2025, sourced from the METRO SP transparency
-portal. Covers Lines 1, 2, 3, and 15 only (the lines operated by METRO).
+Data covers 2020 through 2025. Lines 1, 2, 3, and 15 come from the METRO SP
+transparency portal; Lines 4 and 5 come from the Insper Dataverse source.
 }
 \details{
 Values represent thousands of passengers (e.g., a value of 50 means
@@ -39,6 +39,10 @@ Station coverage by line:
 \item Line 1 (Azul/Blue): 23 stations
 \item Line 2 (Verde/Green): 14 stations
 \item Line 3 (Vermelha/Red): 18 stations
+\item Line 4 (Amarela/Yellow): available 2020-2025 (Insper Dataverse);
+\code{station_code} is \code{NA}
+\item Line 5 (Lilas/Lilac): available 2020-2025 (Insper Dataverse);
+\code{station_code} is \code{NA}
 \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
 (Jardim Colonial added)
 }

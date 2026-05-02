@@ -17,7 +17,7 @@ knitr:
 
 # metrosp
 
-The `metrosp` package provides access to the [Metro de São Paulo](https://www.metrosp.com.br/) public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a "lazy" format. This means that all data is comes pre-packaged and is called directly, without needing to download or import the raw data.
+The `metrosp` package provides access to the [Metro de São Paulo](https://www.metrosp.com.br/) public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a "lazy" format. This means that all data comes prepackaged and is called directly, without needing to download or import the raw data.
 
 ```{r}
 #| label: setup
@@ -32,7 +32,7 @@ There are four main datasets:
 - `station_averages`: daily average passengers per station
 - `station_daily`: daily passengers per station
 
-For convinence, `metrosp` also provides information on stations and lines of the metro system (`lines`, `stations`, and `metro_lines`). The `lines` dataset is a spatial dataset and requires the `sf` package to work properly.
+For convenience, `metrosp` also provides information on stations and lines of the metro system (`lines`, `stations`, and `metro_lines`). The `lines` dataset is a spatial dataset and requires the `sf` package to work properly.
 
 ```{r}
 library(sf)
@@ -86,8 +86,8 @@ The data is aggregated into metrics:
 
 - `max`: maximum number of passengers (daily peak)
 - `mdu`: average number of passengers on business days
-- `mdo`: average number of passengers on sundays
-- `msa`: average number of passengers on saturdays
+- `mdo`: average number of passengers on Sundays
+- `msa`: average number of passengers on Saturdays
 - `total`: total number of passengers
 
 ### Entrance

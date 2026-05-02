@@ -92,7 +92,9 @@ entrance_17_19 <- psg_17_19 |>
   mutate(
     metric_abb = map_metric(variable),
     metric = variable
-  )
+  ) |>
+  # Line 5 changed operator in Aug 2018; Dataverse covers Aug 2018 onward
+  filter(!(line_number == 5L & date >= as.Date("2018-08-01")))
 
 # 2020-2025: already separate file for entrance
 # Columns: date, line_number, metric_abb, metric, value, year
