@@ -17,7 +17,7 @@ knitr:
 
 # metrosp
 
-The `metrosp` package provides access to the [Metro de São Paulo](https://www.metrosp.com.br/) public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a "lazy" format. This means that all data comes prepackaged and is called directly, without needing to download or import the raw data.
+The `metrosp` package provides access to the [Metro de São Paulo](https://transparencia.metrosp.com.br/) public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a "lazy" format. This means that all data comes prepackaged and is called directly, without needing to download or import the raw data.
 
 ```{r}
 #| label: setup
