@@ -12,9 +12,15 @@
 # -------------------------------------------------------
 
 library(dplyr)
+library(tidyr)
+library(readr)
 library(stringr)
+
 import::from(here, here)
-import::from(tidyr, pivot_longer)
+import::from(janitor, make_clean_names)
+import::from(purrr, map, pmap, safely)
+
+
 source(here::here("data-raw/utils.R"))
 
 read_clean_stn_avg <- function(path) {
@@ -49,7 +55,7 @@ read_clean_stn_avg <- function(path) {
     col_names = FALSE,
     locale = readr::locale(encoding = enc),
     name_repair = janitor::make_clean_names,
-    col_types = cols(.default = col_character())
+    col_types = readr::cols(.default = readr::col_character())
   )
 
   header <- unlist(header)
@@ -86,12 +92,12 @@ import_stn_avg <- function(year) {
   # Get paths
   df_path <- get_path_flds(year = year, variable = "daily")
 
-  cli::cli_alert_info("Number of files: {nrow(df_path)}")
+  # cli::cli_alert_info("Number of files: {nrow(df_path)}")
 
   # Import data
   dat <- purrr::map(df_path$path, \(x) suppressMessages(read_clean_stn_avg(x)))
   dat <- rlang::set_names(dat, df_path$name)
-  dat <- dplyr::bind_rows(dat, .id = "month")
+  dat <- bind_rows(dat, .id = "month")
 
   dat <- dat |>
     mutate(

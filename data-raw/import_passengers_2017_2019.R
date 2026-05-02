@@ -14,14 +14,15 @@
 # -------------------------------------------------------
 
 library(dplyr)
+library(tidyr)
 library(stringr)
 
 import::from(purrr, map, pmap, safely)
 import::from(data.table, fread)
 import::from(here, here)
-import::from(tidyr, pivot_longer)
 import::from(janitor, clean_names, make_clean_names)
 import::from(lubridate, month)
+import::from(readr, parse_date, locale, write_csv)
 source(here("data-raw/utils.R"))
 
 # 2017-2019 ----------------------------------------------------------------
@@ -222,3 +223,7 @@ write_csv(
   passengers_line,
   "data-raw/processed/metro_sp_passengers_2017_2019.csv"
 )
+
+passengers_line |>
+  filter(measure == "entrance") |>
+  count(line_name)

@@ -3926,6 +3926,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Jabaquara,63,2025
 2025-08-01,1,Jabaquara,68,2025
 2025-09-01,1,Jabaquara,70,2025
+2025-10-01,1,Jabaquara,69,2025
+2025-11-01,1,Jabaquara,71,2025
+2025-12-01,1,Jabaquara,67,2025
 2025-01-01,1,Conceição,26,2025
 2025-02-01,1,Conceição,30,2025
 2025-03-01,1,Conceição,30,2025
@@ -3935,6 +3938,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Conceição,27,2025
 2025-08-01,1,Conceição,30,2025
 2025-09-01,1,Conceição,30,2025
+2025-10-01,1,Conceição,29,2025
+2025-11-01,1,Conceição,31,2025
+2025-12-01,1,Conceição,28,2025
 2025-01-01,1,São Judas,13,2025
 2025-02-01,1,São Judas,15,2025
 2025-03-01,1,São Judas,15,2025
@@ -3944,6 +3950,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,São Judas,14,2025
 2025-08-01,1,São Judas,15,2025
 2025-09-01,1,São Judas,15,2025
+2025-10-01,1,São Judas,16,2025
+2025-11-01,1,São Judas,16,2025
+2025-12-01,1,São Judas,15,2025
 2025-01-01,1,Saúde-Ultrafarma,23,2025
 2025-02-01,1,Saúde-Ultrafarma,27,2025
 2025-03-01,1,Saúde-Ultrafarma,27,2025
@@ -3953,6 +3962,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Saúde-Ultrafarma,25,2025
 2025-08-01,1,Saúde-Ultrafarma,27,2025
 2025-09-01,1,Saúde-Ultrafarma,27,2025
+2025-10-01,1,Saúde-Ultrafarma,27,2025
+2025-11-01,1,Saúde-Ultrafarma,27,2025
+2025-12-01,1,Saúde-Ultrafarma,25,2025
 2025-01-01,1,Praça da Árvore,13,2025
 2025-02-01,1,Praça da Árvore,16,2025
 2025-03-01,1,Praça da Árvore,16,2025
@@ -3962,6 +3974,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Praça da Árvore,14,2025
 2025-08-01,1,Praça da Árvore,16,2025
 2025-09-01,1,Praça da Árvore,16,2025
+2025-10-01,1,Praça da Árvore,16,2025
+2025-11-01,1,Praça da Árvore,16,2025
+2025-12-01,1,Praça da Árvore,15,2025
 2025-01-01,1,Santa Cruz,80,2025
 2025-02-01,1,Santa Cruz,93,2025
 2025-03-01,1,Santa Cruz,94,2025
@@ -3971,6 +3986,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Santa Cruz,86,2025
 2025-08-01,1,Santa Cruz,93,2025
 2025-09-01,1,Santa Cruz,95,2025
+2025-10-01,1,Santa Cruz,94,2025
+2025-11-01,1,Santa Cruz,97,2025
+2025-12-01,1,Santa Cruz,93,2025
 2025-01-01,1,Vila Mariana,14,2025
 2025-02-01,1,Vila Mariana,21,2025
 2025-03-01,1,Vila Mariana,22,2025
@@ -3980,6 +3998,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Vila Mariana,15,2025
 2025-08-01,1,Vila Mariana,20,2025
 2025-09-01,1,Vila Mariana,20,2025
+2025-10-01,1,Vila Mariana,20,2025
+2025-11-01,1,Vila Mariana,20,2025
+2025-12-01,1,Vila Mariana,16,2025
 2025-01-01,1,Ana Rosa,68,2025
 2025-02-01,1,Ana Rosa,81,2025
 2025-03-01,1,Ana Rosa,84,2025
@@ -3989,6 +4010,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Ana Rosa,73,2025
 2025-08-01,1,Ana Rosa,81,2025
 2025-09-01,1,Ana Rosa,82,2025
+2025-10-01,1,Ana Rosa,81,2025
+2025-11-01,1,Ana Rosa,83,2025
+2025-12-01,1,Ana Rosa,75,2025
 2025-01-01,1,Paraíso,84,2025
 2025-02-01,1,Paraíso,102,2025
 2025-03-01,1,Paraíso,105,2025
@@ -3998,6 +4022,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Paraíso,91,2025
 2025-08-01,1,Paraíso,101,2025
 2025-09-01,1,Paraíso,103,2025
+2025-10-01,1,Paraíso,101,2025
+2025-11-01,1,Paraíso,104,2025
+2025-12-01,1,Paraíso,93,2025
 2025-01-01,1,Vergueiro,22,2025
 2025-02-01,1,Vergueiro,27,2025
 2025-03-01,1,Vergueiro,27,2025
@@ -4007,6 +4034,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Vergueiro,24,2025
 2025-08-01,1,Vergueiro,27,2025
 2025-09-01,1,Vergueiro,27,2025
+2025-10-01,1,Vergueiro,27,2025
+2025-11-01,1,Vergueiro,27,2025
+2025-12-01,1,Vergueiro,23,2025
 2025-01-01,1,São Joaquim,20,2025
 2025-02-01,1,São Joaquim,31,2025
 2025-03-01,1,São Joaquim,35,2025
@@ -4016,6 +4046,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,São Joaquim,22,2025
 2025-08-01,1,São Joaquim,33,2025
 2025-09-01,1,São Joaquim,36,2025
+2025-10-01,1,São Joaquim,35,2025
+2025-11-01,1,São Joaquim,35,2025
+2025-12-01,1,São Joaquim,26,2025
 2025-01-01,1,Japão-Liberdade,19,2025
 2025-02-01,1,Japão-Liberdade,21,2025
 2025-03-01,1,Japão-Liberdade,22,2025
@@ -4025,6 +4058,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Japão-Liberdade,23,2025
 2025-08-01,1,Japão-Liberdade,23,2025
 2025-09-01,1,Japão-Liberdade,23,2025
+2025-10-01,1,Japão-Liberdade,22,2025
+2025-11-01,1,Japão-Liberdade,23,2025
+2025-12-01,1,Japão-Liberdade,22,2025
 2025-01-01,1,Sé,148,2025
 2025-02-01,1,Sé,168,2025
 2025-03-01,1,Sé,172,2025
@@ -4034,6 +4070,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Sé,157,2025
 2025-08-01,1,Sé,169,2025
 2025-09-01,1,Sé,172,2025
+2025-10-01,1,Sé,172,2025
+2025-11-01,1,Sé,179,2025
+2025-12-01,1,Sé,167,2025
 2025-01-01,1,São Bento,48,2025
 2025-02-01,1,São Bento,50,2025
 2025-03-01,1,São Bento,50,2025
@@ -4043,6 +4082,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,São Bento,49,2025
 2025-08-01,1,São Bento,48,2025
 2025-09-01,1,São Bento,49,2025
+2025-10-01,1,São Bento,51,2025
+2025-11-01,1,São Bento,53,2025
+2025-12-01,1,São Bento,55,2025
 2025-01-01,1,Luz,118,2025
 2025-02-01,1,Luz,134,2025
 2025-03-01,1,Luz,138,2025
@@ -4052,6 +4094,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Luz,118,2025
 2025-08-01,1,Luz,126,2025
 2025-09-01,1,Luz,124,2025
+2025-10-01,1,Luz,125,2025
+2025-11-01,1,Luz,129,2025
+2025-12-01,1,Luz,118,2025
 2025-01-01,1,Tiradentes,11,2025
 2025-02-01,1,Tiradentes,15,2025
 2025-03-01,1,Tiradentes,16,2025
@@ -4061,6 +4106,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Tiradentes,13,2025
 2025-08-01,1,Tiradentes,16,2025
 2025-09-01,1,Tiradentes,16,2025
+2025-10-01,1,Tiradentes,16,2025
+2025-11-01,1,Tiradentes,16,2025
+2025-12-01,1,Tiradentes,13,2025
 2025-01-01,1,Armênia,16,2025
 2025-02-01,1,Armênia,18,2025
 2025-03-01,1,Armênia,20,2025
@@ -4070,6 +4118,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Armênia,18,2025
 2025-08-01,1,Armênia,19,2025
 2025-09-01,1,Armênia,20,2025
+2025-10-01,1,Armênia,20,2025
+2025-11-01,1,Armênia,20,2025
+2025-12-01,1,Armênia,17,2025
 2025-01-01,1,Portuguesa-Tietê,41,2025
 2025-02-01,1,Portuguesa-Tietê,41,2025
 2025-03-01,1,Portuguesa-Tietê,42,2025
@@ -4079,6 +4130,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Portuguesa-Tietê,39,2025
 2025-08-01,1,Portuguesa-Tietê,41,2025
 2025-09-01,1,Portuguesa-Tietê,43,2025
+2025-10-01,1,Portuguesa-Tietê,42,2025
+2025-11-01,1,Portuguesa-Tietê,44,2025
+2025-12-01,1,Portuguesa-Tietê,43,2025
 2025-01-01,1,Carandiru,9,2025
 2025-02-01,1,Carandiru,11,2025
 2025-03-01,1,Carandiru,12,2025
@@ -4088,6 +4142,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Carandiru,10,2025
 2025-08-01,1,Carandiru,12,2025
 2025-09-01,1,Carandiru,12,2025
+2025-10-01,1,Carandiru,12,2025
+2025-11-01,1,Carandiru,12,2025
+2025-12-01,1,Carandiru,11,2025
 2025-01-01,1,Santana,43,2025
 2025-02-01,1,Santana,50,2025
 2025-03-01,1,Santana,51,2025
@@ -4097,6 +4154,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Santana,45,2025
 2025-08-01,1,Santana,50,2025
 2025-09-01,1,Santana,50,2025
+2025-10-01,1,Santana,49,2025
+2025-11-01,1,Santana,51,2025
+2025-12-01,1,Santana,46,2025
 2025-01-01,1,Jardim São Paulo-Ayrton Senna,9,2025
 2025-02-01,1,Jardim São Paulo-Ayrton Senna,12,2025
 2025-03-01,1,Jardim São Paulo-Ayrton Senna,12,2025
@@ -4106,6 +4166,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Jardim São Paulo-Ayrton Senna,11,2025
 2025-08-01,1,Jardim São Paulo-Ayrton Senna,12,2025
 2025-09-01,1,Jardim São Paulo-Ayrton Senna,12,2025
+2025-10-01,1,Jardim São Paulo-Ayrton Senna,12,2025
+2025-11-01,1,Jardim São Paulo-Ayrton Senna,12,2025
+2025-12-01,1,Jardim São Paulo-Ayrton Senna,11,2025
 2025-01-01,1,Parada Inglesa,11,2025
 2025-02-01,1,Parada Inglesa,13,2025
 2025-03-01,1,Parada Inglesa,13,2025
@@ -4115,6 +4178,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Parada Inglesa,12,2025
 2025-08-01,1,Parada Inglesa,13,2025
 2025-09-01,1,Parada Inglesa,13,2025
+2025-10-01,1,Parada Inglesa,13,2025
+2025-11-01,1,Parada Inglesa,14,2025
+2025-12-01,1,Parada Inglesa,12,2025
 2025-01-01,1,Tucuruvi,49,2025
 2025-02-01,1,Tucuruvi,57,2025
 2025-03-01,1,Tucuruvi,58,2025
@@ -4124,6 +4190,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,1,Tucuruvi,53,2025
 2025-08-01,1,Tucuruvi,57,2025
 2025-09-01,1,Tucuruvi,58,2025
+2025-10-01,1,Tucuruvi,58,2025
+2025-11-01,1,Tucuruvi,59,2025
+2025-12-01,1,Tucuruvi,55,2025
 2025-01-01,2,Vila Prudente,74,2025
 2025-02-01,2,Vila Prudente,86,2025
 2025-03-01,2,Vila Prudente,90,2025
@@ -4133,6 +4202,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Vila Prudente,76,2025
 2025-08-01,2,Vila Prudente,84,2025
 2025-09-01,2,Vila Prudente,87,2025
+2025-10-01,2,Vila Prudente,85,2025
+2025-11-01,2,Vila Prudente,88,2025
+2025-12-01,2,Vila Prudente,78,2025
 2025-01-01,2,Tamanduateí,70,2025
 2025-02-01,2,Tamanduateí,80,2025
 2025-03-01,2,Tamanduateí,81,2025
@@ -4142,6 +4214,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Tamanduateí,75,2025
 2025-08-01,2,Tamanduateí,80,2025
 2025-09-01,2,Tamanduateí,81,2025
+2025-10-01,2,Tamanduateí,80,2025
+2025-11-01,2,Tamanduateí,81,2025
+2025-12-01,2,Tamanduateí,73,2025
 2025-01-01,2,Sacomã,35,2025
 2025-02-01,2,Sacomã,41,2025
 2025-03-01,2,Sacomã,42,2025
@@ -4151,6 +4226,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Sacomã,38,2025
 2025-08-01,2,Sacomã,41,2025
 2025-09-01,2,Sacomã,42,2025
+2025-10-01,2,Sacomã,41,2025
+2025-11-01,2,Sacomã,43,2025
+2025-12-01,2,Sacomã,39,2025
 2025-01-01,2,Alto do Ipiranga,15,2025
 2025-02-01,2,Alto do Ipiranga,19,2025
 2025-03-01,2,Alto do Ipiranga,19,2025
@@ -4160,6 +4238,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Alto do Ipiranga,16,2025
 2025-08-01,2,Alto do Ipiranga,20,2025
 2025-09-01,2,Alto do Ipiranga,20,2025
+2025-10-01,2,Alto do Ipiranga,19,2025
+2025-11-01,2,Alto do Ipiranga,20,2025
+2025-12-01,2,Alto do Ipiranga,17,2025
 2025-01-01,2,Santos-Imigrantes,13,2025
 2025-02-01,2,Santos-Imigrantes,16,2025
 2025-03-01,2,Santos-Imigrantes,16,2025
@@ -4169,6 +4250,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Santos-Imigrantes,14,2025
 2025-08-01,2,Santos-Imigrantes,15,2025
 2025-09-01,2,Santos-Imigrantes,16,2025
+2025-10-01,2,Santos-Imigrantes,15,2025
+2025-11-01,2,Santos-Imigrantes,16,2025
+2025-12-01,2,Santos-Imigrantes,14,2025
 2025-01-01,2,Chácara Klabin,73,2025
 2025-02-01,2,Chácara Klabin,87,2025
 2025-03-01,2,Chácara Klabin,88,2025
@@ -4178,6 +4262,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Chácara Klabin,80,2025
 2025-08-01,2,Chácara Klabin,87,2025
 2025-09-01,2,Chácara Klabin,88,2025
+2025-10-01,2,Chácara Klabin,87,2025
+2025-11-01,2,Chácara Klabin,90,2025
+2025-12-01,2,Chácara Klabin,80,2025
 2025-01-01,2,Ana Rosa,52,2025
 2025-02-01,2,Ana Rosa,60,2025
 2025-03-01,2,Ana Rosa,62,2025
@@ -4187,6 +4274,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Ana Rosa,55,2025
 2025-08-01,2,Ana Rosa,61,2025
 2025-09-01,2,Ana Rosa,61,2025
+2025-10-01,2,Ana Rosa,61,2025
+2025-11-01,2,Ana Rosa,63,2025
+2025-12-01,2,Ana Rosa,57,2025
 2025-01-01,2,Paraíso,53,2025
 2025-02-01,2,Paraíso,63,2025
 2025-03-01,2,Paraíso,65,2025
@@ -4196,6 +4286,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Paraíso,57,2025
 2025-08-01,2,Paraíso,63,2025
 2025-09-01,2,Paraíso,64,2025
+2025-10-01,2,Paraíso,63,2025
+2025-11-01,2,Paraíso,65,2025
+2025-12-01,2,Paraíso,59,2025
 2025-01-01,2,Brigadeiro,45,2025
 2025-02-01,2,Brigadeiro,51,2025
 2025-03-01,2,Brigadeiro,51,2025
@@ -4205,6 +4298,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Brigadeiro,48,2025
 2025-08-01,2,Brigadeiro,49,2025
 2025-09-01,2,Brigadeiro,49,2025
+2025-10-01,2,Brigadeiro,49,2025
+2025-11-01,2,Brigadeiro,52,2025
+2025-12-01,2,Brigadeiro,49,2025
 2025-01-01,2,Trianon-Masp,40,2025
 2025-02-01,2,Trianon-Masp,50,2025
 2025-03-01,2,Trianon-Masp,52,2025
@@ -4214,6 +4310,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Trianon-Masp,43,2025
 2025-08-01,2,Trianon-Masp,49,2025
 2025-09-01,2,Trianon-Masp,50,2025
+2025-10-01,2,Trianon-Masp,49,2025
+2025-11-01,2,Trianon-Masp,51,2025
+2025-12-01,2,Trianon-Masp,45,2025
 2025-01-01,2,Consolação,84,2025
 2025-02-01,2,Consolação,101,2025
 2025-03-01,2,Consolação,104,2025
@@ -4223,6 +4322,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Consolação,91,2025
 2025-08-01,2,Consolação,101,2025
 2025-09-01,2,Consolação,102,2025
+2025-10-01,2,Consolação,101,2025
+2025-11-01,2,Consolação,103,2025
+2025-12-01,2,Consolação,93,2025
 2025-01-01,2,Clínicas,19,2025
 2025-02-01,2,Clínicas,22,2025
 2025-03-01,2,Clínicas,23,2025
@@ -4232,6 +4334,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Clínicas,20,2025
 2025-08-01,2,Clínicas,22,2025
 2025-09-01,2,Clínicas,22,2025
+2025-10-01,2,Clínicas,22,2025
+2025-11-01,2,Clínicas,23,2025
+2025-12-01,2,Clínicas,20,2025
 2025-01-01,2,Santuário N.S. de Fátima-Sumaré,9,2025
 2025-02-01,2,Santuário N.S. de Fátima-Sumaré,11,2025
 2025-03-01,2,Santuário N.S. de Fátima-Sumaré,11,2025
@@ -4241,6 +4346,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Santuário N.S. de Fátima-Sumaré,9,2025
 2025-08-01,2,Santuário N.S. de Fátima-Sumaré,10,2025
 2025-09-01,2,Santuário N.S. de Fátima-Sumaré,10,2025
+2025-10-01,2,Santuário N.S. de Fátima-Sumaré,10,2025
+2025-11-01,2,Santuário N.S. de Fátima-Sumaré,11,2025
+2025-12-01,2,Santuário N.S. de Fátima-Sumaré,9,2025
 2025-01-01,2,Vila Madalena,18,2025
 2025-02-01,2,Vila Madalena,22,2025
 2025-03-01,2,Vila Madalena,23,2025
@@ -4250,6 +4358,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,2,Vila Madalena,19,2025
 2025-08-01,2,Vila Madalena,22,2025
 2025-09-01,2,Vila Madalena,22,2025
+2025-10-01,2,Vila Madalena,22,2025
+2025-11-01,2,Vila Madalena,23,2025
+2025-12-01,2,Vila Madalena,20,2025
 2025-01-01,3,Corinthians-Itaquera,62,2025
 2025-02-01,3,Corinthians-Itaquera,69,2025
 2025-03-01,3,Corinthians-Itaquera,70,2025
@@ -4259,6 +4370,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Corinthians-Itaquera,64,2025
 2025-08-01,3,Corinthians-Itaquera,67,2025
 2025-09-01,3,Corinthians-Itaquera,69,2025
+2025-10-01,3,Corinthians-Itaquera,66,2025
+2025-11-01,3,Corinthians-Itaquera,71,2025
+2025-12-01,3,Corinthians-Itaquera,71,2025
 2025-01-01,3,Artur Alvim,47,2025
 2025-02-01,3,Artur Alvim,54,2025
 2025-03-01,3,Artur Alvim,56,2025
@@ -4268,6 +4382,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Artur Alvim,51,2025
 2025-08-01,3,Artur Alvim,54,2025
 2025-09-01,3,Artur Alvim,55,2025
+2025-10-01,3,Artur Alvim,54,2025
+2025-11-01,3,Artur Alvim,55,2025
+2025-12-01,3,Artur Alvim,52,2025
 2025-01-01,3,Patriarca-Vila Ré,19,2025
 2025-02-01,3,Patriarca-Vila Ré,22,2025
 2025-03-01,3,Patriarca-Vila Ré,23,2025
@@ -4277,6 +4394,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Patriarca-Vila Ré,21,2025
 2025-08-01,3,Patriarca-Vila Ré,23,2025
 2025-09-01,3,Patriarca-Vila Ré,23,2025
+2025-10-01,3,Patriarca-Vila Ré,23,2025
+2025-11-01,3,Patriarca-Vila Ré,23,2025
+2025-12-01,3,Patriarca-Vila Ré,21,2025
 2025-01-01,3,Guilhermina-Esperança,18,2025
 2025-02-01,3,Guilhermina-Esperança,21,2025
 2025-03-01,3,Guilhermina-Esperança,22,2025
@@ -4286,6 +4406,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Guilhermina-Esperança,20,2025
 2025-08-01,3,Guilhermina-Esperança,21,2025
 2025-09-01,3,Guilhermina-Esperança,22,2025
+2025-10-01,3,Guilhermina-Esperança,21,2025
+2025-11-01,3,Guilhermina-Esperança,22,2025
+2025-12-01,3,Guilhermina-Esperança,20,2025
 2025-01-01,3,Vila Matilde,23,2025
 2025-02-01,3,Vila Matilde,27,2025
 2025-03-01,3,Vila Matilde,28,2025
@@ -4295,6 +4418,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Vila Matilde,25,2025
 2025-08-01,3,Vila Matilde,27,2025
 2025-09-01,3,Vila Matilde,28,2025
+2025-10-01,3,Vila Matilde,27,2025
+2025-11-01,3,Vila Matilde,28,2025
+2025-12-01,3,Vila Matilde,26,2025
 2025-01-01,3,Penha-Lojas Besni,23,2025
 2025-02-01,3,Penha-Lojas Besni,28,2025
 2025-03-01,3,Penha-Lojas Besni,28,2025
@@ -4304,6 +4430,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Penha-Lojas Besni,25,2025
 2025-08-01,3,Penha-Lojas Besni,27,2025
 2025-09-01,3,Penha-Lojas Besni,28,2025
+2025-10-01,3,Penha-Lojas Besni,27,2025
+2025-11-01,3,Penha-Lojas Besni,28,2025
+2025-12-01,3,Penha-Lojas Besni,26,2025
 2025-01-01,3,Carrão-Assaí Atacadista,35,2025
 2025-02-01,3,Carrão-Assaí Atacadista,47,2025
 2025-03-01,3,Carrão-Assaí Atacadista,50,2025
@@ -4313,6 +4442,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Carrão-Assaí Atacadista,38,2025
 2025-08-01,3,Carrão-Assaí Atacadista,49,2025
 2025-09-01,3,Carrão-Assaí Atacadista,51,2025
+2025-10-01,3,Carrão-Assaí Atacadista,49,2025
+2025-11-01,3,Carrão-Assaí Atacadista,51,2025
+2025-12-01,3,Carrão-Assaí Atacadista,41,2025
 2025-01-01,3,Tatuapé,65,2025
 2025-02-01,3,Tatuapé,72,2025
 2025-03-01,3,Tatuapé,75,2025
@@ -4322,6 +4454,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Tatuapé,69,2025
 2025-08-01,3,Tatuapé,75,2025
 2025-09-01,3,Tatuapé,75,2025
+2025-10-01,3,Tatuapé,76,2025
+2025-11-01,3,Tatuapé,79,2025
+2025-12-01,3,Tatuapé,78,2025
 2025-01-01,3,Belém,32,2025
 2025-02-01,3,Belém,37,2025
 2025-03-01,3,Belém,37,2025
@@ -4331,6 +4466,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Belém,31,2025
 2025-08-01,3,Belém,36,2025
 2025-09-01,3,Belém,37,2025
+2025-10-01,3,Belém,37,2025
+2025-11-01,3,Belém,38,2025
+2025-12-01,3,Belém,35,2025
 2025-01-01,3,Bresser-Moóca,25,2025
 2025-02-01,3,Bresser-Moóca,29,2025
 2025-03-01,3,Bresser-Moóca,31,2025
@@ -4340,6 +4478,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Bresser-Moóca,25,2025
 2025-08-01,3,Bresser-Moóca,29,2025
 2025-09-01,3,Bresser-Moóca,30,2025
+2025-10-01,3,Bresser-Moóca,29,2025
+2025-11-01,3,Bresser-Moóca,30,2025
+2025-12-01,3,Bresser-Moóca,26,2025
 2025-01-01,3,Brás,65,2025
 2025-02-01,3,Brás,69,2025
 2025-03-01,3,Brás,71,2025
@@ -4349,6 +4490,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Brás,72,2025
 2025-08-01,3,Brás,74,2025
 2025-09-01,3,Brás,72,2025
+2025-10-01,3,Brás,71,2025
+2025-11-01,3,Brás,75,2025
+2025-12-01,3,Brás,76,2025
 2025-01-01,3,Pedro II,14,2025
 2025-02-01,3,Pedro II,15,2025
 2025-03-01,3,Pedro II,15,2025
@@ -4358,6 +4502,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Pedro II,14,2025
 2025-08-01,3,Pedro II,15,2025
 2025-09-01,3,Pedro II,15,2025
+2025-10-01,3,Pedro II,15,2025
+2025-11-01,3,Pedro II,16,2025
+2025-12-01,3,Pedro II,15,2025
 2025-01-01,3,Sé,176,2025
 2025-02-01,3,Sé,204,2025
 2025-03-01,3,Sé,210,2025
@@ -4367,6 +4514,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Sé,186,2025
 2025-08-01,3,Sé,203,2025
 2025-09-01,3,Sé,206,2025
+2025-10-01,3,Sé,204,2025
+2025-11-01,3,Sé,210,2025
+2025-12-01,3,Sé,193,2025
 2025-01-01,3,Anhangabaú,45,2025
 2025-02-01,3,Anhangabaú,49,2025
 2025-03-01,3,Anhangabaú,51,2025
@@ -4376,6 +4526,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Anhangabaú,48,2025
 2025-08-01,3,Anhangabaú,50,2025
 2025-09-01,3,Anhangabaú,51,2025
+2025-10-01,3,Anhangabaú,51,2025
+2025-11-01,3,Anhangabaú,54,2025
+2025-12-01,3,Anhangabaú,49,2025
 2025-01-01,3,República,105,2025
 2025-02-01,3,República,119,2025
 2025-03-01,3,República,120,2025
@@ -4385,6 +4538,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,República,110,2025
 2025-08-01,3,República,118,2025
 2025-09-01,3,República,124,2025
+2025-10-01,3,República,122,2025
+2025-11-01,3,República,127,2025
+2025-12-01,3,República,117,2025
 2025-01-01,3,Santa Cecília,20,2025
 2025-02-01,3,Santa Cecília,23,2025
 2025-03-01,3,Santa Cecília,23,2025
@@ -4394,6 +4550,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Santa Cecília,20,2025
 2025-08-01,3,Santa Cecília,23,2025
 2025-09-01,3,Santa Cecília,23,2025
+2025-10-01,3,Santa Cecília,23,2025
+2025-11-01,3,Santa Cecília,23,2025
+2025-12-01,3,Santa Cecília,21,2025
 2025-01-01,3,Marechal Deodoro,22,2025
 2025-02-01,3,Marechal Deodoro,25,2025
 2025-03-01,3,Marechal Deodoro,26,2025
@@ -4403,6 +4562,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Marechal Deodoro,24,2025
 2025-08-01,3,Marechal Deodoro,26,2025
 2025-09-01,3,Marechal Deodoro,26,2025
+2025-10-01,3,Marechal Deodoro,25,2025
+2025-11-01,3,Marechal Deodoro,26,2025
+2025-12-01,3,Marechal Deodoro,24,2025
 2025-01-01,3,Palmeiras-Barra Funda,121,2025
 2025-02-01,3,Palmeiras-Barra Funda,138,2025
 2025-03-01,3,Palmeiras-Barra Funda,141,2025
@@ -4412,6 +4574,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,3,Palmeiras-Barra Funda,127,2025
 2025-08-01,3,Palmeiras-Barra Funda,134,2025
 2025-09-01,3,Palmeiras-Barra Funda,137,2025
+2025-10-01,3,Palmeiras-Barra Funda,143,2025
+2025-11-01,3,Palmeiras-Barra Funda,151,2025
+2025-12-01,3,Palmeiras-Barra Funda,139,2025
 2025-01-01,15,Vila Prudente,58,2025
 2025-02-01,15,Vila Prudente,67,2025
 2025-03-01,15,Vila Prudente,69,2025
@@ -4421,6 +4586,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Vila Prudente,60,2025
 2025-08-01,15,Vila Prudente,67,2025
 2025-09-01,15,Vila Prudente,69,2025
+2025-10-01,15,Vila Prudente,68,2025
+2025-11-01,15,Vila Prudente,70,2025
+2025-12-01,15,Vila Prudente,63,2025
 2025-01-01,15,Oratório,6,2025
 2025-02-01,15,Oratório,6,2025
 2025-03-01,15,Oratório,7,2025
@@ -4430,6 +4598,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Oratório,7,2025
 2025-08-01,15,Oratório,7,2025
 2025-09-01,15,Oratório,8,2025
+2025-10-01,15,Oratório,7,2025
+2025-11-01,15,Oratório,8,2025
+2025-12-01,15,Oratório,7,2025
 2025-01-01,15,São Lucas,4,2025
 2025-02-01,15,São Lucas,5,2025
 2025-03-01,15,São Lucas,5,2025
@@ -4439,6 +4610,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,São Lucas,5,2025
 2025-08-01,15,São Lucas,5,2025
 2025-09-01,15,São Lucas,5,2025
+2025-10-01,15,São Lucas,5,2025
+2025-11-01,15,São Lucas,5,2025
+2025-12-01,15,São Lucas,5,2025
 2025-01-01,15,Camilo Haddad,3,2025
 2025-02-01,15,Camilo Haddad,4,2025
 2025-03-01,15,Camilo Haddad,4,2025
@@ -4448,6 +4622,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Camilo Haddad,4,2025
 2025-08-01,15,Camilo Haddad,4,2025
 2025-09-01,15,Camilo Haddad,4,2025
+2025-10-01,15,Camilo Haddad,4,2025
+2025-11-01,15,Camilo Haddad,4,2025
+2025-12-01,15,Camilo Haddad,4,2025
 2025-01-01,15,Vila Tolstói,5,2025
 2025-02-01,15,Vila Tolstói,6,2025
 2025-03-01,15,Vila Tolstói,5,2025
@@ -4457,6 +4634,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Vila Tolstói,5,2025
 2025-08-01,15,Vila Tolstói,6,2025
 2025-09-01,15,Vila Tolstói,6,2025
+2025-10-01,15,Vila Tolstói,6,2025
+2025-11-01,15,Vila Tolstói,6,2025
+2025-12-01,15,Vila Tolstói,5,2025
 2025-01-01,15,Vila União,5,2025
 2025-02-01,15,Vila União,6,2025
 2025-03-01,15,Vila União,6,2025
@@ -4466,6 +4646,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Vila União,5,2025
 2025-08-01,15,Vila União,6,2025
 2025-09-01,15,Vila União,6,2025
+2025-10-01,15,Vila União,6,2025
+2025-11-01,15,Vila União,6,2025
+2025-12-01,15,Vila União,6,2025
 2025-01-01,15,Jardim Planalto,4,2025
 2025-02-01,15,Jardim Planalto,5,2025
 2025-03-01,15,Jardim Planalto,5,2025
@@ -4475,6 +4658,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Jardim Planalto,4,2025
 2025-08-01,15,Jardim Planalto,5,2025
 2025-09-01,15,Jardim Planalto,5,2025
+2025-10-01,15,Jardim Planalto,5,2025
+2025-11-01,15,Jardim Planalto,5,2025
+2025-12-01,15,Jardim Planalto,5,2025
 2025-01-01,15,Sapopemba,8,2025
 2025-02-01,15,Sapopemba,9,2025
 2025-03-01,15,Sapopemba,9,2025
@@ -4484,6 +4670,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Sapopemba,9,2025
 2025-08-01,15,Sapopemba,9,2025
 2025-09-01,15,Sapopemba,10,2025
+2025-10-01,15,Sapopemba,10,2025
+2025-11-01,15,Sapopemba,10,2025
+2025-12-01,15,Sapopemba,9,2025
 2025-01-01,15,Fazenda da Juta,4,2025
 2025-02-01,15,Fazenda da Juta,5,2025
 2025-03-01,15,Fazenda da Juta,5,2025
@@ -4493,6 +4682,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Fazenda da Juta,4,2025
 2025-08-01,15,Fazenda da Juta,5,2025
 2025-09-01,15,Fazenda da Juta,5,2025
+2025-10-01,15,Fazenda da Juta,5,2025
+2025-11-01,15,Fazenda da Juta,5,2025
+2025-12-01,15,Fazenda da Juta,4,2025
 2025-01-01,15,São Mateus,15,2025
 2025-02-01,15,São Mateus,17,2025
 2025-03-01,15,São Mateus,17,2025
@@ -4502,6 +4694,9 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,São Mateus,16,2025
 2025-08-01,15,São Mateus,17,2025
 2025-09-01,15,São Mateus,18,2025
+2025-10-01,15,São Mateus,17,2025
+2025-11-01,15,São Mateus,18,2025
+2025-12-01,15,São Mateus,17,2025
 2025-01-01,15,Jardim Colonial,11,2025
 2025-02-01,15,Jardim Colonial,12,2025
 2025-03-01,15,Jardim Colonial,13,2025
@@ -4511,3 +4706,6 @@ date,line_number,station_name,avg_passenger,year
 2025-07-01,15,Jardim Colonial,12,2025
 2025-08-01,15,Jardim Colonial,13,2025
 2025-09-01,15,Jardim Colonial,13,2025
+2025-10-01,15,Jardim Colonial,13,2025
+2025-11-01,15,Jardim Colonial,14,2025
+2025-12-01,15,Jardim Colonial,12,2025

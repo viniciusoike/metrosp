@@ -1,0 +1,169 @@
+---
+title: "Getting Started"
+vignette: >
+  %\VignetteIndexEntry{getting_started}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+    fig.width: 8
+    fig.asp: 0.618
+    fig.align: center
+    warning: false
+    message: false
+---
+
+# metrosp
+
+The `metrosp` package provides access to the [Metro de São Paulo](https://www.metrosp.com.br/) public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a "lazy" format. This means that all data is comes pre-packaged and is called directly, without needing to download or import the raw data.
+
+```{r}
+#| label: setup
+library(metrosp)
+library(dplyr)
+```
+
+There are four main datasets:
+
+- `passengers_entrance`: daily passengers entering the metro system
+- `passengers_transported`: daily passengers transported by the metro system
+- `station_averages`: daily average passengers per station
+- `station_daily`: daily passengers per station
+
+For convinence, `metrosp` also provides information on stations and lines of the metro system (`lines`, `stations`, and `metro_lines`). The `lines` dataset is a spatial dataset and requires the `sf` package to work properly.
+
+```{r}
+library(sf)
+
+lines
+```
+
+Finally, the package also provides a named vector of colors for each line of the metro system (`metro_colors`).
+
+```{r}
+metro_colors
+```
+
+## Using the datasets
+
+Using the datasets is straightforward, just call the dataset name.
+
+```{r}
+glimpse(passengers_entrance)
+```
+
+All datasets are returned as `tibble` so using the `dplyr` package is recommended.
+
+# The datasets
+
+```{r}
+library(ggplot2)
+
+theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
+  theme(
+    panel.background = element_rect(fill = "#f5f5f5"),
+    plot.background = element_rect(fill = "#f5f5f5"),
+    plot.margin = margin(20, 10, 20, 10),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color = "gray90", linewidth = 0.25),
+    axis.title.x = element_blank(),
+    axis.line.x = element_line(color = "gray10", linewidth = 0.5),
+    axis.ticks.x = element_line(color = "gray10", linewidth = 0.5),
+    strip.background = element_rect(fill = "#0D1B2A"),
+    strip.text = element_text(color = "#ffffff"),
+    legend.position = "bottom"
+  )
+```
+
+## Entrance and Transported
+
+The `passengers_entrance` and `passengers_transported` datasets are both monthly passengers entering and transported by the metro system. The former is a daily count of passengers entering the metro system, while the latter is a daily count of passengers transported by the metro system.
+
+The data is aggregated into metrics:
+
+- `max`: maximum number of passengers (daily peak)
+- `mdu`: average number of passengers on business days
+- `mdo`: average number of passengers on sundays
+- `msa`: average number of passengers on saturdays
+- `total`: total number of passengers
+
+### Entrance
+
+Entrance is calculated by summing the number of passengers entering each station on each day.
+
+```{r}
+total_entrance <- passengers_entrance |>
+  filter(metric_abb == "total", line_name != "METRO System")
+
+ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
+  geom_line(lwd = 0.8) +
+  facet_wrap(vars(line_name), scales = "free_y") +
+  scale_color_manual(values = metro_colors) +
+  guides(color = "none") +
+  labs(x = NULL, y = "Total Entrance") +
+  theme_series
+```
+
+### Transported
+
+```{r}
+daily_avg <- passengers_transported |>
+  filter(metric_abb == "mdu", line_number != 99)
+
+ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
+  geom_line(lwd = 0.8) +
+  facet_wrap(vars(line_name), scales = "free_y") +
+  scale_color_manual(values = metro_colors) +
+  labs(x = NULL, y = "Daily Average") +
+  theme_series
+```
+
+## Station Averages
+
+The `station_averages` dataset is a daily average of passengers per station.
+
+```{r}
+line4st <- station_averages |>
+  filter(line_number == 4)
+
+ggplot(line4st, aes(x = date, y = avg_passenger)) +
+  geom_line(lwd = 0.8, color = metro_colors["Yellow"]) +
+  facet_wrap(vars(station_name), scales = "free_y") +
+  labs(x = NULL, y = "Average Passengers") +
+  theme_series
+```
+
+```{r}
+top_stations <- station_averages |>
+  filter(date == as.Date("2023-08-01"), line_number == 3) |>
+  summarise(total = sum(avg_passenger, na.rm = TRUE), .by = station_name) |>
+  slice_max(total, n = 10)
+
+top_stations <- top_stations |>
+  mutate(
+    station_name = factor(
+      station_name,
+      levels = rev(unique(top_stations$station_name))
+    )
+  )
+
+ggplot(top_stations, aes(total, station_name)) +
+  geom_col(fill = metro_colors["Red"]) +
+  scale_fill_manual(values = metro_colors) +
+  theme_series
+```
+
+```{r}
+line4st_daily <- station_daily |>
+  filter(line_number == 4, year == 2023)
+
+ggplot(line4st_daily, aes(x = date, y = passengers)) +
+  geom_smooth(lwd = 0.8, color = metro_colors["Yellow"], method = "loess", span = 0.65) +
+  facet_wrap(vars(station_name), scales = "free_y", ncol = 3) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  labs(x = NULL, y = "Average Passengers") +
+  theme_series
+```

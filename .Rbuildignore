@@ -11,3 +11,5 @@
 ^IMPROVEMENTS\.md$
 ^\.positai$
 ^cran-comments\.md$
+^vignettes/\.quarto$
+^vignettes/*_files$

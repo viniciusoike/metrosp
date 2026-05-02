@@ -132,7 +132,7 @@ dim_metro_line <- tibble(
     "Celeste",
     "Rosa",
     "Marrom",
-    "Sistema METRÔ"
+    "Sistema METRO"
   ),
   line_name = c(
     "Blue",
@@ -147,7 +147,7 @@ dim_metro_line <- tibble(
     "Sky Blue",
     "Pink",
     "Brown",
-    "METRÔ System"
+    "METRO System"
   ),
   line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L)
 )
@@ -422,3 +422,30 @@ clean_csv_passengers <- function(dat, year = 2020) {
 
   return(clean_dat)
 }
+
+
+.cols_passengers_entrance <- c(
+  "date",
+  "line_number",
+  "metric_abb",
+  "metric",
+  "value",
+  "year"
+)
+
+.cols_st_averages <- c(
+  "date",
+  "line_number",
+  "station_name",
+  "avg_passenger",
+  "year"
+)
+
+.cols_st_daily <- c(
+  "date",
+  "year",
+  "line_number",
+  "station_code",
+  "station_name",
+  "passengers"
+)

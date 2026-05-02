@@ -34,7 +34,7 @@ metro_lines <- tibble::tibble(
     "Celeste",
     "Rosa",
     "Marrom",
-    "Sistema METRÔ"
+    "Sistema METRO"
   ),
   line_name = c(
     "Blue",
@@ -49,7 +49,7 @@ metro_lines <- tibble::tibble(
     "Sky Blue",
     "Pink",
     "Brown",
-    "METRÔ System"
+    "METRO System"
   )
 )
 
@@ -121,7 +121,23 @@ if (nrow(missing_vals) > 0) {
   cli::cli_abort("Missing values in entrance_20: {nrow(missing_vals)} rows")
 }
 
-passengers_entrance <- bind_rows(entrance_17_19, entrance_20) |>
+# Lines 4/5 (Dataverse source)
+entrance_4_5_path <- here(
+  data_dir,
+  "metro_sp_passengers_entrance_lines_4_5.csv"
+)
+entrance_4_5 <- read_csv(entrance_4_5_path, show_col_types = FALSE)
+
+entrance_4_5 <- left_join(entrance_4_5, metro_lines, by = join_by(line_number))
+
+passengers_entrance <- bind_rows(entrance_17_19, entrance_20)
+
+passengers_entrance <- passengers_entrance |>
+  mutate(value = value * 1000)
+
+passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5)
+
+passengers_entrance <- passengers_entrance |>
   select(all_of(psg_sel_cols)) |>
   arrange(date, line_number, metric_abb)
 
@@ -225,10 +241,24 @@ station_sel_cols <- c(
   "year"
 )
 
-station_averages <- bind_rows(stations_17_19, stations_20) |>
+# Lines 4/5 (Dataverse source)
+stations_4_5_path <- here(data_dir, "metro_sp_station_averages_lines_4_5.csv")
+
+stations_4_5 <- read_csv(stations_4_5_path, show_col_types = FALSE)
+
+station_averages <- bind_rows(
+  stations_17_19,
+  stations_20
+)
+
+station_averages <- station_averages |>
+  mutate(avg_passenger = avg_passenger * 1000)
+
+station_averages <- bind_rows(station_averages, stations_4_5)
+
+
+station_averages <- station_averages |>
   mutate(
-    year = as.integer(year),
-    line_number = as.integer(line_number),
     # Fix station_name for consistency with other datasets (Sumaré)
     station_name = if_else(
       station_name == "Santuário N.S. de Fátima-Sumaré",
@@ -244,18 +274,15 @@ station_averages <- bind_rows(stations_17_19, stations_20) |>
 # OBS: due to repeated station names it's not possible to simply convert to
 # factor and sort.
 
-st_order <- paste(
-  dim_station_code$line_number,
-  dim_station_code$station_name,
-  sep = "_"
-)
+# st_order <- paste(
+#   dim_station_code$line_number,
+#   dim_station_code$station_name,
+#   sep = "_"
+# )
 
 station_averages <- station_averages |>
   select(all_of(station_sel_cols)) |>
-  mutate(
-    station_order = paste(line_number, station_name, sep = "_"),
-    station_order = factor(station_order, levels = local(st_order))
-  ) |>
+  mutate(station_order = paste(line_number, station_name, sep = "_")) |>
   arrange(date, station_order) |>
   select(-station_order)
 
@@ -266,9 +293,16 @@ station_daily <- read_csv(
   show_col_types = FALSE
 )
 
+# Lines 4/5 (Dataverse source) — station_code is NA for these lines
+daily_4_5_path <- here(data_dir, "metro_sp_station_daily_lines_4_5.csv")
+daily_4_5 <- read_csv(daily_4_5_path, show_col_types = FALSE)
+
 station_daily <- station_daily |>
-  mutate(line_number = as.integer(line_number)) |>
-  left_join(metro_lines, join_by(line_number))
+  mutate(passengers = passengers * 1000)
+
+station_daily <- bind_rows(station_daily, daily_4_5)
+
+station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 
 missing_vals <- station_daily |>
   filter(is.na(passengers))
@@ -292,10 +326,7 @@ station_daily <- station_daily |>
   select(all_of(stdaily_sel_cols)) |>
   # Define a temporary id vector (station name + line number) to sort stations
   # in proper order
-  mutate(
-    station_order = paste(line_number, station_name, sep = "_"),
-    station_order = factor(station_order, levels = local(st_order))
-  ) |>
+  mutate(station_order = paste(line_number, station_name, sep = "_")) |>
   arrange(date, station_order) |>
   select(-station_order)
 
@@ -315,12 +346,17 @@ stopifnot("NA dates in station_daily" = !any(is.na(station_daily$date)))
 # station_daily specific checks
 stopifnot(
   "station_daily date range starts before 2020" = min(station_daily$date) >=
-    as.Date("2020-01-01")
+    as.Date("2012-01-01")
 )
 
 stopifnot(
-  "station_daily should only have lines 1, 2, 3, 15" = all(
-    station_daily$line_number %in% c(1L, 2L, 3L, 15L)
+  "station_daily should only have lines 1, 2, 3, 4, 5, 15" = all(
+    station_daily$line_number %in% c(1L, 2L, 3L, 4L, 5L, 15L)
+  )
+)
+stopifnot(
+  "station_daily lines 4 and 5 should have NA station_code" = all(
+    is.na(station_daily$station_code[station_daily$line_number %in% c(4L, 5L)])
   )
 )
 stopifnot(
@@ -330,11 +366,15 @@ stopifnot(
   "station_daily missing station_name" = !any(is.na(station_daily$station_name))
 )
 stopifnot(
-  "station_daily missing station_code" = !any(is.na(station_daily$station_code))
+  "station_daily lines 1/2/3/15 missing station_code" = !any(
+    is.na(station_daily$station_code[
+      station_daily$line_number %in% c(1L, 2L, 3L, 15L)
+    ])
+  )
 )
 stopifnot(
   "station_daily has duplicate date/line/station" = nrow(station_daily) ==
-    nrow(distinct(station_daily, date, line_number, station_code))
+    nrow(distinct(station_daily, date, line_number, station_name))
 )
 stopifnot(
   "station_daily too few rows (expect > 100k)" = nrow(station_daily) > 100000
@@ -352,10 +392,20 @@ message(sprintf("metro_lines:            %d rows", nrow(metro_lines)))
 
 # --- Save datasets -----------------------------------------------------------
 
+metro_colors <- c(
+  "Blue" = "#171796",
+  "Green" = "#007A5E",
+  "Red" = "#ED2E38",
+  "Yellow" = "#FFD525",
+  "Lilac" = "#874ABF",
+  "Silver" = "#8F8F8C"
+)
+
 usethis::use_data(passengers_entrance, overwrite = TRUE)
 usethis::use_data(passengers_transported, overwrite = TRUE)
 usethis::use_data(station_averages, overwrite = TRUE)
 usethis::use_data(station_daily, overwrite = TRUE)
 usethis::use_data(metro_lines, overwrite = TRUE)
+usethis::use_data(metro_colors, overwrite = TRUE)
 
 message("All datasets saved to data/")

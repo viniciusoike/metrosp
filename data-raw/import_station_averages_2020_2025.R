@@ -20,7 +20,7 @@ import_csv_stations_average <- function(
   if (length(path_csv) == 0) {
     cli::cli_abort("No files found.")
   }
-
+  # browser()
   dat <- read_csv_stations_average(path_csv, year = year, line = line)
   clean_dat <- clean_stations_average(dat, year = year, line = line)
   return(clean_dat)
@@ -28,13 +28,13 @@ import_csv_stations_average <- function(
 
 read_csv_stations_average <- function(path, year = 2020, line = 1) {
   skip <- dplyr::case_when(
-    line == 1 & year == 2025 ~ 6,
+    line == 1 & year == 2025 ~ 5,
     line == 1 ~ 5,
-    line == 2 & year == 2025 ~ 37,
+    line == 2 & year == 2025 ~ 36,
     line == 2 ~ 35,
-    line == 3 & year == 2025 ~ 59,
+    line == 3 & year == 2025 ~ 58,
     line == 3 ~ 56,
-    line == 15 & year == 2025 ~ 84,
+    line == 15 & year == 2025 ~ 83,
     line == 15 ~ 80,
     TRUE ~ NA_integer_
   )
@@ -49,13 +49,17 @@ read_csv_stations_average <- function(path, year = 2020, line = 1) {
     TRUE ~ NA_integer_
   )
 
+  ncols <- stringr::str_count(readLines(path_csv, n = 1), ";")
+  col_types <- paste0(rep("c", ncols + 1), collapse = "")
+
   dat <- readr::read_delim(
     path,
     delim = ";",
     skip = skip,
-    na = c("- ", "-", " - "),
+    na = c("- ", "-", " - ", ""),
     n_max = n_max,
     locale = readr::locale(grouping_mark = ".", encoding = "ISO-8859-1"),
+    col_types = col_types,
     show_col_types = FALSE,
     name_repair = janitor::make_clean_names
   )
@@ -115,15 +119,29 @@ grid <- tidyr::expand_grid(
   line = c(1, 2, 3, 15)
 )
 
+path_csv <- get_path_csv(
+  variable = "stations",
+  2021,
+  datadir = "data-raw/metro_sp/metro/csv"
+)
+
+dat <- read_csv_stations_average(path_csv, year = 2021, line = 1)
+
+readr::problems(dat)
+
+
 safe_import_station_average <- purrr::safely(import_csv_stations_average)
 dat <- purrr::pmap(grid, safe_import_station_average)
 n_errors <- sum(sapply(dat, \(x) !is.null(x$error)))
 
 if (n_errors == 0) {
+  cli::cli_alert_success("Process successfully without errors.")
   stations_averages <- purrr::map(dat, \(x) x$result)
   stations_averages <- dplyr::bind_rows(stations_averages)
   readr::write_csv(
     stations_averages,
     here::here("data-raw/processed/metro_sp_stations_averages_2020_2025.csv")
   )
+} else {
+  cli::cli_alert_danger("Process failed with {n_errors} error{?s}.")
 }
