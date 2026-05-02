@@ -36,13 +36,13 @@ The package currently covers all metro lines in São Paulo. In the future it may
 
 ## Installation
 
-The package is available on CRAN and can be installed with:
+The package will be available on CRAN. Once released, install with:
 
-```{r}
+```r
 install.packages("metrosp")
 ```
 
-To download the development version from GitHub, use:
+To install the development version from GitHub, use:
 
 ```r
 # install.packages("remotes")

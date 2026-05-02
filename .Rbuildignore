@@ -13,3 +13,4 @@
 ^cran-comments\.md$
 ^vignettes/\.quarto$
 ^vignettes/*_files$
+^man/figures/metro_plot\.png$

@@ -12,12 +12,20 @@
   covering current and planned stations (sf, EPSG:4326). Replaces the
   previous separate `metro_stations_geo` and `train_stations_geo` objects.
 
+## New datasets (continued)
+
+* `metro_lines`: Line reference table mapping line numbers to Portuguese and
+  English color names (replaces the old spatial `metro_lines` object).
+* `metro_colors`: Named character vector of official hex color codes for the
+  six currently operating metro lines.
+
 ## Breaking changes
 
-* `metro_lines`, `metro_lines_geo`, `metro_stations_geo`, `train_lines`,
-  `train_lines_geo`, and `train_stations_geo` have been removed. Use
-  `lines` and `stations` instead, filtering on the `type` column
-  (`"metro"` or `"train"`).
+* `metro_lines_geo`, `metro_stations_geo`, `train_lines`, `train_lines_geo`,
+  and `train_stations_geo` have been removed. Use `lines` and `stations`
+  instead, filtering on the `type` column (`"metro"` or `"train"`).
+* The previous `metro_lines` spatial dataset has been replaced by a new
+  `metro_lines` dimension table (non-spatial). Use `lines` for route geometries.
 
 ## Other changes
 

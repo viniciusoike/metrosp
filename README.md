@@ -80,18 +80,11 @@ it may be expanded to include trains as well.
 
 ## Installation
 
-The package is available on CRAN and can be installed with:
+The package will be available on CRAN. Once released, install with:
 
     install.packages("metrosp")
-    #> Installing package into '/Users/viniciusreginatto/Library/R/arm64/4.5/library'
-    #> (as 'lib' is unspecified)
-    #> Warning: package 'metrosp' is not available for this version of R
-    #> 
-    #> A version of this package for your version of R might be available elsewhere,
-    #> see the ideas at
-    #> https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
 
-To download the development version from GitHub, use:
+To install the development version from GitHub, use:
 
     # install.packages("remotes")
     remotes::install_github("viniciusoike/metrosp")

@@ -15,6 +15,7 @@
 * Possibly misspelled words in DESCRIPTION: GeoSampa, Paulo, Sao.
   These are proper Portuguese geographic names (São Paulo, Brazil);
   GeoSampa is the name of the city's official geospatial data portal.
+  All three words are listed in inst/WORDLIST.
 
 ## Downstream dependencies
 
