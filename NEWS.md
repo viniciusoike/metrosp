@@ -1,4 +1,4 @@
-# metrosp 0.2.0
+# metrosp 1.0.0
 
 ## New datasets
 

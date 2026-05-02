@@ -1,4 +1,4 @@
-# CRAN submission comments — metrosp 0.2.0
+# CRAN submission comments — metrosp 1.0.0
 
 ## Test environments
 
