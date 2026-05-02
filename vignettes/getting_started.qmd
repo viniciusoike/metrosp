@@ -58,7 +58,10 @@ All datasets are returned as `tibble` so using the `dplyr` package is recommende
 
 # The datasets
 
+This tutorial will briefly introduce the main datasets and how to use them by making simple visualizations with the data. To better replicate the visualization, use the `ggplot2` package and the custom theme below.
+
 ```{r}
+#| code-fold: true
 library(ggplot2)
 
 theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
@@ -66,6 +69,7 @@ theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
     panel.background = element_rect(fill = "#f5f5f5"),
     plot.background = element_rect(fill = "#f5f5f5"),
     plot.margin = margin(20, 10, 20, 10),
+    plot.title = element_text(family = "Lora", size = 14),
     panel.grid.minor = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_line(color = "gray90", linewidth = 0.25),
@@ -92,78 +96,127 @@ The data is aggregated into metrics:
 
 ### Entrance
 
-Entrance is calculated by summing the number of passengers entering each station on each day.
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), and metric (`metric_abb`, `metric`). The data is in tidy format.
+
+```{r}
+glimpse(passengers_entrance)
+```
+
+Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_num = 99`). For most uses, it's best to filter out this line.
 
 ```{r}
 total_entrance <- passengers_entrance |>
   filter(metric_abb == "total", line_name != "METRO System")
+```
 
+The plot shows the total monthly passenger entrances by metro line. Note that the line-5 series is interrupted since the ownership of the line was transferred to ViaMobilidade in 2018.
+
+```{r}
+#| code-fold: true
 ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
   geom_line(lwd = 0.8) +
   facet_wrap(vars(line_name), scales = "free_y") +
   scale_color_manual(values = metro_colors) +
   guides(color = "none") +
-  labs(x = NULL, y = "Total Entrance") +
+  labs(
+    title = "Total Entrance by Line",
+    subtitle = "Total monthly passenger entrances by metro line",
+    x = NULL,
+    y = "Total Entrance"
+  ) +
   theme_series
 ```
 
 ### Transported
 
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), and metric (`metric_abb`, `metric`). The data is in tidy format. It has the same columns as `passengers_entrance` which is **thousands of passengers**. Also, this dataset currently only includes data on the METRÔ operated system. In the future, this dataset may be expanded to include lines 4 and 5.
+
+```{r}
+glimpse(passengers_transported)
+```
+
+Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_num = 99`). For most uses, it's best to filter out this line.
+
 ```{r}
 daily_avg <- passengers_transported |>
   filter(metric_abb == "mdu", line_number != 99)
+```
 
+The plot below shows the daily average (business days) passenger transported by metro line.
+
+```{r}
+#| code-fold: true
 ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
   geom_line(lwd = 0.8) +
   facet_wrap(vars(line_name), scales = "free_y") +
   scale_color_manual(values = metro_colors) +
-  labs(x = NULL, y = "Daily Average") +
+  labs(
+    title = "Daily Average Passenger Transported by Line",
+    subtitle = "Monthly averages across business days (thousands)",
+    x = NULL,
+    y = "Daily Average"
+  ) +
+  guides(color = "none") +
   theme_series
 ```
 
 ## Station Averages
 
-The `station_averages` dataset is a daily average of passengers per station.
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), and station (`station_name`). The only value column available is `avg_passenger`, which is the daily average (business days) of passengers entering the station.
 
 ```{r}
+glimpse(station_averages)
+```
+
+The plot below shows the daily average (business days) passengers entering each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.
+
+```{r}
+#| code-fold: true
 line4st <- station_averages |>
   filter(line_number == 4)
 
 ggplot(line4st, aes(x = date, y = avg_passenger)) +
   geom_line(lwd = 0.8, color = metro_colors["Yellow"]) +
   facet_wrap(vars(station_name), scales = "free_y") +
-  labs(x = NULL, y = "Average Passengers") +
+  labs(
+    x = NULL,
+    y = "Average Passengers",
+    title = "Passengers per Station (line 4)"
+  ) +
   theme_series
 ```
 
+## Station Daily
+
+This dataset is identified by day (`date`), line (`line_number`, `line_name`), and station (`station_name`). The only value column available is `passengers`, which is the daily number of passengers entering the station. Additionally, the column `station_code` contains three letter abbreviations for stations, but only for METRÔ operated lines.
+
 ```{r}
-top_stations <- station_averages |>
-  filter(date == as.Date("2023-08-01"), line_number == 3) |>
-  summarise(total = sum(avg_passenger, na.rm = TRUE), .by = station_name) |>
-  slice_max(total, n = 10)
-
-top_stations <- top_stations |>
-  mutate(
-    station_name = factor(
-      station_name,
-      levels = rev(unique(top_stations$station_name))
-    )
-  )
-
-ggplot(top_stations, aes(total, station_name)) +
-  geom_col(fill = metro_colors["Red"]) +
-  scale_fill_manual(values = metro_colors) +
-  theme_series
+glimpse(station_daily)
 ```
 
+The plot below shows the trend of daily passengers entering each station of line 4 in 2023.
+
 ```{r}
+#| code-fold: true
+#| fig-width: 10
+#| fig-height: 8
 line4st_daily <- station_daily |>
   filter(line_number == 4, year == 2023)
 
 ggplot(line4st_daily, aes(x = date, y = passengers)) +
-  geom_smooth(lwd = 0.8, color = metro_colors["Yellow"], method = "loess", span = 0.65) +
+  geom_smooth(
+    lwd = 0.8,
+    color = metro_colors["Yellow"],
+    method = "loess",
+    span = 0.65
+  ) +
   facet_wrap(vars(station_name), scales = "free_y", ncol = 3) +
   scale_x_date(date_breaks = "1 month", date_labels = "%b") +
-  labs(x = NULL, y = "Average Passengers") +
+  labs(
+    title = "Passengers per Station (line 4, 2023)",
+    subtitle = "LOESS smoothed trend",
+    x = NULL,
+    y = "Average Passengers"
+  ) +
   theme_series
 ```
