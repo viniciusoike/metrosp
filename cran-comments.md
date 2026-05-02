@@ -3,17 +3,18 @@
 ## Test environments
 
 * Local: macOS aarch64 (Apple M), R 4.5.1
-* R-hub: windows-x86_64-devel, ubuntu-gcc-release (to be run before submission)
-* win-builder: devel (to be run before submission)
+* win-builder: R-devel (Windows Server 2022) — 0 errors, 0 warnings, 1 note
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
 * checking CRAN incoming feasibility: NOTE
-  New submission
+  New submission.
 
-The NOTE is expected for a new submission.
+* Possibly misspelled words in DESCRIPTION: GeoSampa, Paulo, Sao.
+  These are proper Portuguese geographic names (São Paulo, Brazil);
+  GeoSampa is the name of the city's official geospatial data portal.
 
 ## Downstream dependencies
 
