@@ -1,0 +1,14 @@
+url: https://viniciusoike.github.io/metrosp/
+
+template:
+  bootstrap: 5
+  bslib:
+    bootswatch: yeti
+    pkgdown-nav-height: 100px
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Lora"}
+    code_font: {google: "JetBrains Mono"}
+    "code-font-size": 0.82em
+    primary: "#171796"
+    bg: "#fefefe"
+    fg: "#000000"

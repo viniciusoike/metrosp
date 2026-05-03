@@ -80,7 +80,7 @@ lilac <- tibble(
 
 emerald <- tibble(
   x = c(-4, -4),
-  y = c(4, -3)
+  y = c(4, -2.3)
 )
 
 brown <- tibble(
@@ -208,7 +208,6 @@ hexSticker::sticker(
   h_color = "#000000", # darker blue border
   h_size = 1.2,
   spotlight = FALSE,
-  white_around_sticker = TRUE,
   filename = "man/figures/logo.png",
   dpi = 600
 )

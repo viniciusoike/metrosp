@@ -14,3 +14,6 @@
 ^vignettes/\.quarto$
 ^vignettes/*_files$
 ^man/figures/metro_plot\.png$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

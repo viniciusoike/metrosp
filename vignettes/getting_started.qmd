@@ -46,8 +46,6 @@ Finally, the package also provides a named vector of colors for each line of the
 metro_colors
 ```
 
-## Using the datasets
-
 Using the datasets is straightforward, just call the dataset name.
 
 ```{r}
