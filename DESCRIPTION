@@ -9,13 +9,9 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Passenger demand data for the 'São Paulo' metro system, covering
-    2017 to 2025. Provides monthly passenger entries and transported counts
-    by line, average weekday station entries, daily station entries, and
-    spatial geometries for metro and commuter train lines and stations.
-    Data sourced from the METRO SP transparency portal
-    <https://transparencia.metrosp.com.br/dataset/demanda> and 'GeoSampa'
-    <https://geosampa.prefeitura.sp.gov.br/>.
+Description: Provides passenger demand data for the 'São Paulo' metro system,
+    covering 2012 to 2025. Datasets include monthly passenger entries and
+    transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US

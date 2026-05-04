@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 
 # metrosp: metro ridership in São Paulo <img src="man/figures/logo.png" align="right" height="220" />
 
-This packages helps distribute demanda data from the São Paulo metro system inside R. Data is sourced from multiple operators and spans 2012-2025. While most of the data is already [public](https://transparencia.metrosp.com.br/dataset/demanda), it's scattered across multiple poorly structured CSV/PDF files.
+This packages helps distribute demand data from the São Paulo metro system inside R. Data is sourced from multiple operators and spans 2012-2025. While most of the data is already [public](https://transparencia.metrosp.com.br/dataset/demanda), it's scattered across multiple poorly structured CSV/PDF files.
 
-Information on lines 1, 2, 3, 5, and 15 are sourced from the open data portal from METRÔ, while lines 4 and 5 (post-2018) are sourced from Insper's Dataverse.
+Information on lines 1, 2, 3, 5, and 15 are sourced from the open data portal from METRÔ, while lines 4 and 5 (post-2018) are sourced from Dataverse (Insper).
 
 All datasets are returned as `tibble` objects and are "lazy" datasets, meaning they are bundled with the package and don't need to be downloaded. The data is also cleaned and standardized to make it easier to work with.
 
