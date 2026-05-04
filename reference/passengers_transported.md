@@ -1,8 +1,9 @@
 # Passengers Transported by Metro SP Line
 
-Monthly count of passengers transported by Sao Paulo metro, aggregated
-by metro line. Data covers October 2017 through 2025, sourced from the
-METRO SP transparency portal.
+Monthly count of passengers transported by São Paulo metro, aggregated
+by metro line. Data covers October 2017 through 2025 for Lines 1, 2, 3,
+and 15, and October 2017 through December 2019 for Line 5. Sourced from
+the METRO SP transparency portal.
 
 ## Usage
 
@@ -20,19 +21,23 @@ A data frame with the following columns:
 
 - line_number:
 
-  Metro line number: 1, 2, 3, 5, 15, or 99 for network total (integer).
+  Metro line number: 1, 2, 3, 5, 15, or 99 for the network total
+  (integer).
 
 - metric_abb:
 
-  Abbreviated metric code (character).
+  Abbreviated metric code (character). One of: `"total"`, `"mdu"`,
+  `"msa"`, `"mdo"`, `"max"`.
 
 - value:
 
-  Passenger count in thousands (numeric).
+  Passenger count (numeric).
 
 - metric:
 
-  Measurement type in Portuguese (character).
+  Measurement type in Portuguese (character). One of: `"Total"`,
+  `"Média dos Dias Úteis"`, `"Média dos Sábados"`,
+  `"Média dos Domingos"`, `"Máxima Diária"`.
 
 - line_name:
 
@@ -48,28 +53,32 @@ A data frame with the following columns:
 
 ## Source
 
-Companhia do Metropolitano de Sao Paulo (METRO).
+Companhia do Metropolitano de São Paulo (METRO SP).
 <https://transparencia.metrosp.com.br/dataset/demanda>
 
 ## Details
 
-Lines 1, 2, 3, and 15 come from the METRO transparency portal
-(2017-2025). Line 5 (Lilas) is available October 2017 - December 2019
-only. Line 4 (Amarela) is not available in this dataset (the Dataverse
-source does not include transported data for Lines 4/5). The network
-total (line_number = 99) may not be available for all years.
-
-Values represent thousands of passengers (e.g., a value of 900 means
-900,000 passengers).
+All data comes from the METRO SP transparency portal. Line 4 (Amarela)
+is not available in this dataset — the Insper Dataverse source does not
+include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
+from the METRO portal only for October 2017–December 2019. The network
+total (`line_number = 99`) may not be available for all years.
 
 Metrics:
 
-- `total`: Total passengers in the month
+- `total`: Total passengers in the month.
 
-- `mdu`: Average on business days (Media dos Dias Uteis)
+- `mdu`: Average daily entries on business days (Média dos Dias Úteis).
 
-- `msa`: Average on Saturdays (Media dos Sabados)
+- `msa`: Average daily entries on Saturdays (Média dos Sábados).
 
-- `mdo`: Average on Sundays (Media dos Domingos)
+- `mdo`: Average daily entries on Sundays (Média dos Domingos).
 
-- `max`: Daily maximum (Maxima Diaria)
+- `max`: Daily maximum (Máxima Diária).
+
+## See also
+
+[`passengers_entrance`](https://viniciusoike.github.io/metrosp/reference/passengers_entrance.md)
+for entry counts,
+[`station_averages`](https://viniciusoike.github.io/metrosp/reference/station_averages.md)
+for station-level weekday averages.

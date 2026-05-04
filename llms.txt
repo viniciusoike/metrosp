@@ -1,6 +1,6 @@
 # metrosp: metro ridership in São Paulo
 
-This packages helps distribute demanda data from the São Paulo metro
+This packages helps distribute demand data from the São Paulo metro
 system inside R. Data is sourced from multiple operators and spans
 2012-2025. While most of the data is already
 [public](https://transparencia.metrosp.com.br/dataset/demanda), it’s
@@ -8,7 +8,7 @@ scattered across multiple poorly structured CSV/PDF files.
 
 Information on lines 1, 2, 3, 5, and 15 are sourced from the open data
 portal from METRÔ, while lines 4 and 5 (post-2018) are sourced from
-Insper’s Dataverse.
+Dataverse (Insper).
 
 All datasets are returned as `tibble` objects and are “lazy” datasets,
 meaning they are bundled with the package and don’t need to be
@@ -33,13 +33,15 @@ it may be expanded to include trains as well.
 
 The package will be available on CRAN. Once released, install with:
 
-``` R
+``` r
+
 install.packages("metrosp")
 ```
 
 To install the development version from GitHub, use:
 
-``` R
+``` r
+
 # install.packages("remotes")
 remotes::install_github("viniciusoike/metrosp")
 ```
@@ -65,7 +67,8 @@ visualization.
 
 ## Usage
 
-``` R
+``` r
+
 library(metrosp)
 # To work with spatial datasets (lines, stations)
 library(sf)

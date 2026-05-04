@@ -1,6 +1,6 @@
 # Metro and Train Station Locations
 
-Spatial point locations for Sao Paulo metro (METRO SP) and commuter
+Spatial point locations for São Paulo metro (METRO SP) and commuter
 train (CPTM) stations, including both currently operating stations and
 planned future stations.
 
@@ -50,16 +50,15 @@ following columns:
 
 ## Source
 
-GeoSampa, Prefeitura de Sao Paulo.
+GeoSampa, Prefeitura de São Paulo.
 <https://geosampa.prefeitura.sp.gov.br/>
 
 ## Details
 
 Requires the sf package to work with spatial features. The distinction
-between types isn't always consistent, but we follow GeoSampa's
-classification. Broadly speaking, the "metro" runs undergrounds as a
-subway, and "train" runs above grounds as a commuter rail (although
-there are exceptions)
+between types follows GeoSampa's classification. Broadly, `"metro"`
+lines run underground as a subway and `"train"` lines run above ground
+as commuter rail, though exceptions exist.
 
 ## See also
 

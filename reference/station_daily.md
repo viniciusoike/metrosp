@@ -1,9 +1,9 @@
 # Daily Passenger Entries by Metro SP Station
 
-Daily passenger entries at each station in the Sao Paulo metro system.
-Data covers 2020 through 2025. Lines 1, 2, 3, and 15 come from the METRO
-SP transparency portal; Lines 4 and 5 come from the Insper Dataverse
-source.
+Daily passenger entries at each station in the São Paulo metro system.
+Data covers January 2012 through 2025 for Lines 4 and 5 (Insper
+Dataverse), and 2020 through 2025 for Lines 1, 2, 3, and 15 (METRO SP
+transparency portal).
 
 ## Usage
 
@@ -29,7 +29,7 @@ A data frame with the following columns:
 
 - passengers:
 
-  Daily passenger entries in thousands (numeric).
+  Daily passenger entries (numeric).
 
 - line_name:
 
@@ -41,7 +41,7 @@ A data frame with the following columns:
 
 - station_code:
 
-  Three-letter station abbreviation used internally by METRO
+  Three-letter station abbreviation used internally by METRO SP
   (character). `NA` for Lines 4 and 5 (Dataverse source).
 
 - year:
@@ -50,33 +50,30 @@ A data frame with the following columns:
 
 ## Source
 
-Companhia do Metropolitano de Sao Paulo (METRO).
+Companhia do Metropolitano de São Paulo (METRO SP).
 <https://transparencia.metrosp.com.br/dataset/demanda>
 
 ## Details
 
-Values represent thousands of passengers (e.g., a value of 50 means
-50,000 passengers entering the station that day).
+Station coverage and date range by line:
 
-Station coverage by line:
+- Line 1 (Azul/Blue): 23 stations, 2020–2025 (METRO SP portal).
 
-- Line 1 (Azul/Blue): 23 stations
+- Line 2 (Verde/Green): 14 stations, 2020–2025 (METRO SP portal).
 
-- Line 2 (Verde/Green): 14 stations
+- Line 3 (Vermelha/Red): 18 stations, 2020–2025 (METRO SP portal).
 
-- Line 3 (Vermelha/Red): 18 stations
+- Line 4 (Amarela/Yellow): January 2012–2025 (Insper Dataverse);
+  `station_code` is `NA`.
 
-- Line 4 (Amarela/Yellow): available 2020-2025 (Insper Dataverse);
-  `station_code` is `NA`
-
-- Line 5 (Lilas/Lilac): available 2020-2025 (Insper Dataverse);
-  `station_code` is `NA`
+- Line 5 (Lilás/Lilac): August 2018–2025 (Insper Dataverse);
+  `station_code` is `NA`.
 
 - Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
-  (Jardim Colonial added)
+  (Jardim Colonial added), 2020–2025 (METRO SP portal).
 
 Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
-Paraiso on Lines 1 and 2, Se on Lines 1 and 3). These are recorded
+Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
 separately for each line.
 
 ## See also

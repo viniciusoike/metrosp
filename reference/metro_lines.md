@@ -1,7 +1,7 @@
 # Metro SP Line Reference Table
 
 A reference tibble mapping metro line numbers to their Portuguese and
-English color names. Covers all METRO SP and ViaMobilidade lines
+English color names. Covers all METRO SP and ViaMobilidade lines,
 including planned future lines and the network total.
 
 ## Usage
@@ -29,11 +29,12 @@ A tibble with 13 rows and 3 columns:
 
 ## Details
 
-This dataset serves as a dimension/lookup table for joining line names
-onto passenger and station datasets. Not all lines have passenger data —
-some (e.g., Lines 6, 16, 17) are planned future lines with only spatial
-geometry available in
-[`lines`](https://viniciusoike.github.io/metrosp/reference/lines.md).
+Serves as a dimension/lookup table for joining line names onto passenger
+and station datasets. Not all lines have passenger data — Lines 6, 16,
+17, 19, 20, and 22 are planned future lines with spatial geometry
+available in
+[`lines`](https://viniciusoike.github.io/metrosp/reference/lines.md) but
+no ridership records.
 
 ## See also
 

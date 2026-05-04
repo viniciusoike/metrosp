@@ -1,7 +1,8 @@
 # Metro SP Official Line Colors
 
 A named character vector of official hex color codes for the six metro
-lines operated by METRO SP (Lines 1-3, 5, 15) and ViaMobilidade Line 4.
+lines operated by METRO SP (Lines 1–3 and 15) and ViaMobilidade (Lines 4
+and 5).
 
 ## Usage
 
@@ -40,8 +41,8 @@ values are hex color codes:
 
 ## Details
 
-Colors follow the official METRO SP and ViaMobilidade branding. Only the
-six currently operating metro lines are included; CPTM train lines and
+Colors follow official METRO SP and ViaMobilidade branding. Only the six
+currently operating metro lines are included; CPTM train lines and
 planned future lines (e.g., Line 6 Orange, Line 17 Gold) are not
 covered.
 
