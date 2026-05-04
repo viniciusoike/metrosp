@@ -35,6 +35,12 @@ A data frame with the following columns:
 
 - metric:
 
+  Measurement type in English (character). One of: `"Total"`,
+  `"Average on Business Days"`, `"Average on Saturdays"`,
+  `"Average on Sundays"`, `"Daily Peak"`.
+
+- metric_pt:
+
   Measurement type in Portuguese (character). One of: `"Total"`,
   `"Média dos Dias Úteis"`, `"Média dos Sábados"`,
   `"Média dos Domingos"`, `"Máxima Diária"`.
