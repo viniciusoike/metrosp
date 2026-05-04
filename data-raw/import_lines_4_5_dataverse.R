@@ -99,23 +99,33 @@ clean_passengers_entrance <- function(dat) {
 clean_station_averages <- function(dat) {
   dat <- .prep_data(dat, type = "transportado")
 
+  # Needs to sum before calculating averages
+  dat <- dat |>
+    mutate(station_name = fix_station_names_line5(station_name)) |>
+    summarise(
+      passengers_transported = sum(value, na.rm = TRUE),
+      .by = c(date, line_number, station_name)
+    )
+
+  # Filter only business days
   dat <- dat |>
     mutate(
-      year = year(date),
-      month = month(date),
-      is_business_day = as.integer(is.bizday(date, cal = "Brazil/ANBIMA")),
-      station_name = fix_station_names_line5(station_name)
-    )
+      is_business_day = as.integer(is.bizday(date, cal = "Brazil/ANBIMA"))
+    ) |>
+    filter(is_business_day == 1L)
 
+  # Calculate averages
   dat <- dat |>
-    filter(is_business_day == 1L) |>
+    mutate(date_month = lubridate::floor_date(date, "month")) |>
     summarise(
-      avg_passenger = mean(value, na.rm = TRUE),
-      .by = c(year, month, line_number, station_name)
+      avg_passenger = mean(passengers_transported, na.rm = TRUE),
+      .by = c(date_month, line_number, station_name)
     )
 
+  # Format output
   dat <- dat |>
-    mutate(date = make_date(year, month, 1L)) |>
+    rename(date = date_month) |>
+    mutate(year = lubridate::year(date)) |>
     select(all_of(.cols_st_averages)) |>
     arrange(date, line_number, station_name)
 
@@ -130,7 +140,7 @@ clean_station_daily <- function(dat) {
 
   dat <- dat |>
     mutate(
-      year = year(date),
+      year = lubridate::year(date),
       station_code = NA_character_,
       station_name = fix_station_names_line5(station_name),
       passengers = value
