@@ -14,7 +14,11 @@ the network total (integer).}
 \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 \code{"max"}.}
 \item{value}{Passenger count (numeric).}
-\item{metric}{Measurement type in Portuguese (character). One of:
+\item{metric}{Measurement type in English (character). One of:
+\code{"Total"}, \code{"Average on Business Days"},
+\code{"Average on Saturdays"}, \code{"Average on Sundays"},
+\code{"Daily Peak"}.}
+\item{metric_pt}{Measurement type in Portuguese (character). One of:
 \code{"Total"}, \code{"Média dos Dias Úteis"},
     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 \code{"Máxima Diária"}.}

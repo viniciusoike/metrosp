@@ -18,13 +18,11 @@ import::from(stringi, stri_trans_general)
 import::from(here, here)
 
 str_simplify <- function(x) {
-
   y <- stringi::stri_trans_general(x, id = "latin-ascii")
   y <- stringr::str_replace_all(y, " ", "_")
   y <- stringr::str_to_lower(y)
 
   return(y)
-
 }
 
 url <- "https://transparencia.metrosp.com.br/dataset/demanda"
@@ -32,7 +30,9 @@ url <- "https://transparencia.metrosp.com.br/dataset/demanda"
 page <- read_html(url)
 
 link_download <- page |>
-  html_elements(xpath = "//*[@id='data-and-resources']/div/div/ul/li/div/span/a") |>
+  html_elements(
+    xpath = "//*[@id='data-and-resources']/div/div/ul/li/div/span/a"
+  ) |>
   html_attr(name = "href")
 
 # Subset only https links
@@ -56,7 +56,11 @@ params <- params |>
     name_file = str_remove_all(name_file, "/"),
     type_file = str_extract(url, "\\.[a-z]{3}$"),
     year = as.numeric(str_extract(url, "(?<=20)[0-9]{4}")),
-    year = if_else(is.na(year), as.numeric(str_extract(name_file, "[0-9]{4}")), year),
+    year = if_else(
+      is.na(year),
+      as.numeric(str_extract(name_file, "[0-9]{4}")),
+      year
+    ),
     dest_path = case_when(
       type_file == ".zip" ~ here(fld, paste0(name_file, ".zip")),
       type_file == ".csv" ~ here(fld, "csv", paste0(name_file, ".csv")),
@@ -83,7 +87,9 @@ n_refreshed <- sum(params$year == max_year, na.rm = TRUE)
 
 cli::cli_alert_info("Found {n_total} file{?s} on portal")
 cli::cli_alert_success("{n_existing} file{?s} already downloaded (skipping)")
-cli::cli_alert_info("Refreshing {n_refreshed} file{?s} from {max_year} (latest year)")
+cli::cli_alert_info(
+  "Refreshing {n_refreshed} file{?s} from {max_year} (latest year)"
+)
 cli::cli_alert_warning("{n_new} new file{?s} to download")
 
 # Download only new files
@@ -92,7 +98,6 @@ to_download <- params |>
   arrange(year)
 
 if (nrow(to_download) > 0) {
-
   cli::cli_progress_bar("Downloading", total = nrow(to_download))
 
   for (i in seq_len(nrow(to_download))) {
@@ -103,7 +108,6 @@ if (nrow(to_download) > 0) {
 
   cli::cli_progress_done()
   cli::cli_alert_success("Done! Downloaded {nrow(to_download)} file{?s}.")
-
 } else {
   cli::cli_alert_success("All files are up to date.")
 }

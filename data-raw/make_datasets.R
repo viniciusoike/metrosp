@@ -82,6 +82,7 @@ psg_sel_cols <- c(
   "metric_abb",
   "value",
   "metric",
+  "metric_pt",
   "line_name",
   "line_name_pt",
   "year"
@@ -89,9 +90,10 @@ psg_sel_cols <- c(
 
 entrance_17_19 <- psg_17_19 |>
   filter(measure == "entrance") |>
-  mutate(
-    metric_abb = map_metric(variable),
-    metric = variable
+  mutate(metric_abb = map_metric(variable)) |>
+  left_join(
+    select(dim_metric, metric_abb, metric, metric_pt),
+    by = "metric_abb"
   ) |>
   # Line 5 changed operator in Aug 2018; Dataverse covers Aug 2018 onward
   filter(!(line_number == 5L & date >= as.Date("2018-08-01")))
@@ -105,6 +107,7 @@ entrance_20 <- read_csv(
 )
 
 entrance_20 <- entrance_20 |>
+  left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
   mutate(
     # Set NA line_number (network total / "rede") to 99
     line_number = if_else(is.na(line_number), 99L, as.integer(line_number))
@@ -130,7 +133,9 @@ entrance_4_5_path <- here(
 )
 entrance_4_5 <- read_csv(entrance_4_5_path, show_col_types = FALSE)
 
-entrance_4_5 <- left_join(entrance_4_5, metro_lines, by = join_by(line_number))
+entrance_4_5 <- entrance_4_5 |>
+  left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
+  left_join(metro_lines, by = join_by(line_number))
 
 passengers_entrance <- bind_rows(entrance_17_19, entrance_20)
 
@@ -147,9 +152,10 @@ passengers_entrance <- passengers_entrance |>
 
 transported_17_19 <- psg_17_19 |>
   filter(measure == "transport") |>
-  mutate(
-    metric_abb = map_metric(variable),
-    metric = variable
+  mutate(metric_abb = map_metric(variable)) |>
+  left_join(
+    select(dim_metric, metric_abb, metric, metric_pt),
+    by = "metric_abb"
   )
 
 transported_20 <- read_csv(
@@ -158,6 +164,7 @@ transported_20 <- read_csv(
 )
 
 transported_20 <- transported_20 |>
+  left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
   mutate(
     # Set NA line_number (network total / "rede") to 99
     line_number = if_else(is.na(line_number), 99L, as.integer(line_number))

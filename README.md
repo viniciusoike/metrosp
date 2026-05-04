@@ -85,6 +85,12 @@ station_averages
 lines
 ```
 
+## Coming soon
+
+- Better data documentation.
+- Updated information for 2026.
+- Improved data quality checks.
+
 ## Data sources
 
 - METRÔ: [Companhia do Metropolitano de São Paulo

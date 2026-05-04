@@ -13,7 +13,7 @@
 # -------------------------------------------------------
 
 download <- FALSE
-historical <- TRUE
+historical <- FALSE
 geosampa <- FALSE
 dataverse <- TRUE
 

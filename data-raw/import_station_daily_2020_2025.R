@@ -50,7 +50,9 @@ import_station_daily <- function(year = 2020) {
   parcels <- list()
 
   for (month in seq_along(dia_positions)) {
-    if (month > 12L) break
+    if (month > 12L) {
+      break
+    }
     skip <- dia_positions[month] - 1L
     n_max <- n_days_in_month(year, month)
 
@@ -69,7 +71,9 @@ import_station_daily <- function(year = 2020) {
       error = function(e) NULL
     )
 
-    if (is.null(dat) || nrow(dat) == 0) next
+    if (is.null(dat) || nrow(dat) == 0) {
+      next
+    }
 
     attr(dat, "month_num") <- month
     parcels[[length(parcels) + 1]] <- dat
@@ -149,10 +153,16 @@ clean_station_daily <- function(parcels, year) {
       # Station columns are everything between dia and total
       station_cols <- col_names[2:(length(col_names) - 1)]
 
-      if (length(station_cols) == 0) next
+      if (length(station_cols) == 0) {
+        next
+      }
 
       # Clean day column: remove asterisks, convert to integer
-      sub[[dia_col]] <- as.integer(gsub("\\*", "", as.character(sub[[dia_col]])))
+      sub[[dia_col]] <- as.integer(gsub(
+        "\\*",
+        "",
+        as.character(sub[[dia_col]])
+      ))
 
       # Select dia + station columns only (drop total)
       sub <- sub[, c(dia_col, station_cols), drop = FALSE]
@@ -178,7 +188,11 @@ clean_station_daily <- function(parcels, year) {
       # Convert passengers: remove thousands separator (dot), replace decimal
       # comma with dot, then convert to numeric.
       # Portuguese format: "1.234,5" = 1234.5 (thousands)
-      long$passengers <- as.numeric(gsub(",", ".", gsub("\\.", "", long$passengers)))
+      long$passengers <- as.numeric(gsub(
+        ",",
+        ".",
+        gsub("\\.", "", long$passengers)
+      ))
 
       # Add metadata
       long$year <- year
@@ -205,7 +219,14 @@ clean_station_daily <- function(parcels, year) {
     ) |>
     # Drop rows with NA passengers (missing/test data like dashes)
     dplyr::filter(!is.na(passengers), !is.na(date)) |>
-    dplyr::select(date, year, line_number, station_code, station_name, passengers) |>
+    dplyr::select(
+      date,
+      year,
+      line_number,
+      station_code,
+      station_name,
+      passengers
+    ) |>
     dplyr::arrange(date, line_number, station_code)
 
   return(result)
@@ -238,4 +259,6 @@ readr::write_csv(
   here::here("data-raw/processed/metro_sp_stations_daily_2020_2025.csv")
 )
 
-cli::cli_alert_success("Wrote data-raw/processed/metro_sp_stations_daily_2020_2025.csv")
+cli::cli_alert_success(
+  "Wrote data-raw/processed/metro_sp_stations_daily_2020_2025.csv"
+)

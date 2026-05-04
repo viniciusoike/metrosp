@@ -69,6 +69,13 @@ dim_metric <- tibble(
   metric_abb = c("total", "mdu", "msa", "mdo", "max"),
   metric = c(
     "Total",
+    "Average on Business Days",
+    "Average on Saturdays",
+    "Average on Sundays",
+    "Daily Peak"
+  ),
+  metric_pt = c(
+    "Total",
     "Média dos Dias Úteis",
     "Média dos Sábados",
     "Média dos Domingos",
