@@ -10,15 +10,14 @@ A data frame with the following columns:
 \item{date}{First day of the month (Date).}
 \item{line_number}{Metro line number (integer).}
 \item{station_name}{Name of the metro station (character).}
-\item{avg_passenger}{Average weekday passenger entries in thousands
-(numeric).}
+\item{avg_passenger}{Average weekday passenger entries (numeric).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{year}{Calendar year (integer).}
 }
 }
 \source{
-Companhia do Metropolitano de Sao Paulo (METRO).
+Companhia do Metropolitano de São Paulo (METRO SP).
 \url{https://transparencia.metrosp.com.br/dataset/demanda}
 }
 \usage{
@@ -26,22 +25,34 @@ station_averages
 }
 \description{
 Monthly average of weekday (business day) passenger entries for each
-station in the Sao Paulo metro system. Data covers October 2017 through
-2025, sourced from the METRO SP transparency portal.
+station in the São Paulo metro system. Data covers October 2017 through
+2025 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
+October 2017. Sourced from the METRO SP transparency portal and the
+Insper Dataverse.
 }
 \details{
 Only the weekday average (mdu) metric is available at the station level.
-For line-level data with all 5 metrics, see \code{\link{passengers_entrance}}.
+For line-level data with all five metrics, see
+\code{\link{passengers_entrance}}.
 
-Station coverage varies by line:
+Station coverage by line and source:
 \itemize{
-\item Line 1 (Azul/Blue): 23 stations
-\item Line 2 (Verde/Green): 14 stations
-\item Line 3 (Vermelha/Red): 18 stations
-\item Line 4 (Amarela/Yellow): available 2020-2025 (Insper Dataverse source)
-\item Line 5 (Lilas/Lilac): October 2017 - December 2019 (METRO portal)
-and 2020-2025 (Insper Dataverse source)
-\item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
+\item Line 1 (Azul/Blue): 23 stations, October 2017–2025 (METRO SP
+portal).
+\item Line 2 (Verde/Green): 14 stations, October 2017–2025 (METRO SP
+portal).
+\item Line 3 (Vermelha/Red): 18 stations, October 2017–2025 (METRO SP
+portal).
+\item Line 4 (Amarela/Yellow): January 2012–2025 (Insper Dataverse).
+\item Line 5 (Lilás/Lilac): October 2017–July 2018 (METRO SP portal)
+and August 2018–2025 (Insper Dataverse).
+\item Line 15 (Prata/Silver): 10 stations in 2020, 11 from January
+2021 onward (Jardim Colonial added), October 2017–2025 (METRO SP
+portal).
 }
+}
+\seealso{
+\code{\link{station_daily}} for daily station entries,
+\code{\link{passengers_entrance}} for monthly line-level totals.
 }
 \keyword{datasets}

@@ -5,8 +5,8 @@
 \alias{metro_colors}
 \title{Metro SP Official Line Colors}
 \format{
-A named character vector of length 6. Names are English color names;
-values are hex color codes:
+A named character vector of length 6. Names are English color
+names; values are hex color codes:
 \describe{
 \item{Blue}{Line 1 — \code{"#171796"}}
 \item{Green}{Line 2 — \code{"#007A5E"}}
@@ -20,11 +20,12 @@ values are hex color codes:
 metro_colors
 }
 \description{
-A named character vector of official hex color codes for the six metro lines
-operated by METRO SP (Lines 1-3, 5, 15) and ViaMobilidade Line 4.
+A named character vector of official hex color codes for the six metro
+lines operated by METRO SP (Lines 1–3 and 15) and ViaMobilidade
+(Lines 4 and 5).
 }
 \details{
-Colors follow the official METRO SP and ViaMobilidade branding. Only the six
+Colors follow official METRO SP and ViaMobilidade branding. Only the six
 currently operating metro lines are included; CPTM train lines and planned
 future lines (e.g., Line 6 Orange, Line 17 Gold) are not covered.
 }

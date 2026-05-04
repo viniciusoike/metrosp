@@ -10,45 +10,44 @@ A data frame with the following columns:
 \item{date}{Date of observation (Date).}
 \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 \item{station_name}{Full station name (character).}
-\item{passengers}{Daily passenger entries in thousands (numeric).}
+\item{passengers}{Daily passenger entries (numeric).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{station_code}{Three-letter station abbreviation used internally
-by METRO (character). \code{NA} for Lines 4 and 5 (Dataverse source).}
+by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
+source).}
 \item{year}{Calendar year (integer).}
 }
 }
 \source{
-Companhia do Metropolitano de Sao Paulo (METRO).
+Companhia do Metropolitano de São Paulo (METRO SP).
 \url{https://transparencia.metrosp.com.br/dataset/demanda}
 }
 \usage{
 station_daily
 }
 \description{
-Daily passenger entries at each station in the Sao Paulo metro system.
-Data covers 2020 through 2025. Lines 1, 2, 3, and 15 come from the METRO SP
-transparency portal; Lines 4 and 5 come from the Insper Dataverse source.
+Daily passenger entries at each station in the São Paulo metro system.
+Data covers January 2012 through 2025 for Lines 4 and 5 (Insper
+Dataverse), and 2020 through 2025 for Lines 1, 2, 3, and 15 (METRO SP
+transparency portal).
 }
 \details{
-Values represent thousands of passengers (e.g., a value of 50 means
-50,000 passengers entering the station that day).
-
-Station coverage by line:
+Station coverage and date range by line:
 \itemize{
-\item Line 1 (Azul/Blue): 23 stations
-\item Line 2 (Verde/Green): 14 stations
-\item Line 3 (Vermelha/Red): 18 stations
-\item Line 4 (Amarela/Yellow): available 2020-2025 (Insper Dataverse);
-\code{station_code} is \code{NA}
-\item Line 5 (Lilas/Lilac): available 2020-2025 (Insper Dataverse);
-\code{station_code} is \code{NA}
+\item Line 1 (Azul/Blue): 23 stations, 2020–2025 (METRO SP portal).
+\item Line 2 (Verde/Green): 14 stations, 2020–2025 (METRO SP portal).
+\item Line 3 (Vermelha/Red): 18 stations, 2020–2025 (METRO SP portal).
+\item Line 4 (Amarela/Yellow): January 2012–2025 (Insper Dataverse);
+\code{station_code} is \code{NA}.
+\item Line 5 (Lilás/Lilac): August 2018–2025 (Insper Dataverse);
+\code{station_code} is \code{NA}.
 \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
-(Jardim Colonial added)
+(Jardim Colonial added), 2020–2025 (METRO SP portal).
 }
 
 Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
-Paraiso on Lines 1 and 2, Se on Lines 1 and 3). These are recorded
+Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
 separately for each line.
 }
 \seealso{

@@ -7,8 +7,8 @@
 \format{
 A tibble with 13 rows and 3 columns:
 \describe{
-\item{line_number}{Official line number (integer). Includes 1, 2, 3, 4, 5,
-6, 15, 16, 17, 19, 20, 22, and 99 (network total).}
+\item{line_number}{Official line number (integer). Includes 1, 2, 3, 4,
+5, 6, 15, 16, 17, 19, 20, 22, and 99 (network total).}
 \item{line_name_pt}{Portuguese color name of the line (character).}
 \item{line_name}{English color name of the line (character).}
 }
@@ -17,15 +17,15 @@ A tibble with 13 rows and 3 columns:
 metro_lines
 }
 \description{
-A reference tibble mapping metro line numbers to their Portuguese and English
-color names. Covers all METRO SP and ViaMobilidade lines including planned
-future lines and the network total.
+A reference tibble mapping metro line numbers to their Portuguese and
+English color names. Covers all METRO SP and ViaMobilidade lines,
+including planned future lines and the network total.
 }
 \details{
-This dataset serves as a dimension/lookup table for joining line names onto
-passenger and station datasets. Not all lines have passenger data — some
-(e.g., Lines 6, 16, 17) are planned future lines with only spatial geometry
-available in \code{\link{lines}}.
+Serves as a dimension/lookup table for joining line names onto passenger
+and station datasets. Not all lines have passenger data — Lines 6, 16,
+17, 19, 20, and 22 are planned future lines with spatial geometry
+available in \code{\link{lines}} but no ridership records.
 }
 \seealso{
 \code{\link{metro_colors}} for official hex color codes,

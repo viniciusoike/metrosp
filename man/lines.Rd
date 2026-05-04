@@ -20,22 +20,22 @@ and the following columns:
 }
 }
 \source{
-GeoSampa, Prefeitura de Sao Paulo.
+GeoSampa, Prefeitura de São Paulo.
 \url{https://geosampa.prefeitura.sp.gov.br/}
 }
 \usage{
 lines
 }
 \description{
-Spatial line geometries for Sao Paulo metro (METRO SP) and commuter train
+Spatial line geometries for São Paulo metro (METRO SP) and commuter train
 (CPTM) lines, including both currently operating lines and planned future
 expansions.
 }
 \details{
-Requires the \pkg{sf} package to work with spatial features. The distinction
-between types isn't always consistent, but we follow GeoSampa's classification.
-Broadly speaking, the "metro" runs undergrounds as a subway, and "train" runs
-above grounds as a commuter rail (although there are exceptions)
+Requires the \pkg{sf} package to work with spatial features. The
+distinction between types follows GeoSampa's classification. Broadly,
+\code{"metro"} lines run underground as a subway and \code{"train"} lines
+run above ground as commuter rail, though exceptions exist.
 }
 \seealso{
 \code{\link{stations}} for station point locations.

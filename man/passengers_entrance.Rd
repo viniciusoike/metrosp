@@ -9,46 +9,60 @@ A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
 \item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
-network total (integer).}
+the network total (integer).}
 \item{metric_abb}{Abbreviated metric code (character). One of:
-"total", "mdu", "msa", "mdo", "max".}
-\item{value}{Passenger count in thousands (numeric).}
+\code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
+\code{"max"}.}
+\item{value}{Passenger count (numeric).}
 \item{metric}{Measurement type in Portuguese (character). One of:
-"Total", "Media dos Dias Uteis", "Media dos Sabados",
-"Media dos Domingos", "Maxima Diaria".}
+\code{"Total"}, \code{"Média dos Dias Úteis"},
+    \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
+\code{"Máxima Diária"}.}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{year}{Calendar year (integer).}
 }
 }
 \source{
-Companhia do Metropolitano de Sao Paulo (METRO).
+Companhia do Metropolitano de São Paulo (METRO SP).
 \url{https://transparencia.metrosp.com.br/dataset/demanda}
 }
 \usage{
 passengers_entrance
 }
 \description{
-Monthly count of passengers entering Sao Paulo metro stations, aggregated
-by metro line. Data covers October 2017 through 2025, sourced from the
-METRO SP transparency portal.
+Monthly count of passengers entering São Paulo metro stations, aggregated
+by metro line. Data covers October 2017 through 2025 for Lines 1, 2, 3,
+and 15; Line 4 from January 2012; Line 5 from October 2017. Sourced from
+the METRO SP transparency portal and the Insper Dataverse.
 }
 \details{
-Lines 1, 2, 3, and 15 come from the METRO transparency portal (2017-2025).
-Lines 4 (Amarela) and 5 (Lilas) come from the Insper Dataverse source
-(2020-2025). The network total (line_number = 99) may not be available for
-all years.
-
-Values represent thousands of passengers (e.g., a value of 900 means
-900,000 passengers).
+Data by source and line:
+\itemize{
+\item Lines 1, 2, 3, and 15: METRO SP transparency portal,
+October 2017–2025.
+\item Line 4 (Amarela/ViaQuatro): Insper Dataverse,
+January 2012–2025.
+\item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
+October 2017–July 2018; Insper Dataverse, August 2018–2025.
+\item Network total (\code{line_number = 99}): METRO SP transparency
+portal only; may not be available for all years.
+}
 
 Metrics:
 \itemize{
-\item \code{total}: Total passengers in the month
-\item \code{mdu}: Average on business days (Media dos Dias Uteis)
-\item \code{msa}: Average on Saturdays (Media dos Sabados)
-\item \code{mdo}: Average on Sundays (Media dos Domingos)
-\item \code{max}: Daily maximum (Maxima Diaria)
+\item \code{total}: Total passengers in the month.
+\item \code{mdu}: Average daily entries on business days
+(Média dos Dias Úteis).
+\item \code{msa}: Average daily entries on Saturdays
+(Média dos Sábados).
+\item \code{mdo}: Average daily entries on Sundays
+(Média dos Domingos).
+\item \code{max}: Daily maximum (Máxima Diária).
 }
+}
+\seealso{
+\code{\link{passengers_transported}} for transported counts,
+\code{\link{station_averages}} for station-level weekday averages.
 }
 \keyword{datasets}
