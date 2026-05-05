@@ -26,7 +26,7 @@ station_averages
 \description{
 Monthly average of weekday (business day) passenger entries for each
 station in the São Paulo metro system. Data covers October 2017 through
-2025 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
+2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
 October 2017. Sourced from the METRO SP transparency portal and the
 Insper Dataverse.
 }
@@ -37,17 +37,17 @@ For line-level data with all five metrics, see
 
 Station coverage by line and source:
 \itemize{
-\item Line 1 (Azul/Blue): 23 stations, October 2017–2025 (METRO SP
+\item Line 1 (Azul/Blue): 23 stations, October 2017–2026 (METRO SP
 portal).
-\item Line 2 (Verde/Green): 14 stations, October 2017–2025 (METRO SP
+\item Line 2 (Verde/Green): 14 stations, October 2017–2026 (METRO SP
 portal).
-\item Line 3 (Vermelha/Red): 18 stations, October 2017–2025 (METRO SP
+\item Line 3 (Vermelha/Red): 18 stations, October 2017–2026 (METRO SP
 portal).
-\item Line 4 (Amarela/Yellow): January 2012–2025 (Insper Dataverse).
+\item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse).
 \item Line 5 (Lilás/Lilac): October 2017–July 2018 (METRO SP portal)
-and August 2018–2025 (Insper Dataverse).
+and August 2018–2026 (Insper Dataverse).
 \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from January
-2021 onward (Jardim Colonial added), October 2017–2025 (METRO SP
+2021 onward (Jardim Colonial added), October 2017–2026 (METRO SP
 portal).
 }
 }

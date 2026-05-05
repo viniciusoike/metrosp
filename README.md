@@ -25,12 +25,12 @@ it may be expanded to include trains as well.
 
 | Line | Name             | Operator      | Period    | Status    |
 |-----:|------------------|---------------|-----------|-----------|
-|    1 | Azul (Blue)      | METRÔ         | 2017–2025 | Available |
-|    2 | Verde (Green)    | METRÔ         | 2017–2025 | Available |
-|    3 | Vermelha (Red)   | METRÔ         | 2017–2025 | Available |
+|    1 | Azul (Blue)      | METRÔ         | 2017–2026 | Available |
+|    2 | Verde (Green)    | METRÔ         | 2017–2026 | Available |
+|    3 | Vermelha (Red)   | METRÔ         | 2017–2026 | Available |
 |    4 | Amarela (Yellow) | ViaQuatro     | 2012–2025 | Available |
 |    5 | Lilás (Lilac)    | ViaMobilidade | 2017–2025 | Available |
-|   15 | Prata (Silver)   | METRÔ         | 2017–2025 | Available |
+|   15 | Prata (Silver)   | METRÔ         | 2017–2026 | Available |
 
 ## Installation
 

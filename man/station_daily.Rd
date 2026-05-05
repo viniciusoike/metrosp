@@ -28,22 +28,22 @@ station_daily
 }
 \description{
 Daily passenger entries at each station in the São Paulo metro system.
-Data covers January 2012 through 2025 for Lines 4 and 5 (Insper
-Dataverse), and 2020 through 2025 for Lines 1, 2, 3, and 15 (METRO SP
+Data covers January 2012 through 2026 for Lines 4 and 5 (Insper
+Dataverse), and 2020 through 2026 for Lines 1, 2, 3, and 15 (METRO SP
 transparency portal).
 }
 \details{
 Station coverage and date range by line:
 \itemize{
-\item Line 1 (Azul/Blue): 23 stations, 2020–2025 (METRO SP portal).
-\item Line 2 (Verde/Green): 14 stations, 2020–2025 (METRO SP portal).
-\item Line 3 (Vermelha/Red): 18 stations, 2020–2025 (METRO SP portal).
-\item Line 4 (Amarela/Yellow): January 2012–2025 (Insper Dataverse);
+\item Line 1 (Azul/Blue): 23 stations, 2020–2026 (METRO SP portal).
+\item Line 2 (Verde/Green): 14 stations, 2020–2026 (METRO SP portal).
+\item Line 3 (Vermelha/Red): 18 stations, 2020–2026 (METRO SP portal).
+\item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse);
 \code{station_code} is \code{NA}.
-\item Line 5 (Lilás/Lilac): August 2018–2025 (Insper Dataverse);
+\item Line 5 (Lilás/Lilac): August 2018–2026 (Insper Dataverse);
 \code{station_code} is \code{NA}.
 \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from 2021 onward
-(Jardim Colonial added), 2020–2025 (METRO SP portal).
+(Jardim Colonial added), 2020–2026 (METRO SP portal).
 }
 
 Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,

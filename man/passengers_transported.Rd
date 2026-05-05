@@ -36,7 +36,7 @@ passengers_transported
 }
 \description{
 Monthly count of passengers transported by São Paulo metro, aggregated
-by metro line. Data covers October 2017 through 2025 for Lines 1, 2, 3,
+by metro line. Data covers October 2017 through 2026 for Lines 1, 2, 3,
 and 15, and October 2017 through December 2019 for Line 5. Sourced from
 the METRO SP transparency portal.
 }
