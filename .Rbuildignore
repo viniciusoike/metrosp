@@ -18,3 +18,4 @@
 ^docs$
 ^pkgdown$
 ^CRAN-SUBMISSION$
+^README\.html$
