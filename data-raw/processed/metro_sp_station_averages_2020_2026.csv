@@ -4709,3 +4709,201 @@ date,line_number,station_name,avg_passenger,year
 2025-10-01,15,Jardim Colonial,13,2025
 2025-11-01,15,Jardim Colonial,14,2025
 2025-12-01,15,Jardim Colonial,12,2025
+2026-01-01,1,Jabaquara,63,2026
+2026-02-01,1,Jabaquara,67,2026
+2026-03-01,1,Jabaquara,71,2026
+2026-01-01,1,Conceição,26,2026
+2026-02-01,1,Conceição,30,2026
+2026-03-01,1,Conceição,31,2026
+2026-01-01,1,São Judas,14,2026
+2026-02-01,1,São Judas,15,2026
+2026-03-01,1,São Judas,16,2026
+2026-01-01,1,Saúde-Ultrafarma,23,2026
+2026-02-01,1,Saúde-Ultrafarma,26,2026
+2026-03-01,1,Saúde-Ultrafarma,27,2026
+2026-01-01,1,Praça da Árvore,13,2026
+2026-02-01,1,Praça da Árvore,15,2026
+2026-03-01,1,Praça da Árvore,16,2026
+2026-01-01,1,Santa Cruz (4),84,2026
+2026-02-01,1,Santa Cruz (4),93,2026
+2026-03-01,1,Santa Cruz (4),97,2026
+2026-01-01,1,Vila Mariana,14,2026
+2026-02-01,1,Vila Mariana,20,2026
+2026-03-01,1,Vila Mariana,22,2026
+2026-01-01,1,Ana Rosa (1),70,2026
+2026-02-01,1,Ana Rosa (1),81,2026
+2026-03-01,1,Ana Rosa (1),85,2026
+2026-01-01,1,Paraíso (1),87,2026
+2026-02-01,1,Paraíso (1),101,2026
+2026-03-01,1,Paraíso (1),107,2026
+2026-01-01,1,Vergueiro,23,2026
+2026-02-01,1,Vergueiro,27,2026
+2026-03-01,1,Vergueiro,29,2026
+2026-01-01,1,São Joaquim,21,2026
+2026-02-01,1,São Joaquim,30,2026
+2026-03-01,1,São Joaquim,36,2026
+2026-01-01,1,Japão-Liberdade,21,2026
+2026-02-01,1,Japão-Liberdade,23,2026
+2026-03-01,1,Japão-Liberdade,23,2026
+2026-01-01,1,Sé (),153,2026
+2026-02-01,1,Sé (),170,2026
+2026-03-01,1,Sé (),177,2026
+2026-01-01,1,São Bento,49,2026
+2026-02-01,1,São Bento,50,2026
+2026-03-01,1,São Bento,49,2026
+2026-01-01,1,Luz (3),109,2026
+2026-02-01,1,Luz (3),127,2026
+2026-03-01,1,Luz (3),130,2026
+2026-01-01,1,Tiradentes,11,2026
+2026-02-01,1,Tiradentes,14,2026
+2026-03-01,1,Tiradentes,17,2026
+2026-01-01,1,Armênia,17,2026
+2026-02-01,1,Armênia,19,2026
+2026-03-01,1,Armênia,20,2026
+2026-01-01,1,Portuguesa-Tietê,40,2026
+2026-02-01,1,Portuguesa-Tietê,42,2026
+2026-03-01,1,Portuguesa-Tietê,42,2026
+2026-01-01,1,Carandiru,10,2026
+2026-02-01,1,Carandiru,11,2026
+2026-03-01,1,Carandiru,12,2026
+2026-01-01,1,Santana,43,2026
+2026-02-01,1,Santana,49,2026
+2026-03-01,1,Santana,51,2026
+2026-01-01,1,Jardim São Paulo-Ayrton Senna,10,2026
+2026-02-01,1,Jardim São Paulo-Ayrton Senna,12,2026
+2026-03-01,1,Jardim São Paulo-Ayrton Senna,13,2026
+2026-01-01,1,Parada Inglesa,11,2026
+2026-02-01,1,Parada Inglesa,13,2026
+2026-03-01,1,Parada Inglesa,14,2026
+2026-01-01,1,Tucuruvi,51,2026
+2026-02-01,1,Tucuruvi,57,2026
+2026-03-01,1,Tucuruvi,59,2026
+2026-01-01,2,Vila Prudente (1),70,2026
+2026-02-01,2,Vila Prudente (1),80,2026
+2026-03-01,2,Vila Prudente (1),84,2026
+2026-01-01,2,Tamanduateí (3),71,2026
+2026-02-01,2,Tamanduateí (3),79,2026
+2026-03-01,2,Tamanduateí (3),82,2026
+2026-01-01,2,Sacomã,36,2026
+2026-02-01,2,Sacomã,42,2026
+2026-03-01,2,Sacomã,43,2026
+2026-01-01,2,Alto do Ipiranga,16,2026
+2026-02-01,2,Alto do Ipiranga,19,2026
+2026-03-01,2,Alto do Ipiranga,21,2026
+2026-01-01,2,Santos-Imigrantes,14,2026
+2026-02-01,2,Santos-Imigrantes,15,2026
+2026-03-01,2,Santos-Imigrantes,16,2026
+2026-01-01,2,Chácara Klabin (5),77,2026
+2026-02-01,2,Chácara Klabin (5),87,2026
+2026-03-01,2,Chácara Klabin (5),91,2026
+2026-01-01,2,Ana Rosa (),53,2026
+2026-02-01,2,Ana Rosa (),60,2026
+2026-03-01,2,Ana Rosa (),63,2026
+2026-01-01,2,Paraíso (),54,2026
+2026-02-01,2,Paraíso (),62,2026
+2026-03-01,2,Paraíso (),66,2026
+2026-01-01,2,Brigadeiro,47,2026
+2026-02-01,2,Brigadeiro,51,2026
+2026-03-01,2,Brigadeiro,53,2026
+2026-01-01,2,Trianon-Masp,43,2026
+2026-02-01,2,Trianon-Masp,49,2026
+2026-03-01,2,Trianon-Masp,56,2026
+2026-01-01,2,Consolação (4),87,2026
+2026-02-01,2,Consolação (4),100,2026
+2026-03-01,2,Consolação (4),106,2026
+2026-01-01,2,Clínicas,20,2026
+2026-02-01,2,Clínicas,22,2026
+2026-03-01,2,Clínicas,23,2026
+2026-01-01,2,Santuário N.S. de Fátima-Sumaré,9,2026
+2026-02-01,2,Santuário N.S. de Fátima-Sumaré,10,2026
+2026-03-01,2,Santuário N.S. de Fátima-Sumaré,11,2026
+2026-01-01,2,Vila Madalena,19,2026
+2026-02-01,2,Vila Madalena,23,2026
+2026-03-01,2,Vila Madalena,24,2026
+2026-01-01,3,Corinthians-Itaquera (),62,2026
+2026-02-01,3,Corinthians-Itaquera (),66,2026
+2026-03-01,3,Corinthians-Itaquera (),69,2026
+2026-01-01,3,Artur Alvim,47,2026
+2026-02-01,3,Artur Alvim,53,2026
+2026-03-01,3,Artur Alvim,55,2026
+2026-01-01,3,Patriarca-Vila Ré,20,2026
+2026-02-01,3,Patriarca-Vila Ré,22,2026
+2026-03-01,3,Patriarca-Vila Ré,23,2026
+2026-01-01,3,Guilhermina-Esperança,18,2026
+2026-02-01,3,Guilhermina-Esperança,22,2026
+2026-03-01,3,Guilhermina-Esperança,22,2026
+2026-01-01,3,Vila Matilde,24,2026
+2026-02-01,3,Vila Matilde,27,2026
+2026-03-01,3,Vila Matilde,28,2026
+2026-01-01,3,Penha-Lojas Besni,24,2026
+2026-02-01,3,Penha-Lojas Besni,28,2026
+2026-03-01,3,Penha-Lojas Besni,29,2026
+2026-01-01,3,Carrão-Assaí Atacadista,37,2026
+2026-02-01,3,Carrão-Assaí Atacadista,44,2026
+2026-03-01,3,Carrão-Assaí Atacadista,52,2026
+2026-01-01,3,Tatuapé (),67,2026
+2026-02-01,3,Tatuapé (),72,2026
+2026-03-01,3,Tatuapé (),75,2026
+2026-01-01,3,Belém,34,2026
+2026-02-01,3,Belém,37,2026
+2026-03-01,3,Belém,39,2026
+2026-01-01,3,Bresser-Moóca,24,2026
+2026-02-01,3,Bresser-Moóca,28,2026
+2026-03-01,3,Bresser-Moóca,30,2026
+2026-01-01,3,Brás (),65,2026
+2026-02-01,3,Brás (),69,2026
+2026-03-01,3,Brás (),69,2026
+2026-01-01,3,Pedro II,14,2026
+2026-02-01,3,Pedro II,15,2026
+2026-03-01,3,Pedro II,15,2026
+2026-01-01,3,Sé (1),179,2026
+2026-02-01,3,Sé (1),202,2026
+2026-03-01,3,Sé (1),212,2026
+2026-01-01,3,Anhangabaú,46,2026
+2026-02-01,3,Anhangabaú,50,2026
+2026-03-01,3,Anhangabaú,52,2026
+2026-01-01,3,República (3),110,2026
+2026-02-01,3,República (3),121,2026
+2026-03-01,3,República (3),126,2026
+2026-01-01,3,Santa Cecília,20,2026
+2026-02-01,3,Santa Cecília,23,2026
+2026-03-01,3,Santa Cecília,25,2026
+2026-01-01,3,Marechal Deodoro,22,2026
+2026-02-01,3,Marechal Deodoro,25,2026
+2026-03-01,3,Marechal Deodoro,26,2026
+2026-01-01,3,Palmeiras-Barra Funda (),130,2026
+2026-02-01,3,Palmeiras-Barra Funda (),146,2026
+2026-03-01,3,Palmeiras-Barra Funda (),152,2026
+2026-01-01,15,Vila Prudente (1),56,2026
+2026-02-01,15,Vila Prudente (1),67,2026
+2026-03-01,15,Vila Prudente (1),72,2026
+2026-01-01,15,Oratório,7,2026
+2026-02-01,15,Oratório,8,2026
+2026-03-01,15,Oratório,8,2026
+2026-01-01,15,São Lucas,5,2026
+2026-02-01,15,São Lucas,5,2026
+2026-03-01,15,São Lucas,6,2026
+2026-01-01,15,Camilo Haddad,4,2026
+2026-02-01,15,Camilo Haddad,4,2026
+2026-03-01,15,Camilo Haddad,4,2026
+2026-01-01,15,Vila Tolstói,5,2026
+2026-02-01,15,Vila Tolstói,6,2026
+2026-03-01,15,Vila Tolstói,6,2026
+2026-01-01,15,Vila União,5,2026
+2026-02-01,15,Vila União,6,2026
+2026-03-01,15,Vila União,6,2026
+2026-01-01,15,Jardim Planalto,4,2026
+2026-02-01,15,Jardim Planalto,5,2026
+2026-03-01,15,Jardim Planalto,5,2026
+2026-01-01,15,Sapopemba,9,2026
+2026-02-01,15,Sapopemba,10,2026
+2026-03-01,15,Sapopemba,10,2026
+2026-01-01,15,Fazenda da Juta,4,2026
+2026-02-01,15,Fazenda da Juta,5,2026
+2026-03-01,15,Fazenda da Juta,5,2026
+2026-01-01,15,São Mateus,16,2026
+2026-02-01,15,São Mateus,17,2026
+2026-03-01,15,São Mateus,18,2026
+2026-01-01,15,Jardim Colonial,12,2026
+2026-02-01,15,Jardim Colonial,14,2026
+2026-03-01,15,Jardim Colonial,14,2026
