@@ -1,7 +1,7 @@
 # Passengers Entering Metro SP Stations by Line
 
 Monthly count of passengers entering São Paulo metro stations,
-aggregated by metro line. Data covers October 2017 through 2025 for
+aggregated by metro line. Data covers October 2017 through 2026 for
 Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from October
 2017. Sourced from the METRO SP transparency portal and the Insper
 Dataverse.
@@ -68,12 +68,12 @@ Companhia do Metropolitano de São Paulo (METRO SP).
 Data by source and line:
 
 - Lines 1, 2, 3, and 15: METRO SP transparency portal, October
-  2017–2025.
+  2017–2026.
 
-- Line 4 (Amarela/ViaQuatro): Insper Dataverse, January 2012–2025.
+- Line 4 (Amarela/ViaQuatro): Insper Dataverse, January 2012–2026.
 
 - Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal, October
-  2017–July 2018; Insper Dataverse, August 2018–2025.
+  2017–July 2018; Insper Dataverse, August 2018–2026.
 
 - Network total (`line_number = 99`): METRO SP transparency portal only;
   may not be available for all years.
