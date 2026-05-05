@@ -2,6 +2,8 @@
 
 ## metrosp 1.0.0
 
+CRAN release: 2026-05-05
+
 ### New datasets
 
 - `station_daily`: Daily passenger entries by station for Lines 1, 2, 3,
