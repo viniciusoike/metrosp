@@ -235,7 +235,7 @@ clean_station_daily <- function(parcels, year) {
 # --- Execute -----------------------------------------------------------------
 
 safe_import <- purrr::safely(import_station_daily)
-results <- purrr::map(2020:2025, safe_import)
+results <- purrr::map(2020:2026, safe_import)
 
 errors <- purrr::map(results, "error")
 n_errors <- sum(!sapply(errors, is.null))
@@ -256,9 +256,9 @@ cli::cli_alert_success(
 
 readr::write_csv(
   stations_daily,
-  here::here("data-raw/processed/metro_sp_stations_daily_2020_2025.csv")
+  here::here("data-raw/processed/metro_sp_station_daily_2020_2025.csv")
 )
 
 cli::cli_alert_success(
-  "Wrote data-raw/processed/metro_sp_stations_daily_2020_2025.csv"
+  "Wrote data-raw/processed/metro_sp_station_daily_2020_2025.csv"
 )

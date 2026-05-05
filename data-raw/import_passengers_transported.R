@@ -1,8 +1,8 @@
 # import_passengers_transported.R
 # -------------------------------------------------------
-# Imports passengers transported data by metro line (2020-2025).
+# Imports passengers transported data by metro line (2020-present).
 # Reads from: data-raw/metro_sp/metro/csv/passageiros_transportados_por_linha_*.csv
-# Writes to:  data-raw/processed/metro_sp_passengers_tranported_2020_2025.csv
+# Writes to:  data-raw/processed/metro_sp_passengers_tranported_{start}_{end}.csv
 #
 # Structure is identical to import_passengers_entrance.R but reads
 # "transport" instead of "entrance" variable from get_path_csv().
@@ -21,19 +21,23 @@ import_passengers_transported <- function(year = 2020) {
   return(clean_dat)
 }
 
-grid_year <- 2020:2025
+grid_year <- get_available_years()
 safe_import_passengers <- purrr::safely(import_passengers_transported)
 passengers <- purrr::map(grid_year, safe_import_passengers)
 n_errors <- sum(sapply(passengers, \(x) !is.null(x$error)))
 
+all(sapply(passengers, \(x) is.null(x$error)))
+
 if (n_errors == 0) {
   passengers_transported <- purrr::map(passengers, \(x) x$result)
   passengers_transported <- dplyr::bind_rows(passengers_transported)
+
+  name_file <- stringr::str_glue(
+    "metro_sp_passengers_tranported_{min(grid_year)}_{max(grid_year)}.csv"
+  )
   readr::write_csv(
     passengers_transported,
-    here::here(
-      "data-raw/processed/metro_sp_passengers_tranported_2020_2025.csv"
-    )
+    here::here("data-raw/processed", name_file)
   )
-  cli::cli_alert_success("Passengers transported processed.")
+  cli::cli_alert_success("Passengers (transported) processed.")
 }

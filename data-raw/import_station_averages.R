@@ -1,12 +1,13 @@
 # import_station_averages.R
 # -------------------------------------------------------
-# Imports station-level average weekday passenger entries (2020-2025).
+# Imports station-level average weekday passenger entries (2020-present).
 # Reads from: data-raw/metro_sp/metro/csv/demanda_de_passageiros_por_estacao_media_dias_uteis_*.csv
-# Writes to:  data-raw/processed/metro_sp_stations_averages_2020_2025.csv
+# Writes to:  data-raw/processed/metro_sp_stations_averages_{start}_{end}.csv
 #
 # Processes lines 1 (Azul), 2 (Verde), 3 (Vermelha), and 15 (Prata).
 # Each line has a different skip/n_max in the CSV due to variable layout.
-# The 2025 CSVs have slightly different skip offsets.
+# Skip offsets are stored in .skip_offsets; add a new entry when the CSV
+# format changes between years (as happened for 2025).
 # -------------------------------------------------------
 
 import_csv_stations_average <- function(
@@ -26,30 +27,35 @@ import_csv_stations_average <- function(
   return(clean_dat)
 }
 
-read_csv_stations_average <- function(path, year = 2020, line = 1) {
-  skip <- dplyr::case_when(
-    line == 1 & year == 2025 ~ 5,
-    line == 1 ~ 5,
-    line == 2 & year == 2025 ~ 36,
-    line == 2 ~ 35,
-    line == 3 & year == 2025 ~ 58,
-    line == 3 ~ 56,
-    line == 15 & year == 2025 ~ 83,
-    line == 15 ~ 80,
-    TRUE ~ NA_integer_
+get_skip_offset <- function(year, line) {
+  .skip_offsets <- list(
+    default = c(`1` = 5L, `2` = 35L, `3` = 56L, `15` = 80L),
+    `2025` = c(`1` = 5L, `2` = 36L, `3` = 58L, `15` = 83L),
+    `2026` = c(`1` = 7L, `2` = 38L, `3` = 61L, `15` = 86L)
   )
+
+  if (as.character(year) %in% names(.skip_offsets)) {
+    offsets <- .skip_offsets[[as.character(year)]]
+  } else {
+    offsets <- .skip_offsets[["default"]]
+  }
+
+  return(offsets[[as.character(line)]])
+}
+
+read_csv_stations_average <- function(path, year = 2020, line = 1) {
+  skip <- get_skip_offset(year, line)
 
   n_max <- dplyr::case_when(
-    line == 1 ~ 23,
-    line == 2 ~ 14,
-    line == 3 ~ 18,
-    line == 15 & year == 2020 ~ 10,
-    # line == 15 & year == 2021 ~ 13,
-    line == 15 ~ 11,
+    line == 1 ~ 23L,
+    line == 2 ~ 14L,
+    line == 3 ~ 18L,
+    line == 15 & year == 2020 ~ 10L,
+    line == 15 ~ 11L,
     TRUE ~ NA_integer_
   )
 
-  ncols <- stringr::str_count(readLines(path_csv, n = 1), ";")
+  ncols <- stringr::str_count(readLines(path, n = 1), ";")
   col_types <- paste0(rep("c", ncols + 1), collapse = "")
 
   dat <- readr::read_delim(
@@ -114,21 +120,12 @@ clean_stations_average <- function(dat, year = 2020, line = 1) {
 
 source(here::here("data-raw/utils.R"))
 
+grid_year <- get_available_years()
+
 grid <- tidyr::expand_grid(
-  year = 2020:2025,
+  year = grid_year,
   line = c(1, 2, 3, 15)
 )
-
-path_csv <- get_path_csv(
-  variable = "stations",
-  2021,
-  datadir = "data-raw/metro_sp/metro/csv"
-)
-
-dat <- read_csv_stations_average(path_csv, year = 2021, line = 1)
-
-readr::problems(dat)
-
 
 safe_import_station_average <- purrr::safely(import_csv_stations_average)
 dat <- purrr::pmap(grid, safe_import_station_average)
@@ -138,10 +135,13 @@ if (n_errors == 0) {
   cli::cli_alert_success("Process successfully without errors.")
   stations_averages <- purrr::map(dat, \(x) x$result)
   stations_averages <- dplyr::bind_rows(stations_averages)
+
+  name_file <- stringr::str_glue(
+    "metro_sp_station_averages_{min(grid_year)}_{max(grid_year)}.csv"
+  )
+
   readr::write_csv(
     stations_averages,
-    here::here("data-raw/processed/metro_sp_stations_averages_2020_2025.csv")
+    here::here("data-raw/processed", name_file)
   )
-} else {
-  cli::cli_alert_danger("Process failed with {n_errors} error{?s}.")
 }

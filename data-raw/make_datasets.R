@@ -10,16 +10,99 @@
 #          station_averages, metro_lines)
 # -------------------------------------------------------
 
-library(readr)
+check <- FALSE
+
 library(dplyr)
-library(usethis)
 import::from(here, here)
+import::from(readr, read_csv)
 source(here::here("data-raw/utils.R"))
 data_dir <- here("data-raw/processed")
 
+# entrance
+# transported
+# station_averages
+# station_daily
+
+# historic
+# current
+params <- tibble(path = fs::dir_ls(data_dir, regexp = "\\.csv$"))
+
+params <- params |>
+  mutate(
+    file_name = basename(path),
+    table = case_when(
+      stringr::str_detect(file_name, "passengers_entrance") ~ "entrance",
+      stringr::str_detect(file_name, "passengers_tranported") ~ "transported",
+      stringr::str_detect(file_name, "station_averages") ~ "station_averages",
+      stringr::str_detect(file_name, "station_daily") ~ "station_daily",
+      stringr::str_detect(
+        file_name,
+        "metro_sp_passengers_[0-9]{4}"
+      ) ~ "passengers",
+      TRUE ~ NA_character_
+    ),
+    date_range = stringr::str_extract(file_name, "[0-9]{4}_[0-9]{4}"),
+    year_max = if_else(
+      is.na(date_range),
+      NA_real_,
+      as.numeric(stringr::str_extract(date_range, "[0-9]{4}$"))
+    ),
+    is_historic = if_else(year_max < 2020, 1L, 0L),
+    is_metro = if_else(stringr::str_detect(path, "lines_4_5"), 0L, 1L)
+  )
+
+get_path_processed <- function(table = NULL, historic = NULL, line = NULL) {
+  # browser()
+  valid_tables <- c(
+    "entrance",
+    "transported",
+    "station_averages",
+    "station_daily"
+  )
+  if (!table %in% valid_tables) {
+    cli::cli_abort(
+      "{.arg table} must be one of {.or {.val {valid_tables}}}, not {.val {table}}."
+    )
+  }
+
+  if (!is.null(line) && line %in% c(4, 5)) {
+    return(params |> filter(table == !!table, is_metro == 0) |> pull(path))
+  }
+
+  tbl <- if (historic && table %in% c("entrance", "transported")) {
+    "passengers"
+  } else {
+    table
+  }
+
+  subparams <- params |>
+    filter(
+      table == !!tbl,
+      is_metro == 1,
+      is_historic == !!historic
+    )
+
+  if (nrow(subparams) > 1) {
+    out <- subparams |>
+      filter(year_max == max(year_max, na.rm = TRUE)) |>
+      pull(path)
+
+    return(out)
+  }
+
+  if (nrow(subparams) == 0) {
+    cli::cli_abort("No files found.")
+  }
+
+  out <- subparams$path
+
+  return(out)
+}
+
+
 # --- metro_lines (reference table) -------------------------------------------
 
-metro_lines <- tibble::tibble(
+metro_lines <- tibble(
   line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L),
   line_name_pt = c(
     "Azul",
@@ -55,15 +138,8 @@ metro_lines <- tibble::tibble(
 
 # --- passengers_entrance -----------------------------------------------------
 
-# 2017-2019: filter measure == "entrance" from combined file
-# Columns: year, measure, date, variable, value, line_number, line_name_pt, line_name
-psg_17_19 <- read_csv(
-  here::here(data_dir, "metro_sp_passengers_2017_2019.csv"),
-  show_col_types = FALSE
-)
-
 # Map Portuguese variable names to metric abbreviations (case-insensitive)
-metric_map_keys <- c(
+.metric_map_keys <- c(
   "total" = "total",
   "média dos dias úteis" = "mdu",
   "média dos sábados" = "msa",
@@ -72,11 +148,11 @@ metric_map_keys <- c(
 )
 
 map_metric <- function(x) {
-  metric_map_keys[tolower(trimws(x))]
+  .metric_map_keys[tolower(trimws(x))]
 }
 
 # Ordering of columns for passenger tables
-psg_sel_cols <- c(
+.cols_passengers <- c(
   "date",
   "line_number",
   "metric_abb",
@@ -88,67 +164,100 @@ psg_sel_cols <- c(
   "year"
 )
 
+## Historic (2017-19) -----------------------------------------------------
+
+# 2017-2019: filter measure == "entrance" from combined file
+# Columns: year, measure, date, variable, value, line_number, line_name_pt, line_name
+
+path_file <- get_path_processed("entrance", historic = TRUE)
+
+psg_17_19 <- read_csv(path_file, show_col_types = FALSE)
+
 entrance_17_19 <- psg_17_19 |>
   filter(measure == "entrance") |>
-  mutate(metric_abb = map_metric(variable)) |>
-  left_join(
-    select(dim_metric, metric_abb, metric, metric_pt),
-    by = "metric_abb"
-  ) |>
-  # Line 5 changed operator in Aug 2018; Dataverse covers Aug 2018 onward
-  filter(!(line_number == 5L & date >= as.Date("2018-08-01")))
+  mutate(metric_abb = map_metric(variable))
 
-# 2020-2025: already separate file for entrance
+entrance_17_19 <- left_join(
+  entrance_17_19,
+  select(dim_metric, metric_abb, metric, metric_pt),
+  by = "metric_abb"
+)
+
+entrance_17_19 <- entrance_17_19 |>
+  filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
+
+## Current (2020-) --------------------------------------------------------
+
 # Columns: date, line_number, metric_abb, metric, value, year
+path_file <- get_path_processed("entrance", historic = FALSE)
+entrance_20 <- read_csv(path_file, show_col_types = FALSE)
 
-entrance_20 <- read_csv(
-  here(data_dir, "metro_sp_passengers_entrance_2020_2025.csv"),
-  show_col_types = FALSE
+entrance_20 <- left_join(
+  entrance_20,
+  select(dim_metric, metric_abb, metric_pt),
+  by = "metric_abb"
 )
 
 entrance_20 <- entrance_20 |>
-  left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
   mutate(
     # Set NA line_number (network total / "rede") to 99
     line_number = if_else(is.na(line_number), 99L, as.integer(line_number))
   ) |>
-  # Add line names from reference table
   left_join(metro_lines, by = join_by(line_number))
 
-# Check for missing values
 
-missing_vals <- entrance_20 |>
-  filter(if_any(everything(), is.na)) |>
-  # We expect missing values during 2020/03-2020/05 for Line 15
-  filter(!(year == 2020 & line_number == 15))
+if (check) {
+  # Check for missing values
 
-if (nrow(missing_vals) > 0) {
-  cli::cli_abort("Missing values in entrance_20: {nrow(missing_vals)} rows")
+  missing_vals <- entrance_20 |>
+    filter(year < max(year)) |>
+    filter(if_any(everything(), is.na)) |>
+    # We expect missing values during 2020/03-2020/05 for Line 15
+    filter(!(year == 2020 & line_number == 15))
+
+  if (nrow(missing_vals) > 0) {
+    cli::cli_warn("Missing values in entrance_20: {nrow(missing_vals)} rows")
+  }
+
+  vals <- entrance_20 |>
+    filter(year == max(year)) |>
+    pull(value)
+
+  if (all(is.na(vals))) {
+    cli::cli_abort("All values are NA in entrance.")
+  }
 }
 
-# Lines 4/5 (Dataverse source)
-entrance_4_5_path <- here(
-  data_dir,
-  "metro_sp_passengers_entrance_lines_4_5.csv"
+## Lines 4-5 --------------------------------------------------------------
+
+entrance_4_5 <- read_csv(
+  get_path_processed("entrance", line = 4),
+  show_col_types = FALSE
 )
-entrance_4_5 <- read_csv(entrance_4_5_path, show_col_types = FALSE)
 
 entrance_4_5 <- entrance_4_5 |>
   left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
   left_join(metro_lines, by = join_by(line_number))
 
-passengers_entrance <- bind_rows(entrance_17_19, entrance_20)
 
+## Stack tables -----------------------------------------------------------
+
+passengers_entrance <- bind_rows(entrance_17_19, entrance_20)
+# Adjust values to match Line 4 and 5 (Dataverse source)
 passengers_entrance <- passengers_entrance |>
   mutate(value = value * 1000)
 
 passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5)
 
 passengers_entrance <- passengers_entrance |>
-  select(all_of(psg_sel_cols)) |>
+  select(all_of(.cols_passengers)) |>
   arrange(date, line_number, metric_abb)
 
 # --- passengers_transported --------------------------------------------------
+
+# OBS: currently this table only includes METRO lines (not 4-5)
+
+## Historic (2017-19) -----------------------------------------------------
 
 transported_17_19 <- psg_17_19 |>
   filter(measure == "transport") |>
@@ -158,30 +267,42 @@ transported_17_19 <- psg_17_19 |>
     by = "metric_abb"
   )
 
+## Current (2020-) --------------------------------------------------------
+
 transported_20 <- read_csv(
-  here(data_dir, "metro_sp_passengers_tranported_2020_2025.csv"),
+  get_path_processed("transported", historic = FALSE),
   show_col_types = FALSE
 )
 
+transported_20 <- left_join(
+  transported_20,
+  select(dim_metric, metric_abb, metric_pt),
+  by = "metric_abb"
+)
+
 transported_20 <- transported_20 |>
-  left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
   mutate(
     # Set NA line_number (network total / "rede") to 99
     line_number = if_else(is.na(line_number), 99L, as.integer(line_number))
   ) |>
-  # Add line names from reference table
   left_join(metro_lines, by = join_by(line_number))
 
-passengers_transported <- bind_rows(transported_17_19, transported_20) |>
-  select(all_of(psg_sel_cols)) |>
+
+## Stack tables -----------------------------------------------------------
+
+passengers_transported <- bind_rows(transported_17_19, transported_20)
+
+passengers_transported <- passengers_transported |>
+  select(all_of(.cols_passengers)) |>
   arrange(date, line_number, metric_abb)
 
 # --- station_averages --------------------------------------------------------
 
-# 2017-2019: needs schema harmonization
+## Historic (2017-19) -----------------------------------------------------
+
 # Columns: date, year, month, line_name_full, name_station, metric_abb, value
 stations_17_19 <- read_csv(
-  here::here("data-raw/processed/metro_sp_stations_averages_2017_2019.csv"),
+  get_path_processed("station_averages", historic = TRUE),
   show_col_types = FALSE
 )
 
@@ -208,6 +329,14 @@ line_lookup <- c(
 station_renames <- dim_station_name_change$station_name_full
 names(station_renames) <- dim_station_name_change$station_name
 
+.cols_station_avg <- c(
+  "date",
+  "year",
+  "line_number",
+  "station_name",
+  "avg_passenger"
+)
+
 stations_17_19 <- stations_17_19 |>
   mutate(
     line_number = line_lookup[line_name_full],
@@ -219,47 +348,46 @@ stations_17_19 <- stations_17_19 |>
     )
   ) |>
   rename(avg_passenger = value) |>
-  select(date, year, line_number, station_name, avg_passenger)
+  select(all_of(.cols_station_avg))
 
-# 2020-2025: already has correct schema
+
+## Current (2020-) --------------------------------------------------------
+
 # Columns: date, line_number, station_name, avg_passenger, year
 stations_20 <- read_csv(
-  here::here(data_dir, "metro_sp_stations_averages_2020_2025.csv"),
+  get_path_processed("station_averages", historic = FALSE),
   show_col_types = FALSE
 )
 
-missing_vals <- stations_20 |>
-  filter(
-    is.na(avg_passenger),
-    !(line_number == 15 &
-      date == as.Date("2022-01-01") &
-      station_name == "Jardim Colonial")
-  )
+if (check) {
+  missing_vals <- stations_20 |>
+    filter(
+      is.na(avg_passenger),
+      !(line_number == 15 &
+        date == as.Date("2022-01-01") &
+        station_name == "Jardim Colonial")
+    )
 
-if (nrow(missing_vals) > 0) {
-  cli::cli_abort("Missing values in stations_20: {nrow(missing_vals)} rows")
+  if (nrow(missing_vals) > 0) {
+    cli::cli_abort("Missing values in stations_20: {nrow(missing_vals)} rows")
+  }
 }
 
-station_sel_cols <- c(
-  "date",
-  "line_number",
-  "station_name",
-  "avg_passenger",
-  "line_name",
-  "line_name_pt",
-  "year"
+## Lines 4-5 --------------------------------------------------------------
+
+stations_4_5 <- read_csv(
+  get_path_processed("station_averages", line = 4),
+  show_col_types = FALSE
 )
 
-# Lines 4/5 (Dataverse source)
-stations_4_5_path <- here(data_dir, "metro_sp_station_averages_lines_4_5.csv")
-
-stations_4_5 <- read_csv(stations_4_5_path, show_col_types = FALSE)
+## Stack tables -----------------------------------------------------------
 
 station_averages <- bind_rows(
   stations_17_19,
   stations_20
 )
 
+# Adjust values to match Line 4 and 5 (Dataverse source)
 station_averages <- station_averages |>
   mutate(avg_passenger = avg_passenger * 1000)
 
@@ -283,44 +411,55 @@ station_averages <- station_averages |>
 # OBS: due to repeated station names it's not possible to simply convert to
 # factor and sort.
 
-# st_order <- paste(
-#   dim_station_code$line_number,
-#   dim_station_code$station_name,
-#   sep = "_"
-# )
+.cols_station <- c(
+  "date",
+  "line_number",
+  "station_name",
+  "avg_passenger",
+  "line_name",
+  "line_name_pt",
+  "year"
+)
 
 station_averages <- station_averages |>
-  select(all_of(station_sel_cols)) |>
+  select(all_of(.cols_station)) |>
   mutate(station_order = paste(line_number, station_name, sep = "_")) |>
   arrange(date, station_order) |>
   select(-station_order)
 
 # --- station_daily ------------------------------------------------------------
 
+# OBS: no "historic" data for station_daily
+
 station_daily <- read_csv(
-  here(data_dir, "metro_sp_stations_daily_2020_2025.csv"),
+  get_path_processed("station_daily", historic = FALSE),
   show_col_types = FALSE
 )
 
-# Lines 4/5 (Dataverse source) — station_code is NA for these lines
-daily_4_5_path <- here(data_dir, "metro_sp_station_daily_lines_4_5.csv")
-daily_4_5 <- read_csv(daily_4_5_path, show_col_types = FALSE)
+station_daily_4_5 <- read_csv(
+  get_path_processed("station_daily", line = 4),
+  show_col_types = FALSE
+)
 
+## Stack tables -----------------------------------------------------------
+
+# Adjust values to match Line 4 and 5 (Dataverse source)
 station_daily <- station_daily |>
   mutate(passengers = passengers * 1000)
 
-station_daily <- bind_rows(station_daily, daily_4_5)
-
+station_daily <- bind_rows(station_daily, station_daily_4_5)
 station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 
-missing_vals <- station_daily |>
-  filter(is.na(passengers))
+if (check) {
+  missing_vals <- station_daily |>
+    filter(is.na(passengers))
 
-if (nrow(missing_vals) > 0) {
-  cli::cli_abort("Missing values in station_daily: {nrow(missing_vals)} rows")
+  if (nrow(missing_vals) > 0) {
+    cli::cli_abort("Missing values in station_daily: {nrow(missing_vals)} rows")
+  }
 }
 
-stdaily_sel_cols <- c(
+.cols_station_daily <- c(
   "date",
   "line_number",
   "station_name",
@@ -332,7 +471,7 @@ stdaily_sel_cols <- c(
 )
 
 station_daily <- station_daily |>
-  select(all_of(stdaily_sel_cols)) |>
+  select(all_of(.cols_station_daily)) |>
   # Define a temporary id vector (station name + line number) to sort stations
   # in proper order
   mutate(station_order = paste(line_number, station_name, sep = "_")) |>

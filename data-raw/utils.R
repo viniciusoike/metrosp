@@ -8,13 +8,29 @@ library(dplyr, warn.conflicts = FALSE)
 
 # --- Path helpers ------------------------------------------------------------
 
-#' Get path to a CSV file for 2020-2025 data.
+#' List years available in the raw CSV directory.
+#'
+#' Scans data-raw/metro_sp/metro/csv/ for CSV filenames that contain a
+#' four-digit year >= 2020, and returns them sorted. This drives all
+#' year-loop bounds in the import scripts so no hardcoded range is needed.
+#'
+#' @param datadir Directory containing the raw CSV files.
+#' @return Integer vector of available years.
+get_available_years <- function(
+  datadir = here::here("data-raw/metro_sp/metro/csv")
+) {
+  files <- list.files(datadir, pattern = "\\.csv$")
+  years <- suppressWarnings(as.integer(stringr::str_extract(files, "\\d{4}")))
+  sort(unique(years[!is.na(years) & years >= 2020]))
+}
+
+#' Get path to a CSV file for current-era (2020-present) data.
 #'
 #' Looks up a CSV file in data-raw/metro_sp/metro/csv/ matching the given
 #' year and variable type. The CSV filenames follow a standard naming
 #' convention from the METRO transparency portal.
 #'
-#' @param year Integer year (2020-2025).
+#' @param year Integer year (2020 or later).
 #' @param variable One of "stations_daily", "stations", "transport", "entrance".
 #' @param datadir Directory containing the raw CSV files.
 #' @return Character path to the matching CSV file.
@@ -36,8 +52,13 @@ get_path_csv <- function(
     cli::cli_abort("Variable {variable} not available.")
   }
 
-  if (length(year) > 0 & !any(year %in% 2020:2025)) {
-    cli::cli_abort("Year {year} not available.")
+  valid_years <- get_available_years(datadir)
+  if (
+    length(year) > 0 && length(valid_years) > 0 && !any(year %in% valid_years)
+  ) {
+    cli::cli_abort(
+      "Year {year} not available. Valid years: {min(valid_years)}-{max(valid_years)}."
+    )
   }
 
   pat <- var_pattern[variable]
@@ -322,25 +343,31 @@ as_numeric_pt <- Vectorize(function(x) {
 
 # --- Passenger CSV import functions ------------------------------------------
 # Used by import_passengers_entrance.R and import_passengers_transported.R
-# to read and clean the 2020-2025 passenger data by line.
+# to read and clean current-era (2020-present) passenger data by line.
 
-#' Read a raw passenger CSV file for 2020-2025.
+#' Read a raw passenger CSV file (2020-present).
 #'
 #' Each file contains 3 sections (batches) for different line groups,
 #' read separately with different skip rows and bound by column.
 #'
 #' @param path Path to the raw CSV file.
-#' @param year Integer year (affects skip offsets; 2025 differs from others).
+#' @param year Integer year (affects skip offsets; 2025 format differs from 2020-2024).
 #' @return A wide data frame with one row per month.
 read_csv_passengers <- function(path, year = 2020) {
-  skip <- c(6, 25, 45)
+  get_skip <- function(year) {
+    .skip <- list(
+      "default" = c(6, 25, 45),
+      `2025` = c(6, 22, 38),
+      `2026` = c(7, 23, 39)
+    )
 
-  if (year %in% c(2021, 2022, 2023, 2024)) {
-    skip <- c(6, 25, 44)
-  }
+    if (as.character(year) %in% names(.skip)) {
+      offset <- .skip[[as.character(year)]]
+    } else {
+      offset <- .skip[["default"]]
+    }
 
-  if (year == 2025) {
-    skip <- c(6, 22, 38)
+    return(offset)
   }
 
   metric_names <- c("month", "total", "mdu", "msa", "mdo", "max")
@@ -352,6 +379,8 @@ read_csv_passengers <- function(path, year = 2020) {
     c2 = c(comb_names[13:18], "drop_col", comb_names[19:24]),
     c3 = comb_names[25:30]
   )
+
+  skip <- get_skip(year)
 
   parcels <- list()
 

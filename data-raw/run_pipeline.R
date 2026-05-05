@@ -34,14 +34,14 @@ if (!historical && !all(file.exists(historical_csvs))) {
 
 # -- Guard: ensure Lines 4/5 processed CSVs exist when skipping dataverse ---
 dataverse_csvs <- c(
-  here("data-raw/processed/metro_sp_passengers_entrance_lines45.csv"),
-  here("data-raw/processed/metro_sp_station_averages_lines45.csv"),
-  here("data-raw/processed/metro_sp_station_daily_lines45.csv")
+  here("data-raw/processed/metro_sp_passengers_entrance_lines_4_5.csv"),
+  here("data-raw/processed/metro_sp_station_averages_lines_4_5.csv"),
+  here("data-raw/processed/metro_sp_station_daily_lines_4_5.csv")
 )
 
 if (!dataverse && !all(file.exists(dataverse_csvs))) {
   cli::cli_alert_warning(
-    "Lines 4/5 processed CSVs not found. Setting {.code dataverse <- TRUE}."
+    "Lines 4-5 processed CSVs not found. Setting {.code dataverse <- TRUE}."
   )
   dataverse <- TRUE
 }
@@ -61,18 +61,18 @@ if (historical) {
   source(here("data-raw/import_station_averages_2017_2019.R"), local = TRUE)
 }
 
-# -- 3. Import current data (2020-2025) ---------------------------------------
-cli::cli_h2("Importing passengers entrance (2020-2025)")
-source(here("data-raw/import_passengers_entrance_2020_2025.R"), local = TRUE)
+# -- 3. Import current data (2020-present) ------------------------------------
+cli::cli_h2("Importing passengers entrance (2020-present)")
+source(here("data-raw/import_passengers_entrance.R"), local = TRUE)
 
-cli::cli_h2("Importing passengers transported (2020-2025)")
-source(here("data-raw/import_passengers_transported_2020_2025.R"), local = TRUE)
+cli::cli_h2("Importing passengers transported (2020-present)")
+source(here("data-raw/import_passengers_transported.R"), local = TRUE)
 
-cli::cli_h2("Importing station averages (2020-2025)")
-source(here("data-raw/import_station_averages_2020_2025.R"), local = TRUE)
+cli::cli_h2("Importing station averages (2020-present)")
+source(here("data-raw/import_station_averages.R"), local = TRUE)
 
-cli::cli_h2("Importing station daily entries (2020-2025)")
-source(here("data-raw/import_station_daily_2020_2025.R"), local = TRUE)
+cli::cli_h2("Importing station daily entries (2020-present)")
+source(here("data-raw/import_station_daily.R"), local = TRUE)
 
 # -- 4. Import Lines 4/5 data from Dataverse ----------------------------------
 if (dataverse) {

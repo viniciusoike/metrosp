@@ -123,5 +123,5 @@ avg_psg_station <- avg_psg_station |>
 
 readr::write_csv(
   avg_psg_station,
-  "data-raw/processed/metro_sp_stations_averages_2017_2019.csv"
+  "data-raw/processed/metro_sp_station_averages_2017_2019.csv"
 )
