@@ -1,6 +1,6 @@
 Package: metrosp
 Type: Package
-Title: 'São Paulo' Metro Passenger Demand Data
+Title: São Paulo Metro Passenger Demand Data
 Version: 1.0.0
 Authors@R: c(
     person(
@@ -9,7 +9,7 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Provides passenger demand data for the 'São Paulo' metro system,
+Description: Provides passenger demand data for the São Paulo metro system,
     covering 2012 to 2026. Datasets include monthly passenger entries and
     transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations.
 License: MIT + file LICENSE
