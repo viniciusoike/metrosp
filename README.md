@@ -3,6 +3,10 @@
 
 # metrosp: metro ridership in São Paulo <img src="man/figures/logo.png" align="right" height="220" />
 
+<!-- badges: start --> [![CRAN
+status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
+<!-- badges: end -->
+
 This packages helps distribute demand data from the São Paulo metro
 system inside R. Data is sourced from multiple operators and spans
 2012-2025. While most of the data is already
@@ -34,13 +38,15 @@ it may be expanded to include trains as well.
 
 ## Installation
 
-The package will be available on CRAN. Once released, install with:
+The package is available on CRAN.
 
 ``` r
 install.packages("metrosp")
 ```
 
-To install the development version from GitHub, use:
+Although the underlying data is infrequently updated, more recent
+versions of the data can be available by installing the development
+version from GitHub.
 
 ``` r
 # install.packages("remotes")
@@ -67,6 +73,10 @@ visualization.
 | `stations` | Metro and train station locations (current + planned) | — | Yes |
 
 ## Usage
+
+The data is bundled with the package, meaning it works out of the box
+and doesn’t rely on internet connection. To use a dataset simply call
+its name.
 
 ``` r
 library(metrosp)
