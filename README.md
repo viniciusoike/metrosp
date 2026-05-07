@@ -3,7 +3,9 @@
 
 # metrosp: metro ridership in São Paulo <img src="man/figures/logo.png" align="right" height="220" />
 
-<!-- badges: start --> [![CRAN
+<!-- badges: start -->
+
+[![CRAN
 status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
 <!-- badges: end -->
 

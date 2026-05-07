@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 
 # metrosp: metro ridership in São Paulo <img src="man/figures/logo.png" align="right" height="220" />
 
-  <!-- badges: start -->
-  [![CRAN status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
-  <!-- badges: end -->
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
+<!-- badges: end -->
 
 This packages helps distribute demand data from the São Paulo metro system inside R. Data is sourced from multiple operators and spans 2012-2025. While most of the data is already [public](https://transparencia.metrosp.com.br/dataset/demanda), it's scattered across multiple poorly structured CSV/PDF files.
 
