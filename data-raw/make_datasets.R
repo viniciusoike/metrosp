@@ -557,3 +557,16 @@ usethis::use_data(metro_lines, overwrite = TRUE)
 usethis::use_data(metro_colors, overwrite = TRUE)
 
 message("All datasets saved to data/")
+
+# Add local versions of the datasets
+dir.create(here("data-raw/cache"), showWarnings = FALSE)
+readr::write_rds(
+  passengers_entrance,
+  here("data-raw/cache/passengers_entrance.rds")
+)
+readr::write_rds(
+  passengers_transported,
+  here("data-raw/cache/passengers_transported.rds")
+)
+readr::write_rds(station_averages, here("data-raw/cache/station_averages.rds"))
+readr::write_rds(station_daily, here("data-raw/cache/station_daily.rds"))

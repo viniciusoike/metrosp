@@ -10,6 +10,12 @@
 # Raw data (too large for git, ~46MB)
 data-raw/metro_sp/
 
+# Piggyback cache (datasets managed via GitHub Releases)
+data-raw/cache/
+
+# Generated HTML
+README.html
+
 # Build artifacts
 *.tar.gz
 *.Rcheck/
