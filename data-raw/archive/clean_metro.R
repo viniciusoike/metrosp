@@ -633,7 +633,7 @@ read_csv_passengers <- function(path, force_names = TRUE) {
 stack_passengers <- function(ls, unite = TRUE, year = 2018) {
   x <- c(
     "Total",
-    "Média dos dias úteis",
+    "Média dos Dias Úteis",
     "Média dos Sábados",
     "Média dos Domingos",
     "Máxima Diária"

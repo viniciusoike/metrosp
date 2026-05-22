@@ -142,7 +142,7 @@ clean_psg_line <- function(dat) {
 stack_passengers <- function(ls, year = 2018, unite = TRUE) {
   x <- c(
     "Total",
-    "Média dos dias úteis",
+    "Média dos Dias Úteis",
     "Média dos Sábados",
     "Média dos Domingos",
     "Máxima Diária"
