@@ -6,12 +6,14 @@ Authors@R: c(
     person(
       "Vinicius", "Oike",
       email = "viniciusoike@gmail.com",
-      role = c("aut", "cre")
+      role = c("aut", "cre", "cph")
     )
   )
 Description: Provides passenger demand data for the São Paulo metro system,
     covering 2012 to 2026. Datasets include monthly passenger entries and
-    transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations.
+    transported counts by line, average weekday station entries, daily
+    station entries, and spatial geometries for metro and commuter train
+    lines and stations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
