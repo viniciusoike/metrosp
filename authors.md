@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Vinicius Oike**. Author, maintainer.
+- **Vinicius Oike**. Author, maintainer, copyright holder.
 
 ## Citation
 
