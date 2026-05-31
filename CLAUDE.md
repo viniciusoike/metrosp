@@ -10,23 +10,31 @@ metrosp/
 ├── R/data.R                    # Roxygen2 docs for all exported datasets (NO functions)
 ├── data/*.rda                  # Lazy-loaded datasets (the package deliverable)
 ├── data-raw/                   # ETL pipeline (not shipped with package)
-│   ├── run_pipeline.R          # Orchestrator: set flags (download/historical/geosampa/dataverse), then source
+│   ├── run_pipeline.R          # Orchestrator: set flags, then source (see Development Workflow)
 │   ├── make_datasets.R         # Master script: harmonize schemas + create .rda files
 │   ├── utils.R                 # Shared dimension tables and utility functions
 │   ├── download_metro.R        # Downloads raw data from METRO transparency portal
-│   ├── clean_metro.R           # Cleans raw downloaded files
 │   ├── import_passengers_2017_2019.R         # Passenger data ETL (2017-2019)
 │   ├── import_station_averages_2017_2019.R   # Station averages ETL (2017-2019)
-│   ├── import_passengers_entrance_2020_2025.R    # Passenger entrance ETL (2020-2025)
-│   ├── import_passengers_transported_2020_2025.R # Passenger transported ETL (2020-2025)
-│   ├── import_station_averages_2020_2025.R   # Station averages ETL (2020-2025)
-│   ├── import_station_daily_2020_2025.R      # Daily station entries ETL (2020-2025)
-│   ├── import_lines45_dataverse.R            # Lines 4/5 data ETL (Insper Dataverse source)
+│   ├── import_passengers_entrance.R          # Passenger entrance ETL (2020-present)
+│   ├── import_passengers_transported.R       # Passenger transported ETL (2020-present)
+│   ├── import_station_averages.R             # Station averages ETL (2020-present)
+│   ├── import_station_daily.R                # Daily station entries ETL (2020-present)
+│   ├── import_lines_4_5_dataverse.R          # Lines 4/5 data ETL (Insper Dataverse source)
 │   ├── import_geosampa.R                     # GeoSampa spatial data ETL (metro + train)
+│   ├── build_forecasts.R                     # Fits ARIMA/ETS/STLF + tsCV -> forecasts, forecast_accuracy
+│   ├── build_station_inauguration.R          # Builds station_inauguration from CSV
+│   ├── station_inauguration.csv             # Hand-maintained station opening dates (source)
+│   ├── make_hex.R                            # Generates the package hex sticker
 │   ├── sanity_checks.qmd                     # Quarto doc for visual data quality validation
 │   ├── geosampa/               # GeoSampa GPKG source files (9 files)
 │   ├── processed/              # Intermediate CSVs (committed to git, ~600KB)
+│   ├── cache/                  # Cached .rds of built datasets (piggyback distribution)
+│   ├── archive/               # Retired scripts
 │   └── metro_sp/               # Raw source files (gitignored, ~46MB)
+├── dashboard/                  # Shiny app (not part of the package build)
+│   ├── panorama.R              # Demand-overview Shiny app
+│   └── www/styles.css          # App styles
 ├── tests/testthat/
 ├── vignettes/
 ├── DESCRIPTION
@@ -35,8 +43,11 @@ metrosp/
 
 ## Script Naming Convention
 
-Import scripts follow `import_{dataset}_{period}.R`:
-- Period tags: `2017_2019`, `2020_2025`, `dataverse` (Lines 4/5 from Insper Dataverse)
+Import scripts follow `import_{dataset}[_{period}].R`:
+- Historical scripts keep a `_2017_2019` suffix (e.g. `import_passengers_2017_2019.R`)
+- Current-era scripts (2020-present) have no period suffix (e.g. `import_passengers_entrance.R`)
+- Lines 4/5 (Insper Dataverse): `import_lines_4_5_dataverse.R`
+- Derived datasets use a `build_` prefix (`build_forecasts.R`, `build_station_inauguration.R`)
 
 ## Exported Datasets
 
@@ -48,11 +59,16 @@ Import scripts follow `import_{dataset}_{period}.R`:
 | `station_daily` | Daily passenger entries by station (2020-2025) |
 | `lines` | Metro + CPTM train line route geometries (sf, current + planned) |
 | `stations` | Metro + CPTM train station point locations (sf, current + planned) |
+| `metro_lines` | Line name/color lookup dimension table |
+| `metro_colors` | Named character vector of official line hex colors (length 6) |
+| `forecasts` | 6-month-ahead entrance forecasts per line (ARIMA/ETS/STLF, 80/95% intervals) |
+| `forecast_accuracy` | Rolling-origin CV error (MAPE/RMSE/MAE) per line+model; `best` flags winner |
+| `station_inauguration` | Station opening dates + ramp-up window flag (manually compiled) |
 
 ## Key Rules
 
-- This is a **data-only package**. `R/` should contain ONLY `data.R` (documentation). No functions.
-- To update datasets: edit ETL scripts in `data-raw/`, then run `source("data-raw/make_datasets.R")`
+- This is a **data-only package**. `R/` should contain ONLY `data.R` (documentation). No functions. Pipeline functions live in `data-raw/R/` (build-ignored), NOT package `R/`.
+- To update datasets: run the `targets` pipeline (see Development Workflow). Editing an ETL function under `data-raw/R/` auto-invalidates the affected datasets.
 - `data-raw/metro_sp/` is gitignored (46MB raw files). Never commit it.
 - `data-raw/processed/` IS committed (intermediate CSVs, ~600KB)
 - The 2017-2019 and 2020-2025 CSVs have different column schemas. `make_datasets.R` handles harmonization.
@@ -71,13 +87,41 @@ Import scripts follow `import_{dataset}_{period}.R`:
 - **2017**: Only Oct-Dec available (not full year)
 - **2025**: Trailing months may have NA values (data not yet published)
 - **Station metrics**: Only weekday average (mdu) available at station level
+- **`forecasts` / `forecast_accuracy`**: Derived from `passengers_entrance` total by `build_forecasts.R`; require the `forecast` package (in Suggests). Box-Cox back-transform over the COVID dip can blow up CV error, so MAPE > 200% is capped to `NA` and treated as model failure.
+- **`station_inauguration`**: Stations open before the data window have `inauguration_date = NA` and `pre_data_window = TRUE`; `ramp_up_end` = opening + 180 days marks the period to exclude from baseline comparisons. Dates need manual `verified = TRUE` after cross-checking sources.
 
 ## Development Workflow
 
-1. Set flags at the top of `data-raw/run_pipeline.R` (`download`, `historical`, `geosampa`, `dataverse`), then `source("data-raw/run_pipeline.R")`
-2. `run_pipeline.R` orchestrates: downloading, individual import scripts → `processed/` CSVs → `make_datasets.R` → `.rda` files
-3. `devtools::document()` regenerates man pages from `R/data.R`
-4. `devtools::check()` validates the package
+The ETL runs as a **`targets` pipeline** (primary) defined in `data-raw/_targets.R`
+(store: `data-raw/_targets/`, config: `_targets.yaml`). Pure functions live in
+`data-raw/R/` (loaded via `tar_source()`); package `R/` still holds only `data.R`.
+The graph assembles `data/*.rda` from the committed `processed/` CSVs, the GeoSampa
+GPKGs, and `station_inauguration.csv`. Forecasts are **not** in the graph yet
+(`build_forecasts.R` stays a standalone script).
+
+Routine data update (the common case — fetch new METRO + Lines 4/5 data):
+```sh
+METROSP_DOWNLOAD=true METROSP_DATAVERSE=true Rscript -e 'targets::tar_make()'
+Rscript -e 'devtools::document()'   # outside the graph; refreshes man/*.Rd
+```
+
+Flags are env vars, replacing the old `run_pipeline.R` booleans. Each gates a
+side-effecting refresh that rewrites the committed CSVs in place; unset (default
+off) means rebuild offline from those CSVs:
+
+| Env var | Default | Effect when `true` |
+|---|---|---|
+| `METROSP_DOWNLOAD` | off | Scrape METRO portal → refresh raw CSVs → re-import current-era |
+| `METROSP_HISTORICAL` | off | Re-import 2017-2019 from raw nested folders |
+| `METROSP_DATAVERSE` | off | Re-fetch Lines 4/5 from Insper Dataverse |
+| `METROSP_GEOSAMPA` | off | Re-read GeoSampa GPKGs (slow `sf`) |
+
+A column/definition change needs no flag: edit the relevant `assemble_*()` or
+`dims.R` function and `targets` rebuilds the affected datasets + descendants.
+Inspect with `targets::tar_visnetwork()`; read a result with `tar_read(<name>)`.
+
+**Legacy path (still present, not retired):** `source("data-raw/run_pipeline.R")`
+with its in-file boolean flags. Both paths produce byte-identical `data/*.rda`.
 
 ## Quick Commands
 
@@ -85,5 +129,12 @@ Import scripts follow `import_{dataset}_{period}.R`:
 devtools::document()  # regenerate man pages
 devtools::check()     # run CRAN checks
 devtools::test()      # run tests
-source("data-raw/run_pipeline.R")  # rebuild all .rda datasets
+
+# targets pipeline (primary)
+targets::tar_make()        # rebuild outdated datasets (offline from CSVs)
+targets::tar_visnetwork()  # view the dependency graph
+targets::tar_read(station_daily)  # load a built target
+
+# legacy orchestrator (equivalent output)
+source("data-raw/run_pipeline.R")
 ```

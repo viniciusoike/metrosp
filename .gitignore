@@ -13,6 +13,9 @@ data-raw/metro_sp/
 # Piggyback cache (datasets managed via GitHub Releases)
 data-raw/cache/
 
+# targets object store (rebuildable via tar_make())
+data-raw/_targets/
+
 # Generated HTML
 README.html
 
