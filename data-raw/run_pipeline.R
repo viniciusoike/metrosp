@@ -10,12 +10,14 @@
 #   historical - set TRUE to re-import 2017-2019 data (rarely needed)
 #   geosampa   - set TRUE to re-import GeoSampa shapefiles (rarely needed)
 #   dataverse  - set TRUE to re-fetch Lines 4/5 data from Dataverse
+#   forecasts  - set TRUE to refit ARIMA/ETS/STLF forecasts (~10 min)
 # -------------------------------------------------------
 
 download <- FALSE
 historical <- FALSE
 geosampa <- FALSE
 dataverse <- TRUE
+forecasts <- TRUE
 
 import::from(here, here)
 
@@ -90,7 +92,17 @@ if (geosampa) {
 cli::cli_h2("Assembling final datasets")
 source(here("data-raw/make_datasets.R"), local = TRUE)
 
-# -- 7. Regenerate documentation -----------------------------------------------
+# -- 7. Build forecast datasets -----------------------------------------------
+if (forecasts) {
+  cli::cli_h2("Building 6-month forecasts (ARIMA / ETS / STLF + tsCV)")
+  source(here("data-raw/build_forecasts.R"), local = TRUE)
+}
+
+# -- 8. Build station inauguration table --------------------------------------
+cli::cli_h2("Building station inauguration table")
+source(here("data-raw/build_station_inauguration.R"), local = TRUE)
+
+# -- 9. Regenerate documentation -----------------------------------------------
 cli::cli_h2("Generating documentation")
 devtools::document()
 

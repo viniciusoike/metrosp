@@ -297,6 +297,84 @@
 #'   \code{\link{lines}} for spatial line geometries.
 "metro_lines"
 
+#' Six-Month Demand Forecasts by Line and Model
+#'
+#' Pre-computed 6-month-ahead forecasts of total monthly passenger entries
+#' for each of the six METRO SP lines, fit with three model families
+#' (`auto.arima`, `ets`, robust `stlf`). All models use Box-Cox variance
+#' stabilization with `lambda = "auto"`, which both compresses the COVID-era
+#' shock and guarantees non-negative forecast intervals.
+#'
+#' @format A data frame with one row per (line, model, forecast date):
+#' \describe{
+#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{model}{Model identifier (character). One of:
+#'     \code{"arima"} (Box-Cox `auto.arima` with seasonal search),
+#'     \code{"ets"} (Box-Cox state-space exponential smoothing),
+#'     \code{"stlf"} (robust STL decomposition + ETS on the seasonally
+#'     adjusted remainder).}
+#'   \item{date}{First day of the forecast month (Date). Six rows per
+#'     (line, model), starting one month after the last observed value.}
+#'   \item{mean}{Point forecast — back-transformed and bias-adjusted (numeric).}
+#'   \item{lo80, hi80}{80\% prediction interval (numeric).}
+#'   \item{lo95, hi95}{95\% prediction interval (numeric).}
+#' }
+#'
+#' @details
+#' Forecasts are built by `data-raw/build_forecasts.R` from
+#' \code{\link{passengers_entrance}} (`metric_abb == "total"`) and refreshed
+#' whenever the underlying data is updated. The build script also produces
+#' \code{\link{forecast_accuracy}}, which reports out-of-sample error for
+#' each (line, model) so the consumer can pick a preferred model per line.
+#'
+#' Modelling choices:
+#' \itemize{
+#'   \item All three models use \code{lambda = "auto"} (Guerrero estimate)
+#'     and \code{biasadj = TRUE}, so point forecasts are means rather than
+#'     medians on the original scale.
+#'   \item `stlf` uses `robust = TRUE`, which down-weights the 2020–2021
+#'     COVID period during seasonal extraction without requiring an explicit
+#'     intervention dummy.
+#' }
+#'
+#' @seealso \code{\link{forecast_accuracy}} for cross-validated error metrics,
+#'   \code{\link{passengers_entrance}} for the underlying historical series.
+"forecasts"
+
+#' Cross-Validated Accuracy of Forecast Models by Line
+#'
+#' Out-of-sample error metrics for the three model families shipped in
+#' \code{\link{forecasts}}, computed by rolling-origin cross-validation
+#' (`forecast::tsCV`) over the most recent 12 months of each series with a
+#' 6-month horizon.
+#'
+#' @format A data frame with one row per (line, model):
+#' \describe{
+#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{model}{Model identifier (character). One of \code{"arima"},
+#'     \code{"ets"}, \code{"stlf"} — see \code{\link{forecasts}}.}
+#'   \item{mape}{Mean absolute percentage error across all rolling-origin
+#'     forecasts and horizons (numeric, in percent).}
+#'   \item{rmse}{Root mean squared error on the original scale (numeric).}
+#'   \item{mae}{Mean absolute error on the original scale (numeric).}
+#'   \item{best}{`TRUE` for the model with the lowest MAPE on the line
+#'     (logical).}
+#' }
+#'
+#' @details
+#' Rows are sorted by `line_number`, then `mape` ascending, so the first row
+#' for each line is the cross-validation winner. The accuracy reported here
+#' is meant to guide model selection in the dashboard; it is not a guarantee
+#' of future forecast accuracy.
+#'
+#' For speed, ARIMA fits inside the CV loop use
+#' `approximation = TRUE`, while the final fit stored in
+#' \code{\link{forecasts}} uses `approximation = FALSE` for the best
+#' attainable model.
+#'
+#' @seealso \code{\link{forecasts}} for the point forecasts and intervals.
+"forecast_accuracy"
+
 #' Metro SP Official Line Colors
 #'
 #' A named character vector of official hex color codes for the six metro
@@ -321,3 +399,54 @@
 #'
 #' @seealso \code{\link{metro_lines}} for the full line reference table.
 "metro_colors"
+
+#' Station Commercial Opening Dates
+#'
+#' Inauguration (commercial opening) dates for São Paulo metro stations,
+#' covering stations whose opening falls within or near the
+#' \code{\link{station_daily}} / \code{\link{station_averages}} window. Used
+#' to flag ramp-up periods in which monthly ridership is still climbing
+#' toward steady-state and should generally be excluded from year-on-year or
+#' baseline comparisons.
+#'
+#' @format A data frame with one row per (line, station):
+#' \describe{
+#'   \item{line_number}{Metro line number (integer).}
+#'   \item{station_name}{Full station name (character).}
+#'   \item{inauguration_date}{Date of commercial opening (Date). \code{NA}
+#'     for stations whose opening predates the dataset window (i.e., they
+#'     were already operating when the data record begins).}
+#'   \item{phase}{Short label identifying the expansion phase, e.g.
+#'     \code{"L15 Fase 4"} (character).}
+#'   \item{verified}{Whether the inauguration date has been cross-checked
+#'     against the operator's announcement or an equivalently reliable
+#'     source (logical). Stations with \code{verified = FALSE} carry
+#'     best-effort dates and should not be relied on for legal or
+#'     publication purposes without re-checking.}
+#'   \item{notes}{Free-text annotations about the source or any caveats
+#'     (character, possibly \code{NA}).}
+#'   \item{pre_data_window}{\code{TRUE} when \code{inauguration_date} is
+#'     \code{NA} because the station opened before the data starts
+#'     (logical).}
+#'   \item{ramp_up_end}{\code{inauguration_date + 180} days — a heuristic
+#'     end of the initial ramp-up period (Date). \code{NA} when
+#'     \code{pre_data_window} is \code{TRUE}.}
+#' }
+#'
+#' @details
+#' The table is assembled by \code{data-raw/build_station_inauguration.R}
+#' from \code{data-raw/station_inauguration.csv}. To extend the table or
+#' verify uncertain dates, edit the CSV (setting \code{verified = TRUE}
+#' once cross-checked) and re-run the build script.
+#'
+#' Suggested use: when computing pre/post comparisons (e.g.\ 12m-vs-prior-12m
+#' or recovery-vs-2019), exclude stations where either window overlaps
+#' \code{ramp_up_end} to avoid mistaking ramp-up growth for organic demand
+#' change.
+#'
+#' @source Compiled from operator announcements (Companhia do Metropolitano
+#'   de São Paulo, ViaQuatro, ViaMobilidade).
+#'
+#' @seealso \code{\link{stations}} for spatial point locations,
+#'   \code{\link{station_averages}} for monthly weekday averages.
+"station_inauguration"

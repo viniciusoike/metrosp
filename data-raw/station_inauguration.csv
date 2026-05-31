@@ -1,0 +1,24 @@
+line_number,station_name,inauguration_date,phase,verified,notes
+4,Higienópolis-Mackenzie,2018-01-23,L4 Fase 2,FALSE,Inauguração comercial; verificar fonte
+4,Oscar Freire,2018-04-09,L4 Fase 2,FALSE,Verificar fonte
+4,São Paulo-Morumbi,2018-10-27,L4 Fase 3,FALSE,Verificar fonte
+4,Vila Sônia,2018-12-17,L4 Fase 3,FALSE,Verificar fonte
+5,Alto da Boa Vista,2017-10-28,L5 Fase 2,FALSE,Verificar fonte
+5,Borba Gato,2017-12-22,L5 Fase 2,FALSE,Verificar fonte
+5,Brooklin,2018-03-31,L5 Fase 2,FALSE,Verificar fonte
+5,Campo Belo,2018-04-06,L5 Fase 2,FALSE,Verificar fonte
+5,Eucaliptos,2018-07-12,L5 Fase 2,FALSE,Verificar fonte
+5,Moema,2018-08-04,L5 Fase 2,FALSE,Verificar fonte
+5,AACD-Servidor,2018-09-12,L5 Fase 2,FALSE,Verificar fonte
+5,Hospital São Paulo,2018-08-31,L5 Fase 2,FALSE,Verificar fonte
+5,Santa Cruz,2018-08-31,L5 Fase 2,FALSE,Verificar fonte
+5,Chácara Klabin,2018-10-15,L5 Fase 2 (terminus),FALSE,Verificar fonte
+15,São Lucas,2018-10-06,L15 Fase 2,FALSE,Verificar fonte
+15,Camilo Haddad,2019-04-13,L15 Fase 3,FALSE,Verificar fonte
+15,Vila Tolstói,2019-04-13,L15 Fase 3,FALSE,Verificar fonte
+15,Vila União,2019-04-13,L15 Fase 3,FALSE,Verificar fonte
+15,Jardim Planalto,2019-08-31,L15 Fase 3,FALSE,Verificar fonte
+15,Sapopemba,2020-10-24,L15 Fase 4,FALSE,Verificar fonte
+15,Fazenda da Juta,2021-04-22,L15 Fase 4,FALSE,Verificar fonte
+15,São Mateus,2021-04-22,L15 Fase 4,FALSE,Verificar fonte
+15,Jardim Colonial,2021-04-22,L15 Fase 4,FALSE,Verificar fonte
