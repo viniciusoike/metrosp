@@ -316,8 +316,8 @@
 #'   \item{date}{First day of the forecast month (Date). Six rows per
 #'     (line, model), starting one month after the last observed value.}
 #'   \item{mean}{Point forecast — back-transformed and bias-adjusted (numeric).}
-#'   \item{lo80, hi80}{80\% prediction interval (numeric).}
-#'   \item{lo95, hi95}{95\% prediction interval (numeric).}
+#'   \item{lo80, hi80}{80% prediction interval (numeric).}
+#'   \item{lo95, hi95}{95% prediction interval (numeric).}
 #' }
 #'
 #' @details
