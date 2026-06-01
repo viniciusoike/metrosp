@@ -36,42 +36,20 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0.0" id="metrosp-100">metrosp 1.0.0<a class="anchor" aria-label="anchor" href="#metrosp-100"></a></h2><p class="text-muted">CRAN release: 2026-05-05</p>
+<h2 class="pkg-version" data-toc-text="development version" id="metrosp-development-version">metrosp (development version)<a class="anchor" aria-label="anchor" href="#metrosp-development-version"></a></h2>
 <div class="section level3">
-<h3 id="new-datasets-1-0-0">New datasets<a class="anchor" aria-label="anchor" href="#new-datasets-1-0-0"></a></h3>
-<ul><li>
-<code>station_daily</code>: Daily passenger entries by station for Lines 1, 2, 3, and 15 (2020–2025).</li>
-<li>
-<code>lines</code>: Spatial line geometries for all METRO SP and CPTM commuter train lines, covering both currently operating and planned routes (sf, EPSG:4326). Replaces the previous separate <code>metro_lines_geo</code>, <code>train_lines_geo</code>, and <code>train_lines</code> objects.</li>
-<li>
-<code>stations</code>: Spatial point locations for all METRO SP and CPTM stations, covering current and planned stations (sf, EPSG:4326). Replaces the previous separate <code>metro_stations_geo</code> and <code>train_stations_geo</code> objects.</li>
+<h3 id="data-pipeline-development-version">Data pipeline<a class="anchor" aria-label="anchor" href="#data-pipeline-development-version"></a></h3>
+<ul><li>The <code>data-raw/</code> ETL pipeline can now be run as a <a href="https://docs.ropensci.org/targets/" class="external-link">targets</a> pipeline (<code><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">targets::tar_make()</a></code>), replacing the flag-driven <code>run_pipeline.R</code> orchestrator. Pipeline functions live in <code>data-raw/R/</code>; the legacy scripts remain and produce identical output. See <code>CLAUDE.md</code> for the workflow.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-datasets-continued-1-0-0">New datasets (continued)<a class="anchor" aria-label="anchor" href="#new-datasets-continued-1-0-0"></a></h3>
+<h3 id="datasets-development-version">Datasets<a class="anchor" aria-label="anchor" href="#datasets-development-version"></a></h3>
 <ul><li>
-<code>metro_lines</code>: Line reference table mapping line numbers to Portuguese and English color names (replaces the old spatial <code>metro_lines</code> object).</li>
-<li>
-<code>metro_colors</code>: Named character vector of official hex color codes for the six currently operating metro lines.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="breaking-changes-1-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-0-0"></a></h3>
-<ul><li>
-<code>metro_lines_geo</code>, <code>metro_stations_geo</code>, <code>train_lines</code>, <code>train_lines_geo</code>, and <code>train_stations_geo</code> have been removed. Use <code>lines</code> and <code>stations</code> instead, filtering on the <code>type</code> column (<code>"metro"</code> or <code>"train"</code>).</li>
-<li>The previous <code>metro_lines</code> spatial dataset has been replaced by a new <code>metro_lines</code> dimension table (non-spatial). Use <code>lines</code> for route geometries.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="other-changes-1-0-0">Other changes<a class="anchor" aria-label="anchor" href="#other-changes-1-0-0"></a></h3>
-<ul><li>
-<code>lines</code> and <code>stations</code> include a <code>type</code> column (<code>"metro"</code> / <code>"train"</code>) and a <code>status</code> column (<code>"current"</code> / <code>"future"</code>).</li>
-<li>Documentation updated throughout to reflect new dataset structure.</li>
+<code>metro_lines$line_number</code> and <code>station_daily$line_number</code> / <code>station_daily$year</code> are now <code>integer</code> (previously <code>double</code>), matching the other datasets. Values are unchanged.</li>
 </ul></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="metrosp-010">metrosp 0.1.0<a class="anchor" aria-label="anchor" href="#metrosp-010"></a></h2>
-<ul><li>Initial release.</li>
-<li>Datasets: <code>passengers_entrance</code>, <code>passengers_transported</code>, <code>station_averages</code>, <code>metro_lines</code>.</li>
-<li>Coverage: October 2017 through 2025.</li>
-<li>Data source: METRO SP transparency portal.</li>
+<h2 class="pkg-version" data-toc-text="1.0.0" id="metrosp-100">metrosp 1.0.0<a class="anchor" aria-label="anchor" href="#metrosp-100"></a></h2><p class="text-muted">CRAN release: 2026-05-05</p>
+<ul><li>Initial CRAN submission.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
