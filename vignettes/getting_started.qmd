@@ -127,7 +127,7 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
 
 ### Transported
 
-This dataset is identified by month (`date`), line (`line_number`, `line_name`), and metric (`metric_abb`, `metric`). The data is in tidy format. It has the same columns as `passengers_entrance` which is **thousands of passengers**. Also, this dataset currently only includes data on the METRÔ operated system. In the future, this dataset may be expanded to include lines 4 and 5.
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), and metric (`metric_abb`, `metric`). The data is in tidy format. It has the same columns as `passengers_entrance` and values are in **individual passengers**. Also, this dataset currently only includes data on the METRÔ operated system. In the future, this dataset may be expanded to include lines 4 and 5.
 
 ```{r}
 glimpse(passengers_transported)
