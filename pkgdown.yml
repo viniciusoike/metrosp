@@ -2,8 +2,9 @@ pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
+  data-dictionary: data-dictionary.html
   getting_started: getting_started.html
-last_built: 2026-06-01T00:01Z
+last_built: 2026-06-03T17:24Z
 urls:
   reference: https://viniciusoike.github.io/metrosp/reference
   article: https://viniciusoike.github.io/metrosp/articles
