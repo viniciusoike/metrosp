@@ -11,6 +11,8 @@ library(metrosp)
 library(sf)
 library(htmltools)
 
+source("shared.R", local = TRUE)
+
 # Forecasts are pre-computed by data-raw/build_forecasts.R and shipped with
 # the package; gracefully degrade if the datasets are missing.
 HAS_FORECASTS <- tryCatch(
@@ -33,43 +35,11 @@ forecast_model_labels <- c(
 
 # Metadata ---------------------------------------------------------------------
 
-line_colors <- c(
-  "1" = "#171796",
-  "2" = "#007A5E",
-  "3" = "#ED2E38",
-  "4" = "#B89000",
-  "5" = "#874ABF",
-  "15" = "#6B6B68"
-)
-
-line_labels <- c(
-  "1" = "Linha 1 — Azul",
-  "2" = "Linha 2 — Verde",
-  "3" = "Linha 3 — Vermelha",
-  "4" = "Linha 4 — Amarela",
-  "5" = "Linha 5 — Lilás",
-  "15" = "Linha 15 — Prata"
-)
-
-line_short <- c(
-  "1" = "Azul",
-  "2" = "Verde",
-  "3" = "Vermelha",
-  "4" = "Amarela",
-  "5" = "Lilás",
-  "15" = "Prata"
-)
-
-LINES <- names(line_labels)
-
 covid_start <- as.Date("2020-03-01")
 covid_end <- as.Date("2021-06-30")
 
 # Drop noisy 2017 (partial) and early-2018 tail to focus on stable history
 hero_start <- as.Date("2018-06-01")
-
-# Brand color for KPIs and accents
-metro_primary <- "#171796"
 
 day_abb <- c("Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom")
 pt_months_full <- c(
@@ -100,22 +70,6 @@ pt_weekdays <- c(
 
 if (!exists("%||%")) {
   `%||%` <- function(a, b) if (is.null(a)) b else a
-}
-
-fmt_n <- function(x) {
-  if (!length(x) || all(is.na(x))) {
-    return("—")
-  }
-  x <- x[!is.na(x)][1]
-  if (x >= 1e9) {
-    sprintf("%.2f bi", x / 1e9)
-  } else if (x >= 1e6) {
-    sprintf("%.1f M", x / 1e6)
-  } else if (x >= 1e3) {
-    sprintf("%.1f K", x / 1e3)
-  } else {
-    formatC(round(x), format = "d", big.mark = ".")
-  }
 }
 
 fmt_n_full <- function(x) formatC(round(x), format = "d", big.mark = ".")
@@ -433,23 +387,6 @@ sf_metro_stations <- tryCatch(
   error = function(e) NULL
 )
 
-# Theme ------------------------------------------------------------------------
-
-metro_theme <- bs_theme(
-  version = 5,
-  bootswatch = NULL,
-  primary = metro_primary,
-  secondary = "#4A4F6B",
-  success = "#2E7D32",
-  danger = "#C62828",
-  info = "#1565C0",
-  warning = "#B89000",
-  base_font = font_google("Inter", local = FALSE),
-  heading_font = font_google("Inter", local = FALSE),
-  bg = "#F7F8FB",
-  fg = "#0E1130"
-)
-
 # echarts4r theme (registered once at startup) ---------------------------------
 
 echart_theme <- list(
@@ -506,32 +443,6 @@ covid_mark_area <- list(
     ),
     list(xAxis = format(covid_end))
   )
-)
-
-js_axis_label_compact <- htmlwidgets::JS(
-  "function(v) {",
-  "  if (v >= 1e9) return (v/1e9).toFixed(1) + 'bi';",
-  "  if (v >= 1e6) return (v/1e6).toFixed(1) + 'M';",
-  "  if (v >= 1e3) return Math.round(v/1e3) + 'K';",
-  "  return v;",
-  "}"
-)
-
-js_tooltip_pt_br <- htmlwidgets::JS(
-  "function(params) {",
-  "  if (!Array.isArray(params)) params = [params];",
-  "  var t = '<div style=\"font-weight:600;margin-bottom:4px;color:#0E1130\">' + params[0].axisValueLabel + '</div>';",
-  "  params.forEach(function(p) {",
-  "    var v = (typeof p.value === 'object' ? p.value[1] : p.value);",
-  "    var label = v != null ? v.toLocaleString('pt-BR', {maximumFractionDigits: 1}) : '—';",
-  "    t += '<div style=\"display:flex;align-items:center;gap:6px;\">';",
-  "    t += '<span style=\"display:inline-block;width:8px;height:8px;border-radius:50%;background:' + p.color + '\"></span>';",
-  "    t += '<span style=\"color:#4A4F6B\">' + p.seriesName + '</span>';",
-  "    t += '<span style=\"margin-left:auto;font-weight:600;color:#0E1130\">' + label + '</span>';",
-  "    t += '</div>';",
-  "  });",
-  "  return t;",
-  "}"
 )
 
 # UI ---------------------------------------------------------------------------
