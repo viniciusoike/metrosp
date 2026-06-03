@@ -17,6 +17,8 @@
 #   2. `source("data-raw/build_station_inauguration.R")`.
 #   3. `devtools::document()` to refresh the Rd file.
 
+# OBS: still experimental and building
+
 library(dplyr)
 library(readr)
 library(tidyr)

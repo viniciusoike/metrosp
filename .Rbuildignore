@@ -22,3 +22,4 @@
 ^CLAUDE\.md$
 ^_targets\.yaml$
 ^_targets$
+^CITATION\.cff$
