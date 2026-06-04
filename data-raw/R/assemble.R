@@ -54,6 +54,7 @@ assemble_entrance <- function(psg_17_19, entrance_current, entrance_4_5) {
     mutate(value = value * 1000)
 
   passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
+    drop_trailing_na(value) |>
     select(all_of(.cols_passengers)) |>
     arrange(date, line_number, metric_abb)
 
@@ -85,6 +86,7 @@ assemble_transported <- function(psg_17_19, transported_current) {
     left_join(metro_lines, by = join_by(line_number))
 
   passengers_transported <- bind_rows(transported_17_19, transported_20) |>
+    drop_trailing_na(value) |>
     select(all_of(.cols_passengers)) |>
     arrange(date, line_number, metric_abb)
 
@@ -155,6 +157,7 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
     left_join(metro_lines, join_by(line_number))
 
   station_averages <- station_averages |>
+    drop_trailing_na(avg_passenger) |>
     select(all_of(.cols_station_avg_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>
@@ -185,6 +188,7 @@ assemble_daily <- function(daily_current, daily_4_5) {
   station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 
   station_daily <- station_daily |>
+    drop_trailing_na(passengers) |>
     select(all_of(.cols_station_daily_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>

@@ -7,6 +7,22 @@
 
 library(dplyr, warn.conflicts = FALSE)
 
+# --- Trailing-NA trimmer -----------------------------------------------------
+
+#' Drop rows beyond the last observed (non-NA) date per line.
+#' Preserves legitimate interior NAs (e.g. station outages) while removing
+#' unpublished trailing months/days that arrive as all-NA from the source.
+drop_trailing_na <- function(data, value_col) {
+  value_col <- rlang::enquo(value_col)
+  max_date <- data |>
+    filter(!is.na(!!value_col)) |>
+    summarise(max_date = max(date, na.rm = TRUE), .by = line_number)
+  data |>
+    left_join(max_date, by = "line_number") |>
+    filter(date <= max_date) |>
+    select(-max_date)
+}
+
 # --- Path helpers ------------------------------------------------------------
 
 #' List years available in the raw CSV directory.
