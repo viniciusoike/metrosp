@@ -88,7 +88,7 @@ Monthly passenger entries aggregated by metro line and day-type metric.
 ``` r
 
 dplyr::glimpse(passengers_entrance)
-#> Rows: 4,030
+#> Rows: 3,805
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -143,7 +143,7 @@ metric. Same structure as `passengers_entrance`.
 ``` r
 
 dplyr::glimpse(passengers_transported)
-#> Rows: 2,850
+#> Rows: 2,605
 #> Columns: 9
 #> $ date         <date> 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-…
 #> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
@@ -415,10 +415,13 @@ Only October through December 2017 is available. The METRO transparency
 portal does not provide machine-readable data before October 2017
 (earlier months exist only as PDFs).
 
-### Trailing NA values
+### Trailing months and NA values
 
-The most recent months may have `NA` values for some lines or metrics
-when data has not yet been published by the source.
+Months (or days, for `station_daily`) beyond the last published data
+point for each line are trimmed during assembly, so the datasets do not
+contain unpublished trailing `NA` rows. Interior `NA` values — for
+example, days when Line 15 (Silver) was not operating — are preserved
+as-is.
 
 ### Source attribution
 

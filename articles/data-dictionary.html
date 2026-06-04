@@ -166,7 +166,7 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,030</span></span>
+<span><span class="co">#&gt; Rows: 3,805</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
@@ -337,7 +337,7 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_transported</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,850</span></span>
+<span><span class="co">#&gt; Rows: 2,605</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …</span></span>
@@ -781,9 +781,9 @@
 </section><section class="level2"><h3 id="partial-year">2017 partial year<a class="anchor" aria-label="anchor" href="#partial-year"></a>
 </h3>
 <p>Only October through December 2017 is available. The METRO transparency portal does not provide machine-readable data before October 2017 (earlier months exist only as PDFs).</p>
-</section><section class="level2"><h3 id="trailing-na-values">Trailing NA values<a class="anchor" aria-label="anchor" href="#trailing-na-values"></a>
+</section><section class="level2"><h3 id="trailing-months-and-na-values">Trailing months and NA values<a class="anchor" aria-label="anchor" href="#trailing-months-and-na-values"></a>
 </h3>
-<p>The most recent months may have <code>NA</code> values for some lines or metrics when data has not yet been published by the source.</p>
+<p>Months (or days, for <code>station_daily</code>) beyond the last published data point for each line are trimmed during assembly, so the datasets do not contain unpublished trailing <code>NA</code> rows. Interior <code>NA</code> values — for example, days when Line 15 (Silver) was not operating — are preserved as-is.</p>
 </section><section class="level2"><h3 id="source-attribution">Source attribution<a class="anchor" aria-label="anchor" href="#source-attribution"></a>
 </h3>
 <p>All METRO portal reports are credited to:</p>

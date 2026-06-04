@@ -132,7 +132,7 @@
 <li>
 <strong>2017</strong>: Only Oct-Dec available (not full year)</li>
 <li>
-<strong>2025</strong>: Trailing months may have NA values (data not yet published)</li>
+<strong>Trailing months</strong>: Months/days beyond the last published data point per line are trimmed during assembly (<code>drop_trailing_na()</code> in <code>helpers.R</code>). Interior NAs (e.g. station outages) are preserved.</li>
 <li>
 <strong>Station metrics</strong>: Only weekday average (mdu) available at station level</li>
 <li>
@@ -146,7 +146,7 @@
 <p>Routine data update (the common case — fetch new METRO + Lines 4/5 data):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">METROSP_DOWNLOAD</span><span class="op">=</span>true <span class="va">METROSP_DATAVERSE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::document()'</span>   <span class="co"># outside the graph; refreshes man/*.Rd</span></span></code></pre></div>
-<p>Flags are env vars, replacing the old <code>run_pipeline.R</code> booleans. Each gates a side-effecting refresh that rewrites the committed CSVs in place; unset (default off) means rebuild offline from those CSVs:</p>
+<p>Flags are env vars gated with <code><a href="https://docs.ropensci.org/tarchetypes/reference/tar_force.html" class="external-link">tarchetypes::tar_force()</a></code>. Each controls a side-effecting refresh that rewrites the committed CSVs in place. When unset (default off) the cached result is reused and downstream targets only rebuild if their own inputs changed:</p>
 <table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Env var</th>
 <th>Default</th>
 <th>Effect when <code>true</code>
@@ -160,15 +160,16 @@
 </tr><tr><td><code>METROSP_DATAVERSE</code></td>
 <td>off</td>
 <td>Re-fetch Lines 4/5 from Insper Dataverse</td>
-</tr><tr><td><code>METROSP_GEOSAMPA</code></td>
-<td>off</td>
-<td>Re-read GeoSampa GPKGs (slow <code>sf</code>)</td>
 </tr></tbody></table><p>A column/definition change needs no flag: edit the relevant <code>assemble_*()</code> or <code>dims.R</code> function and <code>targets</code> rebuilds the affected datasets + descendants. Inspect with <code><a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link">targets::tar_visnetwork()</a></code>; read a result with <code>tar_read(&lt;name&gt;)</code>.</p>
+<p>You can also set flags from within R instead of the shell:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>METROSP_DOWNLOAD <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span></span>
+<span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">tar_make</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Legacy path (still present, not retired):</strong> <code>source("data-raw/run_pipeline.R")</code> with its in-file boolean flags. Both paths produce byte-identical <code>data/*.rda</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="quick-commands">Quick Commands<a class="anchor" aria-label="anchor" href="#quick-commands"></a></h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span>  <span class="co"># regenerate man pages</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span>     <span class="co"># run CRAN checks</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>      <span class="co"># run tests</span></span>
