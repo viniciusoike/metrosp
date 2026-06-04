@@ -1,7 +1,6 @@
 # _targets.R
 # -----------------------------------------------------------------------------
-# targets pipeline for the metrosp data package. Replaces the flag-driven
-# source() orchestrator (run_pipeline.R). Run from the repo root:
+# targets pipeline for the metrosp data package. Run from the repo root:
 #
 #   Rscript -e 'targets::tar_make()'                 # incremental rebuild
 #   METROSP_DOWNLOAD=true METROSP_DATAVERSE=true \
@@ -14,80 +13,63 @@
 # Pipeline boundary: the graph assembles data/*.rda from the committed
 # intermediate CSVs (data-raw/processed/), the GeoSampa GPKGs, and the
 # station_inauguration.csv. The expensive/network stages — METRO download,
-# 2017-2019 reimport, Lines 4/5 Dataverse fetch — are GATED refreshes that run
-# only when their flag is set, then rewrite the committed CSVs in place (the
-# targets equivalent of the old download/historical/dataverse booleans).
+# 2017-2019 reimport, Lines 4/5 Dataverse fetch — are gated with
+# tarchetypes::tar_force(). Each only re-runs when its env-var flag is TRUE;
+# otherwise the cached result is reused and downstream targets skip unless
+# their own inputs changed.
 #
-# Gating idiom: each flag is a global (from an env var). A gated stage branches
-# on its flag inside the command — when off it is a cheap no-op returning the
-# existing path/NULL; when on it does the network/IO work. Because the flag is a
-# tracked dependency of the command, flipping it invalidates the stage and its
-# descendants. (We deliberately do NOT use tar_cue(mode = "never"): a
-# never-built never-cued target would leave downstream targets with no value.)
+# First-build note: tar_force() targets always run their command once (to
+# populate the store). On a fresh clone this means the first tar_make() will
+# attempt network calls. Set flags explicitly on first build or seed the store
+# with tar_make(names = c(...)) for the offline-only targets.
 #
 # Forecasts (build_forecasts.R) are intentionally out of scope for now.
 # -----------------------------------------------------------------------------
 
 library(targets)
+library(tarchetypes)
 
 tar_option_set(
   packages = c(
     "dplyr", "tidyr", "stringr", "readr", "purrr", "janitor", "glue",
-    "lubridate", "sf", "fs", "cli", "rlang", "here"
+    "lubridate", "sf", "fs", "cli", "rlang", "here", "bizdays"
   )
 )
 
-# Load all extracted functions + dimension tables.
 tar_source("data-raw/R")
 
-# --- Flags (env-var driven; defaults mirror the old run_pipeline.R) ----------
-flag <- function(name, default = FALSE) {
-  val <- Sys.getenv(name, unset = NA_character_)
-  if (is.na(val) || val == "") {
-    return(default)
-  }
-  isTRUE(as.logical(val))
+# --- Helpers -----------------------------------------------------------------
+refresh_flag <- function(name) {
+  isTRUE(as.logical(Sys.getenv(name, unset = "FALSE")))
 }
-
-download   <- flag("METROSP_DOWNLOAD")
-historical <- flag("METROSP_HISTORICAL")
-dataverse  <- flag("METROSP_DATAVERSE")
-geosampa   <- flag("METROSP_GEOSAMPA")
 
 proc <- function(f) here::here("data-raw/processed", f)
 
 list(
-  # --- Gated source refreshes ------------------------------------------------
-  # Each branches on its flag: a cheap no-op when off, the real work when on.
-  # download_metro() refreshes the raw csv/ dir in place and returns its path.
-  tar_target(
+  # --- Gated source refreshes (tar_force) ------------------------------------
+  # tar_force() caches the result and only re-runs when force = TRUE.
+  # Downstream targets rebuild only if the refreshed output actually changed.
+  tar_force(
     metro_csv_dir,
-    if (download) {
-      download_metro()
-    } else {
-      here::here("data-raw/metro_sp/metro/csv")
-    }
+    download_metro(),
+    force = refresh_flag("METROSP_DOWNLOAD")
   ),
-  # Regenerate the 2017-2019 committed CSVs (both at once) when historical=TRUE.
-  tar_target(
+  tar_force(
     historic_refresh,
-    if (historical) {
+    {
       refresh_historic_passengers()
       refresh_historic_averages()
       TRUE
-    } else {
-      FALSE
-    }
+    },
+    force = refresh_flag("METROSP_HISTORICAL")
   ),
-  # Regenerate the three Lines 4/5 committed CSVs when dataverse=TRUE.
-  tar_target(
+  tar_force(
     dataverse_refresh,
-    if (dataverse) {
+    {
       refresh_dataverse()
       TRUE
-    } else {
-      FALSE
-    }
+    },
+    force = refresh_flag("METROSP_DATAVERSE")
   ),
 
   # --- Tracked file inputs (committed CSVs; re-hash after a refresh) ----------
