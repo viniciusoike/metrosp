@@ -54,6 +54,8 @@ Companhia do Metropolitano de São Paulo (METRO SP).
 Only the weekday average (mdu) metric is available at the station level.
 For line-level data with all five metrics, see
 [`passengers_entrance`](https://viniciusoike.github.io/metrosp/reference/passengers_entrance.md).
+Trailing months whose data has not yet been published by the source are
+excluded (rows with `NA` values are dropped during assembly).
 
 Station coverage by line and source:
 

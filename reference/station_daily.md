@@ -74,7 +74,9 @@ Station coverage and date range by line:
 
 Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
 Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
-separately for each line.
+separately for each line. Days beyond the last published data point for
+each line are trimmed during assembly; interior `NA`s (e.g. operational
+outages) are preserved.
 
 ## See also
 

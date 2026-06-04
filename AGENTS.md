@@ -48,7 +48,8 @@ scripts keep a `_2017_2019` suffix
 (2020-present) have no period suffix
 (e.g. `import_passengers_entrance.R`) - Lines 4/5 (Insper Dataverse):
 `import_lines_4_5_dataverse.R` - Derived datasets use a `build_` prefix
-(`build_forecasts.R`, `build_station_inauguration.R`)
+(`build_forecasts.R`, `build_station_inauguration.R`,
+`build_calendar_spo.R`)
 
 ## Exported Datasets
 
@@ -65,6 +66,7 @@ scripts keep a `_2017_2019` suffix
 | `forecasts` | 6-month-ahead entrance forecasts per line (ARIMA/ETS/STLF, 80/95% intervals) |
 | `forecast_accuracy` | Rolling-origin CV error (MAPE/RMSE/MAE) per line+model; `best` flags winner |
 | `station_inauguration` | Station opening dates + ramp-up window flag (manually compiled) |
+| `calendar_spo` | São Paulo holiday/business-day calendar (2012–2030, national/state/municipal) |
 
 ## Key Rules
 

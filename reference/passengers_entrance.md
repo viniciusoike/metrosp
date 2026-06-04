@@ -90,6 +90,10 @@ Metrics:
 
 - `max`: Daily maximum (Máxima Diária).
 
+Months beyond the last published data point for each line are trimmed
+during assembly; interior `NA`s (e.g. operational outages) are
+preserved.
+
 ## See also
 
 [`passengers_transported`](https://viniciusoike.github.io/metrosp/reference/passengers_transported.md)

@@ -111,6 +111,8 @@ lines
 
 ## All functions
 
+- [`calendar_spo`](https://viniciusoike.github.io/metrosp/reference/calendar_spo.md)
+  : São Paulo Holiday and Business-Day Calendar
 - [`forecast_accuracy`](https://viniciusoike.github.io/metrosp/reference/forecast_accuracy.md)
   : Cross-Validated Accuracy of Forecast Models by Line
 - [`forecasts`](https://viniciusoike.github.io/metrosp/reference/forecasts.md)
