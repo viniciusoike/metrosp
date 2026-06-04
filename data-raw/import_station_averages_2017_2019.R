@@ -79,8 +79,8 @@ read_clean_stn_avg <- function(path) {
     filter(!is.na(entradas)) |>
     left_join(df_code, by = join_by(code)) |>
     mutate(
-      name_station = str_remove(estacao, "¹|2|²|³|\\*"),
-      name_station = str_remove(name_station, "[0-9]$"),
+      name_station = str_remove(estacao, " *\\([0-9¹²³*]*\\)|[¹²³*]"),
+      name_station = str_squish(name_station),
       metric_abb = "mdu"
     ) |>
     select(line_name_full, name_station, metric_abb, value = entradas)
