@@ -33,7 +33,9 @@ Insper Dataverse.
 \details{
 Only the weekday average (mdu) metric is available at the station level.
 For line-level data with all five metrics, see
-\code{\link{passengers_entrance}}.
+\code{\link{passengers_entrance}}. Trailing months whose data has not yet
+been published by the source are excluded (rows with \code{NA} values are
+dropped during assembly).
 
 Station coverage by line and source:
 \itemize{

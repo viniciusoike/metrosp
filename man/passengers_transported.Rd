@@ -58,6 +58,10 @@ Metrics:
 (Média dos Domingos).
 \item \code{max}: Daily maximum (Máxima Diária).
 }
+
+Months beyond the last published data point for each line are trimmed
+during assembly; interior \code{NA}s (e.g. operational outages) are
+preserved.
 }
 \seealso{
 \code{\link{passengers_entrance}} for entry counts,
