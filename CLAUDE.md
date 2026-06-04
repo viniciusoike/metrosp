@@ -85,7 +85,7 @@ Import scripts follow `import_{dataset}[_{period}].R`:
 - **Lines 4/5 — passengers_transported**: Not available in Dataverse source; only entrance data is covered
 - **Lines 4/5 — station_code**: These lines have no station code in any source (`station_code = NA`)
 - **2017**: Only Oct-Dec available (not full year)
-- **2025**: Trailing months may have NA values (data not yet published)
+- **Trailing months**: Months/days beyond the last published data point per line are trimmed during assembly (`drop_trailing_na()` in `helpers.R`). Interior NAs (e.g. station outages) are preserved.
 - **Station metrics**: Only weekday average (mdu) available at station level
 - **`forecasts` / `forecast_accuracy`**: Derived from `passengers_entrance` total by `build_forecasts.R`; require the `forecast` package (in Suggests). Box-Cox back-transform over the COVID dip can blow up CV error, so MAPE > 200% is capped to `NA` and treated as model failure.
 - **`station_inauguration`**: Stations open before the data window have `inauguration_date = NA` and `pre_data_window = TRUE`; `ramp_up_end` = opening + 180 days marks the period to exclude from baseline comparisons. Dates need manual `verified = TRUE` after cross-checking sources.
@@ -105,20 +105,26 @@ METROSP_DOWNLOAD=true METROSP_DATAVERSE=true Rscript -e 'targets::tar_make()'
 Rscript -e 'devtools::document()'   # outside the graph; refreshes man/*.Rd
 ```
 
-Flags are env vars, replacing the old `run_pipeline.R` booleans. Each gates a
-side-effecting refresh that rewrites the committed CSVs in place; unset (default
-off) means rebuild offline from those CSVs:
+Flags are env vars gated with `tarchetypes::tar_force()`. Each controls a
+side-effecting refresh that rewrites the committed CSVs in place. When unset
+(default off) the cached result is reused and downstream targets only rebuild
+if their own inputs changed:
 
 | Env var | Default | Effect when `true` |
 |---|---|---|
 | `METROSP_DOWNLOAD` | off | Scrape METRO portal → refresh raw CSVs → re-import current-era |
 | `METROSP_HISTORICAL` | off | Re-import 2017-2019 from raw nested folders |
 | `METROSP_DATAVERSE` | off | Re-fetch Lines 4/5 from Insper Dataverse |
-| `METROSP_GEOSAMPA` | off | Re-read GeoSampa GPKGs (slow `sf`) |
 
 A column/definition change needs no flag: edit the relevant `assemble_*()` or
 `dims.R` function and `targets` rebuilds the affected datasets + descendants.
 Inspect with `targets::tar_visnetwork()`; read a result with `tar_read(<name>)`.
+
+You can also set flags from within R instead of the shell:
+```r
+Sys.setenv(METROSP_DOWNLOAD = "true")
+targets::tar_make()
+```
 
 **Legacy path (still present, not retired):** `source("data-raw/run_pipeline.R")`
 with its in-file boolean flags. Both paths produce byte-identical `data/*.rda`.

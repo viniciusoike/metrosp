@@ -52,6 +52,10 @@
 #'   \item \code{max}: Daily maximum (Máxima Diária).
 #' }
 #'
+#' Months beyond the last published data point for each line are trimmed
+#' during assembly; interior \code{NA}s (e.g. operational outages) are
+#' preserved.
+#'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
@@ -107,6 +111,10 @@
 #'   \item \code{max}: Daily maximum (Máxima Diária).
 #' }
 #'
+#' Months beyond the last published data point for each line are trimmed
+#' during assembly; interior \code{NA}s (e.g. operational outages) are
+#' preserved.
+#'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
@@ -136,7 +144,9 @@
 #' @details
 #' Only the weekday average (mdu) metric is available at the station level.
 #' For line-level data with all five metrics, see
-#' \code{\link{passengers_entrance}}.
+#' \code{\link{passengers_entrance}}. Trailing months whose data has not yet
+#' been published by the source are excluded (rows with \code{NA} values are
+#' dropped during assembly).
 #'
 #' Station coverage by line and source:
 #' \itemize{
@@ -198,7 +208,9 @@
 #'
 #' Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
 #' Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
-#' separately for each line.
+#' separately for each line. Days beyond the last published data point for each line are trimmed
+#' during assembly; interior \code{NA}s (e.g. operational outages) are
+#' preserved.
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}

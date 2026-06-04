@@ -381,10 +381,12 @@ Only October through December 2017 is available. The METRO transparency
 portal does not provide machine-readable data before October 2017 (earlier
 months exist only as PDFs).
 
-## Trailing NA values
+## Trailing months and NA values
 
-The most recent months may have `NA` values for some lines or metrics when
-data has not yet been published by the source.
+Months (or days, for `station_daily`) beyond the last published data point
+for each line are trimmed during assembly, so the datasets do not contain
+unpublished trailing `NA` rows. Interior `NA` values --- for example, days
+when Line 15 (Silver) was not operating --- are preserved as-is.
 
 ## Source attribution
 
