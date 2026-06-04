@@ -156,6 +156,9 @@ list(
     build_station_inauguration(inauguration_csv, station_daily, station_averages)
   ),
 
+  # --- Calendar ---------------------------------------------------------------
+  tar_target(calendar_spo, build_calendar_spo()),
+
   # --- Reference datasets (surfaced from dims.R) -----------------------------
   tar_target(metro_lines_out, metro_lines),
   tar_target(metro_colors_out, metro_colors),
@@ -172,7 +175,8 @@ list(
       stations = stations,
       metro_lines = metro_lines_out,
       metro_colors = metro_colors_out,
-      station_inauguration = station_inauguration
+      station_inauguration = station_inauguration,
+      calendar_spo = calendar_spo
     ),
     cue = tar_cue(mode = "always")
   )

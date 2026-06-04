@@ -462,3 +462,64 @@
 #' @seealso \code{\link{stations}} for spatial point locations,
 #'   \code{\link{station_averages}} for monthly weekday averages.
 "station_inauguration"
+
+#' São Paulo Holiday and Business-Day Calendar
+#'
+#' A daily calendar for São Paulo (city) covering 2012–2030, classifying each
+#' date as a holiday or business day. Includes national, state, and municipal
+#' holidays observed in São Paulo, with flags for pontos facultativos and
+#' feriadões (extended holiday weekends).
+#'
+#' @format A data frame with one row per day and the following columns:
+#' \describe{
+#'   \item{date}{Calendar date (Date).}
+#'   \item{year}{Calendar year (integer).}
+#'   \item{weekday}{Day of week from \code{lubridate::wday()}: 1 = Sunday,
+#'     2 = Monday, \ldots, 7 = Saturday (integer).}
+#'   \item{is_weekend}{\code{TRUE} for Saturdays and Sundays (logical).}
+#'   \item{is_holiday}{\code{TRUE} when the date is a gazetted holiday
+#'     at any scope (logical).}
+#'   \item{is_business_day}{\code{TRUE} when the date is neither a weekend
+#'     nor a holiday (logical).}
+#'   \item{holiday_name}{Name of the holiday in Portuguese (character).
+#'     \code{NA} on non-holiday dates.}
+#'   \item{holiday_scope}{Legislative scope of the holiday (character).
+#'     One of \code{"national"}, \code{"state"}, or \code{"municipal"};
+#'     \code{NA} on non-holiday dates.}
+#'   \item{is_ponto_facultativo}{\code{TRUE} for holidays that are technically
+#'     optional at the federal level (Carnaval, Corpus Christi) but observed
+#'     as holidays in São Paulo (logical).}
+#'   \item{is_feriadao}{\code{TRUE} when a holiday falls on Monday, Tuesday,
+#'     Thursday, or Friday, creating a potential extended weekend with the
+#'     adjacent Saturday/Sunday (logical). Bridge days are not assumed —
+#'     only the gazetted holiday is flagged.}
+#' }
+#'
+#' @details
+#' The calendar covers the full date range of the
+#' \code{\link{station_daily}} dataset (Lines 4/5 from January 2012) and
+#' extends through 2030 for forecasting use.
+#'
+#' Holiday definitions:
+#' \itemize{
+#'   \item \strong{National fixed}: Confraternização Universal (Jan 1),
+#'     Tiradentes (Apr 21), Dia do Trabalho (May 1), Independência do
+#'     Brasil (Sep 7), Nossa Senhora Aparecida (Oct 12), Finados (Nov 2),
+#'     Proclamação da República (Nov 15), Natal (Dec 25).
+#'   \item \strong{National moveable}: Sexta-Feira Santa (Easter \minus 2).
+#'   \item \strong{National pontos facultativos}: Carnaval segunda-feira
+#'     (Easter \minus 48), Carnaval terça-feira (Easter \minus 47),
+#'     Corpus Christi (Easter + 60). These are optional at the federal
+#'     level but observed in São Paulo.
+#'   \item \strong{State}: Revolução Constitucionalista (Jul 9).
+#'   \item \strong{Municipal}: Aniversário de São Paulo (Jan 25), Dia da
+#'     Consciência Negra (Nov 20; municipal through 2023, national from
+#'     2024 per Lei 14.759/2023).
+#' }
+#'
+#' Easter dates are computed algorithmically (Anonymous Gregorian algorithm)
+#' with no external dependency.
+#'
+#' @seealso \code{\link{station_daily}} for daily passenger data that can be
+#'   joined on \code{date}.
+"calendar_spo"
