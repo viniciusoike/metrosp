@@ -75,7 +75,7 @@ station_inauguration <- known_stations |>
   ) |>
   arrange(line_number, station_name)
 
-usethis::use_data(station_inauguration, overwrite = TRUE)
+# usethis::use_data(station_inauguration, overwrite = TRUE)
 
 cli::cli_alert_success(sprintf(
   "Built station_inauguration: %d stations (%d with known opening date, %d verified)",
