@@ -24,7 +24,7 @@ if (!HAS_TRENDSERIES) {
 
 # Constants ----
 
-DATA_START <- as.Date("2019-01-01")
+DEFAULT_START <- as.Date("2019-01-01")
 
 # Pre-build data ----
 
@@ -32,8 +32,7 @@ DATA_START <- as.Date("2019-01-01")
 ent <- metrosp::passengers_entrance |>
   filter(
     metric_abb == "total",
-    line_number %in% as.integer(LINES),
-    date >= DATA_START
+    line_number %in% as.integer(LINES)
   ) |>
   mutate(line_number = as.character(line_number)) |>
   select(date, line_number, value, year)
@@ -42,22 +41,19 @@ ent <- metrosp::passengers_entrance |>
 trans <- metrosp::passengers_transported |>
   filter(
     metric_abb == "total",
-    line_number %in% as.integer(LINES),
-    date >= DATA_START
+    line_number %in% as.integer(LINES)
   ) |>
   mutate(line_number = as.character(line_number)) |>
   select(date, line_number, value, year)
 
 ## Station averages (monthly weekday avg) ----
 sta_avg <- metrosp::station_averages |>
-  filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
   select(date, line_number, station_name, value = avg_passenger, year)
 
 ## Station daily ----
 sta_daily <- metrosp::station_daily |>
-  filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
   select(date, line_number, station_name, value = passengers, year)
@@ -91,10 +87,10 @@ stations_by_line <- sta_avg |>
   arrange(line_number, station_name)
 
 ## Station demand for map markers ----
+sta_demand_cutoff <- max(sta_avg$date, na.rm = TRUE) - 365
 sta_demand_map <- sta_avg |>
-  filter(!is.na(value)) |>
+  filter(!is.na(value), date > sta_demand_cutoff) |>
   group_by(line_number, station_name) |>
-  filter(date > max(date, na.rm = TRUE) - 365) |>
   summarise(avg = mean(value, na.rm = TRUE), .groups = "drop")
 
 sf_stations_map <- if (!is.null(sf_stations)) {
@@ -156,7 +152,14 @@ dataset_info <- list(
   stations_spatial = list(
     label = "Localização das Estações (espacial)",
     desc = "Ponto de cada estação de metrô em operação (POINT, WGS84).",
-    cols = c("station_name", "line_number", "line_name_pt", "type", "status", "geometry"),
+    cols = c(
+      "station_name",
+      "line_number",
+      "line_name_pt",
+      "type",
+      "status",
+      "geometry"
+    ),
     rows = if (!is.null(sf_stations)) nrow(sf_stations) else 0L,
     range = NULL,
     source = "GeoSampa"
@@ -206,12 +209,17 @@ download_card_configs <- list(
 
 make_download_card <- function(cfg) {
   info <- dataset_info[[cfg$key]]
-  if (cfg$spatial && info$rows == 0L) return(NULL)
+  if (cfg$spatial && info$rows == 0L) {
+    return(NULL)
+  }
   size_label <- if (cfg$spatial) "Feições: " else "Linhas: "
   size_est <- if (!cfg$spatial && info$rows > 0) {
     bytes <- info$rows * length(info$cols) * 12
-    if (bytes >= 1e6) sprintf("~%.1f MB", bytes / 1e6)
-    else sprintf("~%.0f KB", max(1, bytes / 1e3))
+    if (bytes >= 1e6) {
+      sprintf("~%.1f MB", bytes / 1e6)
+    } else {
+      sprintf("~%.0f KB", max(1, bytes / 1e3))
+    }
   }
   card(
     card_header(info$label),
@@ -219,18 +227,33 @@ make_download_card <- function(cfg) {
       tags$p(class = "small text-muted", info$desc),
       tags$p(
         class = "small",
-        tags$b("Colunas: "), paste(info$cols, collapse = ", "),
+        tags$b("Colunas: "),
+        paste(info$cols, collapse = ", "),
         tags$br(),
-        tags$b(size_label), format(info$rows, big.mark = "."),
-        if (!is.null(info$range)) tagList(tags$br(), tags$b("Período: "), info$range),
-        if (!is.null(size_est)) tagList(tags$br(), tags$b("Tamanho CSV: "), size_est),
+        tags$b(size_label),
+        format(info$rows, big.mark = "."),
+        if (!is.null(info$range)) {
+          tagList(tags$br(), tags$b("Período: "), info$range)
+        },
+        if (!is.null(size_est)) {
+          tagList(tags$br(), tags$b("Tamanho CSV: "), size_est)
+        },
         tags$br(),
-        tags$b("Fonte: "), info$source
+        tags$b("Fonte: "),
+        info$source
       ),
       div(
         class = "d-flex gap-2",
-        downloadButton(cfg$dl_ids[1], cfg$dl_labels[1], class = "btn-sm btn-outline-primary"),
-        downloadButton(cfg$dl_ids[2], cfg$dl_labels[2], class = "btn-sm btn-outline-primary")
+        downloadButton(
+          cfg$dl_ids[1],
+          cfg$dl_labels[1],
+          class = "btn-sm btn-outline-primary"
+        ),
+        downloadButton(
+          cfg$dl_ids[2],
+          cfg$dl_labels[2],
+          class = "btn-sm btn-outline-primary"
+        )
       )
     )
   )
@@ -240,297 +263,336 @@ make_download_card <- function(cfg) {
 
 ui <- function(request) {
   page_navbar(
-  id = "main_nav",
-  title = tags$span(
-    bs_icon("train-front-fill", size = "1.05em", class = "me-2"),
-    "Metro SP — Explorador de Dados"
-  ),
-  theme = metro_theme,
-  lang = "pt-BR",
-  fillable = FALSE,
-  header = tags$head(
-    tags$link(rel = "stylesheet", href = "styles.css"),
-    tags$meta(name = "viewport", content = "width=device-width, initial-scale=1")
-  ),
-
-  ## Tab: Linhas ----
-  nav_panel(
-    title = "Linhas",
-    icon = bs_icon("graph-up"),
-
-    layout_sidebar(
-      sidebar = sidebar(
-        title = div(class = "sidebar-title", "Filtros"),
-        width = 260,
-        selectizeInput(
-          "lines_line",
-          "Linhas",
-          choices = setNames(LINES, unname(line_labels)),
-          selected = "1",
-          multiple = TRUE,
-          options = list(
-            plugins = list("remove_button"),
-            placeholder = "Selecione uma ou mais linhas"
-          )
-        ),
-        selectInput(
-          "lines_metric",
-          "Variável",
-          choices = c(
-            "Embarques (entrada)" = "entrance",
-            "Passageiros transportados" = "transported"
-          ),
-          selected = "entrance"
-        ),
-        if (HAS_TRENDSERIES) conditionalPanel(
-          condition = "input.lines_line !== null && input.lines_line.length === 1",
-          checkboxInput("lines_trend", "Mostrar tendência (STL)", value = FALSE)
-        ),
-        hr(),
-        tags$p(
-          class = "text-muted small mb-0",
-          "Dados mensais a partir de janeiro de 2019. ",
-          if (HAS_TRENDSERIES) {
-            "Tendência extraída via decomposição STL robusta (s.window = 13)."
-          } else {
-            "Instale o pacote trendseries para habilitar tendência STL."
-          }
-        )
-      ),
-
-      card(
-        full_screen = TRUE,
-        card_header(
-          class = "d-flex align-items-center justify-content-between gap-2",
-          textOutput("lines_title", inline = TRUE),
-          downloadButton(
-            "dl_lines_csv",
-            tags$span(class = "visually-hidden", "Baixar CSV"),
-            icon = icon("download"),
-            class = "btn-sm btn-link p-1 download-icon",
-            title = "Baixar CSV"
-          )
-        ),
-        echarts4rOutput("lines_chart", height = "480px")
+    id = "main_nav",
+    title = tags$span(
+      bs_icon("train-front-fill", size = "1.05em", class = "me-2"),
+      "Metro SP — Explorador de Dados"
+    ),
+    theme = metro_theme,
+    lang = "pt-BR",
+    fillable = FALSE,
+    header = tags$head(
+      tags$link(rel = "stylesheet", href = "styles.css"),
+      tags$meta(
+        name = "viewport",
+        content = "width=device-width, initial-scale=1"
       )
-    )
-  ),
-
-  ## Tab: Estações ----
-  nav_panel(
-    title = "Estações",
-    icon = bs_icon("pin-map-fill"),
-
-    layout_sidebar(
-      sidebar = sidebar(
-        title = div(class = "sidebar-title", "Filtros"),
-        width = 260,
-        selectInput(
-          "sta_line",
-          "Linha",
-          choices = setNames(LINES, unname(line_labels)),
-          selected = "1"
-        ),
-        selectizeInput(
-          "sta_station",
-          "Estação",
-          choices = NULL,
-          options = list(placeholder = "Buscar estação...")
-        ),
-        if (HAS_TRENDSERIES) checkboxInput("sta_trend", "Mostrar tendência (STL)", value = FALSE),
-        hr(),
-        selectInput("sta_year", "Ano (série diária)", choices = NULL),
-        hr(),
-        tags$p(
-          class = "text-muted small mb-0",
-          "Dados a partir de janeiro de 2019. ",
-          if (HAS_TRENDSERIES) {
-            "Tendência STL disponível para dados mensais."
-          } else {
-            "Instale o pacote trendseries para habilitar tendência STL."
-          }
-        )
-      ),
-
-      uiOutput("sta_kpis"),
-
-      card(
-        full_screen = TRUE,
-        card_header(
-          class = "d-flex align-items-center justify-content-between gap-2",
-          textOutput("sta_monthly_title", inline = TRUE),
-          downloadButton(
-            "dl_sta_csv",
-            tags$span(class = "visually-hidden", "Baixar CSV"),
-            icon = icon("download"),
-            class = "btn-sm btn-link p-1 download-icon",
-            title = "Baixar CSV"
-          )
-        ),
-        echarts4rOutput("sta_chart", height = "380px")
-      ),
-
-      card(
-        full_screen = TRUE,
-        card_header(
-          class = "d-flex align-items-center justify-content-between gap-2",
-          textOutput("sta_daily_title", inline = TRUE),
-          downloadButton(
-            "dl_sta_daily_csv",
-            tags$span(class = "visually-hidden", "Baixar CSV"),
-            icon = icon("download"),
-            class = "btn-sm btn-link p-1 download-icon",
-            title = "Baixar CSV"
-          )
-        ),
-        echarts4rOutput("sta_daily_chart", height = "320px")
-      )
-    )
-  ),
-
-  ## Tab: Mapa ----
-  nav_panel(
-    title = "Mapa",
-    icon = bs_icon("geo-alt-fill"),
-
-    card(
-      full_screen = TRUE,
-      card_header(
-        "Linhas e estações do Metrô de São Paulo",
-        tags$small(
-          class = "ms-2 text-muted",
-          "círculos proporcionais à demanda — passe o mouse para ver detalhes"
-        )
-      ),
-      if (!is.null(sf_lines) || !is.null(sf_stations)) {
-        leafletOutput("map", height = "600px")
-      } else {
-        div(
-          class = "station-empty",
-          div(class = "empty-icon", bs_icon("geo-alt")),
-          div(class = "empty-title", "Dados espaciais indisponíveis"),
-          div(
-            class = "empty-text",
-            "Não foi possível carregar os dados geográficos de linhas e estações."
-          )
-        )
-      }
-    )
-  ),
-
-  ## Tab: Download ----
-  nav_panel(
-    title = "Download",
-    icon = bs_icon("download"),
-
-    div(
-      class = "section-label",
-      "Datasets disponíveis (a partir de 2019)"
     ),
 
-    layout_column_wrap(
-      width = 1 / 2,
-      heights_equal = "row",
-      !!!Filter(Negate(is.null), lapply(download_card_configs, make_download_card))
-    )
-  ),
+    ## Tab: Linhas ----
+    nav_panel(
+      title = "Linhas",
+      icon = bs_icon("graph-up"),
 
-  ## Tab: Sobre ----
-  nav_panel(
-    title = "Sobre",
-    icon = bs_icon("info-circle-fill"),
-
-    layout_column_wrap(
-      width = 1 / 2,
-
-      card(
-        card_header("Sobre o pacote metrosp"),
-        card_body(
-          tags$p(
-            "O ", tags$b("metrosp"), " é um pacote R de dados que disponibiliza ",
-            "informações de demanda de passageiros do Metrô de São Paulo (2017-2025). ",
-            "Similar ao ", tags$code("nycflights13"), ", o pacote contém apenas datasets, ",
-            "sem funções voltadas ao usuário."
-          ),
-          tags$p(
-            "Este explorador apresenta os dados a partir de janeiro de 2019, ",
-            "permitindo visualização rápida e download em múltiplos formatos."
-          ),
-          tags$h6("Links"),
-          tags$ul(
-            tags$li(tags$a(
-              href = "https://github.com/viniciusoike/metrosp",
-              target = "_blank",
-              "GitHub"
-            )),
-            tags$li(tags$a(
-              href = "https://viniciusoike.github.io/metrosp/",
-              target = "_blank",
-              "Documentação (pkgdown)"
-            )),
-            tags$li(tags$a(
-              href = "https://github.com/viniciusoike/metrosp/issues",
-              target = "_blank",
-              "Reportar problema"
-            ))
-          ),
-          tags$h6("Licença"),
-          tags$p(class = "small text-muted", "MIT")
-        )
-      ),
-
-      card(
-        card_header("Fontes de dados"),
-        card_body(
-          tags$h6("Demanda de passageiros"),
-          tags$ul(class = "small",
-            tags$li(
-              tags$b("Linhas 1, 2, 3 e 15: "),
-              tags$a(
-                href = "https://transparencia.metrosp.com.br/dataset/demanda",
-                target = "_blank",
-                "METRO SP — Portal de Transparência"
-              )
-            ),
-            tags$li(
-              tags$b("Linhas 4 e 5: "),
-              "Insper Dataverse (doi:10.60873/FK2/UTGQ0I)"
+      layout_sidebar(
+        sidebar = sidebar(
+          title = div(class = "sidebar-title", "Filtros"),
+          width = 260,
+          selectizeInput(
+            "lines_line",
+            "Linhas",
+            choices = setNames(LINES, unname(line_labels)),
+            selected = "1",
+            multiple = TRUE,
+            options = list(
+              plugins = list("remove_button"),
+              placeholder = "Selecione uma ou mais linhas"
             )
           ),
-          tags$h6("Dados espaciais"),
-          tags$ul(class = "small",
-            tags$li(tags$a(
-              href = "https://geosampa.prefeitura.sp.gov.br/",
-              target = "_blank",
-              "GeoSampa — Prefeitura de São Paulo"
-            ))
+          selectInput(
+            "lines_metric",
+            "Variável",
+            choices = c(
+              "Embarques (entrada)" = "entrance",
+              "Passageiros transportados" = "transported"
+            ),
+            selected = "entrance"
           ),
-          tags$h6("Limitações conhecidas"),
-          tags$ul(class = "small text-muted",
-            tags$li("Linhas 4/5 — passageiros transportados não disponíveis"),
-            tags$li("Linhas 4/5 — código de estação é NA"),
-            tags$li("2019: dados começam em janeiro (2017 parcial excluído)"),
-            tags$li("Meses finais de 2025 podem conter NA (publicação pendente)")
+          dateInput(
+            "lines_start",
+            "Início da série",
+            value = DEFAULT_START,
+            min = as.Date("2017-01-01"),
+            max = Sys.Date(),
+            language = "pt-BR"
+          ),
+          if (HAS_TRENDSERIES) {
+            conditionalPanel(
+              condition = "input.lines_line !== null && input.lines_line.length === 1",
+              checkboxInput(
+                "lines_trend",
+                "Mostrar tendência (STL)",
+                value = FALSE
+              )
+            )
+          },
+          hr(),
+          tags$p(
+            class = "text-muted small mb-0",
+            "Dados mensais. ",
+            if (HAS_TRENDSERIES) {
+              "Tendência extraída via decomposição STL robusta (s.window = 13)."
+            } else {
+              "Instale o pacote trendseries para habilitar tendência STL."
+            }
+          )
+        ),
+
+        card(
+          full_screen = TRUE,
+          card_header(
+            class = "d-flex align-items-center justify-content-between gap-2",
+            textOutput("lines_title", inline = TRUE),
+            downloadButton(
+              "dl_lines_csv",
+              tags$span(class = "visually-hidden", "Baixar CSV"),
+              icon = icon("download"),
+              class = "btn-sm btn-link p-1 download-icon",
+              title = "Baixar CSV"
+            )
+          ),
+          echarts4rOutput("lines_chart", height = "480px")
+        )
+      )
+    ),
+
+    ## Tab: Estações ----
+    nav_panel(
+      title = "Estações",
+      icon = bs_icon("pin-map-fill"),
+
+      layout_sidebar(
+        sidebar = sidebar(
+          title = div(class = "sidebar-title", "Filtros"),
+          width = 260,
+          selectInput(
+            "sta_line",
+            "Linha",
+            choices = setNames(LINES, unname(line_labels)),
+            selected = "1"
+          ),
+          selectizeInput(
+            "sta_station",
+            "Estação",
+            choices = NULL,
+            options = list(placeholder = "Buscar estação...")
+          ),
+          dateInput(
+            "sta_start",
+            "Início da série",
+            value = DEFAULT_START,
+            min = as.Date("2017-01-01"),
+            max = Sys.Date(),
+            language = "pt-BR"
+          ),
+          if (HAS_TRENDSERIES) {
+            checkboxInput("sta_trend", "Mostrar tendência (STL)", value = FALSE)
+          },
+          hr(),
+          selectInput("sta_year", "Ano (série diária)", choices = NULL),
+          hr(),
+          tags$p(
+            class = "text-muted small mb-0",
+            "A data de início filtra o gráfico mensal. ",
+            "O seletor de ano controla o gráfico diário. ",
+            if (HAS_TRENDSERIES) {
+              "Tendência STL disponível para dados mensais."
+            } else {
+              "Instale o pacote trendseries para habilitar tendência STL."
+            }
+          )
+        ),
+
+        uiOutput("sta_kpis"),
+
+        card(
+          full_screen = TRUE,
+          card_header(
+            class = "d-flex align-items-center justify-content-between gap-2",
+            textOutput("sta_monthly_title", inline = TRUE),
+            downloadButton(
+              "dl_sta_csv",
+              tags$span(class = "visually-hidden", "Baixar CSV"),
+              icon = icon("download"),
+              class = "btn-sm btn-link p-1 download-icon",
+              title = "Baixar CSV"
+            )
+          ),
+          echarts4rOutput("sta_chart", height = "380px")
+        ),
+
+        card(
+          full_screen = TRUE,
+          card_header(
+            class = "d-flex align-items-center justify-content-between gap-2",
+            textOutput("sta_daily_title", inline = TRUE),
+            downloadButton(
+              "dl_sta_daily_csv",
+              tags$span(class = "visually-hidden", "Baixar CSV"),
+              icon = icon("download"),
+              class = "btn-sm btn-link p-1 download-icon",
+              title = "Baixar CSV"
+            )
+          ),
+          echarts4rOutput("sta_daily_chart", height = "320px")
+        )
+      )
+    ),
+
+    ## Tab: Mapa ----
+    nav_panel(
+      title = "Mapa",
+      icon = bs_icon("geo-alt-fill"),
+
+      card(
+        full_screen = TRUE,
+        card_header(
+          "Linhas e estações do Metrô de São Paulo",
+          tags$small(
+            class = "ms-2 text-muted",
+            "círculos proporcionais à demanda — passe o mouse para ver detalhes"
+          )
+        ),
+        if (!is.null(sf_lines) || !is.null(sf_stations)) {
+          leafletOutput("map", height = "600px")
+        } else {
+          div(
+            class = "station-empty",
+            div(class = "empty-icon", bs_icon("geo-alt")),
+            div(class = "empty-title", "Dados espaciais indisponíveis"),
+            div(
+              class = "empty-text",
+              "Não foi possível carregar os dados geográficos de linhas e estações."
+            )
+          )
+        }
+      )
+    ),
+
+    ## Tab: Download ----
+    nav_panel(
+      title = "Download",
+      icon = bs_icon("download"),
+
+      div(
+        class = "section-label",
+        "Datasets disponíveis"
+      ),
+
+      layout_column_wrap(
+        width = 1 / 2,
+        heights_equal = "row",
+        !!!Filter(
+          Negate(is.null),
+          lapply(download_card_configs, make_download_card)
+        )
+      )
+    ),
+
+    ## Tab: Sobre ----
+    nav_panel(
+      title = "Sobre",
+      icon = bs_icon("info-circle-fill"),
+
+      layout_column_wrap(
+        width = 1 / 2,
+
+        card(
+          card_header("Sobre o pacote metrosp"),
+          card_body(
+            tags$p(
+              "O ",
+              tags$b("metrosp"),
+              " é um pacote R de dados que disponibiliza ",
+              "informações de demanda de passageiros do Metrô de São Paulo (2017-2025). ",
+              "Similar ao ",
+              tags$code("nycflights13"),
+              ", o pacote contém apenas datasets, ",
+              "sem funções voltadas ao usuário."
+            ),
+            tags$p(
+              "Este explorador apresenta os dados a partir de janeiro de 2019, ",
+              "permitindo visualização rápida e download em múltiplos formatos."
+            ),
+            tags$h6("Links"),
+            tags$ul(
+              tags$li(tags$a(
+                href = "https://github.com/viniciusoike/metrosp",
+                target = "_blank",
+                "GitHub"
+              )),
+              tags$li(tags$a(
+                href = "https://viniciusoike.github.io/metrosp/",
+                target = "_blank",
+                "Documentação (pkgdown)"
+              )),
+              tags$li(tags$a(
+                href = "https://github.com/viniciusoike/metrosp/issues",
+                target = "_blank",
+                "Reportar problema"
+              ))
+            ),
+            tags$h6("Licença"),
+            tags$p(class = "small text-muted", "MIT")
+          )
+        ),
+
+        card(
+          card_header("Fontes de dados"),
+          card_body(
+            tags$h6("Demanda de passageiros"),
+            tags$ul(
+              class = "small",
+              tags$li(
+                tags$b("Linhas 1, 2, 3 e 15: "),
+                tags$a(
+                  href = "https://transparencia.metrosp.com.br/dataset/demanda",
+                  target = "_blank",
+                  "METRO SP — Portal de Transparência"
+                )
+              ),
+              tags$li(
+                tags$b("Linhas 4 e 5: "),
+                "Insper Dataverse (doi:10.60873/FK2/UTGQ0I)"
+              )
+            ),
+            tags$h6("Dados espaciais"),
+            tags$ul(
+              class = "small",
+              tags$li(tags$a(
+                href = "https://geosampa.prefeitura.sp.gov.br/",
+                target = "_blank",
+                "GeoSampa — Prefeitura de São Paulo"
+              ))
+            ),
+            tags$h6("Limitações conhecidas"),
+            tags$ul(
+              class = "small text-muted",
+              tags$li("Linhas 4/5 — passageiros transportados não disponíveis"),
+              tags$li("Linhas 4/5 — código de estação é NA"),
+              tags$li("2019: dados começam em janeiro (2017 parcial excluído)"),
+              tags$li(
+                "Meses finais de 2025 podem conter NA (publicação pendente)"
+              )
+            )
           )
         )
       )
-    )
-  ),
+    ),
 
-  nav_spacer(),
-  nav_item(
-    tags$span(
-      class = "source-tag",
-      "Fontes: METRO SP · Insper Dataverse · GeoSampa"
+    nav_spacer(),
+    nav_item(
+      tags$span(
+        class = "source-tag",
+        "Fontes: METRO SP · Insper Dataverse · GeoSampa"
+      )
     )
-  )
   )
 }
 
 # Server ----
 
 server <- function(input, output, session) {
-
   .trend_cache <- new.env(parent = emptyenv())
   session$onSessionEnded(function() {
     rm(list = ls(.trend_cache), envir = .trend_cache)
@@ -542,13 +604,18 @@ server <- function(input, output, session) {
     lns <- input$lines_line
     req(length(lns) > 0)
 
+    start <- input$lines_start %||% DEFAULT_START
     base <- if (input$lines_metric == "entrance") ent else trans
-    df <- base |> filter(line_number %in% lns)
+    df <- base |> filter(line_number %in% lns, date >= start)
 
-    show_trend <- isTRUE(input$lines_trend) && length(lns) == 1 && HAS_TRENDSERIES
-    if (!show_trend) return(df)
+    show_trend <- isTRUE(input$lines_trend) &&
+      length(lns) == 1 &&
+      HAS_TRENDSERIES
+    if (!show_trend) {
+      return(df)
+    }
 
-    cache_key <- paste("line", input$lines_metric, lns, sep = "_")
+    cache_key <- paste("line", input$lines_metric, lns, start, sep = "_")
     if (exists(cache_key, envir = .trend_cache)) {
       return(get(cache_key, envir = .trend_cache))
     }
@@ -574,7 +641,11 @@ server <- function(input, output, session) {
 
   output$lines_title <- renderText({
     lns <- input$lines_line
-    metric_lbl <- if (input$lines_metric == "entrance") "Embarques" else "Transportados"
+    metric_lbl <- if (input$lines_metric == "entrance") {
+      "Embarques"
+    } else {
+      "Transportados"
+    }
     if (length(lns) == 1) {
       paste0(metric_lbl, " — ", line_labels[lns])
     } else {
@@ -589,7 +660,9 @@ server <- function(input, output, session) {
       "Sem dados para a combinação selecionada. Linhas 4 e 5 não possuem dados de passageiros transportados."
     ))
     lns <- input$lines_line
-    show_trend <- isTRUE(input$lines_trend) && length(lns) == 1 && HAS_TRENDSERIES
+    show_trend <- isTRUE(input$lines_trend) &&
+      length(lns) == 1 &&
+      HAS_TRENDSERIES
 
     if (length(lns) == 1) {
       col <- unname(line_colors[lns])
@@ -617,10 +690,12 @@ server <- function(input, output, session) {
       }
     } else {
       df <- df |>
-        mutate(line_label = factor(
-          unname(line_labels[line_number]),
-          levels = unname(line_labels[lns])
-        )) |>
+        mutate(
+          line_label = factor(
+            unname(line_labels[line_number]),
+            levels = unname(line_labels[lns])
+          )
+        ) |>
         arrange(line_label, date)
       cols <- unname(line_colors[lns])
 
@@ -646,7 +721,12 @@ server <- function(input, output, session) {
       paste0("metrosp-linhas-", lns, "-", input$lines_metric, ".csv")
     },
     content = function(file) {
-      utils::write.csv(lines_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+      utils::write.csv(
+        lines_data(),
+        file,
+        row.names = FALSE,
+        fileEncoding = "UTF-8"
+      )
     }
   )
 
@@ -656,15 +736,28 @@ server <- function(input, output, session) {
     choices <- stations_by_line |>
       filter(line_number == input$sta_line) |>
       pull(station_name)
-    updateSelectizeInput(session, "sta_station", choices = choices, selected = choices[1])
+    updateSelectizeInput(
+      session,
+      "sta_station",
+      choices = choices,
+      selected = choices[1]
+    )
   })
 
   observeEvent(input$sta_station, {
     req(input$sta_station)
     years <- sta_daily_years |>
-      filter(line_number == input$sta_line, station_name == input$sta_station) |>
+      filter(
+        line_number == input$sta_line,
+        station_name == input$sta_station
+      ) |>
       pull(year)
-    updateSelectInput(session, "sta_year", choices = years, selected = if (length(years)) years[1])
+    updateSelectInput(
+      session,
+      "sta_year",
+      choices = years,
+      selected = if (length(years)) years[1]
+    )
   })
 
   sta_monthly_data <- reactive({
@@ -672,12 +765,16 @@ server <- function(input, output, session) {
     sta <- input$sta_station
     req(ln, sta)
 
-    df <- sta_avg |> filter(line_number == ln, station_name == sta)
+    start <- input$sta_start %||% DEFAULT_START
+    df <- sta_avg |>
+      filter(line_number == ln, station_name == sta, date >= start)
     show_trend <- isTRUE(input$sta_trend) && HAS_TRENDSERIES
 
-    if (!show_trend || sum(!is.na(df$value)) < 24L) return(df)
+    if (!show_trend || sum(!is.na(df$value)) < 24L) {
+      return(df)
+    }
 
-    cache_key <- paste("sta", ln, sta, sep = "_")
+    cache_key <- paste("sta", ln, sta, start, sep = "_")
     if (exists(cache_key, envir = .trend_cache)) {
       return(get(cache_key, envir = .trend_cache))
     }
@@ -693,7 +790,14 @@ server <- function(input, output, session) {
         .quiet = TRUE
       ),
       error = function(e) {
-        message("STL trend failed for ", sta, " (L", ln, "): ", conditionMessage(e))
+        message(
+          "STL trend failed for ",
+          sta,
+          " (L",
+          ln,
+          "): ",
+          conditionMessage(e)
+        )
         df |> mutate(trend_stl = NA_real_)
       }
     )
@@ -747,9 +851,13 @@ server <- function(input, output, session) {
 
     latest <- max(df_monthly$date, na.rm = TRUE)
     recent <- df_monthly |> filter(date > latest - 365, !is.na(value))
-    prior <- df_monthly |> filter(date > latest - 730, date <= latest - 365, !is.na(value))
+    prior <- df_monthly |>
+      filter(date > latest - 730, date <= latest - 365, !is.na(value))
     yoy_label <- if (nrow(recent) >= 6 && nrow(prior) >= 6) {
-      yoy <- (mean(recent$value, na.rm = TRUE) / mean(prior$value, na.rm = TRUE) - 1) * 100
+      yoy <- (mean(recent$value, na.rm = TRUE) /
+        mean(prior$value, na.rm = TRUE) -
+        1) *
+        100
       fmt_pct(yoy)
     } else {
       "—"
@@ -759,8 +867,16 @@ server <- function(input, output, session) {
 
     div(
       class = "kpi-grid kpi-grid-4",
-      kpi_card("Média dias úteis", wd_avg, paste0("embarques/dia — ", yr_label)),
-      kpi_card("Média fins de semana", we_avg, paste0("embarques/dia — ", yr_label)),
+      kpi_card(
+        "Média dias úteis",
+        wd_avg,
+        paste0("embarques/dia — ", yr_label)
+      ),
+      kpi_card(
+        "Média fins de semana",
+        we_avg,
+        paste0("embarques/dia — ", yr_label)
+      ),
       kpi_card("Mês de pico", peak_val, peak_when),
       kpi_card("Variação anual", yoy_label, "últimos 12m vs. anteriores")
     )
@@ -805,7 +921,11 @@ server <- function(input, output, session) {
   })
 
   output$sta_daily_title <- renderText({
-    yr <- if (!is.null(input$sta_year) && nzchar(input$sta_year)) input$sta_year else ""
+    yr <- if (!is.null(input$sta_year) && nzchar(input$sta_year)) {
+      input$sta_year
+    } else {
+      ""
+    }
     paste0(input$sta_station, " — Série diária (", yr, ")")
   })
 
@@ -819,16 +939,20 @@ server <- function(input, output, session) {
     e <- df |>
       e_charts(date) |>
       e_line(
-        value, name = "Diário",
-        symbol = "none", smooth = FALSE,
+        value,
+        name = "Diário",
+        symbol = "none",
+        smooth = FALSE,
         lineStyle = list(width = 1, color = "#C8CAD3")
       )
 
     if (nrow(df) >= 7L) {
       e <- e |>
         e_line(
-          rolling7, name = "Média 7 dias",
-          symbol = "none", smooth = FALSE,
+          rolling7,
+          name = "Média 7 dias",
+          symbol = "none",
+          smooth = FALSE,
           lineStyle = list(width = 2.4, color = col),
           connectNulls = FALSE
         )
@@ -845,7 +969,12 @@ server <- function(input, output, session) {
       paste0("metrosp-estacao-", sta_slug, "-mensal.csv")
     },
     content = function(file) {
-      utils::write.csv(sta_monthly_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+      utils::write.csv(
+        sta_monthly_data(),
+        file,
+        row.names = FALSE,
+        fileEncoding = "UTF-8"
+      )
     }
   )
 
@@ -855,7 +984,12 @@ server <- function(input, output, session) {
       paste0("metrosp-estacao-", sta_slug, "-diario-", input$sta_year, ".csv")
     },
     content = function(file) {
-      utils::write.csv(sta_daily_data(), file, row.names = FALSE, fileEncoding = "UTF-8")
+      utils::write.csv(
+        sta_daily_data(),
+        file,
+        row.names = FALSE,
+        fileEncoding = "UTF-8"
+      )
     }
   )
 
@@ -867,10 +1001,13 @@ server <- function(input, output, session) {
 
     if (!is.null(sf_stations_map)) {
       bbox <- sf::st_bbox(sf_stations_map)
-      m <- m |> fitBounds(
-        lng1 = bbox[["xmin"]], lat1 = bbox[["ymin"]],
-        lng2 = bbox[["xmax"]], lat2 = bbox[["ymax"]]
-      )
+      m <- m |>
+        fitBounds(
+          lng1 = bbox[["xmin"]],
+          lat1 = bbox[["ymin"]],
+          lng2 = bbox[["xmax"]],
+          lat2 = bbox[["ymax"]]
+        )
     } else {
       m <- m |> setView(lng = -46.633, lat = -23.555, zoom = 12)
     }
@@ -901,8 +1038,11 @@ server <- function(input, output, session) {
           paste0("Média dias úteis: <b>", fmt_n(s$avg), "</b> pass./dia")
         }
         htmltools::HTML(paste0(
-          "<b>", s$station_name, "</b><br/>",
-          line_labels[s$line_number], "<br/>",
+          "<b>",
+          s$station_name,
+          "</b><br/>",
+          line_labels[s$line_number],
+          "<br/>",
           demand
         ))
       })
@@ -939,7 +1079,12 @@ server <- function(input, output, session) {
     downloadHandler(
       filename = function() paste0("metrosp-", prefix, ".csv"),
       content = function(file) {
-        utils::write.csv(data_fn(), file, row.names = FALSE, fileEncoding = "UTF-8")
+        utils::write.csv(
+          data_fn(),
+          file,
+          row.names = FALSE,
+          fileEncoding = "UTF-8"
+        )
       }
     )
   }
@@ -953,12 +1098,27 @@ server <- function(input, output, session) {
 
   output$dl_ent_csv <- make_csv_handler(function() ent, "embarques-linha")
   output$dl_ent_xlsx <- make_xlsx_handler(function() ent, "embarques-linha")
-  output$dl_trans_csv <- make_csv_handler(function() trans, "transportados-linha")
-  output$dl_trans_xlsx <- make_xlsx_handler(function() trans, "transportados-linha")
+  output$dl_trans_csv <- make_csv_handler(
+    function() trans,
+    "transportados-linha"
+  )
+  output$dl_trans_xlsx <- make_xlsx_handler(
+    function() trans,
+    "transportados-linha"
+  )
   output$dl_staavg_csv <- make_csv_handler(function() sta_avg, "media-estacao")
-  output$dl_staavg_xlsx <- make_xlsx_handler(function() sta_avg, "media-estacao")
-  output$dl_stadaily_csv <- make_csv_handler(function() sta_daily, "diario-estacao")
-  output$dl_stadaily_xlsx <- make_xlsx_handler(function() sta_daily, "diario-estacao")
+  output$dl_staavg_xlsx <- make_xlsx_handler(
+    function() sta_avg,
+    "media-estacao"
+  )
+  output$dl_stadaily_csv <- make_csv_handler(
+    function() sta_daily,
+    "diario-estacao"
+  )
+  output$dl_stadaily_xlsx <- make_xlsx_handler(
+    function() sta_daily,
+    "diario-estacao"
+  )
 
   make_spatial_handler <- function(sf_data, prefix, driver) {
     downloadHandler(
@@ -976,8 +1136,16 @@ server <- function(input, output, session) {
 
   output$dl_lines_gpkg <- make_spatial_handler(sf_lines, "linhas", "GPKG")
   output$dl_lines_geojson <- make_spatial_handler(sf_lines, "linhas", "GeoJSON")
-  output$dl_stations_gpkg <- make_spatial_handler(sf_stations, "estacoes", "GPKG")
-  output$dl_stations_geojson <- make_spatial_handler(sf_stations, "estacoes", "GeoJSON")
+  output$dl_stations_gpkg <- make_spatial_handler(
+    sf_stations,
+    "estacoes",
+    "GPKG"
+  )
+  output$dl_stations_geojson <- make_spatial_handler(
+    sf_stations,
+    "estacoes",
+    "GeoJSON"
+  )
 }
 
-shinyApp(ui, server, enableBookmarking = "url")
+shinyApp(ui, server)
