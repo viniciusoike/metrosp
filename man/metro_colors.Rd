@@ -30,6 +30,7 @@ currently operating metro lines are included; CPTM train lines and planned
 future lines (e.g., Line 6 Orange, Line 17 Gold) are not covered.
 }
 \seealso{
-\code{\link{metro_lines}} for the full line reference table.
+\code{\link{lines}} for the full line reference (numbers, names,
+and route geometries).
 }
 \keyword{datasets}

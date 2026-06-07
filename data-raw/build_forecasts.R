@@ -36,7 +36,7 @@ if (!exists("passengers_entrance")) {
 # Config ----------------------------------------------------------------------
 
 LINES <- c(1L, 2L, 3L, 4L, 5L, 15L)
-H <- 6L          # forecast horizon (months)
+H <- 6L # forecast horizon (months)
 CV_WINDOW <- 12L # rolling-origin evaluations used in tsCV
 
 # Model helpers ---------------------------------------------------------------
@@ -223,8 +223,8 @@ forecast_accuracy <- bind_rows(acc_rows) |>
 
 # Save ------------------------------------------------------------------------
 
-usethis::use_data(forecasts, overwrite = TRUE)
-usethis::use_data(forecast_accuracy, overwrite = TRUE)
+# usethis::use_data(forecasts, overwrite = TRUE)
+# usethis::use_data(forecast_accuracy, overwrite = TRUE)
 
 cli::cli_alert_success(
   "Saved forecasts ({nrow(forecasts)} rows) and forecast_accuracy ({nrow(forecast_accuracy)} rows)."

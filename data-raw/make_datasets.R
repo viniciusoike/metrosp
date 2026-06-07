@@ -7,7 +7,7 @@
 #
 # Inputs:  data-raw/processed/*.csv
 # Outputs: data/*.rda (passengers_entrance, passengers_transported,
-#          station_averages, metro_lines)
+#          station_averages, ...)
 # -------------------------------------------------------
 
 check <- FALSE
@@ -553,7 +553,6 @@ usethis::use_data(passengers_entrance, overwrite = TRUE)
 usethis::use_data(passengers_transported, overwrite = TRUE)
 usethis::use_data(station_averages, overwrite = TRUE)
 usethis::use_data(station_daily, overwrite = TRUE)
-usethis::use_data(metro_lines, overwrite = TRUE)
 usethis::use_data(metro_colors, overwrite = TRUE)
 
 message("All datasets saved to data/")

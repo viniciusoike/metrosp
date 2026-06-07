@@ -285,108 +285,6 @@
 #'   \code{\link{station_averages}} for passenger data by station.
 "stations"
 
-#' Metro SP Line Reference Table
-#'
-#' A reference tibble mapping metro line numbers to their Portuguese and
-#' English color names. Covers all METRO SP and ViaMobilidade lines,
-#' including planned future lines and the network total.
-#'
-#' @format A tibble with 13 rows and 3 columns:
-#' \describe{
-#'   \item{line_number}{Official line number (integer). Includes 1, 2, 3, 4,
-#'     5, 6, 15, 16, 17, 19, 20, 22, and 99 (network total).}
-#'   \item{line_name_pt}{Portuguese color name of the line (character).}
-#'   \item{line_name}{English color name of the line (character).}
-#' }
-#'
-#' @details
-#' Serves as a dimension/lookup table for joining line names onto passenger
-#' and station datasets. Not all lines have passenger data — Lines 6, 16,
-#' 17, 19, 20, and 22 are planned future lines with spatial geometry
-#' available in \code{\link{lines}} but no ridership records.
-#'
-#' @seealso \code{\link{metro_colors}} for official hex color codes,
-#'   \code{\link{lines}} for spatial line geometries.
-"metro_lines"
-
-#' Six-Month Demand Forecasts by Line and Model
-#'
-#' Pre-computed 6-month-ahead forecasts of total monthly passenger entries
-#' for each of the six METRO SP lines, fit with three model families
-#' (`auto.arima`, `ets`, robust `stlf`). All models use Box-Cox variance
-#' stabilization with `lambda = "auto"`, which both compresses the COVID-era
-#' shock and guarantees non-negative forecast intervals.
-#'
-#' @format A data frame with one row per (line, model, forecast date):
-#' \describe{
-#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
-#'   \item{model}{Model identifier (character). One of:
-#'     \code{"arima"} (Box-Cox `auto.arima` with seasonal search),
-#'     \code{"ets"} (Box-Cox state-space exponential smoothing),
-#'     \code{"stlf"} (robust STL decomposition + ETS on the seasonally
-#'     adjusted remainder).}
-#'   \item{date}{First day of the forecast month (Date). Six rows per
-#'     (line, model), starting one month after the last observed value.}
-#'   \item{mean}{Point forecast — back-transformed and bias-adjusted (numeric).}
-#'   \item{lo80, hi80}{80% prediction interval (numeric).}
-#'   \item{lo95, hi95}{95% prediction interval (numeric).}
-#' }
-#'
-#' @details
-#' Forecasts are built by `data-raw/build_forecasts.R` from
-#' \code{\link{passengers_entrance}} (`metric_abb == "total"`) and refreshed
-#' whenever the underlying data is updated. The build script also produces
-#' \code{\link{forecast_accuracy}}, which reports out-of-sample error for
-#' each (line, model) so the consumer can pick a preferred model per line.
-#'
-#' Modelling choices:
-#' \itemize{
-#'   \item All three models use \code{lambda = "auto"} (Guerrero estimate)
-#'     and \code{biasadj = TRUE}, so point forecasts are means rather than
-#'     medians on the original scale.
-#'   \item `stlf` uses `robust = TRUE`, which down-weights the 2020–2021
-#'     COVID period during seasonal extraction without requiring an explicit
-#'     intervention dummy.
-#' }
-#'
-#' @seealso \code{\link{forecast_accuracy}} for cross-validated error metrics,
-#'   \code{\link{passengers_entrance}} for the underlying historical series.
-"forecasts"
-
-#' Cross-Validated Accuracy of Forecast Models by Line
-#'
-#' Out-of-sample error metrics for the three model families shipped in
-#' \code{\link{forecasts}}, computed by rolling-origin cross-validation
-#' (`forecast::tsCV`) over the most recent 12 months of each series with a
-#' 6-month horizon.
-#'
-#' @format A data frame with one row per (line, model):
-#' \describe{
-#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
-#'   \item{model}{Model identifier (character). One of \code{"arima"},
-#'     \code{"ets"}, \code{"stlf"} — see \code{\link{forecasts}}.}
-#'   \item{mape}{Mean absolute percentage error across all rolling-origin
-#'     forecasts and horizons (numeric, in percent).}
-#'   \item{rmse}{Root mean squared error on the original scale (numeric).}
-#'   \item{mae}{Mean absolute error on the original scale (numeric).}
-#'   \item{best}{`TRUE` for the model with the lowest MAPE on the line
-#'     (logical).}
-#' }
-#'
-#' @details
-#' Rows are sorted by `line_number`, then `mape` ascending, so the first row
-#' for each line is the cross-validation winner. The accuracy reported here
-#' is meant to guide model selection in the dashboard; it is not a guarantee
-#' of future forecast accuracy.
-#'
-#' For speed, ARIMA fits inside the CV loop use
-#' `approximation = TRUE`, while the final fit stored in
-#' \code{\link{forecasts}} uses `approximation = FALSE` for the best
-#' attainable model.
-#'
-#' @seealso \code{\link{forecasts}} for the point forecasts and intervals.
-"forecast_accuracy"
-
 #' Metro SP Official Line Colors
 #'
 #' A named character vector of official hex color codes for the six metro
@@ -409,7 +307,8 @@
 #' currently operating metro lines are included; CPTM train lines and planned
 #' future lines (e.g., Line 6 Orange, Line 17 Gold) are not covered.
 #'
-#' @seealso \code{\link{metro_lines}} for the full line reference table.
+#' @seealso \code{\link{lines}} for the full line reference (numbers, names,
+#'   and route geometries).
 "metro_colors"
 
 #' Station Commercial Opening Dates

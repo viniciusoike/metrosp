@@ -24,7 +24,6 @@ Suggests:
     bizdays,
     dataverse,
     dplyr,
-    forecast,
     ggplot2,
     knitr,
     quarto,

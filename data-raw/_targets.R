@@ -160,7 +160,9 @@ list(
   tar_target(calendar_spo, build_calendar_spo()),
 
   # --- Reference datasets (surfaced from dims.R) -----------------------------
-  tar_target(metro_lines_out, metro_lines),
+  # metro_lines stays an internal join dimension in dims.R (not exported); its
+  # line-name columns are already denormalized onto every passenger/station
+  # dataset and the full line list lives in `lines`.
   tar_target(metro_colors_out, metro_colors),
 
   # --- Terminal writer: the only use_data() side effect ----------------------
@@ -173,7 +175,6 @@ list(
       station_daily = station_daily,
       lines = lines,
       stations = stations,
-      metro_lines = metro_lines_out,
       metro_colors = metro_colors_out,
       station_inauguration = station_inauguration,
       calendar_spo = calendar_spo

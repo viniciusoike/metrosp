@@ -16,7 +16,6 @@ write_all_data <- function(
   station_daily,
   lines,
   stations,
-  metro_lines,
   metro_colors,
   station_inauguration,
   calendar_spo
@@ -27,14 +26,13 @@ write_all_data <- function(
   usethis::use_data(station_daily, overwrite = TRUE)
   usethis::use_data(lines, overwrite = TRUE)
   usethis::use_data(stations, overwrite = TRUE)
-  usethis::use_data(metro_lines, overwrite = TRUE)
   usethis::use_data(metro_colors, overwrite = TRUE)
   usethis::use_data(station_inauguration, overwrite = TRUE)
   usethis::use_data(calendar_spo, overwrite = TRUE)
 
   c(
     "passengers_entrance", "passengers_transported", "station_averages",
-    "station_daily", "lines", "stations", "metro_lines", "metro_colors",
+    "station_daily", "lines", "stations", "metro_colors",
     "station_inauguration", "calendar_spo"
   )
 }
