@@ -237,7 +237,7 @@ refresh_historic_passengers <- function(
     filter(!is.na(entradas)) |>
     left_join(df_code, by = join_by(code)) |>
     mutate(
-      name_station = str_remove(estacao, " *\\([0-9¹²³*]*\\)|[¹²³*]"),
+      name_station = str_remove(estacao, " *\\([0-9¹²³*]*\\)|\\s*[0-9¹²³*]+$"),
       name_station = str_squish(name_station),
       metric_abb = "mdu"
     ) |>

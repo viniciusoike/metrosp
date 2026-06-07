@@ -48,12 +48,13 @@ dim_line <- bind_rows(
 
 # Stations that were renamed (original short name -> current full name).
 dim_station_name_change <- tibble(
-  station_name = c("Carrão", "Penha", "Saúde", "Patriarca"),
+  station_name = c("Carrão", "Penha", "Saúde", "Patriarca", "Liberdade"),
   station_name_full = c(
     "Carrão-Assaí Atacadista",
     "Penha-Lojas Besni",
     "Saúde-Ultrafarma",
-    "Patriarca-Vila Ré"
+    "Patriarca-Vila Ré",
+    "Japão-Liberdade"
   )
 )
 

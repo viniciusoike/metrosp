@@ -130,21 +130,24 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
   stations_17_19 <- stations_17_19 |>
     mutate(
       line_number = .line_lookup_avg[line_name_full],
-      station_name = name_station,
-      station_name = if_else(
-        station_name %in% names(station_renames),
-        station_renames[station_name],
-        station_name
-      )
+      station_name = name_station
     ) |>
     rename(avg_passenger = value) |>
     select(all_of(.cols_station_avg_in))
 
   station_averages <- bind_rows(stations_17_19, averages_current) |>
-    # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(avg_passenger = avg_passenger * 1000)
 
   station_averages <- bind_rows(station_averages, averages_4_5)
+
+  station_averages <- station_averages |>
+    mutate(
+      station_name = if_else(
+        station_name %in% names(station_renames),
+        station_renames[station_name],
+        station_name
+      )
+    )
 
   station_averages <- station_averages |>
     mutate(
@@ -180,11 +183,23 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
 #' @param daily_current Current-era daily tibble (builder output).
 #' @param daily_4_5 Lines 4/5 daily tibble (committed CSV).
 assemble_daily <- function(daily_current, daily_4_5) {
+  station_renames <- dim_station_name_change$station_name_full
+  names(station_renames) <- dim_station_name_change$station_name
+
   station_daily <- daily_current |>
-    # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(passengers = passengers * 1000)
 
   station_daily <- bind_rows(station_daily, daily_4_5)
+
+  station_daily <- station_daily |>
+    mutate(
+      station_name = if_else(
+        station_name %in% names(station_renames),
+        station_renames[station_name],
+        station_name
+      )
+    )
+
   station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 
   station_daily <- station_daily |>
