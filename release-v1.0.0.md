@@ -24,7 +24,6 @@ required.
 | `station_daily` | Daily passenger entries by station (2020–2025) | Daily |
 | `lines` | Metro + CPTM train line route geometries (`sf`) | — |
 | `stations` | Metro + CPTM train station point locations (`sf`) | — |
-| `metro_lines` | Line name/color/operator lookup table | — |
 | `metro_colors` | Named vector of official line hex colors | — |
 
 ### Line coverage

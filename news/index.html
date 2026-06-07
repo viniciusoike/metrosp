@@ -45,7 +45,9 @@
 <div class="section level3">
 <h3 id="datasets-development-version">Datasets<a class="anchor" aria-label="anchor" href="#datasets-development-version"></a></h3>
 <ul><li>
-<code>metro_lines$line_number</code> and <code>station_daily$line_number</code> / <code>station_daily$year</code> are now <code>integer</code> (previously <code>double</code>), matching the other datasets. Values are unchanged.</li>
+<code>metro_lines</code> is no longer exported. Its line-name columns (<code>line_name</code>, <code>line_name_pt</code>) are already denormalized onto every passenger/station dataset, and the full line list (including planned and CPTM lines) is available in <code>lines</code>. It remains an internal join dimension in the ETL pipeline.</li>
+<li>
+<code>station_daily$line_number</code> / <code>station_daily$year</code> are now <code>integer</code> (previously <code>double</code>), matching the other datasets. Values are unchanged.</li>
 </ul></div>
 </div>
     <div class="section level2">

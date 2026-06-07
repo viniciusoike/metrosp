@@ -2,8 +2,8 @@
 
 A daily calendar for São Paulo (city) covering 2012–2030, classifying
 each date as a holiday or business day. Includes national, state, and
-municipal holidays observed in São Paulo, with flags for pontos
-facultativos and feriadões (extended holiday weekends).
+municipal holidays in São Paulo, with flags for optional work days
+(is_ponto_facultativo) and extended holiday weekends (is_feriadao).
 
 ## Usage
 
@@ -47,8 +47,8 @@ A data frame with one row per day and the following columns:
 
 - holiday_scope:
 
-  Legislative scope of the holiday (character). One of `"national"`,
-  `"state"`, or `"municipal"`; `NA` on non-holiday dates.
+  Scope of the holiday (character). One of `"national"`, `"state"`, or
+  `"municipal"`; `NA` on non-holiday dates.
 
 - is_ponto_facultativo:
 
@@ -60,8 +60,7 @@ A data frame with one row per day and the following columns:
 
   `TRUE` when a holiday falls on Monday, Tuesday, Thursday, or Friday,
   creating a potential extended weekend with the adjacent
-  Saturday/Sunday (logical). Bridge days are not assumed — only the
-  gazetted holiday is flagged.
+  Saturday/Sunday (logical).
 
 ## Details
 
@@ -69,28 +68,6 @@ The calendar covers the full date range of the
 [`station_daily`](https://viniciusoike.github.io/metrosp/reference/station_daily.md)
 dataset (Lines 4/5 from January 2012) and extends through 2030 for
 forecasting use.
-
-Holiday definitions:
-
-- **National fixed**: Confraternização Universal (Jan 1), Tiradentes
-  (Apr 21), Dia do Trabalho (May 1), Independência do Brasil (Sep 7),
-  Nossa Senhora Aparecida (Oct 12), Finados (Nov 2), Proclamação da
-  República (Nov 15), Natal (Dec 25).
-
-- **National moveable**: Sexta-Feira Santa (Easter 2).
-
-- **National pontos facultativos**: Carnaval segunda-feira (Easter 48),
-  Carnaval terça-feira (Easter 47), Corpus Christi (Easter + 60). These
-  are optional at the federal level but observed in São Paulo.
-
-- **State**: Revolução Constitucionalista (Jul 9).
-
-- **Municipal**: Aniversário de São Paulo (Jan 25), Dia da Consciência
-  Negra (Nov 20; municipal through 2023, national from 2024 per Lei
-  14.759/2023).
-
-Easter dates are computed algorithmically (Anonymous Gregorian
-algorithm) with no external dependency.
 
 ## See also
 

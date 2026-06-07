@@ -61,10 +61,7 @@ scripts keep a `_2017_2019` suffix
 | `station_daily` | Daily passenger entries by station (2020-2025) |
 | `lines` | Metro + CPTM train line route geometries (sf, current + planned) |
 | `stations` | Metro + CPTM train station point locations (sf, current + planned) |
-| `metro_lines` | Line name/color lookup dimension table |
 | `metro_colors` | Named character vector of official line hex colors (length 6) |
-| `forecasts` | 6-month-ahead entrance forecasts per line (ARIMA/ETS/STLF, 80/95% intervals) |
-| `forecast_accuracy` | Rolling-origin CV error (MAPE/RMSE/MAE) per line+model; `best` flags winner |
 | `station_inauguration` | Station opening dates + ramp-up window flag (manually compiled) |
 | `calendar_spo` | São Paulo holiday/business-day calendar (2012–2030, national/state/municipal) |
 
@@ -105,11 +102,6 @@ scripts keep a `_2017_2019` suffix
   `helpers.R`). Interior NAs (e.g. station outages) are preserved.
 - **Station metrics**: Only weekday average (mdu) available at station
   level
-- **`forecasts` / `forecast_accuracy`**: Derived from
-  `passengers_entrance` total by `build_forecasts.R`; require the
-  `forecast` package (in Suggests). Box-Cox back-transform over the
-  COVID dip can blow up CV error, so MAPE \> 200% is capped to `NA` and
-  treated as model failure.
 - **`station_inauguration`**: Stations open before the data window have
   `inauguration_date = NA` and `pre_data_window = TRUE`; `ramp_up_end` =
   opening + 180 days marks the period to exclude from baseline
@@ -123,8 +115,7 @@ The ETL runs as a **`targets` pipeline** (primary) defined in
 `_targets.yaml`). Pure functions live in `data-raw/R/` (loaded via
 `tar_source()`); package `R/` still holds only `data.R`. The graph
 assembles `data/*.rda` from the committed `processed/` CSVs, the
-GeoSampa GPKGs, and `station_inauguration.csv`. Forecasts are **not** in
-the graph yet (`build_forecasts.R` stays a standalone script).
+GeoSampa GPKGs, and `station_inauguration.csv`.
 
 Routine data update (the common case — fetch new METRO + Lines 4/5
 data):

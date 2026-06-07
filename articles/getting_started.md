@@ -24,9 +24,10 @@ There are four main datasets:
 - `station_daily`: daily passengers per station
 
 For convenience, `metrosp` also provides information on stations and
-lines of the metro system (`lines`, `stations`, and `metro_lines`). The
-`lines` dataset is a spatial dataset and requires the `sf` package to
-work properly.
+lines of the metro system (`lines` and `stations`). The `lines` dataset
+is a spatial dataset and requires the `sf` package to work properly; it
+carries the line numbers and Portuguese/English line names for the full
+network (including planned and CPTM lines).
 
 ``` r
 

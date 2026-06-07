@@ -95,14 +95,8 @@
 <td>Metro + CPTM train line route geometries (sf, current + planned)</td>
 </tr><tr><td><code>stations</code></td>
 <td>Metro + CPTM train station point locations (sf, current + planned)</td>
-</tr><tr><td><code>metro_lines</code></td>
-<td>Line name/color lookup dimension table</td>
 </tr><tr><td><code>metro_colors</code></td>
 <td>Named character vector of official line hex colors (length 6)</td>
-</tr><tr><td><code>forecasts</code></td>
-<td>6-month-ahead entrance forecasts per line (ARIMA/ETS/STLF, 80/95% intervals)</td>
-</tr><tr><td><code>forecast_accuracy</code></td>
-<td>Rolling-origin CV error (MAPE/RMSE/MAE) per line+model; <code>best</code> flags winner</td>
 </tr><tr><td><code>station_inauguration</code></td>
 <td>Station opening dates + ramp-up window flag (manually compiled)</td>
 </tr><tr><td><code>calendar_spo</code></td>
@@ -138,13 +132,11 @@
 <li>
 <strong>Station metrics</strong>: Only weekday average (mdu) available at station level</li>
 <li>
-<strong><code>forecasts</code> / <code>forecast_accuracy</code></strong>: Derived from <code>passengers_entrance</code> total by <code>build_forecasts.R</code>; require the <code>forecast</code> package (in Suggests). Box-Cox back-transform over the COVID dip can blow up CV error, so MAPE &gt; 200% is capped to <code>NA</code> and treated as model failure.</li>
-<li>
 <strong><code>station_inauguration</code></strong>: Stations open before the data window have <code>inauguration_date = NA</code> and <code>pre_data_window = TRUE</code>; <code>ramp_up_end</code> = opening + 180 days marks the period to exclude from baseline comparisons. Dates need manual <code>verified = TRUE</code> after cross-checking sources.</li>
 </ul></div>
 <div class="section level2">
 <h2 id="development-workflow">Development Workflow<a class="anchor" aria-label="anchor" href="#development-workflow"></a></h2>
-<p>The ETL runs as a <strong><code>targets</code> pipeline</strong> (primary) defined in <code>data-raw/_targets.R</code> (store: <code>data-raw/_targets/</code>, config: <code>_targets.yaml</code>). Pure functions live in <code>data-raw/R/</code> (loaded via <code>tar_source()</code>); package <code>R/</code> still holds only <code>data.R</code>. The graph assembles <code>data/*.rda</code> from the committed <code>processed/</code> CSVs, the GeoSampa GPKGs, and <code>station_inauguration.csv</code>. Forecasts are <strong>not</strong> in the graph yet (<code>build_forecasts.R</code> stays a standalone script).</p>
+<p>The ETL runs as a <strong><code>targets</code> pipeline</strong> (primary) defined in <code>data-raw/_targets.R</code> (store: <code>data-raw/_targets/</code>, config: <code>_targets.yaml</code>). Pure functions live in <code>data-raw/R/</code> (loaded via <code>tar_source()</code>); package <code>R/</code> still holds only <code>data.R</code>. The graph assembles <code>data/*.rda</code> from the committed <code>processed/</code> CSVs, the GeoSampa GPKGs, and <code>station_inauguration.csv</code>.</p>
 <p>Routine data update (the common case — fetch new METRO + Lines 4/5 data):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">METROSP_DOWNLOAD</span><span class="op">=</span>true <span class="va">METROSP_DATAVERSE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::document()'</span>   <span class="co"># outside the graph; refreshes man/*.Rd</span></span></code></pre></div>

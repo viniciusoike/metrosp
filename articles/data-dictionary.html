@@ -77,7 +77,7 @@
 
 
 
-    <p>This vignette documents the core datasets shipped with <code>metrosp</code>: what each contains, where the data comes from, and the caveats you should know before analysing it. For auxiliary lookup tables (<code>metro_lines</code>, <code>metro_colors</code>, <code>station_inauguration</code>) and derived datasets (<code>forecasts</code>, <code>forecast_accuracy</code>), see the help pages (e.g., <code><a href="../reference/forecasts.html">?forecasts</a></code>).</p>
+    <p>This vignette documents the core datasets shipped with <code>metrosp</code>: what each contains, where the data comes from, and the caveats you should know before analysing it. For auxiliary lookup tables (<code>metro_colors</code>, <code>station_inauguration</code>), see the help pages (e.g., <code><a href="../reference/metro_colors.html">?metro_colors</a></code>).</p>
 <section class="section level2"><h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>The six core datasets come from three public sources:</p>
@@ -674,13 +674,13 @@
 <p>Transfer stations (e.g., Sé, Paraíso, Ana Rosa) appear once per line they serve.</p>
 </section></section><section class="section level2"><h2 id="auxiliary-datasets">Auxiliary datasets<a class="anchor" aria-label="anchor" href="#auxiliary-datasets"></a>
 </h2>
-<p>The package also ships two convenience lookup tables:</p>
+<p>The package also ships a convenience lookup vector:</p>
 <ul>
 <li>
-<strong><code>metro_lines</code></strong> — maps line numbers to Portuguese and English color names (13 rows, covering all lines including planned expansions and the network total <code>line_number = 99</code>).</li>
-<li>
 <strong><code>metro_colors</code></strong> — named character vector of official hex color codes for the six lines with ridership data (e.g., <code>metro_colors["Blue"]</code> returns <code>"#171796"</code>). Useful for consistent plot styling with <code>scale_color_manual()</code>.</li>
-</ul></section><section class="section level2"><h2 id="data-notes-and-caveats">Data notes and caveats<a class="anchor" aria-label="anchor" href="#data-notes-and-caveats"></a>
+</ul>
+<p>Line numbers and their Portuguese/English names are already included as columns on every passenger and station dataset, and the full network line list (including planned and CPTM lines) is available in <code>lines</code>.</p>
+</section><section class="section level2"><h2 id="data-notes-and-caveats">Data notes and caveats<a class="anchor" aria-label="anchor" href="#data-notes-and-caveats"></a>
 </h2>
 <section class="level2"><h3 id="entrance-vs-transported">Entrance vs. transported<a class="anchor" aria-label="anchor" href="#entrance-vs-transported"></a>
 </h3>

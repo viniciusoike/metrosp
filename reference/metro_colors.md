@@ -48,5 +48,5 @@ covered.
 
 ## See also
 
-[`metro_lines`](https://viniciusoike.github.io/metrosp/reference/metro_lines.md)
-for the full line reference table.
+[`lines`](https://viniciusoike.github.io/metrosp/reference/lines.md) for
+the full line reference (numbers, names, and route geometries).

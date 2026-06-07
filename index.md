@@ -62,7 +62,6 @@ visualization.
 | `passengers_transported` | Average passengers transported by line | Monthly | No |
 | `station_averages` | Average weekday passenger entries by station | Monthly | No |
 | `station_daily` | Daily passenger entries by station | Daily | No |
-| `metro_lines` | Metro line reference table (names, colors, operators) | — | No |
 | `metro_colors` | Named vector of official metro line colors | — | No |
 | `lines` | Metro and train line routes (current + planned) | — | Yes |
 | `stations` | Metro and train station locations (current + planned) | — | Yes |

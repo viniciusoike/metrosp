@@ -2,10 +2,9 @@
 
 This vignette documents the core datasets shipped with `metrosp`: what
 each contains, where the data comes from, and the caveats you should
-know before analysing it. For auxiliary lookup tables (`metro_lines`,
-`metro_colors`, `station_inauguration`) and derived datasets
-(`forecasts`, `forecast_accuracy`), see the help pages (e.g.,
-[`?forecasts`](https://viniciusoike.github.io/metrosp/reference/forecasts.md)).
+know before analysing it. For auxiliary lookup tables (`metro_colors`,
+`station_inauguration`), see the help pages (e.g.,
+[`?metro_colors`](https://viniciusoike.github.io/metrosp/reference/metro_colors.md)).
 
 ## Overview
 
@@ -303,15 +302,16 @@ they serve.
 
 ## Auxiliary datasets
 
-The package also ships two convenience lookup tables:
+The package also ships a convenience lookup vector:
 
-- **`metro_lines`** — maps line numbers to Portuguese and English color
-  names (13 rows, covering all lines including planned expansions and
-  the network total `line_number = 99`).
 - **`metro_colors`** — named character vector of official hex color
   codes for the six lines with ridership data (e.g.,
   `metro_colors["Blue"]` returns `"#171796"`). Useful for consistent
   plot styling with `scale_color_manual()`.
+
+Line numbers and their Portuguese/English names are already included as
+columns on every passenger and station dataset, and the full network
+line list (including planned and CPTM lines) is available in `lines`.
 
 ## Data notes and caveats
 
