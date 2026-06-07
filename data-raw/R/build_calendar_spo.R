@@ -46,13 +46,13 @@ holidays_for_year <- function(yr) {
       paste0(yr, "-12-25")
     )),
     holiday_name = c(
-      "Confraternização Universal",
+      "Confraterniza\u00e7\u00e3o Universal",
       "Tiradentes",
       "Dia do Trabalho",
-      "Independência do Brasil",
+      "Independ\u00eancia do Brasil",
       "Nossa Senhora Aparecida",
       "Finados",
-      "Proclamação da República",
+      "Proclama\u00e7\u00e3o da Rep\u00fablica",
       "Natal"
     ),
     holiday_scope = "national",
@@ -63,7 +63,7 @@ holidays_for_year <- function(yr) {
   # (Lei 14.759/2023)
   consciencia_negra <- tibble::tibble(
     date = as.Date(paste0(yr, "-11-20")),
-    holiday_name = "Dia da Consciência Negra",
+    holiday_name = "Dia da Consci\u00eancia Negra",
     holiday_scope = if (yr >= 2024) "national" else "municipal",
     is_ponto_facultativo = FALSE
   )
@@ -71,7 +71,7 @@ holidays_for_year <- function(yr) {
   # São Paulo municipal holiday
   municipal <- tibble::tibble(
     date = as.Date(paste0(yr, "-01-25")),
-    holiday_name = "Aniversário de São Paulo",
+    holiday_name = "Anivers\u00e1rio de S\u00e3o Paulo",
     holiday_scope = "municipal",
     is_ponto_facultativo = FALSE
   )
@@ -79,7 +79,7 @@ holidays_for_year <- function(yr) {
   # São Paulo state holiday
   state <- tibble::tibble(
     date = as.Date(paste0(yr, "-07-09")),
-    holiday_name = "Revolução Constitucionalista",
+    holiday_name = "Revolu\u00e7\u00e3o Constitucionalista",
     holiday_scope = "state",
     is_ponto_facultativo = FALSE
   )
@@ -94,7 +94,7 @@ holidays_for_year <- function(yr) {
     )),
     holiday_name = c(
       "Carnaval (segunda-feira)",
-      "Carnaval (terça-feira)",
+      "Carnaval (ter\u00e7a-feira)",
       "Sexta-Feira Santa",
       "Corpus Christi"
     ),
@@ -122,6 +122,8 @@ build_calendar_spo <- function(
     mutate(
       year = year(date),
       weekday = wday(date),
+      weekday_label = wday(date, label = TRUE),
+      weekday_label_pt = wday(date, label = TRUE, locale = "pt_BR"),
       is_weekend = weekday %in% c(1L, 7L),
       is_holiday = !is.na(holiday_name),
       is_ponto_facultativo = tidyr::replace_na(is_ponto_facultativo, FALSE),
@@ -137,7 +139,15 @@ build_calendar_spo <- function(
 
   calendar |>
     select(
-      date, year, weekday, is_weekend, is_holiday, is_business_day,
-      holiday_name, holiday_scope, is_ponto_facultativo, is_feriadao
+      date,
+      year,
+      weekday,
+      is_weekend,
+      is_holiday,
+      is_business_day,
+      holiday_name,
+      holiday_scope,
+      is_ponto_facultativo,
+      is_feriadao
     )
 }
