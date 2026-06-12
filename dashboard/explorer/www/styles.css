@@ -1,0 +1,431 @@
+/* Metro SP dashboard — custom polish */
+
+:root {
+  --metro-ink:       #0E1130;
+  --metro-ink-soft:  #4A4F6B;
+  --metro-mute:      #8A8FA3;
+  --metro-line:      #E5E7EE;
+  --metro-bg:        #F7F8FB;
+  --metro-card:      #FFFFFF;
+  --metro-blue:      #171796;
+  --shadow-card:     0 1px 2px rgba(14, 17, 48, 0.04),
+                     0 4px 12px rgba(14, 17, 48, 0.05);
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+
+body {
+  background: var(--metro-bg);
+  color: var(--metro-ink);
+  font-feature-settings: "ss01", "cv11", "tnum";
+  letter-spacing: -0.005em;
+}
+
+h1, h2, h3, h4, h5, .card-header {
+  letter-spacing: -0.018em;
+  color: var(--metro-ink);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+
+.card {
+  border: 1px solid var(--metro-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-card);
+  background: var(--metro-card);
+  overflow: hidden;
+}
+
+.card-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--metro-line) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px 18px;
+  color: var(--metro-ink);
+}
+
+.card-body {
+  padding: 16px 18px;
+}
+
+/* ── Value boxes ────────────────────────────────────────────────────────── */
+
+.bslib-value-box {
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--metro-line) !important;
+  overflow: hidden;
+}
+
+.bslib-value-box .value-box-title {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.bslib-value-box .value-box-value {
+  font-size: 1.95rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bslib-value-box p {
+  font-size: 0.82rem;
+  opacity: 0.85;
+  margin-bottom: 0;
+}
+
+/* ── Compact KPI cards (Tab 1 header) ───────────────────────────────────── */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.kpi-grid.kpi-grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.kpi-grid.kpi-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kpi-grid.kpi-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-grid.kpi-grid-3 { grid-template-columns: 1fr; }
+}
+
+.kpi {
+  background: var(--metro-card);
+  border: 1px solid var(--metro-line);
+  border-left: 3px solid var(--metro-blue);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 78px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.kpi:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(14, 17, 48, 0.06),
+              0 8px 18px rgba(14, 17, 48, 0.07);
+}
+
+.kpi-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--metro-mute);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-value {
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--metro-blue);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-sub {
+  font-size: 0.72rem;
+  color: var(--metro-ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────────────── */
+
+.navbar {
+  background: var(--metro-card) !important;
+  border-bottom: 1px solid var(--metro-line);
+  box-shadow: 0 1px 0 rgba(14, 17, 48, 0.02);
+  padding: 10px 20px;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: var(--metro-ink-soft);
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: background 0.15s ease;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  background: rgba(23, 23, 150, 0.06);
+  color: var(--metro-blue);
+}
+
+.navbar .navbar-nav .nav-link.active {
+  background: rgba(23, 23, 150, 0.08);
+  color: var(--metro-blue) !important;
+  font-weight: 600;
+}
+
+/* ── Sidebar (Tab 2) ────────────────────────────────────────────────────── */
+
+.bslib-sidebar-layout > .sidebar {
+  background: var(--metro-card) !important;
+  border-right: 1px solid var(--metro-line);
+}
+
+.sidebar-title {
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--metro-mute);
+  margin-bottom: 8px;
+}
+
+/* ── Form controls ──────────────────────────────────────────────────────── */
+
+.form-control, .form-select {
+  border: 1px solid var(--metro-line);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--metro-card);
+  color: var(--metro-ink);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--metro-blue);
+  box-shadow: 0 0 0 3px rgba(23, 23, 150, 0.12);
+}
+
+label, .control-label {
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--metro-ink-soft);
+  margin-bottom: 4px;
+}
+
+/* ── Tab 1 small multiples ──────────────────────────────────────────────── */
+
+.spark-card {
+  background: var(--metro-card);
+  border: 1px solid var(--metro-line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.spark-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+
+.spark-card .spark-line-tag {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.spark-card .spark-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--metro-ink);
+  margin-bottom: 2px;
+}
+
+.spark-card .spark-metric {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.spark-card .spark-delta {
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--metro-mute);
+}
+
+.spark-card .spark-delta.positive { color: #2E7D32; }
+.spark-card .spark-delta.negative { color: #C62828; }
+
+.spark-card .spark-plot {
+  margin-top: 6px;
+  flex-grow: 1;
+  min-height: 56px;
+}
+
+/* ── Station empty state (Tab 3) ───────────────────────────────────────── */
+
+.station-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 28px;
+  color: var(--metro-mute);
+}
+
+.station-empty .empty-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.station-empty .empty-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--metro-ink-soft);
+  margin-bottom: 4px;
+}
+
+.station-empty .empty-text {
+  font-size: 0.88rem;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+/* ── Section labels ─────────────────────────────────────────────────────── */
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--metro-mute);
+  margin: 4px 0 8px 2px;
+}
+
+/* ── Footer / source ────────────────────────────────────────────────────── */
+
+.source-tag {
+  color: var(--metro-mute);
+  font-size: 0.78rem;
+  margin-right: 8px;
+}
+
+/* ── ggiraph tooltip override (consistent across charts) ───────────────── */
+
+.girafe_container_std {
+  background: transparent !important;
+}
+
+/* ── echarts4r container ───────────────────────────────────────────────── */
+
+.echarts4r {
+  background: transparent !important;
+}
+
+.spark-plot .echarts4r {
+  width: 100% !important;
+  height: 70px !important;
+}
+
+/* Mini forecast/seasonality multiples */
+.mini-chart {
+  background: var(--metro-card);
+  border: 1px solid var(--metro-line);
+  border-radius: 10px;
+  padding: 8px 10px 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-chart .mini-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--metro-ink);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mini-chart .mini-tag {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+/* ── Download / share controls ──────────────────────────────────────────── */
+
+.download-icon {
+  color: var(--metro-mute) !important;
+  border: none !important;
+  background: transparent !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.download-icon:hover,
+.download-icon:focus {
+  color: var(--metro-blue) !important;
+  background: rgba(23, 23, 150, 0.08) !important;
+}
+
+.download-icon i,
+.download-icon svg {
+  font-size: 0.95rem;
+}
+
+.share-btn {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  color: var(--metro-ink-soft) !important;
+  border-color: var(--metro-line) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-btn:hover,
+.share-btn:focus {
+  background: rgba(23, 23, 150, 0.08) !important;
+  color: var(--metro-blue) !important;
+  border-color: var(--metro-blue) !important;
+}

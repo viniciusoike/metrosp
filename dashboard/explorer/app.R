@@ -2,13 +2,13 @@ library(shiny)
 library(bslib)
 library(bsicons)
 library(dplyr)
-library(tidyr)
 library(leaflet)
 library(echarts4r)
 library(metrosp)
 library(sf)
 library(htmltools)
 library(writexl)
+library(readr)
 
 source("shared.R", local = TRUE)
 
@@ -25,6 +25,21 @@ if (!HAS_TRENDSERIES) {
 # Constants ----
 
 DEFAULT_START <- as.Date("2019-01-01")
+
+MONTHS_PT <- c(
+  "jan", "fev", "mar", "abr", "mai", "jun",
+  "jul", "ago", "set", "out", "nov", "dez"
+)
+
+fmt_month_pt <- function(x) {
+  paste0(MONTHS_PT[as.integer(format(x, "%m"))], "/", format(x, "%Y"))
+}
+
+# A cleared dateInput returns a length-0 Date (not NULL), so `%||%` alone
+# does not catch it
+date_or <- function(x, default) {
+  if (length(x) == 1 && !is.na(x)) x else default
+}
 
 # Pre-build data ----
 
@@ -57,6 +72,10 @@ sta_daily <- metrosp::station_daily |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
   select(date, line_number, station_name, value = passengers, year)
+
+## Data window (drives copy, input limits, freshness stamp) ----
+DATA_MIN <- min(ent$date, na.rm = TRUE)
+DATA_MAX <- max(c(ent$date, sta_daily$date), na.rm = TRUE)
 
 ## Spatial data ----
 sf_lines <- tryCatch(
@@ -108,59 +127,82 @@ sta_daily_years <- sta_daily |>
   arrange(line_number, station_name, desc(year))
 
 ## Dataset metadata for download tab ----
+# Downloads serve the package datasets as-is, so the schema here matches the
+# pkgdown documentation. Computed from the data so it never drifts.
 dataset_info <- list(
   passengers_entrance = list(
-    label = "Embarques por Linha (mensal)",
-    desc = "Passageiros entrando nas estações, agregado por linha. Métrica: total mensal.",
-    cols = c("date", "line_number", "value", "year"),
-    rows = nrow(ent),
-    range = paste(min(ent$date), "a", max(ent$date)),
+    label = "passengers_entrance (mensal)",
+    desc = paste(
+      "Passageiros entrando nas estações, agregado por linha.",
+      "Inclui todas as métricas (coluna metric_abb), não apenas o total."
+    ),
+    cols = names(metrosp::passengers_entrance),
+    rows = nrow(metrosp::passengers_entrance),
+    range = paste(
+      min(metrosp::passengers_entrance$date),
+      "a",
+      max(metrosp::passengers_entrance$date)
+    ),
     source = "METRO SP / Insper Dataverse"
   ),
   passengers_transported = list(
-    label = "Passageiros Transportados (mensal)",
-    desc = "Total de passageiros transportados por linha por mês.",
-    cols = c("date", "line_number", "value", "year"),
-    rows = nrow(trans),
-    range = paste(min(trans$date), "a", max(trans$date)),
+    label = "passengers_transported (mensal)",
+    desc = paste(
+      "Passageiros transportados por linha por mês.",
+      "Inclui todas as métricas (coluna metric_abb)."
+    ),
+    cols = names(metrosp::passengers_transported),
+    rows = nrow(metrosp::passengers_transported),
+    range = paste(
+      min(metrosp::passengers_transported$date),
+      "a",
+      max(metrosp::passengers_transported$date)
+    ),
     source = "METRO SP"
   ),
   station_averages = list(
-    label = "Média Dias Úteis por Estação (mensal)",
+    label = "station_averages (mensal)",
     desc = "Média de embarques em dias úteis por estação, mensal.",
-    cols = c("date", "line_number", "station_name", "value", "year"),
-    rows = nrow(sta_avg),
-    range = paste(min(sta_avg$date), "a", max(sta_avg$date)),
+    cols = names(metrosp::station_averages),
+    rows = nrow(metrosp::station_averages),
+    range = paste(
+      min(metrosp::station_averages$date),
+      "a",
+      max(metrosp::station_averages$date)
+    ),
     source = "METRO SP / Insper Dataverse"
   ),
   station_daily = list(
-    label = "Embarques Diários por Estação",
+    label = "station_daily (diário)",
     desc = "Embarques diários em cada estação do metrô.",
-    cols = c("date", "line_number", "station_name", "value", "year"),
-    rows = nrow(sta_daily),
-    range = paste(min(sta_daily$date), "a", max(sta_daily$date)),
+    cols = names(metrosp::station_daily),
+    rows = nrow(metrosp::station_daily),
+    range = paste(
+      min(metrosp::station_daily$date),
+      "a",
+      max(metrosp::station_daily$date)
+    ),
     source = "METRO SP / Insper Dataverse"
   ),
   lines_spatial = list(
-    label = "Geometrias das Linhas (espacial)",
-    desc = "Traçado das linhas de metrô em operação (LINESTRING, WGS84).",
-    cols = c("line_number", "line_name_pt", "type", "status", "geometry"),
-    rows = if (!is.null(sf_lines)) nrow(sf_lines) else 0L,
+    label = "lines (espacial)",
+    desc = paste(
+      "Traçados de metrô e trem (CPTM), atuais e planejados",
+      "(LINESTRING, WGS84)."
+    ),
+    cols = names(metrosp::lines),
+    rows = nrow(metrosp::lines),
     range = NULL,
     source = "GeoSampa"
   ),
   stations_spatial = list(
-    label = "Localização das Estações (espacial)",
-    desc = "Ponto de cada estação de metrô em operação (POINT, WGS84).",
-    cols = c(
-      "station_name",
-      "line_number",
-      "line_name_pt",
-      "type",
-      "status",
-      "geometry"
+    label = "stations (espacial)",
+    desc = paste(
+      "Ponto de cada estação de metrô e trem, atuais e planejadas",
+      "(POINT, WGS84)."
     ),
-    rows = if (!is.null(sf_stations)) nrow(sf_stations) else 0L,
+    cols = names(metrosp::stations),
+    rows = nrow(metrosp::stations),
     range = NULL,
     source = "GeoSampa"
   )
@@ -209,9 +251,6 @@ download_card_configs <- list(
 
 make_download_card <- function(cfg) {
   info <- dataset_info[[cfg$key]]
-  if (cfg$spatial && info$rows == 0L) {
-    return(NULL)
-  }
   size_label <- if (cfg$spatial) "Feições: " else "Linhas: "
   size_est <- if (!cfg$spatial && info$rows > 0) {
     bytes <- info$rows * length(info$cols) * 12
@@ -312,8 +351,8 @@ ui <- function(request) {
             "lines_start",
             "Início da série",
             value = DEFAULT_START,
-            min = as.Date("2017-01-01"),
-            max = Sys.Date(),
+            min = DATA_MIN,
+            max = DATA_MAX,
             language = "pt-BR"
           ),
           if (HAS_TRENDSERIES) {
@@ -345,13 +384,17 @@ ui <- function(request) {
             textOutput("lines_title", inline = TRUE),
             downloadButton(
               "dl_lines_csv",
-              tags$span(class = "visually-hidden", "Baixar CSV"),
-              icon = icon("download"),
+              tagList(
+                bs_icon("download"),
+                tags$span(class = "visually-hidden", "Baixar CSV")
+              ),
+              icon = NULL,
               class = "btn-sm btn-link p-1 download-icon",
               title = "Baixar CSV"
             )
           ),
-          echarts4rOutput("lines_chart", height = "480px")
+          echarts4rOutput("lines_chart", height = "480px"),
+          uiOutput("lines_note")
         )
       )
     ),
@@ -381,8 +424,8 @@ ui <- function(request) {
             "sta_start",
             "Início da série",
             value = DEFAULT_START,
-            min = as.Date("2017-01-01"),
-            max = Sys.Date(),
+            min = DATA_MIN,
+            max = DATA_MAX,
             language = "pt-BR"
           ),
           if (HAS_TRENDSERIES) {
@@ -412,8 +455,11 @@ ui <- function(request) {
             textOutput("sta_monthly_title", inline = TRUE),
             downloadButton(
               "dl_sta_csv",
-              tags$span(class = "visually-hidden", "Baixar CSV"),
-              icon = icon("download"),
+              tagList(
+                bs_icon("download"),
+                tags$span(class = "visually-hidden", "Baixar CSV")
+              ),
+              icon = NULL,
               class = "btn-sm btn-link p-1 download-icon",
               title = "Baixar CSV"
             )
@@ -428,8 +474,11 @@ ui <- function(request) {
             textOutput("sta_daily_title", inline = TRUE),
             downloadButton(
               "dl_sta_daily_csv",
-              tags$span(class = "visually-hidden", "Baixar CSV"),
-              icon = icon("download"),
+              tagList(
+                bs_icon("download"),
+                tags$span(class = "visually-hidden", "Baixar CSV")
+              ),
+              icon = NULL,
               class = "btn-sm btn-link p-1 download-icon",
               title = "Baixar CSV"
             )
@@ -482,10 +531,7 @@ ui <- function(request) {
       layout_column_wrap(
         width = 1 / 2,
         heights_equal = "row",
-        !!!Filter(
-          Negate(is.null),
-          lapply(download_card_configs, make_download_card)
-        )
+        !!!lapply(download_card_configs, make_download_card)
       )
     ),
 
@@ -504,14 +550,23 @@ ui <- function(request) {
               "O ",
               tags$b("metrosp"),
               " é um pacote R de dados que disponibiliza ",
-              "informações de demanda de passageiros do Metrô de São Paulo (2017-2025). ",
+              sprintf(
+                "informações de demanda de passageiros do Metrô de São Paulo (%s–%s). ",
+                format(DATA_MIN, "%Y"),
+                format(DATA_MAX, "%Y")
+              ),
               "Similar ao ",
               tags$code("nycflights13"),
               ", o pacote contém apenas datasets, ",
               "sem funções voltadas ao usuário."
             ),
             tags$p(
-              "Este explorador apresenta os dados a partir de janeiro de 2019, ",
+              sprintf(
+                "Este explorador cobre o período de %s a %s (a visualização padrão começa em %s), ",
+                fmt_month_pt(DATA_MIN),
+                fmt_month_pt(DATA_MAX),
+                fmt_month_pt(DEFAULT_START)
+              ),
               "permitindo visualização rápida e download em múltiplos formatos."
             ),
             tags$h6("Links"),
@@ -570,9 +625,12 @@ ui <- function(request) {
               class = "small text-muted",
               tags$li("Linhas 4/5 — passageiros transportados não disponíveis"),
               tags$li("Linhas 4/5 — código de estação é NA"),
-              tags$li("2019: dados começam em janeiro (2017 parcial excluído)"),
+              tags$li("2017: dados disponíveis apenas de outubro a dezembro"),
               tags$li(
-                "Meses finais de 2025 podem conter NA (publicação pendente)"
+                sprintf(
+                  "Meses após %s ainda não publicados pela fonte",
+                  fmt_month_pt(DATA_MAX)
+                )
               )
             )
           )
@@ -584,7 +642,8 @@ ui <- function(request) {
     nav_item(
       tags$span(
         class = "source-tag",
-        "Fontes: METRO SP · Insper Dataverse · GeoSampa"
+        sprintf("Dados até %s", fmt_month_pt(DATA_MAX)),
+        " · Fontes: METRO SP · Insper Dataverse · GeoSampa"
       )
     )
   )
@@ -593,34 +652,24 @@ ui <- function(request) {
 # Server ----
 
 server <- function(input, output, session) {
-  .trend_cache <- new.env(parent = emptyenv())
-  session$onSessionEnded(function() {
-    rm(list = ls(.trend_cache), envir = .trend_cache)
-  })
-
   ## Lines tab ----
 
   lines_data <- reactive({
     lns <- input$lines_line
     req(length(lns) > 0)
 
-    start <- input$lines_start %||% DEFAULT_START
+    start <- date_or(input$lines_start, DEFAULT_START)
     base <- if (input$lines_metric == "entrance") ent else trans
     df <- base |> filter(line_number %in% lns, date >= start)
 
     show_trend <- isTRUE(input$lines_trend) &&
       length(lns) == 1 &&
       HAS_TRENDSERIES
-    if (!show_trend) {
+    if (!show_trend || nrow(df) == 0) {
       return(df)
     }
 
-    cache_key <- paste("line", input$lines_metric, lns, start, sep = "_")
-    if (exists(cache_key, envir = .trend_cache)) {
-      return(get(cache_key, envir = .trend_cache))
-    }
-
-    result <- tryCatch(
+    tryCatch(
       trendseries::augment_trends(
         df,
         date_col = "date",
@@ -635,9 +684,13 @@ server <- function(input, output, session) {
         df |> mutate(trend_stl = NA_real_)
       }
     )
-    assign(cache_key, result, envir = .trend_cache)
-    result
-  })
+  }) |>
+    bindCache(
+      input$lines_line,
+      input$lines_metric,
+      input$lines_start,
+      input$lines_trend
+    )
 
   output$lines_title <- renderText({
     lns <- input$lines_line
@@ -657,7 +710,10 @@ server <- function(input, output, session) {
     df <- lines_data()
     validate(need(
       nrow(df) > 0,
-      "Sem dados para a combinação selecionada. Linhas 4 e 5 não possuem dados de passageiros transportados."
+      paste(
+        "Sem dados para a seleção atual. Verifique o período escolhido;",
+        "as linhas 4 e 5 não possuem dados de passageiros transportados."
+      )
     ))
     lns <- input$lines_line
     show_trend <- isTRUE(input$lines_trend) &&
@@ -677,7 +733,7 @@ server <- function(input, output, session) {
           itemStyle = list(color = col)
         )
 
-      if (show_trend && "trend_stl" %in% names(df)) {
+      if (show_trend && any(!is.na(df$trend_stl %||% NA))) {
         e <- e |>
           e_line(
             trend_stl,
@@ -715,32 +771,54 @@ server <- function(input, output, session) {
     e |> e_metro_defaults()
   })
 
+  output$lines_note <- renderUI({
+    df <- lines_data()
+    lns <- input$lines_line
+    missing <- setdiff(lns, unique(df$line_number))
+    if (nrow(df) == 0 || length(missing) == 0) {
+      return(NULL)
+    }
+    div(
+      class = "small text-muted px-3 pb-2",
+      bs_icon("exclamation-triangle", class = "me-1"),
+      paste0(
+        "Sem dados para: ",
+        paste(line_labels[missing], collapse = ", "),
+        if (input$lines_metric == "transported") {
+          " (linhas 4 e 5 não possuem passageiros transportados)."
+        } else {
+          " no período selecionado."
+        }
+      )
+    )
+  })
+
   output$dl_lines_csv <- downloadHandler(
     filename = function() {
       lns <- paste(input$lines_line, collapse = "-")
       paste0("metrosp-linhas-", lns, "-", input$lines_metric, ".csv")
     },
     content = function(file) {
-      utils::write.csv(
-        lines_data(),
-        file,
-        row.names = FALSE,
-        fileEncoding = "UTF-8"
-      )
+      readr::write_excel_csv2(lines_data(), file)
     }
   )
 
   ## Stations tab ----
 
+  # freezeReactiveValue() stops downstream reactives from seeing the stale
+  # station/year during the flush before the update lands. Valid selections
+  # are preserved so switching lines (and bookmark restore) keeps them.
   observeEvent(input$sta_line, {
     choices <- stations_by_line |>
       filter(line_number == input$sta_line) |>
       pull(station_name)
+    current <- input$sta_station
+    freezeReactiveValue(input, "sta_station")
     updateSelectizeInput(
       session,
       "sta_station",
       choices = choices,
-      selected = choices[1]
+      selected = if (isTRUE(current %in% choices)) current else choices[1]
     )
   })
 
@@ -752,11 +830,17 @@ server <- function(input, output, session) {
         station_name == input$sta_station
       ) |>
       pull(year)
+    current <- input$sta_year
+    freezeReactiveValue(input, "sta_year")
     updateSelectInput(
       session,
       "sta_year",
       choices = years,
-      selected = if (length(years)) years[1]
+      selected = if (isTRUE(current %in% as.character(years))) {
+        current
+      } else if (length(years)) {
+        years[1]
+      }
     )
   })
 
@@ -765,7 +849,7 @@ server <- function(input, output, session) {
     sta <- input$sta_station
     req(ln, sta)
 
-    start <- input$sta_start %||% DEFAULT_START
+    start <- date_or(input$sta_start, DEFAULT_START)
     df <- sta_avg |>
       filter(line_number == ln, station_name == sta, date >= start)
     show_trend <- isTRUE(input$sta_trend) && HAS_TRENDSERIES
@@ -774,12 +858,7 @@ server <- function(input, output, session) {
       return(df)
     }
 
-    cache_key <- paste("sta", ln, sta, start, sep = "_")
-    if (exists(cache_key, envir = .trend_cache)) {
-      return(get(cache_key, envir = .trend_cache))
-    }
-
-    result <- tryCatch(
+    tryCatch(
       trendseries::augment_trends(
         df,
         date_col = "date",
@@ -801,9 +880,13 @@ server <- function(input, output, session) {
         df |> mutate(trend_stl = NA_real_)
       }
     )
-    assign(cache_key, result, envir = .trend_cache)
-    result
-  })
+  }) |>
+    bindCache(
+      input$sta_line,
+      input$sta_station,
+      input$sta_start,
+      input$sta_trend
+    )
 
   sta_daily_data <- reactive({
     ln <- input$sta_line
@@ -819,6 +902,7 @@ server <- function(input, output, session) {
     req(input$sta_station, input$sta_line)
 
     df_monthly <- sta_monthly_data()
+    req(nrow(df_monthly) > 0)
     yr <- input$sta_year
     df_daily <- if (!is.null(yr) && nzchar(yr)) {
       sta_daily |>
@@ -847,7 +931,7 @@ server <- function(input, output, session) {
 
     peak <- df_monthly |> filter(!is.na(value)) |> slice_max(value, n = 1)
     peak_val <- if (nrow(peak) > 0) fmt_n(peak$value) else "—"
-    peak_when <- if (nrow(peak) > 0) format(peak$date[1], "%b/%Y") else ""
+    peak_when <- if (nrow(peak) > 0) fmt_month_pt(peak$date[1]) else ""
 
     latest <- max(df_monthly$date, na.rm = TRUE)
     recent <- df_monthly |> filter(date > latest - 365, !is.na(value))
@@ -905,7 +989,7 @@ server <- function(input, output, session) {
         itemStyle = list(color = col)
       )
 
-    if (show_trend && "trend_stl" %in% names(df)) {
+    if (show_trend && any(!is.na(df$trend_stl %||% NA))) {
       e <- e |>
         e_line(
           trend_stl,
@@ -969,12 +1053,7 @@ server <- function(input, output, session) {
       paste0("metrosp-estacao-", sta_slug, "-mensal.csv")
     },
     content = function(file) {
-      utils::write.csv(
-        sta_monthly_data(),
-        file,
-        row.names = FALSE,
-        fileEncoding = "UTF-8"
-      )
+      readr::write_excel_csv2(sta_monthly_data(), file)
     }
   )
 
@@ -984,12 +1063,7 @@ server <- function(input, output, session) {
       paste0("metrosp-estacao-", sta_slug, "-diario-", input$sta_year, ".csv")
     },
     content = function(file) {
-      utils::write.csv(
-        sta_daily_data(),
-        file,
-        row.names = FALSE,
-        fileEncoding = "UTF-8"
-      )
+      readr::write_excel_csv2(sta_daily_data(), file)
     }
   )
 
@@ -1074,78 +1148,83 @@ server <- function(input, output, session) {
   })
 
   ## Download handlers ----
+  # Serve the package datasets verbatim so downloads match the documented
+  # schemas (charts use filtered/renamed copies; downloads must not)
 
-  make_csv_handler <- function(data_fn, prefix) {
+  make_csv_handler <- function(data, prefix) {
     downloadHandler(
       filename = function() paste0("metrosp-", prefix, ".csv"),
       content = function(file) {
-        utils::write.csv(
-          data_fn(),
-          file,
-          row.names = FALSE,
-          fileEncoding = "UTF-8"
-        )
+        readr::write_excel_csv2(data, file)
       }
     )
   }
 
-  make_xlsx_handler <- function(data_fn, prefix) {
+  make_xlsx_handler <- function(data, prefix) {
     downloadHandler(
       filename = function() paste0("metrosp-", prefix, ".xlsx"),
-      content = function(file) writexl::write_xlsx(data_fn(), file)
+      content = function(file) writexl::write_xlsx(data, file)
     )
   }
 
-  output$dl_ent_csv <- make_csv_handler(function() ent, "embarques-linha")
-  output$dl_ent_xlsx <- make_xlsx_handler(function() ent, "embarques-linha")
+  output$dl_ent_csv <- make_csv_handler(
+    metrosp::passengers_entrance,
+    "passengers-entrance"
+  )
+  output$dl_ent_xlsx <- make_xlsx_handler(
+    metrosp::passengers_entrance,
+    "passengers-entrance"
+  )
   output$dl_trans_csv <- make_csv_handler(
-    function() trans,
-    "transportados-linha"
+    metrosp::passengers_transported,
+    "passengers-transported"
   )
   output$dl_trans_xlsx <- make_xlsx_handler(
-    function() trans,
-    "transportados-linha"
+    metrosp::passengers_transported,
+    "passengers-transported"
   )
-  output$dl_staavg_csv <- make_csv_handler(function() sta_avg, "media-estacao")
+  output$dl_staavg_csv <- make_csv_handler(
+    metrosp::station_averages,
+    "station-averages"
+  )
   output$dl_staavg_xlsx <- make_xlsx_handler(
-    function() sta_avg,
-    "media-estacao"
+    metrosp::station_averages,
+    "station-averages"
   )
   output$dl_stadaily_csv <- make_csv_handler(
-    function() sta_daily,
-    "diario-estacao"
+    metrosp::station_daily,
+    "station-daily"
   )
   output$dl_stadaily_xlsx <- make_xlsx_handler(
-    function() sta_daily,
-    "diario-estacao"
+    metrosp::station_daily,
+    "station-daily"
   )
 
   make_spatial_handler <- function(sf_data, prefix, driver) {
     downloadHandler(
       filename = function() paste0("metrosp-", prefix, ".", tolower(driver)),
       content = function(file) {
-        if (is.null(sf_data)) {
-          showNotification("Dados espaciais indisponíveis.", type = "warning")
-          file.create(file)
-          return()
-        }
         sf::st_write(sf_data, file, driver = driver, quiet = TRUE)
       }
     )
   }
 
-  output$dl_lines_gpkg <- make_spatial_handler(sf_lines, "linhas", "GPKG")
-  output$dl_lines_geojson <- make_spatial_handler(sf_lines, "linhas", "GeoJSON")
+  output$dl_lines_gpkg <- make_spatial_handler(metrosp::lines, "lines", "GPKG")
+  output$dl_lines_geojson <- make_spatial_handler(
+    metrosp::lines,
+    "lines",
+    "GeoJSON"
+  )
   output$dl_stations_gpkg <- make_spatial_handler(
-    sf_stations,
-    "estacoes",
+    metrosp::stations,
+    "stations",
     "GPKG"
   )
   output$dl_stations_geojson <- make_spatial_handler(
-    sf_stations,
-    "estacoes",
+    metrosp::stations,
+    "stations",
     "GeoJSON"
   )
 }
 
-shinyApp(ui, server)
+shinyApp(ui, server, enableBookmarking = "url")
