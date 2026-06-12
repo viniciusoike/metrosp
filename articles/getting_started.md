@@ -265,7 +265,7 @@ of passengers entering the station.
 ``` r
 
 glimpse(station_averages)
-#> Rows: 9,360
+#> Rows: 9,415
 #> Columns: 7
 #> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
 #> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
