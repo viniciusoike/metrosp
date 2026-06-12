@@ -343,12 +343,16 @@ stations_17_19 <- stations_17_19 |>
     station_name = name_station,
     station_name = if_else(
       station_name %in% names(station_renames),
-      station_renames[station_name],
+      unname(station_renames[station_name]),
       station_name
     )
   ) |>
   rename(avg_passenger = value) |>
-  select(all_of(.cols_station_avg))
+  select(all_of(.cols_station_avg)) |>
+  # Line 5 was handed over to ViaMobilidade in Aug 2018: the Dataverse source
+  # covers it from 2018-08-01, so drop the overlapping historic month
+  # (mirrors the passengers_entrance handling above).
+  filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
 
 ## Current (2020-) --------------------------------------------------------
@@ -393,6 +397,10 @@ station_averages <- station_averages |>
 
 station_averages <- bind_rows(station_averages, stations_4_5)
 
+# Defense in depth: re-clean names so a stale committed CSV can never leak
+# footnote markers (e.g. "Sé4", "Brooklin7") into the package data.
+station_averages <- station_averages |>
+  mutate(station_name = clean_station_name(station_name))
 
 station_averages <- station_averages |>
   mutate(
@@ -448,6 +456,11 @@ station_daily <- station_daily |>
   mutate(passengers = passengers * 1000)
 
 station_daily <- bind_rows(station_daily, station_daily_4_5)
+
+# Defense in depth: same footnote-marker cleaning as station_averages.
+station_daily <- station_daily |>
+  mutate(station_name = clean_station_name(station_name))
+
 station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 
 if (check) {
@@ -490,6 +503,23 @@ stopifnot(
 )
 stopifnot("NA dates in station_averages" = !any(is.na(station_averages$date)))
 stopifnot("NA dates in station_daily" = !any(is.na(station_daily$date)))
+
+stopifnot(
+  "station_averages has footnote markers in station_name" = !any(
+    grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_averages$station_name)
+  )
+)
+stopifnot(
+  "station_daily has footnote markers in station_name" = !any(
+    grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_daily$station_name)
+  )
+)
+# Footnote variants of one station must merge into a single series; a
+# duplicate key here means two sources overlap — investigate, never sum.
+stopifnot(
+  "station_averages has duplicate date/line/station" = nrow(station_averages) ==
+    nrow(distinct(station_averages, date, line_number, station_name))
+)
 
 # station_daily specific checks
 stopifnot(

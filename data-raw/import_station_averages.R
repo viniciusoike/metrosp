@@ -102,7 +102,12 @@ clean_stations_average <- function(dat, year = 2020, line = 1) {
   clean_dat <- clean_dat |>
     dplyr::rename(dplyr::any_of(rename_cols)) |>
     dplyr::mutate(
-      station_name = stringr::str_remove(station_name, " *\\([0-9¹²³*]*\\)|[¹²³*]"),
+      # Strip footnote markers ("Sé4", "Sé 2", "Luz (3)"); keep in sync with
+      # clean_station_name() in data-raw/R/helpers.R
+      station_name = stringr::str_remove_all(
+        station_name,
+        "\\s*\\([0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]*\\)|\\s*[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]+$"
+      ),
       station_name = stringr::str_squish(station_name),
       month_abb = stringr::str_remove(month_abb, "\\*"),
       year = year,

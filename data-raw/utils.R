@@ -6,6 +6,19 @@
 
 library(dplyr, warn.conflicts = FALSE)
 
+# --- Station-name cleaning ---------------------------------------------------
+
+# Footnote markers leaking from the source spreadsheets: digits, superscripts,
+# or asterisks at the end of a name ("Sé4", "Sé 2", "Brooklin7") or wrapped in
+# parentheses anywhere ("Luz (3)", "Ana Rosa ()").
+# Keep in sync with clean_station_name() in data-raw/R/helpers.R.
+.station_footnote_pattern <- "\\s*\\([0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]*\\)|\\s*[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]+$"
+
+#' Strip source-spreadsheet footnote markers from station names.
+clean_station_name <- function(x) {
+  stringr::str_squish(stringr::str_remove_all(x, .station_footnote_pattern))
+}
+
 # --- Path helpers ------------------------------------------------------------
 
 #' List years available in the raw CSV directory.

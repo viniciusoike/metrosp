@@ -113,6 +113,21 @@ test_that("station_daily has non-negative passengers", {
   expect_true(all(metrosp::station_daily$passengers >= 0))
 })
 
+test_that("station names carry no source footnote markers", {
+  # Digits/superscripts/asterisks glued by the source spreadsheets, e.g.
+  # "Sé4", "Brooklin7", "Luz (3)"
+  pat <- "[0-9¹²³*]$|\\("
+  expect_false(any(grepl(pat, metrosp::station_averages$station_name)))
+  expect_false(any(grepl(pat, metrosp::station_daily$station_name)))
+  expect_false(any(grepl(pat, metrosp::station_inauguration$station_name)))
+})
+
+test_that("station_averages has no duplicate date/line/station", {
+  sa <- metrosp::station_averages
+  dupes <- sum(duplicated(sa[, c("date", "line_number", "station_name")]))
+  expect_equal(dupes, 0)
+})
+
 test_that("station_daily has no duplicate date/line/station", {
   sd <- metrosp::station_daily
   dupes <- sum(duplicated(sd[, c("date", "line_number", "station_name")]))

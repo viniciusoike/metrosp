@@ -7,6 +7,20 @@
 
 library(dplyr, warn.conflicts = FALSE)
 
+# --- Station-name cleaning ---------------------------------------------------
+
+# Footnote markers leaking from the source spreadsheets: digits, superscripts,
+# or asterisks at the end of a name ("Sé4", "Sé 2", "Brooklin7") or wrapped in
+# parentheses anywhere ("Luz (3)", "Ana Rosa ()").
+.station_footnote_pattern <- "\\s*\\([0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]*\\)|\\s*[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]+$"
+
+#' Strip source-spreadsheet footnote markers from station names.
+#' Used by the import builders and again at assembly (defense in depth, so a
+#' stale committed CSV can never leak markers into data/*.rda).
+clean_station_name <- function(x) {
+  stringr::str_squish(stringr::str_remove_all(x, .station_footnote_pattern))
+}
+
 # --- Trailing-NA trimmer -----------------------------------------------------
 
 #' Drop rows beyond the last observed (non-NA) date per line.

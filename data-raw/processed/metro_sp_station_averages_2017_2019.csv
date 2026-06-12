@@ -22,7 +22,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-10-01,2017,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2017-10-01,2017,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2017-10-01,2017,Outubro,Linha 1 - Azul,Tucuruvi,mdu,71
-2017-10-01,2017,Outubro,Linha 2 - Verde,Vila Prudente5,mdu,54
+2017-10-01,2017,Outubro,Linha 2 - Verde,Vila Prudente,mdu,54
 2017-10-01,2017,Outubro,Linha 2 - Verde,Tamanduateí,mdu,67
 2017-10-01,2017,Outubro,Linha 2 - Verde,Sacomã,mdu,41
 2017-10-01,2017,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -48,7 +48,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,Brás,mdu,98
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,Pedro II,mdu,27
-2017-10-01,2017,Outubro,Linha 3 - Vermelha,Sé4,mdu,274
+2017-10-01,2017,Outubro,Linha 3 - Vermelha,Sé,mdu,274
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,79
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,República,mdu,151
 2017-10-01,2017,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,37
@@ -61,7 +61,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-10-01,2017,Outubro,Linha 5 - Lilás,Santo Amaro,mdu,85
 2017-10-01,2017,Outubro,Linha 5 - Lilás,Largo Treze,mdu,33
 2017-10-01,2017,Outubro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,13
-2017-10-01,2017,Outubro,Linha 15 - Prata,Vila Prudente6,mdu,11
+2017-10-01,2017,Outubro,Linha 15 - Prata,Vila Prudente,mdu,11
 2017-10-01,2017,Outubro,Linha 15 - Prata,Oratório,mdu,9
 2017-11-01,2017,Novembro,Linha 1 - Azul,Jabaquara,mdu,93
 2017-11-01,2017,Novembro,Linha 1 - Azul,Conceição,mdu,42
@@ -86,7 +86,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-11-01,2017,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2017-11-01,2017,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,18
 2017-11-01,2017,Novembro,Linha 1 - Azul,Tucuruvi,mdu,71
-2017-11-01,2017,Novembro,Linha 2 - Verde,Vila Prudente5,mdu,55
+2017-11-01,2017,Novembro,Linha 2 - Verde,Vila Prudente,mdu,55
 2017-11-01,2017,Novembro,Linha 2 - Verde,Tamanduateí,mdu,68
 2017-11-01,2017,Novembro,Linha 2 - Verde,Sacomã,mdu,42
 2017-11-01,2017,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -112,7 +112,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,Brás,mdu,102
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,Pedro II,mdu,27
-2017-11-01,2017,Novembro,Linha 3 - Vermelha,Sé4,mdu,278
+2017-11-01,2017,Novembro,Linha 3 - Vermelha,Sé,mdu,278
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,80
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,República,mdu,153
 2017-11-01,2017,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,37
@@ -125,10 +125,10 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-11-01,2017,Novembro,Linha 5 - Lilás,Santo Amaro,mdu,88
 2017-11-01,2017,Novembro,Linha 5 - Lilás,Largo Treze,mdu,33
 2017-11-01,2017,Novembro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,13
-2017-11-01,2017,Novembro,Linha 5 - Lilás,Alto da Boa Vista8,mdu,3
-2017-11-01,2017,Novembro,Linha 5 - Lilás,Borba Gato8,mdu,4
-2017-11-01,2017,Novembro,Linha 5 - Lilás,Brooklin8,mdu,8
-2017-11-01,2017,Novembro,Linha 15 - Prata,Vila Prudente6,mdu,11
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Borba Gato,mdu,4
+2017-11-01,2017,Novembro,Linha 5 - Lilás,Brooklin,mdu,8
+2017-11-01,2017,Novembro,Linha 15 - Prata,Vila Prudente,mdu,11
 2017-11-01,2017,Novembro,Linha 15 - Prata,Oratório,mdu,11
 2017-12-01,2017,Dezembro,Linha 1 - Azul,Jabaquara,mdu,89
 2017-12-01,2017,Dezembro,Linha 1 - Azul,Conceição,mdu,38
@@ -153,7 +153,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-12-01,2017,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,13
 2017-12-01,2017,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,16
 2017-12-01,2017,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,67
-2017-12-01,2017,Dezembro,Linha 2 - Verde,Vila Prudente5,mdu,49
+2017-12-01,2017,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,49
 2017-12-01,2017,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,60
 2017-12-01,2017,Dezembro,Linha 2 - Verde,Sacomã,mdu,38
 2017-12-01,2017,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,18
@@ -179,7 +179,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,38
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Brás,mdu,109
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,25
-2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Sé4,mdu,256
+2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Sé,mdu,256
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,74
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,República,mdu,141
 2017-12-01,2017,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
@@ -192,10 +192,10 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2017-12-01,2017,Dezembro,Linha 5 - Lilás,Santo Amaro,mdu,82
 2017-12-01,2017,Dezembro,Linha 5 - Lilás,Largo Treze,mdu,30
 2017-12-01,2017,Dezembro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,7
-2017-12-01,2017,Dezembro,Linha 5 - Lilás,Alto da Boa Vista8,mdu,3
-2017-12-01,2017,Dezembro,Linha 5 - Lilás,Borba Gato8,mdu,4
-2017-12-01,2017,Dezembro,Linha 5 - Lilás,Brooklin8,mdu,9
-2017-12-01,2017,Dezembro,Linha 15 - Prata,Vila Prudente6,mdu,10
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Borba Gato,mdu,4
+2017-12-01,2017,Dezembro,Linha 5 - Lilás,Brooklin,mdu,9
+2017-12-01,2017,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,10
 2017-12-01,2017,Dezembro,Linha 15 - Prata,Oratório,mdu,10
 2018-01-01,2018,Janeiro,Linha 1 - Azul,Jabaquara,mdu,80
 2018-01-01,2018,Janeiro,Linha 1 - Azul,Conceição,mdu,34
@@ -220,7 +220,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-01-01,2018,Janeiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,12
 2018-01-01,2018,Janeiro,Linha 1 - Azul,Parada Inglesa,mdu,14
 2018-01-01,2018,Janeiro,Linha 1 - Azul,Tucuruvi,mdu,58
-2018-01-01,2018,Janeiro,Linha 2 - Verde,Vila Prudente5,mdu,43
+2018-01-01,2018,Janeiro,Linha 2 - Verde,Vila Prudente,mdu,43
 2018-01-01,2018,Janeiro,Linha 2 - Verde,Tamanduateí,mdu,56
 2018-01-01,2018,Janeiro,Linha 2 - Verde,Sacomã,mdu,34
 2018-01-01,2018,Janeiro,Linha 2 - Verde,Alto do Ipiranga,mdu,16
@@ -246,7 +246,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,30
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Brás,mdu,87
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Pedro II,mdu,23
-2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Sé4,mdu,225
+2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Sé,mdu,225
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Anhangabaú,mdu,67
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,República,mdu,128
 2018-01-01,2018,Janeiro,Linha 3 - Vermelha,Santa Cecília,mdu,29
@@ -259,10 +259,10 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-01-01,2018,Janeiro,Linha 5 - Lilás,Santo Amaro,mdu,72
 2018-01-01,2018,Janeiro,Linha 5 - Lilás,Largo Treze,mdu,23
 2018-01-01,2018,Janeiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,6
-2018-01-01,2018,Janeiro,Linha 5 - Lilás,Alto da Boa Vista8,mdu,3
-2018-01-01,2018,Janeiro,Linha 5 - Lilás,Borba Gato8,mdu,4
-2018-01-01,2018,Janeiro,Linha 5 - Lilás,Brooklin8,mdu,8
-2018-01-01,2018,Janeiro,Linha 15 - Prata,Vila Prudente6,mdu,10
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Borba Gato,mdu,4
+2018-01-01,2018,Janeiro,Linha 5 - Lilás,Brooklin,mdu,8
+2018-01-01,2018,Janeiro,Linha 15 - Prata,Vila Prudente,mdu,10
 2018-01-01,2018,Janeiro,Linha 15 - Prata,Oratório,mdu,8
 2018-02-01,2018,Fevereiro,Linha 1 - Azul,Jabaquara,mdu,87
 2018-02-01,2018,Fevereiro,Linha 1 - Azul,Conceição,mdu,40
@@ -287,7 +287,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-02-01,2018,Fevereiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-02-01,2018,Fevereiro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-02-01,2018,Fevereiro,Linha 1 - Azul,Tucuruvi,mdu,67
-2018-02-01,2018,Fevereiro,Linha 2 - Verde,Vila Prudente5,mdu,53
+2018-02-01,2018,Fevereiro,Linha 2 - Verde,Vila Prudente,mdu,53
 2018-02-01,2018,Fevereiro,Linha 2 - Verde,Tamanduateí,mdu,66
 2018-02-01,2018,Fevereiro,Linha 2 - Verde,Sacomã,mdu,40
 2018-02-01,2018,Fevereiro,Linha 2 - Verde,Alto do Ipiranga,mdu,20
@@ -313,7 +313,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,41
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Brás,mdu,96
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Sé4,mdu,264
+2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Sé,mdu,264
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Anhangabaú,mdu,76
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,República,mdu,146
 2018-02-01,2018,Fevereiro,Linha 3 - Vermelha,Santa Cecília,mdu,33
@@ -326,10 +326,10 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Santo Amaro,mdu,84
 2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Largo Treze,mdu,28
 2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
-2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Alto da Boa Vista8,mdu,4
-2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Borba Gato8,mdu,6
-2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Brooklin8,mdu,10
-2018-02-01,2018,Fevereiro,Linha 15 - Prata,Vila Prudente6,mdu,11
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Alto da Boa Vista,mdu,4
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Borba Gato,mdu,6
+2018-02-01,2018,Fevereiro,Linha 5 - Lilás,Brooklin,mdu,10
+2018-02-01,2018,Fevereiro,Linha 15 - Prata,Vila Prudente,mdu,11
 2018-02-01,2018,Fevereiro,Linha 15 - Prata,Oratório,mdu,9
 2018-03-01,2018,Março,Linha 1 - Azul,Jabaquara,mdu,91
 2018-03-01,2018,Março,Linha 1 - Azul,Conceição,mdu,41
@@ -354,7 +354,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-03-01,2018,Março,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-03-01,2018,Março,Linha 1 - Azul,Parada Inglesa,mdu,18
 2018-03-01,2018,Março,Linha 1 - Azul,Tucuruvi,mdu,70
-2018-03-01,2018,Março,Linha 2 - Verde,Vila Prudente5,mdu,57
+2018-03-01,2018,Março,Linha 2 - Verde,Vila Prudente,mdu,57
 2018-03-01,2018,Março,Linha 2 - Verde,Tamanduateí,mdu,69
 2018-03-01,2018,Março,Linha 2 - Verde,Sacomã,mdu,42
 2018-03-01,2018,Março,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -380,7 +380,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-03-01,2018,Março,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
 2018-03-01,2018,Março,Linha 3 - Vermelha,Brás,mdu,99
 2018-03-01,2018,Março,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-03-01,2018,Março,Linha 3 - Vermelha,Sé4,mdu,278
+2018-03-01,2018,Março,Linha 3 - Vermelha,Sé,mdu,278
 2018-03-01,2018,Março,Linha 3 - Vermelha,Anhangabaú,mdu,79
 2018-03-01,2018,Março,Linha 3 - Vermelha,República,mdu,153
 2018-03-01,2018,Março,Linha 3 - Vermelha,Santa Cecília,mdu,34
@@ -393,10 +393,10 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-03-01,2018,Março,Linha 5 - Lilás,Santo Amaro,mdu,90
 2018-03-01,2018,Março,Linha 5 - Lilás,Largo Treze,mdu,31
 2018-03-01,2018,Março,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
-2018-03-01,2018,Março,Linha 5 - Lilás,Alto da Boa Vista8,mdu,4
-2018-03-01,2018,Março,Linha 5 - Lilás,Borba Gato8,mdu,8
-2018-03-01,2018,Março,Linha 5 - Lilás,Brooklin8,mdu,13
-2018-03-01,2018,Março,Linha 15 - Prata,Vila Prudente6,mdu,11
+2018-03-01,2018,Março,Linha 5 - Lilás,Alto da Boa Vista,mdu,4
+2018-03-01,2018,Março,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-03-01,2018,Março,Linha 5 - Lilás,Brooklin,mdu,13
+2018-03-01,2018,Março,Linha 15 - Prata,Vila Prudente,mdu,11
 2018-03-01,2018,Março,Linha 15 - Prata,Oratório,mdu,10
 2018-04-01,2018,Abril,Linha 1 - Azul,Jabaquara,mdu,91
 2018-04-01,2018,Abril,Linha 1 - Azul,Conceição,mdu,42
@@ -421,7 +421,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-04-01,2018,Abril,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-04-01,2018,Abril,Linha 1 - Azul,Parada Inglesa,mdu,18
 2018-04-01,2018,Abril,Linha 1 - Azul,Tucuruvi,mdu,71
-2018-04-01,2018,Abril,Linha 2 - Verde,Vila Prudente5,mdu,58
+2018-04-01,2018,Abril,Linha 2 - Verde,Vila Prudente,mdu,58
 2018-04-01,2018,Abril,Linha 2 - Verde,Tamanduateí,mdu,71
 2018-04-01,2018,Abril,Linha 2 - Verde,Sacomã,mdu,42
 2018-04-01,2018,Abril,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -447,7 +447,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-04-01,2018,Abril,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
 2018-04-01,2018,Abril,Linha 3 - Vermelha,Brás,mdu,99
 2018-04-01,2018,Abril,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-04-01,2018,Abril,Linha 3 - Vermelha,Sé4,mdu,278
+2018-04-01,2018,Abril,Linha 3 - Vermelha,Sé,mdu,278
 2018-04-01,2018,Abril,Linha 3 - Vermelha,Anhangabaú,mdu,77
 2018-04-01,2018,Abril,Linha 3 - Vermelha,República,mdu,153
 2018-04-01,2018,Abril,Linha 3 - Vermelha,Santa Cecília,mdu,33
@@ -460,11 +460,11 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-04-01,2018,Abril,Linha 5 - Lilás,Santo Amaro,mdu,92
 2018-04-01,2018,Abril,Linha 5 - Lilás,Largo Treze,mdu,32
 2018-04-01,2018,Abril,Linha 5 - Lilás,Adolfo Pinheiro,mdu,9
-2018-04-01,2018,Abril,Linha 5 - Lilás,Alto da Boa Vista7,mdu,3
-2018-04-01,2018,Abril,Linha 5 - Lilás,Borba Gato7,mdu,8
-2018-04-01,2018,Abril,Linha 5 - Lilás,Brooklin7,mdu,12
-2018-04-01,2018,Abril,Linha 5 - Lilás,Eucaliptos8,mdu,17
-2018-04-01,2018,Abril,Linha 15 - Prata,Vila Prudente6,mdu,11
+2018-04-01,2018,Abril,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-04-01,2018,Abril,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-04-01,2018,Abril,Linha 5 - Lilás,Brooklin,mdu,12
+2018-04-01,2018,Abril,Linha 5 - Lilás,Eucaliptos,mdu,17
+2018-04-01,2018,Abril,Linha 15 - Prata,Vila Prudente,mdu,11
 2018-04-01,2018,Abril,Linha 15 - Prata,Oratório,mdu,10
 2018-05-01,2018,Maio,Linha 1 - Azul,Jabaquara,mdu,90
 2018-05-01,2018,Maio,Linha 1 - Azul,Conceição,mdu,42
@@ -489,7 +489,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-05-01,2018,Maio,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-05-01,2018,Maio,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-05-01,2018,Maio,Linha 1 - Azul,Tucuruvi,mdu,70
-2018-05-01,2018,Maio,Linha 2 - Verde,Vila Prudente5,mdu,56
+2018-05-01,2018,Maio,Linha 2 - Verde,Vila Prudente,mdu,56
 2018-05-01,2018,Maio,Linha 2 - Verde,Tamanduateí,mdu,71
 2018-05-01,2018,Maio,Linha 2 - Verde,Sacomã,mdu,42
 2018-05-01,2018,Maio,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -515,7 +515,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-05-01,2018,Maio,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
 2018-05-01,2018,Maio,Linha 3 - Vermelha,Brás,mdu,99
 2018-05-01,2018,Maio,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-05-01,2018,Maio,Linha 3 - Vermelha,Sé4,mdu,274
+2018-05-01,2018,Maio,Linha 3 - Vermelha,Sé,mdu,274
 2018-05-01,2018,Maio,Linha 3 - Vermelha,Anhangabaú,mdu,76
 2018-05-01,2018,Maio,Linha 3 - Vermelha,República,mdu,152
 2018-05-01,2018,Maio,Linha 3 - Vermelha,Santa Cecília,mdu,33
@@ -528,11 +528,11 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-05-01,2018,Maio,Linha 5 - Lilás,Santo Amaro,mdu,93
 2018-05-01,2018,Maio,Linha 5 - Lilás,Largo Treze,mdu,31
 2018-05-01,2018,Maio,Linha 5 - Lilás,Adolfo Pinheiro,mdu,9
-2018-05-01,2018,Maio,Linha 5 - Lilás,Alto da Boa Vista7,mdu,3
-2018-05-01,2018,Maio,Linha 5 - Lilás,Borba Gato7,mdu,8
-2018-05-01,2018,Maio,Linha 5 - Lilás,Brooklin7,mdu,12
-2018-05-01,2018,Maio,Linha 5 - Lilás,Eucaliptos8,mdu,19
-2018-05-01,2018,Maio,Linha 15 - Prata,Vila Prudente6,mdu,12
+2018-05-01,2018,Maio,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-05-01,2018,Maio,Linha 5 - Lilás,Borba Gato,mdu,8
+2018-05-01,2018,Maio,Linha 5 - Lilás,Brooklin,mdu,12
+2018-05-01,2018,Maio,Linha 5 - Lilás,Eucaliptos,mdu,19
+2018-05-01,2018,Maio,Linha 15 - Prata,Vila Prudente,mdu,12
 2018-05-01,2018,Maio,Linha 15 - Prata,Oratório,mdu,10
 2018-06-01,2018,Junho,Linha 1 - Azul,Jabaquara,mdu,88
 2018-06-01,2018,Junho,Linha 1 - Azul,Conceição,mdu,41
@@ -557,7 +557,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-06-01,2018,Junho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-06-01,2018,Junho,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-06-01,2018,Junho,Linha 1 - Azul,Tucuruvi,mdu,69
-2018-06-01,2018,Junho,Linha 2 - Verde,Vila Prudente5,mdu,53
+2018-06-01,2018,Junho,Linha 2 - Verde,Vila Prudente,mdu,53
 2018-06-01,2018,Junho,Linha 2 - Verde,Tamanduateí,mdu,69
 2018-06-01,2018,Junho,Linha 2 - Verde,Sacomã,mdu,41
 2018-06-01,2018,Junho,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -583,7 +583,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-06-01,2018,Junho,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
 2018-06-01,2018,Junho,Linha 3 - Vermelha,Brás,mdu,100
 2018-06-01,2018,Junho,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-06-01,2018,Junho,Linha 3 - Vermelha,Sé4,mdu,266
+2018-06-01,2018,Junho,Linha 3 - Vermelha,Sé,mdu,266
 2018-06-01,2018,Junho,Linha 3 - Vermelha,Anhangabaú,mdu,76
 2018-06-01,2018,Junho,Linha 3 - Vermelha,República,mdu,149
 2018-06-01,2018,Junho,Linha 3 - Vermelha,Santa Cecília,mdu,32
@@ -596,11 +596,11 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-06-01,2018,Junho,Linha 5 - Lilás,Santo Amaro,mdu,87
 2018-06-01,2018,Junho,Linha 5 - Lilás,Largo Treze,mdu,28
 2018-06-01,2018,Junho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
-2018-06-01,2018,Junho,Linha 5 - Lilás,Alto da Boa Vista7,mdu,3
-2018-06-01,2018,Junho,Linha 5 - Lilás,Borba Gato7,mdu,7
-2018-06-01,2018,Junho,Linha 5 - Lilás,Brooklin7,mdu,12
-2018-06-01,2018,Junho,Linha 5 - Lilás,Eucaliptos8,mdu,20
-2018-06-01,2018,Junho,Linha 15 - Prata,Vila Prudente6,mdu,12
+2018-06-01,2018,Junho,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-06-01,2018,Junho,Linha 5 - Lilás,Borba Gato,mdu,7
+2018-06-01,2018,Junho,Linha 5 - Lilás,Brooklin,mdu,12
+2018-06-01,2018,Junho,Linha 5 - Lilás,Eucaliptos,mdu,20
+2018-06-01,2018,Junho,Linha 15 - Prata,Vila Prudente,mdu,12
 2018-06-01,2018,Junho,Linha 15 - Prata,Oratório,mdu,10
 2018-07-01,2018,Julho,Linha 1 - Azul,Jabaquara,mdu,83
 2018-07-01,2018,Julho,Linha 1 - Azul,Conceição,mdu,38
@@ -625,7 +625,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-07-01,2018,Julho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
 2018-07-01,2018,Julho,Linha 1 - Azul,Parada Inglesa,mdu,15
 2018-07-01,2018,Julho,Linha 1 - Azul,Tucuruvi,mdu,65
-2018-07-01,2018,Julho,Linha 2 - Verde,Vila Prudente5,mdu,48
+2018-07-01,2018,Julho,Linha 2 - Verde,Vila Prudente,mdu,48
 2018-07-01,2018,Julho,Linha 2 - Verde,Tamanduateí,mdu,64
 2018-07-01,2018,Julho,Linha 2 - Verde,Sacomã,mdu,38
 2018-07-01,2018,Julho,Linha 2 - Verde,Alto do Ipiranga,mdu,18
@@ -651,7 +651,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-07-01,2018,Julho,Linha 3 - Vermelha,Bresser-Moóca,mdu,34
 2018-07-01,2018,Julho,Linha 3 - Vermelha,Brás,mdu,96
 2018-07-01,2018,Julho,Linha 3 - Vermelha,Pedro II,mdu,25
-2018-07-01,2018,Julho,Linha 3 - Vermelha,Sé4,mdu,246
+2018-07-01,2018,Julho,Linha 3 - Vermelha,Sé,mdu,246
 2018-07-01,2018,Julho,Linha 3 - Vermelha,Anhangabaú,mdu,73
 2018-07-01,2018,Julho,Linha 3 - Vermelha,República,mdu,141
 2018-07-01,2018,Julho,Linha 3 - Vermelha,Santa Cecília,mdu,30
@@ -664,11 +664,11 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-07-01,2018,Julho,Linha 5 - Lilás,Santo Amaro,mdu,82
 2018-07-01,2018,Julho,Linha 5 - Lilás,Largo Treze,mdu,24
 2018-07-01,2018,Julho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,6
-2018-07-01,2018,Julho,Linha 5 - Lilás,Alto da Boa Vista7,mdu,3
-2018-07-01,2018,Julho,Linha 5 - Lilás,Borba Gato7,mdu,5
-2018-07-01,2018,Julho,Linha 5 - Lilás,Brooklin7,mdu,10
-2018-07-01,2018,Julho,Linha 5 - Lilás,Eucaliptos8,mdu,19
-2018-07-01,2018,Julho,Linha 15 - Prata,Vila Prudente6,mdu,11
+2018-07-01,2018,Julho,Linha 5 - Lilás,Alto da Boa Vista,mdu,3
+2018-07-01,2018,Julho,Linha 5 - Lilás,Borba Gato,mdu,5
+2018-07-01,2018,Julho,Linha 5 - Lilás,Brooklin,mdu,10
+2018-07-01,2018,Julho,Linha 5 - Lilás,Eucaliptos,mdu,19
+2018-07-01,2018,Julho,Linha 15 - Prata,Vila Prudente,mdu,11
 2018-07-01,2018,Julho,Linha 15 - Prata,Oratório,mdu,9
 2018-08-01,2018,Agosto,Linha 1 - Azul,Jabaquara,mdu,89
 2018-08-01,2018,Agosto,Linha 1 - Azul,Conceição,mdu,42
@@ -693,7 +693,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-08-01,2018,Agosto,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-08-01,2018,Agosto,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-08-01,2018,Agosto,Linha 1 - Azul,Tucuruvi,mdu,71
-2018-08-01,2018,Agosto,Linha 2 - Verde,Vila Prudente5,mdu,56
+2018-08-01,2018,Agosto,Linha 2 - Verde,Vila Prudente,mdu,56
 2018-08-01,2018,Agosto,Linha 2 - Verde,Tamanduateí,mdu,71
 2018-08-01,2018,Agosto,Linha 2 - Verde,Sacomã,mdu,42
 2018-08-01,2018,Agosto,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -719,7 +719,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,Brás,mdu,99
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-08-01,2018,Agosto,Linha 3 - Vermelha,Sé4,mdu,271
+2018-08-01,2018,Agosto,Linha 3 - Vermelha,Sé,mdu,271
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,Anhangabaú,mdu,78
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,República,mdu,152
 2018-08-01,2018,Agosto,Linha 3 - Vermelha,Santa Cecília,mdu,32
@@ -732,11 +732,11 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-08-01,2018,Agosto,Linha 5 - Lilás9,Santo Amaro,mdu,86
 2018-08-01,2018,Agosto,Linha 5 - Lilás9,Largo Treze,mdu,24
 2018-08-01,2018,Agosto,Linha 5 - Lilás9,Adolfo Pinheiro,mdu,7
-2018-08-01,2018,Agosto,Linha 5 - Lilás9,Alto da Boa Vista7,mdu,3
-2018-08-01,2018,Agosto,Linha 5 - Lilás9,Borba Gato7,mdu,5
-2018-08-01,2018,Agosto,Linha 5 - Lilás9,Brooklin7,mdu,11
-2018-08-01,2018,Agosto,Linha 5 - Lilás9,Eucaliptos8,mdu,21
-2018-08-01,2018,Agosto,Linha 15 - Prata,Vila Prudente6,mdu,12
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Alto da Boa Vista,mdu,3
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Borba Gato,mdu,5
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Brooklin,mdu,11
+2018-08-01,2018,Agosto,Linha 5 - Lilás9,Eucaliptos,mdu,21
+2018-08-01,2018,Agosto,Linha 15 - Prata,Vila Prudente,mdu,12
 2018-08-01,2018,Agosto,Linha 15 - Prata,Oratório,mdu,10
 2018-09-01,2018,Setembro,Linha 1 - Azul,Jabaquara,mdu,91
 2018-09-01,2018,Setembro,Linha 1 - Azul,Conceição,mdu,42
@@ -761,7 +761,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-09-01,2018,Setembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-09-01,2018,Setembro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-09-01,2018,Setembro,Linha 1 - Azul,Tucuruvi,mdu,72
-2018-09-01,2018,Setembro,Linha 2 - Verde,Vila Prudente5,mdu,57
+2018-09-01,2018,Setembro,Linha 2 - Verde,Vila Prudente,mdu,57
 2018-09-01,2018,Setembro,Linha 2 - Verde,Tamanduateí,mdu,73
 2018-09-01,2018,Setembro,Linha 2 - Verde,Sacomã,mdu,43
 2018-09-01,2018,Setembro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
@@ -787,13 +787,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Brás,mdu,100
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-09-01,2018,Setembro,Linha 3 - Vermelha,Sé4,mdu,275
+2018-09-01,2018,Setembro,Linha 3 - Vermelha,Sé,mdu,275
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Anhangabaú,mdu,77
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,República,mdu,153
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
 2018-09-01,2018,Setembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
-2018-09-01,2018,Setembro,Linha 15 - Prata,Vila Prudente6,mdu,13
+2018-09-01,2018,Setembro,Linha 15 - Prata,Vila Prudente,mdu,13
 2018-09-01,2018,Setembro,Linha 15 - Prata,Oratório,mdu,10
 2018-10-01,2018,Outubro,Linha 1 - Azul,Jabaquara,mdu,92
 2018-10-01,2018,Outubro,Linha 1 - Azul,Conceição,mdu,43
@@ -818,7 +818,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-10-01,2018,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2018-10-01,2018,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2018-10-01,2018,Outubro,Linha 1 - Azul,Tucuruvi,mdu,72
-2018-10-01,2018,Outubro,Linha 2 - Verde,Vila Prudente5,mdu,57
+2018-10-01,2018,Outubro,Linha 2 - Verde,Vila Prudente,mdu,57
 2018-10-01,2018,Outubro,Linha 2 - Verde,Tamanduateí,mdu,74
 2018-10-01,2018,Outubro,Linha 2 - Verde,Sacomã,mdu,43
 2018-10-01,2018,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -844,13 +844,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Brás,mdu,100
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Pedro II,mdu,26
-2018-10-01,2018,Outubro,Linha 3 - Vermelha,Sé4,mdu,281
+2018-10-01,2018,Outubro,Linha 3 - Vermelha,Sé,mdu,281
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,78
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,República,mdu,151
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
 2018-10-01,2018,Outubro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,216
-2018-10-01,2018,Outubro,Linha 15 - Prata,Vila Prudente6,mdu,13
+2018-10-01,2018,Outubro,Linha 15 - Prata,Vila Prudente,mdu,13
 2018-10-01,2018,Outubro,Linha 15 - Prata,Oratório,mdu,9
 2018-11-01,2018,Novembro,Linha 1 - Azul,Jabaquara,mdu,95
 2018-11-01,2018,Novembro,Linha 1 - Azul,Conceição,mdu,44
@@ -875,7 +875,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-11-01,2018,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2018-11-01,2018,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,18
 2018-11-01,2018,Novembro,Linha 1 - Azul,Tucuruvi,mdu,74
-2018-11-01,2018,Novembro,Linha 2 - Verde,Vila Prudente5,mdu,58
+2018-11-01,2018,Novembro,Linha 2 - Verde,Vila Prudente,mdu,58
 2018-11-01,2018,Novembro,Linha 2 - Verde,Tamanduateí,mdu,76
 2018-11-01,2018,Novembro,Linha 2 - Verde,Sacomã,mdu,44
 2018-11-01,2018,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -901,13 +901,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Brás,mdu,103
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Pedro II,mdu,27
-2018-11-01,2018,Novembro,Linha 3 - Vermelha,Sé4,mdu,293
+2018-11-01,2018,Novembro,Linha 3 - Vermelha,Sé,mdu,293
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,77
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,República,mdu,153
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
 2018-11-01,2018,Novembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,220
-2018-11-01,2018,Novembro,Linha 15 - Prata,Vila Prudente6,mdu,13
+2018-11-01,2018,Novembro,Linha 15 - Prata,Vila Prudente,mdu,13
 2018-11-01,2018,Novembro,Linha 15 - Prata,Oratório,mdu,9
 2018-12-01,2018,Dezembro,Linha 1 - Azul,Jabaquara,mdu,90
 2018-12-01,2018,Dezembro,Linha 1 - Azul,Conceição,mdu,40
@@ -932,7 +932,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-12-01,2018,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
 2018-12-01,2018,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,16
 2018-12-01,2018,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,70
-2018-12-01,2018,Dezembro,Linha 2 - Verde,Vila Prudente5,mdu,52
+2018-12-01,2018,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,52
 2018-12-01,2018,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,67
 2018-12-01,2018,Dezembro,Linha 2 - Verde,Sacomã,mdu,42
 2018-12-01,2018,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,20
@@ -958,13 +958,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,40
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Brás,mdu,110
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,25
-2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Sé4,mdu,272
+2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Sé,mdu,272
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,71
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,República,mdu,145
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,31
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,35
 2018-12-01,2018,Dezembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,204
-2018-12-01,2018,Dezembro,Linha 15 - Prata,Vila Prudente6,mdu,17
+2018-12-01,2018,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,17
 2018-12-01,2018,Dezembro,Linha 15 - Prata,Oratório,mdu,3
 2018-12-01,2018,Dezembro,Linha 15 - Prata,São Lucas,mdu,3
 2018-12-01,2018,Dezembro,Linha 15 - Prata,Camilo Haddad,mdu,2
@@ -993,7 +993,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-01-01,2019,Janeiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,12
 2019-01-01,2019,Janeiro,Linha 1 - Azul,Parada Inglesa,mdu,14
 2019-01-01,2019,Janeiro,Linha 1 - Azul,Tucuruvi,mdu,62
-2019-01-01,2019,Janeiro,Linha 2 - Verde,Vila Prudente5,mdu,51
+2019-01-01,2019,Janeiro,Linha 2 - Verde,Vila Prudente,mdu,51
 2019-01-01,2019,Janeiro,Linha 2 - Verde,Tamanduateí,mdu,61
 2019-01-01,2019,Janeiro,Linha 2 - Verde,Sacomã,mdu,38
 2019-01-01,2019,Janeiro,Linha 2 - Verde,Alto do Ipiranga,mdu,17
@@ -1019,13 +1019,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,31
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Brás,mdu,90
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Pedro II,mdu,23
-2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Sé4,mdu,241
+2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Sé,mdu,241
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Anhangabaú,mdu,65
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,República,mdu,132
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Santa Cecília,mdu,25
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,32
 2019-01-01,2019,Janeiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,181
-2019-01-01,2019,Janeiro,Linha 15 - Prata,Vila Prudente6,mdu,19
+2019-01-01,2019,Janeiro,Linha 15 - Prata,Vila Prudente,mdu,19
 2019-01-01,2019,Janeiro,Linha 15 - Prata,Oratório,mdu,4
 2019-01-01,2019,Janeiro,Linha 15 - Prata,São Lucas,mdu,3
 2019-01-01,2019,Janeiro,Linha 15 - Prata,Camilo Haddad,mdu,2
@@ -1054,7 +1054,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-02-01,2019,Fevereiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
 2019-02-01,2019,Fevereiro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-02-01,2019,Fevereiro,Linha 1 - Azul,Tucuruvi,mdu,71
-2019-02-01,2019,Fevereiro,Linha 2 - Verde,Vila Prudente5,mdu,61
+2019-02-01,2019,Fevereiro,Linha 2 - Verde,Vila Prudente,mdu,61
 2019-02-01,2019,Fevereiro,Linha 2 - Verde,Tamanduateí,mdu,72
 2019-02-01,2019,Fevereiro,Linha 2 - Verde,Sacomã,mdu,45
 2019-02-01,2019,Fevereiro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -1080,13 +1080,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,43
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Brás,mdu,96
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Pedro II,mdu,25
-2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Sé4,mdu,279
+2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Sé,mdu,279
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Anhangabaú,mdu,73
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,República,mdu,150
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
 2019-02-01,2019,Fevereiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
-2019-02-01,2019,Fevereiro,Linha 15 - Prata,Vila Prudente6,mdu,25
+2019-02-01,2019,Fevereiro,Linha 15 - Prata,Vila Prudente,mdu,25
 2019-02-01,2019,Fevereiro,Linha 15 - Prata,Oratório,mdu,6
 2019-02-01,2019,Fevereiro,Linha 15 - Prata,São Lucas,mdu,4
 2019-02-01,2019,Fevereiro,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1115,7 +1115,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-03-01,2019,Março,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-03-01,2019,Março,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-03-01,2019,Março,Linha 1 - Azul,Tucuruvi,mdu,73
-2019-03-01,2019,Março,Linha 2 - Verde,Vila Prudente5,mdu,71
+2019-03-01,2019,Março,Linha 2 - Verde,Vila Prudente,mdu,71
 2019-03-01,2019,Março,Linha 2 - Verde,Tamanduateí,mdu,73
 2019-03-01,2019,Março,Linha 2 - Verde,Sacomã,mdu,47
 2019-03-01,2019,Março,Linha 2 - Verde,Alto do Ipiranga,mdu,23
@@ -1141,13 +1141,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-03-01,2019,Março,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
 2019-03-01,2019,Março,Linha 3 - Vermelha,Brás,mdu,98
 2019-03-01,2019,Março,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-03-01,2019,Março,Linha 3 - Vermelha,Sé4,mdu,288
+2019-03-01,2019,Março,Linha 3 - Vermelha,Sé,mdu,288
 2019-03-01,2019,Março,Linha 3 - Vermelha,Anhangabaú,mdu,73
 2019-03-01,2019,Março,Linha 3 - Vermelha,República,mdu,156
 2019-03-01,2019,Março,Linha 3 - Vermelha,Santa Cecília,mdu,33
 2019-03-01,2019,Março,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
 2019-03-01,2019,Março,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,217
-2019-03-01,2019,Março,Linha 15 - Prata,Vila Prudente6,mdu,32
+2019-03-01,2019,Março,Linha 15 - Prata,Vila Prudente,mdu,32
 2019-03-01,2019,Março,Linha 15 - Prata,Oratório,mdu,7
 2019-03-01,2019,Março,Linha 15 - Prata,São Lucas,mdu,4
 2019-03-01,2019,Março,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1176,7 +1176,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-04-01,2019,Abril,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-04-01,2019,Abril,Linha 1 - Azul,Parada Inglesa,mdu,18
 2019-04-01,2019,Abril,Linha 1 - Azul,Tucuruvi,mdu,73
-2019-04-01,2019,Abril,Linha 2 - Verde,Vila Prudente5,mdu,72
+2019-04-01,2019,Abril,Linha 2 - Verde,Vila Prudente,mdu,72
 2019-04-01,2019,Abril,Linha 2 - Verde,Tamanduateí,mdu,78
 2019-04-01,2019,Abril,Linha 2 - Verde,Sacomã,mdu,48
 2019-04-01,2019,Abril,Linha 2 - Verde,Alto do Ipiranga,mdu,23
@@ -1202,13 +1202,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Bresser-Moóca,mdu,48
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Brás,mdu,99
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Pedro II,mdu,25
-2019-04-01,2019,Abril,Linha 3 - Vermelha,Sé4,mdu,289
+2019-04-01,2019,Abril,Linha 3 - Vermelha,Sé,mdu,289
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Anhangabaú,mdu,72
 2019-04-01,2019,Abril,Linha 3 - Vermelha,República,mdu,157
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Santa Cecília,mdu,33
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
 2019-04-01,2019,Abril,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,221
-2019-04-01,2019,Abril,Linha 15 - Prata,Vila Prudente6,mdu,34
+2019-04-01,2019,Abril,Linha 15 - Prata,Vila Prudente,mdu,34
 2019-04-01,2019,Abril,Linha 15 - Prata,Oratório,mdu,7
 2019-04-01,2019,Abril,Linha 15 - Prata,São Lucas,mdu,5
 2019-04-01,2019,Abril,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1237,7 +1237,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-05-01,2019,Maio,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-05-01,2019,Maio,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-05-01,2019,Maio,Linha 1 - Azul,Tucuruvi,mdu,74
-2019-05-01,2019,Maio,Linha 2 - Verde,Vila Prudente5,mdu,71
+2019-05-01,2019,Maio,Linha 2 - Verde,Vila Prudente,mdu,71
 2019-05-01,2019,Maio,Linha 2 - Verde,Tamanduateí,mdu,61
 2019-05-01,2019,Maio,Linha 2 - Verde,Sacomã,mdu,48
 2019-05-01,2019,Maio,Linha 2 - Verde,Alto do Ipiranga,mdu,23
@@ -1263,13 +1263,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Brás,mdu,99
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-05-01,2019,Maio,Linha 3 - Vermelha,Sé4,mdu,283
+2019-05-01,2019,Maio,Linha 3 - Vermelha,Sé,mdu,283
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Anhangabaú,mdu,71
 2019-05-01,2019,Maio,Linha 3 - Vermelha,República,mdu,155
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
 2019-05-01,2019,Maio,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,221
-2019-05-01,2019,Maio,Linha 15 - Prata,Vila Prudente6,mdu,41
+2019-05-01,2019,Maio,Linha 15 - Prata,Vila Prudente,mdu,41
 2019-05-01,2019,Maio,Linha 15 - Prata,Oratório,mdu,7
 2019-05-01,2019,Maio,Linha 15 - Prata,São Lucas,mdu,5
 2019-05-01,2019,Maio,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1298,7 +1298,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-06-01,2019,Junho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-06-01,2019,Junho,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-06-01,2019,Junho,Linha 1 - Azul,Tucuruvi,mdu,72
-2019-06-01,2019,Junho,Linha 2 - Verde,Vila Prudente5,mdu,66
+2019-06-01,2019,Junho,Linha 2 - Verde,Vila Prudente,mdu,66
 2019-06-01,2019,Junho,Linha 2 - Verde,Tamanduateí,mdu,60
 2019-06-01,2019,Junho,Linha 2 - Verde,Sacomã,mdu,46
 2019-06-01,2019,Junho,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -1324,13 +1324,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Bresser-Moóca,mdu,43
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Brás,mdu,99
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-06-01,2019,Junho,Linha 3 - Vermelha,Sé4,mdu,273
+2019-06-01,2019,Junho,Linha 3 - Vermelha,Sé,mdu,273
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Anhangabaú,mdu,70
 2019-06-01,2019,Junho,Linha 3 - Vermelha,República,mdu,152
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
 2019-06-01,2019,Junho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
-2019-06-01,2019,Junho,Linha 15 - Prata,Vila Prudente6,mdu,46
+2019-06-01,2019,Junho,Linha 15 - Prata,Vila Prudente,mdu,46
 2019-06-01,2019,Junho,Linha 15 - Prata,Oratório,mdu,7
 2019-06-01,2019,Junho,Linha 15 - Prata,São Lucas,mdu,5
 2019-06-01,2019,Junho,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1359,7 +1359,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-07-01,2019,Julho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
 2019-07-01,2019,Julho,Linha 1 - Azul,Parada Inglesa,mdu,15
 2019-07-01,2019,Julho,Linha 1 - Azul,Tucuruvi,mdu,66
-2019-07-01,2019,Julho,Linha 2 - Verde,Vila Prudente5,mdu,60
+2019-07-01,2019,Julho,Linha 2 - Verde,Vila Prudente,mdu,60
 2019-07-01,2019,Julho,Linha 2 - Verde,Tamanduateí,mdu,56
 2019-07-01,2019,Julho,Linha 2 - Verde,Sacomã,mdu,42
 2019-07-01,2019,Julho,Linha 2 - Verde,Alto do Ipiranga,mdu,19
@@ -1385,13 +1385,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Bresser-Moóca,mdu,33
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Brás,mdu,95
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Pedro II,mdu,23
-2019-07-01,2019,Julho,Linha 3 - Vermelha,Sé4,mdu,247
+2019-07-01,2019,Julho,Linha 3 - Vermelha,Sé,mdu,247
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Anhangabaú,mdu,66
 2019-07-01,2019,Julho,Linha 3 - Vermelha,República,mdu,143
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Santa Cecília,mdu,30
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Marechal Deodoro,mdu,33
 2019-07-01,2019,Julho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,194
-2019-07-01,2019,Julho,Linha 15 - Prata,Vila Prudente6,mdu,44
+2019-07-01,2019,Julho,Linha 15 - Prata,Vila Prudente,mdu,44
 2019-07-01,2019,Julho,Linha 15 - Prata,Oratório,mdu,6
 2019-07-01,2019,Julho,Linha 15 - Prata,São Lucas,mdu,4
 2019-07-01,2019,Julho,Linha 15 - Prata,Camilo Haddad,mdu,3
@@ -1420,7 +1420,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-08-01,2019,Agosto,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-08-01,2019,Agosto,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-08-01,2019,Agosto,Linha 1 - Azul,Tucuruvi,mdu,72
-2019-08-01,2019,Agosto,Linha 2 - Verde,Vila Prudente5,mdu,69
+2019-08-01,2019,Agosto,Linha 2 - Verde,Vila Prudente,mdu,69
 2019-08-01,2019,Agosto,Linha 2 - Verde,Tamanduateí,mdu,61
 2019-08-01,2019,Agosto,Linha 2 - Verde,Sacomã,mdu,46
 2019-08-01,2019,Agosto,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -1446,13 +1446,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Bresser-Moóca,mdu,44
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Brás,mdu,98
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-08-01,2019,Agosto,Linha 3 - Vermelha,Sé4,mdu,276
+2019-08-01,2019,Agosto,Linha 3 - Vermelha,Sé,mdu,276
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Anhangabaú,mdu,69
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,República,mdu,154
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
 2019-08-01,2019,Agosto,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,211
-2019-08-01,2019,Agosto,Linha 15 - Prata,Vila Prudente6,mdu,49
+2019-08-01,2019,Agosto,Linha 15 - Prata,Vila Prudente,mdu,49
 2019-08-01,2019,Agosto,Linha 15 - Prata,Oratório,mdu,6
 2019-08-01,2019,Agosto,Linha 15 - Prata,São Lucas,mdu,5
 2019-08-01,2019,Agosto,Linha 15 - Prata,Camilo Haddad,mdu,4
@@ -1482,7 +1482,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-09-01,2019,Setembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-09-01,2019,Setembro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-09-01,2019,Setembro,Linha 1 - Azul,Tucuruvi,mdu,73
-2019-09-01,2019,Setembro,Linha 2 - Verde,Vila Prudente5,mdu,71
+2019-09-01,2019,Setembro,Linha 2 - Verde,Vila Prudente,mdu,71
 2019-09-01,2019,Setembro,Linha 2 - Verde,Tamanduateí,mdu,69
 2019-09-01,2019,Setembro,Linha 2 - Verde,Sacomã,mdu,47
 2019-09-01,2019,Setembro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -1508,13 +1508,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Brás,mdu,100
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-09-01,2019,Setembro,Linha 3 - Vermelha,Sé4,mdu,273
+2019-09-01,2019,Setembro,Linha 3 - Vermelha,Sé,mdu,273
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Anhangabaú,mdu,69
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,República,mdu,165
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
 2019-09-01,2019,Setembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,216
-2019-09-01,2019,Setembro,Linha 15 - Prata,Vila Prudente6,mdu,52
+2019-09-01,2019,Setembro,Linha 15 - Prata,Vila Prudente,mdu,52
 2019-09-01,2019,Setembro,Linha 15 - Prata,Oratório,mdu,7
 2019-09-01,2019,Setembro,Linha 15 - Prata,São Lucas,mdu,5
 2019-09-01,2019,Setembro,Linha 15 - Prata,Camilo Haddad,mdu,4
@@ -1544,7 +1544,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-10-01,2019,Outubro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-10-01,2019,Outubro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-10-01,2019,Outubro,Linha 1 - Azul,Tucuruvi,mdu,73
-2019-10-01,2019,Outubro,Linha 2 - Verde,Vila Prudente5,mdu,73
+2019-10-01,2019,Outubro,Linha 2 - Verde,Vila Prudente,mdu,73
 2019-10-01,2019,Outubro,Linha 2 - Verde,Tamanduateí,mdu,81
 2019-10-01,2019,Outubro,Linha 2 - Verde,Sacomã,mdu,48
 2019-10-01,2019,Outubro,Linha 2 - Verde,Alto do Ipiranga,mdu,22
@@ -1570,13 +1570,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Brás,mdu,101
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-10-01,2019,Outubro,Linha 3 - Vermelha,Sé4,mdu,280
+2019-10-01,2019,Outubro,Linha 3 - Vermelha,Sé,mdu,280
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Anhangabaú,mdu,69
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,República,mdu,168
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Santa Cecília,mdu,32
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Marechal Deodoro,mdu,36
 2019-10-01,2019,Outubro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,218
-2019-10-01,2019,Outubro,Linha 15 - Prata,Vila Prudente6,mdu,52
+2019-10-01,2019,Outubro,Linha 15 - Prata,Vila Prudente,mdu,52
 2019-10-01,2019,Outubro,Linha 15 - Prata,Oratório,mdu,7
 2019-10-01,2019,Outubro,Linha 15 - Prata,São Lucas,mdu,5
 2019-10-01,2019,Outubro,Linha 15 - Prata,Camilo Haddad,mdu,4
@@ -1606,7 +1606,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-11-01,2019,Novembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
 2019-11-01,2019,Novembro,Linha 1 - Azul,Parada Inglesa,mdu,17
 2019-11-01,2019,Novembro,Linha 1 - Azul,Tucuruvi,mdu,75
-2019-11-01,2019,Novembro,Linha 2 - Verde,Vila Prudente5,mdu,74
+2019-11-01,2019,Novembro,Linha 2 - Verde,Vila Prudente,mdu,74
 2019-11-01,2019,Novembro,Linha 2 - Verde,Tamanduateí,mdu,83
 2019-11-01,2019,Novembro,Linha 2 - Verde,Sacomã,mdu,47
 2019-11-01,2019,Novembro,Linha 2 - Verde,Alto do Ipiranga,mdu,23
@@ -1632,13 +1632,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,45
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Brás,mdu,100
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Pedro II,mdu,24
-2019-11-01,2019,Novembro,Linha 3 - Vermelha,Sé4,mdu,280
+2019-11-01,2019,Novembro,Linha 3 - Vermelha,Sé,mdu,280
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Anhangabaú,mdu,70
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,República,mdu,170
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Santa Cecília,mdu,33
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,37
 2019-11-01,2019,Novembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,214
-2019-11-01,2019,Novembro,Linha 15 - Prata,Vila Prudente6,mdu,51
+2019-11-01,2019,Novembro,Linha 15 - Prata,Vila Prudente,mdu,51
 2019-11-01,2019,Novembro,Linha 15 - Prata,Oratório,mdu,7
 2019-11-01,2019,Novembro,Linha 15 - Prata,São Lucas,mdu,5
 2019-11-01,2019,Novembro,Linha 15 - Prata,Camilo Haddad,mdu,4
@@ -1668,7 +1668,7 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-12-01,2019,Dezembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,14
 2019-12-01,2019,Dezembro,Linha 1 - Azul,Parada Inglesa,mdu,15
 2019-12-01,2019,Dezembro,Linha 1 - Azul,Tucuruvi,mdu,69
-2019-12-01,2019,Dezembro,Linha 2 - Verde,Vila Prudente5,mdu,66
+2019-12-01,2019,Dezembro,Linha 2 - Verde,Vila Prudente,mdu,66
 2019-12-01,2019,Dezembro,Linha 2 - Verde,Tamanduateí,mdu,74
 2019-12-01,2019,Dezembro,Linha 2 - Verde,Sacomã,mdu,43
 2019-12-01,2019,Dezembro,Linha 2 - Verde,Alto do Ipiranga,mdu,19
@@ -1694,13 +1694,13 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,37
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Brás,mdu,110
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Pedro II,mdu,22
-2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Sé4,mdu,253
+2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Sé,mdu,253
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Anhangabaú,mdu,64
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,República,mdu,155
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Santa Cecília,mdu,25
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,33
 2019-12-01,2019,Dezembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,192
-2019-12-01,2019,Dezembro,Linha 15 - Prata,Vila Prudente6,mdu,47
+2019-12-01,2019,Dezembro,Linha 15 - Prata,Vila Prudente,mdu,47
 2019-12-01,2019,Dezembro,Linha 15 - Prata,Oratório,mdu,6
 2019-12-01,2019,Dezembro,Linha 15 - Prata,São Lucas,mdu,5
 2019-12-01,2019,Dezembro,Linha 15 - Prata,Camilo Haddad,mdu,3

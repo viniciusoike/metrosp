@@ -133,18 +133,25 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
       station_name = name_station
     ) |>
     rename(avg_passenger = value) |>
-    select(all_of(.cols_station_avg_in))
+    select(all_of(.cols_station_avg_in)) |>
+    # Line 5 was handed over to ViaMobilidade in Aug 2018: the Dataverse
+    # source covers it from 2018-08-01, so drop the overlapping historic
+    # month (mirrors assemble_entrance). Keeps one series per station.
+    filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
   station_averages <- bind_rows(stations_17_19, averages_current) |>
     mutate(avg_passenger = avg_passenger * 1000)
 
-  station_averages <- bind_rows(station_averages, averages_4_5)
+  station_averages <- bind_rows(station_averages, averages_4_5) |>
+    # Defense in depth: re-clean names so a stale committed CSV can never
+    # leak footnote markers (e.g. "Sé4", "Brooklin7") into the package data.
+    mutate(station_name = clean_station_name(station_name))
 
   station_averages <- station_averages |>
     mutate(
       station_name = if_else(
         station_name %in% names(station_renames),
-        station_renames[station_name],
+        unname(station_renames[station_name]),
         station_name
       )
     )
@@ -167,7 +174,16 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
     select(-station_order)
 
   stopifnot(
-    "NA dates in station_averages" = !any(is.na(station_averages$date))
+    "NA dates in station_averages" = !any(is.na(station_averages$date)),
+    "station_averages has footnote markers in station_name" = !any(
+      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_averages$station_name)
+    ),
+    # Footnote variants of one station must merge into a single series; a
+    # duplicate key here means two sources overlap — investigate, never sum.
+    "station_averages has duplicate date/line/station" = nrow(
+      station_averages
+    ) ==
+      nrow(distinct(station_averages, date, line_number, station_name))
   )
 
   station_averages
@@ -189,13 +205,15 @@ assemble_daily <- function(daily_current, daily_4_5) {
   station_daily <- daily_current |>
     mutate(passengers = passengers * 1000)
 
-  station_daily <- bind_rows(station_daily, daily_4_5)
+  station_daily <- bind_rows(station_daily, daily_4_5) |>
+    # Defense in depth: same footnote-marker cleaning as assemble_averages.
+    mutate(station_name = clean_station_name(station_name))
 
   station_daily <- station_daily |>
     mutate(
       station_name = if_else(
         station_name %in% names(station_renames),
-        station_renames[station_name],
+        unname(station_renames[station_name]),
         station_name
       )
     )
@@ -225,6 +243,9 @@ assemble_daily <- function(daily_current, daily_4_5) {
     "station_daily has negative passengers" = all(station_daily$passengers >= 0),
     "station_daily missing station_name" = !any(
       is.na(station_daily$station_name)
+    ),
+    "station_daily has footnote markers in station_name" = !any(
+      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_daily$station_name)
     ),
     "station_daily lines 1/2/3/15 missing station_code" = !any(
       is.na(station_daily$station_code[
