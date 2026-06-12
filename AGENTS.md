@@ -32,8 +32,13 @@ functions.
     │   ├── cache/                  # Cached .rds of built datasets (piggyback distribution)
     │   ├── archive/               # Retired scripts
     │   └── metro_sp/               # Raw source files (gitignored, ~46MB)
-    ├── dashboard/                  # Shiny app (not part of the package build)
-    │   ├── panorama.R              # Demand-overview Shiny app
+    ├── dashboard/                  # Shiny apps (not part of the package build)
+    │   ├── explorer/               # Data-exploration app (the deployable unit)
+    │   │   ├── app.R               # Main app: charts, map, downloads
+    │   │   ├── shared.R            # Copy of dashboard/shared.R (keep in sync)
+    │   │   └── www/styles.css      # Copy of dashboard/www/styles.css
+    │   ├── panorama.R              # Demand-overview Shiny app (exploratory)
+    │   ├── shared.R                # Line metadata + helpers shared by app scripts
     │   └── www/styles.css          # App styles
     ├── tests/testthat/
     ├── vignettes/
