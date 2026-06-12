@@ -126,6 +126,12 @@ sta_daily_years <- sta_daily |>
   distinct(line_number, station_name, year) |>
   arrange(line_number, station_name, desc(year))
 
+## Ramp-up windows (stations opened within the data window) ----
+ramp_windows <- metrosp::station_inauguration |>
+  filter(!is.na(inauguration_date), !is.na(ramp_up_end)) |>
+  mutate(line_number = as.character(line_number)) |>
+  select(line_number, station_name, inauguration_date, ramp_up_end)
+
 ## Dataset metadata for download tab ----
 # Downloads serve the package datasets as-is, so the schema here matches the
 # pkgdown documentation. Computed from the data so it never drifts.
@@ -377,6 +383,8 @@ ui <- function(request) {
           )
         ),
 
+        uiOutput("lines_kpis"),
+
         card(
           full_screen = TRUE,
           card_header(
@@ -499,7 +507,7 @@ ui <- function(request) {
           "Linhas e estações do Metrô de São Paulo",
           tags$small(
             class = "ms-2 text-muted",
-            "círculos proporcionais à demanda — passe o mouse para ver detalhes"
+            "círculos proporcionais à demanda — clique para abrir a estação"
           )
         ),
         if (!is.null(sf_lines) || !is.null(sf_stations)) {
@@ -692,6 +700,47 @@ server <- function(input, output, session) {
       input$lines_trend
     )
 
+  output$lines_kpis <- renderUI({
+    lns <- input$lines_line
+    req(length(lns) > 0)
+
+    # full series (not start-date filtered) so KPIs describe the selection,
+    # not the visible window; keep only months every selected line reported
+    base <- if (input$lines_metric == "entrance") ent else trans
+    monthly <- base |>
+      filter(line_number %in% lns, !is.na(value)) |>
+      group_by(date) |>
+      summarise(value = sum(value), n_lines = n(), .groups = "drop") |>
+      filter(n_lines == length(lns))
+    req(nrow(monthly) > 0)
+
+    latest <- monthly |> slice_max(date, n = 1)
+    recent <- monthly |> filter(date > latest$date - 365)
+    prior <- monthly |>
+      filter(date > latest$date - 730, date <= latest$date - 365)
+    base_2019 <- monthly |> filter(format(date, "%Y") == "2019")
+
+    yoy_label <- if (nrow(recent) >= 6 && nrow(prior) >= 6) {
+      fmt_pct((mean(recent$value) / mean(prior$value) - 1) * 100)
+    } else {
+      "—"
+    }
+    vs2019_label <- if (nrow(recent) >= 6 && nrow(base_2019) >= 6) {
+      fmt_pct((mean(recent$value) / mean(base_2019$value) - 1) * 100)
+    } else {
+      "—"
+    }
+    peak <- monthly |> slice_max(value, n = 1)
+
+    div(
+      class = "kpi-grid kpi-grid-4",
+      kpi_card("Último mês", fmt_n(latest$value), fmt_month_pt(latest$date)),
+      kpi_card("Variação anual", yoy_label, "últimos 12m vs. anteriores"),
+      kpi_card("vs. 2019", vs2019_label, "últimos 12m vs. média de 2019"),
+      kpi_card("Mês de pico", fmt_n(peak$value[1]), fmt_month_pt(peak$date[1]))
+    )
+  })
+
   output$lines_title <- renderText({
     lns <- input$lines_line
     metric_lbl <- if (input$lines_metric == "entrance") {
@@ -805,6 +854,10 @@ server <- function(input, output, session) {
 
   ## Stations tab ----
 
+  # Station requested by a map-marker click, applied when the line observer
+  # below rebuilds the station choices
+  pending_station <- reactiveVal(NULL)
+
   # freezeReactiveValue() stops downstream reactives from seeing the stale
   # station/year during the flush before the update lands. Valid selections
   # are preserved so switching lines (and bookmark restore) keeps them.
@@ -812,13 +865,14 @@ server <- function(input, output, session) {
     choices <- stations_by_line |>
       filter(line_number == input$sta_line) |>
       pull(station_name)
-    current <- input$sta_station
+    target <- pending_station() %||% input$sta_station
+    pending_station(NULL)
     freezeReactiveValue(input, "sta_station")
     updateSelectizeInput(
       session,
       "sta_station",
       choices = choices,
-      selected = if (isTRUE(current %in% choices)) current else choices[1]
+      selected = if (isTRUE(target %in% choices)) target else choices[1]
     )
   })
 
@@ -1001,6 +1055,29 @@ server <- function(input, output, session) {
         )
     }
 
+    # Shade opening + ramp-up window (excluded from baseline comparisons)
+    rw <- ramp_windows |>
+      filter(
+        line_number == input$sta_line,
+        station_name == input$sta_station,
+        ramp_up_end >= min(df$date)
+      )
+    if (nrow(rw) == 1) {
+      e <- e |>
+        e_mark_area(
+          data = list(
+            list(
+              xAxis = format(max(rw$inauguration_date, min(df$date))),
+              name = "Abertura / ramp-up"
+            ),
+            list(xAxis = format(rw$ramp_up_end))
+          ),
+          itemStyle = list(color = "rgba(184, 144, 0, 0.12)"),
+          label = list(color = "#8A6D00", fontSize = 11),
+          silent = TRUE
+        )
+    }
+
     e |> e_metro_defaults(grid_bottom = 50)
   })
 
@@ -1124,6 +1201,11 @@ server <- function(input, output, session) {
       m <- m |>
         addCircleMarkers(
           data = sf_stations_map,
+          layerId = paste(
+            sf_stations_map$line_number,
+            sf_stations_map$station_name,
+            sep = "||"
+          ),
           radius = ~radius,
           color = "white",
           fillColor = ~ line_colors[line_number],
@@ -1145,6 +1227,33 @@ server <- function(input, output, session) {
     }
 
     m
+  })
+
+  observeEvent(input$map_marker_click, {
+    id <- input$map_marker_click$id
+    req(is.character(id), nzchar(id))
+    parts <- strsplit(id, "||", fixed = TRUE)[[1]]
+    req(length(parts) == 2)
+    ln <- parts[1]
+    sta <- parts[2]
+
+    has_data <- stations_by_line |>
+      filter(line_number == ln, station_name == sta)
+    if (nrow(has_data) == 0) {
+      showNotification(
+        "Sem dados de demanda para esta estação.",
+        type = "message"
+      )
+      return()
+    }
+
+    nav_select("main_nav", "Estações")
+    if (identical(input$sta_line, ln)) {
+      updateSelectizeInput(session, "sta_station", selected = sta)
+    } else {
+      pending_station(sta)
+      updateSelectInput(session, "sta_line", selected = ln)
+    }
   })
 
   ## Download handlers ----

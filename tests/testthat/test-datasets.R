@@ -122,6 +122,18 @@ test_that("station names carry no source footnote markers", {
   expect_false(any(grepl(pat, metrosp::station_inauguration$station_name)))
 })
 
+test_that("renamed stations use a single canonical name", {
+  # "Japão-Liberdade" (honorific rename, 2018) is the canonical name; a
+  # standalone "Liberdade" would split the station's series across eras
+  for (nm in list(
+    metrosp::station_averages$station_name,
+    metrosp::station_daily$station_name
+  )) {
+    expect_false("Liberdade" %in% nm)
+    expect_true("Japão-Liberdade" %in% nm)
+  }
+})
+
 test_that("station_averages has no duplicate date/line/station", {
   sa <- metrosp::station_averages
   dupes <- sum(duplicated(sa[, c("date", "line_number", "station_name")]))
