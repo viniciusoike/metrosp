@@ -35,7 +35,13 @@ standardize_stations <- function(x) {
     "Praça Da Árvore" ~ "Praça da Árvore",
     "Vila Das Belezas" ~ "Vila das Belezas",
     "Pedro Ii" ~ "Pedro II",
-    "Alto Da Boa Vista" ~ "Alto da Boa Vista"
+    "Alto Da Boa Vista" ~ "Alto da Boa Vista",
+    # Align geometry names with the demand canonical names (source of truth).
+    # These survive str_to_title() and need explicit case/spacing fixes.
+    "Fazenda Da Juta" ~ "Fazenda da Juta",
+    "Aacd-Servidor" ~ "AACD-Servidor",
+    "Higienópolis-Mackenzie" ~ "Higienópolis - Mackenzie",
+    "São Paulo-Morumbi" ~ "São Paulo - Morumbi"
   )
 }
 
@@ -200,6 +206,13 @@ build_geosampa <- function(
   metro_stations <- purrr::map(path_files, .geo_import_sf)
   metro_stations <- purrr::map(metro_stations, .geo_clean_stations)
   tab_metro_stations <- bind_rows(metro_stations, .id = "status")
+
+  # Jardim Colonial (Line 15) is operational since 2018 but GeoSampa still
+  # files it in the projected layer; reclassify so it joins to demand data.
+  tab_metro_stations <- tab_metro_stations |>
+    mutate(
+      status = if_else(station_name == "Jardim Colonial", "current", status)
+    )
 
   # --- Train stations ---
   st_train_paths <- .geo_path_files("estacaotrem", dir_geo)

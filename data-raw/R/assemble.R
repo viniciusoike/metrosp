@@ -124,8 +124,9 @@ assemble_transported <- function(psg_17_19, transported_current) {
 #' @param averages_current Current-era averages tibble (builder output).
 #' @param averages_4_5 Lines 4/5 averages tibble (committed CSV).
 assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
-  station_renames <- dim_station_name_change$station_name_full
-  names(station_renames) <- dim_station_name_change$station_name
+  # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
+  station_renames <- dim_station_name_change$station_name
+  names(station_renames) <- dim_station_name_change$station_name_raw
 
   stations_17_19 <- stations_17_19 |>
     mutate(
@@ -199,8 +200,9 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
 #' @param daily_current Current-era daily tibble (builder output).
 #' @param daily_4_5 Lines 4/5 daily tibble (committed CSV).
 assemble_daily <- function(daily_current, daily_4_5) {
-  station_renames <- dim_station_name_change$station_name_full
-  names(station_renames) <- dim_station_name_change$station_name
+  # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
+  station_renames <- dim_station_name_change$station_name
+  names(station_renames) <- dim_station_name_change$station_name_raw
 
   station_daily <- daily_current |>
     mutate(passengers = passengers * 1000)

@@ -46,14 +46,24 @@ dim_line <- bind_rows(
   .id = "type"
 )
 
-# Stations that were renamed (original short name -> current full name).
+# Station-name canonicalization (source variant -> published canonical name).
+# Sponsor / commercial names are collapsed BACK to the plain station name so
+# published demand data never carries a sponsor: both eras of each station map
+# to the short canonical name. "Liberdade" is the lone honorific rename (not
+# commercial) and instead maps forward to its current official name.
 dim_station_name_change <- tibble(
-  station_name = c("Carrão", "Penha", "Saúde", "Patriarca", "Liberdade"),
-  station_name_full = c(
+  station_name_raw = c(
     "Carrão-Assaí Atacadista",
     "Penha-Lojas Besni",
     "Saúde-Ultrafarma",
     "Patriarca-Vila Ré",
+    "Liberdade"
+  ),
+  station_name = c(
+    "Carrão",
+    "Penha",
+    "Saúde",
+    "Patriarca",
     "Japão-Liberdade"
   )
 )

@@ -134,6 +134,35 @@ test_that("renamed stations use a single canonical name", {
   }
 })
 
+test_that("sponsor station names are collapsed to the plain name", {
+  # Published demand data must never carry a commercial/sponsor suffix; both
+  # eras of these stations collapse to the short canonical name.
+  sponsors <- c(
+    "Carrão-Assaí Atacadista",
+    "Penha-Lojas Besni",
+    "Saúde-Ultrafarma",
+    "Patriarca-Vila Ré"
+  )
+  plain <- c("Carrão", "Penha", "Saúde", "Patriarca")
+  for (nm in list(
+    metrosp::station_averages$station_name,
+    metrosp::station_daily$station_name
+  )) {
+    expect_false(any(sponsors %in% nm))
+    expect_true(all(plain %in% nm))
+  }
+})
+
+test_that("station_averages names all resolve to a current metro geometry", {
+  geo <- sf::st_drop_geometry(metrosp::stations)
+  geo_current_metro <- geo[geo$status == "current" & geo$type == "metro", ]
+  unmatched <- setdiff(
+    unique(metrosp::station_averages$station_name),
+    unique(geo_current_metro$station_name)
+  )
+  expect_equal(unmatched, character(0))
+})
+
 test_that("station_averages has no duplicate date/line/station", {
   sa <- metrosp::station_averages
   dupes <- sum(duplicated(sa[, c("date", "line_number", "station_name")]))
