@@ -32,7 +32,11 @@ MONTHS_PT <- c(
 )
 
 fmt_month_pt <- function(x) {
-  paste0(MONTHS_PT[as.integer(format(x, "%m"))], "/", format(x, "%Y"))
+  ifelse(
+    is.na(x),
+    "—",
+    paste0(MONTHS_PT[as.integer(format(x, "%m"))], "/", format(x, "%Y"))
+  )
 }
 
 # A cleared dateInput returns a length-0 Date (not NULL), so `%||%` alone
@@ -113,7 +117,10 @@ sta_demand_map <- sta_avg |>
   summarise(avg = mean(value, na.rm = TRUE), .groups = "drop")
 
 sf_stations_map <- if (!is.null(sf_stations)) {
+  # Falls back to 1 if the demand window is empty/degenerate so the radius
+  # scaling below never divides by -Inf/0
   max_avg <- max(sta_demand_map$avg, na.rm = TRUE)
+  if (!is.finite(max_avg) || max_avg <= 0) max_avg <- 1
   sf_stations |>
     left_join(sta_demand_map, by = c("line_number", "station_name")) |>
     mutate(radius = ifelse(is.na(avg), 4, 4 + 12 * sqrt(avg / max_avg))) |>
@@ -330,6 +337,7 @@ ui <- function(request) {
     ## Tab: Linhas ----
     nav_panel(
       title = "Linhas",
+      value = "linhas",
       icon = bs_icon("graph-up"),
 
       layout_sidebar(
@@ -413,6 +421,7 @@ ui <- function(request) {
     ## Tab: Estações ----
     nav_panel(
       title = "Estações",
+      value = "estacoes",
       icon = bs_icon("pin-map-fill"),
 
       layout_sidebar(
@@ -502,6 +511,7 @@ ui <- function(request) {
     ## Tab: Mapa ----
     nav_panel(
       title = "Mapa",
+      value = "mapa",
       icon = bs_icon("geo-alt-fill"),
 
       card(
@@ -532,6 +542,7 @@ ui <- function(request) {
     ## Tab: Download ----
     nav_panel(
       title = "Download",
+      value = "download",
       icon = bs_icon("download"),
 
       div(
@@ -549,6 +560,7 @@ ui <- function(request) {
     ## Tab: Sobre ----
     nav_panel(
       title = "Sobre",
+      value = "sobre",
       icon = bs_icon("info-circle-fill"),
 
       layout_column_wrap(
@@ -961,16 +973,9 @@ server <- function(input, output, session) {
     df_monthly <- sta_monthly_data()
     req(nrow(df_monthly) > 0)
     yr <- input$sta_year
-    df_daily <- if (!is.null(yr) && nzchar(yr)) {
-      sta_daily |>
-        filter(
-          line_number == input$sta_line,
-          station_name == input$sta_station,
-          year == as.integer(yr)
-        )
-    } else {
-      data.frame()
-    }
+    # Reuse the daily reactive (same line/station/year filter) instead of
+    # re-filtering sta_daily, so the KPI and the daily chart can't diverge
+    df_daily <- if (isTruthy(yr)) sta_daily_data() else sta_daily[0, ]
 
     wd_avg <- if (nrow(df_daily) > 0) {
       wd <- df_daily |> filter(as.integer(format(date, "%u")) <= 5)
@@ -1204,6 +1209,8 @@ server <- function(input, output, session) {
       m <- m |>
         addCircleMarkers(
           data = sf_stations_map,
+          # "||" cannot appear in a station name, so the click handler can
+          # split the id back into line + station unambiguously
           layerId = paste(
             sf_stations_map$line_number,
             sf_stations_map$station_name,
@@ -1250,7 +1257,7 @@ server <- function(input, output, session) {
       return()
     }
 
-    nav_select("main_nav", "Estações")
+    nav_select("main_nav", "estacoes")
     if (identical(input$sta_line, ln)) {
       updateSelectizeInput(session, "sta_station", selected = sta)
     } else {
@@ -1313,10 +1320,23 @@ server <- function(input, output, session) {
   )
 
   make_spatial_handler <- function(sf_data, prefix, driver) {
+    ext <- tolower(driver)
     downloadHandler(
-      filename = function() paste0("metrosp-", prefix, ".", tolower(driver)),
+      filename = function() paste0("metrosp-", prefix, ".", ext),
       content = function(file) {
-        sf::st_write(sf_data, file, driver = driver, quiet = TRUE)
+        # Write to a correctly-suffixed tempfile first: Shiny's download path
+        # has no extension, and GDAL (esp. GPKG/GeoJSON) is picky about that
+        # and about pre-existing files. delete_dsn guards repeat downloads.
+        tmp <- tempfile(fileext = paste0(".", ext))
+        on.exit(unlink(tmp), add = TRUE)
+        sf::st_write(
+          sf_data,
+          tmp,
+          driver = driver,
+          quiet = TRUE,
+          delete_dsn = TRUE
+        )
+        file.copy(tmp, file, overwrite = TRUE)
       }
     )
   }

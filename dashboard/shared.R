@@ -62,10 +62,15 @@ kpi_card <- function(label, value, sub = NULL) {
   )
 }
 
+# Trailing k-observation moving average. Operates on observations, not
+# calendar days: gaps in the underlying dates are not gap-aware. NA-tolerant
+# within each window; returns NA for the first k-1 positions, and all-NA when
+# fewer than k observations are available (guards against seq() inverting).
 roll_mean <- function(x, k = 7L) {
   n <- length(x)
   out <- rep(NA_real_, n)
-  for (i in seq(k, n)) out[i] <- mean(x[(i - k + 1L):i], na.rm = TRUE)
+  if (n < k) return(out)
+  for (i in seq.int(k, n)) out[i] <- mean(x[(i - k + 1L):i], na.rm = TRUE)
   out
 }
 
