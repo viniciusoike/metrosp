@@ -35,10 +35,12 @@ metrosp/
 ├── dashboard/                  # Shiny apps (not part of the package build)
 │   ├── explorer/               # Data-exploration app (the deployable unit)
 │   │   ├── app.R               # Main app: charts, map, downloads
+│   │   ├── README.md           # App overview + deploy instructions
 │   │   ├── shared.R            # Copy of dashboard/shared.R (keep in sync)
 │   │   └── www/styles.css      # Copy of dashboard/www/styles.css
 │   ├── panorama.R              # Demand-overview Shiny app (exploratory)
 │   ├── shared.R                # Line metadata + helpers shared by app scripts
+│   ├── sync_check.R            # Guards explorer/ copies against the originals
 │   └── www/styles.css          # App styles
 ├── tests/testthat/
 ├── vignettes/
