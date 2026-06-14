@@ -116,7 +116,10 @@ sf_stations_map <- if (!is.null(sf_stations)) {
   max_avg <- max(sta_demand_map$avg, na.rm = TRUE)
   sf_stations |>
     left_join(sta_demand_map, by = c("line_number", "station_name")) |>
-    mutate(radius = ifelse(is.na(avg), 4, 4 + 12 * sqrt(avg / max_avg)))
+    mutate(radius = ifelse(is.na(avg), 4, 4 + 12 * sqrt(avg / max_avg))) |>
+    # Interchange stations have one row per line at the same point; draw the
+    # larger circle first so the smaller one lands on top and stays visible
+    arrange(desc(radius))
 } else {
   NULL
 }
