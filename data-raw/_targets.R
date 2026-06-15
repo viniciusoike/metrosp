@@ -47,18 +47,30 @@ proc <- function(f) here::here("data-raw/processed", f)
 
 list(
   # --- Gated source refreshes (tar_force) ------------------------------------
-  # tar_force() caches the result and only re-runs when force = TRUE.
-  # Downstream targets rebuild only if the refreshed output actually changed.
+  # tar_force() caches the result and only re-runs when force = TRUE. Each body
+  # is guarded by its own flag so that when the flag is off the side-effecting
+  # refresh (network scrape / reading the gitignored raw files) never runs --
+  # not even on the first build or after a flag toggle invalidates the target.
+  # This keeps the graph rebuildable offline from the committed processed CSVs
+  # (and a populated _targets store); downstream targets fall back to those.
   tar_force(
     metro_csv_dir,
-    download_metro(),
+    if (refresh_flag("METROSP_DOWNLOAD")) {
+      download_metro()
+    } else {
+      # No download: just point at the existing raw csv dir so the current-era
+      # builders can still resolve their trigger (path is what download returns).
+      here::here("data-raw/metro_sp/metro/csv")
+    },
     force = refresh_flag("METROSP_DOWNLOAD")
   ),
   tar_force(
     historic_refresh,
     {
-      refresh_historic_passengers()
-      refresh_historic_averages()
+      if (refresh_flag("METROSP_HISTORICAL")) {
+        refresh_historic_passengers()
+        refresh_historic_averages()
+      }
       TRUE
     },
     force = refresh_flag("METROSP_HISTORICAL")
@@ -66,7 +78,9 @@ list(
   tar_force(
     dataverse_refresh,
     {
-      refresh_dataverse()
+      if (refresh_flag("METROSP_DATAVERSE")) {
+        refresh_dataverse()
+      }
       TRUE
     },
     force = refresh_flag("METROSP_DATAVERSE")
