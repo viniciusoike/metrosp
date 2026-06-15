@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,17 +37,26 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="metrosp-development-version">metrosp (development version)<a class="anchor" aria-label="anchor" href="#metrosp-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.1.0" id="metrosp-110">metrosp 1.1.0<a class="anchor" aria-label="anchor" href="#metrosp-110"></a></h2>
 <div class="section level3">
-<h3 id="data-pipeline-development-version">Data pipeline<a class="anchor" aria-label="anchor" href="#data-pipeline-development-version"></a></h3>
-<ul><li>The <code>data-raw/</code> ETL pipeline can now be run as a <a href="https://docs.ropensci.org/targets/" class="external-link">targets</a> pipeline (<code><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">targets::tar_make()</a></code>), replacing the flag-driven <code>run_pipeline.R</code> orchestrator. Pipeline functions live in <code>data-raw/R/</code>; the legacy scripts remain and produce identical output. See <code>CLAUDE.md</code> for the workflow.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="datasets-development-version">Datasets<a class="anchor" aria-label="anchor" href="#datasets-development-version"></a></h3>
-<ul><li>
-<code>metro_lines</code> is no longer exported. Its line-name columns (<code>line_name</code>, <code>line_name_pt</code>) are already denormalized onto every passenger/station dataset, and the full line list (including planned and CPTM lines) is available in <code>lines</code>. It remains an internal join dimension in the ETL pipeline.</li>
+<h3 id="datasets-1-1-0">Datasets<a class="anchor" aria-label="anchor" href="#datasets-1-1-0"></a></h3>
+<ul><li>Added <code>calendar_spo</code>: a São Paulo holiday and business-day calendar (2012–2030) covering national, state, and municipal holidays, for use in demand seasonality and business-day adjustments.</li>
+<li>Removed the <code>forecasts</code> and <code>forecast_accuracy</code> exports. Forecasting belongs downstream of the data; the package now ships only observed demand.</li>
+<li>Removed the <code>metro_lines</code> export. Its line-name columns (<code>line_name</code>, <code>line_name_pt</code>) are already denormalized onto every passenger/station dataset, and the full line list (including planned and CPTM lines) is available in <code>lines</code>. It remains an internal join dimension in the ETL pipeline.</li>
 <li>
 <code>station_daily$line_number</code> / <code>station_daily$year</code> are now <code>integer</code> (previously <code>double</code>), matching the other datasets. Values are unchanged.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="data-quality-1-1-0">Data quality<a class="anchor" aria-label="anchor" href="#data-quality-1-1-0"></a></h3>
+<ul><li>Station names are now canonicalized consistently across the demand datasets (<code>station_averages</code>, <code>station_daily</code>) and the geometry datasets (<code>stations</code>), so a station joins cleanly across sources.</li>
+<li>Fixed footnote-digit and sponsor-name contamination in station names (e.g. stray trailing digits and parenthesized line numbers).</li>
+<li>Trailing unpublished <code>NA</code> rows are now trimmed per line during assembly; interior <code>NA</code>s (e.g. station outages) are preserved. All datasets rebuilt.</li>
+<li>Refreshed the 2017–2019 source CSV.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="data-pipeline-1-1-0">Data pipeline<a class="anchor" aria-label="anchor" href="#data-pipeline-1-1-0"></a></h3>
+<ul><li>The <code>data-raw/</code> ETL now runs as a <a href="https://docs.ropensci.org/targets/" class="external-link">targets</a> pipeline (<code><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">targets::tar_make()</a></code>), replacing the flag-driven <code>run_pipeline.R</code> orchestrator. Pipeline functions live in <code>data-raw/R/</code>; the legacy scripts remain and produce identical output. See <code>CLAUDE.md</code> for the workflow.</li>
+<li>Gated refreshes (download, historical re-import, Dataverse) are controlled by environment-variable flags via <code><a href="https://docs.ropensci.org/tarchetypes/reference/tar_force.html" class="external-link">tarchetypes::tar_force()</a></code> and skip cleanly when the flags are off.</li>
 </ul></div>
 </div>
     <div class="section level2">
