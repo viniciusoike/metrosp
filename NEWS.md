@@ -5,8 +5,9 @@
 * Added `calendar_spo`: a São Paulo holiday and business-day calendar
   (2012–2030) covering national, state, and municipal holidays, for use in
   demand seasonality and business-day adjustments.
-* Removed the `forecasts` and `forecast_accuracy` exports. Forecasting belongs
-  downstream of the data; the package now ships only observed demand.
+* Removed the `forecasts` and `forecast_accuracy` exports. These were exported
+  in 1.0.0 by mistake: `metrosp` is an observed-demand data package and
+  forecasting belongs downstream, so they should never have shipped.
 * Removed the `metro_lines` export. Its line-name columns (`line_name`,
   `line_name_pt`) are already denormalized onto every passenger/station
   dataset, and the full line list (including planned and CPTM lines) is
