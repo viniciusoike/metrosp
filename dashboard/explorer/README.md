@@ -22,12 +22,12 @@ shiny::runApp("dashboard/explorer")
 ```r
 install.packages(c(
   "shiny", "bslib", "bsicons", "dplyr", "leaflet", "echarts4r",
-  "sf", "htmltools", "htmlwidgets", "writexl", "readr"
+  "sf", "htmltools", "htmlwidgets", "writexl", "readr",
+  # optional: enables the STL trend overlay (degrades gracefully if absent)
+  "trendseries"
 ))
-# the data package itself
+# the data package itself (GitHub-only)
 pak::pak("viniciusoike/metrosp")
-# optional: enables the STL trend overlay (degrades gracefully if absent)
-pak::pak("viniciusoike/trendseries")
 ```
 
 ## Deploy
@@ -42,9 +42,9 @@ rsconnect::deployApp(
 )
 ```
 
-`rsconnect` infers the package set from the loaded namespaces. `trendseries` and
-`metrosp` are GitHub-only — make sure your deploy target can install from GitHub
-(set the `remotes`/`pak` source), or vendor them.
+`rsconnect` infers the package set from the loaded namespaces. `metrosp` is
+GitHub-only — make sure your deploy target can install from GitHub (set the
+`remotes`/`pak` source), or vendor it. `trendseries` is on CRAN.
 
 ## Keeping shared files in sync
 
