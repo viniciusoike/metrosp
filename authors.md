@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/viniciusoike/metrosp/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/viniciusoike/metrosp/blob/v1.1.0/DESCRIPTION)
 
 Oike V (2026). *metrosp: São Paulo Metro Passenger Demand Data*. R
 package version 1.1.0, <https://github.com/viniciusoike/metrosp>.

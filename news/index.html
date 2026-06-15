@@ -33,7 +33,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/viniciusoike/metrosp/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/viniciusoike/metrosp/blob/v1.1.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -41,7 +41,7 @@
 <div class="section level3">
 <h3 id="datasets-1-1-0">Datasets<a class="anchor" aria-label="anchor" href="#datasets-1-1-0"></a></h3>
 <ul><li>Added <code>calendar_spo</code>: a São Paulo holiday and business-day calendar (2012–2030) covering national, state, and municipal holidays, for use in demand seasonality and business-day adjustments.</li>
-<li>Removed the <code>forecasts</code> and <code>forecast_accuracy</code> exports. Forecasting belongs downstream of the data; the package now ships only observed demand.</li>
+<li>Removed the <code>forecasts</code> and <code>forecast_accuracy</code> exports. These were exported in 1.0.0 by mistake: <code>metrosp</code> is an observed-demand data package and forecasting belongs downstream, so they should never have shipped.</li>
 <li>Removed the <code>metro_lines</code> export. Its line-name columns (<code>line_name</code>, <code>line_name_pt</code>) are already denormalized onto every passenger/station dataset, and the full line list (including planned and CPTM lines) is available in <code>lines</code>. It remains an internal join dimension in the ETL pipeline.</li>
 <li>
 <code>station_daily$line_number</code> / <code>station_daily$year</code> are now <code>integer</code> (previously <code>double</code>), matching the other datasets. Values are unchanged.</li>
