@@ -32,16 +32,12 @@ metrosp/
 │   ├── cache/                  # Cached .rds of built datasets (piggyback distribution)
 │   ├── archive/               # Retired scripts
 │   └── metro_sp/               # Raw source files (gitignored, ~46MB)
-├── dashboard/                  # Shiny apps (not part of the package build)
-│   ├── explorer/               # Data-exploration app (the deployable unit)
-│   │   ├── app.R               # Main app: charts, map, downloads
-│   │   ├── README.md           # App overview + deploy instructions
-│   │   ├── shared.R            # Copy of dashboard/shared.R (keep in sync)
-│   │   └── www/styles.css      # Copy of dashboard/www/styles.css
+├── dashboard/                  # Exploratory Shiny scripts (not part of the package build)
 │   ├── panorama.R              # Demand-overview Shiny app (exploratory)
 │   ├── shared.R                # Line metadata + helpers shared by app scripts
-│   ├── sync_check.R            # Guards explorer/ copies against the originals
 │   └── www/styles.css          # App styles
+│   # NOTE: the deployable explorer dashboard moved to its own repo:
+│   #   https://github.com/viniciusoike/metrosp-explorer
 ├── tests/testthat/
 ├── vignettes/
 ├── DESCRIPTION

@@ -1,4 +1,4 @@
-# Unit tests for the explorer dashboard's shared helpers (dashboard/shared.R).
+# Unit tests for the shared dashboard helpers (dashboard/shared.R).
 # That file is .Rbuildignored, so it is absent from the built/checked tarball:
 # these tests run from the source tree (devtools::test()) and skip otherwise.
 

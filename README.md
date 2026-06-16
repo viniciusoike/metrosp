@@ -98,6 +98,13 @@ station_averages
 lines
 ```
 
+## Explorer dashboard
+
+An interactive dashboard for browsing and downloading these datasets lives in a
+separate repository:
+[metrosp-explorer](https://github.com/viniciusoike/metrosp-explorer). It is a
+standalone Shiny app and is not shipped with the package.
+
 ## Coming soon
 
 - Better data documentation.
