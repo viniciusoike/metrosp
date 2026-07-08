@@ -26,6 +26,9 @@
 * Trailing unpublished `NA` rows are now trimmed per line during assembly;
   interior `NA`s (e.g. station outages) are preserved. All datasets rebuilt.
 * Refreshed the 2017–2019 source CSV.
+* Fixed a duplicate row in `stations` (Vila Mariana, Line 1) caused by the
+  GeoSampa import not deduplicating after the name/join cleanup step. Added a
+  regression test asserting `stations` has no duplicate rows.
 
 ## Data pipeline
 
