@@ -158,6 +158,7 @@ standardize_stations <- function(x) {
   }
 
   clean_dat <- select(clean_dat, all_of(cols_select))
+  clean_dat <- distinct(clean_dat, .keep_all = TRUE)
 
   return(clean_dat)
 }
@@ -195,7 +196,11 @@ build_geosampa <- function(
 
   if (length(inds_name_files)) {
     inds_future <- which(stringr::str_detect(name_files, "proj.+[0-9]\\.gpkg"))
-    inds_current <- which(stringr::str_detect(name_files, "proj", negate = TRUE))
+    inds_current <- which(stringr::str_detect(
+      name_files,
+      "proj",
+      negate = TRUE
+    ))
     inds_name_files <- c("future" = inds_future, "current" = inds_current)
     inds_name_files <- inds_name_files[order(inds_name_files)]
   }
