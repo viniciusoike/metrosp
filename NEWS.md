@@ -1,3 +1,19 @@
+# metrosp 1.1.1
+
+## Datasets
+
+* `passengers_entrance`, `passengers_transported`, and `station_daily`
+  rebuilt through April 2026.
+
+## Vignettes
+
+* Added time-coverage-by-line charts and tables to the data dictionary for
+  all four core datasets (previously only `passengers_entrance` had one).
+* Rewrote the "Core datasets" sections of the data dictionary to follow a
+  single consistent structure (columns table, glimpse, time coverage).
+* Reordered the interchange-stations table by reference line and station
+  name, and fixed assorted typos and wording issues.
+
 # metrosp 1.1.0
 
 ## Datasets
@@ -42,8 +58,6 @@
   `averages_current`, `daily_current`) -- they kept serving stale cached data
   even right after a real re-download. The target is now content-hashed
   against the downloaded files themselves.
-* `passengers_entrance`, `passengers_transported`, and `station_daily`
-  rebuilt through April 2026.
 
 ## Data pipeline
 
