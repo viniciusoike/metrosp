@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![R-universe](https://viniciusoike.r-universe.dev/badges/metrosp)](https://viniciusoike.r-universe.dev/metrosp)
 <!-- badges: end -->
 
 This packages helps distribute demand data from the São Paulo metro
