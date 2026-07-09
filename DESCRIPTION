@@ -6,7 +6,8 @@ Authors@R: c(
     person(
       "Vinicius", "Oike",
       email = "viniciusoike@gmail.com",
-      role = c("aut", "cre", "cph")
+      role = c("aut", "cre", "cph"),
+      comment = c(ORCID = "0009-0005-8015-9189")
     )
   )
 Description: Provides passenger demand data for the São Paulo metro system,
