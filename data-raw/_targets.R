@@ -31,8 +31,20 @@ library(tarchetypes)
 
 tar_option_set(
   packages = c(
-    "dplyr", "tidyr", "stringr", "readr", "purrr", "janitor", "glue",
-    "lubridate", "sf", "fs", "cli", "rlang", "here", "bizdays"
+    "dplyr",
+    "tidyr",
+    "stringr",
+    "readr",
+    "purrr",
+    "janitor",
+    "glue",
+    "lubridate",
+    "sf",
+    "fs",
+    "cli",
+    "rlang",
+    "here",
+    "bizdays"
   )
 )
 
@@ -55,13 +67,22 @@ list(
   # (and a populated _targets store); downstream targets fall back to those.
   tar_force(
     metro_csv_dir,
-    if (refresh_flag("METROSP_DOWNLOAD")) {
-      download_metro()
-    } else {
-      # No download: just point at the existing raw csv dir so the current-era
-      # builders can still resolve their trigger (path is what download returns).
-      here::here("data-raw/metro_sp/metro/csv")
+    {
+      dir <- if (refresh_flag("METROSP_DOWNLOAD")) {
+        download_metro()
+      } else {
+        # No download: just point at the existing raw csv dir so the
+        # current-era builders can still resolve their trigger.
+        here::here("data-raw/metro_sp/metro/csv")
+      }
+      # Return the individual file paths (not just the dir) so this target is
+      # content-hashed per file. A bare directory string is the same value
+      # before and after a download, so downstream builders (entrance_current,
+      # transported_current, ...) never saw new months as a changed dependency
+      # and kept serving stale cached results even after a real re-download.
+      list.files(dir, pattern = "\\.csv$", full.names = TRUE)
     },
+    format = "file",
     force = refresh_flag("METROSP_DOWNLOAD")
   ),
   tar_force(
@@ -143,17 +164,41 @@ list(
   ),
 
   # --- Current-era METRO builders (content-addressed; depend on download) ----
-  tar_target(entrance_current,    { metro_csv_dir; build_entrance_current() }),
-  tar_target(transported_current, { metro_csv_dir; build_transported_current() }),
-  tar_target(averages_current,    { metro_csv_dir; build_averages_current() }),
-  tar_target(daily_current,       { metro_csv_dir; build_station_daily_current() }),
+  tar_target(entrance_current, {
+    metro_csv_dir
+    build_entrance_current()
+  }),
+  tar_target(transported_current, {
+    metro_csv_dir
+    build_transported_current()
+  }),
+  tar_target(averages_current, {
+    metro_csv_dir
+    build_averages_current()
+  }),
+  tar_target(daily_current, {
+    metro_csv_dir
+    build_station_daily_current()
+  }),
 
   # --- Read committed historic / Lines 4/5 CSVs ------------------------------
-  tar_target(psg_17_19,      readr::read_csv(hist_passengers_csv, show_col_types = FALSE)),
-  tar_target(stations_17_19, readr::read_csv(hist_averages_csv, show_col_types = FALSE)),
-  tar_target(entrance_4_5,   readr::read_csv(entrance_4_5_csv, show_col_types = FALSE)),
-  tar_target(averages_4_5,   readr::read_csv(averages_4_5_csv, show_col_types = FALSE)),
-  tar_target(daily_4_5,      readr::read_csv(daily_4_5_csv, show_col_types = FALSE)),
+  tar_target(
+    psg_17_19,
+    readr::read_csv(hist_passengers_csv, show_col_types = FALSE)
+  ),
+  tar_target(
+    stations_17_19,
+    readr::read_csv(hist_averages_csv, show_col_types = FALSE)
+  ),
+  tar_target(
+    entrance_4_5,
+    readr::read_csv(entrance_4_5_csv, show_col_types = FALSE)
+  ),
+  tar_target(
+    averages_4_5,
+    readr::read_csv(averages_4_5_csv, show_col_types = FALSE)
+  ),
+  tar_target(daily_4_5, readr::read_csv(daily_4_5_csv, show_col_types = FALSE)),
 
   # --- GeoSampa spatial datasets ---------------------------------------------
   tar_target(geo, build_geosampa(geosampa_files)),
@@ -161,13 +206,26 @@ list(
   tar_target(stations, geo$stations),
 
   # --- Assemble exported datasets --------------------------------------------
-  tar_target(passengers_entrance,    assemble_entrance(psg_17_19, entrance_current, entrance_4_5)),
-  tar_target(passengers_transported, assemble_transported(psg_17_19, transported_current)),
-  tar_target(station_averages,       assemble_averages(stations_17_19, averages_current, averages_4_5)),
-  tar_target(station_daily,          assemble_daily(daily_current, daily_4_5)),
+  tar_target(
+    passengers_entrance,
+    assemble_entrance(psg_17_19, entrance_current, entrance_4_5)
+  ),
+  tar_target(
+    passengers_transported,
+    assemble_transported(psg_17_19, transported_current)
+  ),
+  tar_target(
+    station_averages,
+    assemble_averages(stations_17_19, averages_current, averages_4_5)
+  ),
+  tar_target(station_daily, assemble_daily(daily_current, daily_4_5)),
   tar_target(
     station_inauguration,
-    build_station_inauguration(inauguration_csv, station_daily, station_averages)
+    build_station_inauguration(
+      inauguration_csv,
+      station_daily,
+      station_averages
+    )
   ),
 
   # --- Calendar ---------------------------------------------------------------

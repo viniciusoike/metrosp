@@ -361,26 +361,24 @@ as_numeric_pt <- Vectorize(function(x) {
 #' Read a raw passenger CSV file (2020-present).
 #'
 #' Each file contains 3 sections (batches) for different line groups,
-#' read separately with different skip rows and bound by column.
+#' read separately with different skip rows and bound by column. The header
+#' length above each section has drifted from year to year (and, in 2026,
+#' even between the entrance and transport files for the same year) -- a
+#' hardcoded per-year skip table went stale silently every time the source
+#' added or dropped a line. Detect the skip dynamically instead, from the row
+#' each block's "Jan;" line actually falls on.
 #'
 #' @param path Path to the raw CSV file.
-#' @param year Integer year (affects skip offsets; 2025 format differs from 2020-2024).
+#' @param year Integer year (unused; kept for call-site compatibility).
 #' @return A wide data frame with one row per month.
 read_csv_passengers <- function(path, year = 2020) {
-  get_skip <- function(year) {
-    .skip <- list(
-      "default" = c(6, 25, 45),
-      `2025` = c(6, 22, 38),
-      `2026` = c(7, 23, 39)
+  raw_lines <- readLines(path, encoding = "latin1")
+  skip <- grep("^Jan\\*?;", raw_lines) - 1L
+
+  if (length(skip) != 3) {
+    cli::cli_abort(
+      "Expected 3 line blocks (found {length(skip)}) while parsing {path}."
     )
-
-    if (as.character(year) %in% names(.skip)) {
-      offset <- .skip[[as.character(year)]]
-    } else {
-      offset <- .skip[["default"]]
-    }
-
-    return(offset)
   }
 
   metric_names <- c("month", "total", "mdu", "msa", "mdo", "max")
@@ -392,8 +390,6 @@ read_csv_passengers <- function(path, year = 2020) {
     c2 = c(comb_names[13:18], "drop_col", comb_names[19:24]),
     c3 = comb_names[25:30]
   )
-
-  skip <- get_skip(year)
 
   parcels <- list()
 

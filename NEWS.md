@@ -1,3 +1,19 @@
+# metrosp 1.1.1
+
+## Datasets
+
+* `passengers_entrance`, `passengers_transported`, and `station_daily`
+  rebuilt through April 2026.
+
+## Vignettes
+
+* Added time-coverage-by-line charts and tables to the data dictionary for
+  all four core datasets (previously only `passengers_entrance` had one).
+* Rewrote the "Core datasets" sections of the data dictionary to follow a
+  single consistent structure (columns table, glimpse, time coverage).
+* Reordered the interchange-stations table by reference line and station
+  name, and fixed assorted typos and wording issues.
+
 # metrosp 1.1.0
 
 ## Datasets
@@ -26,6 +42,22 @@
 * Trailing unpublished `NA` rows are now trimmed per line during assembly;
   interior `NA`s (e.g. station outages) are preserved. All datasets rebuilt.
 * Refreshed the 2017–2019 source CSV.
+* Fixed a duplicate row in `stations` (Vila Mariana, Line 1) caused by the
+  GeoSampa import not deduplicating after the name/join cleanup step. Added a
+  regression test asserting `stations` has no duplicate rows.
+* Fixed a row-skip bug in the passenger-by-line CSV parser
+  (`passengers_entrance`, `passengers_transported`): a hardcoded per-year
+  header offset was one row short of where the source's "Jan" row actually
+  landed, which shifted every month's figures up one slot (February's numbers
+  were recorded as January's, and so on) and mistook the annual total row for
+  December. The offset is now detected dynamically per file instead of
+  hardcoded, since the header length has drifted release to release.
+* Fixed a `targets` caching gap where the METRO CSV download target returned
+  a constant directory path, so a fresh download never invalidated the
+  downstream parsers (`entrance_current`, `transported_current`,
+  `averages_current`, `daily_current`) -- they kept serving stale cached data
+  even right after a real re-download. The target is now content-hashed
+  against the downloaded files themselves.
 
 ## Data pipeline
 

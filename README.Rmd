@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![R-universe](https://viniciusoike.r-universe.dev/badges/metrosp)](https://viniciusoike.r-universe.dev/metrosp)
 <!-- badges: end -->
 
 This packages helps distribute demand data from the São Paulo metro system inside R. Data is sourced from multiple operators and spans 2012-2025. While most of the data is already [public](https://transparencia.metrosp.com.br/dataset/demanda), it's scattered across multiple poorly structured CSV/PDF files.
@@ -88,6 +89,10 @@ station_averages
 # Spatial line routes
 lines
 ```
+
+## Explorer dashboard
+
+An interactive dashboard for browsing and downloading these datasets lives in a separate repository: [metrosp-explorer](https://github.com/viniciusoike/metrosp-explorer). It is a standalone Shiny app and is not shipped with the package.
 
 ## Coming soon
 

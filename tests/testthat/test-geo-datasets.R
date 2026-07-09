@@ -97,3 +97,8 @@ test_that("no NA line numbers in lines", {
 test_that("no NA station names in stations", {
   expect_false(any(is.na(metrosp::stations$station_name)))
 })
+
+test_that("stations has no duplicate rows", {
+  dat <- sf::st_drop_geometry(metrosp::stations)
+  expect_false(any(duplicated(dat)))
+})
