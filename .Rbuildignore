@@ -24,3 +24,4 @@
 ^_targets$
 ^CITATION\.cff$
 ^\.positai$
+^vignettes/\.quarto$
