@@ -79,7 +79,7 @@ Using the datasets is straightforward, just call the dataset name.
 ``` r
 
 glimpse(passengers_entrance)
-#> Rows: 3,805
+#> Rows: 3,830
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -150,7 +150,7 @@ format.
 ``` r
 
 glimpse(passengers_entrance)
-#> Rows: 3,805
+#> Rows: 3,830
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -209,7 +209,7 @@ expanded to include lines 4 and 5.
 ``` r
 
 glimpse(passengers_transported)
-#> Rows: 2,605
+#> Rows: 2,630
 #> Columns: 9
 #> $ date         <date> 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-…
 #> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
@@ -313,7 +313,7 @@ lines.
 ``` r
 
 glimpse(station_daily)
-#> Rows: 226,822
+#> Rows: 228,802
 #> Columns: 8
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.png" class="logo" alt=""><h1>metrosp</h1>
-      <small class="dont-index">Source: <a href="https://github.com/viniciusoike/metrosp/blob/v1.1.0/AGENTS.md" class="external-link"><code>AGENTS.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/viniciusoike/metrosp/blob/main/AGENTS.md" class="external-link"><code>AGENTS.md</code></a></small>
     </div>
 
 <div id="metrosp" class="section level1">
@@ -67,16 +67,12 @@
 │   ├── cache/                  # Cached .rds of built datasets (piggyback distribution)
 │   ├── archive/               # Retired scripts
 │   └── metro_sp/               # Raw source files (gitignored, ~46MB)
-├── dashboard/                  # Shiny apps (not part of the package build)
-│   ├── explorer/               # Data-exploration app (the deployable unit)
-│   │   ├── app.R               # Main app: charts, map, downloads
-│   │   ├── README.md           # App overview + deploy instructions
-│   │   ├── shared.R            # Copy of dashboard/shared.R (keep in sync)
-│   │   └── www/styles.css      # Copy of dashboard/www/styles.css
+├── dashboard/                  # Exploratory Shiny scripts (not part of the package build)
 │   ├── panorama.R              # Demand-overview Shiny app (exploratory)
 │   ├── shared.R                # Line metadata + helpers shared by app scripts
-│   ├── sync_check.R            # Guards explorer/ copies against the originals
 │   └── www/styles.css          # App styles
+│   # NOTE: the deployable explorer dashboard moved to its own repo:
+│   #   https://github.com/viniciusoike/metrosp-explorer
 ├── tests/testthat/
 ├── vignettes/
 ├── DESCRIPTION
@@ -194,7 +190,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

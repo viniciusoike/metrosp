@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,9 +33,23 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/viniciusoike/metrosp/blob/v1.1.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/viniciusoike/metrosp/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.1" id="metrosp-111">metrosp 1.1.1<a class="anchor" aria-label="anchor" href="#metrosp-111"></a></h2>
+<div class="section level3">
+<h3 id="datasets-1-1-1">Datasets<a class="anchor" aria-label="anchor" href="#datasets-1-1-1"></a></h3>
+<ul><li>
+<code>passengers_entrance</code>, <code>passengers_transported</code>, and <code>station_daily</code> rebuilt through April 2026.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="vignettes-1-1-1">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes-1-1-1"></a></h3>
+<ul><li>Added time-coverage-by-line charts and tables to the data dictionary for all four core datasets (previously only <code>passengers_entrance</code> had one).</li>
+<li>Rewrote the “Core datasets” sections of the data dictionary to follow a single consistent structure (columns table, glimpse, time coverage).</li>
+<li>Reordered the interchange-stations table by reference line and station name, and fixed assorted typos and wording issues.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="metrosp-110">metrosp 1.1.0<a class="anchor" aria-label="anchor" href="#metrosp-110"></a></h2>
 <div class="section level3">
@@ -52,6 +66,9 @@
 <li>Fixed footnote-digit and sponsor-name contamination in station names (e.g. stray trailing digits and parenthesized line numbers).</li>
 <li>Trailing unpublished <code>NA</code> rows are now trimmed per line during assembly; interior <code>NA</code>s (e.g. station outages) are preserved. All datasets rebuilt.</li>
 <li>Refreshed the 2017–2019 source CSV.</li>
+<li>Fixed a duplicate row in <code>stations</code> (Vila Mariana, Line 1) caused by the GeoSampa import not deduplicating after the name/join cleanup step. Added a regression test asserting <code>stations</code> has no duplicate rows.</li>
+<li>Fixed a row-skip bug in the passenger-by-line CSV parser (<code>passengers_entrance</code>, <code>passengers_transported</code>): a hardcoded per-year header offset was one row short of where the source’s “Jan” row actually landed, which shifted every month’s figures up one slot (February’s numbers were recorded as January’s, and so on) and mistook the annual total row for December. The offset is now detected dynamically per file instead of hardcoded, since the header length has drifted release to release.</li>
+<li>Fixed a <code>targets</code> caching gap where the METRO CSV download target returned a constant directory path, so a fresh download never invalidated the downstream parsers (<code>entrance_current</code>, <code>transported_current</code>, <code>averages_current</code>, <code>daily_current</code>) – they kept serving stale cached data even right after a real re-download. The target is now content-hashed against the downloaded files themselves.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="data-pipeline-1-1-0">Data pipeline<a class="anchor" aria-label="anchor" href="#data-pipeline-1-1-0"></a></h3>
@@ -72,7 +89,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
