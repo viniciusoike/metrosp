@@ -14,7 +14,9 @@ Description: Provides passenger demand data for the São Paulo metro system,
     covering 2012 to 2026. Datasets include monthly passenger entries and
     transported counts by line, average weekday station entries, daily
     station entries, and spatial geometries for metro and commuter train
-    lines and stations.
+    lines and stations. The bundled datasets are a fixed snapshot, so
+    analyses stay reproducible and examples run offline; more recent data is
+    published separately as the upstream sources are updated.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
@@ -23,10 +25,14 @@ Depends:
     R (>= 3.5.0)
 Suggests:
     bizdays,
+    spelling,
     dataverse,
+    digest,
     dplyr,
     ggplot2,
+    jsonlite,
     knitr,
+    piggyback,
     quarto,
     rmarkdown,
     sf,

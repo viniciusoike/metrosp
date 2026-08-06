@@ -63,6 +63,19 @@ Months beyond the last published data point for each line are trimmed
 during assembly; interior \code{NA}s (e.g. operational outages) are
 preserved.
 }
+\section{Data vintage}{
+
+This dataset is a fixed snapshot, current through June 2026. It ships with
+the package so examples, vignettes, and offline analysis always have data
+to hand, and it is regenerated only when the column schema changes --
+not when new months are published upstream.
+
+METRO SP publishes on an irregular schedule and revises already-published
+years, so the numbers here will drift from the source over time. Freshly
+rebuilt data is published on every pipeline run at
+\url{https://github.com/viniciusoike/metrosp/releases}.
+}
+
 \seealso{
 \code{\link{passengers_entrance}} for entry counts,
 \code{\link{station_averages}} for station-level weekday averages.
