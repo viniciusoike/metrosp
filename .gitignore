@@ -13,6 +13,9 @@ data-raw/metro_sp/
 # Piggyback cache (datasets managed via GitHub Releases)
 data-raw/cache/
 
+# CI validation report (regenerated every run; surfaced as the refresh PR body)
+data-raw/validation-report.md
+
 # targets object store (rebuildable via tar_make())
 data-raw/_targets/
 

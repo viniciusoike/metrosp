@@ -1,0 +1,125 @@
+# Scheduled data refresh.
+#
+# METRO publishes on an irregular schedule -- observed gaps between batches
+# range from one day to two months -- so this polls weekly rather than monthly
+# and exits early when nothing upstream moved. Most runs stop at the change
+# gate in ~2 minutes.
+#
+# It never touches data/*.rda: the shipped snapshot is frozen and regenerated
+# only on a schema change (METROSP_FREEZE, run by hand). What lands in the PR
+# is the refreshed data-raw/processed/*.csv, which is also the only committed
+# evidence of an upstream restatement.
+
+on:
+  schedule:
+    - cron: "0 11 * * 1" # Mondays 11:00 UTC / 08:00 BRT
+  workflow_dispatch:
+
+name: data-refresh.yaml
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: data-refresh
+      cancel-in-progress: false
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: >-
+            any::targets,
+            any::tarchetypes,
+            any::piggyback,
+            any::devtools,
+            any::rvest,
+            any::stringi,
+            local::.
+
+      # Deliberately no cache for data-raw/metro_sp/. download_metro() skips
+      # already-present files for non-latest years, so a cached raw dir would
+      # hide the retroactive restatements this job exists to catch. Starting
+      # empty every week means every year is re-fetched.
+      - name: Refresh from upstream sources
+        run: |
+          set -o pipefail
+          if METROSP_DOWNLOAD=true METROSP_DATAVERSE=true \
+             Rscript -e 'targets::tar_make()'; then
+            echo "Full refresh succeeded."
+          else
+            echo "::warning::Full refresh failed; retrying with METRO only."
+            # A dead Dataverse must not block a valid METRO update -- the two
+            # sources are independently gated.
+            METROSP_DOWNLOAD=true Rscript -e 'targets::tar_make()'
+            printf '%s\n' \
+              'METROSP_PARTIAL_REFRESH=Lines 4/5 were **not** refreshed (Insper Dataverse unreachable); Lines 1/2/3/15 are current.' \
+              >> "$GITHUB_ENV"
+          fi
+
+      # The change gate. data-raw/processed/ is deterministic text, so a
+      # byte-identical tree means upstream published nothing new.
+      - name: Detect upstream change
+        id: gate
+        run: |
+          if [ -z "$(git status --porcelain data-raw/processed/)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No upstream change; nothing to publish."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git status --porcelain data-raw/processed/
+          fi
+
+      - name: Run package tests
+        if: steps.gate.outputs.changed == 'true'
+        run: Rscript -e 'devtools::test(stop_on_failure = TRUE)'
+
+      - name: Validate against last published batch
+        if: steps.gate.outputs.changed == 'true'
+        run: Rscript data-raw/ci_validate.R
+
+      - name: Read validation report
+        if: steps.gate.outputs.changed == 'true'
+        id: report
+        run: |
+          {
+            echo "body<<VALIDATION_EOF"
+            cat data-raw/validation-report.md
+            echo ""
+            echo "---"
+            echo "Opened by \`data-refresh.yaml\`. Merging publishes these"
+            echo "datasets to the \`data-latest\` release."
+            echo "VALIDATION_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open refresh PR
+        if: steps.gate.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: data-refresh/${{ github.run_id }}
+          delete-branch: true
+          title: "Data refresh ${{ github.run_id }}"
+          body: ${{ steps.report.outputs.body }}
+          labels: data-refresh
+          commit-message: |
+            Refresh processed data from upstream sources
+
+            Automated weekly refresh. data/*.rda is untouched (frozen
+            snapshot); only the intermediate CSVs move.
+          add-paths: |
+            data-raw/processed/
