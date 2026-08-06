@@ -2,8 +2,14 @@
 # -----------------------------------------------------------------------------
 # Builder functions for current-era (2020-present) METRO data (Lines 1, 2, 3,
 # 15), read from the raw transparency-portal CSVs in
-# data-raw/metro_sp/metro/csv/. Each builder returns an in-memory tibble (no
-# CSV/.rda side effects) so `targets` content-addresses the parsed data.
+# data-raw/metro_sp/metro/csv/ (gitignored).
+#
+# Each build_*_current() returns an in-memory tibble. refresh_metro_current() is
+# the gated side-effecting step that writes them to the committed processed CSVs
+# (data-raw/processed/metro_sp_*_current.csv), which the assemble_*() functions
+# then read -- mirroring refresh_historic_*() and refresh_dataverse(). This is
+# what makes the graph rebuildable offline and gives every upstream change a
+# reviewable text diff.
 #
 # Refactored from import_passengers_entrance.R, import_passengers_transported.R,
 # import_station_averages.R, and import_station_daily.R.
@@ -319,7 +325,7 @@ import_station_daily_year <- function(year = 2020) {
 
 #' Build current-era daily station entries (2020-present), lines 1/2/3/15.
 #' Schema: date, year, line_number, station_code, station_name, passengers.
-build_station_daily_current <- function(years = 2020:2026) {
+build_station_daily_current <- function(years = get_available_years()) {
   safe_import <- purrr::safely(import_station_daily_year)
   results <- purrr::map(years, safe_import)
 
@@ -335,4 +341,42 @@ build_station_daily_current <- function(years = 2020:2026) {
   }
 
   dplyr::bind_rows(purrr::map(results, "result"))
+}
+
+# --- Gated refresh: rewrite the committed current-era processed CSVs ----------
+
+# Filenames carry no year range: the current era is open-ended, and a hardcoded
+# range would need renaming every January in an unattended pipeline. This also
+# matches the `import_{dataset}` (no period suffix) script convention.
+.current_csv_names <- c(
+  entrance = "metro_sp_passengers_entrance_current.csv",
+  transported = "metro_sp_passengers_transported_current.csv",
+  averages = "metro_sp_station_averages_current.csv",
+  daily = "metro_sp_station_daily_current.csv"
+)
+
+#' Rebuild the four current-era processed CSVs from the raw portal files.
+#' Returns the path of the directory written (so a target can depend on it).
+refresh_metro_current <- function(
+  proc_dir = here::here("data-raw/processed")
+) {
+  readr::write_csv(
+    build_entrance_current(),
+    file.path(proc_dir, .current_csv_names[["entrance"]])
+  )
+  readr::write_csv(
+    build_transported_current(),
+    file.path(proc_dir, .current_csv_names[["transported"]])
+  )
+  readr::write_csv(
+    build_averages_current(),
+    file.path(proc_dir, .current_csv_names[["averages"]])
+  )
+  readr::write_csv(
+    build_station_daily_current(),
+    file.path(proc_dir, .current_csv_names[["daily"]])
+  )
+
+  cli::cli_alert_success("Current-era CSVs refreshed in {.path {proc_dir}}.")
+  invisible(proc_dir)
 }
