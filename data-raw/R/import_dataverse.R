@@ -24,12 +24,15 @@ import_dataverse <- function() {
 
   cli::cli_inform("Fetching {.val emb_diarios.rds} from Dataverse...")
 
-  dataverse::get_dataframe_by_name(
-    "emb_diarios.rds",
-    dataset = doi,
-    server = server,
-    original = TRUE,
-    .f = readr::read_rds
+  with_retry(
+    dataverse::get_dataframe_by_name(
+      "emb_diarios.rds",
+      dataset = doi,
+      server = server,
+      original = TRUE,
+      .f = readr::read_rds
+    ),
+    what = "Dataverse fetch"
   )
 }
 
