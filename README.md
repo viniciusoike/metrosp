@@ -51,11 +51,10 @@ install.packages("metrosp")
 
 Although the underlying data is infrequently updated, more recent
 versions of the data can be available by installing the development
-version from GitHub.
+version from GitHub or R-universe.
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("viniciusoike/metrosp")
+install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## Datasets
@@ -99,18 +98,17 @@ station_averages
 lines
 ```
 
-## Explorer dashboard
+### Data documentation
 
-An interactive dashboard for browsing and downloading these datasets lives in a
-separate repository:
-[metrosp-explorer](https://github.com/viniciusoike/metrosp-explorer). It is a
-standalone Shiny app and is not shipped with the package.
+For more details check the [Data Dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html) and the [package's Getting Started vignette](https://viniciusoike.github.io/metrosp/articles/getting_started.html).
 
-## Coming soon
+### Explorer dashboard
 
-- Better data documentation.
-- Updated information for 2026.
-- Improved data quality checks.
+To explore and analyze this data check the [Metro Explorer dashboard](https://viniciusoike-metrosp-explorer.share.connect.posit.cloud).
+
+### Coming soon
+
+- Functions to download fresh datasets.
 
 ## Data sources
 
