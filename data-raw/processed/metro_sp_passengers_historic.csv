@@ -1,4 +1,724 @@
 year,measure,date,variable,value,line_number,type,line_name_pt,line_name
+2016,entrance,2016-01-01,Total,21622,1,metro,Azul,Blue
+2016,entrance,2016-01-01,Total,10550,2,metro,Verde,Green
+2016,entrance,2016-01-01,Total,25583,3,metro,Vermelha,Red
+2016,entrance,2016-01-01,Total,5588,5,metro,Lilás,Lilac
+2016,entrance,2016-01-01,Total,139,15,metro,Prata,Silver
+2016,entrance,2016-01-01,Total,63482,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-01-01,Média dos Dias Úteis,895,1,metro,Azul,Blue
+2016,entrance,2016-01-01,Média dos Dias Úteis,457,2,metro,Verde,Green
+2016,entrance,2016-01-01,Média dos Dias Úteis,1052,3,metro,Vermelha,Red
+2016,entrance,2016-01-01,Média dos Dias Úteis,230,5,metro,Lilás,Lilac
+2016,entrance,2016-01-01,Média dos Dias Úteis,6,15,metro,Prata,Silver
+2016,entrance,2016-01-01,Média dos Dias Úteis,2640,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-01-01,Média dos Sábados,497,1,metro,Azul,Blue
+2016,entrance,2016-01-01,Média dos Sábados,190,2,metro,Verde,Green
+2016,entrance,2016-01-01,Média dos Sábados,584,3,metro,Vermelha,Red
+2016,entrance,2016-01-01,Média dos Sábados,134,5,metro,Lilás,Lilac
+2016,entrance,2016-01-01,Média dos Sábados,2,15,metro,Prata,Silver
+2016,entrance,2016-01-01,Média dos Sábados,1408,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-01-01,Média dos Domingos,316,1,metro,Azul,Blue
+2016,entrance,2016-01-01,Média dos Domingos,135,2,metro,Verde,Green
+2016,entrance,2016-01-01,Média dos Domingos,394,3,metro,Vermelha,Red
+2016,entrance,2016-01-01,Média dos Domingos,79,5,metro,Lilás,Lilac
+2016,entrance,2016-01-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-01-01,Média dos Domingos,925,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-01-01,Máxima Diária,972,1,metro,Azul,Blue
+2016,entrance,2016-01-01,Máxima Diária,496,2,metro,Verde,Green
+2016,entrance,2016-01-01,Máxima Diária,1131,3,metro,Vermelha,Red
+2016,entrance,2016-01-01,Máxima Diária,248,5,metro,Lilás,Lilac
+2016,entrance,2016-01-01,Máxima Diária,7,15,metro,Prata,Silver
+2016,entrance,2016-01-01,Máxima Diária,2840,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-02-01,Total,23330,1,metro,Azul,Blue
+2016,entrance,2016-02-01,Total,11503,2,metro,Verde,Green
+2016,entrance,2016-02-01,Total,27503,3,metro,Vermelha,Red
+2016,entrance,2016-02-01,Total,6076,5,metro,Lilás,Lilac
+2016,entrance,2016-02-01,Total,164,15,metro,Prata,Silver
+2016,entrance,2016-02-01,Total,68577,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-02-01,Média dos Dias Úteis,1012,1,metro,Azul,Blue
+2016,entrance,2016-02-01,Média dos Dias Úteis,514,2,metro,Verde,Green
+2016,entrance,2016-02-01,Média dos Dias Úteis,1180,3,metro,Vermelha,Red
+2016,entrance,2016-02-01,Média dos Dias Úteis,260,5,metro,Lilás,Lilac
+2016,entrance,2016-02-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-02-01,Média dos Dias Úteis,2974,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-02-01,Média dos Sábados,569,1,metro,Azul,Blue
+2016,entrance,2016-02-01,Média dos Sábados,234,2,metro,Verde,Green
+2016,entrance,2016-02-01,Média dos Sábados,674,3,metro,Vermelha,Red
+2016,entrance,2016-02-01,Média dos Sábados,154,5,metro,Lilás,Lilac
+2016,entrance,2016-02-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-02-01,Média dos Sábados,1634,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-02-01,Média dos Domingos,323,1,metro,Azul,Blue
+2016,entrance,2016-02-01,Média dos Domingos,149,2,metro,Verde,Green
+2016,entrance,2016-02-01,Média dos Domingos,427,3,metro,Vermelha,Red
+2016,entrance,2016-02-01,Média dos Domingos,84,5,metro,Lilás,Lilac
+2016,entrance,2016-02-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,entrance,2016-02-01,Média dos Domingos,986,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-02-01,Máxima Diária,1066,1,metro,Azul,Blue
+2016,entrance,2016-02-01,Máxima Diária,536,2,metro,Verde,Green
+2016,entrance,2016-02-01,Máxima Diária,1272,3,metro,Vermelha,Red
+2016,entrance,2016-02-01,Máxima Diária,276,5,metro,Lilás,Lilac
+2016,entrance,2016-02-01,Máxima Diária,8,15,metro,Prata,Silver
+2016,entrance,2016-02-01,Máxima Diária,3104,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-03-01,Total,27501,1,metro,Azul,Blue
+2016,entrance,2016-03-01,Total,13677,2,metro,Verde,Green
+2016,entrance,2016-03-01,Total,31597,3,metro,Vermelha,Red
+2016,entrance,2016-03-01,Total,7027,5,metro,Lilás,Lilac
+2016,entrance,2016-03-01,Total,201,15,metro,Prata,Silver
+2016,entrance,2016-03-01,Total,80003,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-03-01,Média dos Dias Úteis,1073,1,metro,Azul,Blue
+2016,entrance,2016-03-01,Média dos Dias Úteis,543,2,metro,Verde,Green
+2016,entrance,2016-03-01,Média dos Dias Úteis,1221,3,metro,Vermelha,Red
+2016,entrance,2016-03-01,Média dos Dias Úteis,273,5,metro,Lilás,Lilac
+2016,entrance,2016-03-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-03-01,Média dos Dias Úteis,3119,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-03-01,Média dos Sábados,563,1,metro,Azul,Blue
+2016,entrance,2016-03-01,Média dos Sábados,226,2,metro,Verde,Green
+2016,entrance,2016-03-01,Média dos Sábados,677,3,metro,Vermelha,Red
+2016,entrance,2016-03-01,Média dos Sábados,156,5,metro,Lilás,Lilac
+2016,entrance,2016-03-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-03-01,Média dos Sábados,1625,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-03-01,Média dos Domingos,314,1,metro,Azul,Blue
+2016,entrance,2016-03-01,Média dos Domingos,131,2,metro,Verde,Green
+2016,entrance,2016-03-01,Média dos Domingos,398,3,metro,Vermelha,Red
+2016,entrance,2016-03-01,Média dos Domingos,74,5,metro,Lilás,Lilac
+2016,entrance,2016-03-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,entrance,2016-03-01,Média dos Domingos,919,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-03-01,Máxima Diária,1102,1,metro,Azul,Blue
+2016,entrance,2016-03-01,Máxima Diária,588,2,metro,Verde,Green
+2016,entrance,2016-03-01,Máxima Diária,1253,3,metro,Vermelha,Red
+2016,entrance,2016-03-01,Máxima Diária,284,5,metro,Lilás,Lilac
+2016,entrance,2016-03-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-03-01,Máxima Diária,3224,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-04-01,Total,25688,1,metro,Azul,Blue
+2016,entrance,2016-04-01,Total,12450,2,metro,Verde,Green
+2016,entrance,2016-04-01,Total,29738,3,metro,Vermelha,Red
+2016,entrance,2016-04-01,Total,6603,5,metro,Lilás,Lilac
+2016,entrance,2016-04-01,Total,173,15,metro,Prata,Silver
+2016,entrance,2016-04-01,Total,74651,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-04-01,Média dos Dias Úteis,1078,1,metro,Azul,Blue
+2016,entrance,2016-04-01,Média dos Dias Úteis,540,2,metro,Verde,Green
+2016,entrance,2016-04-01,Média dos Dias Úteis,1227,3,metro,Vermelha,Red
+2016,entrance,2016-04-01,Média dos Dias Úteis,272,5,metro,Lilás,Lilac
+2016,entrance,2016-04-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-04-01,Média dos Dias Úteis,3125,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-04-01,Média dos Sábados,566,1,metro,Azul,Blue
+2016,entrance,2016-04-01,Média dos Sábados,230,2,metro,Verde,Green
+2016,entrance,2016-04-01,Média dos Sábados,682,3,metro,Vermelha,Red
+2016,entrance,2016-04-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,entrance,2016-04-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-04-01,Média dos Sábados,1639,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-04-01,Média dos Domingos,329,1,metro,Azul,Blue
+2016,entrance,2016-04-01,Média dos Domingos,146,2,metro,Verde,Green
+2016,entrance,2016-04-01,Média dos Domingos,441,3,metro,Vermelha,Red
+2016,entrance,2016-04-01,Média dos Domingos,85,5,metro,Lilás,Lilac
+2016,entrance,2016-04-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-04-01,Média dos Domingos,1002,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-04-01,Máxima Diária,1111,1,metro,Azul,Blue
+2016,entrance,2016-04-01,Máxima Diária,552,2,metro,Verde,Green
+2016,entrance,2016-04-01,Máxima Diária,1274,3,metro,Vermelha,Red
+2016,entrance,2016-04-01,Máxima Diária,284,5,metro,Lilás,Lilac
+2016,entrance,2016-04-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-04-01,Máxima Diária,3225,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-05-01,Total,26357,1,metro,Azul,Blue
+2016,entrance,2016-05-01,Total,12814,2,metro,Verde,Green
+2016,entrance,2016-05-01,Total,30549,3,metro,Vermelha,Red
+2016,entrance,2016-05-01,Total,6697,5,metro,Lilás,Lilac
+2016,entrance,2016-05-01,Total,194,15,metro,Prata,Silver
+2016,entrance,2016-05-01,Total,76611,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-05-01,Média dos Dias Úteis,1066,1,metro,Azul,Blue
+2016,entrance,2016-05-01,Média dos Dias Úteis,537,2,metro,Verde,Green
+2016,entrance,2016-05-01,Média dos Dias Úteis,1219,3,metro,Vermelha,Red
+2016,entrance,2016-05-01,Média dos Dias Úteis,271,5,metro,Lilás,Lilac
+2016,entrance,2016-05-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-05-01,Média dos Dias Úteis,3102,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-05-01,Média dos Sábados,562,1,metro,Azul,Blue
+2016,entrance,2016-05-01,Média dos Sábados,226,2,metro,Verde,Green
+2016,entrance,2016-05-01,Média dos Sábados,674,3,metro,Vermelha,Red
+2016,entrance,2016-05-01,Média dos Sábados,156,5,metro,Lilás,Lilac
+2016,entrance,2016-05-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-05-01,Média dos Sábados,1621,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-05-01,Média dos Domingos,327,1,metro,Azul,Blue
+2016,entrance,2016-05-01,Média dos Domingos,140,2,metro,Verde,Green
+2016,entrance,2016-05-01,Média dos Domingos,433,3,metro,Vermelha,Red
+2016,entrance,2016-05-01,Média dos Domingos,72,5,metro,Lilás,Lilac
+2016,entrance,2016-05-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,entrance,2016-05-01,Média dos Domingos,973,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-05-01,Máxima Diária,1111,1,metro,Azul,Blue
+2016,entrance,2016-05-01,Máxima Diária,551,2,metro,Verde,Green
+2016,entrance,2016-05-01,Máxima Diária,1268,3,metro,Vermelha,Red
+2016,entrance,2016-05-01,Máxima Diária,290,5,metro,Lilás,Lilac
+2016,entrance,2016-05-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-05-01,Máxima Diária,3217,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-06-01,Total,26157,1,metro,Azul,Blue
+2016,entrance,2016-06-01,Total,12974,2,metro,Verde,Green
+2016,entrance,2016-06-01,Total,30206,3,metro,Vermelha,Red
+2016,entrance,2016-06-01,Total,6720,5,metro,Lilás,Lilac
+2016,entrance,2016-06-01,Total,195,15,metro,Prata,Silver
+2016,entrance,2016-06-01,Total,76251,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-06-01,Média dos Dias Úteis,1029,1,metro,Azul,Blue
+2016,entrance,2016-06-01,Média dos Dias Úteis,523,2,metro,Verde,Green
+2016,entrance,2016-06-01,Média dos Dias Úteis,1174,3,metro,Vermelha,Red
+2016,entrance,2016-06-01,Média dos Dias Úteis,263,5,metro,Lilás,Lilac
+2016,entrance,2016-06-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-06-01,Média dos Dias Úteis,2997,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-06-01,Média dos Sábados,571,1,metro,Azul,Blue
+2016,entrance,2016-06-01,Média dos Sábados,227,2,metro,Verde,Green
+2016,entrance,2016-06-01,Média dos Sábados,686,3,metro,Vermelha,Red
+2016,entrance,2016-06-01,Média dos Sábados,157,5,metro,Lilás,Lilac
+2016,entrance,2016-06-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-06-01,Média dos Sábados,1644,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-06-01,Média dos Domingos,309,1,metro,Azul,Blue
+2016,entrance,2016-06-01,Média dos Domingos,138,2,metro,Verde,Green
+2016,entrance,2016-06-01,Média dos Domingos,412,3,metro,Vermelha,Red
+2016,entrance,2016-06-01,Média dos Domingos,78,5,metro,Lilás,Lilac
+2016,entrance,2016-06-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-06-01,Média dos Domingos,937,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-06-01,Máxima Diária,1081,1,metro,Azul,Blue
+2016,entrance,2016-06-01,Máxima Diária,561,2,metro,Verde,Green
+2016,entrance,2016-06-01,Máxima Diária,1238,3,metro,Vermelha,Red
+2016,entrance,2016-06-01,Máxima Diária,285,5,metro,Lilás,Lilac
+2016,entrance,2016-06-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-06-01,Máxima Diária,3162,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-07-01,Total,24157,1,metro,Azul,Blue
+2016,entrance,2016-07-01,Total,11988,2,metro,Verde,Green
+2016,entrance,2016-07-01,Total,28294,3,metro,Vermelha,Red
+2016,entrance,2016-07-01,Total,6215,5,metro,Lilás,Lilac
+2016,entrance,2016-07-01,Total,188,15,metro,Prata,Silver
+2016,entrance,2016-07-01,Total,70842,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-07-01,Média dos Dias Úteis,945,1,metro,Azul,Blue
+2016,entrance,2016-07-01,Média dos Dias Úteis,486,2,metro,Verde,Green
+2016,entrance,2016-07-01,Média dos Dias Úteis,1096,3,metro,Vermelha,Red
+2016,entrance,2016-07-01,Média dos Dias Úteis,243,5,metro,Lilás,Lilac
+2016,entrance,2016-07-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-07-01,Média dos Dias Úteis,2778,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-07-01,Média dos Sábados,537,1,metro,Azul,Blue
+2016,entrance,2016-07-01,Média dos Sábados,212,2,metro,Verde,Green
+2016,entrance,2016-07-01,Média dos Sábados,635,3,metro,Vermelha,Red
+2016,entrance,2016-07-01,Média dos Sábados,147,5,metro,Lilás,Lilac
+2016,entrance,2016-07-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-07-01,Média dos Sábados,1533,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-07-01,Média dos Domingos,327,1,metro,Azul,Blue
+2016,entrance,2016-07-01,Média dos Domingos,145,2,metro,Verde,Green
+2016,entrance,2016-07-01,Média dos Domingos,418,3,metro,Vermelha,Red
+2016,entrance,2016-07-01,Média dos Domingos,76,5,metro,Lilás,Lilac
+2016,entrance,2016-07-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-07-01,Média dos Domingos,967,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-07-01,Máxima Diária,987,1,metro,Azul,Blue
+2016,entrance,2016-07-01,Máxima Diária,507,2,metro,Verde,Green
+2016,entrance,2016-07-01,Máxima Diária,1142,3,metro,Vermelha,Red
+2016,entrance,2016-07-01,Máxima Diária,260,5,metro,Lilás,Lilac
+2016,entrance,2016-07-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-07-01,Máxima Diária,2897,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-08-01,Total,27380,1,metro,Azul,Blue
+2016,entrance,2016-08-01,Total,13621,2,metro,Verde,Green
+2016,entrance,2016-08-01,Total,31798,3,metro,Vermelha,Red
+2016,entrance,2016-08-01,Total,6904,5,metro,Lilás,Lilac
+2016,entrance,2016-08-01,Total,227,15,metro,Prata,Silver
+2016,entrance,2016-08-01,Total,79930,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-08-01,Média dos Dias Úteis,1037,1,metro,Azul,Blue
+2016,entrance,2016-08-01,Média dos Dias Úteis,529,2,metro,Verde,Green
+2016,entrance,2016-08-01,Média dos Dias Úteis,1191,3,metro,Vermelha,Red
+2016,entrance,2016-08-01,Média dos Dias Úteis,260,5,metro,Lilás,Lilac
+2016,entrance,2016-08-01,Média dos Dias Úteis,9,15,metro,Prata,Silver
+2016,entrance,2016-08-01,Média dos Dias Úteis,3026,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-08-01,Média dos Sábados,573,1,metro,Azul,Blue
+2016,entrance,2016-08-01,Média dos Sábados,232,2,metro,Verde,Green
+2016,entrance,2016-08-01,Média dos Sábados,699,3,metro,Vermelha,Red
+2016,entrance,2016-08-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,entrance,2016-08-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-08-01,Média dos Sábados,1664,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-08-01,Média dos Domingos,307,1,metro,Azul,Blue
+2016,entrance,2016-08-01,Média dos Domingos,134,2,metro,Verde,Green
+2016,entrance,2016-08-01,Média dos Domingos,401,3,metro,Vermelha,Red
+2016,entrance,2016-08-01,Média dos Domingos,73,5,metro,Lilás,Lilac
+2016,entrance,2016-08-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-08-01,Média dos Domingos,917,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-08-01,Máxima Diária,1082,1,metro,Azul,Blue
+2016,entrance,2016-08-01,Máxima Diária,547,2,metro,Verde,Green
+2016,entrance,2016-08-01,Máxima Diária,1246,3,metro,Vermelha,Red
+2016,entrance,2016-08-01,Máxima Diária,269,5,metro,Lilás,Lilac
+2016,entrance,2016-08-01,Máxima Diária,11,15,metro,Prata,Silver
+2016,entrance,2016-08-01,Máxima Diária,3140,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-09-01,Total,26297,1,metro,Azul,Blue
+2016,entrance,2016-09-01,Total,12861,2,metro,Verde,Green
+2016,entrance,2016-09-01,Total,30224,3,metro,Vermelha,Red
+2016,entrance,2016-09-01,Total,6644,5,metro,Lilás,Lilac
+2016,entrance,2016-09-01,Total,196,15,metro,Prata,Silver
+2016,entrance,2016-09-01,Total,76222,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-09-01,Média dos Dias Úteis,1063,1,metro,Azul,Blue
+2016,entrance,2016-09-01,Média dos Dias Úteis,532,2,metro,Verde,Green
+2016,entrance,2016-09-01,Média dos Dias Úteis,1209,3,metro,Vermelha,Red
+2016,entrance,2016-09-01,Média dos Dias Úteis,266,5,metro,Lilás,Lilac
+2016,entrance,2016-09-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-09-01,Média dos Dias Úteis,3079,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-09-01,Média dos Sábados,589,1,metro,Azul,Blue
+2016,entrance,2016-09-01,Média dos Sábados,234,2,metro,Verde,Green
+2016,entrance,2016-09-01,Média dos Sábados,692,3,metro,Vermelha,Red
+2016,entrance,2016-09-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,entrance,2016-09-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-09-01,Média dos Sábados,1676,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-09-01,Média dos Domingos,321,1,metro,Azul,Blue
+2016,entrance,2016-09-01,Média dos Domingos,147,2,metro,Verde,Green
+2016,entrance,2016-09-01,Média dos Domingos,404,3,metro,Vermelha,Red
+2016,entrance,2016-09-01,Média dos Domingos,81,5,metro,Lilás,Lilac
+2016,entrance,2016-09-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-09-01,Média dos Domingos,954,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-09-01,Máxima Diária,1099,1,metro,Azul,Blue
+2016,entrance,2016-09-01,Máxima Diária,548,2,metro,Verde,Green
+2016,entrance,2016-09-01,Máxima Diária,1231,3,metro,Vermelha,Red
+2016,entrance,2016-09-01,Máxima Diária,275,5,metro,Lilás,Lilac
+2016,entrance,2016-09-01,Máxima Diária,10,15,metro,Prata,Silver
+2016,entrance,2016-09-01,Máxima Diária,3149,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-10-01,Total,25965,1,metro,Azul,Blue
+2016,entrance,2016-10-01,Total,12697,2,metro,Verde,Green
+2016,entrance,2016-10-01,Total,30098,3,metro,Vermelha,Red
+2016,entrance,2016-10-01,Total,6600,5,metro,Lilás,Lilac
+2016,entrance,2016-10-01,Total,181,15,metro,Prata,Silver
+2016,entrance,2016-10-01,Total,75541,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-10-01,Média dos Dias Úteis,1057,1,metro,Azul,Blue
+2016,entrance,2016-10-01,Média dos Dias Úteis,533,2,metro,Verde,Green
+2016,entrance,2016-10-01,Média dos Dias Úteis,1203,3,metro,Vermelha,Red
+2016,entrance,2016-10-01,Média dos Dias Úteis,264,5,metro,Lilás,Lilac
+2016,entrance,2016-10-01,Média dos Dias Úteis,8,15,metro,Prata,Silver
+2016,entrance,2016-10-01,Média dos Dias Úteis,3065,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-10-01,Média dos Sábados,580,1,metro,Azul,Blue
+2016,entrance,2016-10-01,Média dos Sábados,231,2,metro,Verde,Green
+2016,entrance,2016-10-01,Média dos Sábados,692,3,metro,Vermelha,Red
+2016,entrance,2016-10-01,Média dos Sábados,159,5,metro,Lilás,Lilac
+2016,entrance,2016-10-01,Média dos Sábados,3,15,metro,Prata,Silver
+2016,entrance,2016-10-01,Média dos Sábados,1665,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-10-01,Média dos Domingos,314,1,metro,Azul,Blue
+2016,entrance,2016-10-01,Média dos Domingos,143,2,metro,Verde,Green
+2016,entrance,2016-10-01,Média dos Domingos,424,3,metro,Vermelha,Red
+2016,entrance,2016-10-01,Média dos Domingos,82,5,metro,Lilás,Lilac
+2016,entrance,2016-10-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-10-01,Média dos Domingos,965,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-10-01,Máxima Diária,1092,1,metro,Azul,Blue
+2016,entrance,2016-10-01,Máxima Diária,548,2,metro,Verde,Green
+2016,entrance,2016-10-01,Máxima Diária,1253,3,metro,Vermelha,Red
+2016,entrance,2016-10-01,Máxima Diária,279,5,metro,Lilás,Lilac
+2016,entrance,2016-10-01,Máxima Diária,9,15,metro,Prata,Silver
+2016,entrance,2016-10-01,Máxima Diária,3179,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-11-01,Total,25542,1,metro,Azul,Blue
+2016,entrance,2016-11-01,Total,12373,2,metro,Verde,Green
+2016,entrance,2016-11-01,Total,29277,3,metro,Vermelha,Red
+2016,entrance,2016-11-01,Total,6460,5,metro,Lilás,Lilac
+2016,entrance,2016-11-01,Total,198,15,metro,Prata,Silver
+2016,entrance,2016-11-01,Total,73850,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-11-01,Média dos Dias Úteis,1073,1,metro,Azul,Blue
+2016,entrance,2016-11-01,Média dos Dias Úteis,538,2,metro,Verde,Green
+2016,entrance,2016-11-01,Média dos Dias Úteis,1208,3,metro,Vermelha,Red
+2016,entrance,2016-11-01,Média dos Dias Úteis,268,5,metro,Lilás,Lilac
+2016,entrance,2016-11-01,Média dos Dias Úteis,9,15,metro,Prata,Silver
+2016,entrance,2016-11-01,Média dos Dias Úteis,3095,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-11-01,Média dos Sábados,605,1,metro,Azul,Blue
+2016,entrance,2016-11-01,Média dos Sábados,233,2,metro,Verde,Green
+2016,entrance,2016-11-01,Média dos Sábados,716,3,metro,Vermelha,Red
+2016,entrance,2016-11-01,Média dos Sábados,162,5,metro,Lilás,Lilac
+2016,entrance,2016-11-01,Média dos Sábados,4,15,metro,Prata,Silver
+2016,entrance,2016-11-01,Média dos Sábados,1721,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-11-01,Média dos Domingos,329,1,metro,Azul,Blue
+2016,entrance,2016-11-01,Média dos Domingos,149,2,metro,Verde,Green
+2016,entrance,2016-11-01,Média dos Domingos,429,3,metro,Vermelha,Red
+2016,entrance,2016-11-01,Média dos Domingos,86,5,metro,Lilás,Lilac
+2016,entrance,2016-11-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-11-01,Média dos Domingos,993,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-11-01,Máxima Diária,1113,1,metro,Azul,Blue
+2016,entrance,2016-11-01,Máxima Diária,551,2,metro,Verde,Green
+2016,entrance,2016-11-01,Máxima Diária,1251,3,metro,Vermelha,Red
+2016,entrance,2016-11-01,Máxima Diária,283,5,metro,Lilás,Lilac
+2016,entrance,2016-11-01,Máxima Diária,10,15,metro,Prata,Silver
+2016,entrance,2016-11-01,Máxima Diária,3208,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-12-01,Total,24820,1,metro,Azul,Blue
+2016,entrance,2016-12-01,Total,11721,2,metro,Verde,Green
+2016,entrance,2016-12-01,Total,29108,3,metro,Vermelha,Red
+2016,entrance,2016-12-01,Total,6484,5,metro,Lilás,Lilac
+2016,entrance,2016-12-01,Total,203,15,metro,Prata,Silver
+2016,entrance,2016-12-01,Total,72336,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-12-01,Média dos Dias Úteis,986,1,metro,Azul,Blue
+2016,entrance,2016-12-01,Média dos Dias Úteis,485,2,metro,Verde,Green
+2016,entrance,2016-12-01,Média dos Dias Úteis,1138,3,metro,Vermelha,Red
+2016,entrance,2016-12-01,Média dos Dias Úteis,252,5,metro,Lilás,Lilac
+2016,entrance,2016-12-01,Média dos Dias Úteis,9,15,metro,Prata,Silver
+2016,entrance,2016-12-01,Média dos Dias Úteis,2869,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-12-01,Média dos Sábados,651,1,metro,Azul,Blue
+2016,entrance,2016-12-01,Média dos Sábados,245,2,metro,Verde,Green
+2016,entrance,2016-12-01,Média dos Sábados,790,3,metro,Vermelha,Red
+2016,entrance,2016-12-01,Média dos Sábados,180,5,metro,Lilás,Lilac
+2016,entrance,2016-12-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,entrance,2016-12-01,Média dos Sábados,1871,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-12-01,Média dos Domingos,380,1,metro,Azul,Blue
+2016,entrance,2016-12-01,Média dos Domingos,172,2,metro,Verde,Green
+2016,entrance,2016-12-01,Média dos Domingos,466,3,metro,Vermelha,Red
+2016,entrance,2016-12-01,Média dos Domingos,96,5,metro,Lilás,Lilac
+2016,entrance,2016-12-01,Média dos Domingos,1,15,metro,Prata,Silver
+2016,entrance,2016-12-01,Média dos Domingos,1115,99,metro,Sistema METRO,METRO System
+2016,entrance,2016-12-01,Máxima Diária,1114,1,metro,Azul,Blue
+2016,entrance,2016-12-01,Máxima Diária,544,2,metro,Verde,Green
+2016,entrance,2016-12-01,Máxima Diária,1238,3,metro,Vermelha,Red
+2016,entrance,2016-12-01,Máxima Diária,275,5,metro,Lilás,Lilac
+2016,entrance,2016-12-01,Máxima Diária,11,15,metro,Prata,Silver
+2016,entrance,2016-12-01,Máxima Diária,3181,99,metro,Sistema METRO,METRO System
+2016,transport,2016-01-01,Total,29345,1,metro,Azul,Blue
+2016,transport,2016-01-01,Total,13328,2,metro,Verde,Green
+2016,transport,2016-01-01,Total,30666,3,metro,Vermelha,Red
+2016,transport,2016-01-01,Total,5588,5,metro,Lilás,Lilac
+2016,transport,2016-01-01,Total,241,15,metro,Prata,Silver
+2016,transport,2016-01-01,Total,79167,99,metro,Sistema METRO,METRO System
+2016,transport,2016-01-01,Média dos Dias Úteis,1202,1,metro,Azul,Blue
+2016,transport,2016-01-01,Média dos Dias Úteis,574,2,metro,Verde,Green
+2016,transport,2016-01-01,Média dos Dias Úteis,1254,3,metro,Vermelha,Red
+2016,transport,2016-01-01,Média dos Dias Úteis,230,5,metro,Lilás,Lilac
+2016,transport,2016-01-01,Média dos Dias Úteis,11,15,metro,Prata,Silver
+2016,transport,2016-01-01,Média dos Dias Úteis,3270,99,metro,Sistema METRO,METRO System
+2016,transport,2016-01-01,Média dos Sábados,691,1,metro,Azul,Blue
+2016,transport,2016-01-01,Média dos Sábados,251,2,metro,Verde,Green
+2016,transport,2016-01-01,Média dos Sábados,710,3,metro,Vermelha,Red
+2016,transport,2016-01-01,Média dos Sábados,134,5,metro,Lilás,Lilac
+2016,transport,2016-01-01,Média dos Sábados,4,15,metro,Prata,Silver
+2016,transport,2016-01-01,Média dos Sábados,1790,99,metro,Sistema METRO,METRO System
+2016,transport,2016-01-01,Média dos Domingos,453,1,metro,Azul,Blue
+2016,transport,2016-01-01,Média dos Domingos,173,2,metro,Verde,Green
+2016,transport,2016-01-01,Média dos Domingos,484,3,metro,Vermelha,Red
+2016,transport,2016-01-01,Média dos Domingos,79,5,metro,Lilás,Lilac
+2016,transport,2016-01-01,Média dos Domingos,3,15,metro,Prata,Silver
+2016,transport,2016-01-01,Média dos Domingos,1191,99,metro,Sistema METRO,METRO System
+2016,transport,2016-01-01,Máxima Diária,1301,1,metro,Azul,Blue
+2016,transport,2016-01-01,Máxima Diária,622,2,metro,Verde,Green
+2016,transport,2016-01-01,Máxima Diária,1344,3,metro,Vermelha,Red
+2016,transport,2016-01-01,Máxima Diária,248,5,metro,Lilás,Lilac
+2016,transport,2016-01-01,Máxima Diária,14,15,metro,Prata,Silver
+2016,transport,2016-01-01,Máxima Diária,3520,99,metro,Sistema METRO,METRO System
+2016,transport,2016-02-01,Total,31694,1,metro,Azul,Blue
+2016,transport,2016-02-01,Total,14511,2,metro,Verde,Green
+2016,transport,2016-02-01,Total,32975,3,metro,Vermelha,Red
+2016,transport,2016-02-01,Total,6076,5,metro,Lilás,Lilac
+2016,transport,2016-02-01,Total,276,15,metro,Prata,Silver
+2016,transport,2016-02-01,Total,85532,99,metro,Sistema METRO,METRO System
+2016,transport,2016-02-01,Média dos Dias Úteis,1356,1,metro,Azul,Blue
+2016,transport,2016-02-01,Média dos Dias Úteis,646,2,metro,Verde,Green
+2016,transport,2016-02-01,Média dos Dias Úteis,1409,3,metro,Vermelha,Red
+2016,transport,2016-02-01,Média dos Dias Úteis,260,5,metro,Lilás,Lilac
+2016,transport,2016-02-01,Média dos Dias Úteis,13,15,metro,Prata,Silver
+2016,transport,2016-02-01,Média dos Dias Úteis,3683,99,metro,Sistema METRO,METRO System
+2016,transport,2016-02-01,Média dos Sábados,797,1,metro,Azul,Blue
+2016,transport,2016-02-01,Média dos Sábados,304,2,metro,Verde,Green
+2016,transport,2016-02-01,Média dos Sábados,818,3,metro,Vermelha,Red
+2016,transport,2016-02-01,Média dos Sábados,154,5,metro,Lilás,Lilac
+2016,transport,2016-02-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-02-01,Média dos Sábados,2078,99,metro,Sistema METRO,METRO System
+2016,transport,2016-02-01,Média dos Domingos,474,1,metro,Azul,Blue
+2016,transport,2016-02-01,Média dos Domingos,188,2,metro,Verde,Green
+2016,transport,2016-02-01,Média dos Domingos,521,3,metro,Vermelha,Red
+2016,transport,2016-02-01,Média dos Domingos,84,5,metro,Lilás,Lilac
+2016,transport,2016-02-01,Média dos Domingos,3,15,metro,Prata,Silver
+2016,transport,2016-02-01,Média dos Domingos,1270,99,metro,Sistema METRO,METRO System
+2016,transport,2016-02-01,Máxima Diária,1415,1,metro,Azul,Blue
+2016,transport,2016-02-01,Máxima Diária,673,2,metro,Verde,Green
+2016,transport,2016-02-01,Máxima Diária,1505,3,metro,Vermelha,Red
+2016,transport,2016-02-01,Máxima Diária,276,5,metro,Lilás,Lilac
+2016,transport,2016-02-01,Máxima Diária,13,15,metro,Prata,Silver
+2016,transport,2016-02-01,Máxima Diária,3843,99,metro,Sistema METRO,METRO System
+2016,transport,2016-03-01,Total,37051,1,metro,Azul,Blue
+2016,transport,2016-03-01,Total,17220,2,metro,Verde,Green
+2016,transport,2016-03-01,Total,37980,3,metro,Vermelha,Red
+2016,transport,2016-03-01,Total,7027,5,metro,Lilás,Lilac
+2016,transport,2016-03-01,Total,333,15,metro,Prata,Silver
+2016,transport,2016-03-01,Total,99611,99,metro,Sistema METRO,METRO System
+2016,transport,2016-03-01,Média dos Dias Úteis,1432,1,metro,Azul,Blue
+2016,transport,2016-03-01,Média dos Dias Úteis,683,2,metro,Verde,Green
+2016,transport,2016-03-01,Média dos Dias Úteis,1464,3,metro,Vermelha,Red
+2016,transport,2016-03-01,Média dos Dias Úteis,273,5,metro,Lilás,Lilac
+2016,transport,2016-03-01,Média dos Dias Úteis,13,15,metro,Prata,Silver
+2016,transport,2016-03-01,Média dos Dias Úteis,3865,99,metro,Sistema METRO,METRO System
+2016,transport,2016-03-01,Média dos Sábados,789,1,metro,Azul,Blue
+2016,transport,2016-03-01,Média dos Sábados,296,2,metro,Verde,Green
+2016,transport,2016-03-01,Média dos Sábados,820,3,metro,Vermelha,Red
+2016,transport,2016-03-01,Média dos Sábados,156,5,metro,Lilás,Lilac
+2016,transport,2016-03-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-03-01,Média dos Sábados,2066,99,metro,Sistema METRO,METRO System
+2016,transport,2016-03-01,Média dos Domingos,451,1,metro,Azul,Blue
+2016,transport,2016-03-01,Média dos Domingos,169,2,metro,Verde,Green
+2016,transport,2016-03-01,Média dos Domingos,488,3,metro,Vermelha,Red
+2016,transport,2016-03-01,Média dos Domingos,74,5,metro,Lilás,Lilac
+2016,transport,2016-03-01,Média dos Domingos,3,15,metro,Prata,Silver
+2016,transport,2016-03-01,Média dos Domingos,1185,99,metro,Sistema METRO,METRO System
+2016,transport,2016-03-01,Máxima Diária,1479,1,metro,Azul,Blue
+2016,transport,2016-03-01,Máxima Diária,731,2,metro,Verde,Green
+2016,transport,2016-03-01,Máxima Diária,1501,3,metro,Vermelha,Red
+2016,transport,2016-03-01,Máxima Diária,284,5,metro,Lilás,Lilac
+2016,transport,2016-03-01,Máxima Diária,14,15,metro,Prata,Silver
+2016,transport,2016-03-01,Máxima Diária,4000,99,metro,Sistema METRO,METRO System
+2016,transport,2016-04-01,Total,34693,1,metro,Azul,Blue
+2016,transport,2016-04-01,Total,15740,2,metro,Verde,Green
+2016,transport,2016-04-01,Total,35746,3,metro,Vermelha,Red
+2016,transport,2016-04-01,Total,6603,5,metro,Lilás,Lilac
+2016,transport,2016-04-01,Total,294,15,metro,Prata,Silver
+2016,transport,2016-04-01,Total,93075,99,metro,Sistema METRO,METRO System
+2016,transport,2016-04-01,Média dos Dias Úteis,1437,1,metro,Azul,Blue
+2016,transport,2016-04-01,Média dos Dias Úteis,680,2,metro,Verde,Green
+2016,transport,2016-04-01,Média dos Dias Úteis,1471,3,metro,Vermelha,Red
+2016,transport,2016-04-01,Média dos Dias Úteis,272,5,metro,Lilás,Lilac
+2016,transport,2016-04-01,Média dos Dias Úteis,13,15,metro,Prata,Silver
+2016,transport,2016-04-01,Média dos Dias Úteis,3873,99,metro,Sistema METRO,METRO System
+2016,transport,2016-04-01,Média dos Sábados,794,1,metro,Azul,Blue
+2016,transport,2016-04-01,Média dos Sábados,300,2,metro,Verde,Green
+2016,transport,2016-04-01,Média dos Sábados,825,3,metro,Vermelha,Red
+2016,transport,2016-04-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,transport,2016-04-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-04-01,Média dos Sábados,2084,99,metro,Sistema METRO,METRO System
+2016,transport,2016-04-01,Média dos Domingos,481,1,metro,Azul,Blue
+2016,transport,2016-04-01,Média dos Domingos,186,2,metro,Verde,Green
+2016,transport,2016-04-01,Média dos Domingos,536,3,metro,Vermelha,Red
+2016,transport,2016-04-01,Média dos Domingos,85,5,metro,Lilás,Lilac
+2016,transport,2016-04-01,Média dos Domingos,3,15,metro,Prata,Silver
+2016,transport,2016-04-01,Média dos Domingos,1290,99,metro,Sistema METRO,METRO System
+2016,transport,2016-04-01,Máxima Diária,1481,1,metro,Azul,Blue
+2016,transport,2016-04-01,Máxima Diária,696,2,metro,Verde,Green
+2016,transport,2016-04-01,Máxima Diária,1525,3,metro,Vermelha,Red
+2016,transport,2016-04-01,Máxima Diária,284,5,metro,Lilás,Lilac
+2016,transport,2016-04-01,Máxima Diária,14,15,metro,Prata,Silver
+2016,transport,2016-04-01,Máxima Diária,3996,99,metro,Sistema METRO,METRO System
+2016,transport,2016-05-01,Total,35586,1,metro,Azul,Blue
+2016,transport,2016-05-01,Total,16207,2,metro,Verde,Green
+2016,transport,2016-05-01,Total,36714,3,metro,Vermelha,Red
+2016,transport,2016-05-01,Total,6697,5,metro,Lilás,Lilac
+2016,transport,2016-05-01,Total,322,15,metro,Prata,Silver
+2016,transport,2016-05-01,Total,95527,99,metro,Sistema METRO,METRO System
+2016,transport,2016-05-01,Média dos Dias Úteis,1423,1,metro,Azul,Blue
+2016,transport,2016-05-01,Média dos Dias Úteis,676,2,metro,Verde,Green
+2016,transport,2016-05-01,Média dos Dias Úteis,1461,3,metro,Vermelha,Red
+2016,transport,2016-05-01,Média dos Dias Úteis,271,5,metro,Lilás,Lilac
+2016,transport,2016-05-01,Média dos Dias Úteis,14,15,metro,Prata,Silver
+2016,transport,2016-05-01,Média dos Dias Úteis,3844,99,metro,Sistema METRO,METRO System
+2016,transport,2016-05-01,Média dos Sábados,788,1,metro,Azul,Blue
+2016,transport,2016-05-01,Média dos Sábados,296,2,metro,Verde,Green
+2016,transport,2016-05-01,Média dos Sábados,816,3,metro,Vermelha,Red
+2016,transport,2016-05-01,Média dos Sábados,156,5,metro,Lilás,Lilac
+2016,transport,2016-05-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-05-01,Média dos Sábados,2061,99,metro,Sistema METRO,METRO System
+2016,transport,2016-05-01,Média dos Domingos,475,1,metro,Azul,Blue
+2016,transport,2016-05-01,Média dos Domingos,180,2,metro,Verde,Green
+2016,transport,2016-05-01,Média dos Domingos,526,3,metro,Vermelha,Red
+2016,transport,2016-05-01,Média dos Domingos,72,5,metro,Lilás,Lilac
+2016,transport,2016-05-01,Média dos Domingos,3,15,metro,Prata,Silver
+2016,transport,2016-05-01,Média dos Domingos,1256,99,metro,Sistema METRO,METRO System
+2016,transport,2016-05-01,Máxima Diária,1479,1,metro,Azul,Blue
+2016,transport,2016-05-01,Máxima Diária,694,2,metro,Verde,Green
+2016,transport,2016-05-01,Máxima Diária,1519,3,metro,Vermelha,Red
+2016,transport,2016-05-01,Máxima Diária,290,5,metro,Lilás,Lilac
+2016,transport,2016-05-01,Máxima Diária,15,15,metro,Prata,Silver
+2016,transport,2016-05-01,Máxima Diária,3985,99,metro,Sistema METRO,METRO System
+2016,transport,2016-06-01,Total,35236,1,metro,Azul,Blue
+2016,transport,2016-06-01,Total,16354,2,metro,Verde,Green
+2016,transport,2016-06-01,Total,36263,3,metro,Vermelha,Red
+2016,transport,2016-06-01,Total,6720,5,metro,Lilás,Lilac
+2016,transport,2016-06-01,Total,329,15,metro,Prata,Silver
+2016,transport,2016-06-01,Total,94901,99,metro,Sistema METRO,METRO System
+2016,transport,2016-06-01,Média dos Dias Úteis,1374,1,metro,Azul,Blue
+2016,transport,2016-06-01,Média dos Dias Úteis,657,2,metro,Verde,Green
+2016,transport,2016-06-01,Média dos Dias Úteis,1406,3,metro,Vermelha,Red
+2016,transport,2016-06-01,Média dos Dias Úteis,263,5,metro,Lilás,Lilac
+2016,transport,2016-06-01,Média dos Dias Úteis,14,15,metro,Prata,Silver
+2016,transport,2016-06-01,Média dos Dias Úteis,3714,99,metro,Sistema METRO,METRO System
+2016,transport,2016-06-01,Média dos Sábados,800,1,metro,Azul,Blue
+2016,transport,2016-06-01,Média dos Sábados,298,2,metro,Verde,Green
+2016,transport,2016-06-01,Média dos Sábados,830,3,metro,Vermelha,Red
+2016,transport,2016-06-01,Média dos Sábados,157,5,metro,Lilás,Lilac
+2016,transport,2016-06-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-06-01,Média dos Sábados,2091,99,metro,Sistema METRO,METRO System
+2016,transport,2016-06-01,Média dos Domingos,451,1,metro,Azul,Blue
+2016,transport,2016-06-01,Média dos Domingos,175,2,metro,Verde,Green
+2016,transport,2016-06-01,Média dos Domingos,501,3,metro,Vermelha,Red
+2016,transport,2016-06-01,Média dos Domingos,78,5,metro,Lilás,Lilac
+2016,transport,2016-06-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-06-01,Média dos Domingos,1207,99,metro,Sistema METRO,METRO System
+2016,transport,2016-06-01,Máxima Diária,1446,1,metro,Azul,Blue
+2016,transport,2016-06-01,Máxima Diária,703,2,metro,Verde,Green
+2016,transport,2016-06-01,Máxima Diária,1480,3,metro,Vermelha,Red
+2016,transport,2016-06-01,Máxima Diária,285,5,metro,Lilás,Lilac
+2016,transport,2016-06-01,Máxima Diária,15,15,metro,Prata,Silver
+2016,transport,2016-06-01,Máxima Diária,3919,99,metro,Sistema METRO,METRO System
+2016,transport,2016-07-01,Total,32712,1,metro,Azul,Blue
+2016,transport,2016-07-01,Total,15123,2,metro,Verde,Green
+2016,transport,2016-07-01,Total,33933,3,metro,Vermelha,Red
+2016,transport,2016-07-01,Total,6215,5,metro,Lilás,Lilac
+2016,transport,2016-07-01,Total,316,15,metro,Prata,Silver
+2016,transport,2016-07-01,Total,88300,99,metro,Sistema METRO,METRO System
+2016,transport,2016-07-01,Média dos Dias Úteis,1267,1,metro,Azul,Blue
+2016,transport,2016-07-01,Média dos Dias Úteis,610,2,metro,Verde,Green
+2016,transport,2016-07-01,Média dos Dias Úteis,1310,3,metro,Vermelha,Red
+2016,transport,2016-07-01,Média dos Dias Úteis,243,5,metro,Lilás,Lilac
+2016,transport,2016-07-01,Média dos Dias Úteis,14,15,metro,Prata,Silver
+2016,transport,2016-07-01,Média dos Dias Úteis,3444,99,metro,Sistema METRO,METRO System
+2016,transport,2016-07-01,Média dos Sábados,749,1,metro,Azul,Blue
+2016,transport,2016-07-01,Média dos Sábados,278,2,metro,Verde,Green
+2016,transport,2016-07-01,Média dos Sábados,771,3,metro,Vermelha,Red
+2016,transport,2016-07-01,Média dos Sábados,147,5,metro,Lilás,Lilac
+2016,transport,2016-07-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-07-01,Média dos Sábados,1950,99,metro,Sistema METRO,METRO System
+2016,transport,2016-07-01,Média dos Domingos,473,1,metro,Azul,Blue
+2016,transport,2016-07-01,Média dos Domingos,183,2,metro,Verde,Green
+2016,transport,2016-07-01,Média dos Domingos,512,3,metro,Vermelha,Red
+2016,transport,2016-07-01,Média dos Domingos,76,5,metro,Lilás,Lilac
+2016,transport,2016-07-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-07-01,Média dos Domingos,1247,99,metro,Sistema METRO,METRO System
+2016,transport,2016-07-01,Máxima Diária,1322,1,metro,Azul,Blue
+2016,transport,2016-07-01,Máxima Diária,635,2,metro,Verde,Green
+2016,transport,2016-07-01,Máxima Diária,1365,3,metro,Vermelha,Red
+2016,transport,2016-07-01,Máxima Diária,260,5,metro,Lilás,Lilac
+2016,transport,2016-07-01,Máxima Diária,14,15,metro,Prata,Silver
+2016,transport,2016-07-01,Máxima Diária,3590,99,metro,Sistema METRO,METRO System
+2016,transport,2016-08-01,Total,36913,1,metro,Azul,Blue
+2016,transport,2016-08-01,Total,17185,2,metro,Verde,Green
+2016,transport,2016-08-01,Total,38136,3,metro,Vermelha,Red
+2016,transport,2016-08-01,Total,6904,5,metro,Lilás,Lilac
+2016,transport,2016-08-01,Total,368,15,metro,Prata,Silver
+2016,transport,2016-08-01,Total,99506,99,metro,Sistema METRO,METRO System
+2016,transport,2016-08-01,Média dos Dias Úteis,1387,1,metro,Azul,Blue
+2016,transport,2016-08-01,Média dos Dias Úteis,665,2,metro,Verde,Green
+2016,transport,2016-08-01,Média dos Dias Úteis,1426,3,metro,Vermelha,Red
+2016,transport,2016-08-01,Média dos Dias Úteis,260,5,metro,Lilás,Lilac
+2016,transport,2016-08-01,Média dos Dias Úteis,15,15,metro,Prata,Silver
+2016,transport,2016-08-01,Média dos Dias Úteis,3753,99,metro,Sistema METRO,METRO System
+2016,transport,2016-08-01,Média dos Sábados,806,1,metro,Azul,Blue
+2016,transport,2016-08-01,Média dos Sábados,303,2,metro,Verde,Green
+2016,transport,2016-08-01,Média dos Sábados,844,3,metro,Vermelha,Red
+2016,transport,2016-08-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,transport,2016-08-01,Média dos Sábados,5,15,metro,Prata,Silver
+2016,transport,2016-08-01,Média dos Sábados,2116,99,metro,Sistema METRO,METRO System
+2016,transport,2016-08-01,Média dos Domingos,445,1,metro,Azul,Blue
+2016,transport,2016-08-01,Média dos Domingos,171,2,metro,Verde,Green
+2016,transport,2016-08-01,Média dos Domingos,489,3,metro,Vermelha,Red
+2016,transport,2016-08-01,Média dos Domingos,73,5,metro,Lilás,Lilac
+2016,transport,2016-08-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-08-01,Média dos Domingos,1181,99,metro,Sistema METRO,METRO System
+2016,transport,2016-08-01,Máxima Diária,1444,1,metro,Azul,Blue
+2016,transport,2016-08-01,Máxima Diária,688,2,metro,Verde,Green
+2016,transport,2016-08-01,Máxima Diária,1487,3,metro,Vermelha,Red
+2016,transport,2016-08-01,Máxima Diária,269,5,metro,Lilás,Lilac
+2016,transport,2016-08-01,Máxima Diária,16,15,metro,Prata,Silver
+2016,transport,2016-08-01,Máxima Diária,3895,99,metro,Sistema METRO,METRO System
+2016,transport,2016-09-01,Total,35394,1,metro,Azul,Blue
+2016,transport,2016-09-01,Total,16252,2,metro,Verde,Green
+2016,transport,2016-09-01,Total,36339,3,metro,Vermelha,Red
+2016,transport,2016-09-01,Total,6644,5,metro,Lilás,Lilac
+2016,transport,2016-09-01,Total,331,15,metro,Prata,Silver
+2016,transport,2016-09-01,Total,94960,99,metro,Sistema METRO,METRO System
+2016,transport,2016-09-01,Média dos Dias Úteis,1417,1,metro,Azul,Blue
+2016,transport,2016-09-01,Média dos Dias Úteis,671,2,metro,Verde,Green
+2016,transport,2016-09-01,Média dos Dias Úteis,1450,3,metro,Vermelha,Red
+2016,transport,2016-09-01,Média dos Dias Úteis,266,5,metro,Lilás,Lilac
+2016,transport,2016-09-01,Média dos Dias Úteis,14,15,metro,Prata,Silver
+2016,transport,2016-09-01,Média dos Dias Úteis,3817,99,metro,Sistema METRO,METRO System
+2016,transport,2016-09-01,Média dos Sábados,821,1,metro,Azul,Blue
+2016,transport,2016-09-01,Média dos Sábados,307,2,metro,Verde,Green
+2016,transport,2016-09-01,Média dos Sábados,841,3,metro,Vermelha,Red
+2016,transport,2016-09-01,Média dos Sábados,158,5,metro,Lilás,Lilac
+2016,transport,2016-09-01,Média dos Sábados,6,15,metro,Prata,Silver
+2016,transport,2016-09-01,Média dos Sábados,2132,99,metro,Sistema METRO,METRO System
+2016,transport,2016-09-01,Média dos Domingos,465,1,metro,Azul,Blue
+2016,transport,2016-09-01,Média dos Domingos,185,2,metro,Verde,Green
+2016,transport,2016-09-01,Média dos Domingos,497,3,metro,Vermelha,Red
+2016,transport,2016-09-01,Média dos Domingos,81,5,metro,Lilás,Lilac
+2016,transport,2016-09-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-09-01,Média dos Domingos,1229,99,metro,Sistema METRO,METRO System
+2016,transport,2016-09-01,Máxima Diária,1459,1,metro,Azul,Blue
+2016,transport,2016-09-01,Máxima Diária,690,2,metro,Verde,Green
+2016,transport,2016-09-01,Máxima Diária,1478,3,metro,Vermelha,Red
+2016,transport,2016-09-01,Máxima Diária,275,5,metro,Lilás,Lilac
+2016,transport,2016-09-01,Máxima Diária,15,15,metro,Prata,Silver
+2016,transport,2016-09-01,Máxima Diária,3906,99,metro,Sistema METRO,METRO System
+2016,transport,2016-10-01,Total,35085,1,metro,Azul,Blue
+2016,transport,2016-10-01,Total,16035,2,metro,Verde,Green
+2016,transport,2016-10-01,Total,36172,3,metro,Vermelha,Red
+2016,transport,2016-10-01,Total,6600,5,metro,Lilás,Lilac
+2016,transport,2016-10-01,Total,319,15,metro,Prata,Silver
+2016,transport,2016-10-01,Total,94211,99,metro,Sistema METRO,METRO System
+2016,transport,2016-10-01,Média dos Dias Úteis,1411,1,metro,Azul,Blue
+2016,transport,2016-10-01,Média dos Dias Úteis,670,2,metro,Verde,Green
+2016,transport,2016-10-01,Média dos Dias Úteis,1442,3,metro,Vermelha,Red
+2016,transport,2016-10-01,Média dos Dias Úteis,264,5,metro,Lilás,Lilac
+2016,transport,2016-10-01,Média dos Dias Úteis,14,15,metro,Prata,Silver
+2016,transport,2016-10-01,Média dos Dias Úteis,3801,99,metro,Sistema METRO,METRO System
+2016,transport,2016-10-01,Média dos Sábados,811,1,metro,Azul,Blue
+2016,transport,2016-10-01,Média dos Sábados,303,2,metro,Verde,Green
+2016,transport,2016-10-01,Média dos Sábados,839,3,metro,Vermelha,Red
+2016,transport,2016-10-01,Média dos Sábados,159,5,metro,Lilás,Lilac
+2016,transport,2016-10-01,Média dos Sábados,6,15,metro,Prata,Silver
+2016,transport,2016-10-01,Média dos Sábados,2118,99,metro,Sistema METRO,METRO System
+2016,transport,2016-10-01,Média dos Domingos,461,1,metro,Azul,Blue
+2016,transport,2016-10-01,Média dos Domingos,181,2,metro,Verde,Green
+2016,transport,2016-10-01,Média dos Domingos,515,3,metro,Vermelha,Red
+2016,transport,2016-10-01,Média dos Domingos,82,5,metro,Lilás,Lilac
+2016,transport,2016-10-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-10-01,Média dos Domingos,1242,99,metro,Sistema METRO,METRO System
+2016,transport,2016-10-01,Máxima Diária,1459,1,metro,Azul,Blue
+2016,transport,2016-10-01,Máxima Diária,690,2,metro,Verde,Green
+2016,transport,2016-10-01,Máxima Diária,1500,3,metro,Vermelha,Red
+2016,transport,2016-10-01,Máxima Diária,279,5,metro,Lilás,Lilac
+2016,transport,2016-10-01,Máxima Diária,16,15,metro,Prata,Silver
+2016,transport,2016-10-01,Máxima Diária,3941,99,metro,Sistema METRO,METRO System
+2016,transport,2016-11-01,Total,34455,1,metro,Azul,Blue
+2016,transport,2016-11-01,Total,15668,2,metro,Verde,Green
+2016,transport,2016-11-01,Total,35264,3,metro,Vermelha,Red
+2016,transport,2016-11-01,Total,6460,5,metro,Lilás,Lilac
+2016,transport,2016-11-01,Total,363,15,metro,Prata,Silver
+2016,transport,2016-11-01,Total,92211,99,metro,Sistema METRO,METRO System
+2016,transport,2016-11-01,Média dos Dias Úteis,1429,1,metro,Azul,Blue
+2016,transport,2016-11-01,Média dos Dias Úteis,678,2,metro,Verde,Green
+2016,transport,2016-11-01,Média dos Dias Úteis,1450,3,metro,Vermelha,Red
+2016,transport,2016-11-01,Média dos Dias Úteis,268,5,metro,Lilás,Lilac
+2016,transport,2016-11-01,Média dos Dias Úteis,16,15,metro,Prata,Silver
+2016,transport,2016-11-01,Média dos Dias Úteis,3841,99,metro,Sistema METRO,METRO System
+2016,transport,2016-11-01,Média dos Sábados,843,1,metro,Azul,Blue
+2016,transport,2016-11-01,Média dos Sábados,310,2,metro,Verde,Green
+2016,transport,2016-11-01,Média dos Sábados,869,3,metro,Vermelha,Red
+2016,transport,2016-11-01,Média dos Sábados,162,5,metro,Lilás,Lilac
+2016,transport,2016-11-01,Média dos Sábados,7,15,metro,Prata,Silver
+2016,transport,2016-11-01,Média dos Sábados,2191,99,metro,Sistema METRO,METRO System
+2016,transport,2016-11-01,Média dos Domingos,480,1,metro,Azul,Blue
+2016,transport,2016-11-01,Média dos Domingos,188,2,metro,Verde,Green
+2016,transport,2016-11-01,Média dos Domingos,524,3,metro,Vermelha,Red
+2016,transport,2016-11-01,Média dos Domingos,86,5,metro,Lilás,Lilac
+2016,transport,2016-11-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-11-01,Média dos Domingos,1279,99,metro,Sistema METRO,METRO System
+2016,transport,2016-11-01,Máxima Diária,1479,1,metro,Azul,Blue
+2016,transport,2016-11-01,Máxima Diária,697,2,metro,Verde,Green
+2016,transport,2016-11-01,Máxima Diária,1503,3,metro,Vermelha,Red
+2016,transport,2016-11-01,Máxima Diária,283,5,metro,Lilás,Lilac
+2016,transport,2016-11-01,Máxima Diária,18,15,metro,Prata,Silver
+2016,transport,2016-11-01,Máxima Diária,3979,99,metro,Sistema METRO,METRO System
+2016,transport,2016-12-01,Total,33597,1,metro,Azul,Blue
+2016,transport,2016-12-01,Total,14954,2,metro,Verde,Green
+2016,transport,2016-12-01,Total,34923,3,metro,Vermelha,Red
+2016,transport,2016-12-01,Total,6484,5,metro,Lilás,Lilac
+2016,transport,2016-12-01,Total,363,15,metro,Prata,Silver
+2016,transport,2016-12-01,Total,90322,99,metro,Sistema METRO,METRO System
+2016,transport,2016-12-01,Média dos Dias Úteis,1315,1,metro,Azul,Blue
+2016,transport,2016-12-01,Média dos Dias Úteis,615,2,metro,Verde,Green
+2016,transport,2016-12-01,Média dos Dias Úteis,1361,3,metro,Vermelha,Red
+2016,transport,2016-12-01,Média dos Dias Úteis,252,5,metro,Lilás,Lilac
+2016,transport,2016-12-01,Média dos Dias Úteis,16,15,metro,Prata,Silver
+2016,transport,2016-12-01,Média dos Dias Úteis,3557,99,metro,Sistema METRO,METRO System
+2016,transport,2016-12-01,Média dos Sábados,909,1,metro,Azul,Blue
+2016,transport,2016-12-01,Média dos Sábados,327,2,metro,Verde,Green
+2016,transport,2016-12-01,Média dos Sábados,954,3,metro,Vermelha,Red
+2016,transport,2016-12-01,Média dos Sábados,180,5,metro,Lilás,Lilac
+2016,transport,2016-12-01,Média dos Sábados,8,15,metro,Prata,Silver
+2016,transport,2016-12-01,Média dos Sábados,2378,99,metro,Sistema METRO,METRO System
+2016,transport,2016-12-01,Média dos Domingos,547,1,metro,Azul,Blue
+2016,transport,2016-12-01,Média dos Domingos,216,2,metro,Verde,Green
+2016,transport,2016-12-01,Média dos Domingos,576,3,metro,Vermelha,Red
+2016,transport,2016-12-01,Média dos Domingos,96,5,metro,Lilás,Lilac
+2016,transport,2016-12-01,Média dos Domingos,2,15,metro,Prata,Silver
+2016,transport,2016-12-01,Média dos Domingos,1437,99,metro,Sistema METRO,METRO System
+2016,transport,2016-12-01,Máxima Diária,1476,1,metro,Azul,Blue
+2016,transport,2016-12-01,Máxima Diária,690,2,metro,Verde,Green
+2016,transport,2016-12-01,Máxima Diária,1489,3,metro,Vermelha,Red
+2016,transport,2016-12-01,Máxima Diária,275,5,metro,Lilás,Lilac
+2016,transport,2016-12-01,Máxima Diária,18,15,metro,Prata,Silver
+2016,transport,2016-12-01,Máxima Diária,3948,99,metro,Sistema METRO,METRO System
 2017,entrance,2017-10-01,Total,26029,1,metro,Azul,Blue
 2017,entrance,2017-10-01,Total,13219,2,metro,Verde,Green
 2017,entrance,2017-10-01,Total,30557,3,metro,Vermelha,Red

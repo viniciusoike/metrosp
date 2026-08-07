@@ -13,7 +13,7 @@
 # Pipeline boundary: the graph assembles data/*.rda from the committed
 # intermediate CSVs (data-raw/processed/), the GeoSampa GPKGs, and the
 # station_inauguration.csv. The expensive/network stages — METRO download,
-# 2017-2019 reimport, Lines 4/5 Dataverse fetch — are gated with
+# 2016-2019 reimport, Lines 4/5 Dataverse fetch — are gated with
 # tarchetypes::tar_force(). Each only re-runs when its env-var flag is TRUE;
 # otherwise the cached result is reused and downstream targets skip unless
 # their own inputs changed.
@@ -112,7 +112,7 @@ list(
     hist_passengers_csv,
     {
       historic_refresh
-      proc("metro_sp_passengers_2017_2019.csv")
+      proc("metro_sp_passengers_historic.csv")
     },
     format = "file"
   ),
@@ -120,7 +120,7 @@ list(
     hist_averages_csv,
     {
       historic_refresh
-      proc("metro_sp_station_averages_2017_2019.csv")
+      proc("metro_sp_station_averages_historic.csv")
     },
     format = "file"
   ),
@@ -217,11 +217,11 @@ list(
     )
   ),
   tar_target(
-    psg_17_19,
+    psg_historic,
     readr::read_csv(hist_passengers_csv, show_col_types = FALSE)
   ),
   tar_target(
-    stations_17_19,
+    stations_historic,
     readr::read_csv(hist_averages_csv, show_col_types = FALSE)
   ),
   tar_target(
@@ -242,15 +242,15 @@ list(
   # --- Assemble exported datasets --------------------------------------------
   tar_target(
     passengers_entrance,
-    assemble_entrance(psg_17_19, entrance_current, entrance_4_5)
+    assemble_entrance(psg_historic, entrance_current, entrance_4_5)
   ),
   tar_target(
     passengers_transported,
-    assemble_transported(psg_17_19, transported_current)
+    assemble_transported(psg_historic, transported_current)
   ),
   tar_target(
     station_averages,
-    assemble_averages(stations_17_19, averages_current, averages_4_5)
+    assemble_averages(stations_historic, averages_current, averages_4_5)
   ),
   tar_target(station_daily, assemble_daily(daily_current, daily_4_5)),
   tar_target(

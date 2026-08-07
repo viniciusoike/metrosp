@@ -57,14 +57,16 @@ dim_station_name_change <- tibble(
     "Penha-Lojas Besni",
     "Saúde-Ultrafarma",
     "Patriarca-Vila Ré",
-    "Liberdade"
+    "Liberdade",
+    "Giovani Gronchi"
   ),
   station_name = c(
     "Carrão",
     "Penha",
     "Saúde",
     "Patriarca",
-    "Japão-Liberdade"
+    "Japão-Liberdade",
+    "Giovanni Gronchi"
   )
 )
 
