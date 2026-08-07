@@ -136,10 +136,9 @@
 <p>The package is available on CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"metrosp"</span><span class="op">)</span></span></code></pre></div>
-<p>Although the underlying data is infrequently updated, more recent versions of the data can be available by installing the development version from GitHub.</p>
+<p>Although the underlying data is infrequently updated, more recent versions of the data can be available by installing the development version from GitHub or R-universe.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"viniciusoike/metrosp"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'metrosp'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://viniciusoike.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
@@ -223,20 +222,23 @@
 <span></span>
 <span><span class="co"># Spatial line routes</span></span>
 <span><span class="va">lines</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="data-documentation">Data documentation<a class="anchor" aria-label="anchor" href="#data-documentation"></a>
+</h3>
+<p>For more details check the <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">Data Dictionary</a> and the <a href="https://viniciusoike.github.io/metrosp/articles/getting_started.html">package’s Getting Started vignette</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>
-</h2>
-<p>An interactive dashboard for browsing and downloading these datasets lives in a separate repository: <a href="https://github.com/viniciusoike/metrosp-explorer" class="external-link">metrosp-explorer</a>. It is a standalone Shiny app and is not shipped with the package.</p>
+<div class="section level3">
+<h3 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>
+</h3>
+<p>To explore and analyze this data check the <a href="https://viniciusoike-metrosp-explorer.share.connect.posit.cloud" class="external-link">Metro Explorer dashboard</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="coming-soon">Coming soon<a class="anchor" aria-label="anchor" href="#coming-soon"></a>
-</h2>
+<div class="section level3">
+<h3 id="coming-soon">Coming soon<a class="anchor" aria-label="anchor" href="#coming-soon"></a>
+</h3>
 <ul>
-<li>Better data documentation.</li>
-<li>Updated information for 2026.</li>
-<li>Improved data quality checks.</li>
+<li>Functions to download fresh datasets.</li>
 </ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="data-sources">Data sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
