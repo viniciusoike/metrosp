@@ -25,8 +25,9 @@ A data frame with one row per day and the following columns:
 
 - weekday:
 
-  Day of week from `lubridate::wday()`: 1 = Sunday, 2 = Monday, ..., 7 =
-  Saturday (integer).
+  Day of week from
+  [`lubridate::wday()`](https://lubridate.tidyverse.org/reference/day.html):
+  1 = Sunday, 2 = Monday, ..., 7 = Saturday (integer).
 
 - is_weekend:
 

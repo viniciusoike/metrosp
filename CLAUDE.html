@@ -43,37 +43,50 @@
 <h2 id="package-structure">Package Structure<a class="anchor" aria-label="anchor" href="#package-structure"></a></h2>
 <pre><code>metrosp/
 ├── R/data.R                    # Roxygen2 docs for all exported datasets (NO functions)
-├── data/*.rda                  # Lazy-loaded datasets (the package deliverable)
+├── data/*.rda                  # Frozen snapshot (see "The frozen-snapshot model")
 ├── data-raw/                   # ETL pipeline (not shipped with package)
-│   ├── run_pipeline.R          # Orchestrator: set flags, then source (see Development Workflow)
-│   ├── make_datasets.R         # Master script: harmonize schemas + create .rda files
-│   ├── utils.R                 # Shared dimension tables and utility functions
-│   ├── download_metro.R        # Downloads raw data from METRO transparency portal
-│   ├── import_passengers_2017_2019.R         # Passenger data ETL (2017-2019)
-│   ├── import_station_averages_2017_2019.R   # Station averages ETL (2017-2019)
-│   ├── import_passengers_entrance.R          # Passenger entrance ETL (2020-present)
-│   ├── import_passengers_transported.R       # Passenger transported ETL (2020-present)
-│   ├── import_station_averages.R             # Station averages ETL (2020-present)
-│   ├── import_station_daily.R                # Daily station entries ETL (2020-present)
-│   ├── import_lines_4_5_dataverse.R          # Lines 4/5 data ETL (Insper Dataverse source)
-│   ├── import_geosampa.R                     # GeoSampa spatial data ETL (metro + train)
-│   ├── build_forecasts.R                     # Fits ARIMA/ETS/STLF + tsCV -&gt; forecasts, forecast_accuracy
-│   ├── build_station_inauguration.R          # Builds station_inauguration from CSV
-│   ├── station_inauguration.csv             # Hand-maintained station opening dates (source)
-│   ├── make_hex.R                            # Generates the package hex sticker
-│   ├── sanity_checks.qmd                     # Quarto doc for visual data quality validation
-│   ├── geosampa/               # GeoSampa GPKG source files (9 files)
-│   ├── processed/              # Intermediate CSVs (committed to git, ~600KB)
-│   ├── cache/                  # Cached .rds of built datasets (piggyback distribution)
-│   ├── archive/               # Retired scripts
-│   └── metro_sp/               # Raw source files (gitignored, ~46MB)
-├── dashboard/                  # Exploratory Shiny scripts (not part of the package build)
+│   ├── _targets.R              # THE pipeline definition (graph, flags, gates)
+│   ├── schema.json             # Schema contract guarding the frozen snapshot
+│   ├── ci_validate.R           # CI: diff fresh build vs data-latest -&gt; PR body
+│   ├── ci_publish.R            # CI: upload cache/ to the data-latest release
+│   ├── R/                      # Pure functions, loaded via tar_source()
+│   │   ├── download_metro.R    # Scrapes + downloads from the METRO portal
+│   │   ├── import_metro_current.R  # Current-era (2020-) builders + refresh
+│   │   ├── import_historic.R   # 2017-2019 builders + refresh
+│   │   ├── import_dataverse.R  # Lines 4/5 builders + refresh (Insper Dataverse)
+│   │   ├── import_geosampa.R   # GeoSampa spatial ETL (metro + train)
+│   │   ├── assemble.R          # Harmonizes eras into the exported schemas
+│   │   ├── dims.R              # Shared dimension tables (lines, metrics, codes)
+│   │   ├── helpers.R           # Paths, CSV parsing, with_retry(), name cleaning
+│   │   ├── build_calendar_spo.R / build_inauguration.R
+│   │   ├── schema.R            # Schema contract: build/write/check
+│   │   ├── release_payload.R   # Stages cache/*.rds + manifest.json
+│   │   ├── validate_refresh.R  # Baseline-dependent differential checks
+│   │   └── write_data.R        # The only use_data() side effect (gated)
+│   ├── geosampa/               # GeoSampa GPKG source files (9 files, committed)
+│   ├── processed/              # Intermediate CSVs (committed; the graph's inputs)
+│   ├── cache/                  # Staged release payload (gitignored)
+│   ├── metro_sp/               # Raw source files (gitignored, ~46MB)
+│   ├── archive/                # Retired scripts
+│   ├── station_inauguration.csv  # Hand-maintained station opening dates
+│   ├── sanity_checks.qmd       # Manual visual QA (not wired into CI)
+│   ├── build_forecasts.R       # Out of the graph; forecasts are not exported
+│   ├── make_hex.R              # Generates the package hex sticker
+│   └── import_*.R + make_datasets.R + utils.R
+│                               # ORPHANED pre-targets scripts (no entry point); do not run
+├── .github/workflows/
+│   ├── data-refresh.yaml       # Weekly upstream refresh -&gt; PR
+│   ├── data-publish.yaml       # On merge -&gt; upload to the data-latest release
+│   └── pkgdown.yaml
+├── dashboard/                  # Exploratory Shiny scripts (not part of the build)
 │   ├── panorama.R              # Demand-overview Shiny app (exploratory)
 │   ├── shared.R                # Line metadata + helpers shared by app scripts
 │   └── www/styles.css          # App styles
 │   # NOTE: the deployable explorer dashboard moved to its own repo:
 │   #   https://github.com/viniciusoike/metrosp-explorer
 ├── tests/testthat/
+│   ├── helper-checks.R         # Structural invariants, shared with the pipeline
+│   └── test-*.R
 ├── vignettes/
 ├── DESCRIPTION
 └── NAMESPACE                   # Auto-generated by roxygen2</code></pre>
@@ -110,11 +123,16 @@
 <ul><li>This is a <strong>data-only package</strong>. <code>R/</code> should contain ONLY <code>data.R</code> (documentation). No functions. Pipeline functions live in <code>data-raw/R/</code> (build-ignored), NOT package <code>R/</code>.</li>
 <li>To update datasets: run the <code>targets</code> pipeline (see Development Workflow). Editing an ETL function under <code>data-raw/R/</code> auto-invalidates the affected datasets.</li>
 <li>
-<code>data-raw/metro_sp/</code> is gitignored (46MB raw files). Never commit it.</li>
+<strong><code>data/*.rda</code> is frozen.</strong> A routine refresh must never change it; only <code>METROSP_FREEZE=true</code> writes it. If a rebuild moves the snapshot without that flag, something is wrong.</li>
 <li>
-<code>data-raw/processed/</code> IS committed (intermediate CSVs, ~600KB)</li>
-<li>The 2017-2019 and 2020-2025 CSVs have different column schemas. <code>make_datasets.R</code> handles harmonization.</li>
-<li>Lines 4/5 data comes from Insper Dataverse (not the METRO transparency portal). Station codes are NA for Lines 4/5.</li>
+<strong>Never add a <code>{?s}</code>-style cli pluralization token inside <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code>.</strong> glue evaluates <code>?s</code> and silently collapses the whole string to <code>character(0)</code>, dropping the message. Use <code>cli::cli_*()</code> (which understands it) or <code><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf()</a></code>.</li>
+<li>
+<code>data-raw/metro_sp/</code> is gitignored (46MB raw files). Never commit it. CI deliberately does not cache it.</li>
+<li>
+<code>data-raw/processed/</code> IS committed — it is both the graph’s only input and the audit trail for upstream restatements.</li>
+<li>Current-era processed CSVs use a <code>_current</code> suffix, not a year range: the era is open-ended and a hardcoded range would need renaming every January.</li>
+<li>The 2017-2019 and current-era CSVs have different column schemas; <code>assemble.R</code> harmonizes them.</li>
+<li>Lines 4/5 data comes from Insper Dataverse (not the METRO transparency portal). Station codes are NA for Lines 4/5, and this source lags METRO — lines legitimately end on different dates.</li>
 </ul></div>
 <div class="section level2">
 <h2 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a></h2>
@@ -139,30 +157,62 @@
 </ul></div>
 <div class="section level2">
 <h2 id="development-workflow">Development Workflow<a class="anchor" aria-label="anchor" href="#development-workflow"></a></h2>
-<p>The ETL runs as a <strong><code>targets</code> pipeline</strong> (primary) defined in <code>data-raw/_targets.R</code> (store: <code>data-raw/_targets/</code>, config: <code>_targets.yaml</code>). Pure functions live in <code>data-raw/R/</code> (loaded via <code>tar_source()</code>); package <code>R/</code> still holds only <code>data.R</code>. The graph assembles <code>data/*.rda</code> from the committed <code>processed/</code> CSVs, the GeoSampa GPKGs, and <code>station_inauguration.csv</code>.</p>
-<p>Routine data update (the common case — fetch new METRO + Lines 4/5 data):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">METROSP_DOWNLOAD</span><span class="op">=</span>true <span class="va">METROSP_DATAVERSE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::document()'</span>   <span class="co"># outside the graph; refreshes man/*.Rd</span></span></code></pre></div>
-<p>Flags are env vars gated with <code><a href="https://docs.ropensci.org/tarchetypes/reference/tar_force.html" class="external-link">tarchetypes::tar_force()</a></code>. Each controls a side-effecting refresh that rewrites the committed CSVs in place. When unset (default off) the cached result is reused and downstream targets only rebuild if their own inputs changed:</p>
+<p>The ETL runs as a <strong><code>targets</code> pipeline</strong> (primary) defined in <code>data-raw/_targets.R</code> (store: <code>data-raw/_targets/</code>, config: <code>_targets.yaml</code>). Pure functions live in <code>data-raw/R/</code> (loaded via <code>tar_source()</code>); package <code>R/</code> still holds only <code>data.R</code>.</p>
+<p><strong>All three sources follow one shape:</strong> a gated <code>refresh_*()</code> writes committed CSVs under <code>processed/</code>, and the graph reads only those CSVs (plus the GeoSampa GPKGs and <code>station_inauguration.csv</code>). Nothing downstream of the refresh targets touches the network or the gitignored raw files, so a fresh clone rebuilds every dataset offline.</p>
+<div class="section level3">
+<h3 id="the-frozen-snapshot-model">The frozen-snapshot model<a class="anchor" aria-label="anchor" href="#the-frozen-snapshot-model"></a></h3>
+<p><code>data/*.rda</code> is a <strong>frozen snapshot</strong>, not a live mirror. It ships with the package as the offline sample that backs examples and vignettes, and it is regenerated only when a <em>schema</em> changes — never because new months arrived. Fresh data is published to the rolling <code>data-latest</code> GitHub Release on every refresh.</p>
+<p>This is what keeps the CRAN presence sustainable: releases become schema- and code-driven rather than data-driven, <code>R CMD check</code> results do not drift when upstream restates a year, and the tarball stops growing every month.</p>
+<p><code>data-raw/schema.json</code> is the contract. <code>check_schema()</code> runs as the <code>schema_ok</code> target on every build and hard-fails on any column name/type/order change — that failure is the signal to refreeze, not something to work around.</p>
+</div>
+<div class="section level3">
+<h3 id="routine-data-update">Routine data update<a class="anchor" aria-label="anchor" href="#routine-data-update"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">METROSP_DOWNLOAD</span><span class="op">=</span>true <span class="va">METROSP_DATAVERSE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span></code></pre></div>
+<p>Rewrites <code>processed/*.csv</code>, verifies the schema, and stages <code>data-raw/cache/</code> for publication. Leaves <code>data/*.rda</code> untouched.</p>
+<p>Flags are env vars gated with <code><a href="https://docs.ropensci.org/tarchetypes/reference/tar_force.html" class="external-link">tarchetypes::tar_force()</a></code>. When unset (default off) the cached result is reused and downstream targets only rebuild if their own inputs changed:</p>
 <table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Env var</th>
 <th>Default</th>
 <th>Effect when <code>true</code>
 </th>
 </tr></thead><tbody><tr><td><code>METROSP_DOWNLOAD</code></td>
 <td>off</td>
-<td>Scrape METRO portal → refresh raw CSVs → re-import current-era</td>
+<td>Scrape METRO portal → refresh raw files → rewrite current-era CSVs</td>
 </tr><tr><td><code>METROSP_HISTORICAL</code></td>
 <td>off</td>
 <td>Re-import 2017-2019 from raw nested folders</td>
 </tr><tr><td><code>METROSP_DATAVERSE</code></td>
 <td>off</td>
 <td>Re-fetch Lines 4/5 from Insper Dataverse</td>
-</tr></tbody></table><p>A column/definition change needs no flag: edit the relevant <code>assemble_*()</code> or <code>dims.R</code> function and <code>targets</code> rebuilds the affected datasets + descendants. Inspect with <code><a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link">targets::tar_visnetwork()</a></code>; read a result with <code>tar_read(&lt;name&gt;)</code>.</p>
-<p>You can also set flags from within R instead of the shell:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>METROSP_DOWNLOAD <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span></span>
-<span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">tar_make</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Legacy path (still present, not retired):</strong> <code>source("data-raw/run_pipeline.R")</code> with its in-file boolean flags. Both paths produce byte-identical <code>data/*.rda</code>.</p>
+</tr><tr><td><code>METROSP_FREEZE</code></td>
+<td>off</td>
+<td>
+<strong>Rewrite <code>data/*.rda</code>.</strong> Only for a schema change or a deliberate data-bearing release</td>
+</tr></tbody></table><p>A column/definition change needs no refresh flag: edit the relevant <code>assemble_*()</code> or <code>dims.R</code> function and <code>targets</code> rebuilds the affected datasets + descendants. Inspect with <code><a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link">targets::tar_visnetwork()</a></code>; read a result with <code>tar_read(&lt;name&gt;)</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="refreezing-the-snapshot">Refreezing the snapshot<a class="anchor" aria-label="anchor" href="#refreezing-the-snapshot"></a></h3>
+<p>When the schema changes (or you deliberately want the shipped data to move):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="va">METROSP_FREEZE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'devtools::document()'</span></span></code></pre></div>
+<p>Then, in the same change: regenerate <code>data-raw/schema.json</code> via <code>write_schema(tar_read(datasets))</code>, update the “current through <month>” line in the <code>Data vintage</code> roxygen section in <code>R/data.R</code> (defined on <code>passengers_entrance</code>, inherited by the other three), bump the version, and add a NEWS entry.</month></p>
+</div>
+<div class="section level3">
+<h3 id="automation">Automation<a class="anchor" aria-label="anchor" href="#automation"></a></h3>
+<table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Workflow</th>
+<th>Trigger</th>
+<th>Does</th>
+</tr></thead><tbody><tr><td><code>data-refresh.yaml</code></td>
+<td>Weekly (Mon 11:00 UTC) + manual</td>
+<td>Refresh from both sources, gate on a real change, test + validate, open a PR containing only <code>processed/*.csv</code>
+</td>
+</tr><tr><td><code>data-publish.yaml</code></td>
+<td>Push to <code>main</code> touching <code>processed/</code> + manual</td>
+<td>Rebuild offline, verify the snapshot did not move, upload <code>cache/*.rds</code> + <code>manifest.json</code> to <code>data-latest</code>
+</td>
+</tr></tbody></table><p>Weekly (not monthly) because METRO publishes irregularly — observed gaps run from one day to two months. Most runs exit at the change gate in ~2 minutes. The refresh job deliberately does <strong>not</strong> cache <code>data-raw/metro_sp/</code>: <code>download_metro()</code> skips already-present files for non-latest years, so a cached raw dir would hide the retroactive restatements the job exists to catch.</p>
+<p>Validation is split by what it needs: structural invariants live in <code>tests/testthat/helper-checks.R</code> and are asserted from <em>both</em> the package test suite (against the frozen snapshot) and the pipeline (against the fresh build); baseline-dependent checks — shrinkage, per-line coverage regression, retroactive drift, magnitude outliers — live in <code>data-raw/R/validate_refresh.R</code>.</p>
+<p><strong>There is no second path.</strong> <code>run_pipeline.R</code> (the pre-<code>targets</code> orchestrator) has been removed: it wrote CSV names the graph no longer reads, and it wrote <code>data/*.rda</code> unconditionally, which the frozen-snapshot model forbids. The top-level <code>data-raw/import_*.R</code>, <code>make_datasets.R</code>, and <code>utils.R</code> scripts it drove are now unreachable — they remain only as reference and should not be run.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="quick-commands">Quick Commands<a class="anchor" aria-label="anchor" href="#quick-commands"></a></h2>
@@ -175,9 +225,16 @@
 <span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_make.html" class="external-link">tar_make</a></span><span class="op">(</span><span class="op">)</span>        <span class="co"># rebuild outdated datasets (offline from CSVs)</span></span>
 <span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_visnetwork.html" class="external-link">tar_visnetwork</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># view the dependency graph</span></span>
 <span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_read.html" class="external-link">tar_read</a></span><span class="op">(</span><span class="va">station_daily</span><span class="op">)</span>  <span class="co"># load a built target</span></span>
-<span></span>
-<span><span class="co"># legacy orchestrator (equivalent output)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"data-raw/run_pipeline.R"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">targets</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/targets/reference/tar_read.html" class="external-link">tar_read</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>       <span class="co"># all nine, as a named list</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># refresh from upstream (rewrites processed/*.csv, stages cache/)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="va">METROSP_DOWNLOAD</span><span class="op">=</span>true <span class="va">METROSP_DATAVERSE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># refreeze the shipped snapshot (schema change / data-bearing release only)</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="va">METROSP_FREEZE</span><span class="op">=</span>true <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'targets::tar_make()'</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co"># what CI runs</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="ex">Rscript</span> data-raw/ci_validate.R   <span class="co"># diff vs data-latest, write the PR body</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="ex">Rscript</span> data-raw/ci_publish.R    <span class="co"># upload cache/ to the data-latest release</span></span></code></pre></div>
 </div>
 </div>
 

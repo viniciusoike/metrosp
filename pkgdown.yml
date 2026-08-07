@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   data-dictionary: data-dictionary.html
   getting_started: getting_started.html
-last_built: 2026-08-07T20:06Z
+last_built: 2026-08-07T20:25Z
 urls:
   reference: https://viniciusoike.github.io/metrosp/reference
   article: https://viniciusoike.github.io/metrosp/articles

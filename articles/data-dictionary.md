@@ -176,7 +176,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(passengers_entrance)
-#> Rows: 3,830
+#> Rows: 3,995
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -257,7 +257,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(passengers_transported)
-#> Rows: 2,630
+#> Rows: 2,680
 #> Columns: 9
 #> $ date         <date> 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-…
 #> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
@@ -324,7 +324,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(station_averages)
-#> Rows: 9,415
+#> Rows: 9,872
 #> Columns: 7
 #> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
 #> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
@@ -386,7 +386,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(station_daily)
-#> Rows: 228,802
+#> Rows: 242,128
 #> Columns: 8
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
