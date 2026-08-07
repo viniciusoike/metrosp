@@ -7,6 +7,37 @@
 
 library(dplyr, warn.conflicts = FALSE)
 
+# --- Network retry -------------------------------------------------------------
+
+#' Retry an expression that hits the network.
+#' Both upstream sources (METRO portal, Insper Dataverse) are unattended
+#' dependencies of the scheduled pipeline, where a single transient 5xx should
+#' not fail a whole run. Backs off exponentially and re-raises the last error.
+with_retry <- function(expr, tries = 3L, base_wait = 2, what = "request") {
+  expr <- rlang::enquo(expr)
+
+  for (i in seq_len(tries)) {
+    result <- tryCatch(rlang::eval_tidy(expr), error = function(e) e)
+
+    if (!inherits(result, "error")) {
+      return(result)
+    }
+
+    if (i == tries) {
+      cli::cli_abort(
+        "{what} failed after {tries} attempt{?s}.",
+        parent = result
+      )
+    }
+
+    wait <- base_wait * 2^(i - 1L)
+    cli::cli_alert_warning(
+      "{what} failed (attempt {i}/{tries}); retrying in {wait}s."
+    )
+    Sys.sleep(wait)
+  }
+}
+
 # --- Station-name cleaning ---------------------------------------------------
 
 # Footnote markers leaking from the source spreadsheets: digits, superscripts,

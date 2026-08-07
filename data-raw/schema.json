@@ -1,0 +1,114 @@
+{
+  "calendar_spo": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "year": "double",
+      "weekday": "double",
+      "is_weekend": "logical",
+      "is_holiday": "logical",
+      "is_business_day": "logical",
+      "holiday_name": "character",
+      "holiday_scope": "character",
+      "is_ponto_facultativo": "logical",
+      "is_feriadao": "logical"
+    }
+  },
+  "lines": {
+    "kind": "data.frame",
+    "columns": {
+      "status": "character",
+      "company_name": "character",
+      "line_number": "double",
+      "type": "character",
+      "line_name_pt": "character",
+      "line_name": "character",
+      "geom": "sfc"
+    }
+  },
+  "metro_colors": {
+    "kind": "vector",
+    "type": "character",
+    "length": 6,
+    "names": ["Blue", "Green", "Red", "Yellow", "Lilac", "Silver"]
+  },
+  "passengers_entrance": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "line_number": "double",
+      "metric_abb": "character",
+      "value": "double",
+      "metric": "character",
+      "metric_pt": "character",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "year": "double"
+    }
+  },
+  "passengers_transported": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "line_number": "double",
+      "metric_abb": "character",
+      "value": "double",
+      "metric": "character",
+      "metric_pt": "character",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "year": "double"
+    }
+  },
+  "station_averages": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "line_number": "double",
+      "station_name": "character",
+      "avg_passenger": "double",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "year": "double"
+    }
+  },
+  "station_daily": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "line_number": "double",
+      "station_name": "character",
+      "passengers": "double",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "station_code": "character",
+      "year": "double"
+    }
+  },
+  "station_inauguration": {
+    "kind": "data.frame",
+    "columns": {
+      "line_number": "double",
+      "station_name": "character",
+      "inauguration_date": "Date",
+      "phase": "character",
+      "verified": "logical",
+      "notes": "character",
+      "pre_data_window": "logical",
+      "ramp_up_end": "Date"
+    }
+  },
+  "stations": {
+    "kind": "data.frame",
+    "columns": {
+      "type": "character",
+      "status": "character",
+      "company_name": "character",
+      "station_name": "character",
+      "line_number": "integer",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "geom": "sfc"
+    }
+  }
+}
