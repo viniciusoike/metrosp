@@ -36,13 +36,13 @@ link_download <- page |>
   html_attr(name = "href")
 
 # Subset only https links
-link_download = link_download[str_detect(link_download, "^https")]
+link_download <- link_download[str_detect(link_download, "^https")]
 
-link_title = page |>
+link_title <- page |>
   html_elements(xpath = "//*[@id='data-and-resources']/div/div/ul/li/div/a") |>
   html_attr(name = "title")
 
-params = tibble(
+params <- tibble(
   url = link_download,
   title = link_title
 )

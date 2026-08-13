@@ -1,9 +1,10 @@
 #' Passengers Entering Metro SP Stations by Line
 #'
 #' Monthly count of passengers entering São Paulo metro stations, aggregated
-#' by metro line. Data covers October 2017 through 2026 for Lines 1, 2, 3,
-#' and 15; Line 4 from January 2012; Line 5 from October 2017. Sourced from
-#' the METRO SP transparency portal and the Insper Dataverse.
+#' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
+#' and 15 (the source never published January–September 2017); Line 4 from
+#' January 2012; Line 5 from January 2016. Sourced from the METRO SP
+#' transparency portal and the Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -31,11 +32,12 @@
 #' Data by source and line:
 #' \itemize{
 #'   \item Lines 1, 2, 3, and 15: METRO SP transparency portal,
-#'     October 2017–2026.
+#'     January 2016–December 2016 and October 2017–2026 (January–September
+#'     2017 was never published by the source).
 #'   \item Line 4 (Amarela/ViaQuatro): Insper Dataverse,
 #'     January 2012–2026.
 #'   \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
-#'     October 2017–July 2018; Insper Dataverse, August 2018–2026.
+#'     January 2016–July 2018; Insper Dataverse, August 2018–2026.
 #'   \item Network total (\code{line_number = 99}): METRO SP transparency
 #'     portal only; may not be available for all years.
 #' }
@@ -77,9 +79,10 @@
 #' Passengers Transported by Metro SP Line
 #'
 #' Monthly count of passengers transported by São Paulo metro, aggregated
-#' by metro line. Data covers October 2017 through 2026 for Lines 1, 2, 3,
-#' and 15, and October 2017 through December 2019 for Line 5. Sourced from
-#' the METRO SP transparency portal.
+#' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
+#' and 15 (the source never published January–September 2017), and January
+#' 2016 through August 2018 for Line 5. Sourced from the METRO SP
+#' transparency portal.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -107,7 +110,9 @@
 #' All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 #' is not available in this dataset — the Insper Dataverse source does not
 #' include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
-#' from the METRO portal only for October 2017–December 2019. The network
+#' from the METRO portal only for January 2016–August 2018: the line was
+#' handed over to ViaMobilidade in August 2018 and the portal stopped
+#' reporting its transported counts afterwards. The network
 #' total (\code{line_number = 99}) may not be available for all years.
 #'
 #' Metrics:
@@ -138,10 +143,11 @@
 #' Average Weekday Passenger Entries by Station
 #'
 #' Monthly average of weekday (business day) passenger entries for each
-#' station in the São Paulo metro system. Data covers October 2017 through
-#' 2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
-#' October 2017. Sourced from the METRO SP transparency portal and the
-#' Insper Dataverse.
+#' station in the São Paulo metro system. Data covers January 2016 through
+#' 2026 for Lines 1, 2, 3, and 15 (the source never published
+#' January–September 2017); Line 4 from January 2012; Line 5 from January
+#' 2016. Sourced from the METRO SP transparency portal and the Insper
+#' Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -163,18 +169,19 @@
 #'
 #' Station coverage by line and source:
 #' \itemize{
-#'   \item Line 1 (Azul/Blue): 23 stations, October 2017–2026 (METRO SP
+#'   \item Line 1 (Azul/Blue): 23 stations, January 2016–2026 (METRO SP
 #'     portal).
-#'   \item Line 2 (Verde/Green): 14 stations, October 2017–2026 (METRO SP
+#'   \item Line 2 (Verde/Green): 14 stations, January 2016–2026 (METRO SP
 #'     portal).
-#'   \item Line 3 (Vermelha/Red): 18 stations, October 2017–2026 (METRO SP
+#'   \item Line 3 (Vermelha/Red): 18 stations, January 2016–2026 (METRO SP
 #'     portal).
 #'   \item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse).
-#'   \item Line 5 (Lilás/Lilac): October 2017–July 2018 (METRO SP portal)
+#'   \item Line 5 (Lilás/Lilac): January 2016–July 2018 (METRO SP portal)
 #'     and August 2018–2026 (Insper Dataverse).
-#'   \item Line 15 (Prata/Silver): 10 stations in 2020, 11 from January
-#'     2021 onward (Jardim Colonial added), October 2017–2026 (METRO SP
-#'     portal).
+#'   \item Line 15 (Prata/Silver): 2 stations in 2016–2017 (assisted
+#'     operation: Vila Prudente and Oratório), 10 stations in 2020, 11 from
+#'     January 2021 onward (Jardim Colonial added), January 2016–2026
+#'     (METRO SP portal).
 #' }
 #'
 #' @inheritSection passengers_entrance Data vintage

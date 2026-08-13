@@ -1,9 +1,9 @@
 # assemble.R
 # -----------------------------------------------------------------------------
-# Harmonize the 2017-2019, current-era (2020-present), and Lines 4/5 sources
-# into the four exported passenger/station datasets. Refactored from
-# make_datasets.R: each section becomes a function taking its inputs as
-# arguments (historical / Lines 4/5 read from the committed processed CSVs;
+# Harmonize the 2016-2019 (historic), current-era (2020-present), and Lines
+# 4/5 sources into the four exported passenger/station datasets. Refactored
+# from make_datasets.R: each section becomes a function taking its inputs as
+# arguments (historic / Lines 4/5 read from the committed processed CSVs;
 # current-era passed in from the import builders). Sanity checks (stopifnot)
 # live inside the relevant function so a failed check fails that target.
 # -----------------------------------------------------------------------------
@@ -25,11 +25,11 @@ map_metric <- function(x) {
 
 # --- passengers_entrance -----------------------------------------------------
 
-#' @param psg_17_19 Raw historic passengers tibble (entrance + transport).
+#' @param psg_historic Raw historic passengers tibble (entrance + transport).
 #' @param entrance_current Current-era entrance tibble (import builder output).
 #' @param entrance_4_5 Lines 4/5 entrance tibble (committed CSV).
-assemble_entrance <- function(psg_17_19, entrance_current, entrance_4_5) {
-  entrance_17_19 <- psg_17_19 |>
+assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
+  entrance_hist <- psg_historic |>
     filter(measure == "entrance") |>
     mutate(metric_abb = map_metric(variable)) |>
     left_join(
@@ -49,7 +49,7 @@ assemble_entrance <- function(psg_17_19, entrance_current, entrance_4_5) {
     left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
     left_join(metro_lines, by = join_by(line_number))
 
-  passengers_entrance <- bind_rows(entrance_17_19, entrance_20) |>
+  passengers_entrance <- bind_rows(entrance_hist, entrance_20) |>
     # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(value = value * 1000)
 
@@ -67,10 +67,10 @@ assemble_entrance <- function(psg_17_19, entrance_current, entrance_4_5) {
 
 # --- passengers_transported --------------------------------------------------
 
-#' @param psg_17_19 Raw historic passengers tibble (entrance + transport).
+#' @param psg_historic Raw historic passengers tibble (entrance + transport).
 #' @param transported_current Current-era transported tibble (builder output).
-assemble_transported <- function(psg_17_19, transported_current) {
-  transported_17_19 <- psg_17_19 |>
+assemble_transported <- function(psg_historic, transported_current) {
+  transported_hist <- psg_historic |>
     filter(measure == "transport") |>
     mutate(metric_abb = map_metric(variable)) |>
     left_join(
@@ -85,7 +85,7 @@ assemble_transported <- function(psg_17_19, transported_current) {
     ) |>
     left_join(metro_lines, by = join_by(line_number))
 
-  passengers_transported <- bind_rows(transported_17_19, transported_20) |>
+  passengers_transported <- bind_rows(transported_hist, transported_20) |>
     drop_trailing_na(value) |>
     select(all_of(.cols_passengers)) |>
     arrange(date, line_number, metric_abb)
@@ -120,15 +120,15 @@ assemble_transported <- function(psg_17_19, transported_current) {
   "line_name", "line_name_pt", "year"
 )
 
-#' @param stations_17_19 Raw historic station-averages tibble (committed CSV).
+#' @param stations_historic Raw historic station-averages tibble (committed CSV).
 #' @param averages_current Current-era averages tibble (builder output).
 #' @param averages_4_5 Lines 4/5 averages tibble (committed CSV).
-assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
+assemble_averages <- function(stations_historic, averages_current, averages_4_5) {
   # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
   station_renames <- dim_station_name_change$station_name
   names(station_renames) <- dim_station_name_change$station_name_raw
 
-  stations_17_19 <- stations_17_19 |>
+  stations_hist <- stations_historic |>
     mutate(
       line_number = .line_lookup_avg[line_name_full],
       station_name = name_station
@@ -140,7 +140,7 @@ assemble_averages <- function(stations_17_19, averages_current, averages_4_5) {
     # month (mirrors assemble_entrance). Keeps one series per station.
     filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
-  station_averages <- bind_rows(stations_17_19, averages_current) |>
+  station_averages <- bind_rows(stations_hist, averages_current) |>
     mutate(avg_passenger = avg_passenger * 1000)
 
   station_averages <- bind_rows(station_averages, averages_4_5) |>
