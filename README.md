@@ -34,16 +34,17 @@ spatial datasets.
 
 | Line | Name             | Operator              | Coverage            |
 |-----:|------------------|-----------------------|---------------------|
-|    1 | Azul (Blue)      | METRÔ                 | Jan 2017 – Jun 2026 |
-|    2 | Verde (Green)    | METRÔ                 | Jan 2017 – Jun 2026 |
-|    3 | Vermelha (Red)   | METRÔ                 | Jan 2017 – Jun 2026 |
+|    1 | Azul (Blue)      | METRÔ                 | Jan 2016 – Jun 2026 |
+|    2 | Verde (Green)    | METRÔ                 | Jan 2016 – Jun 2026 |
+|    3 | Vermelha (Red)   | METRÔ                 | Jan 2016 – Jun 2026 |
 |    4 | Amarela (Yellow) | ViaQuatro             | Jan 2012 – Mar 2026 |
-|    5 | Lilás (Lilac)    | METRÔ / ViaMobilidade | Jan 2017 – Apr 2026 |
-|   15 | Prata (Silver)   | METRÔ                 | Jan 2017 – Jun 2026 |
+|    5 | Lilás (Lilac)    | METRÔ / ViaMobilidade | Jan 2016 – Apr 2026 |
+|   15 | Prata (Silver)   | METRÔ                 | Jan 2016 – Jun 2026 |
 
 Coverage refers to `passengers_entrance`; the other datasets start later
-for some lines. The data dictionary vignette gives the coverage window
-of every dataset by line.
+for some lines. The METRO source has no January–September 2017
+observations. The data dictionary vignette gives the coverage window of
+every dataset by line.
 
 ## Installation
 

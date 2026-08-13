@@ -25,10 +25,11 @@ station_averages
 }
 \description{
 Monthly average of weekday (business day) passenger entries for each
-station in the São Paulo metro system. Data covers January 2017 through
-2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
-January 2017. Sourced from the METRO SP transparency portal and the
-Insper Dataverse.
+station in the São Paulo metro system. Data covers January 2016 through
+2026 for Lines 1, 2, 3, and 15 (the source never published
+January–September 2017); Line 4 from January 2012; Line 5 from January
+2016. Sourced from the METRO SP transparency portal and the Insper
+Dataverse.
 }
 \details{
 Only the weekday average (mdu) metric is available at the station level.
@@ -39,18 +40,19 @@ point for each line are trimmed during assembly; interior \code{NA}s
 
 Station coverage by line and source:
 \itemize{
-\item Line 1 (Azul/Blue): 23 stations, January 2017–2026 (METRO SP
+\item Line 1 (Azul/Blue): 23 stations, January 2016–2026 (METRO SP
 portal).
-\item Line 2 (Verde/Green): 14 stations, January 2017–2026 (METRO SP
+\item Line 2 (Verde/Green): 14 stations, January 2016–2026 (METRO SP
 portal).
-\item Line 3 (Vermelha/Red): 18 stations, January 2017–2026 (METRO SP
+\item Line 3 (Vermelha/Red): 18 stations, January 2016–2026 (METRO SP
 portal).
 \item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse).
-\item Line 5 (Lilás/Lilac): January 2017–July 2018 (METRO SP portal)
+\item Line 5 (Lilás/Lilac): January 2016–July 2018 (METRO SP portal)
 and August 2018–2026 (Insper Dataverse).
-\item Line 15 (Prata/Silver): 10 stations in 2020, 11 from January
-2021 onward (Jardim Colonial added), January 2017–2026 (METRO SP
-portal).
+\item Line 15 (Prata/Silver): 2 stations in 2016–2017 (assisted
+operation: Vila Prudente and Oratório), 10 stations in 2020, 11 from
+January 2021 onward (Jardim Colonial added), January 2016–2026
+(METRO SP portal).
 }
 }
 \section{Data vintage}{

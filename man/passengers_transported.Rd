@@ -37,9 +37,9 @@ passengers_transported
 \description{
 Monthly count of passengers transported by São Paulo metro, aggregated
 by metro line and reported in \strong{thousands of passengers}. Data covers
-January 2017 through 2026 for Lines 1, 2, 3, and 15, and January 2017
-through August 2018 for Line 5. Sourced from the METRO SP transparency
-portal.
+January 2016 through 2026 for Lines 1, 2, 3, and 15 (the source never
+published January–September 2017), and January 2016 through August 2018
+for Line 5. Sourced from the METRO SP transparency portal.
 }
 \details{
 Values are in thousands of passengers, as published by METRO SP. The other
@@ -53,9 +53,10 @@ run above entry counts for the same line and month.
 All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 is not available in this dataset — the Insper Dataverse source does not
 include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
-from the METRO portal only for January 2017–August 2018, when the line
-passed to ViaMobilidade. The network total (\code{line_number = 99}) may
-not be available for all years.
+from the METRO portal only for January 2016–August 2018: the line was
+handed over to ViaMobilidade in August 2018 and the portal stopped
+reporting its transported counts afterwards. The network
+total (\code{line_number = 99}) may not be available for all years.
 
 Metrics:
 \itemize{

@@ -102,9 +102,9 @@ Import scripts follow `import_{dataset}[_{period}].R`:
 - **Lines 4/5 — passengers_transported**: Not available in Dataverse source; only entrance data is covered
 - **Lines 4/5 — station_code**: These lines have no station code in any source (`station_code = NA`)
 - **2017**: Jan-Sep exists only as PDFs on the METRO portal and is **not yet
-  extracted**; the shipped snapshot still starts Oct 2017. User-facing docs
-  (README, `R/data.R`, vignettes) already state Jan 2017 coverage, so they run
-  ahead of the data until the PDF extraction lands. Regenerate
+  extracted**; the shipped snapshot has a gap before October 2017. User-facing
+  docs should describe the surrounding January 2016 and October 2017 coverage
+  without implying that the PDF-only months are present. Regenerate
   `man/figures/timespan_*.png` and their `fig-alt` text in the same change.
 - **Trailing months**: Months/days beyond the last published data point per line are trimmed during assembly (`drop_trailing_na()` in `helpers.R`). Interior NAs (e.g. station outages) are preserved.
 - **Station metrics**: Only weekday average (mdu) available at station level

@@ -4,10 +4,10 @@
 
 * Refroze the shipped snapshot through June 2026 (Lines 4 and 5 end earlier,
   in March and April 2026, since the Dataverse source lags METRO).
-* Extended METRO coverage back to January 2017 for `passengers_entrance`,
-  `passengers_transported`, and `station_averages`. The first nine months of
-  2017 are extracted from the source PDFs, since the portal's machine-readable
-  files begin in October 2017.
+* Extended METRO coverage back to January 2016 for `passengers_entrance`,
+  `passengers_transported`, and `station_averages`. January–September 2017
+  remains unavailable because the portal's machine-readable files begin in
+  October 2017 and those PDFs have not been extracted.
 
 ## Documentation
 
