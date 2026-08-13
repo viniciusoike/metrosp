@@ -2,8 +2,21 @@
 
 ## Datasets
 
-* `passengers_entrance`, `passengers_transported`, and `station_daily`
-  rebuilt through April 2026.
+* Refroze the shipped snapshot through June 2026 (Lines 4 and 5 end earlier,
+  in March and April 2026, since the Dataverse source lags METRO).
+* Extended METRO coverage back to January 2017 for `passengers_entrance`,
+  `passengers_transported`, and `station_averages`. The first nine months of
+  2017 are extracted from the source PDFs, since the portal's machine-readable
+  files begin in October 2017.
+
+## Documentation
+
+* Documented that `passengers_transported` reports thousands of passengers,
+  while the other demand datasets count individual passengers.
+* Corrected the end of Line 5 coverage in `passengers_transported` to
+  August 2018, the month of the ViaMobilidade handover.
+* Added the frozen-snapshot vintage and the `data-latest` release to the
+  package landing page and both vignettes.
 
 ## Vignettes
 

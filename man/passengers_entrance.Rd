@@ -13,7 +13,7 @@ the network total (integer).}
 \item{metric_abb}{Abbreviated metric code (character). One of:
 \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 \code{"max"}.}
-\item{value}{Passenger count (numeric).}
+\item{value}{Passenger count, in individual passengers (numeric).}
 \item{metric}{Measurement type in English (character). One of:
 \code{"Total"}, \code{"Average on Business Days"},
 \code{"Average on Saturdays"}, \code{"Average on Sundays"},
@@ -36,19 +36,19 @@ passengers_entrance
 }
 \description{
 Monthly count of passengers entering São Paulo metro stations, aggregated
-by metro line. Data covers October 2017 through 2026 for Lines 1, 2, 3,
-and 15; Line 4 from January 2012; Line 5 from October 2017. Sourced from
+by metro line. Data covers January 2017 through 2026 for Lines 1, 2, 3,
+and 15; Line 4 from January 2012; Line 5 from January 2017. Sourced from
 the METRO SP transparency portal and the Insper Dataverse.
 }
 \details{
 Data by source and line:
 \itemize{
 \item Lines 1, 2, 3, and 15: METRO SP transparency portal,
-October 2017–2026.
+January 2017–2026.
 \item Line 4 (Amarela/ViaQuatro): Insper Dataverse,
 January 2012–2026.
 \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
-October 2017–July 2018; Insper Dataverse, August 2018–2026.
+January 2017–July 2018; Insper Dataverse, August 2018–2026.
 \item Network total (\code{line_number = 99}): METRO SP transparency
 portal only; may not be available for all years.
 }

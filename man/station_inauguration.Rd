@@ -45,13 +45,12 @@ toward steady-state and should generally be excluded from year-on-year or
 baseline comparisons.
 }
 \details{
-The table is assembled by \code{data-raw/build_station_inauguration.R}
-from \code{data-raw/station_inauguration.csv}. To extend the table or
-verify uncertain dates, edit the CSV (setting \code{verified = TRUE}
-once cross-checked) and re-run the build script.
+The table is compiled by hand from \code{data-raw/station_inauguration.csv}
+in the package repository. Contributions that extend the table or verify
+uncertain dates are welcome.
 
-Suggested use: when computing pre/post comparisons (e.g.\ 12m-vs-prior-12m
-or recovery-vs-2019), exclude stations where either window overlaps
+When computing pre/post comparisons (e.g.\ 12m-vs-prior-12m or
+recovery-vs-2019), exclude stations where either window overlaps
 \code{ramp_up_end} to avoid mistaking ramp-up growth for organic demand
 change.
 }

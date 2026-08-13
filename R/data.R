@@ -14,7 +14,7 @@
 #'   \item{metric_abb}{Abbreviated metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count (numeric).}
+#'   \item{value}{Passenger count, in individual passengers (numeric).}
 #'   \item{metric}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
@@ -79,10 +79,10 @@
 #' Passengers Transported by Metro SP Line
 #'
 #' Monthly count of passengers transported by São Paulo metro, aggregated
-#' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
-#' and 15 (the source never published January–September 2017), and January
-#' 2016 through August 2018 for Line 5. Sourced from the METRO SP
-#' transparency portal.
+#' by metro line and reported in \strong{thousands of passengers}. Data covers
+#' January 2016 through 2026 for Lines 1, 2, 3, and 15 (the source never
+#' published January–September 2017), and January 2016 through August 2018
+#' for Line 5. Sourced from the METRO SP transparency portal.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -92,7 +92,7 @@
 #'   \item{metric_abb}{Abbreviated metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count (numeric).}
+#'   \item{value}{Passenger count, in thousands of passengers (numeric).}
 #'   \item{metric}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
@@ -107,6 +107,14 @@
 #' }
 #'
 #' @details
+#' Values are in thousands of passengers, as published by METRO SP. The other
+#' demand datasets count individual passengers, so multiply by 1000 before
+#' comparing \code{value} with \code{\link{passengers_entrance}}.
+#'
+#' A transported passenger is one who crossed a turnstile plus one who
+#' transferred between lines at an interchange station, so transported counts
+#' run above entry counts for the same line and month.
+#'
 #' All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 #' is not available in this dataset — the Insper Dataverse source does not
 #' include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
@@ -163,9 +171,9 @@
 #' @details
 #' Only the weekday average (mdu) metric is available at the station level.
 #' For line-level data with all five metrics, see
-#' \code{\link{passengers_entrance}}. Trailing months whose data has not yet
-#' been published by the source are excluded (rows with \code{NA} values are
-#' dropped during assembly).
+#' \code{\link{passengers_entrance}}. Months beyond the last published data
+#' point for each line are trimmed during assembly; interior \code{NA}s
+#' (e.g. operational outages) are preserved.
 #'
 #' Station coverage by line and source:
 #' \itemize{
@@ -230,7 +238,9 @@
 #'
 #' Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
 #' Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
-#' separately for each line. Days beyond the last published data point for each line are trimmed
+#' separately for each line.
+#'
+#' Days beyond the last published data point for each line are trimmed
 #' during assembly; interior \code{NA}s (e.g. operational outages) are
 #' preserved.
 #'
@@ -369,13 +379,12 @@
 #' }
 #'
 #' @details
-#' The table is assembled by \code{data-raw/build_station_inauguration.R}
-#' from \code{data-raw/station_inauguration.csv}. To extend the table or
-#' verify uncertain dates, edit the CSV (setting \code{verified = TRUE}
-#' once cross-checked) and re-run the build script.
+#' The table is compiled by hand from \code{data-raw/station_inauguration.csv}
+#' in the package repository. Contributions that extend the table or verify
+#' uncertain dates are welcome.
 #'
-#' Suggested use: when computing pre/post comparisons (e.g.\ 12m-vs-prior-12m
-#' or recovery-vs-2019), exclude stations where either window overlaps
+#' When computing pre/post comparisons (e.g.\ 12m-vs-prior-12m or
+#' recovery-vs-2019), exclude stations where either window overlaps
 #' \code{ramp_up_end} to avoid mistaking ramp-up growth for organic demand
 #' change.
 #'
