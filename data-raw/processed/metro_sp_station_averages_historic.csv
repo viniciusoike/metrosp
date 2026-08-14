@@ -767,6 +767,582 @@ date,year,month,line_name_full,name_station,metric_abb,value
 2016-10-01,2016,Outubro,Linha 15 - Prata,Oratório,mdu,5
 2016-11-01,2016,Novembro,Linha 15 - Prata,Oratório,mdu,6
 2016-12-01,2016,Dezembro,Linha 15 - Prata,Oratório,mdu,6
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Jabaquara,mdu,78
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Jabaquara,mdu,88
+2017-03-01,2017,Março,Linha 1 - Azul,Jabaquara,mdu,91
+2017-04-01,2017,Abril,Linha 1 - Azul,Jabaquara,mdu,93
+2017-05-01,2017,Maio,Linha 1 - Azul,Jabaquara,mdu,91
+2017-06-01,2017,Junho,Linha 1 - Azul,Jabaquara,mdu,86
+2017-07-01,2017,Julho,Linha 1 - Azul,Jabaquara,mdu,84
+2017-08-01,2017,Agosto,Linha 1 - Azul,Jabaquara,mdu,87
+2017-09-01,2017,Setembro,Linha 1 - Azul,Jabaquara,mdu,92
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Conceição,mdu,34
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Conceição,mdu,39
+2017-03-01,2017,Março,Linha 1 - Azul,Conceição,mdu,41
+2017-04-01,2017,Abril,Linha 1 - Azul,Conceição,mdu,41
+2017-05-01,2017,Maio,Linha 1 - Azul,Conceição,mdu,41
+2017-06-01,2017,Junho,Linha 1 - Azul,Conceição,mdu,39
+2017-07-01,2017,Julho,Linha 1 - Azul,Conceição,mdu,36
+2017-08-01,2017,Agosto,Linha 1 - Azul,Conceição,mdu,40
+2017-09-01,2017,Setembro,Linha 1 - Azul,Conceição,mdu,41
+2017-01-01,2017,Janeiro,Linha 1 - Azul,São Judas,mdu,18
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,São Judas,mdu,21
+2017-03-01,2017,Março,Linha 1 - Azul,São Judas,mdu,21
+2017-04-01,2017,Abril,Linha 1 - Azul,São Judas,mdu,22
+2017-05-01,2017,Maio,Linha 1 - Azul,São Judas,mdu,21
+2017-06-01,2017,Junho,Linha 1 - Azul,São Judas,mdu,20
+2017-07-01,2017,Julho,Linha 1 - Azul,São Judas,mdu,19
+2017-08-01,2017,Agosto,Linha 1 - Azul,São Judas,mdu,21
+2017-09-01,2017,Setembro,Linha 1 - Azul,São Judas,mdu,21
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Saúde,mdu,31
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Saúde,mdu,37
+2017-03-01,2017,Março,Linha 1 - Azul,Saúde,mdu,38
+2017-04-01,2017,Abril,Linha 1 - Azul,Saúde,mdu,37
+2017-05-01,2017,Maio,Linha 1 - Azul,Saúde,mdu,37
+2017-06-01,2017,Junho,Linha 1 - Azul,Saúde,mdu,37
+2017-07-01,2017,Julho,Linha 1 - Azul,Saúde,mdu,33
+2017-08-01,2017,Agosto,Linha 1 - Azul,Saúde,mdu,36
+2017-09-01,2017,Setembro,Linha 1 - Azul,Saúde,mdu,37
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Praça da Árvore,mdu,19
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Praça da Árvore,mdu,22
+2017-03-01,2017,Março,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-04-01,2017,Abril,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-05-01,2017,Maio,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-06-01,2017,Junho,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-07-01,2017,Julho,Linha 1 - Azul,Praça da Árvore,mdu,20
+2017-08-01,2017,Agosto,Linha 1 - Azul,Praça da Árvore,mdu,22
+2017-09-01,2017,Setembro,Linha 1 - Azul,Praça da Árvore,mdu,23
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Santa Cruz,mdu,52
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Santa Cruz,mdu,62
+2017-03-01,2017,Março,Linha 1 - Azul,Santa Cruz,mdu,64
+2017-04-01,2017,Abril,Linha 1 - Azul,Santa Cruz,mdu,64
+2017-05-01,2017,Maio,Linha 1 - Azul,Santa Cruz,mdu,63
+2017-06-01,2017,Junho,Linha 1 - Azul,Santa Cruz,mdu,62
+2017-07-01,2017,Julho,Linha 1 - Azul,Santa Cruz,mdu,56
+2017-08-01,2017,Agosto,Linha 1 - Azul,Santa Cruz,mdu,61
+2017-09-01,2017,Setembro,Linha 1 - Azul,Santa Cruz,mdu,62
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Vila Mariana,mdu,22
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Vila Mariana,mdu,30
+2017-03-01,2017,Março,Linha 1 - Azul,Vila Mariana,mdu,34
+2017-04-01,2017,Abril,Linha 1 - Azul,Vila Mariana,mdu,34
+2017-05-01,2017,Maio,Linha 1 - Azul,Vila Mariana,mdu,34
+2017-06-01,2017,Junho,Linha 1 - Azul,Vila Mariana,mdu,31
+2017-07-01,2017,Julho,Linha 1 - Azul,Vila Mariana,mdu,24
+2017-08-01,2017,Agosto,Linha 1 - Azul,Vila Mariana,mdu,32
+2017-09-01,2017,Setembro,Linha 1 - Azul,Vila Mariana,mdu,33
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Ana Rosa,mdu,77
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Ana Rosa,mdu,85
+2017-03-01,2017,Março,Linha 1 - Azul,Ana Rosa,mdu,91
+2017-04-01,2017,Abril,Linha 1 - Azul,Ana Rosa,mdu,90
+2017-05-01,2017,Maio,Linha 1 - Azul,Ana Rosa,mdu,90
+2017-06-01,2017,Junho,Linha 1 - Azul,Ana Rosa,mdu,87
+2017-07-01,2017,Julho,Linha 1 - Azul,Ana Rosa,mdu,78
+2017-08-01,2017,Agosto,Linha 1 - Azul,Ana Rosa,mdu,89
+2017-09-01,2017,Setembro,Linha 1 - Azul,Ana Rosa,mdu,91
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Paraíso,mdu,94
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Paraíso,mdu,109
+2017-03-01,2017,Março,Linha 1 - Azul,Paraíso,mdu,117
+2017-04-01,2017,Abril,Linha 1 - Azul,Paraíso,mdu,117
+2017-05-01,2017,Maio,Linha 1 - Azul,Paraíso,mdu,115
+2017-06-01,2017,Junho,Linha 1 - Azul,Paraíso,mdu,111
+2017-07-01,2017,Julho,Linha 1 - Azul,Paraíso,mdu,101
+2017-08-01,2017,Agosto,Linha 1 - Azul,Paraíso,mdu,114
+2017-09-01,2017,Setembro,Linha 1 - Azul,Paraíso,mdu,117
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Vergueiro,mdu,26
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Vergueiro,mdu,32
+2017-03-01,2017,Março,Linha 1 - Azul,Vergueiro,mdu,34
+2017-04-01,2017,Abril,Linha 1 - Azul,Vergueiro,mdu,34
+2017-05-01,2017,Maio,Linha 1 - Azul,Vergueiro,mdu,34
+2017-06-01,2017,Junho,Linha 1 - Azul,Vergueiro,mdu,32
+2017-07-01,2017,Julho,Linha 1 - Azul,Vergueiro,mdu,29
+2017-08-01,2017,Agosto,Linha 1 - Azul,Vergueiro,mdu,34
+2017-09-01,2017,Setembro,Linha 1 - Azul,Vergueiro,mdu,34
+2017-01-01,2017,Janeiro,Linha 1 - Azul,São Joaquim,mdu,24
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,São Joaquim,mdu,38
+2017-03-01,2017,Março,Linha 1 - Azul,São Joaquim,mdu,57
+2017-04-01,2017,Abril,Linha 1 - Azul,São Joaquim,mdu,58
+2017-05-01,2017,Maio,Linha 1 - Azul,São Joaquim,mdu,57
+2017-06-01,2017,Junho,Linha 1 - Azul,São Joaquim,mdu,45
+2017-07-01,2017,Julho,Linha 1 - Azul,São Joaquim,mdu,26
+2017-08-01,2017,Agosto,Linha 1 - Azul,São Joaquim,mdu,51
+2017-09-01,2017,Setembro,Linha 1 - Azul,São Joaquim,mdu,55
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Liberdade,mdu,24
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Liberdade,mdu,29
+2017-03-01,2017,Março,Linha 1 - Azul,Liberdade,mdu,31
+2017-04-01,2017,Abril,Linha 1 - Azul,Liberdade,mdu,31
+2017-05-01,2017,Maio,Linha 1 - Azul,Liberdade,mdu,31
+2017-06-01,2017,Junho,Linha 1 - Azul,Liberdade,mdu,28
+2017-07-01,2017,Julho,Linha 1 - Azul,Liberdade,mdu,26
+2017-08-01,2017,Agosto,Linha 1 - Azul,Liberdade,mdu,29
+2017-09-01,2017,Setembro,Linha 1 - Azul,Liberdade,mdu,30
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Sé,mdu,201
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Sé,mdu,245
+2017-03-01,2017,Março,Linha 1 - Azul,Sé,mdu,259
+2017-04-01,2017,Abril,Linha 1 - Azul,Sé,mdu,258
+2017-05-01,2017,Maio,Linha 1 - Azul,Sé,mdu,254
+2017-06-01,2017,Junho,Linha 1 - Azul,Sé,mdu,247
+2017-07-01,2017,Julho,Linha 1 - Azul,Sé,mdu,229
+2017-08-01,2017,Agosto,Linha 1 - Azul,Sé,mdu,248
+2017-09-01,2017,Setembro,Linha 1 - Azul,Sé,mdu,255
+2017-01-01,2017,Janeiro,Linha 1 - Azul,São Bento,mdu,69
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,São Bento,mdu,76
+2017-03-01,2017,Março,Linha 1 - Azul,São Bento,mdu,74
+2017-04-01,2017,Abril,Linha 1 - Azul,São Bento,mdu,74
+2017-05-01,2017,Maio,Linha 1 - Azul,São Bento,mdu,74
+2017-06-01,2017,Junho,Linha 1 - Azul,São Bento,mdu,75
+2017-07-01,2017,Julho,Linha 1 - Azul,São Bento,mdu,76
+2017-08-01,2017,Agosto,Linha 1 - Azul,São Bento,mdu,72
+2017-09-01,2017,Setembro,Linha 1 - Azul,São Bento,mdu,74
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Luz,mdu,143
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Luz,mdu,166
+2017-03-01,2017,Março,Linha 1 - Azul,Luz,mdu,172
+2017-04-01,2017,Abril,Linha 1 - Azul,Luz,mdu,173
+2017-05-01,2017,Maio,Linha 1 - Azul,Luz,mdu,171
+2017-06-01,2017,Junho,Linha 1 - Azul,Luz,mdu,166
+2017-07-01,2017,Julho,Linha 1 - Azul,Luz,mdu,156
+2017-08-01,2017,Agosto,Linha 1 - Azul,Luz,mdu,165
+2017-09-01,2017,Setembro,Linha 1 - Azul,Luz,mdu,172
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Tiradentes,mdu,12
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Tiradentes,mdu,18
+2017-03-01,2017,Março,Linha 1 - Azul,Tiradentes,mdu,19
+2017-04-01,2017,Abril,Linha 1 - Azul,Tiradentes,mdu,20
+2017-05-01,2017,Maio,Linha 1 - Azul,Tiradentes,mdu,19
+2017-06-01,2017,Junho,Linha 1 - Azul,Tiradentes,mdu,18
+2017-07-01,2017,Julho,Linha 1 - Azul,Tiradentes,mdu,14
+2017-08-01,2017,Agosto,Linha 1 - Azul,Tiradentes,mdu,19
+2017-09-01,2017,Setembro,Linha 1 - Azul,Tiradentes,mdu,19
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Armênia,mdu,27
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Armênia,mdu,31
+2017-03-01,2017,Março,Linha 1 - Azul,Armênia,mdu,32
+2017-04-01,2017,Abril,Linha 1 - Azul,Armênia,mdu,32
+2017-05-01,2017,Maio,Linha 1 - Azul,Armênia,mdu,31
+2017-06-01,2017,Junho,Linha 1 - Azul,Armênia,mdu,31
+2017-07-01,2017,Julho,Linha 1 - Azul,Armênia,mdu,28
+2017-08-01,2017,Agosto,Linha 1 - Azul,Armênia,mdu,31
+2017-09-01,2017,Setembro,Linha 1 - Azul,Armênia,mdu,31
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,59
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Portuguesa-Tietê,mdu,63
+2017-03-01,2017,Março,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2017-04-01,2017,Abril,Linha 1 - Azul,Portuguesa-Tietê,mdu,66
+2017-05-01,2017,Maio,Linha 1 - Azul,Portuguesa-Tietê,mdu,63
+2017-06-01,2017,Junho,Linha 1 - Azul,Portuguesa-Tietê,mdu,62
+2017-07-01,2017,Julho,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2017-08-01,2017,Agosto,Linha 1 - Azul,Portuguesa-Tietê,mdu,61
+2017-09-01,2017,Setembro,Linha 1 - Azul,Portuguesa-Tietê,mdu,66
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Carandiru,mdu,12
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Carandiru,mdu,15
+2017-03-01,2017,Março,Linha 1 - Azul,Carandiru,mdu,15
+2017-04-01,2017,Abril,Linha 1 - Azul,Carandiru,mdu,15
+2017-05-01,2017,Maio,Linha 1 - Azul,Carandiru,mdu,15
+2017-06-01,2017,Junho,Linha 1 - Azul,Carandiru,mdu,15
+2017-07-01,2017,Julho,Linha 1 - Azul,Carandiru,mdu,13
+2017-08-01,2017,Agosto,Linha 1 - Azul,Carandiru,mdu,15
+2017-09-01,2017,Setembro,Linha 1 - Azul,Carandiru,mdu,16
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Santana,mdu,55
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Santana,mdu,65
+2017-03-01,2017,Março,Linha 1 - Azul,Santana,mdu,68
+2017-04-01,2017,Abril,Linha 1 - Azul,Santana,mdu,69
+2017-05-01,2017,Maio,Linha 1 - Azul,Santana,mdu,67
+2017-06-01,2017,Junho,Linha 1 - Azul,Santana,mdu,66
+2017-07-01,2017,Julho,Linha 1 - Azul,Santana,mdu,60
+2017-08-01,2017,Agosto,Linha 1 - Azul,Santana,mdu,66
+2017-09-01,2017,Setembro,Linha 1 - Azul,Santana,mdu,68
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,12
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-03-01,2017,Março,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,16
+2017-04-01,2017,Abril,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-05-01,2017,Maio,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-06-01,2017,Junho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-07-01,2017,Julho,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,13
+2017-08-01,2017,Agosto,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-09-01,2017,Setembro,Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,mdu,15
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Parada Inglesa,mdu,14
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-03-01,2017,Março,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-04-01,2017,Abril,Linha 1 - Azul,Parada Inglesa,mdu,18
+2017-05-01,2017,Maio,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-06-01,2017,Junho,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-07-01,2017,Julho,Linha 1 - Azul,Parada Inglesa,mdu,15
+2017-08-01,2017,Agosto,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-09-01,2017,Setembro,Linha 1 - Azul,Parada Inglesa,mdu,17
+2017-01-01,2017,Janeiro,Linha 1 - Azul,Tucuruvi,mdu,59
+2017-02-01,2017,Fevereiro,Linha 1 - Azul,Tucuruvi,mdu,68
+2017-03-01,2017,Março,Linha 1 - Azul,Tucuruvi,mdu,71
+2017-04-01,2017,Abril,Linha 1 - Azul,Tucuruvi,mdu,72
+2017-05-01,2017,Maio,Linha 1 - Azul,Tucuruvi,mdu,70
+2017-06-01,2017,Junho,Linha 1 - Azul,Tucuruvi,mdu,69
+2017-07-01,2017,Julho,Linha 1 - Azul,Tucuruvi,mdu,64
+2017-08-01,2017,Agosto,Linha 1 - Azul,Tucuruvi,mdu,69
+2017-09-01,2017,Setembro,Linha 1 - Azul,Tucuruvi,mdu,71
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Vila Prudente,mdu,41
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Vila Prudente,mdu,49
+2017-03-01,2017,Março,Linha 2 - Verde,Vila Prudente,mdu,52
+2017-04-01,2017,Abril,Linha 2 - Verde,Vila Prudente,mdu,52
+2017-05-01,2017,Maio,Linha 2 - Verde,Vila Prudente,mdu,53
+2017-06-01,2017,Junho,Linha 2 - Verde,Vila Prudente,mdu,51
+2017-07-01,2017,Julho,Linha 2 - Verde,Vila Prudente,mdu,46
+2017-08-01,2017,Agosto,Linha 2 - Verde,Vila Prudente,mdu,53
+2017-09-01,2017,Setembro,Linha 2 - Verde,Vila Prudente,mdu,55
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Tamanduateí,mdu,51
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Tamanduateí,mdu,61
+2017-03-01,2017,Março,Linha 2 - Verde,Tamanduateí,mdu,66
+2017-04-01,2017,Abril,Linha 2 - Verde,Tamanduateí,mdu,64
+2017-05-01,2017,Maio,Linha 2 - Verde,Tamanduateí,mdu,65
+2017-06-01,2017,Junho,Linha 2 - Verde,Tamanduateí,mdu,59
+2017-07-01,2017,Julho,Linha 2 - Verde,Tamanduateí,mdu,57
+2017-08-01,2017,Agosto,Linha 2 - Verde,Tamanduateí,mdu,64
+2017-09-01,2017,Setembro,Linha 2 - Verde,Tamanduateí,mdu,67
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Sacomã,mdu,33
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Sacomã,mdu,39
+2017-03-01,2017,Março,Linha 2 - Verde,Sacomã,mdu,41
+2017-04-01,2017,Abril,Linha 2 - Verde,Sacomã,mdu,42
+2017-05-01,2017,Maio,Linha 2 - Verde,Sacomã,mdu,40
+2017-06-01,2017,Junho,Linha 2 - Verde,Sacomã,mdu,40
+2017-07-01,2017,Julho,Linha 2 - Verde,Sacomã,mdu,36
+2017-08-01,2017,Agosto,Linha 2 - Verde,Sacomã,mdu,40
+2017-09-01,2017,Setembro,Linha 2 - Verde,Sacomã,mdu,41
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Alto do Ipiranga,mdu,16
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Alto do Ipiranga,mdu,20
+2017-03-01,2017,Março,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-04-01,2017,Abril,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-05-01,2017,Maio,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-06-01,2017,Junho,Linha 2 - Verde,Alto do Ipiranga,mdu,20
+2017-07-01,2017,Julho,Linha 2 - Verde,Alto do Ipiranga,mdu,17
+2017-08-01,2017,Agosto,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-09-01,2017,Setembro,Linha 2 - Verde,Alto do Ipiranga,mdu,21
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Santos-Imigrantes,mdu,13
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-03-01,2017,Março,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-04-01,2017,Abril,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-05-01,2017,Maio,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-06-01,2017,Junho,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-07-01,2017,Julho,Linha 2 - Verde,Santos-Imigrantes,mdu,14
+2017-08-01,2017,Agosto,Linha 2 - Verde,Santos-Imigrantes,mdu,15
+2017-09-01,2017,Setembro,Linha 2 - Verde,Santos-Imigrantes,mdu,16
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Chácara Klabin,mdu,6
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-03-01,2017,Março,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-04-01,2017,Abril,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-05-01,2017,Maio,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-06-01,2017,Junho,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-07-01,2017,Julho,Linha 2 - Verde,Chácara Klabin,mdu,6
+2017-08-01,2017,Agosto,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-09-01,2017,Setembro,Linha 2 - Verde,Chácara Klabin,mdu,7
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Ana Rosa,mdu,66
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Ana Rosa,mdu,79
+2017-03-01,2017,Março,Linha 2 - Verde,Ana Rosa,mdu,84
+2017-04-01,2017,Abril,Linha 2 - Verde,Ana Rosa,mdu,85
+2017-05-01,2017,Maio,Linha 2 - Verde,Ana Rosa,mdu,84
+2017-06-01,2017,Junho,Linha 2 - Verde,Ana Rosa,mdu,80
+2017-07-01,2017,Julho,Linha 2 - Verde,Ana Rosa,mdu,72
+2017-08-01,2017,Agosto,Linha 2 - Verde,Ana Rosa,mdu,81
+2017-09-01,2017,Setembro,Linha 2 - Verde,Ana Rosa,mdu,84
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Paraíso,mdu,62
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Paraíso,mdu,72
+2017-03-01,2017,Março,Linha 2 - Verde,Paraíso,mdu,77
+2017-04-01,2017,Abril,Linha 2 - Verde,Paraíso,mdu,77
+2017-05-01,2017,Maio,Linha 2 - Verde,Paraíso,mdu,76
+2017-06-01,2017,Junho,Linha 2 - Verde,Paraíso,mdu,73
+2017-07-01,2017,Julho,Linha 2 - Verde,Paraíso,mdu,67
+2017-08-01,2017,Agosto,Linha 2 - Verde,Paraíso,mdu,74
+2017-09-01,2017,Setembro,Linha 2 - Verde,Paraíso,mdu,76
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Brigadeiro,mdu,50
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Brigadeiro,mdu,58
+2017-03-01,2017,Março,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-04-01,2017,Abril,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-05-01,2017,Maio,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-06-01,2017,Junho,Linha 2 - Verde,Brigadeiro,mdu,59
+2017-07-01,2017,Julho,Linha 2 - Verde,Brigadeiro,mdu,55
+2017-08-01,2017,Agosto,Linha 2 - Verde,Brigadeiro,mdu,59
+2017-09-01,2017,Setembro,Linha 2 - Verde,Brigadeiro,mdu,60
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Trianon-Masp,mdu,46
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Trianon-Masp,mdu,53
+2017-03-01,2017,Março,Linha 2 - Verde,Trianon-Masp,mdu,55
+2017-04-01,2017,Abril,Linha 2 - Verde,Trianon-Masp,mdu,55
+2017-05-01,2017,Maio,Linha 2 - Verde,Trianon-Masp,mdu,54
+2017-06-01,2017,Junho,Linha 2 - Verde,Trianon-Masp,mdu,54
+2017-07-01,2017,Julho,Linha 2 - Verde,Trianon-Masp,mdu,50
+2017-08-01,2017,Agosto,Linha 2 - Verde,Trianon-Masp,mdu,55
+2017-09-01,2017,Setembro,Linha 2 - Verde,Trianon-Masp,mdu,56
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Consolação,mdu,114
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Consolação,mdu,134
+2017-03-01,2017,Março,Linha 2 - Verde,Consolação,mdu,146
+2017-04-01,2017,Abril,Linha 2 - Verde,Consolação,mdu,144
+2017-05-01,2017,Maio,Linha 2 - Verde,Consolação,mdu,142
+2017-06-01,2017,Junho,Linha 2 - Verde,Consolação,mdu,140
+2017-07-01,2017,Julho,Linha 2 - Verde,Consolação,mdu,128
+2017-08-01,2017,Agosto,Linha 2 - Verde,Consolação,mdu,142
+2017-09-01,2017,Setembro,Linha 2 - Verde,Consolação,mdu,144
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Clínicas,mdu,25
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Clínicas,mdu,30
+2017-03-01,2017,Março,Linha 2 - Verde,Clínicas,mdu,31
+2017-04-01,2017,Abril,Linha 2 - Verde,Clínicas,mdu,32
+2017-05-01,2017,Maio,Linha 2 - Verde,Clínicas,mdu,31
+2017-06-01,2017,Junho,Linha 2 - Verde,Clínicas,mdu,30
+2017-07-01,2017,Julho,Linha 2 - Verde,Clínicas,mdu,27
+2017-08-01,2017,Agosto,Linha 2 - Verde,Clínicas,mdu,30
+2017-09-01,2017,Setembro,Linha 2 - Verde,Clínicas,mdu,30
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,11
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2017-03-01,2017,Março,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-04-01,2017,Abril,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-05-01,2017,Maio,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-06-01,2017,Junho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2017-07-01,2017,Julho,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,12
+2017-08-01,2017,Agosto,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,14
+2017-09-01,2017,Setembro,Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,mdu,15
+2017-01-01,2017,Janeiro,Linha 2 - Verde,Vila Madalena,mdu,21
+2017-02-01,2017,Fevereiro,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-03-01,2017,Março,Linha 2 - Verde,Vila Madalena,mdu,28
+2017-04-01,2017,Abril,Linha 2 - Verde,Vila Madalena,mdu,28
+2017-05-01,2017,Maio,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-06-01,2017,Junho,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-07-01,2017,Julho,Linha 2 - Verde,Vila Madalena,mdu,24
+2017-08-01,2017,Agosto,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-09-01,2017,Setembro,Linha 2 - Verde,Vila Madalena,mdu,27
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,89
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2017-03-01,2017,Março,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,105
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,104
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,101
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,99
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,90
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,97
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Corinthians-Itaquera,mdu,101
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Artur Alvim,mdu,60
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Artur Alvim,mdu,67
+2017-03-01,2017,Março,Linha 3 - Vermelha,Artur Alvim,mdu,71
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Artur Alvim,mdu,72
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Artur Alvim,mdu,64
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Artur Alvim,mdu,69
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Artur Alvim,mdu,70
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Patriarca,mdu,22
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Patriarca,mdu,25
+2017-03-01,2017,Março,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Patriarca,mdu,25
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Patriarca,mdu,23
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Patriarca,mdu,25
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Patriarca,mdu,26
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,22
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2017-03-01,2017,Março,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,24
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,26
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Guilhermina-Esperança,mdu,27
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Vila Matilde,mdu,26
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Vila Matilde,mdu,30
+2017-03-01,2017,Março,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Vila Matilde,mdu,32
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Vila Matilde,mdu,28
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Vila Matilde,mdu,31
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Penha,mdu,33
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Penha,mdu,38
+2017-03-01,2017,Março,Linha 3 - Vermelha,Penha,mdu,40
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Penha,mdu,40
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Penha,mdu,39
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Penha,mdu,39
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Penha,mdu,35
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Penha,mdu,39
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Penha,mdu,40
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Carrão,mdu,42
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Carrão,mdu,56
+2017-03-01,2017,Março,Linha 3 - Vermelha,Carrão,mdu,63
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Carrão,mdu,63
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Carrão,mdu,62
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Carrão,mdu,54
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Carrão,mdu,46
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Carrão,mdu,59
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Carrão,mdu,62
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Tatuapé,mdu,82
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Tatuapé,mdu,92
+2017-03-01,2017,Março,Linha 3 - Vermelha,Tatuapé,mdu,96
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Tatuapé,mdu,96
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Tatuapé,mdu,94
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Tatuapé,mdu,93
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Tatuapé,mdu,87
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Tatuapé,mdu,92
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Tatuapé,mdu,93
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Belém,mdu,40
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Belém,mdu,48
+2017-03-01,2017,Março,Linha 3 - Vermelha,Belém,mdu,50
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Belém,mdu,50
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Belém,mdu,49
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Belém,mdu,47
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Belém,mdu,42
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Belém,mdu,48
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Belém,mdu,50
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,30
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Bresser-Moóca,mdu,41
+2017-03-01,2017,Março,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Bresser-Moóca,mdu,46
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Bresser-Moóca,mdu,42
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Bresser-Moóca,mdu,32
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Bresser-Moóca,mdu,43
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Bresser-Moóca,mdu,47
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Brás,mdu,87
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Brás,mdu,94
+2017-03-01,2017,Março,Linha 3 - Vermelha,Brás,mdu,96
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Brás,mdu,96
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Brás,mdu,97
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Brás,mdu,95
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Brás,mdu,93
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Brás,mdu,95
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Brás,mdu,98
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Pedro II,mdu,24
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Pedro II,mdu,26
+2017-03-01,2017,Março,Linha 3 - Vermelha,Pedro II,mdu,26
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Pedro II,mdu,27
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Pedro II,mdu,26
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Pedro II,mdu,26
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Pedro II,mdu,25
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Pedro II,mdu,26
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Pedro II,mdu,27
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Sé,mdu,232
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Sé,mdu,263
+2017-03-01,2017,Março,Linha 3 - Vermelha,Sé,mdu,279
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Sé,mdu,280
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Sé,mdu,276
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Sé,mdu,266
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Sé,mdu,245
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Sé,mdu,268
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Sé,mdu,277
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Anhangabaú,mdu,70
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Anhangabaú,mdu,76
+2017-03-01,2017,Março,Linha 3 - Vermelha,Anhangabaú,mdu,81
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Anhangabaú,mdu,80
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Anhangabaú,mdu,79
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Anhangabaú,mdu,79
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Anhangabaú,mdu,74
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Anhangabaú,mdu,78
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Anhangabaú,mdu,80
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,República,mdu,129
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,República,mdu,140
+2017-03-01,2017,Março,Linha 3 - Vermelha,República,mdu,150
+2017-04-01,2017,Abril,Linha 3 - Vermelha,República,mdu,151
+2017-05-01,2017,Maio,Linha 3 - Vermelha,República,mdu,148
+2017-06-01,2017,Junho,Linha 3 - Vermelha,República,mdu,147
+2017-07-01,2017,Julho,Linha 3 - Vermelha,República,mdu,138
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,República,mdu,147
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,República,mdu,150
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Santa Cecília,mdu,29
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Santa Cecília,mdu,36
+2017-03-01,2017,Março,Linha 3 - Vermelha,Santa Cecília,mdu,37
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Santa Cecília,mdu,38
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Santa Cecília,mdu,37
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Santa Cecília,mdu,35
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Santa Cecília,mdu,31
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Santa Cecília,mdu,36
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Santa Cecília,mdu,37
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,32
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2017-03-01,2017,Março,Linha 3 - Vermelha,Marechal Deodoro,mdu,40
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Marechal Deodoro,mdu,40
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Marechal Deodoro,mdu,35
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Marechal Deodoro,mdu,38
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Marechal Deodoro,mdu,39
+2017-01-01,2017,Janeiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,178
+2017-02-01,2017,Fevereiro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,198
+2017-03-01,2017,Março,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,209
+2017-04-01,2017,Abril,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,208
+2017-05-01,2017,Maio,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,204
+2017-06-01,2017,Junho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,194
+2017-07-01,2017,Julho,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,180
+2017-08-01,2017,Agosto,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,198
+2017-09-01,2017,Setembro,Linha 3 - Vermelha,Palmeiras-Barra Funda,mdu,202
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Capão Redondo,mdu,59
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Capão Redondo,mdu,68
+2017-03-01,2017,Março,Linha 5 - Lilás,Capão Redondo,mdu,71
+2017-04-01,2017,Abril,Linha 5 - Lilás,Capão Redondo,mdu,71
+2017-05-01,2017,Maio,Linha 5 - Lilás,Capão Redondo,mdu,67
+2017-06-01,2017,Junho,Linha 5 - Lilás,Capão Redondo,mdu,68
+2017-07-01,2017,Julho,Linha 5 - Lilás,Capão Redondo,mdu,62
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Capão Redondo,mdu,68
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Capão Redondo,mdu,68
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Campo Limpo,mdu,27
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Campo Limpo,mdu,30
+2017-03-01,2017,Março,Linha 5 - Lilás,Campo Limpo,mdu,32
+2017-04-01,2017,Abril,Linha 5 - Lilás,Campo Limpo,mdu,31
+2017-05-01,2017,Maio,Linha 5 - Lilás,Campo Limpo,mdu,29
+2017-06-01,2017,Junho,Linha 5 - Lilás,Campo Limpo,mdu,30
+2017-07-01,2017,Julho,Linha 5 - Lilás,Campo Limpo,mdu,27
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Campo Limpo,mdu,30
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Campo Limpo,mdu,30
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Vila das Belezas,mdu,8
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-03-01,2017,Março,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-04-01,2017,Abril,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-05-01,2017,Maio,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-06-01,2017,Junho,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-07-01,2017,Julho,Linha 5 - Lilás,Vila das Belezas,mdu,9
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Vila das Belezas,mdu,10
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Giovanni Gronchi,mdu,18
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-03-01,2017,Março,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-04-01,2017,Abril,Linha 5 - Lilás,Giovanni Gronchi,mdu,22
+2017-05-01,2017,Maio,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-06-01,2017,Junho,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-07-01,2017,Julho,Linha 5 - Lilás,Giovanni Gronchi,mdu,18
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Giovanni Gronchi,mdu,20
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Giovanni Gronchi,mdu,21
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Santo Amaro,mdu,73
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Santo Amaro,mdu,82
+2017-03-01,2017,Março,Linha 5 - Lilás,Santo Amaro,mdu,85
+2017-04-01,2017,Abril,Linha 5 - Lilás,Santo Amaro,mdu,85
+2017-05-01,2017,Maio,Linha 5 - Lilás,Santo Amaro,mdu,82
+2017-06-01,2017,Junho,Linha 5 - Lilás,Santo Amaro,mdu,82
+2017-07-01,2017,Julho,Linha 5 - Lilás,Santo Amaro,mdu,77
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Santo Amaro,mdu,82
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Santo Amaro,mdu,85
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Largo Treze,mdu,25
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Largo Treze,mdu,32
+2017-03-01,2017,Março,Linha 5 - Lilás,Largo Treze,mdu,33
+2017-04-01,2017,Abril,Linha 5 - Lilás,Largo Treze,mdu,34
+2017-05-01,2017,Maio,Linha 5 - Lilás,Largo Treze,mdu,32
+2017-06-01,2017,Junho,Linha 5 - Lilás,Largo Treze,mdu,29
+2017-07-01,2017,Julho,Linha 5 - Lilás,Largo Treze,mdu,25
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Largo Treze,mdu,30
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Largo Treze,mdu,32
+2017-01-01,2017,Janeiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,8
+2017-02-01,2017,Fevereiro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,10
+2017-03-01,2017,Março,Linha 5 - Lilás,Adolfo Pinheiro,mdu,11
+2017-04-01,2017,Abril,Linha 5 - Lilás,Adolfo Pinheiro,mdu,12
+2017-05-01,2017,Maio,Linha 5 - Lilás,Adolfo Pinheiro,mdu,11
+2017-06-01,2017,Junho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,11
+2017-07-01,2017,Julho,Linha 5 - Lilás,Adolfo Pinheiro,mdu,9
+2017-08-01,2017,Agosto,Linha 5 - Lilás,Adolfo Pinheiro,mdu,12
+2017-09-01,2017,Setembro,Linha 5 - Lilás,Adolfo Pinheiro,mdu,13
+2017-01-01,2017,Janeiro,Linha 15 - Prata,Vila Prudente,mdu,9
+2017-02-01,2017,Fevereiro,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-03-01,2017,Março,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-04-01,2017,Abril,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-05-01,2017,Maio,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-06-01,2017,Junho,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-07-01,2017,Julho,Linha 15 - Prata,Vila Prudente,mdu,9
+2017-08-01,2017,Agosto,Linha 15 - Prata,Vila Prudente,mdu,10
+2017-09-01,2017,Setembro,Linha 15 - Prata,Vila Prudente,mdu,11
+2017-01-01,2017,Janeiro,Linha 15 - Prata,Oratório,mdu,6
+2017-02-01,2017,Fevereiro,Linha 15 - Prata,Oratório,mdu,8
+2017-03-01,2017,Março,Linha 15 - Prata,Oratório,mdu,7
+2017-04-01,2017,Abril,Linha 15 - Prata,Oratório,mdu,7
+2017-05-01,2017,Maio,Linha 15 - Prata,Oratório,mdu,7
+2017-06-01,2017,Junho,Linha 15 - Prata,Oratório,mdu,9
+2017-07-01,2017,Julho,Linha 15 - Prata,Oratório,mdu,8
+2017-08-01,2017,Agosto,Linha 15 - Prata,Oratório,mdu,9
+2017-09-01,2017,Setembro,Linha 15 - Prata,Oratório,mdu,9
 2017-10-01,2017,Outubro,Linha 1 - Azul,Jabaquara,mdu,92
 2017-10-01,2017,Outubro,Linha 1 - Azul,Conceição,mdu,41
 2017-10-01,2017,Outubro,Linha 1 - Azul,São Judas,mdu,21
