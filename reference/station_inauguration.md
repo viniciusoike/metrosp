@@ -68,15 +68,14 @@ Paulo, ViaQuatro, ViaMobilidade).
 
 ## Details
 
-The table is assembled by `data-raw/build_station_inauguration.R` from
-`data-raw/station_inauguration.csv`. To extend the table or verify
-uncertain dates, edit the CSV (setting `verified = TRUE` once
-cross-checked) and re-run the build script.
+The table is compiled by hand from `data-raw/station_inauguration.csv`
+in the package repository. Contributions that extend the table or verify
+uncertain dates are welcome.
 
-Suggested use: when computing pre/post comparisons (e.g.\\
-12m-vs-prior-12m or recovery-vs-2019), exclude stations where either
-window overlaps `ramp_up_end` to avoid mistaking ramp-up growth for
-organic demand change.
+When computing pre/post comparisons (e.g.\\ 12m-vs-prior-12m or
+recovery-vs-2019), exclude stations where either window overlaps
+`ramp_up_end` to avoid mistaking ramp-up growth for organic demand
+change.
 
 ## See also
 

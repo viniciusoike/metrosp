@@ -8,10 +8,20 @@
   Metro and Train Line Routes
 - [`metro_colors`](https://viniciusoike.github.io/metrosp/reference/metro_colors.md)
   : Metro SP Official Line Colors
+- [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
+  : Delete cached datasets
+- [`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md)
+  : Where metrosp stores downloaded data
+- [`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md)
+  : Allow metrosp to cache data across sessions
+- [`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
+  : List cached datasets
 - [`passengers_entrance`](https://viniciusoike.github.io/metrosp/reference/passengers_entrance.md)
   : Passengers Entering Metro SP Stations by Line
 - [`passengers_transported`](https://viniciusoike.github.io/metrosp/reference/passengers_transported.md)
   : Passengers Transported by Metro SP Line
+- [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+  : Read Metro SP demand data
 - [`station_averages`](https://viniciusoike.github.io/metrosp/reference/station_averages.md)
   : Average Weekday Passenger Entries by Station
 - [`station_daily`](https://viniciusoike.github.io/metrosp/reference/station_daily.md)

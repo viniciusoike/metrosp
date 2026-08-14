@@ -1,10 +1,11 @@
 # Passengers Entering Metro SP Stations by Line
 
 Monthly count of passengers entering São Paulo metro stations,
-aggregated by metro line. Data covers October 2017 through 2026 for
-Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from October
-2017. Sourced from the METRO SP transparency portal and the Insper
-Dataverse.
+aggregated by metro line. Data covers January 2016 through 2026 for
+Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from January
+2016. July 2017 is the one missing month, absent for every line the
+METRO portal covers. Sourced from the METRO SP transparency portal and
+the Insper Dataverse.
 
 ## Usage
 
@@ -32,7 +33,7 @@ A data frame with the following columns:
 
 - value:
 
-  Passenger count (numeric).
+  Passenger count, in individual passengers (numeric).
 
 - metric:
 
@@ -67,16 +68,24 @@ Companhia do Metropolitano de São Paulo (METRO SP).
 
 Data by source and line:
 
-- Lines 1, 2, 3, and 15: METRO SP transparency portal, October
-  2017–2026.
+- Lines 1, 2, 3, and 15: METRO SP transparency portal, January
+  2016–2026, except July 2017.
 
 - Line 4 (Amarela/ViaQuatro): Insper Dataverse, January 2012–2026.
 
-- Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal, October
-  2017–July 2018; Insper Dataverse, August 2018–2026.
+- Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal, January
+  2016–July 2018, except July 2017; Insper Dataverse, August 2018–2026.
 
 - Network total (`line_number = 99`): METRO SP transparency portal only;
   may not be available for all years.
+
+METRO published January–September 2017 only as PDFs, with no
+machine-readable equivalent. Those months were transcribed from the
+reports and reconciled against the printed line and network totals. July
+2017 has no entrance table at all, because the file METRO published
+under that name repeats the transported figures. Lines 1, 2, 3, 5, and
+15 therefore carry no value for that month; Line 4 comes from the
+Dataverse and is unaffected.
 
 Metrics:
 
@@ -98,8 +107,9 @@ preserved.
 
 This dataset is a fixed snapshot, current through June 2026. It ships
 with the package so examples, vignettes, and offline analysis always
-have data to hand, and it is regenerated only when the column schema
-changes – not when new months are published upstream.
+have data to hand. The snapshot moves only when the column schema
+changes or a release deliberately carries new data, not when new months
+are published upstream.
 
 METRO SP publishes on an irregular schedule and revises
 already-published years, so the numbers here will drift from the source

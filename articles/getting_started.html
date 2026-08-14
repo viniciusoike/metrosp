@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,8 @@
 
     <section class="section level2"><h2 id="metrosp">metrosp<a class="anchor" aria-label="anchor" href="#metrosp"></a>
 </h2>
-<p>The <code>metrosp</code> package provides access to the <a href="https://transparencia.metrosp.com.br/" class="external-link">Metro de São Paulo</a> public transportation data. Since the data is not updated regularly and the datasets are rather compact, this package distributes the data in a “lazy” format. This means that all data comes prepackaged and is called directly, without needing to download or import the raw data.</p>
+<p>The <code>metrosp</code> package provides access to the <a href="https://transparencia.metrosp.com.br/" class="external-link">Metro de São Paulo</a> public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a “lazy” format. All data comes prepackaged and is called directly, with no download or import step.</p>
+<p>The bundled data is a fixed snapshot, current through June 2026. Data newer than the snapshot is published to the <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
@@ -88,11 +89,11 @@
 <p>There are four main datasets:</p>
 <ul>
 <li>
-<code>passengers_entrance</code>: daily passengers entering the metro system</li>
+<code>passengers_entrance</code>: monthly passengers entering the metro system, by line</li>
 <li>
-<code>passengers_transported</code>: daily passengers transported by the metro system</li>
+<code>passengers_transported</code>: monthly passengers transported by the metro system, by line</li>
 <li>
-<code>station_averages</code>: daily average passengers per station</li>
+<code>station_averages</code>: monthly average of weekday passengers per station</li>
 <li>
 <code>station_daily</code>: daily passengers per station</li>
 </ul>
@@ -131,7 +132,7 @@
 <span><span class="co">#&gt; 9  LINESTRING (-46.7015 -23.54...</span></span>
 <span><span class="co">#&gt; 10 LINESTRING (-46.46899 -23.5...</span></span></code></pre></div>
 </div>
-<p>Finally, the package also provides a named vector of colors for each line of the metro system (<code>metro_colors</code>).</p>
+<p>The package also provides a named vector of colors for each line of the metro system (<code>metro_colors</code>), station opening dates (<code>station_inauguration</code>), and a São Paulo holiday and business-day calendar (<code>calendar_spo</code>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">metro_colors</span></span>
@@ -142,12 +143,12 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 3,995</span></span>
+<span><span class="co">#&gt; Rows: 4,595</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
 <span><span class="co">#&gt; $ metric_abb   &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…</span></span>
-<span><span class="co">#&gt; $ value        &lt;dbl&gt; 48112.00, 4932.68, 19867.93, 9775.25, 2504294.00, 53328.0…</span></span>
+<span><span class="co">#&gt; $ value        &lt;dbl&gt; 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 1314…</span></span>
 <span><span class="co">#&gt; $ metric       &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Business …</span></span>
 <span><span class="co">#&gt; $ metric_pt    &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…</span></span>
@@ -182,7 +183,7 @@
 </div>
 <section class="level2"><h3 id="entrance-and-transported">Entrance and Transported<a class="anchor" aria-label="anchor" href="#entrance-and-transported"></a>
 </h3>
-<p>The <code>passengers_entrance</code> and <code>passengers_transported</code> datasets are both monthly passengers entering and transported by the metro system. The former is a daily count of passengers entering the metro system, while the latter is a daily count of passengers transported by the metro system.</p>
+<p>Both <code>passengers_entrance</code> and <code>passengers_transported</code> are monthly series by line. An entry is a passenger crossing a turnstile; a transported passenger is a turnstile entry plus a transfer between lines at an interchange station, so transported counts run above entry counts for the same line and month.</p>
 <p>The data is aggregated into metrics:</p>
 <ul>
 <li>
@@ -198,29 +199,29 @@
 </ul>
 <section class="level3"><h4 id="entrance">Entrance<a class="anchor" aria-label="anchor" href="#entrance"></a>
 </h4>
-<p>This dataset is identified by month (<code>date</code>), line (<code>line_number</code>, <code>line_name</code>), and metric (<code>metric_abb</code>, <code>metric</code>). The data is in tidy format.</p>
+<p>This dataset is identified by month (<code>date</code>), line (<code>line_number</code>, <code>line_name</code>), and metric (<code>metric_abb</code>, <code>metric</code>). The data is in tidy format and values are in <strong>individual passengers</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 3,995</span></span>
+<span><span class="co">#&gt; Rows: 4,595</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
 <span><span class="co">#&gt; $ metric_abb   &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…</span></span>
-<span><span class="co">#&gt; $ value        &lt;dbl&gt; 48112.00, 4932.68, 19867.93, 9775.25, 2504294.00, 53328.0…</span></span>
+<span><span class="co">#&gt; $ value        &lt;dbl&gt; 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 1314…</span></span>
 <span><span class="co">#&gt; $ metric       &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Business …</span></span>
 <span><span class="co">#&gt; $ metric_pt    &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…</span></span>
 <span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…</span></span>
 <span><span class="co">#&gt; $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…</span></span></code></pre></div>
 </div>
-<p>Note that a special line was defined to aggregate the total of the METRÔ system (<code>line_name = "METRO System"</code> or <code>line_num = 99</code>). For most uses, it’s best to filter out this line.</p>
+<p>Note that a special line was defined to aggregate the total of the METRÔ system (<code>line_name = "METRO System"</code> or <code>line_number = 99</code>). For most uses, it’s best to filter out this line.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">total_entrance</span> <span class="op">&lt;-</span> <span class="va">passengers_entrance</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric_abb</span> <span class="op">==</span> <span class="st">"total"</span>, <span class="va">line_name</span> <span class="op">!=</span> <span class="st">"METRO System"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric_abb</span> <span class="op">==</span> <span class="st">"total"</span>, <span class="va">line_number</span> <span class="op">!=</span> <span class="fl">99</span><span class="op">)</span></span></code></pre></div>
 </div>
-<p>The plot shows the total monthly passenger entrances by metro line. Note that the line-5 series is interrupted since the ownership of the line was transferred to ViaMobilidade in 2018.</p>
+<p>The plot shows the total monthly passenger entrances by metro line. Line 4 starts in 2012 and the other lines in January 2016. July 2017 is the one gap, a month METRO never published an entrance table for.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">total_entrance</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">line_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -244,29 +245,30 @@
 </div>
 </section><section class="level3"><h4 id="transported">Transported<a class="anchor" aria-label="anchor" href="#transported"></a>
 </h4>
-<p>This dataset is identified by month (<code>date</code>), line (<code>line_number</code>, <code>line_name</code>), and metric (<code>metric_abb</code>, <code>metric</code>). The data is in tidy format. It has the same columns as <code>passengers_entrance</code> and values are in <strong>individual passengers</strong>. Also, this dataset currently only includes data on the METRÔ operated system. In the future, this dataset may be expanded to include lines 4 and 5.</p>
+<p>This dataset has the same columns as <code>passengers_entrance</code>, but values are in <strong>thousands of passengers</strong>, as METRÔ publishes them. Multiply by 1000 before comparing the two datasets.</p>
+<p>Coverage is limited to the METRÔ-operated system. Line 4 never appears, and Line 5 stops in August 2018, when the line passed to ViaMobilidade: the Dataverse source that covers both lines does not publish transported counts.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_transported</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,680</span></span>
+<span><span class="co">#&gt; Rows: 3,310</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ date         &lt;date&gt; 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-01, 2017-10-…</span></span>
+<span><span class="co">#&gt; $ date         &lt;date&gt; 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …</span></span>
 <span><span class="co">#&gt; $ metric_abb   &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…</span></span>
-<span><span class="co">#&gt; $ value        &lt;dbl&gt; 1506, 422, 1432, 788, 35446, 718, 179, 696, 301, 16637, 1…</span></span>
+<span><span class="co">#&gt; $ value        &lt;dbl&gt; 1301, 453, 1202, 691, 29345, 622, 173, 574, 251, 13328, 1…</span></span>
 <span><span class="co">#&gt; $ metric       &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Business …</span></span>
 <span><span class="co">#&gt; $ metric_pt    &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Blue", "Blue", "Blue", "Blue", "Blue", "Green", "Green",…</span></span>
 <span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Azul", "Azul", "Azul", "Azul", "Azul", "Verde", "Verde",…</span></span>
-<span><span class="co">#&gt; $ year         &lt;dbl&gt; 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 201…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ year         &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 201…</span></span></code></pre></div>
 </div>
-<p>Note that a special line was defined to aggregate the total of the METRÔ system (<code>line_name = "METRO System"</code> or <code>line_num = 99</code>). For most uses, it’s best to filter out this line.</p>
+<p>Note that a special line was defined to aggregate the total of the METRÔ system (<code>line_name = "METRO System"</code> or <code>line_number = 99</code>). For most uses, it’s best to filter out this line.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">daily_avg</span> <span class="op">&lt;-</span> <span class="va">passengers_transported</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric_abb</span> <span class="op">==</span> <span class="st">"mdu"</span>, <span class="va">line_number</span> <span class="op">!=</span> <span class="fl">99</span><span class="op">)</span></span></code></pre></div>
 </div>
-<p>The plot below shows the daily average (business days) passenger transported by metro line.</p>
+<p>The plot below shows the daily average (business days) passengers transported by metro line. The Lilac panel stops in 2018, when Line 5 left the METRÔ reports.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">daily_avg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">line_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -294,7 +296,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_averages</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 9,872</span></span>
+<span><span class="co">#&gt; Rows: 11,216</span></span>
 <span><span class="co">#&gt; Columns: 7</span></span>
 <span><span class="co">#&gt; $ date          &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…</span></span>
 <span><span class="co">#&gt; $ line_number   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…</span></span>
@@ -328,7 +330,7 @@
 </div>
 </section><section class="level2"><h3 id="station-daily">Station Daily<a class="anchor" aria-label="anchor" href="#station-daily"></a>
 </h3>
-<p>This dataset is identified by day (<code>date</code>), line (<code>line_number</code>, <code>line_name</code>), and station (<code>station_name</code>). The only value column available is <code>passengers</code>, which is the daily number of passengers entering the station. Additionally, the column <code>station_code</code> contains three letter abbreviations for stations, but only for METRÔ operated lines.</p>
+<p>This dataset is identified by day (<code>date</code>), line (<code>line_number</code>, <code>line_name</code>), and station (<code>station_name</code>). The only value column available is <code>passengers</code>, which is the daily number of passengers entering the station. Additionally, the column <code>station_code</code> contains three-letter abbreviations for stations, but only for METRÔ-operated lines.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_daily</span><span class="op">)</span></span>

@@ -13,7 +13,7 @@ transparency portal)."><meta property="og:image" content="https://viniciusoike.g
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,7 +103,8 @@ source).</p></dd>
 (Jardim Colonial added), 2020–2026 (METRO SP portal).</p></li>
 </ul><p>Some stations appear on multiple lines (e.g., Ana Rosa on Lines 1 and 2,
 Paraíso on Lines 1 and 2, Sé on Lines 1 and 3). These are recorded
-separately for each line. Days beyond the last published data point for each line are trimmed
+separately for each line.</p>
+<p>Days beyond the last published data point for each line are trimmed
 during assembly; interior <code>NA</code>s (e.g. operational outages) are
 preserved.</p>
     </div>
@@ -113,8 +114,9 @@ preserved.</p>
 
 <p>This dataset is a fixed snapshot, current through June 2026. It ships with
 the package so examples, vignettes, and offline analysis always have data
-to hand, and it is regenerated only when the column schema changes –
-not when new months are published upstream.</p>
+to hand. The snapshot moves only when the column schema changes or a
+release deliberately carries new data, not when new months are published
+upstream.</p>
 <p>METRO SP publishes on an irregular schedule and revises already-published
 years, so the numbers here will drift from the source over time. Freshly
 rebuilt data is published on every pipeline run at

@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,66 +69,66 @@
 </div>
 <!-- badges: start -->
 
-<p>This packages helps distribute demand data from the São Paulo metro system inside R. Data is sourced from multiple operators and spans 2012-2025. While most of the data is already <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">public</a>, it’s scattered across multiple poorly structured CSV/PDF files.</p>
-<p>Information on lines 1, 2, 3, 5, and 15 are sourced from the open data portal from METRÔ, while lines 4 and 5 (post-2018) are sourced from Dataverse (Insper).</p>
-<p>All datasets are returned as <code>tibble</code> objects and are “lazy” datasets, meaning they are bundled with the package and don’t need to be downloaded. The data is also cleaned and standardized to make it easier to work with.</p>
+<p>This package distributes demand data from the São Paulo metro system inside R. The data covers 2012 to 2026 and comes from several operators. Most of it is already <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">public</a>, but it is scattered across poorly structured CSV and PDF files.</p>
+<p>METRÔ publishes lines 1, 2, 3, 15, and line 5 through July 2018 on its open data portal. Line 4, and line 5 from August 2018 onward, come from the Insper Dataverse.</p>
+<p>All datasets are <code>tibble</code> objects bundled with the package, so they load without a download. The data is cleaned and standardized to make it easier to work with.</p>
 <div class="section level2">
-<h2 id="line-coverage">Line Coverage<a class="anchor" aria-label="anchor" href="#line-coverage"></a>
+<h2 id="line-coverage">Line coverage<a class="anchor" aria-label="anchor" href="#line-coverage"></a>
 </h2>
-<p>The package currently covers all metro lines in São Paulo. In the future it may be expanded to include trains as well.</p>
+<p>The package covers every metro line in São Paulo. Commuter train (CPTM) demand is not included, though train lines and stations do appear in the spatial datasets.</p>
 <table class="table">
+<colgroup>
+<col width="8%">
+<col width="26%">
+<col width="33%">
+<col width="30%">
+</colgroup>
 <thead><tr>
 <th align="right">Line</th>
 <th>Name</th>
 <th>Operator</th>
-<th>Period</th>
-<th>Status</th>
+<th>Coverage</th>
 </tr></thead>
 <tbody>
 <tr>
 <td align="right">1</td>
 <td>Azul (Blue)</td>
 <td>METRÔ</td>
-<td>2017–2026</td>
-<td>Available</td>
+<td>Jan 2016 – Jun 2026</td>
 </tr>
 <tr>
 <td align="right">2</td>
 <td>Verde (Green)</td>
 <td>METRÔ</td>
-<td>2017–2026</td>
-<td>Available</td>
+<td>Jan 2016 – Jun 2026</td>
 </tr>
 <tr>
 <td align="right">3</td>
 <td>Vermelha (Red)</td>
 <td>METRÔ</td>
-<td>2017–2026</td>
-<td>Available</td>
+<td>Jan 2016 – Jun 2026</td>
 </tr>
 <tr>
 <td align="right">4</td>
 <td>Amarela (Yellow)</td>
 <td>ViaQuatro</td>
-<td>2012–2025</td>
-<td>Available</td>
+<td>Jan 2012 – Mar 2026</td>
 </tr>
 <tr>
 <td align="right">5</td>
 <td>Lilás (Lilac)</td>
-<td>ViaMobilidade</td>
-<td>2017–2025</td>
-<td>Available</td>
+<td>METRÔ / ViaMobilidade</td>
+<td>Jan 2016 – Apr 2026</td>
 </tr>
 <tr>
 <td align="right">15</td>
 <td>Prata (Silver)</td>
 <td>METRÔ</td>
-<td>2017–2026</td>
-<td>Available</td>
+<td>Jan 2016 – Jun 2026</td>
 </tr>
 </tbody>
 </table>
+<p>Coverage refers to <code>passengers_entrance</code>, which is missing July 2017 for every METRO-sourced line. The other datasets start later for some lines. The data dictionary vignette gives the coverage window of every dataset by line.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -136,14 +136,15 @@
 <p>The package is available on CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"metrosp"</span><span class="op">)</span></span></code></pre></div>
-<p>Although the underlying data is infrequently updated, more recent versions of the data can be available by installing the development version from GitHub or R-universe.</p>
+<p>The development version is available from GitHub. It ships the same frozen snapshot as the CRAN release; for data newer than the snapshot, see <a href="#data-vintage">Data vintage</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'metrosp'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://viniciusoike.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"viniciusoike/metrosp"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h2>
-<p>The table below describes all datasets that are shipped with the package. The main datasets are: <code>passengers_entrance</code>, <code>passengers_transported</code>, <code>station_averages</code>, and <code>station_daily</code>. Other datasets are auxiliary tables aimed at facilitating analysis and visualization.</p>
+<p>Four datasets carry the demand data: <code>passengers_entrance</code>, <code>passengers_transported</code>, <code>station_averages</code>, and <code>station_daily</code>. The rest are auxiliary tables that support analysis and visualization.</p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -160,13 +161,13 @@
 <tbody>
 <tr>
 <td><code>passengers_entrance</code></td>
-<td>Average passenger entries by line</td>
+<td>Monthly passenger entries by line and day-type metric</td>
 <td>Monthly</td>
 <td>No</td>
 </tr>
 <tr>
 <td><code>passengers_transported</code></td>
-<td>Average passengers transported by line</td>
+<td>Monthly passengers transported by line, in thousands</td>
 <td>Monthly</td>
 <td>No</td>
 </tr>
@@ -179,6 +180,18 @@
 <tr>
 <td><code>station_daily</code></td>
 <td>Daily passenger entries by station</td>
+<td>Daily</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>station_inauguration</code></td>
+<td>Station opening dates and ramp-up window flag</td>
+<td>—</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>calendar_spo</code></td>
+<td>São Paulo holiday and business-day calendar</td>
 <td>Daily</td>
 <td>No</td>
 </tr>
@@ -202,6 +215,12 @@
 </tr>
 </tbody>
 </table>
+<p><code>passengers_entrance</code> and the two station datasets count individual passengers. <code>passengers_transported</code> reports thousands of passengers, as the METRÔ source does.</p>
+</div>
+<div class="section level2">
+<h2 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
+</h2>
+<p>The bundled data is a fixed snapshot, current through June 2026. It is regenerated when the column schema changes, not when new months are published, so examples and analyses stay reproducible across package versions. METRÔ publishes on an irregular schedule and revises past years, so these numbers drift from the source over time. Freshly rebuilt data is published on every pipeline run to the <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link"><code>data-latest</code> release</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -222,23 +241,11 @@
 <span></span>
 <span><span class="co"># Spatial line routes</span></span>
 <span><span class="va">lines</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="data-documentation">Data documentation<a class="anchor" aria-label="anchor" href="#data-documentation"></a>
-</h3>
-<p>For more details check the <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">Data Dictionary</a> and the <a href="https://viniciusoike.github.io/metrosp/articles/getting_started.html">package’s Getting Started vignette</a>.</p>
 </div>
-<div class="section level3">
-<h3 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>
-</h3>
-<p>To explore and analyze this data check the <a href="https://viniciusoike-metrosp-explorer.share.connect.posit.cloud" class="external-link">Metro Explorer dashboard</a>.</p>
-</div>
-<div class="section level3">
-<h3 id="coming-soon">Coming soon<a class="anchor" aria-label="anchor" href="#coming-soon"></a>
-</h3>
-<ul>
-<li>Functions to download fresh datasets.</li>
-</ul>
-</div>
+<div class="section level2">
+<h2 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>
+</h2>
+<p>An interactive dashboard for browsing and downloading these datasets lives in a separate repository: <a href="https://github.com/viniciusoike/metrosp-explorer" class="external-link">metrosp-explorer</a>. It is a standalone Shiny app and is not shipped with the package.</p>
 </div>
 <div class="section level2">
 <h2 id="data-sources">Data sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
