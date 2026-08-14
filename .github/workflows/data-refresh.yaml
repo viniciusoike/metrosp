@@ -30,6 +30,12 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # _targets.R refuses to run outside a UTF-8 locale: the accented
+      # literals in dims.R and assemble.R stop matching the source data
+      # otherwise, and labels silently become NA. Pin it rather than trust
+      # the runner default.
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
 
     steps:
       - uses: actions/checkout@v6
