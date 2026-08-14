@@ -32,6 +32,12 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # _targets.R refuses to run outside a UTF-8 locale: the accented
+      # literals in dims.R and assemble.R stop matching the source data
+      # otherwise, and labels silently become NA. Pin it rather than trust
+      # the runner default.
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
 
     steps:
       - uses: actions/checkout@v6
@@ -42,11 +48,29 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          # The block below mirrors tar_option_set(packages = ) in
+          # data-raw/_targets.R. Those packages are pipeline-only, so they are
+          # deliberately absent from DESCRIPTION and have to be named here; a
+          # missing one fails tar_make() at load time, before any target runs.
           extra-packages: >-
             any::targets,
             any::tarchetypes,
             any::piggyback,
             any::devtools,
+            any::data.table,
+            any::fs,
+            any::glue,
+            any::here,
+            any::janitor,
+            any::lubridate,
+            any::purrr,
+            any::readr,
+            any::rlang,
+            any::rvest,
+            any::stringi,
+            any::stringr,
+            any::tibble,
+            any::tidyr,
             local::.
 
       # No refresh flags: this rebuilds purely from committed inputs, so the

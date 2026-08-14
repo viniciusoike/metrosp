@@ -1,0 +1,70 @@
+line,station,2017-01,2017-02,2017-03,2017-04,2017-05,2017-06,2017-07,2017-08,2017-09
+Linha 1 - Azul,Jabaquara,78,88,91,93,91,86,84,87,92
+Linha 1 - Azul,Conceição,34,39,41,41,41,39,36,40,41
+Linha 1 - Azul,São Judas,18,21,21,22,21,20,19,21,21
+Linha 1 - Azul,Saúde,31,37,38,37,37,37,33,36,37
+Linha 1 - Azul,Praça da Árvore,19,22,23,23,23,23,20,22,23
+Linha 1 - Azul,Santa Cruz,52,62,64,64,63,62,56,61,62
+Linha 1 - Azul,Vila Mariana,22,30,34,34,34,31,24,32,33
+Linha 1 - Azul,Ana Rosa,77,85,91,90,90,87,78,89,91
+Linha 1 - Azul,Paraíso,94,109,117,117,115,111,101,114,117
+Linha 1 - Azul,Vergueiro,26,32,34,34,34,32,29,34,34
+Linha 1 - Azul,São Joaquim,24,38,57,58,57,45,26,51,55
+Linha 1 - Azul,Liberdade,24,29,31,31,31,28,26,29,30
+Linha 1 - Azul,Sé,201,245,259,258,254,247,229,248,255
+Linha 1 - Azul,São Bento,69,76,74,74,74,75,76,72,74
+Linha 1 - Azul,Luz,143,166,172,173,171,166,156,165,172
+Linha 1 - Azul,Tiradentes,12,18,19,20,19,18,14,19,19
+Linha 1 - Azul,Armênia,27,31,32,32,31,31,28,31,31
+Linha 1 - Azul,Portuguesa-Tietê,59,63,62,66,63,62,61,61,66
+Linha 1 - Azul,Carandiru,12,15,15,15,15,15,13,15,16
+Linha 1 - Azul,Santana,55,65,68,69,67,66,60,66,68
+Linha 1 - Azul,Jardim São Paulo-Ayrton Senna,12,15,16,15,15,15,13,15,15
+Linha 1 - Azul,Parada Inglesa,14,17,17,18,17,17,15,17,17
+Linha 1 - Azul,Tucuruvi,59,68,71,72,70,69,64,69,71
+Linha 1 - Azul,TOTAL,1162,1369,1450,1458,1458,1383,1264,1395,1442
+Linha 2 - Verde,Vila Prudente,41,49,52,52,53,51,46,53,55
+Linha 2 - Verde,Tamanduateí,51,61,66,64,65,59,57,64,67
+Linha 2 - Verde,Sacomã,33,39,41,42,40,40,36,40,41
+Linha 2 - Verde,Alto do Ipiranga,16,20,21,21,21,20,17,21,21
+Linha 2 - Verde,Santos-Imigrantes,13,15,15,15,15,15,14,15,16
+Linha 2 - Verde,Chácara Klabin,6,7,7,7,7,7,6,7,7
+Linha 2 - Verde,Ana Rosa,66,79,84,85,84,80,72,81,84
+Linha 2 - Verde,Paraíso,62,72,77,77,76,73,67,74,76
+Linha 2 - Verde,Brigadeiro,50,58,60,60,60,59,55,59,60
+Linha 2 - Verde,Trianon-Masp,46,53,55,55,54,54,50,55,56
+Linha 2 - Verde,Consolação,114,134,146,144,142,140,128,142,144
+Linha 2 - Verde,Clínicas,25,30,31,32,31,30,27,30,30
+Linha 2 - Verde,Santuário N.S. de Fátima-Sumaré,11,14,15,15,15,14,12,14,15
+Linha 2 - Verde,Vila Madalena,21,27,28,28,27,27,24,27,27
+Linha 2 - Verde,TOTAL,555,657,698,697,697,670,613,682,699
+Linha 3 - Vermelha,Corinthians-Itaquera,89,99,105,104,101,99,90,97,101
+Linha 3 - Vermelha,Artur Alvim,60,67,71,72,70,69,64,69,70
+Linha 3 - Vermelha,Patriarca,22,25,26,26,26,25,23,25,26
+Linha 3 - Vermelha,Guilhermina-Esperança,22,26,27,27,26,26,24,26,27
+Linha 3 - Vermelha,Vila Matilde,26,30,32,32,31,31,28,31,31
+Linha 3 - Vermelha,Penha,33,38,40,40,39,39,35,39,40
+Linha 3 - Vermelha,Carrão,42,56,63,63,62,54,46,59,62
+Linha 3 - Vermelha,Tatuapé,82,92,96,96,94,93,87,92,93
+Linha 3 - Vermelha,Belém,40,48,50,50,49,47,42,48,50
+Linha 3 - Vermelha,Bresser-Moóca,30,41,47,46,46,42,32,43,47
+Linha 3 - Vermelha,Brás,87,94,96,96,97,95,93,95,98
+Linha 3 - Vermelha,Pedro II,24,26,26,27,26,26,25,26,27
+Linha 3 - Vermelha,Sé,232,263,279,280,276,266,245,268,277
+Linha 3 - Vermelha,Anhangabaú,70,76,81,80,79,79,74,78,80
+Linha 3 - Vermelha,República,129,140,150,151,148,147,138,147,150
+Linha 3 - Vermelha,Santa Cecília,29,36,37,38,37,35,31,36,37
+Linha 3 - Vermelha,Marechal Deodoro,32,38,40,40,39,38,35,38,39
+Linha 3 - Vermelha,Palmeiras-Barra Funda,178,198,209,208,204,194,180,198,202
+Linha 3 - Vermelha,TOTAL,1227,1392,1473,1474,1474,1405,1293,1414,1454
+Linha 5 - Lilás,Capão Redondo,59,68,71,71,67,68,62,68,68
+Linha 5 - Lilás,Campo Limpo,27,30,32,31,29,30,27,30,30
+Linha 5 - Lilás,Vila das Belezas,8,10,10,10,10,10,9,10,10
+Linha 5 - Lilás,Giovanni Gronchi,18,21,21,22,21,21,18,20,21
+Linha 5 - Lilás,Santo Amaro,73,82,85,85,82,82,77,82,85
+Linha 5 - Lilás,Largo Treze,25,32,33,34,32,29,25,30,32
+Linha 5 - Lilás,Adolfo Pinheiro,8,10,11,12,11,11,9,12,13
+Linha 5 - Lilás,TOTAL,218,253,264,264,264,249,228,253,260
+Linha 15 - Prata,Vila Prudente,9,10,10,10,10,10,9,10,11
+Linha 15 - Prata,Oratório,6,8,7,7,7,9,8,9,9
+Linha 15 - Prata,TOTAL,15,17,17,18,18,19,17,19,20

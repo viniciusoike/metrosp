@@ -1,0 +1,86 @@
+date,measure,metric,linha_1_azul,linha_2_verde,linha_3_vermelha,linha_5_lilas,linha_15_prata,rede
+2017-01-01,entrance,Total,21759,10615,26041,5499,196,64110
+2017-01-01,entrance,Média dos Dias Úteis,863,438,1032,218,8,2560
+2017-01-01,entrance,Média dos Sábados,504,195,605,136,4,1444
+2017-01-01,entrance,Média dos Domingos,301,130,365,65,1,862
+2017-01-01,entrance,Máxima Diária,950,491,1131,236,10,2808
+2017-01-01,transport,Total,29569,13476,31145,5499,349,80039
+2017-01-01,transport,Média dos Dias Úteis,1161,554,1227,218,15,3175
+2017-01-01,transport,Média dos Sábados,704,259,732,136,6,1837
+2017-01-01,transport,Média dos Domingos,430,165,451,65,2,1113
+2017-01-01,transport,Máxima Diária,1278,617,1343,236,17,3484
+2017-02-01,entrance,Total,22739,11582,26809,5681,194,67005
+2017-02-01,entrance,Média dos Dias Úteis,1015,524,1171,253,10,2972
+2017-02-01,entrance,Média dos Sábados,578,255,717,152,4,1705
+2017-02-01,entrance,Média dos Domingos,336,177,441,73,1,1029
+2017-02-01,entrance,Máxima Diária,1071,553,1221,261,11,3100
+2017-02-01,transport,Total,31147,14545,31994,5681,355,83723
+2017-02-01,transport,Média dos Dias Úteis,1369,657,1392,253,17,3689
+2017-02-01,transport,Média dos Sábados,824,329,865,152,7,2176
+2017-02-01,transport,Média dos Domingos,500,217,540,73,2,1333
+2017-02-01,transport,Máxima Diária,1441,693,1453,261,22,3852
+2017-03-01,entrance,Total,27092,13906,31597,6758,214,79567
+2017-03-01,entrance,Média dos Dias Úteis,1074,558,1238,264,9,3143
+2017-03-01,entrance,Média dos Sábados,583,251,719,153,4,1709
+2017-03-01,entrance,Média dos Domingos,308,165,394,61,1,929
+2017-03-01,entrance,Máxima Diária,1099,587,1270,273,11,3226
+2017-03-01,transport,Total,36864,17397,37754,6758,404,99177
+2017-03-01,transport,Média dos Dias Úteis,1450,698,1473,264,17,3901
+2017-03-01,transport,Média dos Sábados,816,321,875,153,7,2171
+2017-03-01,transport,Média dos Domingos,444,203,481,61,2,1191
+2017-03-01,transport,Máxima Diária,1484,730,1509,273,19,4004
+2017-04-01,entrance,Total,23316,11674,27315,5787,190,68282
+2017-04-01,entrance,Média dos Dias Úteis,1083,555,1238,264,10,3150
+2017-04-01,entrance,Média dos Sábados,551,223,677,145,3,1599
+2017-04-01,entrance,Média dos Domingos,298,153,396,73,1,920
+2017-04-01,entrance,Máxima Diária,1115,575,1282,276,15,3255
+2017-04-01,transport,Total,31734,14690,32650,5787,355,85215
+2017-04-01,transport,Média dos Dias Úteis,1458,697,1474,264,18,3911
+2017-04-01,transport,Média dos Sábados,766,289,824,145,6,2030
+2017-04-01,transport,Média dos Domingos,431,190,479,73,2,1175
+2017-04-01,transport,Máxima Diária,1503,721,1526,276,23,4040
+2017-05-01,entrance,Total,27371,13813,31697,6417,263,79561
+2017-05-01,entrance,Média dos Dias Úteis,1066,549,1217,251,11,3093
+2017-05-01,entrance,Média dos Sábados,602,251,742,150,4,1749
+2017-05-01,entrance,Média dos Domingos,293,144,388,64,1,890
+2017-05-01,entrance,Máxima Diária,1100,563,1255,260,11,3181
+2017-05-01,transport,Total,37090,17395,37870,6417,467,99239
+2017-05-01,transport,Média dos Dias Úteis,1435,690,1449,251,19,3844
+2017-05-01,transport,Média dos Sábados,839,324,903,150,7,2223
+2017-05-01,transport,Média dos Domingos,421,181,469,64,2,1138
+2017-05-01,transport,Máxima Diária,1475,707,1494,260,20,3951
+2017-06-01,entrance,Total,25095,12673,29478,6154,247,73647
+2017-06-01,entrance,Média dos Dias Úteis,1024,534,1181,249,11,3000
+2017-06-01,entrance,Média dos Sábados,573,232,703,150,4,1663
+2017-06-01,entrance,Média dos Domingos,317,146,433,75,1,971
+2017-06-01,entrance,Máxima Diária,1082,561,1237,265,12,3152
+2017-06-01,transport,Total,34213,15950,35247,6154,440,NA
+2017-06-01,transport,Média dos Dias Úteis,1383,670,1405,249,19,NA
+2017-06-01,transport,Média dos Sábados,796,301,856,150,7,NA
+2017-06-01,transport,Média dos Domingos,455,186,520,75,2,NA
+2017-06-01,transport,Máxima Diária,1485,704,1471,265,20,NA
+2017-07-01,transport,Total,32682,15343,33860,5820,411,88117
+2017-07-01,transport,Média dos Dias Úteis,1264,613,1293,228,17,3415
+2017-07-01,transport,Média dos Sábados,779,293,842,145,7,2066
+2017-07-01,transport,Média dos Domingos,451,200,499,62,2,1215
+2017-07-01,transport,Máxima Diária,1322,637,1361,242,18,3580
+2017-08-01,entrance,Total,27124,14080,31640,6652,259,79755
+2017-08-01,entrance,Média dos Dias Úteis,1032,546,1188,253,11,3029
+2017-08-01,entrance,Média dos Sábados,563,238,704,147,3,1656
+2017-08-01,entrance,Média dos Domingos,284,143,373,62,1,864
+2017-08-01,entrance,Máxima Diária,1059,563,1219,262,11,3107
+2017-08-01,transport,Total,36879,17633,37747,6652,471,99383
+2017-08-01,transport,Média dos Dias Úteis,1395,682,1414,253,19,3763
+2017-08-01,transport,Média dos Sábados,789,306,855,147,7,2103
+2017-08-01,transport,Média dos Domingos,409,179,452,62,2,1104
+2017-08-01,transport,Máxima Diária,1431,703,1449,262,20,3860
+2017-09-01,entrance,Total,25514,12912,29558,6246,249,74480
+2017-09-01,entrance,Média dos Dias Úteis,1070,557,1220,260,11,3119
+2017-09-01,entrance,Média dos Sábados,562,232,680,148,4,1626
+2017-09-01,entrance,Média dos Domingos,311,165,406,67,1,950
+2017-09-01,entrance,Máxima Diária,1121,568,1239,274,12,3207
+2017-09-01,transport,Total,34679,16241,35400,6246,439,93007
+2017-09-01,transport,Média dos Dias Úteis,1442,699,1454,260,20,3875
+2017-09-01,transport,Média dos Sábados,781,300,830,148,7,2065
+2017-09-01,transport,Média dos Domingos,450,204,493,67,2,1216
+2017-09-01,transport,Máxima Diária,1498,716,1476,274,20,3984
