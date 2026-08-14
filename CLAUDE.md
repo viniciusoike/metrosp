@@ -1,13 +1,16 @@
 # metrosp
 
 R data package providing Sao Paulo Metro (METRO SP) passenger demand data (2012-2026).
-Similar to nycflights13: datasets only, no user-facing functions.
+Like nycflights13, the value is the datasets. The only exported functions read
+the published data from GitHub releases and manage the download cache.
 
 ## Package Structure
 
 ```
 metrosp/
-├── R/data.R                    # Roxygen2 docs for all exported datasets (NO functions)
+├── R/data.R                    # Roxygen2 docs for all exported datasets
+├── R/read_metro_demand.R       # Reads a demand dataset from the data-latest release
+├── R/cache.R                   # Download cache for read_metro_demand()
 ├── data/*.rda                  # Frozen snapshot (see "The frozen-snapshot model")
 ├── data-raw/                   # ETL pipeline (not shipped with package)
 │   ├── _targets.R              # THE pipeline definition (graph, flags, gates)
@@ -89,7 +92,9 @@ The retired `import_{dataset}[_{period}].R` convention survives only in
 
 ## Key Rules
 
-- This is a **data-only package**. `R/` should contain ONLY `data.R` (documentation). No functions. Pipeline functions live in `data-raw/R/` (build-ignored), NOT package `R/`.
+- Package `R/` holds dataset documentation plus the release-reading client
+  (`read_metro_demand.R`, `cache.R`) and nothing else. **ETL code never goes in
+  package `R/`** — pipeline functions live in `data-raw/R/` (build-ignored).
 - To update datasets: run the `targets` pipeline (see Development Workflow). Editing an ETL function under `data-raw/R/` auto-invalidates the affected datasets.
 - **`data/*.rda` is frozen.** A routine refresh must never change it; only `METROSP_FREEZE=true` writes it. If a rebuild moves the snapshot without that flag, something is wrong.
 - **Never add a `{?s}`-style cli pluralization token inside `glue::glue()`.** glue evaluates `?s` and silently collapses the whole string to `character(0)`, dropping the message. Use `cli::cli_*()` (which understands it) or `sprintf()`.
@@ -136,7 +141,7 @@ The retired `import_{dataset}[_{period}].R` convention survives only in
 
 The ETL runs as a **`targets` pipeline** (primary) defined in `data-raw/_targets.R`
 (store: `data-raw/_targets/`, config: `_targets.yaml`). Pure functions live in
-`data-raw/R/` (loaded via `tar_source()`); package `R/` still holds only `data.R`.
+`data-raw/R/` (loaded via `tar_source()`) and never in package `R/`.
 
 **All three sources follow one shape:** a gated `refresh_*()` writes committed CSVs
 under `processed/`, and the graph reads only those CSVs (plus the GeoSampa GPKGs and
@@ -153,6 +158,11 @@ to the rolling `data-latest` GitHub Release on every refresh.
 This is what keeps the CRAN presence sustainable: releases become schema- and
 code-driven rather than data-driven, `R CMD check` results do not drift when upstream
 restates a year, and the tarball stops growing every month.
+
+`ci_publish.R` writes every batch to two tags. `data-latest` is what
+`read_metro_demand()` reads by default and is overwritten on every run;
+`data-YYYY-MM` pins that month's batch so an analysis can name the vintage it
+used. A second publish in the same month overwrites that month's tag.
 
 `data-raw/schema.json` is the contract. `check_schema()` runs as the `schema_ok`
 target on every build and hard-fails on any column name/type/order change — that
