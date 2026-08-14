@@ -1,9 +1,62 @@
+# metrosp 1.2.0
+
+## Datasets
+
+* Added January–September 2017 to `passengers_entrance`,
+  `passengers_transported`, and `station_averages`. METRO published those
+  months only as PDFs without a text layer; they were transcribed from the
+  rendered pages and reconciled against the totals printed beside them.
+* July 2017 remains absent from `passengers_entrance` for Lines 1, 2, 3, 5,
+  and 15. The file METRO published under that name repeats the transported
+  table, so no entrance figures exist for that month.
+* June 2017 has no network total (`line_number = 99`) in
+  `passengers_transported`. The report reprinted May's network column; the
+  per-line values for June are unaffected.
+
+## Bug fixes
+
+* Corrected `mdu`, `msa`, `mdo`, and `max` for Lines 4 and 5 in
+  `passengers_entrance`, across the whole series. The Dataverse source is
+  station-level, and the averages and daily peak were taken over
+  station-days rather than over line-day totals, so each was divided by the
+  number of stations reporting that month. Values rise by roughly 5 to 17
+  times depending on the line and the year. `total` is unchanged. Anyone
+  comparing Line 4 or 5 averages against an earlier release should expect a
+  break.
+* Fixed metric labels resolving to `NA` for 2016–2019 in
+  `passengers_entrance` and `passengers_transported`. The lookup keyed a
+  named vector on accented Portuguese text, which stops matching outside a
+  UTF-8 locale, so a build could drop every label without erroring. Station
+  names and line numbers in `station_averages` were affected the same way.
+  The pipeline now refuses to run outside a UTF-8 locale.
+
+## Documentation
+
+* Documented a defect in the Line 1 station averages for February–June 2016.
+  The values run short and are misallocated across stations, so those five
+  months should be excluded from station-level baselines.
+* Regenerated the time-coverage figures and their alt text against the new
+  snapshot.
+
 # metrosp 1.1.1
 
 ## Datasets
 
-* `passengers_entrance`, `passengers_transported`, and `station_daily`
-  rebuilt through April 2026.
+* Refroze the shipped snapshot through June 2026 (Lines 4 and 5 end earlier,
+  in March and April 2026, since the Dataverse source lags METRO).
+* Extended METRO coverage back to January 2016 for `passengers_entrance`,
+  `passengers_transported`, and `station_averages`. January–September 2017
+  remains unavailable because the portal's machine-readable files begin in
+  October 2017 and those PDFs have not been extracted.
+
+## Documentation
+
+* Documented that `passengers_transported` reports thousands of passengers,
+  while the other demand datasets count individual passengers.
+* Corrected the end of Line 5 coverage in `passengers_transported` to
+  August 2018, the month of the ViaMobilidade handover.
+* Added the frozen-snapshot vintage and the `data-latest` release to the
+  package landing page and both vignettes.
 
 ## Vignettes
 

@@ -1,6 +1,6 @@
 # metrosp
 
-R data package providing Sao Paulo Metro (METRO SP) passenger demand data (2017-2025).
+R data package providing Sao Paulo Metro (METRO SP) passenger demand data (2012-2026).
 Similar to nycflights13: datasets only, no user-facing functions.
 
 ## Package Structure
@@ -28,6 +28,12 @@ metrosp/
 │   │   ├── release_payload.R   # Stages cache/*.rds + manifest.json
 │   │   ├── validate_refresh.R  # Baseline-dependent differential checks
 │   │   └── write_data.R        # The only use_data() side effect (gated)
+│   ├── pdf2017/               # One-time Jan-Sep 2017 PDF transcription (committed)
+│   │   ├── README.md           # Procedure; why OCR was rejected
+│   │   ├── report_2017.md      # Source defects the checksums exposed
+│   │   ├── render_pdf_2017.R   # PDFs -> 300 DPI PNGs (img/, gitignored)
+│   │   ├── validate_2017.R     # Checksums over the transcribed CSVs
+│   │   └── transcribed_*.csv   # THE data; read by import_historic.R
 │   ├── geosampa/               # GeoSampa GPKG source files (9 files, committed)
 │   ├── processed/              # Intermediate CSVs (committed; the graph's inputs)
 │   ├── cache/                  # Staged release payload (gitignored)
@@ -69,10 +75,10 @@ Import scripts follow `import_{dataset}[_{period}].R`:
 
 | Dataset | Description |
 |---|---|
-| `passengers_entrance` | Monthly passenger entries by metro line (2017-2025) |
-| `passengers_transported` | Monthly passengers transported by metro line (2017-2025) |
-| `station_averages` | Average weekday passenger entries by station (2017-2025) |
-| `station_daily` | Daily passenger entries by station (2020-2025) |
+| `passengers_entrance` | Monthly passenger entries by metro line (2012-2026) |
+| `passengers_transported` | Monthly passengers transported by metro line (2016-2026) |
+| `station_averages` | Average weekday passenger entries by station (2012-2026) |
+| `station_daily` | Daily passenger entries by station (2012-2026; METRO lines from 2020) |
 | `lines` | Metro + CPTM train line route geometries (sf, current + planned) |
 | `stations` | Metro + CPTM train station point locations (sf, current + planned) |
 | `metro_colors` | Named character vector of official line hex colors (length 6) |
@@ -101,7 +107,25 @@ Import scripts follow `import_{dataset}[_{period}].R`:
 
 - **Lines 4/5 — passengers_transported**: Not available in Dataverse source; only entrance data is covered
 - **Lines 4/5 — station_code**: These lines have no station code in any source (`station_code = NA`)
-- **2017**: Only Oct-Dec available (not full year)
+- **2017 Jan-Sep**: Published only as text-layer-free PDFs, transcribed by hand
+  once into `data-raw/pdf2017/` and wired into `refresh_historic_*()`. Shipped
+  in the frozen snapshot since 1.2.0; present in `processed/` and in every
+  built target.
+- **July 2017 — entrance by line**: Never published. METRO's file is a duplicate
+  of the transported table. Lines 1/2/3/5/15 have no entrance value that month;
+  Line 4 is unaffected (Dataverse).
+- **June 2017 — transported, line 99**: METRO printed May's `Rede` column, so the
+  network totals are `NA` for all five metrics. Per-line values are fine.
+- See `data-raw/pdf2017/report_2017.md` for the full list of 2017 source defects.
+- **Feb-Jun 2016 — Line 1 station averages**: The five months run short and are
+  misallocated across stations (Santa Cruz and Sé too high, São Bento and
+  Portuguesa-Tietê too low). Judge this by the *ratio* of the line's station sum
+  to its `passengers_entrance` mdu total, never by expecting the two to match:
+  interchange stations are counted under every line they serve, so the ratio
+  sits near 1.34 in a healthy month. Feb-Jun 2016 drops to ~1.15; Jan and
+  Jul-Dec 2016 are normal. Defect in the 2016 retroactive publication, **not
+  corrected**; exclude those months from station-level baselines. Documented for
+  users on `station_averages`.
 - **Trailing months**: Months/days beyond the last published data point per line are trimmed during assembly (`drop_trailing_na()` in `helpers.R`). Interior NAs (e.g. station outages) are preserved.
 - **Station metrics**: Only weekday average (mdu) available at station level
 - **`station_inauguration`**: Stations open before the data window have `inauguration_date = NA` and `pre_data_window = TRUE`; `ramp_up_end` = opening + 180 days marks the period to exclude from baseline comparisons. Dates need manual `verified = TRUE` after cross-checking sources.

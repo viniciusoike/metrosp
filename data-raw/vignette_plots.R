@@ -116,13 +116,10 @@ plot_passengers_entrance
 
 timespan_transported <- compute_line_timespan(passengers_transported)
 
-# Line 5 (Lilac) only ran Oct 2017-Aug 2018: its bar is too short to fit both
-# labels, so only the end date is shown for this line.
 plot_passengers_transported <- plot_line_timespan(
   timespan_transported,
   "Passengers transported by line: time coverage",
-  "Detailed time coverage for each line of the <b>passengers_transported</b> dataset",
-  hide_d0_label_for = "Lilac"
+  "Detailed time coverage for each line of the <b>passengers_transported</b> dataset"
 )
 
 plot_passengers_transported

@@ -65,32 +65,62 @@ fix_station_names_line5 <- function(x) {
 
 # --- Cleaning functions ------------------------------------------------------
 
-# Produces: date, line_number, metric_abb, metric, value, year
-clean_entrance_4_5 <- function(dat) {
+# Collapse station-level gate entries to one value per line-day. Every metric
+# below is an average or a peak over these line-day totals; grouping the station
+# rows directly divides the averages by the station count.
+.entrance_line_daily <- function(dat) {
   .prep_data_4_5(dat) |>
-    mutate(
-      year = lubridate::year(date),
-      month = lubridate::month(date),
-      dia_semana = lubridate::wday(date),
-      is_business_day = as.integer(bizdays::is.bizday(date, cal = "Brazil/ANBIMA"))
-    ) |>
     summarise(
-      total = sum(value, na.rm = TRUE),
-      msa = mean(value[dia_semana == 7], na.rm = TRUE),
-      mdo = mean(value[dia_semana == 1], na.rm = TRUE),
-      mdu = mean(value[is_business_day == 1], na.rm = TRUE),
-      max = max(value, na.rm = TRUE),
-      .by = c(year, month, line_number)
-    ) |>
+      value = sum(value, na.rm = TRUE),
+      .by = c(date, line_number)
+    )
+}
+
+# Tag each line-day with its month and its calendar role. week_start is pinned
+# because wday() otherwise reads the lubridate.week.start option, which would
+# silently swap msa and mdo.
+.entrance_tag_days <- function(daily) {
+  daily |>
+    mutate(
+      date_month = lubridate::floor_date(date, "month"),
+      wday = lubridate::wday(date, week_start = 7),
+      is_business_day = bizdays::is.bizday(date, cal = "Brazil/ANBIMA")
+    )
+}
+
+.entrance_monthly_metrics <- function(tagged) {
+  tagged |>
+    summarise(
+      total = sum(value),
+      msa = mean(value[wday == 7]),
+      mdo = mean(value[wday == 1]),
+      mdu = mean(value[is_business_day]),
+      max = max(value),
+      .by = c(date_month, line_number)
+    )
+}
+
+.entrance_to_long <- function(monthly) {
+  monthly |>
     tidyr::pivot_longer(
       cols = c(total, msa, mdo, mdu, max),
       names_to = "metric_abb",
       values_to = "value"
     ) |>
     left_join(dim_metric, by = join_by(metric_abb)) |>
-    mutate(date = lubridate::make_date(year, month, 1L)) |>
+    rename(date = date_month) |>
+    mutate(year = lubridate::year(date)) |>
     select(all_of(.cols_passengers_entrance)) |>
     arrange(date, line_number, metric_abb)
+}
+
+# Produces: date, line_number, metric_abb, metric, value, year
+clean_entrance_4_5 <- function(dat) {
+  dat |>
+    .entrance_line_daily() |>
+    .entrance_tag_days() |>
+    .entrance_monthly_metrics() |>
+    .entrance_to_long()
 }
 
 # Produces: date, line_number, station_name, avg_passenger, year

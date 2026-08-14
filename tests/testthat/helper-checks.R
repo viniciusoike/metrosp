@@ -222,7 +222,9 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
       ),
       name
     ),
-    check_no_na(df, "date", name),
+    # metric labels come from a lookup keyed on Portuguese text; an unmatched
+    # key leaves them NA rather than erroring, so assert them directly.
+    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)
@@ -232,7 +234,7 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
 check_passengers_transported <- function(df, name = "passengers_transported") {
   c(
     check_columns(df, c("date", "value", "line_number"), name),
-    check_no_na(df, "date", name),
+    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)

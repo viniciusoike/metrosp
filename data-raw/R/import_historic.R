@@ -271,6 +271,69 @@ library(stringr)
   .stack_passengers(files_psg_line, year = 2016)
 }
 
+# --- Jan-Sep 2017, transcribed from PDF ---------------------------------------
+# METRO published Jan-Sep 2017 only as PDFs whose pages are pasted screenshots
+# with no text layer, so those months were transcribed by hand into
+# data-raw/pdf2017/. See data-raw/pdf2017/README.md for the procedure and
+# report_2017.md for the source defects the checksums exposed. The transcribed
+# CSVs are committed and are the input here; the PDFs themselves are not read.
+
+.path_pdf2017 <- function(file) {
+  path <- here::here("data-raw/pdf2017", file)
+
+  if (!file.exists(path)) {
+    cli::cli_abort("Missing transcription {.path {path}}.")
+  }
+
+  path
+}
+
+#' Import one Jan-Sep 2017 line-level measure, stacked like .import_psg_line().
+.import_psg_line_2017_pdf <- function(variable = "transport") {
+  valid_vars <- c("transport", "entrance")
+
+  if (!variable %in% valid_vars) {
+    cli::cli_abort("Invalid input {variable}. Valid values: {valid_vars}")
+  }
+
+  readr::read_csv(
+    .path_pdf2017("transcribed_passengers_line_2017.csv"),
+    show_col_types = FALSE
+  ) |>
+    filter(measure == variable) |>
+    select(-measure) |>
+    pivot_longer(
+      cols = -c(date, metric),
+      names_to = "metro_line",
+      values_to = "value"
+    ) |>
+    mutate(year = 2017) |>
+    select(date, year, variable = metric, metro_line, value)
+}
+
+#' Import Jan-Sep 2017 station averages, shaped like .import_stn_avg().
+.import_stn_avg_2017_pdf <- function() {
+  readr::read_csv(
+    .path_pdf2017("transcribed_station_averages_2017.csv"),
+    show_col_types = FALSE
+  ) |>
+    filter(station != "TOTAL") |>
+    pivot_longer(
+      cols = -c(line, station),
+      names_to = "year_month",
+      values_to = "value"
+    ) |>
+    mutate(
+      date = as.Date(paste0(year_month, "-01")),
+      year = 2017,
+      month = unname(.months_pt[as.integer(format(date, "%m"))]),
+      line_name_full = line,
+      name_station = clean_station_name(station),
+      metric_abb = "mdu"
+    ) |>
+    select(date, year, month, line_name_full, name_station, metric_abb, value)
+}
+
 #' Regenerate metro_sp_passengers_historic.csv from raw. Returns the path.
 refresh_historic_passengers <- function(
   proc_dir = here::here("data-raw/processed")
@@ -282,6 +345,11 @@ refresh_historic_passengers <- function(
     mutate(dat = purrr::pmap(list(year, measure), \(year, measure) {
       if (year == 2016) {
         .import_psg_line_2016(variable = measure)
+      } else if (year == 2017) {
+        bind_rows(
+          .import_psg_line_2017_pdf(variable = measure),
+          .import_psg_line(year, variable = measure)
+        )
       } else {
         .import_psg_line(year, variable = measure)
       }
@@ -473,9 +541,14 @@ refresh_historic_averages <- function(
 ) {
   years <- 2017:2019
   stations_files <- lapply(years, .import_stn_avg)
+  stations_files <- rlang::set_names(stations_files, years)
+  stations_files[["2017"]] <- bind_rows(
+    .import_stn_avg_2017_pdf(),
+    stations_files[["2017"]]
+  )
   stations_files <- c(
     list(`2016` = .import_stn_avg_2016()),
-    rlang::set_names(stations_files, years)
+    stations_files
   )
 
   avg_psg_station <- bind_rows(stations_files, .id = "year") |>
