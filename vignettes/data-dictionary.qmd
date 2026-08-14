@@ -33,7 +33,7 @@ The package ships four core datasets. Two measure passengers at the line level, 
 | Dataset | Description | Unit | Time span | Frequency | Package name |
 |------------|------------|------------|------------|------------|------------|
 | Passenger entries by line | Passenger entries, measured by the station's turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly | `passengers_entrance` |
-| Transported passengers per line | Number of transported passengers, measured by the station's turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2017--2026 | Monthly | `passengers_transported` |
+| Transported passengers per line | Number of transported passengers, measured by the station's turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016--2026 | Monthly | `passengers_transported` |
 | Station-level averages | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly | `station_averages` |
 | Station-level daily | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily | `station_daily` |
 
@@ -45,7 +45,7 @@ The table simplifies in two ways. First, the time span varies by line; each data
 
 ## Data vintage
 
-These datasets are a fixed snapshot, current through June 2026. The snapshot is regenerated when the column schema changes, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
+These datasets are a fixed snapshot, current through June 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
 
 # Data producers
 
@@ -56,7 +56,7 @@ I use the term **data producer** rather than source to emphasize the processing 
 | Dataset | Granularity | Producer | Time span | Line Coverage |
 |---------------|---------------|---------------|---------------|---------------|
 | `passengers_entrance` | line $\times$ month $\times$ metric | METRO + Dataverse | 2012--2026 | All |
-| `passengers_transported` | line $\times$ month $\times$ metric | METRO | 2017--2026 | Lines 1, 2, 3, 5, and 15 |
+| `passengers_transported` | line $\times$ month $\times$ metric | METRO | 2016--2026 | Lines 1, 2, 3, 5, and 15 |
 | `station_averages` | station $\times$ month | METRO + Dataverse | 2012--2026 | All |
 | `station_daily` | station $\times$ day | METRO + Dataverse | 2012--2026 | All |
 | `lines` | line (spatial) | GeoSampa | Last updated: 2026/04/10 | All |
@@ -64,9 +64,9 @@ I use the term **data producer** rather than source to emphasize the processing 
 
 ## METRO SP transparency portal {#source-metro}
 
-The Companhia do Metropolitano de São Paulo (a.k.a. METRÔ) publishes monthly demand reports at its [data transparency portal](https://transparencia.metrosp.com.br/dataset/demanda). Reports cover Lines 1 (Azul/Blue), 2 (Verde/Green), 3 (Vermelha/Red), 5 (Lilás/Lilac, until Jul 2018), and 15 (Prata/Silver), and are available from January 2016 onward, except for the January--September 2017 gap. Values are reported in thousands (*milhares*).
+The Companhia do Metropolitano de São Paulo (a.k.a. METRÔ) publishes monthly demand reports at its [data transparency portal](https://transparencia.metrosp.com.br/dataset/demanda). Reports cover Lines 1 (Azul/Blue), 2 (Verde/Green), 3 (Vermelha/Red), 5 (Lilás/Lilac, until Jul 2018), and 15 (Prata/Silver), and are available from January 2016 onward. Values are reported in thousands (*milhares*).
 
-Before 2020, these monthly reports were published as monthly PDF and `csv` files. The `csv` files start in October 2017; the first nine months of 2017 exist only as PDFs and are not yet included (see [2017 source formats](#source-formats-2017)). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of entries in each station, on business days (`station_averages`); 2) the number of passenger entries per line (`passengers_entrance`); and 3) the number of transported passengers per line (`passengers_transported`).
+Before 2020, these monthly reports were published as monthly PDF and `csv` files. The `csv` files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see [2017 source formats](#source-formats-2017)). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of entries in each station, on business days (`station_averages`); 2) the number of passenger entries per line (`passengers_entrance`); and 3) the number of transported passengers per line (`passengers_transported`).
 
 From 2020 onwards, the monthly reports started to be published in annual PDF and `csv` files that are updated monthly. Also, a new report was published that contained the daily number of entrances per station (`station_daily`).
 
@@ -137,7 +137,7 @@ This table is organized by day-type metrics that are defined below.
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the passengers_entrance dataset](../man/figures/timespan_passengers_entrance.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026 with a gap from January through September 2017; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
+![Time coverage by line for the passengers_entrance dataset](../man/figures/timespan_passengers_entrance.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
@@ -150,7 +150,7 @@ The time coverage of this dataset varies by line. End dates below are those of t
 | 99 -- System | METRO portal | Jan 2016 | Jun 2026 |
 : Time coverage by line
 
-The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. The METRO source has no January--September 2017 observations.
+The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. Every METRO-sourced line is missing July 2017, the one month the portal never published an entrance table for (see [2017 source formats](#source-formats-2017)).
 
 ## `passengers_transported`
 
@@ -185,7 +185,7 @@ This dataset uses the same day-type metrics as `passengers_entrance` (see Metric
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the passengers_transported dataset](../man/figures/timespan_passengers_transported.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026 with a gap from January through September 2017. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."}
+![Time coverage by line for the passengers_transported dataset](../man/figures/timespan_passengers_transported.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
@@ -230,7 +230,7 @@ Only the weekday average metric is available at the station level. For line-leve
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the station_averages dataset](../man/figures/timespan_station_averages.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to June 2026 with a gap from January through September 2017; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
+![Time coverage by line for the station_averages dataset](../man/figures/timespan_station_averages.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
@@ -241,6 +241,8 @@ The time coverage of this dataset varies by line. End dates below are those of t
 | 5 -- Lilac | METRO (Jan 2016--Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
 | 15 -- Silver | METRO portal | Jan 2016 | Jun 2026 |
 : Time coverage by line
+
+February through June 2016 carries a defect in the Line 1 values. Across those five months the station figures fall well short of what the surrounding months and the Line 1 total in `passengers_entrance` imply, and they are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO's retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.
 
 ## `station_daily`
 
@@ -402,7 +404,11 @@ The `station_code` column (three-letter abbreviation) is only available for METR
 
 ## 2017 source formats {#source-formats-2017}
 
-The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. Those first nine months are not included in the shipped datasets. If a 2017 figure looks wrong, please open an issue.
+The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the line and network totals printed beside them.
+
+Two defects in the source survive the transcription. July 2017 has no entrance table: the file published under that name repeats the transported figures, so Lines 1, 2, 3, 5, and 15 have no entrance value that month. June 2017 reprints May's network column in `passengers_transported`, so the network total (`line_number = 99`) is `NA` for that month while the per-line values stand.
+
+If a 2017 figure looks wrong, please open an issue.
 
 ## Trailing months and NA values
 

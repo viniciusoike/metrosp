@@ -26,10 +26,9 @@ station_averages
 \description{
 Monthly average of weekday (business day) passenger entries for each
 station in the São Paulo metro system. Data covers January 2016 through
-2026 for Lines 1, 2, 3, and 15 (the source never published
-January–September 2017); Line 4 from January 2012; Line 5 from January
-2016. Sourced from the METRO SP transparency portal and the Insper
-Dataverse.
+2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
+January 2016. Sourced from the METRO SP transparency portal and the
+Insper Dataverse.
 }
 \details{
 Only the weekday average (mdu) metric is available at the station level.
@@ -54,13 +53,26 @@ operation: Vila Prudente and Oratório), 10 stations in 2020, 11 from
 January 2021 onward (Jardim Colonial added), January 2016–2026
 (METRO SP portal).
 }
+
+METRO published January–September 2017 only as PDFs, with no
+machine-readable equivalent. Those months were transcribed from the
+reports and reconciled against the published line totals.
+
+February–June 2016 carries a defect in the Line 1 values. Across those
+five months the station figures fall well short of what the surrounding
+months and the line total in \code{\link{passengers_entrance}} imply, and
+they are misallocated across stations, with Santa Cruz and Sé too high and
+São Bento and Portuguesa-Tietê too low. The defect comes from METRO's
+retroactive publication of 2016 and is not corrected here, so exclude
+those five months from station-level baselines.
 }
 \section{Data vintage}{
 
 This dataset is a fixed snapshot, current through June 2026. It ships with
 the package so examples, vignettes, and offline analysis always have data
-to hand, and it is regenerated only when the column schema changes --
-not when new months are published upstream.
+to hand. The snapshot moves only when the column schema changes or a
+release deliberately carries new data, not when new months are published
+upstream.
 
 METRO SP publishes on an irregular schedule and revises already-published
 years, so the numbers here will drift from the source over time. Freshly

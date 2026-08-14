@@ -2,9 +2,9 @@
 #'
 #' Monthly count of passengers entering São Paulo metro stations, aggregated
 #' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
-#' and 15 (the source never published January–September 2017); Line 4 from
-#' January 2012; Line 5 from January 2016. Sourced from the METRO SP
-#' transparency portal and the Insper Dataverse.
+#' and 15; Line 4 from January 2012; Line 5 from January 2016. July 2017 is
+#' the one missing month, absent for every line the METRO portal covers.
+#' Sourced from the METRO SP transparency portal and the Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -32,15 +32,23 @@
 #' Data by source and line:
 #' \itemize{
 #'   \item Lines 1, 2, 3, and 15: METRO SP transparency portal,
-#'     January 2016–December 2016 and October 2017–2026 (January–September
-#'     2017 was never published by the source).
+#'     January 2016–2026, except July 2017.
 #'   \item Line 4 (Amarela/ViaQuatro): Insper Dataverse,
 #'     January 2012–2026.
 #'   \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
-#'     January 2016–July 2018; Insper Dataverse, August 2018–2026.
+#'     January 2016–July 2018, except July 2017; Insper Dataverse,
+#'     August 2018–2026.
 #'   \item Network total (\code{line_number = 99}): METRO SP transparency
 #'     portal only; may not be available for all years.
 #' }
+#'
+#' METRO published January–September 2017 only as PDFs, with no
+#' machine-readable equivalent. Those months were transcribed from the
+#' reports and reconciled against the printed line and network totals. July
+#' 2017 has no entrance table at all, because the file METRO published under
+#' that name repeats the transported figures. Lines 1, 2, 3, 5, and 15
+#' therefore carry no value for that month; Line 4 comes from the Dataverse
+#' and is unaffected.
 #'
 #' Metrics:
 #' \itemize{
@@ -61,8 +69,9 @@
 #' @section Data vintage:
 #' This dataset is a fixed snapshot, current through June 2026. It ships with
 #' the package so examples, vignettes, and offline analysis always have data
-#' to hand, and it is regenerated only when the column schema changes --
-#' not when new months are published upstream.
+#' to hand. The snapshot moves only when the column schema changes or a
+#' release deliberately carries new data, not when new months are published
+#' upstream.
 #'
 #' METRO SP publishes on an irregular schedule and revises already-published
 #' years, so the numbers here will drift from the source over time. Freshly
@@ -80,9 +89,9 @@
 #'
 #' Monthly count of passengers transported by São Paulo metro, aggregated
 #' by metro line and reported in \strong{thousands of passengers}. Data covers
-#' January 2016 through 2026 for Lines 1, 2, 3, and 15 (the source never
-#' published January–September 2017), and January 2016 through August 2018
-#' for Line 5. Sourced from the METRO SP transparency portal.
+#' January 2016 through 2026 for Lines 1, 2, 3, and 15, and January 2016
+#' through August 2018 for Line 5. Sourced from the METRO SP transparency
+#' portal.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -123,6 +132,12 @@
 #' reporting its transported counts afterwards. The network
 #' total (\code{line_number = 99}) may not be available for all years.
 #'
+#' METRO published January–September 2017 only as PDFs, with no
+#' machine-readable equivalent. Those months were transcribed from the
+#' reports and reconciled against the printed line and network totals. June
+#' 2017 is the one month whose network total is missing, because the report
+#' reprinted May's network column; the per-line values for June are sound.
+#'
 #' Metrics:
 #' \itemize{
 #'   \item \code{total}: Total passengers in the month.
@@ -152,10 +167,9 @@
 #'
 #' Monthly average of weekday (business day) passenger entries for each
 #' station in the São Paulo metro system. Data covers January 2016 through
-#' 2026 for Lines 1, 2, 3, and 15 (the source never published
-#' January–September 2017); Line 4 from January 2012; Line 5 from January
-#' 2016. Sourced from the METRO SP transparency portal and the Insper
-#' Dataverse.
+#' 2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
+#' January 2016. Sourced from the METRO SP transparency portal and the
+#' Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -191,6 +205,18 @@
 #'     January 2021 onward (Jardim Colonial added), January 2016–2026
 #'     (METRO SP portal).
 #' }
+#'
+#' METRO published January–September 2017 only as PDFs, with no
+#' machine-readable equivalent. Those months were transcribed from the
+#' reports and reconciled against the published line totals.
+#'
+#' February–June 2016 carries a defect in the Line 1 values. Across those
+#' five months the station figures fall well short of what the surrounding
+#' months and the line total in \code{\link{passengers_entrance}} imply, and
+#' they are misallocated across stations, with Santa Cruz and Sé too high and
+#' São Bento and Portuguesa-Tietê too low. The defect comes from METRO's
+#' retroactive publication of 2016 and is not corrected here, so exclude
+#' those five months from station-level baselines.
 #'
 #' @inheritSection passengers_entrance Data vintage
 #'

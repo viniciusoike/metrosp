@@ -41,10 +41,10 @@ spatial datasets.
 |    5 | Lilás (Lilac)    | METRÔ / ViaMobilidade | Jan 2016 – Apr 2026 |
 |   15 | Prata (Silver)   | METRÔ                 | Jan 2016 – Jun 2026 |
 
-Coverage refers to `passengers_entrance`; the other datasets start later
-for some lines. The METRO source has no January–September 2017
-observations. The data dictionary vignette gives the coverage window of
-every dataset by line.
+Coverage refers to `passengers_entrance`, which is missing July 2017 for
+every METRO-sourced line. The other datasets start later for some lines.
+The data dictionary vignette gives the coverage window of every dataset
+by line.
 
 ## Installation
 

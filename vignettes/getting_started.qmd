@@ -109,7 +109,7 @@ total_entrance <- passengers_entrance |>
   filter(metric_abb == "total", line_number != 99)
 ```
 
-The plot shows the total monthly passenger entrances by metro line. Line 4 starts in 2012 and the other lines in January 2016, with no METRO observations from January through September 2017.
+The plot shows the total monthly passenger entrances by metro line. Line 4 starts in 2012 and the other lines in January 2016. July 2017 is the one gap, a month METRO never published an entrance table for.
 
 ```{r}
 #| code-fold: true
