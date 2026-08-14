@@ -13,6 +13,23 @@
   `passengers_transported`. The report reprinted May's network column; the
   per-line values for June are unaffected.
 
+## Bug fixes
+
+* Corrected `mdu`, `msa`, `mdo`, and `max` for Lines 4 and 5 in
+  `passengers_entrance`, across the whole series. The Dataverse source is
+  station-level, and the averages and daily peak were taken over
+  station-days rather than over line-day totals, so each was divided by the
+  number of stations reporting that month. Values rise by roughly 5 to 17
+  times depending on the line and the year. `total` is unchanged. Anyone
+  comparing Line 4 or 5 averages against an earlier release should expect a
+  break.
+* Fixed metric labels resolving to `NA` for 2016–2019 in
+  `passengers_entrance` and `passengers_transported`. The lookup keyed a
+  named vector on accented Portuguese text, which stops matching outside a
+  UTF-8 locale, so a build could drop every label without erroring. Station
+  names and line numbers in `station_averages` were affected the same way.
+  The pipeline now refuses to run outside a UTF-8 locale.
+
 ## Documentation
 
 * Documented a defect in the Line 1 station averages for February–June 2016.
