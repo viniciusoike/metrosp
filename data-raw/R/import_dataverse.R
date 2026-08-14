@@ -73,8 +73,7 @@ clean_entrance_4_5 <- function(dat) {
       .by = c(date, line_number)
     ) |>
     mutate(
-      year = lubridate::year(date),
-      month = lubridate::month(date),
+      date_month = lubridate::floor_date(date, "month"),
       dia_semana = lubridate::wday(date),
       is_business_day = as.integer(bizdays::is.bizday(date, cal = "Brazil/ANBIMA"))
     ) |>
@@ -84,7 +83,7 @@ clean_entrance_4_5 <- function(dat) {
       mdo = mean(value[dia_semana == 1], na.rm = TRUE),
       mdu = mean(value[is_business_day == 1], na.rm = TRUE),
       max = max(value, na.rm = TRUE),
-      .by = c(year, month, line_number)
+      .by = c(date_month, line_number)
     ) |>
     tidyr::pivot_longer(
       cols = c(total, msa, mdo, mdu, max),
@@ -92,7 +91,10 @@ clean_entrance_4_5 <- function(dat) {
       values_to = "value"
     ) |>
     left_join(dim_metric, by = join_by(metric_abb)) |>
-    mutate(date = lubridate::make_date(year, month, 1L)) |>
+    mutate(
+      date = date_month,
+      year = lubridate::year(date)
+    ) |>
     select(all_of(.cols_passengers_entrance)) |>
     arrange(date, line_number, metric_abb)
 }
