@@ -69,6 +69,10 @@ fix_station_names_line5 <- function(x) {
 # Matches schema of metro_sp_passengers_entrance_2020_2025.csv
 clean_passengers_entrance <- function(dat) {
   .prep_data(dat) |>
+    summarise(
+      value = sum(value, na.rm = TRUE),
+      .by = c(date, line_number)
+    ) |>
     mutate(
       year = year(date),
       month = month(date),

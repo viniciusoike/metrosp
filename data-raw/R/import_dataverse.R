@@ -68,6 +68,10 @@ fix_station_names_line5 <- function(x) {
 # Produces: date, line_number, metric_abb, metric, value, year
 clean_entrance_4_5 <- function(dat) {
   .prep_data_4_5(dat) |>
+    summarise(
+      value = sum(value, na.rm = TRUE),
+      .by = c(date, line_number)
+    ) |>
     mutate(
       year = lubridate::year(date),
       month = lubridate::month(date),

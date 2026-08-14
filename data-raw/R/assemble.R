@@ -177,7 +177,10 @@ assemble_averages <- function(stations_historic, averages_current, averages_4_5)
   stopifnot(
     "NA dates in station_averages" = !any(is.na(station_averages$date)),
     "station_averages has footnote markers in station_name" = !any(
-      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_averages$station_name)
+      stringr::str_detect(
+        station_averages$station_name,
+        "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
+      )
     ),
     # Footnote variants of one station must merge into a single series; a
     # duplicate key here means two sources overlap — investigate, never sum.
@@ -247,7 +250,10 @@ assemble_daily <- function(daily_current, daily_4_5) {
       is.na(station_daily$station_name)
     ),
     "station_daily has footnote markers in station_name" = !any(
-      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_daily$station_name)
+      stringr::str_detect(
+        station_daily$station_name,
+        "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
+      )
     ),
     "station_daily lines 1/2/3/15 missing station_code" = !any(
       is.na(station_daily$station_code[
