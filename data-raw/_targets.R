@@ -35,6 +35,21 @@
 library(targets)
 library(tarchetypes)
 
+# The pipeline requires a UTF-8 locale. tar_source() parses data-raw/R/*.R with
+# parse(encoding = "unknown"), so under a non-UTF-8 LC_CTYPE the accented
+# literals in dims.R and assemble.R are read as raw bytes and stop matching the
+# UTF-8 strings readr returns. Nothing errors: metric and station labels just
+# become NA and the build freezes a mislabelled snapshot. Refuse to start.
+if (!isTRUE(l10n_info()[["UTF-8"]])) {
+  stop(
+    "metrosp pipeline requires a UTF-8 locale; LC_CTYPE is '",
+    Sys.getlocale("LC_CTYPE"),
+    "'. Re-run with LC_ALL=en_US.UTF-8 (note that Rscript --vanilla ",
+    "drops to the C locale on macOS).",
+    call. = FALSE
+  )
+}
+
 tar_option_set(
   packages = c(
     "dplyr",

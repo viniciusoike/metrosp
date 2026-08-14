@@ -11,16 +11,22 @@
 library(dplyr, warn.conflicts = FALSE)
 
 # Map Portuguese variable names to metric abbreviations (case-insensitive).
+# Keys are accent-stripped ASCII on purpose. R stores the names of a named
+# vector in the native encoding, so accented keys parsed under a non-UTF-8
+# LC_CTYPE stop matching the UTF-8 strings readr returns, and every metric
+# label silently becomes NA. Normalizing both sides with stringi keeps the
+# lookup locale-independent.
 .metric_map_keys <- c(
   "total" = "total",
-  "média dos dias úteis" = "mdu",
-  "média dos sábados" = "msa",
-  "média dos domingos" = "mdo",
-  "máxima diária" = "max"
+  "media dos dias uteis" = "mdu",
+  "media dos sabados" = "msa",
+  "media dos domingos" = "mdo",
+  "maxima diaria" = "max"
 )
 
 map_metric <- function(x) {
-  .metric_map_keys[tolower(trimws(x))]
+  key <- stringi::stri_trans_general(trimws(x), "Latin-ASCII")
+  .metric_map_keys[stringi::stri_trans_tolower(key)]
 }
 
 # --- passengers_entrance -----------------------------------------------------
@@ -177,7 +183,10 @@ assemble_averages <- function(stations_historic, averages_current, averages_4_5)
   stopifnot(
     "NA dates in station_averages" = !any(is.na(station_averages$date)),
     "station_averages has footnote markers in station_name" = !any(
-      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_averages$station_name)
+      stringr::str_detect(
+        station_averages$station_name,
+        "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
+      )
     ),
     # Footnote variants of one station must merge into a single series; a
     # duplicate key here means two sources overlap — investigate, never sum.
@@ -247,7 +256,10 @@ assemble_daily <- function(daily_current, daily_4_5) {
       is.na(station_daily$station_name)
     ),
     "station_daily has footnote markers in station_name" = !any(
-      grepl("[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\(", station_daily$station_name)
+      stringr::str_detect(
+        station_daily$station_name,
+        "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
+      )
     ),
     "station_daily lines 1/2/3/15 missing station_code" = !any(
       is.na(station_daily$station_code[
