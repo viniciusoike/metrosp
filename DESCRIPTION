@@ -23,6 +23,11 @@ Language: en-US
 LazyData: true
 Depends:
     R (>= 3.5.0)
+Imports:
+    cli,
+    jsonlite,
+    tools,
+    utils
 Suggests:
     bizdays,
     spelling,
@@ -30,7 +35,6 @@ Suggests:
     digest,
     dplyr,
     ggplot2,
-    jsonlite,
     knitr,
     piggyback,
     quarto,

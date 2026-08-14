@@ -1,5 +1,16 @@
 # metrosp 1.2.0
 
+## New features
+
+* Added `read_metro_demand()`, which reads one of the four demand datasets from
+  the published GitHub release rather than the frozen snapshot bundled with the
+  package. `vintage = "2026-08"` pins a dated batch; `source = "bundled"` keeps
+  the offline snapshot.
+* Added `metrosp_cache_dir()`, `metrosp_cache_list()`, `metrosp_cache_clear()`,
+  and `metrosp_cache_enable()` to manage the download cache.
+* `data-publish.yaml` now writes each batch to a dated `data-YYYY-MM` release
+  tag as well as the rolling `data-latest` tag.
+
 ## Datasets
 
 * Added January–September 2017 to `passengers_entrance`,
