@@ -32,13 +32,11 @@ functions.
     │   ├── processed/              # Intermediate CSVs (committed; the graph's inputs)
     │   ├── cache/                  # Staged release payload (gitignored)
     │   ├── metro_sp/               # Raw source files (gitignored, ~46MB)
-    │   ├── archive/                # Retired scripts
+    │   ├── archive/                # Retired scripts; reference only, never run
     │   ├── station_inauguration.csv  # Hand-maintained station opening dates
     │   ├── sanity_checks.qmd       # Manual visual QA (not wired into CI)
     │   ├── build_forecasts.R       # Out of the graph; forecasts are not exported
-    │   ├── make_hex.R              # Generates the package hex sticker
-    │   └── import_*.R + make_datasets.R + utils.R
-    │                               # ORPHANED pre-targets scripts (no entry point); do not run
+    │   └── make_hex.R              # Generates the package hex sticker
     ├── .github/workflows/
     │   ├── data-refresh.yaml       # Weekly upstream refresh -> PR
     │   ├── data-publish.yaml       # On merge -> upload to the data-latest release
@@ -58,14 +56,15 @@ functions.
 
 ## Script Naming Convention
 
-Import scripts follow `import_{dataset}[_{period}].R`: - Historical
-scripts keep a `_2017_2019` suffix
-(e.g. `import_passengers_2017_2019.R`) - Current-era scripts
-(2020-present) have no period suffix
-(e.g. `import_passengers_entrance.R`) - Lines 4/5 (Insper Dataverse):
-`import_lines_4_5_dataverse.R` - Derived datasets use a `build_` prefix
-(`build_forecasts.R`, `build_station_inauguration.R`,
-`build_calendar_spo.R`)
+Pipeline files in `data-raw/R/` are named by source, not by dataset: -
+`import_metro_current.R` — current-era (2020-) METRO portal -
+`import_historic.R` — 2016-2019 METRO portal - `import_dataverse.R` —
+Lines 4/5 (Insper Dataverse) - `import_geosampa.R` — spatial data -
+Derived datasets use a `build_` prefix (`build_calendar_spo.R`,
+`build_inauguration.R`)
+
+The retired `import_{dataset}[_{period}].R` convention survives only in
+`data-raw/archive/`, which holds the pre-`targets` scripts.
 
 ## Exported Datasets
 
@@ -236,9 +235,10 @@ live in `data-raw/R/validate_refresh.R`.
 **There is no second path.** `run_pipeline.R` (the pre-`targets`
 orchestrator) has been removed: it wrote CSV names the graph no longer
 reads, and it wrote `data/*.rda` unconditionally, which the
-frozen-snapshot model forbids. The top-level `data-raw/import_*.R`,
-`make_datasets.R`, and `utils.R` scripts it drove are now unreachable —
-they remain only as reference and should not be run.
+frozen-snapshot model forbids. The `import_*.R`, `make_datasets.R`,
+`utils.R`, and `download_metro.R` scripts it drove now sit in
+`data-raw/archive/`. Nothing sources them, and the live versions of the
+ones that still have a counterpart are in `data-raw/R/`.
 
 ## Quick Commands
 

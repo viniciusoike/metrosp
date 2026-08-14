@@ -67,13 +67,11 @@
 │   ├── processed/              # Intermediate CSVs (committed; the graph's inputs)
 │   ├── cache/                  # Staged release payload (gitignored)
 │   ├── metro_sp/               # Raw source files (gitignored, ~46MB)
-│   ├── archive/                # Retired scripts
+│   ├── archive/                # Retired scripts; reference only, never run
 │   ├── station_inauguration.csv  # Hand-maintained station opening dates
 │   ├── sanity_checks.qmd       # Manual visual QA (not wired into CI)
 │   ├── build_forecasts.R       # Out of the graph; forecasts are not exported
-│   ├── make_hex.R              # Generates the package hex sticker
-│   └── import_*.R + make_datasets.R + utils.R
-│                               # ORPHANED pre-targets scripts (no entry point); do not run
+│   └── make_hex.R              # Generates the package hex sticker
 ├── .github/workflows/
 │   ├── data-refresh.yaml       # Weekly upstream refresh -&gt; PR
 │   ├── data-publish.yaml       # On merge -&gt; upload to the data-latest release
@@ -93,7 +91,8 @@
 </div>
 <div class="section level2">
 <h2 id="script-naming-convention">Script Naming Convention<a class="anchor" aria-label="anchor" href="#script-naming-convention"></a></h2>
-<p>Import scripts follow <code>import_{dataset}[_{period}].R</code>: - Historical scripts keep a <code>_2017_2019</code> suffix (e.g. <code>import_passengers_2017_2019.R</code>) - Current-era scripts (2020-present) have no period suffix (e.g. <code>import_passengers_entrance.R</code>) - Lines 4/5 (Insper Dataverse): <code>import_lines_4_5_dataverse.R</code> - Derived datasets use a <code>build_</code> prefix (<code>build_forecasts.R</code>, <code>build_station_inauguration.R</code>, <code>build_calendar_spo.R</code>)</p>
+<p>Pipeline files in <code>data-raw/R/</code> are named by source, not by dataset: - <code>import_metro_current.R</code> — current-era (2020-) METRO portal - <code>import_historic.R</code> — 2016-2019 METRO portal - <code>import_dataverse.R</code> — Lines 4/5 (Insper Dataverse) - <code>import_geosampa.R</code> — spatial data - Derived datasets use a <code>build_</code> prefix (<code>build_calendar_spo.R</code>, <code>build_inauguration.R</code>)</p>
+<p>The retired <code>import_{dataset}[_{period}].R</code> convention survives only in <code>data-raw/archive/</code>, which holds the pre-<code>targets</code> scripts.</p>
 </div>
 <div class="section level2">
 <h2 id="exported-datasets">Exported Datasets<a class="anchor" aria-label="anchor" href="#exported-datasets"></a></h2>
@@ -211,7 +210,7 @@
 </td>
 </tr></tbody></table><p>Weekly (not monthly) because METRO publishes irregularly — observed gaps run from one day to two months. Most runs exit at the change gate in ~2 minutes. The refresh job deliberately does <strong>not</strong> cache <code>data-raw/metro_sp/</code>: <code>download_metro()</code> skips already-present files for non-latest years, so a cached raw dir would hide the retroactive restatements the job exists to catch.</p>
 <p>Validation is split by what it needs: structural invariants live in <code>tests/testthat/helper-checks.R</code> and are asserted from <em>both</em> the package test suite (against the frozen snapshot) and the pipeline (against the fresh build); baseline-dependent checks — shrinkage, per-line coverage regression, retroactive drift, magnitude outliers — live in <code>data-raw/R/validate_refresh.R</code>.</p>
-<p><strong>There is no second path.</strong> <code>run_pipeline.R</code> (the pre-<code>targets</code> orchestrator) has been removed: it wrote CSV names the graph no longer reads, and it wrote <code>data/*.rda</code> unconditionally, which the frozen-snapshot model forbids. The top-level <code>data-raw/import_*.R</code>, <code>make_datasets.R</code>, and <code>utils.R</code> scripts it drove are now unreachable — they remain only as reference and should not be run.</p>
+<p><strong>There is no second path.</strong> <code>run_pipeline.R</code> (the pre-<code>targets</code> orchestrator) has been removed: it wrote CSV names the graph no longer reads, and it wrote <code>data/*.rda</code> unconditionally, which the frozen-snapshot model forbids. The <code>import_*.R</code>, <code>make_datasets.R</code>, <code>utils.R</code>, and <code>download_metro.R</code> scripts it drove now sit in <code>data-raw/archive/</code>. Nothing sources them, and the live versions of the ones that still have a counterpart are in <code>data-raw/R/</code>.</p>
 </div>
 </div>
 <div class="section level2">
