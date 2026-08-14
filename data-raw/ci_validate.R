@@ -16,6 +16,7 @@
 suppressPackageStartupMessages({
   library(dplyr)
   library(sf)
+  library(stringr)
 })
 
 targets::tar_source("data-raw/R")
