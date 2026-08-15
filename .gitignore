@@ -36,6 +36,7 @@ README.html
 .Rprofile
 .claude/
 CLAUDE.md
+AGENTS.md
 .positai
 inst/doc
 **/.quarto/
