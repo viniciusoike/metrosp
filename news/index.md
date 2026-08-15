@@ -2,37 +2,26 @@
 
 ## metrosp 1.2.0
 
-### New features
-
-- Added
-  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md),
-  which reads one of the four demand datasets from the published GitHub
-  release rather than the frozen snapshot bundled with the package.
-  `vintage = "2026-08"` pins a dated batch; `source = "bundled"` keeps
-  the offline snapshot.
-- Added
-  [`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md),
-  [`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md),
-  [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md),
-  and
-  [`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md)
-  to manage the download cache.
-- `data-publish.yaml` now writes each batch to a dated `data-YYYY-MM`
-  release tag as well as the rolling `data-latest` tag.
-
 ### Datasets
 
+- Extended METRO coverage back to January 2016 for
+  `passengers_entrance`, `passengers_transported`, and
+  `station_averages`.
 - Added January–September 2017 to `passengers_entrance`,
   `passengers_transported`, and `station_averages`. METRO published
   those months only as PDFs without a text layer; they were transcribed
   from the rendered pages and reconciled against the totals printed
   beside them.
 - July 2017 remains absent from `passengers_entrance` for Lines 1, 2, 3,
-  5, and 15. The file METRO published under that name repeats the
-  transported table, so no entrance figures exist for that month.
+  5, and 15, and for the network total. The file METRO published under
+  that name repeats the transported table, so no entrance figures exist
+  for that month. Line 4 comes from the Dataverse and is unaffected.
 - June 2017 has no network total (`line_number = 99`) in
   `passengers_transported`. The report reprinted May’s network column;
   the per-line values for June are unaffected.
+- Refroze the shipped snapshot through June 2026 (Lines 4 and 5 end
+  earlier, in March and April 2026, since the Dataverse source lags
+  METRO).
 
 ### Bug fixes
 
@@ -51,12 +40,53 @@
   Station names and line numbers in `station_averages` were affected the
   same way. The pipeline now refuses to run outside a UTF-8 locale.
 
+### Pipeline
+
+No exported value changes. The snapshot was refrozen for two structural
+differences: `metric_abb` in `passengers_entrance` and
+`passengers_transported` no longer carries a stray `names` attribute,
+and `station_averages` drops one all-`NA` row (Jardim Colonial, January
+2022).
+
+- Replaced the per-year, per-line row-offset tables in the
+  station-average and passenger readers with block detection over the
+  file’s own text. The readers locate each line’s table by its `LINHA …`
+  / `DEMANDA …` header and take the line roster from that header, so a
+  source that adds a title row or drops a line no longer needs a
+  hand-edited offset. One reader now serves 2016 and 2020 onward, and
+  another serves the 2017–2019 monthly files.
+- Removed `.import_stn_avg_2016()`, `get_skip_offset()`,
+  `read_csv_stations_average()`, and `clean_stations_average()`, all
+  superseded by the shared readers.
+- Fixed the 2016 line-level reader placing Line 5 in Line 15’s column.
+  The committed CSVs were already correct, so no exported value changes;
+  the fix is what keeps a future re-import of the 2016 files correct.
+- Collapsed three copies of the line-name lookup into
+  `dim_line$line_name_full`, and derived `metro_lines` from `dim_line`
+  instead of restating it.
+- Renamed the pipeline’s functions onto one vocabulary (`psg_line`,
+  `stn_avg`, `stn_daily`, suffixed by era) and dropped the `.` prefix.
+- Required dplyr 1.2.0, for
+  [`filter_out()`](https://dplyr.tidyverse.org/reference/filter.html)
+  and
+  [`replace_values()`](https://dplyr.tidyverse.org/reference/recode-and-replace-values.html).
+- `data-publish.yaml` now writes each batch to a dated `data-YYYY-MM`
+  release tag as well as the rolling `data-latest` tag, so a batch stays
+  retrievable after `data-latest` moves on.
+
 ### Documentation
 
+- Documented that `passengers_transported` reports thousands of
+  passengers, while the other demand datasets count individual
+  passengers.
 - Documented a defect in the Line 1 station averages for
   February–June 2016. The values run short and are misallocated across
   stations, so those five months should be excluded from station-level
   baselines.
+- Corrected the end of Line 5 coverage in `passengers_transported` to
+  August 2018, the month of the ViaMobilidade handover.
+- Added the frozen-snapshot vintage and the `data-latest` release to the
+  package landing page and both vignettes.
 - Regenerated the time-coverage figures and their alt text against the
   new snapshot.
 
@@ -64,24 +94,8 @@
 
 ### Datasets
 
-- Refroze the shipped snapshot through June 2026 (Lines 4 and 5 end
-  earlier, in March and April 2026, since the Dataverse source lags
-  METRO).
-- Extended METRO coverage back to January 2016 for
-  `passengers_entrance`, `passengers_transported`, and
-  `station_averages`. January–September 2017 remains unavailable because
-  the portal’s machine-readable files begin in October 2017 and those
-  PDFs have not been extracted.
-
-### Documentation
-
-- Documented that `passengers_transported` reports thousands of
-  passengers, while the other demand datasets count individual
-  passengers.
-- Corrected the end of Line 5 coverage in `passengers_transported` to
-  August 2018, the month of the ViaMobilidade handover.
-- Added the frozen-snapshot vintage and the `data-latest` release to the
-  package landing page and both vignettes.
+- `passengers_entrance`, `passengers_transported`, and `station_daily`
+  rebuilt through April 2026.
 
 ### Vignettes
 

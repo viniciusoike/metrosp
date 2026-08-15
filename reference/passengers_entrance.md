@@ -84,8 +84,8 @@ machine-readable equivalent. Those months were transcribed from the
 reports and reconciled against the printed line and network totals. July
 2017 has no entrance table at all, because the file METRO published
 under that name repeats the transported figures. Lines 1, 2, 3, 5, and
-15 therefore carry no value for that month; Line 4 comes from the
-Dataverse and is unaffected.
+15 and the network total therefore carry no value for that month; Line 4
+comes from the Dataverse and is unaffected.
 
 Metrics:
 

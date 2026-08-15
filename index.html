@@ -133,13 +133,12 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The package is available on CRAN.</p>
+<p>Currently, the best option is to install the package from R-Universe which is more up to date.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"metrosp"</span><span class="op">)</span></span></code></pre></div>
-<p>The development version is available from GitHub. It ships the same frozen snapshot as the CRAN release; for data newer than the snapshot, see <a href="#data-vintage">Data vintage</a>.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'metrosp'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://viniciusoike.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The package is also available on CRAN.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"viniciusoike/metrosp"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"metrosp"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
@@ -215,7 +214,7 @@
 </tr>
 </tbody>
 </table>
-<p><code>passengers_entrance</code> and the two station datasets count individual passengers. <code>passengers_transported</code> reports thousands of passengers, as the METRÔ source does.</p>
+<p><code>passengers_entrance</code> and the two station datasets count individual passengers. <code>passengers_transported</code> reports thousands of passengers, as the METRÔ source does. For more details on the data, see the <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">data dictionary</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
@@ -245,7 +244,7 @@
 <div class="section level2">
 <h2 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>
 </h2>
-<p>An interactive dashboard for browsing and downloading these datasets lives in a separate repository: <a href="https://github.com/viniciusoike/metrosp-explorer" class="external-link">metrosp-explorer</a>. It is a standalone Shiny app and is not shipped with the package.</p>
+<p>An interactive dashboard for browsing and downloading these datasets lives in a separate repository: <a href="https://viniciusoike-metrosp-explorer.share.connect.posit.cloud" class="external-link">metrosp-explorer</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="data-sources">Data sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
@@ -255,6 +254,11 @@
 <li>Lines 4/5 data: <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a> (ViaQuatro / ViaMobilidade).</li>
 <li>Spatial data: <a href="https://geosampa.prefeitura.sp.gov.br/" class="external-link">GeoSampa, Prefeitura de São Paulo</a>.</li>
 </ul>
+</div>
+<div class="section level2">
+<h2 id="next-steps">Next steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h2>
+<p>This package is still in development. While the datasets are stable and checked on every new release, there may still be errors. If you find any, please <a href="https://github.com/viniciusoike/metrosp/issues/new" class="external-link">open an issue</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -292,9 +296,9 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://viniciusoike.r-universe.dev/metrosp" class="external-link"><img src="https://viniciusoike.r-universe.dev/badges/metrosp" alt="R-universe"></a></li>
 <li><a href="https://CRAN.R-project.org/package=metrosp" class="external-link"><img src="https://www.r-pkg.org/badges/version/metrosp" alt="CRAN status"></a></li>
 <li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
-<li><a href="https://viniciusoike.r-universe.dev/metrosp" class="external-link"><img src="https://viniciusoike.r-universe.dev/badges/metrosp" alt="R-universe"></a></li>
 </ul>
 </div>
 

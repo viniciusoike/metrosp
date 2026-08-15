@@ -337,7 +337,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(station_averages)
-#> Rows: 11,216
+#> Rows: 11,215
 #> Columns: 7
 #> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
 #> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
