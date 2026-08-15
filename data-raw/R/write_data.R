@@ -31,8 +31,14 @@ write_all_data <- function(
   usethis::use_data(calendar_spo, overwrite = TRUE)
 
   c(
-    "passengers_entrance", "passengers_transported", "station_averages",
-    "station_daily", "lines", "stations", "metro_colors",
-    "station_inauguration", "calendar_spo"
+    "passengers_entrance",
+    "passengers_transported",
+    "station_averages",
+    "station_daily",
+    "lines",
+    "stations",
+    "metro_colors",
+    "station_inauguration",
+    "calendar_spo"
   )
 }

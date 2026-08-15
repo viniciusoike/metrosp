@@ -14,12 +14,12 @@
 # changing is what invalidates the snapshot.
 # -----------------------------------------------------------------------------
 
-.schema_path <- function() here::here("data-raw/schema.json")
+schema_path <- function() here::here("data-raw/schema.json")
 
 # Record the class that actually matters for downstream code. typeof() alone
 # loses Date (double) and factor (integer); class()[1] alone is noisy for plain
 # atomics.
-.col_type <- function(x) {
+col_type <- function(x) {
   cl <- class(x)[[1]]
   if (cl %in% c("Date", "POSIXct", "factor", "difftime")) {
     return(cl)
@@ -37,13 +37,13 @@ dataset_schema <- function(x) {
   if (is.data.frame(x)) {
     return(list(
       kind = "data.frame",
-      columns = lapply(x, .col_type)
+      columns = lapply(x, col_type)
     ))
   }
 
   list(
     kind = "vector",
-    type = .col_type(x),
+    type = col_type(x),
     length = length(x),
     names = names(x)
   )
@@ -55,7 +55,7 @@ build_schema <- function(datasets) {
 }
 
 #' Write the schema contract to data-raw/schema.json.
-write_schema <- function(datasets, path = .schema_path()) {
+write_schema <- function(datasets, path = schema_path()) {
   jsonlite::write_json(
     build_schema(datasets),
     path,
@@ -66,13 +66,13 @@ write_schema <- function(datasets, path = .schema_path()) {
   invisible(path)
 }
 
-read_schema <- function(path = .schema_path()) {
+read_schema <- function(path = schema_path()) {
   jsonlite::read_json(path, simplifyVector = FALSE)
 }
 
 # --- The gate ----------------------------------------------------------------
 
-.plural <- function(word, x) {
+plural <- function(word, x) {
   if (length(x) == 1) word else paste0(word, "s")
 }
 
@@ -83,7 +83,7 @@ read_schema <- function(path = .schema_path()) {
 # glue syntax, and inside glue() it evaluates `?s` and silently collapses the
 # whole string to character(0) -- i.e. it drops the finding instead of
 # reporting it.
-.diff_entry <- function(name, observed, expected) {
+diff_entry <- function(name, observed, expected) {
   if (is.null(expected)) {
     return(sprintf("%s: new dataset, absent from schema.json", name))
   }
@@ -110,7 +110,9 @@ read_schema <- function(path = .schema_path()) {
         )
       )
     }
-    if (!identical(as.character(observed$names), as.character(expected$names))) {
+    if (
+      !identical(as.character(observed$names), as.character(expected$names))
+    ) {
       problems <- c(problems, sprintf("%s: names changed", name))
     }
     return(problems)
@@ -128,7 +130,7 @@ read_schema <- function(path = .schema_path()) {
       sprintf(
         "%s: new %s %s",
         name,
-        .plural("column", added),
+        plural("column", added),
         paste(added, collapse = ", ")
       )
     )
@@ -141,7 +143,7 @@ read_schema <- function(path = .schema_path()) {
       sprintf(
         "%s: missing %s %s",
         name,
-        .plural("column", dropped),
+        plural("column", dropped),
         paste(dropped, collapse = ", ")
       )
     )
@@ -178,7 +180,7 @@ read_schema <- function(path = .schema_path()) {
 #' @param datasets Named list of freshly built datasets.
 #' @param path Path to schema.json.
 #' @return Invisibly TRUE when everything conforms.
-check_schema <- function(datasets, path = .schema_path()) {
+check_schema <- function(datasets, path = schema_path()) {
   if (!file.exists(path)) {
     cli::cli_abort(c(
       "No schema contract at {.path {path}}.",
@@ -191,7 +193,7 @@ check_schema <- function(datasets, path = .schema_path()) {
 
   problems <- unlist(lapply(
     names(observed),
-    function(nm) .diff_entry(nm, observed[[nm]], expected[[nm]])
+    function(nm) diff_entry(nm, observed[[nm]], expected[[nm]])
   ))
 
   dropped_datasets <- setdiff(names(expected), names(observed))

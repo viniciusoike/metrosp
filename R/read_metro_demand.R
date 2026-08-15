@@ -8,6 +8,11 @@
 # This file is the client for that release. The manifest is what makes it
 # cheap: freshness is a timestamp comparison and integrity is a hash check, so
 # a warm cache re-downloads nothing.
+#
+# Nothing here is exported yet. The code ships unexported so it stays under
+# test and in one place while the published-data contract settles; exporting
+# it is a later release, and until then the package's public surface is the
+# datasets alone.
 
 demand_datasets <- c(
   "passengers_entrance",
@@ -34,7 +39,7 @@ demand_datasets <- c(
 #'   * `"bundled"` reads the frozen snapshot and never touches the network.
 #' @param vintage Which published batch to read. `"latest"` tracks the rolling
 #'   release; a year-month string such as `"2026-08"` pins an immutable batch.
-#' @param cache Whether to write downloads to [metrosp_cache_dir()].
+#' @param cache Whether to write downloads to `metrosp_cache_dir()`.
 #' @param quiet Whether to suppress progress messages.
 #'
 #' @return A data frame. See [passengers_entrance], [passengers_transported],
@@ -49,23 +54,10 @@ demand_datasets <- c(
 #' Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 #' installed and skip verification otherwise.
 #'
-#' @seealso [metrosp_cache_dir()] and [metrosp_cache_clear()] for cache
+#' @seealso `metrosp_cache_dir()` and `metrosp_cache_clear()` for cache
 #'   management.
 #'
-#' @export
-#'
-#' @examples
-#' # The bundled snapshot needs no network access.
-#' entrance <- read_metro_demand("passengers_entrance", source = "bundled")
-#' head(entrance)
-#'
-#' \dontrun{
-#' # The most recently published build.
-#' daily <- read_metro_demand("station_daily")
-#'
-#' # A pinned vintage, for a reproducible analysis.
-#' daily_aug <- read_metro_demand("station_daily", vintage = "2026-08")
-#' }
+#' @noRd
 read_metro_demand <- function(
   dataset = c(
     "passengers_entrance",

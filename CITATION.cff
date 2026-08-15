@@ -6,7 +6,7 @@ authors:
   - family-names: Oike
     given-names: Vinicius
     email: viniciusoike@gmail.com
-version: 1.0.0
+version: 1.2.0
 license: MIT
 url: https://viniciusoike.github.io/metrosp/
 repository-code: https://github.com/viniciusoike/metrosp

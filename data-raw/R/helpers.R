@@ -38,18 +38,22 @@ with_retry <- function(expr, tries = 3L, base_wait = 2, what = "request") {
   }
 }
 
-# --- Station-name cleaning ---------------------------------------------------
+# --- Footnote markers --------------------------------------------------------
 
 # Footnote markers leaking from the source spreadsheets: digits, superscripts,
-# or asterisks at the end of a name ("Sé4", "Sé 2", "Brooklin7") or wrapped in
-# parentheses anywhere ("Luz (3)", "Ana Rosa ()").
-.station_footnote_pattern <- "\\s*\\([0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]*\\)|\\s*[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]+$"
+# or asterisks at the end of a label ("Sé4", "Sé 2", "Brooklin7", "Linha 5 -
+# Lilás²") or wrapped in parentheses anywhere ("Luz (3)", "Ana Rosa ()").
+.footnote_pattern <- "\\s*\\([0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]*\\)|\\s*[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]+$"
 
-#' Strip source-spreadsheet footnote markers from station names.
-#' Used by the import builders and again at assembly (defense in depth, so a
-#' stale committed CSV can never leak markers into data/*.rda).
-clean_station_name <- function(x) {
-  stringr::str_squish(stringr::str_remove_all(x, .station_footnote_pattern))
+#' Strip source-spreadsheet footnote markers from a station or line label.
+#' Used by the readers, again at assembly (defense in depth, so a stale
+#' committed CSV can never leak markers into data/*.rda), and by the block
+#' detectors, which read the same labels out of the raw header rows.
+#' Squish first: the marker is anchored to the end of the string, so a trailing
+#' space in the source ("Linha 5 - Lilás² ") would otherwise defeat the anchor.
+strip_footnotes <- function(x) {
+  x <- stringr::str_squish(x)
+  stringr::str_squish(stringr::str_remove_all(x, .footnote_pattern))
 }
 
 # --- Trailing-NA trimmer -----------------------------------------------------
@@ -187,109 +191,181 @@ n_days_in_month <- function(year, month) {
 # --- Numeric conversion ------------------------------------------------------
 
 #' Convert Portuguese-formatted numbers to numeric ("1.234" = 1234).
-as_numeric_pt <- Vectorize(function(x) {
-  if (is.character(x)) {
-    y <- as.numeric(gsub("\\.", "", x))
-  }
-  return(y)
-})
-
-# --- Current-era passenger CSV import (entrance + transported) ---------------
-
-#' Read a raw passenger CSV file (2020-present).
-#'
-#' The header length above each of the 3 line-blocks (LINHA 1/2, LINHA 3/15,
-#' REDE) has drifted from year to year (and, in 2026, even between the
-#' entrance and transport files for the same year) -- a hardcoded per-year
-#' skip table went stale silently every time the source added or dropped a
-#' line. Detect the skip dynamically instead, from the row each block's "Jan;"
-#' line actually falls on.
-read_csv_passengers <- function(path, year = 2020) {
-  raw_lines <- readLines(path, encoding = "latin1")
-  skip <- grep("^Jan\\*?;", raw_lines) - 1L
-
-  if (length(skip) != 3) {
-    cli::cli_abort(
-      "Expected 3 line blocks (found {length(skip)}) while parsing {path}."
-    )
+#' The source pads some cells with spaces and writes an unobserved month as a
+#' bare dash, so squish first and treat a lone dash as missing.
+as_numeric_pt <- function(x) {
+  if (!is.character(x)) {
+    return(x)
   }
 
-  metric_names <- c("month", "total", "mdu", "msa", "mdo", "max")
-  line_names <- c("azul", "verde", "vermelha", "prata", "rede")
-  comb_names <- paste(rep(line_names, each = 6), metric_names, sep = "_")
+  # The source marks an unobserved cell with dashes or footnote asterisks.
+  y <- stringr::str_squish(x)
+  y[grepl("^[-*]*$", y)] <- NA_character_
+  y <- gsub("\\.", "", y)
+  y <- gsub(",", ".", y)
 
-  col_names <- list(
-    c1 = c(comb_names[1:6], "drop_col", comb_names[7:12]),
-    c2 = c(comb_names[13:18], "drop_col", comb_names[19:24]),
-    c3 = comb_names[25:30]
-  )
-
-  parcels <- list()
-
-  for (i in 1:3) {
-    parcels[[i]] <- readr::read_delim(
-      path,
-      delim = ";",
-      skip = skip[i],
-      n_max = 12,
-      na = c("- ", "-", " - "),
-      locale = readr::locale(encoding = "ISO-8859-1", grouping_mark = "."),
-      col_names = col_names[[i]],
-      col_types = readr::cols(.default = readr::col_character()),
-      name_repair = janitor::make_clean_names,
-      show_col_types = FALSE
-    )
-  }
-
-  # Replace empty strings with NAs and drop columns with all NAs
-  parcels <- purrr::map(parcels, \(dat) {
-    d <- dat |>
-      mutate(across(where(is.character), ~ replace_values(.x, "" ~ NA))) |>
-      select(where(~ !all(is.na(.x))))
-
-    return(d)
-  })
-
-  dat <- bind_cols(parcels)
-  return(dat)
+  as.numeric(y)
 }
 
-#' Clean a wide passenger data frame into long tidy format.
-clean_csv_passengers <- function(dat, year = 2020) {
-  dim_line <- dim_line |>
-    mutate(
-      line = tolower(line_name_pt)
-    )
+# --- Block detection ----------------------------------------------------------
 
-  clean_dat <- dat |>
-    select(-matches("month$")) |>
-    mutate(month = month.abb) |>
-    tidyr::pivot_longer(cols = -month, values_transform = as_numeric_pt) |>
-    tidyr::separate(name, into = c("line", "metric_abb"), sep = "_") |>
+# The METRO files are spreadsheets exported to CSV: one table per line, stacked
+# or set side by side, with title rows, footnotes and padding columns around
+# them. Every block announces itself in the text ("LINHA 1-AZUL", "REDE",
+# "Mês;Total;..."), so the readers below locate blocks by scanning for those
+# markers. Row offsets are never hardcoded: the source added header rows in 2025
+# and again in 2026, and a stale offset table fails silently.
+
+#' Split a block-label row into its line labels.
+#' "LINHA 1-AZUL ¹;;;;;;;LINHA 2-VERDE ²" -> c("LINHA 1-AZUL", "LINHA 2-VERDE")
+split_line_labels <- function(row) {
+  labels <- strip_footnotes(stringr::str_split_1(row, ";"))
+  labels[nzchar(labels)]
+}
+
+#' Line number behind a raw block label. "REDE" carries no digits: it is the
+#' network total, which the pipeline numbers 99.
+label_line_number <- function(labels) {
+  num <- suppressWarnings(as.integer(stringr::str_extract(labels, "\\d{1,2}")))
+  if_else(is.na(num), 99L, num)
+}
+
+# --- Passengers by line (annual files: 2016 and 2020-present) -----------------
+# One file per year and measure. Blocks hold months in rows and the five metrics
+# in columns, two lines side by side except for the last (REDE alone in the
+# current era, L15 + REDE in 2016). Reading the block-label row makes the line
+# layout self-describing, so 2016 needs no special case.
+
+#' Read a raw annual passenger-by-line CSV into one wide frame.
+#' Columns are named "<line_number>|<metric_abb>".
+read_psg_line <- function(path) {
+  raw_lines <- readLines(path, encoding = "latin1")
+
+  # Each block's first data row is January; the labels sit two rows above it,
+  # separated by the "Mês;Total;MDU;..." metric header.
+  data_rows <- grep("^Jan\\*?;", raw_lines)
+
+  if (length(data_rows) == 0L) {
+    cli::cli_abort("No month blocks found in {.path {path}}.")
+  }
+
+  parcels <- purrr::map(data_rows, \(row) {
+    lines <- label_line_number(split_line_labels(raw_lines[row - 2L]))
+
+    # Side-by-side blocks are separated by one empty padding column.
+    per_line <- purrr::map(
+      lines,
+      \(n) paste(n, c("month", dim_metric$metric_abb), sep = "|")
+    )
+    col_names <- unlist(purrr::imap(
+      per_line,
+      \(nms, i) if (i == 1L) nms else c(paste0("pad_", i), nms)
+    ))
+
+    readr::read_delim(
+      path,
+      delim = ";",
+      skip = row - 1L,
+      n_max = nrow(dim_month),
+      locale = readr::locale(encoding = "ISO-8859-1"),
+      col_names = col_names,
+      col_types = readr::cols(.default = readr::col_character()),
+      show_col_types = FALSE
+    ) |>
+      select(-matches("^pad_")) |>
+      select(where(~ !all(is.na(.x))))
+  })
+
+  bind_cols(parcels)
+}
+
+#' Reshape a wide annual passenger-by-line frame into the long import schema.
+clean_psg_line <- function(dat, year) {
+  # Every block repeats the month column; keep the first and drop the rest.
+  months <- stringr::str_squish(stringr::str_remove(dat[[1]], "\\*"))
+
+  dat |>
+    select(-matches("\\|month$")) |>
+    mutate(month_abb = months) |>
+    tidyr::pivot_longer(-month_abb, values_transform = as_numeric_pt) |>
+    tidyr::separate(
+      name,
+      into = c("line_number", "metric_abb"),
+      sep = "\\|",
+      convert = TRUE
+    ) |>
+    left_join(dim_month, by = join_by(month_abb)) |>
+    left_join(dim_metric, by = join_by(metric_abb)) |>
     mutate(
       year = local(year),
-      date = readr::parse_date(
-        glue::glue("{year}-{month}-01"),
-        format = "%Y-%b-%d"
-      )
-    )
-
-  clean_dat <- clean_dat |>
-    left_join(dim_metric, by = join_by(metric_abb)) |>
-    left_join(dim_line, by = join_by(line)) |>
-    mutate(
-      # as_numeric_pt is Vectorize()d and carries element names; drop them so
-      # the assembled `value` column matches the old CSV round-trip output.
-      value = unname(value)
+      date = as.Date(paste(year, month_num, "01", sep = "-"))
     ) |>
-    select(
-      date,
-      line_number,
-      metric_abb,
-      metric,
-      value,
-      year
-    )
+    select(all_of(.cols_psg_entrance))
+}
 
-  return(clean_dat)
+# --- Station averages (annual files: 2016 and 2020-present) -------------------
+# One section per line, stations in rows and months in columns, closed by a
+# "Total" row that is excluded. 2016 additionally carries Line 5.
+
+#' Read a raw annual station-averages CSV into one wide frame: one row per
+#' station, tagged with line_number.
+read_stn_avg <- function(path) {
+  raw_lines <- readLines(path, encoding = "latin1")
+
+  starts <- grep("^LINHA", raw_lines)
+  ends <- grep("^Total", raw_lines)
+
+  if (length(starts) == 0L || length(starts) != length(ends)) {
+    cli::cli_abort(c(
+      "Malformed station-averages file {.path {path}}.",
+      "x" = "Found {length(starts)} line header{?s} but {length(ends)} total row{?s}."
+    ))
+  }
+
+  lines <- label_line_number(
+    strip_footnotes(stringr::str_remove(raw_lines[starts], ";.*$"))
+  )
+
+  sections <- purrr::pmap(
+    list(starts, ends, lines),
+    \(start, end, line_number) {
+      readr::read_delim(
+        path,
+        delim = ";",
+        # Skip past the label row so "Estação;Jan;..." names the columns, and
+        # stop one row short of "Total".
+        skip = start,
+        n_max = end - start - 2L,
+        locale = readr::locale(encoding = "ISO-8859-1"),
+        col_types = readr::cols(.default = readr::col_character()),
+        name_repair = janitor::make_clean_names,
+        show_col_types = FALSE
+      ) |>
+        mutate(line_number = line_number, .before = 1)
+    }
+  )
+
+  bind_rows(sections)
+}
+
+#' Reshape a wide annual station-averages frame into the long import schema.
+clean_stn_avg <- function(dat, year) {
+  dat |>
+    select(-any_of("media")) |>
+    tidyr::pivot_longer(
+      cols = -c(line_number, estacao),
+      names_to = "month_abb",
+      values_to = "avg_passenger",
+      values_transform = as_numeric_pt
+    ) |>
+    filter(!is.na(avg_passenger)) |>
+    mutate(
+      station_name = strip_footnotes(estacao),
+      # make_clean_names() lowercases the month headers ("jan", "fev", ...).
+      month_abb = stringr::str_to_title(stringr::str_remove(month_abb, "\\*")),
+      year = local(year)
+    ) |>
+    left_join(dim_month, by = join_by(month_abb)) |>
+    mutate(date = as.Date(paste(year, month_num, "01", sep = "-"))) |>
+    select(all_of(.cols_stn_avg))
 }

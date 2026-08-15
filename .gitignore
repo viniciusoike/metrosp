@@ -35,6 +35,7 @@ README.html
 # Local dev config
 .Rprofile
 .claude/
+CLAUDE.md
 .positai
 inst/doc
 **/.quarto/

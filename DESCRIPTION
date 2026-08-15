@@ -33,7 +33,7 @@ Suggests:
     spelling,
     dataverse,
     digest,
-    dplyr,
+    dplyr (>= 1.2.0),
     ggplot2,
     knitr,
     piggyback,

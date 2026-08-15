@@ -5,12 +5,14 @@
 # home filesystem without consent, so the persistent cache is opt-in: until the
 # user agrees, downloads land in the session's temporary directory and vanish
 # on exit.
+#
+# Unexported for now, alongside read_metro_demand() itself.
 
 the <- new.env(parent = emptyenv())
 
 #' Where metrosp stores downloaded data
 #'
-#' Resolves the directory that [read_metro_demand()] downloads into. The
+#' Resolves the directory that `read_metro_demand()` downloads into. The
 #' persistent location is [tools::R_user_dir()]; until you consent to it,
 #' downloads go to a session-temporary directory instead.
 #'
@@ -22,11 +24,7 @@ the <- new.env(parent = emptyenv())
 #'
 #' @return The cache directory path, as a string.
 #'
-#' @family cache
-#' @export
-#'
-#' @examples
-#' metrosp_cache_dir()
+#' @noRd
 metrosp_cache_dir <- function(create = FALSE) {
   dir <- getOption("metrosp.cache_dir")
 
@@ -53,7 +51,7 @@ metrosp_cache_dir <- function(create = FALSE) {
 #' Allow metrosp to cache data across sessions
 #'
 #' Records consent to store downloaded datasets under [tools::R_user_dir()], so
-#' that [read_metro_demand()] reuses them in later sessions instead of
+#' that `read_metro_demand()` reuses them in later sessions instead of
 #' re-downloading into a temporary directory.
 #'
 #' @param persist Set `FALSE` to withdraw consent and fall back to a
@@ -61,13 +59,7 @@ metrosp_cache_dir <- function(create = FALSE) {
 #'
 #' @return The resulting cache directory, invisibly.
 #'
-#' @family cache
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' metrosp_cache_enable()
-#' }
+#' @noRd
 metrosp_cache_enable <- function(persist = TRUE) {
   marker <- consent_marker()
 
@@ -93,11 +85,7 @@ metrosp_cache_enable <- function(persist = TRUE) {
 #'   file name, size in bytes, and modification time. Zero rows when the cache
 #'   is empty.
 #'
-#' @family cache
-#' @export
-#'
-#' @examples
-#' metrosp_cache_list()
+#' @noRd
 metrosp_cache_list <- function() {
   dir <- metrosp_cache_dir()
   empty <- data.frame(
@@ -133,13 +121,7 @@ metrosp_cache_list <- function() {
 #'
 #' @return The number of files removed, invisibly.
 #'
-#' @family cache
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' metrosp_cache_clear()
-#' }
+#' @noRd
 metrosp_cache_clear <- function(vintage = NULL) {
   dir <- metrosp_cache_dir()
   target <- if (is.null(vintage)) dir else file.path(dir, vintage_tag(vintage))

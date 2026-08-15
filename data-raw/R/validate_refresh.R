@@ -17,7 +17,7 @@
 # failed -- restatements are legitimate, they just must not pass unnoticed.
 # -----------------------------------------------------------------------------
 
-.checks_helper <- function() here::here("tests/testthat/helper-checks.R")
+checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 
 # Join keys per dataset, used for the retroactive-drift comparison.
 .drift_keys <- list(
@@ -44,7 +44,7 @@
 #' @return A list with `ok` (logical), `failures`, `warnings`, and `report`
 #'   (markdown).
 validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
-  source(.checks_helper(), local = TRUE)
+  source(checks_helper(), local = TRUE)
 
   failures <- character(0)
   warnings <- character(0)
@@ -65,7 +65,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
 
   if (is.null(baseline)) {
     notes <- c(notes, "No baseline available; differential checks skipped.")
-    return(.validation_result(failures, warnings, notes, list()))
+    return(validation_result(failures, warnings, notes, list()))
   }
 
   drift <- list()
@@ -121,7 +121,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     }
 
     # --- Retroactive drift (report only) ------------------------------------
-    drift[[nm]] <- .compare_overlap(
+    drift[[nm]] <- compare_overlap(
       nw,
       bl,
       keys = .drift_keys[[nm]],
@@ -131,7 +131,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     # --- Magnitude outliers (warn) ------------------------------------------
     warnings <- c(
       warnings,
-      .magnitude_outliers(nw, nm, .drift_values[[nm]], magnitude_tol)
+      magnitude_outliers(nw, nm, .drift_values[[nm]], magnitude_tol)
     )
 
     # --- New rows (informational) -------------------------------------------
@@ -141,12 +141,12 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     }
   }
 
-  .validation_result(failures, warnings, notes, drift)
+  validation_result(failures, warnings, notes, drift)
 }
 
 # Inner-join new against baseline on keys and count value disagreements over the
 # overlapping period. Returns a list with the count and a per-year breakdown.
-.compare_overlap <- function(new, baseline, keys, value) {
+compare_overlap <- function(new, baseline, keys, value) {
   keys <- intersect(keys, intersect(names(new), names(baseline)))
   if (length(keys) == 0 || !value %in% names(new)) {
     return(NULL)
@@ -161,7 +161,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     return(NULL)
   }
 
-  changed <- !.near(merged[[value]], merged$.baseline)
+  changed <- !near_enough(merged[[value]], merged$.baseline)
   n_changed <- sum(changed, na.rm = TRUE)
 
   if (n_changed == 0) {
@@ -179,7 +179,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
 }
 
 # NA-aware near-equality: two NAs agree, one NA disagrees.
-.near <- function(x, y, tol = 1e-8) {
+near_enough <- function(x, y, tol = 1e-8) {
   both_na <- is.na(x) & is.na(y)
   one_na <- xor(is.na(x), is.na(y))
   out <- rep(FALSE, length(x))
@@ -192,7 +192,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
 # Flag line-months whose value departs sharply from that line's own trailing
 # 12-month median. Catches unit changes and parsing regressions that leave the
 # data structurally valid but numerically absurd.
-.magnitude_outliers <- function(df, name, value, tol) {
+magnitude_outliers <- function(df, name, value, tol) {
   if (!all(c("date", "line_number", value) %in% names(df))) {
     return(character(0))
   }
@@ -243,18 +243,18 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
 
 # --- Reporting ---------------------------------------------------------------
 
-.validation_result <- function(failures, warnings, notes, drift) {
+validation_result <- function(failures, warnings, notes, drift) {
   list(
     ok = length(failures) == 0,
     failures = failures,
     warnings = warnings,
     notes = notes,
     drift = drift,
-    report = .render_report(failures, warnings, notes, drift)
+    report = render_report(failures, warnings, notes, drift)
   )
 }
 
-.bullets <- function(x) {
+bullets <- function(x) {
   if (length(x) == 0) {
     return(NULL)
   }
@@ -263,7 +263,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
 
 # The markdown here becomes the body of the refresh PR. It is written to be
 # read first and skimmed fast: verdict, then what changed, then the detail.
-.render_report <- function(failures, warnings, notes, drift) {
+render_report <- function(failures, warnings, notes, drift) {
   lines <- c(
     if (length(failures) == 0) {
       "## ✅ Validation passed"
@@ -274,7 +274,7 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
   )
 
   if (length(failures) > 0) {
-    lines <- c(lines, "### Blocking", "", .bullets(failures), "")
+    lines <- c(lines, "### Blocking", "", bullets(failures), "")
   }
 
   changed_any <- FALSE
@@ -287,7 +287,11 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     if (d$n_changed == 0) {
       drift_lines <- c(
         drift_lines,
-        sprintf("- **%s**: no restatements (%d rows compared)", nm, d$n_compared)
+        sprintf(
+          "- **%s**: no restatements (%d rows compared)",
+          nm,
+          d$n_compared
+        )
       )
     } else {
       changed_any <- TRUE
@@ -328,11 +332,11 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
   }
 
   if (length(notes) > 0) {
-    lines <- c(lines, "### Changes", "", .bullets(notes), "")
+    lines <- c(lines, "### Changes", "", bullets(notes), "")
   }
 
   if (length(warnings) > 0) {
-    lines <- c(lines, "### Warnings", "", .bullets(warnings), "")
+    lines <- c(lines, "### Warnings", "", bullets(warnings), "")
   }
 
   paste(lines, collapse = "\n")

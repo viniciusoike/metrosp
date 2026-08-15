@@ -18,12 +18,34 @@ library(dplyr, warn.conflicts = FALSE)
 # Line 99 represents the network total ("Sistema METRO").
 dim_metro_line <- tibble(
   line_name_pt = c(
-    "Azul", "Verde", "Vermelha", "Amarela", "Lilás", "Laranja", "Prata",
-    "Violeta", "Ouro", "Celeste", "Rosa", "Marrom", "Sistema METRO"
+    "Azul",
+    "Verde",
+    "Vermelha",
+    "Amarela",
+    "Lilás",
+    "Laranja",
+    "Prata",
+    "Violeta",
+    "Ouro",
+    "Celeste",
+    "Rosa",
+    "Marrom",
+    "Sistema METRO"
   ),
   line_name = c(
-    "Blue", "Green", "Red", "Yellow", "Lilac", "Orange", "Silver",
-    "Violet", "Gold", "Sky Blue", "Pink", "Brown", "METRO System"
+    "Blue",
+    "Green",
+    "Red",
+    "Yellow",
+    "Lilac",
+    "Orange",
+    "Silver",
+    "Violet",
+    "Gold",
+    "Sky Blue",
+    "Pink",
+    "Brown",
+    "METRO System"
   ),
   line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L)
 )
@@ -31,11 +53,23 @@ dim_metro_line <- tibble(
 # CPTM train line reference table: maps Portuguese/English names to line numbers.
 dim_train_line <- tibble(
   line_name_pt = c(
-    "Rubi", "Diamante", "Esmeralda", "Turquesa", "Coral", "Safira", "Jade",
+    "Rubi",
+    "Diamante",
+    "Esmeralda",
+    "Turquesa",
+    "Coral",
+    "Safira",
+    "Jade",
     "Onix"
   ),
   line_name = c(
-    "Ruby", "Diamond", "Emerald", "Turquoise", "Coral", "Sapphire", "Jade",
+    "Ruby",
+    "Diamond",
+    "Emerald",
+    "Turquoise",
+    "Coral",
+    "Sapphire",
+    "Jade",
     "Onyx"
   ),
   line_number = c(7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L)
@@ -45,6 +79,19 @@ dim_line <- bind_rows(
   list("metro" = dim_metro_line, "train" = dim_train_line),
   .id = "type"
 )
+
+# line_name_full is the label the raw METRO files print above each block
+# ("Linha 1 - Azul"). Building it here gives every reader and assemble_averages()
+# one lookup instead of a private copy each. Line 99 is the network total and
+# never appears under that label, so it gets NA.
+dim_line <- dim_line |>
+  mutate(
+    line_name_full = if_else(
+      line_number == 99L,
+      NA_character_,
+      paste0("Linha ", line_number, " - ", line_name_pt)
+    )
+  )
 
 # Station-name canonicalization (source variant -> published canonical name).
 # Sponsor / commercial names are collapsed BACK to the plain station name so
@@ -88,6 +135,42 @@ dim_metric <- tibble(
     "Média dos Sábados",
     "Média dos Domingos",
     "Máxima Diária"
+  )
+)
+
+# Map the Portuguese metric label printed in the raw files to its abbreviation.
+# Keys are accent-stripped ASCII on purpose. R stores the names of a named
+# vector in the native encoding, so accented keys parsed under a non-UTF-8
+# LC_CTYPE stop matching the UTF-8 strings readr returns, and every metric
+# label silently becomes NA. Normalizing both sides with stringi keeps the
+# lookup locale-independent. The source also varies the casing between files
+# ("Média dos dias úteis" / "Média dos Dias Úteis"), which this absorbs.
+.metric_map_keys <- c(
+  "total" = "total",
+  "media dos dias uteis" = "mdu",
+  "media dos sabados" = "msa",
+  "media dos domingos" = "mdo",
+  "maxima diaria" = "max"
+)
+
+map_metric <- function(x) {
+  key <- stringi::stri_trans_general(trimws(x), "Latin-ASCII")
+  unname(.metric_map_keys[stringi::stri_trans_tolower(key)])
+}
+
+# Month dimension. The raw files key months three ways -- by number, by the
+# abbreviation in a column header ("Jan"), and by the full name in a folder or
+# file name ("Janeiro") -- so all three live side by side and are joined, never
+# indexed positionally.
+dim_month <- tibble(
+  month_num = 1:12,
+  month_abb = c(
+    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+    "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+  ),
+  month_name = c(
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   )
 )
 
@@ -161,30 +244,36 @@ dim_convert_metric <- tibble(
 dim_station_lilac <- tibble(
   line_number = 5L,
   station_name = c(
-    "Capão Redondo", "Campo Limpo", "Vila das Belezas", "Giovanni Gronchi",
-    "Santo Amaro", "Largo Treze", "Adolfo Pinheiro", "Alto da Boa Vista",
-    "Borba Gato", "Brooklin", "Campo Belo", "Eucaliptos", "Moema",
-    "AACD-Servidor", "Hospital São Paulo", "Santa Cruz", "Chácara Klabin"
+    "Capão Redondo",
+    "Campo Limpo",
+    "Vila das Belezas",
+    "Giovanni Gronchi",
+    "Santo Amaro",
+    "Largo Treze",
+    "Adolfo Pinheiro",
+    "Alto da Boa Vista",
+    "Borba Gato",
+    "Brooklin",
+    "Campo Belo",
+    "Eucaliptos",
+    "Moema",
+    "AACD-Servidor",
+    "Hospital São Paulo",
+    "Santa Cruz",
+    "Chácara Klabin"
   )
 )
 
 # --- Exported reference datasets ---------------------------------------------
 # metro_lines and metro_colors are package datasets in their own right and are
-# also joined onto the passenger/station tables during assembly. Defined here
-# exactly as in the former make_datasets.R (note the column order differs from
-# dim_metro_line: line_number first).
+# also joined onto the passenger/station tables during assembly. metro_lines is
+# the metro half of dim_line with line_number first; deriving it keeps the two
+# from drifting apart. Every use is a left_join by line_number, so row order
+# does not matter.
 
-metro_lines <- tibble(
-  line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L),
-  line_name_pt = c(
-    "Azul", "Verde", "Vermelha", "Amarela", "Lilás", "Laranja", "Prata",
-    "Violeta", "Ouro", "Celeste", "Rosa", "Marrom", "Sistema METRO"
-  ),
-  line_name = c(
-    "Blue", "Green", "Red", "Yellow", "Lilac", "Orange", "Silver",
-    "Violet", "Gold", "Sky Blue", "Pink", "Brown", "METRO System"
-  )
-)
+metro_lines <- dim_line |>
+  filter(type == "metro") |>
+  select(line_number, line_name_pt, line_name)
 
 metro_colors <- c(
   "Blue" = "#171796",
@@ -198,20 +287,83 @@ metro_colors <- c(
 # --- Column-order constants --------------------------------------------------
 
 # Final column order for the assembled passenger tables (from make_datasets.R).
-.cols_passengers <- c(
-  "date", "line_number", "metric_abb", "value", "metric", "metric_pt",
-  "line_name", "line_name_pt", "year"
+.cols_psg <- c(
+  "date",
+  "line_number",
+  "metric_abb",
+  "value",
+  "metric",
+  "metric_pt",
+  "line_name",
+  "line_name_pt",
+  "year"
 )
 
 # Intermediate schemas produced by the import builders (from utils.R).
-.cols_passengers_entrance <- c(
-  "date", "line_number", "metric_abb", "metric", "value", "year"
+.cols_psg_entrance <- c(
+  "date",
+  "line_number",
+  "metric_abb",
+  "metric",
+  "value",
+  "year"
 )
 
-.cols_st_averages <- c(
-  "date", "line_number", "station_name", "avg_passenger", "year"
+.cols_stn_avg <- c(
+  "date",
+  "line_number",
+  "station_name",
+  "avg_passenger",
+  "year"
 )
 
-.cols_st_daily <- c(
-  "date", "year", "line_number", "station_code", "station_name", "passengers"
+.cols_stn_daily <- c(
+  "date",
+  "year",
+  "line_number",
+  "station_code",
+  "station_name",
+  "passengers"
+)
+
+# Long schema of the committed historic CSVs (2016-2019). The historic era keys
+# its metric by the Portuguese label; assemble_*() maps it with map_metric().
+.cols_stn_avg_historic <- c(
+  "date",
+  "year",
+  "month",
+  "line_name_full",
+  "name_station",
+  "metric_abb",
+  "value"
+)
+
+# Inputs and outputs of the assemble_*() harmonization step.
+.cols_stn_avg_in <- c(
+  "date",
+  "year",
+  "line_number",
+  "station_name",
+  "avg_passenger"
+)
+
+.cols_stn_avg_out <- c(
+  "date",
+  "line_number",
+  "station_name",
+  "avg_passenger",
+  "line_name",
+  "line_name_pt",
+  "year"
+)
+
+.cols_stn_daily_out <- c(
+  "date",
+  "line_number",
+  "station_name",
+  "passengers",
+  "line_name",
+  "line_name_pt",
+  "station_code",
+  "year"
 )

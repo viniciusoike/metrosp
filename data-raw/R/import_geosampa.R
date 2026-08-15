@@ -72,7 +72,7 @@ standardize_stations <- function(x) {
 )
 
 # Finds file paths and names them current/future based on file name.
-.geo_path_files <- function(pat, dir_geo) {
+geo_path_files <- function(pat, dir_geo) {
   path_files <- list.files(dir_geo, pattern = pat, full.names = TRUE)
   file_names <- basename(path_files)
   names(path_files) <- if_else(
@@ -84,7 +84,7 @@ standardize_stations <- function(x) {
 }
 
 # Imports a shapefile, converts to 4326, cleans geometry.
-.geo_import_sf <- function(path) {
+geo_import_sf <- function(path) {
   shape <- sf::st_read(path, quiet = TRUE)
   shape <- sf::st_transform(shape, crs = 4326)
   shape <- sf::st_make_valid(shape)
@@ -92,7 +92,7 @@ standardize_stations <- function(x) {
 }
 
 # Generic cleaner for both metro lines and train lines.
-.geo_clean_lines <- function(dat) {
+geo_clean_lines <- function(dat) {
   cols_select <- c("company_name", "line_number")
   cols_drop <- c("ltp_nrnome", "ltp_situac")
 
@@ -107,15 +107,19 @@ standardize_stations <- function(x) {
       )
   }
 
+  # Join only the naming columns: dim_line also carries line_name_full, which
+  # is a raw-file label with no place in a spatial dataset.
+  dim_line_names <- select(dim_line, -line_name_full)
+
   if (all(clean_dat$line_number < 90)) {
     clean_dat <- select(clean_dat, all_of(cols_select))
-    clean_dat <- left_join(clean_dat, dim_line, by = "line_number")
+    clean_dat <- left_join(clean_dat, dim_line_names, by = "line_number")
   } else {
     clean_dat <- select(clean_dat, -any_of(cols_drop))
     clean_dat <- clean_dat |>
       select(-any_of(cols_drop)) |>
       mutate(line_name_pt = stringr::str_to_title(line_name_pt)) |>
-      left_join(dim_line, by = c("line_name_pt", "line_number")) |>
+      left_join(dim_line_names, by = c("line_name_pt", "line_number")) |>
       mutate(type = if_else(is.na(type), "train", type))
   }
 
@@ -123,7 +127,7 @@ standardize_stations <- function(x) {
 }
 
 # Cleaner for metro/train stations.
-.geo_clean_stations <- function(dat, station_code = TRUE) {
+geo_clean_stations <- function(dat, station_code = TRUE) {
   cols_select <- c(
     "company_name",
     "station_name",
@@ -176,14 +180,15 @@ build_geosampa <- function(
   }
 
   # --- Lines ---
-  metro_path <- .geo_path_files("linhametr.+\\.gpkg$", dir_geo)
-  metro_lines <- purrr::map(metro_path, .geo_import_sf)
-  metro_lines <- purrr::map(metro_lines, .geo_clean_lines)
-  tab_metro_lines <- bind_rows(metro_lines, .id = "status")
+  # Named geo_* so as not to shadow metro_lines, the dimension table in dims.R.
+  metro_path <- geo_path_files("linhametr.+\\.gpkg$", dir_geo)
+  geo_metro_lines <- purrr::map(metro_path, geo_import_sf)
+  geo_metro_lines <- purrr::map(geo_metro_lines, geo_clean_lines)
+  tab_metro_lines <- bind_rows(geo_metro_lines, .id = "status")
 
-  train_path <- .geo_path_files("linhatre.+\\.gpkg$", dir_geo)
-  train_lines <- purrr::map(train_path, .geo_import_sf)
-  train_lines <- purrr::map(train_lines, .geo_clean_lines)
+  train_path <- geo_path_files("linhatre.+\\.gpkg$", dir_geo)
+  train_lines <- purrr::map(train_path, geo_import_sf)
+  train_lines <- purrr::map(train_lines, geo_clean_lines)
   tab_train_lines <- bind_rows(train_lines, .id = "status")
 
   lines <- bind_rows(tab_metro_lines, tab_train_lines)
@@ -208,8 +213,8 @@ build_geosampa <- function(
   path_files <- path_files[inds_name_files]
   names(path_files) <- names(inds_name_files)
 
-  metro_stations <- purrr::map(path_files, .geo_import_sf)
-  metro_stations <- purrr::map(metro_stations, .geo_clean_stations)
+  metro_stations <- purrr::map(path_files, geo_import_sf)
+  metro_stations <- purrr::map(metro_stations, geo_clean_stations)
   tab_metro_stations <- bind_rows(metro_stations, .id = "status")
 
   # Jardim Colonial (Line 15) is operational since 2018 but GeoSampa still
@@ -220,11 +225,11 @@ build_geosampa <- function(
     )
 
   # --- Train stations ---
-  st_train_paths <- .geo_path_files("estacaotrem", dir_geo)
-  station_trains <- purrr::map(st_train_paths, .geo_import_sf)
+  st_train_paths <- geo_path_files("estacaotrem", dir_geo)
+  station_trains <- purrr::map(st_train_paths, geo_import_sf)
   station_trains <- purrr::map(
     station_trains,
-    .geo_clean_stations,
+    geo_clean_stations,
     station_code = FALSE
   )
   tab_train_stations <- bind_rows(station_trains, .id = "status")
