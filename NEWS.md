@@ -1,16 +1,5 @@
 # metrosp 1.2.0
 
-## New features
-
-* Added `read_metro_demand()`, which reads one of the four demand datasets from
-  the published GitHub release rather than the frozen snapshot bundled with the
-  package. `vintage = "2026-08"` pins a dated batch; `source = "bundled"` keeps
-  the offline snapshot.
-* Added `metrosp_cache_dir()`, `metrosp_cache_list()`, `metrosp_cache_clear()`,
-  and `metrosp_cache_enable()` to manage the download cache.
-* `data-publish.yaml` now writes each batch to a dated `data-YYYY-MM` release
-  tag as well as the rolling `data-latest` tag.
-
 ## Datasets
 
 * Extended METRO coverage back to January 2016 for `passengers_entrance`,
@@ -72,6 +61,9 @@ differences: `metric_abb` in `passengers_entrance` and
 * Renamed the pipeline's functions onto one vocabulary (`psg_line`,
   `stn_avg`, `stn_daily`, suffixed by era) and dropped the `.` prefix.
 * Required dplyr 1.2.0, for `filter_out()` and `replace_values()`.
+* `data-publish.yaml` now writes each batch to a dated `data-YYYY-MM` release
+  tag as well as the rolling `data-latest` tag, so a batch stays retrievable
+  after `data-latest` moves on.
 
 ## Documentation
 

@@ -33,11 +33,10 @@ cli::cli_alert_info(
 
 repo <- Sys.getenv("GITHUB_REPOSITORY", unset = "viniciusoike/metrosp")
 
-# Every batch goes to two tags. `data-latest` is what read_metro_demand() reads
-# by default and is overwritten on every run; the dated tag is what
-# `vintage = "2026-08"` pins, so an analysis can name the batch it used. A
-# second publish inside the same month overwrites that month's tag with the
-# more complete batch.
+# Every batch goes to two tags. `data-latest` is the rolling pointer and is
+# overwritten on every run; the dated tag is the immutable copy, so an analysis
+# can name the batch it used. A second publish inside the same month overwrites
+# that month's tag with the more complete batch.
 VINTAGE_TAG <- format(Sys.Date(), "data-%Y-%m")
 
 publish <- function(tag, name, body) {
@@ -80,9 +79,7 @@ publish(
     "current data. See `manifest.json` for the vintage, row counts, date",
     "coverage, and SHA-256 of every asset.",
     "",
-    "```r",
-    'metrosp::read_metro_demand("station_daily")',
-    "```",
+    "Each `.rds` asset reads with `readRDS()` once downloaded.",
     sep = "\n"
   )
 )
@@ -97,13 +94,6 @@ publish(
     ),
     "",
     "Use this tag to hold an analysis to one batch while `data-latest` moves on.",
-    "",
-    "```r",
-    sprintf(
-      'metrosp::read_metro_demand("station_daily", vintage = "%s")',
-      format(Sys.Date(), "%Y-%m")
-    ),
-    "```",
     sep = "\n"
   )
 )
