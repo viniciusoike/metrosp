@@ -5,11 +5,11 @@
 
 <!-- badges: start -->
 
+[![R-universe](https://viniciusoike.r-universe.dev/badges/metrosp)](https://viniciusoike.r-universe.dev/metrosp)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![R-universe](https://viniciusoike.r-universe.dev/badges/metrosp)](https://viniciusoike.r-universe.dev/metrosp)
 <!-- badges: end -->
 
 This package distributes demand data from the São Paulo metro system
@@ -48,19 +48,17 @@ by line.
 
 ## Installation
 
-The package is available on CRAN.
+Currently, the best option is to install the package from R-Universe
+which is more up to date.
+
+``` r
+install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
+```
+
+The package is also available on CRAN.
 
 ``` r
 install.packages("metrosp")
-```
-
-The development version is available from GitHub. It ships the same
-frozen snapshot as the CRAN release; for data newer than the snapshot,
-see [Data vintage](#data-vintage).
-
-``` r
-# install.packages("remotes")
-remotes::install_github("viniciusoike/metrosp")
 ```
 
 ## Datasets
@@ -83,7 +81,8 @@ rest are auxiliary tables that support analysis and visualization.
 
 `passengers_entrance` and the two station datasets count individual
 passengers. `passengers_transported` reports thousands of passengers, as
-the METRÔ source does.
+the METRÔ source does. For more details on the data, see the [data
+dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html).
 
 ## Data vintage
 
@@ -122,8 +121,7 @@ lines
 
 An interactive dashboard for browsing and downloading these datasets
 lives in a separate repository:
-[metrosp-explorer](https://github.com/viniciusoike/metrosp-explorer). It
-is a standalone Shiny app and is not shipped with the package.
+[metrosp-explorer](https://viniciusoike-metrosp-explorer.share.connect.posit.cloud).
 
 ## Data sources
 
@@ -134,3 +132,10 @@ is a standalone Shiny app and is not shipped with the package.
   ViaMobilidade).
 - Spatial data: [GeoSampa, Prefeitura de São
   Paulo](https://geosampa.prefeitura.sp.gov.br/).
+
+## Next steps
+
+This package is still in development. While the datasets are stable and
+checked on every new release, there may still be errors. If you find
+any, please [open an
+issue](https://github.com/viniciusoike/metrosp/issues/new).
