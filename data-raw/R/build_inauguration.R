@@ -12,7 +12,11 @@ library(dplyr, warn.conflicts = FALSE)
 #' @param csv_path Path to data-raw/station_inauguration.csv.
 #' @param station_daily The assembled station_daily dataset.
 #' @param station_averages The assembled station_averages dataset.
-build_station_inauguration <- function(csv_path, station_daily, station_averages) {
+build_station_inauguration <- function(
+  csv_path,
+  station_daily,
+  station_averages
+) {
   raw <- readr::read_csv(
     csv_path,
     col_types = readr::cols(

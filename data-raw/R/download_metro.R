@@ -17,7 +17,7 @@
 library(dplyr, warn.conflicts = FALSE)
 library(stringr)
 
-.str_simplify <- function(x) {
+str_simplify <- function(x) {
   y <- stringi::stri_trans_general(x, id = "latin-ascii")
   y <- stringr::str_replace_all(y, " ", "_")
   y <- stringr::str_to_lower(y)
@@ -94,7 +94,7 @@ download_metro <- function(force_all = FALSE) {
   params <- params |>
     mutate(
       name_file = str_remove_all(title, " -"),
-      name_file = .str_simplify(name_file),
+      name_file = str_simplify(name_file),
       name_file = str_remove_all(name_file, "/"),
       type_file = str_extract(url, "\\.[a-z]{3}$"),
       year = as.numeric(str_extract(url, "(?<=20)[0-9]{4}")),

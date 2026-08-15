@@ -39,7 +39,7 @@ import_dataverse <- function() {
 # --- Cleaning helpers --------------------------------------------------------
 
 # Filter to Lines 4/5 gate entries and join line metadata.
-.prep_data_4_5 <- function(dat, type = "entrada") {
+prep_data_4_5 <- function(dat, type = "entrada") {
   valid_bus <- dim_bus$business_unit
 
   dat <- dat |>
@@ -68,8 +68,8 @@ fix_station_names_line5 <- function(x) {
 # Collapse station-level gate entries to one value per line-day. Every metric
 # below is an average or a peak over these line-day totals; grouping the station
 # rows directly divides the averages by the station count.
-.entrance_line_daily <- function(dat) {
-  .prep_data_4_5(dat) |>
+entrance_line_daily <- function(dat) {
+  prep_data_4_5(dat) |>
     summarise(
       value = sum(value, na.rm = TRUE),
       .by = c(date, line_number)
@@ -79,7 +79,7 @@ fix_station_names_line5 <- function(x) {
 # Tag each line-day with its month and its calendar role. week_start is pinned
 # because wday() otherwise reads the lubridate.week.start option, which would
 # silently swap msa and mdo.
-.entrance_tag_days <- function(daily) {
+entrance_tag_days <- function(daily) {
   daily |>
     mutate(
       date_month = lubridate::floor_date(date, "month"),
@@ -88,7 +88,7 @@ fix_station_names_line5 <- function(x) {
     )
 }
 
-.entrance_monthly_metrics <- function(tagged) {
+entrance_monthly_metrics <- function(tagged) {
   tagged |>
     summarise(
       total = sum(value),
@@ -100,7 +100,7 @@ fix_station_names_line5 <- function(x) {
     )
 }
 
-.entrance_to_long <- function(monthly) {
+entrance_to_long <- function(monthly) {
   monthly |>
     tidyr::pivot_longer(
       cols = c(total, msa, mdo, mdu, max),
@@ -117,15 +117,15 @@ fix_station_names_line5 <- function(x) {
 # Produces: date, line_number, metric_abb, metric, value, year
 clean_entrance_4_5 <- function(dat) {
   dat |>
-    .entrance_line_daily() |>
-    .entrance_tag_days() |>
-    .entrance_monthly_metrics() |>
-    .entrance_to_long()
+    entrance_line_daily() |>
+    entrance_tag_days() |>
+    entrance_monthly_metrics() |>
+    entrance_to_long()
 }
 
 # Produces: date, line_number, station_name, avg_passenger, year
 clean_averages_4_5 <- function(dat) {
-  dat <- .prep_data_4_5(dat, type = "transportado")
+  dat <- prep_data_4_5(dat, type = "transportado")
 
   dat <- dat |>
     mutate(station_name = fix_station_names_line5(station_name)) |>
@@ -136,7 +136,10 @@ clean_averages_4_5 <- function(dat) {
 
   dat <- dat |>
     mutate(
-      is_business_day = as.integer(bizdays::is.bizday(date, cal = "Brazil/ANBIMA"))
+      is_business_day = as.integer(bizdays::is.bizday(
+        date,
+        cal = "Brazil/ANBIMA"
+      ))
     ) |>
     filter(is_business_day == 1L)
 
@@ -159,7 +162,7 @@ clean_averages_4_5 <- function(dat) {
 # Produces: date, year, line_number, station_code, station_name, passengers
 # Lines 4/5 have no station codes (set to NA).
 clean_daily_4_5 <- function(dat) {
-  dat <- .prep_data_4_5(dat)
+  dat <- prep_data_4_5(dat)
 
   dat <- dat |>
     mutate(

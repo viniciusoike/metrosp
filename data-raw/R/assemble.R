@@ -10,24 +10,8 @@
 
 library(dplyr, warn.conflicts = FALSE)
 
-# Map Portuguese variable names to metric abbreviations (case-insensitive).
-# Keys are accent-stripped ASCII on purpose. R stores the names of a named
-# vector in the native encoding, so accented keys parsed under a non-UTF-8
-# LC_CTYPE stop matching the UTF-8 strings readr returns, and every metric
-# label silently becomes NA. Normalizing both sides with stringi keeps the
-# lookup locale-independent.
-.metric_map_keys <- c(
-  "total" = "total",
-  "media dos dias uteis" = "mdu",
-  "media dos sabados" = "msa",
-  "media dos domingos" = "mdo",
-  "maxima diaria" = "max"
-)
-
-map_metric <- function(x) {
-  key <- stringi::stri_trans_general(trimws(x), "Latin-ASCII")
-  .metric_map_keys[stringi::stri_trans_tolower(key)]
-}
+# map_metric() and the .cols_* constants live in dims.R, next to the dimension
+# tables they read.
 
 # --- passengers_entrance -----------------------------------------------------
 
@@ -46,9 +30,7 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
 
   entrance_20 <- entrance_current |>
     left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
-    mutate(
-      line_number = if_else(is.na(line_number), 99L, as.integer(line_number))
-    ) |>
+    mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
   entrance_4_5 <- entrance_4_5 |>
@@ -61,7 +43,7 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
 
   passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
     drop_trailing_na(value) |>
-    select(all_of(.cols_passengers)) |>
+    select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)
 
   stopifnot(
@@ -86,14 +68,12 @@ assemble_transported <- function(psg_historic, transported_current) {
 
   transported_20 <- transported_current |>
     left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
-    mutate(
-      line_number = if_else(is.na(line_number), 99L, as.integer(line_number))
-    ) |>
+    mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
   passengers_transported <- bind_rows(transported_hist, transported_20) |>
     drop_trailing_na(value) |>
-    select(all_of(.cols_passengers)) |>
+    select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)
 
   stopifnot(
@@ -107,40 +87,29 @@ assemble_transported <- function(psg_historic, transported_current) {
 
 # --- station_averages --------------------------------------------------------
 
-# Parse line_name_full -> line_number (historic averages).
-.line_lookup_avg <- c(
-  "Linha 1 - Azul" = 1L,
-  "Linha 2 - Verde" = 2L,
-  "Linha 3 - Vermelha" = 3L,
-  "Linha 5 - Lilás" = 5L,
-  "Linha 5 - Lilás9" = 5L, # Fix typo in raw data
-  "Linha 15 - Prata" = 15L
-)
-
-.cols_station_avg_in <- c(
-  "date", "year", "line_number", "station_name", "avg_passenger"
-)
-
-.cols_station_avg_out <- c(
-  "date", "line_number", "station_name", "avg_passenger",
-  "line_name", "line_name_pt", "year"
-)
-
 #' @param stations_historic Raw historic station-averages tibble (committed CSV).
 #' @param averages_current Current-era averages tibble (builder output).
 #' @param averages_4_5 Lines 4/5 averages tibble (committed CSV).
-assemble_averages <- function(stations_historic, averages_current, averages_4_5) {
+assemble_averages <- function(
+  stations_historic,
+  averages_current,
+  averages_4_5
+) {
   # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
   station_renames <- dim_station_name_change$station_name
   names(station_renames) <- dim_station_name_change$station_name_raw
 
   stations_hist <- stations_historic |>
-    mutate(
-      line_number = .line_lookup_avg[line_name_full],
-      station_name = name_station
+    # One source month prints the label with a footnote digit ("Linha 5 -
+    # Lilás9"); stripping it first means dim_line is the only lookup.
+    mutate(line_name_full = strip_footnotes(line_name_full)) |>
+    left_join(
+      select(dim_line, line_name_full, line_number),
+      by = join_by(line_name_full)
     ) |>
+    mutate(station_name = name_station) |>
     rename(avg_passenger = value) |>
-    select(all_of(.cols_station_avg_in)) |>
+    select(all_of(.cols_stn_avg_in)) |>
     # Line 5 was handed over to ViaMobilidade in Aug 2018: the Dataverse
     # source covers it from 2018-08-01, so drop the overlapping historic
     # month (mirrors assemble_entrance). Keeps one series per station.
@@ -152,7 +121,7 @@ assemble_averages <- function(stations_historic, averages_current, averages_4_5)
   station_averages <- bind_rows(station_averages, averages_4_5) |>
     # Defense in depth: re-clean names so a stale committed CSV can never
     # leak footnote markers (e.g. "Sé4", "Brooklin7") into the package data.
-    mutate(station_name = clean_station_name(station_name))
+    mutate(station_name = strip_footnotes(station_name))
 
   station_averages <- station_averages |>
     mutate(
@@ -175,7 +144,7 @@ assemble_averages <- function(stations_historic, averages_current, averages_4_5)
 
   station_averages <- station_averages |>
     drop_trailing_na(avg_passenger) |>
-    select(all_of(.cols_station_avg_out)) |>
+    select(all_of(.cols_stn_avg_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>
     select(-station_order)
@@ -201,11 +170,6 @@ assemble_averages <- function(stations_historic, averages_current, averages_4_5)
 
 # --- station_daily -----------------------------------------------------------
 
-.cols_station_daily_out <- c(
-  "date", "line_number", "station_name", "passengers",
-  "line_name", "line_name_pt", "station_code", "year"
-)
-
 #' @param daily_current Current-era daily tibble (builder output).
 #' @param daily_4_5 Lines 4/5 daily tibble (committed CSV).
 assemble_daily <- function(daily_current, daily_4_5) {
@@ -218,7 +182,7 @@ assemble_daily <- function(daily_current, daily_4_5) {
 
   station_daily <- bind_rows(station_daily, daily_4_5) |>
     # Defense in depth: same footnote-marker cleaning as assemble_averages.
-    mutate(station_name = clean_station_name(station_name))
+    mutate(station_name = strip_footnotes(station_name))
 
   station_daily <- station_daily |>
     mutate(
@@ -233,7 +197,7 @@ assemble_daily <- function(daily_current, daily_4_5) {
 
   station_daily <- station_daily |>
     drop_trailing_na(passengers) |>
-    select(all_of(.cols_station_daily_out)) |>
+    select(all_of(.cols_stn_daily_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>
     select(-station_order)
@@ -251,7 +215,9 @@ assemble_daily <- function(daily_current, daily_4_5) {
         station_daily$line_number %in% c(4L, 5L)
       ])
     ),
-    "station_daily has negative passengers" = all(station_daily$passengers >= 0),
+    "station_daily has negative passengers" = all(
+      station_daily$passengers >= 0
+    ),
     "station_daily missing station_name" = !any(
       is.na(station_daily$station_name)
     ),

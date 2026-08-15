@@ -11,7 +11,7 @@
 # this job ("Piggyback cache (datasets managed via GitHub Releases)").
 # -----------------------------------------------------------------------------
 
-.cache_dir <- function() here::here("data-raw/cache")
+cache_dir <- function() here::here("data-raw/cache")
 
 #' Stage datasets as .rds plus a manifest describing the batch.
 #'
@@ -22,7 +22,7 @@
 #' @param datasets Named list of built datasets.
 #' @param dir Staging directory.
 #' @return Invisibly, the path to manifest.json.
-write_release_payload <- function(datasets, dir = .cache_dir()) {
+write_release_payload <- function(datasets, dir = cache_dir()) {
   fs::dir_create(dir)
 
   entries <- list()
@@ -40,14 +40,14 @@ write_release_payload <- function(datasets, dir = .cache_dir()) {
         bytes = as.numeric(fs::file_size(path)),
         sha256 = digest::digest(path, algo = "sha256", file = TRUE)
       ),
-      .payload_shape(x)
+      payload_shape(x)
     )
   }
 
   manifest <- list(
     built_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
-    pipeline_commit = .git_sha(),
-    schema_version = .package_version(),
+    pipeline_commit = git_sha(),
+    schema_version = pkg_version(),
     datasets = entries
   )
 
@@ -67,7 +67,7 @@ write_release_payload <- function(datasets, dir = .cache_dir()) {
 
 # Row counts and date coverage per dataset. These are what make the manifest
 # readable at a glance and what the validation report diffs against.
-.payload_shape <- function(x) {
+payload_shape <- function(x) {
   if (!is.data.frame(x)) {
     return(list(kind = "vector", length = length(x)))
   }
@@ -84,11 +84,11 @@ write_release_payload <- function(datasets, dir = .cache_dir()) {
 
 # Read from DESCRIPTION rather than packageVersion(): the pipeline must not
 # require metrosp to be installed to stage a payload.
-.package_version <- function() {
+pkg_version <- function() {
   as.character(read.dcf(here::here("DESCRIPTION"), fields = "Version")[[1]])
 }
 
-.git_sha <- function() {
+git_sha <- function() {
   sha <- tryCatch(
     system2("git", c("rev-parse", "--short", "HEAD"), stdout = TRUE),
     error = function(e) NA_character_,
@@ -98,6 +98,6 @@ write_release_payload <- function(datasets, dir = .cache_dir()) {
 }
 
 #' Read a manifest from a staging dir or an extracted release download.
-read_manifest <- function(dir = .cache_dir()) {
+read_manifest <- function(dir = cache_dir()) {
   jsonlite::read_json(file.path(dir, "manifest.json"), simplifyVector = FALSE)
 }
