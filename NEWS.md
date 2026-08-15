@@ -35,6 +35,33 @@
   names and line numbers in `station_averages` were affected the same way.
   The pipeline now refuses to run outside a UTF-8 locale.
 
+## Pipeline
+
+No exported value changes. The snapshot was refrozen for two structural
+differences: `metric_abb` in `passengers_entrance` and
+`passengers_transported` no longer carries a stray `names` attribute, and
+`station_averages` drops one all-`NA` row (Jardim Colonial, January 2022).
+
+* Replaced the per-year, per-line row-offset tables in the station-average
+  and passenger readers with block detection over the file's own text. The
+  readers locate each line's table by its `LINHA …` / `DEMANDA …` header and
+  take the line roster from that header, so a source that adds a title row
+  or drops a line no longer needs a hand-edited offset. One reader now
+  serves 2016 and 2020 onward, and another serves the 2017–2019 monthly
+  files.
+* Removed `.import_stn_avg_2016()`, `get_skip_offset()`,
+  `read_csv_stations_average()`, and `clean_stations_average()`, all
+  superseded by the shared readers.
+* Fixed the 2016 line-level reader placing Line 5 in Line 15's column. The
+  committed CSVs were already correct, so no exported value changes; the fix
+  is what keeps a future re-import of the 2016 files correct.
+* Collapsed three copies of the line-name lookup into
+  `dim_line$line_name_full`, and derived `metro_lines` from `dim_line`
+  instead of restating it.
+* Renamed the pipeline's functions onto one vocabulary (`psg_line`,
+  `stn_avg`, `stn_daily`, suffixed by era) and dropped the `.` prefix.
+* Required dplyr 1.2.0, for `filter_out()` and `replace_values()`.
+
 ## Documentation
 
 * Documented that `passengers_transported` reports thousands of passengers,
