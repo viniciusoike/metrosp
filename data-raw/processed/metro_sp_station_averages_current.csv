@@ -4714,393 +4714,459 @@ date,line_number,station_name,avg_passenger,year
 2026-04-01,1,Jabaquara,73,2026
 2026-05-01,1,Jabaquara,71,2026
 2026-06-01,1,Jabaquara,69,2026
+2026-07-01,1,Jabaquara,65,2026
 2026-01-01,1,Conceição,26,2026
 2026-02-01,1,Conceição,30,2026
 2026-03-01,1,Conceição,31,2026
 2026-04-01,1,Conceição,32,2026
 2026-05-01,1,Conceição,31,2026
 2026-06-01,1,Conceição,31,2026
+2026-07-01,1,Conceição,28,2026
 2026-01-01,1,São Judas,14,2026
 2026-02-01,1,São Judas,15,2026
 2026-03-01,1,São Judas,16,2026
 2026-04-01,1,São Judas,18,2026
 2026-05-01,1,São Judas,18,2026
 2026-06-01,1,São Judas,17,2026
+2026-07-01,1,São Judas,17,2026
 2026-01-01,1,Saúde-Ultrafarma,23,2026
 2026-02-01,1,Saúde-Ultrafarma,26,2026
 2026-03-01,1,Saúde-Ultrafarma,27,2026
 2026-04-01,1,Saúde-Ultrafarma,26,2026
 2026-05-01,1,Saúde-Ultrafarma,26,2026
 2026-06-01,1,Saúde-Ultrafarma,25,2026
+2026-07-01,1,Saúde-Ultrafarma,23,2026
 2026-01-01,1,Praça da Árvore,13,2026
 2026-02-01,1,Praça da Árvore,15,2026
 2026-03-01,1,Praça da Árvore,16,2026
 2026-04-01,1,Praça da Árvore,16,2026
 2026-05-01,1,Praça da Árvore,16,2026
 2026-06-01,1,Praça da Árvore,16,2026
+2026-07-01,1,Praça da Árvore,14,2026
 2026-01-01,1,Santa Cruz,84,2026
 2026-02-01,1,Santa Cruz,93,2026
 2026-03-01,1,Santa Cruz,97,2026
 2026-04-01,1,Santa Cruz,101,2026
 2026-05-01,1,Santa Cruz,97,2026
 2026-06-01,1,Santa Cruz,94,2026
+2026-07-01,1,Santa Cruz,89,2026
 2026-01-01,1,Vila Mariana,14,2026
 2026-02-01,1,Vila Mariana,20,2026
 2026-03-01,1,Vila Mariana,22,2026
 2026-04-01,1,Vila Mariana,22,2026
 2026-05-01,1,Vila Mariana,22,2026
 2026-06-01,1,Vila Mariana,20,2026
+2026-07-01,1,Vila Mariana,15,2026
 2026-01-01,1,Ana Rosa,70,2026
 2026-02-01,1,Ana Rosa,81,2026
 2026-03-01,1,Ana Rosa,85,2026
 2026-04-01,1,Ana Rosa,86,2026
 2026-05-01,1,Ana Rosa,84,2026
 2026-06-01,1,Ana Rosa,81,2026
+2026-07-01,1,Ana Rosa,76,2026
 2026-01-01,1,Paraíso,87,2026
 2026-02-01,1,Paraíso,101,2026
 2026-03-01,1,Paraíso,106,2026
 2026-04-01,1,Paraíso,107,2026
 2026-05-01,1,Paraíso,105,2026
 2026-06-01,1,Paraíso,101,2026
+2026-07-01,1,Paraíso,94,2026
 2026-01-01,1,Vergueiro,23,2026
 2026-02-01,1,Vergueiro,27,2026
 2026-03-01,1,Vergueiro,29,2026
 2026-04-01,1,Vergueiro,29,2026
 2026-05-01,1,Vergueiro,29,2026
 2026-06-01,1,Vergueiro,27,2026
+2026-07-01,1,Vergueiro,25,2026
 2026-01-01,1,São Joaquim,21,2026
 2026-02-01,1,São Joaquim,30,2026
 2026-03-01,1,São Joaquim,36,2026
 2026-04-01,1,São Joaquim,35,2026
 2026-05-01,1,São Joaquim,33,2026
 2026-06-01,1,São Joaquim,28,2026
+2026-07-01,1,São Joaquim,21,2026
 2026-01-01,1,Japão-Liberdade,21,2026
 2026-02-01,1,Japão-Liberdade,23,2026
 2026-03-01,1,Japão-Liberdade,23,2026
 2026-04-01,1,Japão-Liberdade,23,2026
 2026-05-01,1,Japão-Liberdade,23,2026
 2026-06-01,1,Japão-Liberdade,21,2026
+2026-07-01,1,Japão-Liberdade,24,2026
 2026-01-01,1,Sé,153,2026
 2026-02-01,1,Sé,170,2026
 2026-03-01,1,Sé,177,2026
 2026-04-01,1,Sé,178,2026
 2026-05-01,1,Sé,176,2026
 2026-06-01,1,Sé,171,2026
+2026-07-01,1,Sé,160,2026
 2026-01-01,1,São Bento,49,2026
 2026-02-01,1,São Bento,50,2026
 2026-03-01,1,São Bento,49,2026
 2026-04-01,1,São Bento,49,2026
 2026-05-01,1,São Bento,51,2026
 2026-06-01,1,São Bento,51,2026
+2026-07-01,1,São Bento,50,2026
 2026-01-01,1,Luz,109,2026
 2026-02-01,1,Luz,127,2026
 2026-03-01,1,Luz,130,2026
 2026-04-01,1,Luz,131,2026
 2026-05-01,1,Luz,129,2026
 2026-06-01,1,Luz,121,2026
+2026-07-01,1,Luz,115,2026
 2026-01-01,1,Tiradentes,11,2026
 2026-02-01,1,Tiradentes,14,2026
 2026-03-01,1,Tiradentes,17,2026
 2026-04-01,1,Tiradentes,17,2026
 2026-05-01,1,Tiradentes,16,2026
 2026-06-01,1,Tiradentes,15,2026
+2026-07-01,1,Tiradentes,13,2026
 2026-01-01,1,Armênia,17,2026
 2026-02-01,1,Armênia,19,2026
 2026-03-01,1,Armênia,20,2026
 2026-04-01,1,Armênia,21,2026
 2026-05-01,1,Armênia,20,2026
 2026-06-01,1,Armênia,19,2026
+2026-07-01,1,Armênia,18,2026
 2026-01-01,1,Portuguesa-Tietê,40,2026
 2026-02-01,1,Portuguesa-Tietê,42,2026
 2026-03-01,1,Portuguesa-Tietê,42,2026
 2026-04-01,1,Portuguesa-Tietê,45,2026
 2026-05-01,1,Portuguesa-Tietê,44,2026
 2026-06-01,1,Portuguesa-Tietê,43,2026
+2026-07-01,1,Portuguesa-Tietê,43,2026
 2026-01-01,1,Carandiru,10,2026
 2026-02-01,1,Carandiru,11,2026
 2026-03-01,1,Carandiru,12,2026
 2026-04-01,1,Carandiru,12,2026
 2026-05-01,1,Carandiru,12,2026
 2026-06-01,1,Carandiru,12,2026
+2026-07-01,1,Carandiru,11,2026
 2026-01-01,1,Santana,43,2026
 2026-02-01,1,Santana,49,2026
 2026-03-01,1,Santana,51,2026
 2026-04-01,1,Santana,52,2026
 2026-05-01,1,Santana,51,2026
 2026-06-01,1,Santana,49,2026
+2026-07-01,1,Santana,45,2026
 2026-01-01,1,Jardim São Paulo-Ayrton Senna,10,2026
 2026-02-01,1,Jardim São Paulo-Ayrton Senna,12,2026
 2026-03-01,1,Jardim São Paulo-Ayrton Senna,13,2026
 2026-04-01,1,Jardim São Paulo-Ayrton Senna,13,2026
 2026-05-01,1,Jardim São Paulo-Ayrton Senna,13,2026
 2026-06-01,1,Jardim São Paulo-Ayrton Senna,12,2026
+2026-07-01,1,Jardim São Paulo-Ayrton Senna,11,2026
 2026-01-01,1,Parada Inglesa,11,2026
 2026-02-01,1,Parada Inglesa,13,2026
 2026-03-01,1,Parada Inglesa,14,2026
 2026-04-01,1,Parada Inglesa,14,2026
 2026-05-01,1,Parada Inglesa,14,2026
 2026-06-01,1,Parada Inglesa,13,2026
+2026-07-01,1,Parada Inglesa,12,2026
 2026-01-01,1,Tucuruvi,51,2026
 2026-02-01,1,Tucuruvi,57,2026
 2026-03-01,1,Tucuruvi,59,2026
 2026-04-01,1,Tucuruvi,60,2026
 2026-05-01,1,Tucuruvi,59,2026
 2026-06-01,1,Tucuruvi,57,2026
+2026-07-01,1,Tucuruvi,54,2026
 2026-01-01,2,Vila Prudente,70,2026
 2026-02-01,2,Vila Prudente,80,2026
 2026-03-01,2,Vila Prudente,84,2026
 2026-04-01,2,Vila Prudente,85,2026
 2026-05-01,2,Vila Prudente,84,2026
 2026-06-01,2,Vila Prudente,78,2026
+2026-07-01,2,Vila Prudente,78,2026
 2026-01-01,2,Tamanduateí,71,2026
 2026-02-01,2,Tamanduateí,79,2026
 2026-03-01,2,Tamanduateí,82,2026
 2026-04-01,2,Tamanduateí,83,2026
 2026-05-01,2,Tamanduateí,81,2026
 2026-06-01,2,Tamanduateí,79,2026
+2026-07-01,2,Tamanduateí,76,2026
 2026-01-01,2,Sacomã,36,2026
 2026-02-01,2,Sacomã,42,2026
 2026-03-01,2,Sacomã,43,2026
 2026-04-01,2,Sacomã,44,2026
 2026-05-01,2,Sacomã,43,2026
 2026-06-01,2,Sacomã,42,2026
+2026-07-01,2,Sacomã,39,2026
 2026-01-01,2,Alto do Ipiranga,16,2026
 2026-02-01,2,Alto do Ipiranga,19,2026
 2026-03-01,2,Alto do Ipiranga,21,2026
 2026-04-01,2,Alto do Ipiranga,21,2026
 2026-05-01,2,Alto do Ipiranga,21,2026
 2026-06-01,2,Alto do Ipiranga,19,2026
+2026-07-01,2,Alto do Ipiranga,18,2026
 2026-01-01,2,Santos-Imigrantes,14,2026
 2026-02-01,2,Santos-Imigrantes,15,2026
 2026-03-01,2,Santos-Imigrantes,16,2026
 2026-04-01,2,Santos-Imigrantes,16,2026
 2026-05-01,2,Santos-Imigrantes,17,2026
 2026-06-01,2,Santos-Imigrantes,16,2026
+2026-07-01,2,Santos-Imigrantes,15,2026
 2026-01-01,2,Chácara Klabin,77,2026
 2026-02-01,2,Chácara Klabin,87,2026
 2026-03-01,2,Chácara Klabin,91,2026
 2026-04-01,2,Chácara Klabin,92,2026
 2026-05-01,2,Chácara Klabin,91,2026
 2026-06-01,2,Chácara Klabin,89,2026
+2026-07-01,2,Chácara Klabin,83,2026
 2026-01-01,2,Ana Rosa,53,2026
 2026-02-01,2,Ana Rosa,60,2026
 2026-03-01,2,Ana Rosa,63,2026
 2026-04-01,2,Ana Rosa,64,2026
 2026-05-01,2,Ana Rosa,63,2026
 2026-06-01,2,Ana Rosa,61,2026
+2026-07-01,2,Ana Rosa,56,2026
 2026-01-01,2,Paraíso,54,2026
 2026-02-01,2,Paraíso,62,2026
 2026-03-01,2,Paraíso,66,2026
 2026-04-01,2,Paraíso,67,2026
 2026-05-01,2,Paraíso,66,2026
 2026-06-01,2,Paraíso,62,2026
+2026-07-01,2,Paraíso,58,2026
 2026-01-01,2,Brigadeiro,47,2026
 2026-02-01,2,Brigadeiro,51,2026
 2026-03-01,2,Brigadeiro,53,2026
 2026-04-01,2,Brigadeiro,53,2026
 2026-05-01,2,Brigadeiro,53,2026
 2026-06-01,2,Brigadeiro,52,2026
+2026-07-01,2,Brigadeiro,50,2026
 2026-01-01,2,Trianon-Masp,43,2026
 2026-02-01,2,Trianon-Masp,49,2026
 2026-03-01,2,Trianon-Masp,54,2026
 2026-04-01,2,Trianon-Masp,54,2026
 2026-05-01,2,Trianon-Masp,53,2026
 2026-06-01,2,Trianon-Masp,50,2026
+2026-07-01,2,Trianon-Masp,46,2026
 2026-01-01,2,Consolação,87,2026
 2026-02-01,2,Consolação,100,2026
 2026-03-01,2,Consolação,106,2026
 2026-04-01,2,Consolação,105,2026
 2026-05-01,2,Consolação,103,2026
 2026-06-01,2,Consolação,99,2026
+2026-07-01,2,Consolação,92,2026
 2026-01-01,2,Clínicas,20,2026
 2026-02-01,2,Clínicas,22,2026
 2026-03-01,2,Clínicas,23,2026
 2026-04-01,2,Clínicas,23,2026
 2026-05-01,2,Clínicas,23,2026
 2026-06-01,2,Clínicas,23,2026
+2026-07-01,2,Clínicas,21,2026
 2026-01-01,2,Santuário N.S. de Fátima-Sumaré,9,2026
 2026-02-01,2,Santuário N.S. de Fátima-Sumaré,10,2026
 2026-03-01,2,Santuário N.S. de Fátima-Sumaré,11,2026
 2026-04-01,2,Santuário N.S. de Fátima-Sumaré,11,2026
 2026-05-01,2,Santuário N.S. de Fátima-Sumaré,11,2026
 2026-06-01,2,Santuário N.S. de Fátima-Sumaré,11,2026
+2026-07-01,2,Santuário N.S. de Fátima-Sumaré,10,2026
 2026-01-01,2,Vila Madalena,19,2026
 2026-02-01,2,Vila Madalena,23,2026
 2026-03-01,2,Vila Madalena,24,2026
 2026-04-01,2,Vila Madalena,24,2026
 2026-05-01,2,Vila Madalena,23,2026
 2026-06-01,2,Vila Madalena,23,2026
+2026-07-01,2,Vila Madalena,21,2026
 2026-01-01,3,Corinthians-Itaquera,62,2026
 2026-02-01,3,Corinthians-Itaquera,66,2026
 2026-03-01,3,Corinthians-Itaquera,69,2026
 2026-04-01,3,Corinthians-Itaquera,70,2026
 2026-05-01,3,Corinthians-Itaquera,68,2026
 2026-06-01,3,Corinthians-Itaquera,66,2026
+2026-07-01,3,Corinthians-Itaquera,65,2026
 2026-01-01,3,Artur Alvim,47,2026
 2026-02-01,3,Artur Alvim,53,2026
 2026-03-01,3,Artur Alvim,55,2026
 2026-04-01,3,Artur Alvim,56,2026
 2026-05-01,3,Artur Alvim,55,2026
 2026-06-01,3,Artur Alvim,53,2026
+2026-07-01,3,Artur Alvim,51,2026
 2026-01-01,3,Patriarca-Vila Ré,20,2026
 2026-02-01,3,Patriarca-Vila Ré,22,2026
 2026-03-01,3,Patriarca-Vila Ré,23,2026
 2026-04-01,3,Patriarca-Vila Ré,24,2026
 2026-05-01,3,Patriarca-Vila Ré,23,2026
 2026-06-01,3,Patriarca-Vila Ré,23,2026
+2026-07-01,3,Patriarca-Vila Ré,21,2026
 2026-01-01,3,Guilhermina-Esperança,18,2026
 2026-02-01,3,Guilhermina-Esperança,22,2026
 2026-03-01,3,Guilhermina-Esperança,22,2026
 2026-04-01,3,Guilhermina-Esperança,22,2026
 2026-05-01,3,Guilhermina-Esperança,22,2026
 2026-06-01,3,Guilhermina-Esperança,21,2026
+2026-07-01,3,Guilhermina-Esperança,20,2026
 2026-01-01,3,Vila Matilde,24,2026
 2026-02-01,3,Vila Matilde,27,2026
 2026-03-01,3,Vila Matilde,28,2026
 2026-04-01,3,Vila Matilde,29,2026
 2026-05-01,3,Vila Matilde,28,2026
 2026-06-01,3,Vila Matilde,27,2026
+2026-07-01,3,Vila Matilde,26,2026
 2026-01-01,3,Penha-Lojas Besni,24,2026
 2026-02-01,3,Penha-Lojas Besni,28,2026
 2026-03-01,3,Penha-Lojas Besni,29,2026
 2026-04-01,3,Penha-Lojas Besni,29,2026
 2026-05-01,3,Penha-Lojas Besni,29,2026
 2026-06-01,3,Penha-Lojas Besni,28,2026
+2026-07-01,3,Penha-Lojas Besni,26,2026
 2026-01-01,3,Carrão-Assaí Atacadista,37,2026
 2026-02-01,3,Carrão-Assaí Atacadista,44,2026
 2026-03-01,3,Carrão-Assaí Atacadista,52,2026
 2026-04-01,3,Carrão-Assaí Atacadista,52,2026
 2026-05-01,3,Carrão-Assaí Atacadista,51,2026
 2026-06-01,3,Carrão-Assaí Atacadista,45,2026
+2026-07-01,3,Carrão-Assaí Atacadista,39,2026
 2026-01-01,3,Tatuapé,67,2026
 2026-02-01,3,Tatuapé,72,2026
 2026-03-01,3,Tatuapé,75,2026
 2026-04-01,3,Tatuapé,76,2026
 2026-05-01,3,Tatuapé,74,2026
 2026-06-01,3,Tatuapé,71,2026
+2026-07-01,3,Tatuapé,67,2026
 2026-01-01,3,Belém,34,2026
 2026-02-01,3,Belém,37,2026
 2026-03-01,3,Belém,39,2026
 2026-04-01,3,Belém,39,2026
 2026-05-01,3,Belém,39,2026
 2026-06-01,3,Belém,37,2026
+2026-07-01,3,Belém,35,2026
 2026-01-01,3,Bresser-Moóca,24,2026
 2026-02-01,3,Bresser-Moóca,28,2026
 2026-03-01,3,Bresser-Moóca,30,2026
 2026-04-01,3,Bresser-Moóca,30,2026
 2026-05-01,3,Bresser-Moóca,30,2026
 2026-06-01,3,Bresser-Moóca,28,2026
+2026-07-01,3,Bresser-Moóca,25,2026
 2026-01-01,3,Brás,65,2026
 2026-02-01,3,Brás,69,2026
 2026-03-01,3,Brás,69,2026
 2026-04-01,3,Brás,70,2026
 2026-05-01,3,Brás,71,2026
 2026-06-01,3,Brás,71,2026
+2026-07-01,3,Brás,66,2026
 2026-01-01,3,Pedro II,14,2026
 2026-02-01,3,Pedro II,15,2026
 2026-03-01,3,Pedro II,15,2026
 2026-04-01,3,Pedro II,15,2026
 2026-05-01,3,Pedro II,15,2026
 2026-06-01,3,Pedro II,15,2026
+2026-07-01,3,Pedro II,15,2026
 2026-01-01,3,Sé,179,2026
 2026-02-01,3,Sé,202,2026
 2026-03-01,3,Sé,212,2026
 2026-04-01,3,Sé,215,2026
 2026-05-01,3,Sé,211,2026
 2026-06-01,3,Sé,203,2026
+2026-07-01,3,Sé,190,2026
 2026-01-01,3,Anhangabaú,46,2026
 2026-02-01,3,Anhangabaú,50,2026
 2026-03-01,3,Anhangabaú,52,2026
 2026-04-01,3,Anhangabaú,52,2026
 2026-05-01,3,Anhangabaú,51,2026
 2026-06-01,3,Anhangabaú,51,2026
+2026-07-01,3,Anhangabaú,49,2026
 2026-01-01,3,República,110,2026
 2026-02-01,3,República,121,2026
 2026-03-01,3,República,126,2026
 2026-04-01,3,República,127,2026
 2026-05-01,3,República,125,2026
 2026-06-01,3,República,123,2026
+2026-07-01,3,República,118,2026
 2026-01-01,3,Santa Cecília,20,2026
 2026-02-01,3,Santa Cecília,23,2026
 2026-03-01,3,Santa Cecília,25,2026
 2026-04-01,3,Santa Cecília,25,2026
 2026-05-01,3,Santa Cecília,24,2026
 2026-06-01,3,Santa Cecília,23,2026
+2026-07-01,3,Santa Cecília,21,2026
 2026-01-01,3,Marechal Deodoro,22,2026
 2026-02-01,3,Marechal Deodoro,25,2026
 2026-03-01,3,Marechal Deodoro,26,2026
 2026-04-01,3,Marechal Deodoro,26,2026
 2026-05-01,3,Marechal Deodoro,26,2026
 2026-06-01,3,Marechal Deodoro,26,2026
+2026-07-01,3,Marechal Deodoro,24,2026
 2026-01-01,3,Palmeiras-Barra Funda,130,2026
 2026-02-01,3,Palmeiras-Barra Funda,146,2026
 2026-03-01,3,Palmeiras-Barra Funda,152,2026
 2026-04-01,3,Palmeiras-Barra Funda,149,2026
 2026-05-01,3,Palmeiras-Barra Funda,150,2026
 2026-06-01,3,Palmeiras-Barra Funda,145,2026
+2026-07-01,3,Palmeiras-Barra Funda,132,2026
 2026-01-01,15,Vila Prudente,56,2026
 2026-02-01,15,Vila Prudente,67,2026
 2026-03-01,15,Vila Prudente,72,2026
 2026-04-01,15,Vila Prudente,70,2026
 2026-05-01,15,Vila Prudente,69,2026
 2026-06-01,15,Vila Prudente,68,2026
+2026-07-01,15,Vila Prudente,64,2026
 2026-01-01,15,Oratório,7,2026
 2026-02-01,15,Oratório,8,2026
 2026-03-01,15,Oratório,8,2026
 2026-04-01,15,Oratório,8,2026
 2026-05-01,15,Oratório,8,2026
 2026-06-01,15,Oratório,8,2026
+2026-07-01,15,Oratório,8,2026
 2026-01-01,15,São Lucas,5,2026
 2026-02-01,15,São Lucas,5,2026
 2026-03-01,15,São Lucas,6,2026
 2026-04-01,15,São Lucas,6,2026
 2026-05-01,15,São Lucas,6,2026
 2026-06-01,15,São Lucas,6,2026
+2026-07-01,15,São Lucas,5,2026
 2026-01-01,15,Camilo Haddad,4,2026
 2026-02-01,15,Camilo Haddad,4,2026
 2026-03-01,15,Camilo Haddad,4,2026
 2026-04-01,15,Camilo Haddad,4,2026
 2026-05-01,15,Camilo Haddad,4,2026
 2026-06-01,15,Camilo Haddad,4,2026
+2026-07-01,15,Camilo Haddad,4,2026
 2026-01-01,15,Vila Tolstói,5,2026
 2026-02-01,15,Vila Tolstói,6,2026
 2026-03-01,15,Vila Tolstói,6,2026
 2026-04-01,15,Vila Tolstói,6,2026
 2026-05-01,15,Vila Tolstói,6,2026
 2026-06-01,15,Vila Tolstói,6,2026
+2026-07-01,15,Vila Tolstói,6,2026
 2026-01-01,15,Vila União,5,2026
 2026-02-01,15,Vila União,6,2026
 2026-03-01,15,Vila União,6,2026
 2026-04-01,15,Vila União,6,2026
 2026-05-01,15,Vila União,6,2026
 2026-06-01,15,Vila União,6,2026
+2026-07-01,15,Vila União,6,2026
 2026-01-01,15,Jardim Planalto,4,2026
 2026-02-01,15,Jardim Planalto,5,2026
 2026-03-01,15,Jardim Planalto,5,2026
 2026-04-01,15,Jardim Planalto,5,2026
 2026-05-01,15,Jardim Planalto,5,2026
 2026-06-01,15,Jardim Planalto,5,2026
+2026-07-01,15,Jardim Planalto,5,2026
 2026-01-01,15,Sapopemba,9,2026
 2026-02-01,15,Sapopemba,10,2026
 2026-03-01,15,Sapopemba,10,2026
 2026-04-01,15,Sapopemba,10,2026
 2026-05-01,15,Sapopemba,10,2026
 2026-06-01,15,Sapopemba,10,2026
+2026-07-01,15,Sapopemba,9,2026
 2026-01-01,15,Fazenda da Juta,4,2026
 2026-02-01,15,Fazenda da Juta,5,2026
 2026-03-01,15,Fazenda da Juta,5,2026
 2026-04-01,15,Fazenda da Juta,5,2026
 2026-05-01,15,Fazenda da Juta,5,2026
 2026-06-01,15,Fazenda da Juta,5,2026
+2026-07-01,15,Fazenda da Juta,4,2026
 2026-01-01,15,São Mateus,16,2026
 2026-02-01,15,São Mateus,17,2026
 2026-03-01,15,São Mateus,18,2026
 2026-04-01,15,São Mateus,18,2026
 2026-05-01,15,São Mateus,18,2026
 2026-06-01,15,São Mateus,18,2026
+2026-07-01,15,São Mateus,17,2026
 2026-01-01,15,Jardim Colonial,12,2026
 2026-02-01,15,Jardim Colonial,14,2026
 2026-03-01,15,Jardim Colonial,14,2026
 2026-04-01,15,Jardim Colonial,14,2026
 2026-05-01,15,Jardim Colonial,14,2026
 2026-06-01,15,Jardim Colonial,14,2026
+2026-07-01,15,Jardim Colonial,13,2026
