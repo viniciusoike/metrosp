@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@ table {
 <p>The table simplifies in two ways. First, the time span varies by line; each dataset section below gives the window per line. Second, the producer changes over time: METRO ran Line 5 at first and later handed it to ViaMobilidade.</p>
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
-<p>These datasets are a fixed snapshot, current through June 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a>.</p>
+<p>These datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a>.</p>
 </section></section><section class="section level2"><h2 id="data-producers">Data producers<a class="anchor" aria-label="anchor" href="#data-producers"></a>
 </h2>
 <p>This package aggregates and harmonizes data from three different data producers: 1) the METRO transparency website; 2) Insper’s Dataverse; and 3) São Paulo’s public geodata repository, GeoSampa.</p>
@@ -299,7 +299,7 @@ table {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,595</span></span>
+<span><span class="co">#&gt; Rows: 4,620</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
@@ -352,7 +352,7 @@ table {
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_passengers_entrance.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."></p>
+<figure><p><img src="../reference/figures/timespan_passengers_entrance.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."></p>
 <figcaption>Time coverage by line for the passengers_entrance dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
@@ -374,19 +374,19 @@ table {
 <td>1 – Blue</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>2 – Green</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="odd">
 <td>3 – Red</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>4 – Yellow</td>
@@ -404,13 +404,13 @@ table {
 <td>15 – Silver</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="odd">
 <td>99 – System</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 </tbody>
 </table>
@@ -487,7 +487,7 @@ table {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_transported</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 3,310</span></span>
+<span><span class="co">#&gt; Rows: 3,335</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …</span></span>
@@ -504,7 +504,7 @@ table {
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_passengers_transported.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."></p>
+<figure><p><img src="../reference/figures/timespan_passengers_transported.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."></p>
 <figcaption>Time coverage by line for the passengers_transported dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
@@ -526,19 +526,19 @@ table {
 <td>1 – Blue</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>2 – Green</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="odd">
 <td>3 – Red</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>5 – Lilac</td>
@@ -550,13 +550,13 @@ table {
 <td>15 – Silver</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>99 – System</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 </tbody>
 </table>
@@ -617,7 +617,7 @@ table {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_averages</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 11,215</span></span>
+<span><span class="co">#&gt; Rows: 11,281</span></span>
 <span><span class="co">#&gt; Columns: 7</span></span>
 <span><span class="co">#&gt; $ date          &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…</span></span>
 <span><span class="co">#&gt; $ line_number   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…</span></span>
@@ -632,7 +632,7 @@ table {
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_station_averages.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."></p>
+<figure><p><img src="../reference/figures/timespan_station_averages.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."></p>
 <figcaption>Time coverage by line for the station_averages dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
@@ -654,19 +654,19 @@ table {
 <td>1 – Blue</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>2 – Green</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="odd">
 <td>3 – Red</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>4 – Yellow</td>
@@ -684,7 +684,7 @@ table {
 <td>15 – Silver</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 </tbody>
 </table>
@@ -755,7 +755,7 @@ table {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_daily</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 242,128</span></span>
+<span><span class="co">#&gt; Rows: 244,174</span></span>
 <span><span class="co">#&gt; Columns: 8</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
@@ -770,7 +770,7 @@ table {
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_station_daily.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to June 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."></p>
+<figure><p><img src="../reference/figures/timespan_station_daily.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to July 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."></p>
 <figcaption>Time coverage by line for the station_daily dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
@@ -792,19 +792,19 @@ table {
 <td>1 – Blue</td>
 <td>METRO portal</td>
 <td>Jan 2020</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>2 – Green</td>
 <td>METRO portal</td>
 <td>Jan 2020</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="odd">
 <td>3 – Red</td>
 <td>METRO portal</td>
 <td>Jan 2020</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 <tr class="even">
 <td>4 – Yellow</td>
@@ -822,7 +822,7 @@ table {
 <td>15 – Silver</td>
 <td>METRO portal</td>
 <td>Jan 2020</td>
-<td>Jun 2026</td>
+<td>Jul 2026</td>
 </tr>
 </tbody>
 </table></section></section></section><section class="section level2"><h2 id="spatial-datasets">Spatial datasets<a class="anchor" aria-label="anchor" href="#spatial-datasets"></a>

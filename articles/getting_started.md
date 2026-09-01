@@ -8,7 +8,7 @@ data. The datasets are compact and the sources publish irregularly, so
 the package ships the data in a “lazy” format. All data comes
 prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through June 2026. Data
+The bundled data is a fixed snapshot, current through July 2026. Data
 newer than the snapshot is published to the `data-latest` [GitHub
 release](https://github.com/viniciusoike/metrosp/releases).
 
@@ -85,7 +85,7 @@ Using the datasets is straightforward, just call the dataset name.
 ``` r
 
 glimpse(passengers_entrance)
-#> Rows: 4,595
+#> Rows: 4,620
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -156,7 +156,7 @@ format and values are in **individual passengers**.
 ``` r
 
 glimpse(passengers_entrance)
-#> Rows: 4,595
+#> Rows: 4,620
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -217,7 +217,7 @@ counts.
 ``` r
 
 glimpse(passengers_transported)
-#> Rows: 3,310
+#> Rows: 3,335
 #> Columns: 9
 #> $ date         <date> 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…
 #> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
@@ -274,7 +274,7 @@ of passengers entering the station.
 ``` r
 
 glimpse(station_averages)
-#> Rows: 11,215
+#> Rows: 11,281
 #> Columns: 7
 #> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
 #> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
@@ -322,7 +322,7 @@ lines.
 ``` r
 
 glimpse(station_daily)
-#> Rows: 242,128
+#> Rows: 244,174
 #> Columns: 8
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …

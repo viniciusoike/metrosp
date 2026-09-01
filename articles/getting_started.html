@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,7 @@
     <section class="section level2"><h2 id="metrosp">metrosp<a class="anchor" aria-label="anchor" href="#metrosp"></a>
 </h2>
 <p>The <code>metrosp</code> package provides access to the <a href="https://transparencia.metrosp.com.br/" class="external-link">Metro de São Paulo</a> public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a “lazy” format. All data comes prepackaged and is called directly, with no download or import step.</p>
-<p>The bundled data is a fixed snapshot, current through June 2026. Data newer than the snapshot is published to the <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a>.</p>
+<p>The bundled data is a fixed snapshot, current through July 2026. Data newer than the snapshot is published to the <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
@@ -143,7 +143,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,595</span></span>
+<span><span class="co">#&gt; Rows: 4,620</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
@@ -203,7 +203,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,595</span></span>
+<span><span class="co">#&gt; Rows: 4,620</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
@@ -250,7 +250,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_transported</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 3,310</span></span>
+<span><span class="co">#&gt; Rows: 3,335</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …</span></span>
@@ -296,7 +296,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_averages</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 11,215</span></span>
+<span><span class="co">#&gt; Rows: 11,281</span></span>
 <span><span class="co">#&gt; Columns: 7</span></span>
 <span><span class="co">#&gt; $ date          &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…</span></span>
 <span><span class="co">#&gt; $ line_number   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…</span></span>
@@ -334,7 +334,7 @@
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_daily</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 242,128</span></span>
+<span><span class="co">#&gt; Rows: 244,174</span></span>
 <span><span class="co">#&gt; Columns: 8</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>

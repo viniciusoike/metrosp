@@ -38,7 +38,7 @@ it to ViaMobilidade.
 
 ### Data vintage
 
-These datasets are a fixed snapshot, current through June 2026. The
+These datasets are a fixed snapshot, current through July 2026. The
 snapshot moves when the column schema changes or when a release
 deliberately carries new data, not when new months are published
 upstream, so results computed from a given package version stay
@@ -180,7 +180,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(passengers_entrance)
-#> Rows: 4,595
+#> Rows: 4,620
 #> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -214,7 +214,7 @@ those of the shipped snapshot, not of the upstream source.
 
 ![Horizontal bar chart showing each metro line's data coverage window in
 the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January
-2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4
+2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4
 runs from January 2012 to March 2026. Each bar spans first to last
 month, so the single missing month of July 2017 does not appear as a
 break.](../reference/figures/timespan_passengers_entrance.png)
@@ -223,13 +223,13 @@ Time coverage by line for the passengers_entrance dataset
 
 | Line | Source | From | To |
 |----|----|----|----|
-| 1 – Blue | METRO portal | Jan 2016 | Jun 2026 |
-| 2 – Green | METRO portal | Jan 2016 | Jun 2026 |
-| 3 – Red | METRO portal | Jan 2016 | Jun 2026 |
+| 1 – Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 – Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 – Red | METRO portal | Jan 2016 | Jul 2026 |
 | 4 – Yellow | Dataverse | Jan 2012 | Mar 2026 |
 | 5 – Lilac | METRO (Jan 2016–Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
-| 15 – Silver | METRO portal | Jan 2016 | Jun 2026 |
-| 99 – System | METRO portal | Jan 2016 | Jun 2026 |
+| 15 – Silver | METRO portal | Jan 2016 | Jul 2026 |
+| 99 – System | METRO portal | Jan 2016 | Jul 2026 |
 
 Time coverage by line {.table .caption-top}
 
@@ -269,7 +269,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(passengers_transported)
-#> Rows: 3,310
+#> Rows: 3,335
 #> Columns: 9
 #> $ date         <date> 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…
 #> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
@@ -292,7 +292,7 @@ those of the shipped snapshot, not of the upstream source.
 
 ![Horizontal bar chart showing each metro line's data coverage window in
 the passengers_transported dataset. Lines 1, 2, 3, and 15 run from
-January 2016 to June 2026. Line 5 covers January 2016 to August 2018
+January 2016 to July 2026. Line 5 covers January 2016 to August 2018
 only. Line 4 has no bar at all, showing it is entirely absent from this
 dataset.](../reference/figures/timespan_passengers_transported.png)
 
@@ -300,12 +300,12 @@ Time coverage by line for the passengers_transported dataset
 
 | Line        | Source       | From     | To       |
 |-------------|--------------|----------|----------|
-| 1 – Blue    | METRO portal | Jan 2016 | Jun 2026 |
-| 2 – Green   | METRO portal | Jan 2016 | Jun 2026 |
-| 3 – Red     | METRO portal | Jan 2016 | Jun 2026 |
+| 1 – Blue    | METRO portal | Jan 2016 | Jul 2026 |
+| 2 – Green   | METRO portal | Jan 2016 | Jul 2026 |
+| 3 – Red     | METRO portal | Jan 2016 | Jul 2026 |
 | 5 – Lilac   | METRO portal | Jan 2016 | Aug 2018 |
-| 15 – Silver | METRO portal | Jan 2016 | Jun 2026 |
-| 99 – System | METRO portal | Jan 2016 | Jun 2026 |
+| 15 – Silver | METRO portal | Jan 2016 | Jul 2026 |
+| 99 – System | METRO portal | Jan 2016 | Jul 2026 |
 
 Time coverage by line {.table .caption-top}
 
@@ -337,7 +337,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(station_averages)
-#> Rows: 11,215
+#> Rows: 11,281
 #> Columns: 7
 #> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
 #> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
@@ -358,7 +358,7 @@ those of the shipped snapshot, not of the upstream source.
 
 ![Horizontal bar chart showing each metro line's data coverage window in
 the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15
-run from January 2016 to June 2026; Line 5 runs from January 2016 to
+run from January 2016 to July 2026; Line 5 runs from January 2016 to
 April 2026; Line 4 runs from January 2012 to March
 2026.](../reference/figures/timespan_station_averages.png)
 
@@ -366,12 +366,12 @@ Time coverage by line for the station_averages dataset
 
 | Line | Source | From | To |
 |----|----|----|----|
-| 1 – Blue | METRO portal | Jan 2016 | Jun 2026 |
-| 2 – Green | METRO portal | Jan 2016 | Jun 2026 |
-| 3 – Red | METRO portal | Jan 2016 | Jun 2026 |
+| 1 – Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 – Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 – Red | METRO portal | Jan 2016 | Jul 2026 |
 | 4 – Yellow | Dataverse | Jan 2012 | Mar 2026 |
 | 5 – Lilac | METRO (Jan 2016–Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
-| 15 – Silver | METRO portal | Jan 2016 | Jun 2026 |
+| 15 – Silver | METRO portal | Jan 2016 | Jul 2026 |
 
 Time coverage by line {.table .caption-top}
 
@@ -410,7 +410,7 @@ The table below shows the first few rows of each column.
 ``` r
 
 dplyr::glimpse(station_daily)
-#> Rows: 242,128
+#> Rows: 244,174
 #> Columns: 8
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
 #> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
@@ -429,7 +429,7 @@ those of the shipped snapshot, not of the upstream source.
 
 ![Horizontal bar chart showing each metro line's data coverage window in
 the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run
-from January 2020 to June 2026; Line 4 from January 2012 to March 2026;
+from January 2020 to July 2026; Line 4 from January 2012 to March 2026;
 Line 5 from August 2018 to April
 2026.](../reference/figures/timespan_station_daily.png)
 
@@ -437,12 +437,12 @@ Time coverage by line for the station_daily dataset
 
 | Line        | Source       | From     | To       |
 |-------------|--------------|----------|----------|
-| 1 – Blue    | METRO portal | Jan 2020 | Jun 2026 |
-| 2 – Green   | METRO portal | Jan 2020 | Jun 2026 |
-| 3 – Red     | METRO portal | Jan 2020 | Jun 2026 |
+| 1 – Blue    | METRO portal | Jan 2020 | Jul 2026 |
+| 2 – Green   | METRO portal | Jan 2020 | Jul 2026 |
+| 3 – Red     | METRO portal | Jan 2020 | Jul 2026 |
 | 4 – Yellow  | Dataverse    | Jan 2012 | Mar 2026 |
 | 5 – Lilac   | Dataverse    | Aug 2018 | Apr 2026 |
-| 15 – Silver | METRO portal | Jan 2020 | Jun 2026 |
+| 15 – Silver | METRO portal | Jan 2020 | Jul 2026 |
 
 Time coverage by line {.table .caption-top}
 
