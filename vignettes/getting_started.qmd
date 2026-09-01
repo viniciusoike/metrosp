@@ -19,7 +19,7 @@ knitr:
 
 The `metrosp` package provides access to the [Metro de São Paulo](https://transparencia.metrosp.com.br/) public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a "lazy" format. All data comes prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through June 2026. Data newer than the snapshot is published to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
+The bundled data is a fixed snapshot, current through July 2026. Data newer than the snapshot is published to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
 
 ```{r}
 #| label: setup

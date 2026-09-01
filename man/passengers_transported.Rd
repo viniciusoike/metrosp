@@ -82,7 +82,7 @@ preserved.
 }
 \section{Data vintage}{
 
-This dataset is a fixed snapshot, current through June 2026. It ships with
+This dataset is a fixed snapshot, current through July 2026. It ships with
 the package so examples, vignettes, and offline analysis always have data
 to hand. The snapshot moves only when the column schema changes or a
 release deliberately carries new data, not when new months are published

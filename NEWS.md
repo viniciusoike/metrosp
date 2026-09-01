@@ -1,3 +1,12 @@
+# metrosp 1.2.1
+
+## Datasets
+
+* Refroze the bundled snapshot with the latest upstream refresh, adding July
+  2026 observations where published. The monthly line and station datasets
+  now cover the new month, and `station_daily` includes observations through
+  July 31, 2026.
+
 # metrosp 1.2.0
 
 ## Datasets

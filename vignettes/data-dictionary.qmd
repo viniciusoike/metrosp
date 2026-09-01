@@ -45,7 +45,7 @@ The table simplifies in two ways. First, the time span varies by line; each data
 
 ## Data vintage
 
-These datasets are a fixed snapshot, current through June 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
+These datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the figures here drift from the source over time. Freshly rebuilt data is published on every pipeline run to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
 
 # Data producers
 
@@ -137,17 +137,17 @@ This table is organized by day-type metrics that are defined below.
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the passengers_entrance dataset](../man/figures/timespan_passengers_entrance.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."}
+![Time coverage by line for the passengers_entrance dataset](../man/figures/timespan_passengers_entrance.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
-| 1 -- Blue | METRO portal | Jan 2016 | Jun 2026 |
-| 2 -- Green | METRO portal | Jan 2016 | Jun 2026 |
-| 3 -- Red | METRO portal | Jan 2016 | Jun 2026 |
+| 1 -- Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
 | 4 -- Yellow | Dataverse | Jan 2012 | Mar 2026 |
 | 5 -- Lilac | METRO (Jan 2016--Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
-| 15 -- Silver | METRO portal | Jan 2016 | Jun 2026 |
-| 99 -- System | METRO portal | Jan 2016 | Jun 2026 |
+| 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
+| 99 -- System | METRO portal | Jan 2016 | Jul 2026 |
 : Time coverage by line
 
 The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. Every METRO-sourced line is missing July 2017, the one month the portal never published an entrance table for (see [2017 source formats](#source-formats-2017)).
@@ -185,16 +185,16 @@ This dataset uses the same day-type metrics as `passengers_entrance` (see Metric
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the passengers_transported dataset](../man/figures/timespan_passengers_transported.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to June 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."}
+![Time coverage by line for the passengers_transported dataset](../man/figures/timespan_passengers_transported.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
-| 1 -- Blue | METRO portal | Jan 2016 | Jun 2026 |
-| 2 -- Green | METRO portal | Jan 2016 | Jun 2026 |
-| 3 -- Red | METRO portal | Jan 2016 | Jun 2026 |
+| 1 -- Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
 | 5 -- Lilac | METRO portal | Jan 2016 | Aug 2018 |
-| 15 -- Silver | METRO portal | Jan 2016 | Jun 2026 |
-| 99 -- System | METRO portal | Jan 2016 | Jun 2026 |
+| 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
+| 99 -- System | METRO portal | Jan 2016 | Jul 2026 |
 : Time coverage by line
 
 Line 4 is absent entirely. The Dataverse source does not include transported counts for Lines 4 or 5.
@@ -230,16 +230,16 @@ Only the weekday average metric is available at the station level. For line-leve
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the station_averages dataset](../man/figures/timespan_station_averages.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to June 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
+![Time coverage by line for the station_averages dataset](../man/figures/timespan_station_averages.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
-| 1 -- Blue | METRO portal | Jan 2016 | Jun 2026 |
-| 2 -- Green | METRO portal | Jan 2016 | Jun 2026 |
-| 3 -- Red | METRO portal | Jan 2016 | Jun 2026 |
+| 1 -- Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
 | 4 -- Yellow | Dataverse | Jan 2012 | Mar 2026 |
 | 5 -- Lilac | METRO (Jan 2016--Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
-| 15 -- Silver | METRO portal | Jan 2016 | Jun 2026 |
+| 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
 : Time coverage by line
 
 February through June 2016 carries a defect in the Line 1 values. Across those five months the station figures fall well short of what the surrounding months and the Line 1 total in `passengers_entrance` imply, and they are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO's retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.
@@ -274,16 +274,16 @@ dplyr::glimpse(station_daily)
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the station_daily dataset](../man/figures/timespan_station_daily.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to June 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."}
+![Time coverage by line for the station_daily dataset](../man/figures/timespan_station_daily.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to July 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
-| 1 -- Blue | METRO portal | Jan 2020 | Jun 2026 |
-| 2 -- Green | METRO portal | Jan 2020 | Jun 2026 |
-| 3 -- Red | METRO portal | Jan 2020 | Jun 2026 |
+| 1 -- Blue | METRO portal | Jan 2020 | Jul 2026 |
+| 2 -- Green | METRO portal | Jan 2020 | Jul 2026 |
+| 3 -- Red | METRO portal | Jan 2020 | Jul 2026 |
 | 4 -- Yellow | Dataverse | Jan 2012 | Mar 2026 |
 | 5 -- Lilac | Dataverse | Aug 2018 | Apr 2026 |
-| 15 -- Silver | METRO portal | Jan 2020 | Jun 2026 |
+| 15 -- Silver | METRO portal | Jan 2020 | Jul 2026 |
 : Time coverage by line
 
 # Spatial datasets
