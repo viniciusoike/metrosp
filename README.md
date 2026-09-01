@@ -34,12 +34,12 @@ spatial datasets.
 
 | Line | Name             | Operator              | Coverage            |
 |-----:|------------------|-----------------------|---------------------|
-|    1 | Azul (Blue)      | METRÔ                 | Jan 2016 – Jun 2026 |
-|    2 | Verde (Green)    | METRÔ                 | Jan 2016 – Jun 2026 |
-|    3 | Vermelha (Red)   | METRÔ                 | Jan 2016 – Jun 2026 |
+|    1 | Azul (Blue)      | METRÔ                 | Jan 2016 – Jul 2026 |
+|    2 | Verde (Green)    | METRÔ                 | Jan 2016 – Jul 2026 |
+|    3 | Vermelha (Red)   | METRÔ                 | Jan 2016 – Jul 2026 |
 |    4 | Amarela (Yellow) | ViaQuatro             | Jan 2012 – Mar 2026 |
 |    5 | Lilás (Lilac)    | METRÔ / ViaMobilidade | Jan 2016 – Apr 2026 |
-|   15 | Prata (Silver)   | METRÔ                 | Jan 2016 – Jun 2026 |
+|   15 | Prata (Silver)   | METRÔ                 | Jan 2016 – Jul 2026 |
 
 Coverage refers to `passengers_entrance`, which is missing July 2017 for
 every METRO-sourced line. The other datasets start later for some lines.
@@ -86,7 +86,7 @@ dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html
 
 ## Data vintage
 
-The bundled data is a fixed snapshot, current through June 2026. It is
+The bundled data is a fixed snapshot, current through July 2026. It is
 regenerated when the column schema changes, not when new months are
 published, so examples and analyses stay reproducible across package
 versions. METRÔ publishes on an irregular schedule and revises past
