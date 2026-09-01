@@ -154573,3 +154573,2049 @@ date,year,line_number,station_code,station_name,passengers
 2026-06-30,2026,15,vpm,Vila Prudente,10
 2026-06-30,2026,15,vtl,Vila Tolstói,5.8
 2026-06-30,2026,15,vun,Vila União,6.2
+2026-07-01,2026,1,anr,Ana Rosa,20.8
+2026-07-01,2026,1,arv,Praça da Árvore,15.4
+2026-07-01,2026,1,bto,São Bento,51.1
+2026-07-01,2026,1,cdu,Carandiru,11.6
+2026-07-01,2026,1,con,Conceição,30.7
+2026-07-01,2026,1,jab,Jabaquara,66.7
+2026-07-01,2026,1,jpa,Jardim São Paulo-Ayrton Senna,12.1
+2026-07-01,2026,1,jqm,São Joaquim,22.9
+2026-07-01,2026,1,jud,São Judas,16.8
+2026-07-01,2026,1,lib,Japão-Liberdade,21.4
+2026-07-01,2026,1,luz,Luz,134.9
+2026-07-01,2026,1,pig,Parada Inglesa,13.2
+2026-07-01,2026,1,ppq,Armênia,18.2
+2026-07-01,2026,1,pse,Sé,15.3
+2026-07-01,2026,1,pso,Paraíso,20.5
+2026-07-01,2026,1,san,Santana,47.5
+2026-07-01,2026,1,sau,Saúde,24.4
+2026-07-01,2026,1,scz,Santa Cruz,91.3
+2026-07-01,2026,1,trd,Tiradentes,13.1
+2026-07-01,2026,1,tte,Portuguesa-Tietê,38.8
+2026-07-01,2026,1,tuc,Tucuruvi,56.3
+2026-07-01,2026,1,vgo,Vergueiro,26.7
+2026-07-01,2026,1,vmn,Vila Mariana,17
+2026-07-01,2026,2,aip,Alto do Ipiranga,18.7
+2026-07-01,2026,2,anr,Ana Rosa,11.7
+2026-07-01,2026,2,bgd,Brigadeiro,53.7
+2026-07-01,2026,2,ckb,Chácara Klabin,88.7
+2026-07-01,2026,2,cli,Clínicas,22.2
+2026-07-01,2026,2,cns,Consolação,98
+2026-07-01,2026,2,img,Santos-Imigrantes,16.3
+2026-07-01,2026,2,pso,Paraíso,11.5
+2026-07-01,2026,2,sac,Sacomã,40.9
+2026-07-01,2026,2,sum,Sumaré,10.5
+2026-07-01,2026,2,tri,Trianon-Masp,48.7
+2026-07-01,2026,2,tti,Tamanduateí,78.2
+2026-07-01,2026,2,vmd,Vila Madalena,22.4
+2026-07-01,2026,2,vpt,Vila Prudente,19.3
+2026-07-01,2026,3,art,Artur Alvim,52.7
+2026-07-01,2026,3,bas,Brás,64.5
+2026-07-01,2026,3,bel,Belém,37
+2026-07-01,2026,3,bfu,Palmeiras-Barra Funda,136.6
+2026-07-01,2026,3,bre,Bresser-Moóca,25.6
+2026-07-01,2026,3,car,Carrão,41.3
+2026-07-01,2026,3,cec,Santa Cecília,22
+2026-07-01,2026,3,deo,Marechal Deodoro,25.7
+2026-07-01,2026,3,gbu,Anhangabaú,50.9
+2026-07-01,2026,3,itq,Corinthians-Itaquera,66.5
+2026-07-01,2026,3,pca,Patriarca,22
+2026-07-01,2026,3,pds,Pedro II,15.2
+2026-07-01,2026,3,pen,Penha,27.4
+2026-07-01,2026,3,pse,Sé,22
+2026-07-01,2026,3,rep,República,123.7
+2026-07-01,2026,3,tat,Tatuapé,71.2
+2026-07-01,2026,3,vpa,Guilhermina-Esperança,20.9
+2026-07-01,2026,3,vtd,Vila Matilde,27.3
+2026-07-01,2026,15,cad,Camilo Haddad,4.1
+2026-07-01,2026,15,fjt,Fazenda da Juta,4.6
+2026-07-01,2026,15,igt,Jardim Colonial,14
+2026-07-01,2026,15,jpl,Jardim Planalto,5.1
+2026-07-01,2026,15,mat,São Mateus,17.5
+2026-07-01,2026,15,ort,Oratório,8.1
+2026-07-01,2026,15,sap,Sapopemba,9.7
+2026-07-01,2026,15,slu,São Lucas,5.6
+2026-07-01,2026,15,vpm,Vila Prudente,10
+2026-07-01,2026,15,vtl,Vila Tolstói,5.8
+2026-07-01,2026,15,vun,Vila União,6.1
+2026-07-02,2026,1,anr,Ana Rosa,20.3
+2026-07-02,2026,1,arv,Praça da Árvore,15.4
+2026-07-02,2026,1,bto,São Bento,50.8
+2026-07-02,2026,1,cdu,Carandiru,12.1
+2026-07-02,2026,1,con,Conceição,30.3
+2026-07-02,2026,1,jab,Jabaquara,67.1
+2026-07-02,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.7
+2026-07-02,2026,1,jqm,São Joaquim,22.3
+2026-07-02,2026,1,jud,São Judas,16.8
+2026-07-02,2026,1,lib,Japão-Liberdade,22.2
+2026-07-02,2026,1,luz,Luz,131.9
+2026-07-02,2026,1,pig,Parada Inglesa,13.1
+2026-07-02,2026,1,ppq,Armênia,17.8
+2026-07-02,2026,1,pse,Sé,15.3
+2026-07-02,2026,1,pso,Paraíso,20.4
+2026-07-02,2026,1,san,Santana,47.2
+2026-07-02,2026,1,sau,Saúde,24.6
+2026-07-02,2026,1,scz,Santa Cruz,92.6
+2026-07-02,2026,1,trd,Tiradentes,13
+2026-07-02,2026,1,tte,Portuguesa-Tietê,53.5
+2026-07-02,2026,1,tuc,Tucuruvi,55.8
+2026-07-02,2026,1,vgo,Vergueiro,26.4
+2026-07-02,2026,1,vmn,Vila Mariana,17
+2026-07-02,2026,2,aip,Alto do Ipiranga,18.5
+2026-07-02,2026,2,anr,Ana Rosa,11.4
+2026-07-02,2026,2,bgd,Brigadeiro,50.5
+2026-07-02,2026,2,ckb,Chácara Klabin,86.9
+2026-07-02,2026,2,cli,Clínicas,21.9
+2026-07-02,2026,2,cns,Consolação,96.8
+2026-07-02,2026,2,img,Santos-Imigrantes,16.2
+2026-07-02,2026,2,pso,Paraíso,11.5
+2026-07-02,2026,2,sac,Sacomã,40.9
+2026-07-02,2026,2,sum,Sumaré,10.4
+2026-07-02,2026,2,tri,Trianon-Masp,47.4
+2026-07-02,2026,2,tti,Tamanduateí,78.1
+2026-07-02,2026,2,vmd,Vila Madalena,22.3
+2026-07-02,2026,2,vpt,Vila Prudente,19.4
+2026-07-02,2026,3,art,Artur Alvim,50.7
+2026-07-02,2026,3,bas,Brás,67.9
+2026-07-02,2026,3,bel,Belém,36.6
+2026-07-02,2026,3,bfu,Palmeiras-Barra Funda,135.3
+2026-07-02,2026,3,bre,Bresser-Moóca,25.2
+2026-07-02,2026,3,car,Carrão,40.5
+2026-07-02,2026,3,cec,Santa Cecília,21.6
+2026-07-02,2026,3,deo,Marechal Deodoro,25.1
+2026-07-02,2026,3,gbu,Anhangabaú,49.9
+2026-07-02,2026,3,itq,Corinthians-Itaquera,63.2
+2026-07-02,2026,3,pca,Patriarca,21.7
+2026-07-02,2026,3,pds,Pedro II,14.8
+2026-07-02,2026,3,pen,Penha,26.8
+2026-07-02,2026,3,pse,Sé,22
+2026-07-02,2026,3,rep,República,121.4
+2026-07-02,2026,3,tat,Tatuapé,73.6
+2026-07-02,2026,3,vpa,Guilhermina-Esperança,20.5
+2026-07-02,2026,3,vtd,Vila Matilde,26.8
+2026-07-02,2026,15,cad,Camilo Haddad,4
+2026-07-02,2026,15,fjt,Fazenda da Juta,4.5
+2026-07-02,2026,15,igt,Jardim Colonial,14
+2026-07-02,2026,15,jpl,Jardim Planalto,4.9
+2026-07-02,2026,15,mat,São Mateus,17.6
+2026-07-02,2026,15,ort,Oratório,8.1
+2026-07-02,2026,15,sap,Sapopemba,9.7
+2026-07-02,2026,15,slu,São Lucas,5.7
+2026-07-02,2026,15,vpm,Vila Prudente,10
+2026-07-02,2026,15,vtl,Vila Tolstói,5.6
+2026-07-02,2026,15,vun,Vila União,6.1
+2026-07-03,2026,1,anr,Ana Rosa,19
+2026-07-03,2026,1,arv,Praça da Árvore,14.7
+2026-07-03,2026,1,bto,São Bento,51.1
+2026-07-03,2026,1,cdu,Carandiru,10.2
+2026-07-03,2026,1,con,Conceição,25.4
+2026-07-03,2026,1,jab,Jabaquara,66.5
+2026-07-03,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11
+2026-07-03,2026,1,jqm,São Joaquim,21.6
+2026-07-03,2026,1,jud,São Judas,16
+2026-07-03,2026,1,lib,Japão-Liberdade,25
+2026-07-03,2026,1,luz,Luz,114.8
+2026-07-03,2026,1,pig,Parada Inglesa,11.9
+2026-07-03,2026,1,ppq,Armênia,17.5
+2026-07-03,2026,1,pse,Sé,15
+2026-07-03,2026,1,pso,Paraíso,20.5
+2026-07-03,2026,1,san,Santana,45.5
+2026-07-03,2026,1,sau,Saúde,23.4
+2026-07-03,2026,1,scz,Santa Cruz,88
+2026-07-03,2026,1,trd,Tiradentes,12.8
+2026-07-03,2026,1,tte,Portuguesa-Tietê,45.3
+2026-07-03,2026,1,tuc,Tucuruvi,53.8
+2026-07-03,2026,1,vgo,Vergueiro,24.7
+2026-07-03,2026,1,vmn,Vila Mariana,16.6
+2026-07-03,2026,2,aip,Alto do Ipiranga,17.3
+2026-07-03,2026,2,anr,Ana Rosa,10.7
+2026-07-03,2026,2,bgd,Brigadeiro,48.3
+2026-07-03,2026,2,ckb,Chácara Klabin,80.1
+2026-07-03,2026,2,cli,Clínicas,21
+2026-07-03,2026,2,cns,Consolação,88.9
+2026-07-03,2026,2,img,Santos-Imigrantes,15.3
+2026-07-03,2026,2,pso,Paraíso,11.5
+2026-07-03,2026,2,sac,Sacomã,38.9
+2026-07-03,2026,2,sum,Sumaré,9.5
+2026-07-03,2026,2,tri,Trianon-Masp,43.3
+2026-07-03,2026,2,tti,Tamanduateí,74.1
+2026-07-03,2026,2,vmd,Vila Madalena,20.4
+2026-07-03,2026,2,vpt,Vila Prudente,17.5
+2026-07-03,2026,3,art,Artur Alvim,51.1
+2026-07-03,2026,3,bas,Brás,68
+2026-07-03,2026,3,bel,Belém,35.7
+2026-07-03,2026,3,bfu,Palmeiras-Barra Funda,132.7
+2026-07-03,2026,3,bre,Bresser-Moóca,24.9
+2026-07-03,2026,3,car,Carrão,38.8
+2026-07-03,2026,3,cec,Santa Cecília,21.8
+2026-07-03,2026,3,deo,Marechal Deodoro,24.8
+2026-07-03,2026,3,gbu,Anhangabaú,48.8
+2026-07-03,2026,3,itq,Corinthians-Itaquera,64.2
+2026-07-03,2026,3,pca,Patriarca,21.2
+2026-07-03,2026,3,pds,Pedro II,15.2
+2026-07-03,2026,3,pen,Penha,26.4
+2026-07-03,2026,3,pse,Sé,21.6
+2026-07-03,2026,3,rep,República,117.4
+2026-07-03,2026,3,tat,Tatuapé,68.3
+2026-07-03,2026,3,vpa,Guilhermina-Esperança,20
+2026-07-03,2026,3,vtd,Vila Matilde,25.5
+2026-07-03,2026,15,cad,Camilo Haddad,3.8
+2026-07-03,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-03,2026,15,igt,Jardim Colonial,13.2
+2026-07-03,2026,15,jpl,Jardim Planalto,4.9
+2026-07-03,2026,15,mat,São Mateus,17.2
+2026-07-03,2026,15,ort,Oratório,7.4
+2026-07-03,2026,15,sap,Sapopemba,9.3
+2026-07-03,2026,15,slu,São Lucas,5.4
+2026-07-03,2026,15,vpm,Vila Prudente,9.5
+2026-07-03,2026,15,vtl,Vila Tolstói,5.6
+2026-07-03,2026,15,vun,Vila União,5.8
+2026-07-04,2026,1,anr,Ana Rosa,12.6
+2026-07-04,2026,1,arv,Praça da Árvore,9
+2026-07-04,2026,1,bto,São Bento,34.2
+2026-07-04,2026,1,cdu,Carandiru,6.1
+2026-07-04,2026,1,con,Conceição,13.4
+2026-07-04,2026,1,jab,Jabaquara,44.2
+2026-07-04,2026,1,jpa,Jardim São Paulo-Ayrton Senna,6
+2026-07-04,2026,1,jqm,São Joaquim,13.6
+2026-07-04,2026,1,jud,São Judas,9.7
+2026-07-04,2026,1,lib,Japão-Liberdade,34.3
+2026-07-04,2026,1,luz,Luz,72
+2026-07-04,2026,1,pig,Parada Inglesa,6.4
+2026-07-04,2026,1,ppq,Armênia,10.6
+2026-07-04,2026,1,pse,Sé,9
+2026-07-04,2026,1,pso,Paraíso,13.7
+2026-07-04,2026,1,san,Santana,26.8
+2026-07-04,2026,1,sau,Saúde,14.8
+2026-07-04,2026,1,scz,Santa Cruz,53.9
+2026-07-04,2026,1,trd,Tiradentes,8.1
+2026-07-04,2026,1,tte,Portuguesa-Tietê,38.7
+2026-07-04,2026,1,tuc,Tucuruvi,32.6
+2026-07-04,2026,1,vgo,Vergueiro,12.7
+2026-07-04,2026,1,vmn,Vila Mariana,10.2
+2026-07-04,2026,2,aip,Alto do Ipiranga,9.8
+2026-07-04,2026,2,anr,Ana Rosa,4.2
+2026-07-04,2026,2,bgd,Brigadeiro,22.3
+2026-07-04,2026,2,ckb,Chácara Klabin,35.4
+2026-07-04,2026,2,cli,Clínicas,8.2
+2026-07-04,2026,2,cns,Consolação,44.9
+2026-07-04,2026,2,img,Santos-Imigrantes,7.8
+2026-07-04,2026,2,pso,Paraíso,4.3
+2026-07-04,2026,2,sac,Sacomã,22.6
+2026-07-04,2026,2,sum,Sumaré,4.5
+2026-07-04,2026,2,tri,Trianon-Masp,20.1
+2026-07-04,2026,2,tti,Tamanduateí,40.9
+2026-07-04,2026,2,vmd,Vila Madalena,10.9
+2026-07-04,2026,2,vpt,Vila Prudente,9.1
+2026-07-04,2026,3,art,Artur Alvim,32.8
+2026-07-04,2026,3,bas,Brás,46.6
+2026-07-04,2026,3,bel,Belém,20.8
+2026-07-04,2026,3,bfu,Palmeiras-Barra Funda,96.3
+2026-07-04,2026,3,bre,Bresser-Moóca,16.6
+2026-07-04,2026,3,car,Carrão,23
+2026-07-04,2026,3,cec,Santa Cecília,13.7
+2026-07-04,2026,3,deo,Marechal Deodoro,15.8
+2026-07-04,2026,3,gbu,Anhangabaú,22.7
+2026-07-04,2026,3,itq,Corinthians-Itaquera,47.9
+2026-07-04,2026,3,pca,Patriarca,12.9
+2026-07-04,2026,3,pds,Pedro II,9.8
+2026-07-04,2026,3,pen,Penha,15.8
+2026-07-04,2026,3,pse,Sé,11.4
+2026-07-04,2026,3,rep,República,70.9
+2026-07-04,2026,3,tat,Tatuapé,60.1
+2026-07-04,2026,3,vpa,Guilhermina-Esperança,11.9
+2026-07-04,2026,3,vtd,Vila Matilde,15.3
+2026-07-04,2026,15,cad,Camilo Haddad,2.1
+2026-07-04,2026,15,fjt,Fazenda da Juta,2.6
+2026-07-04,2026,15,igt,Jardim Colonial,6.5
+2026-07-04,2026,15,jpl,Jardim Planalto,3.1
+2026-07-04,2026,15,mat,São Mateus,10.5
+2026-07-04,2026,15,ort,Oratório,4.1
+2026-07-04,2026,15,sap,Sapopemba,5.8
+2026-07-04,2026,15,slu,São Lucas,3.3
+2026-07-04,2026,15,vpm,Vila Prudente,4.7
+2026-07-04,2026,15,vtl,Vila Tolstói,3.5
+2026-07-04,2026,15,vun,Vila União,3.6
+2026-07-05,2026,1,anr,Ana Rosa,7.3
+2026-07-05,2026,1,arv,Praça da Árvore,5
+2026-07-05,2026,1,bto,São Bento,8.4
+2026-07-05,2026,1,cdu,Carandiru,3.3
+2026-07-05,2026,1,con,Conceição,7.6
+2026-07-05,2026,1,jab,Jabaquara,25.6
+2026-07-05,2026,1,jpa,Jardim São Paulo-Ayrton Senna,3.2
+2026-07-05,2026,1,jqm,São Joaquim,7.4
+2026-07-05,2026,1,jud,São Judas,5.2
+2026-07-05,2026,1,lib,Japão-Liberdade,20.7
+2026-07-05,2026,1,luz,Luz,21.1
+2026-07-05,2026,1,pig,Parada Inglesa,3.9
+2026-07-05,2026,1,ppq,Armênia,5.3
+2026-07-05,2026,1,pse,Sé,4.2
+2026-07-05,2026,1,pso,Paraíso,7.4
+2026-07-05,2026,1,san,Santana,14.5
+2026-07-05,2026,1,sau,Saúde,8.2
+2026-07-05,2026,1,scz,Santa Cruz,28.9
+2026-07-05,2026,1,trd,Tiradentes,4
+2026-07-05,2026,1,tte,Portuguesa-Tietê,29
+2026-07-05,2026,1,tuc,Tucuruvi,17.2
+2026-07-05,2026,1,vgo,Vergueiro,7.6
+2026-07-05,2026,1,vmn,Vila Mariana,5.9
+2026-07-05,2026,2,aip,Alto do Ipiranga,5.6
+2026-07-05,2026,2,anr,Ana Rosa,3
+2026-07-05,2026,2,bgd,Brigadeiro,14
+2026-07-05,2026,2,ckb,Chácara Klabin,20.9
+2026-07-05,2026,2,cli,Clínicas,4.5
+2026-07-05,2026,2,cns,Consolação,30.9
+2026-07-05,2026,2,img,Santos-Imigrantes,4.7
+2026-07-05,2026,2,pso,Paraíso,3.5
+2026-07-05,2026,2,sac,Sacomã,12.7
+2026-07-05,2026,2,sum,Sumaré,2.8
+2026-07-05,2026,2,tri,Trianon-Masp,13.6
+2026-07-05,2026,2,tti,Tamanduateí,21.7
+2026-07-05,2026,2,vmd,Vila Madalena,7.4
+2026-07-05,2026,2,vpt,Vila Prudente,5.5
+2026-07-05,2026,3,art,Artur Alvim,18.3
+2026-07-05,2026,3,bas,Brás,18.9
+2026-07-05,2026,3,bel,Belém,12.5
+2026-07-05,2026,3,bfu,Palmeiras-Barra Funda,49.4
+2026-07-05,2026,3,bre,Bresser-Moóca,9.2
+2026-07-05,2026,3,car,Carrão,11.8
+2026-07-05,2026,3,cec,Santa Cecília,10.8
+2026-07-05,2026,3,deo,Marechal Deodoro,13.7
+2026-07-05,2026,3,gbu,Anhangabaú,12.9
+2026-07-05,2026,3,itq,Corinthians-Itaquera,28.4
+2026-07-05,2026,3,pca,Patriarca,7.1
+2026-07-05,2026,3,pds,Pedro II,6.8
+2026-07-05,2026,3,pen,Penha,8.6
+2026-07-05,2026,3,pse,Sé,6.3
+2026-07-05,2026,3,rep,República,44.9
+2026-07-05,2026,3,tat,Tatuapé,27
+2026-07-05,2026,3,vpa,Guilhermina-Esperança,6.7
+2026-07-05,2026,3,vtd,Vila Matilde,8.8
+2026-07-05,2026,15,cad,Camilo Haddad,1.1
+2026-07-05,2026,15,fjt,Fazenda da Juta,1.5
+2026-07-05,2026,15,igt,Jardim Colonial,3.6
+2026-07-05,2026,15,jpl,Jardim Planalto,1.6
+2026-07-05,2026,15,mat,São Mateus,5.3
+2026-07-05,2026,15,ort,Oratório,2.3
+2026-07-05,2026,15,sap,Sapopemba,3.1
+2026-07-05,2026,15,slu,São Lucas,1.8
+2026-07-05,2026,15,vpm,Vila Prudente,2.3
+2026-07-05,2026,15,vtl,Vila Tolstói,1.7
+2026-07-05,2026,15,vun,Vila União,1.8
+2026-07-06,2026,1,anr,Ana Rosa,18.1
+2026-07-06,2026,1,arv,Praça da Árvore,13.7
+2026-07-06,2026,1,bto,São Bento,49.5
+2026-07-06,2026,1,cdu,Carandiru,9.8
+2026-07-06,2026,1,con,Conceição,28
+2026-07-06,2026,1,jab,Jabaquara,63.9
+2026-07-06,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.8
+2026-07-06,2026,1,jqm,São Joaquim,20.5
+2026-07-06,2026,1,jud,São Judas,15.4
+2026-07-06,2026,1,lib,Japão-Liberdade,21.4
+2026-07-06,2026,1,luz,Luz,117.4
+2026-07-06,2026,1,pig,Parada Inglesa,12.1
+2026-07-06,2026,1,ppq,Armênia,16.7
+2026-07-06,2026,1,pse,Sé,14.6
+2026-07-06,2026,1,pso,Paraíso,17.8
+2026-07-06,2026,1,san,Santana,43.6
+2026-07-06,2026,1,sau,Saúde,22.1
+2026-07-06,2026,1,scz,Santa Cruz,85.1
+2026-07-06,2026,1,trd,Tiradentes,12
+2026-07-06,2026,1,tte,Portuguesa-Tietê,42.5
+2026-07-06,2026,1,tuc,Tucuruvi,52.3
+2026-07-06,2026,1,vgo,Vergueiro,24
+2026-07-06,2026,1,vmn,Vila Mariana,14
+2026-07-06,2026,2,aip,Alto do Ipiranga,16.3
+2026-07-06,2026,2,anr,Ana Rosa,10.2
+2026-07-06,2026,2,bgd,Brigadeiro,47.7
+2026-07-06,2026,2,ckb,Chácara Klabin,79.1
+2026-07-06,2026,2,cli,Clínicas,21
+2026-07-06,2026,2,cns,Consolação,86.9
+2026-07-06,2026,2,img,Santos-Imigrantes,13.9
+2026-07-06,2026,2,pso,Paraíso,10
+2026-07-06,2026,2,sac,Sacomã,37.3
+2026-07-06,2026,2,sum,Sumaré,9.2
+2026-07-06,2026,2,tri,Trianon-Masp,41.4
+2026-07-06,2026,2,tti,Tamanduateí,73.1
+2026-07-06,2026,2,vmd,Vila Madalena,19.3
+2026-07-06,2026,2,vpt,Vila Prudente,17.6
+2026-07-06,2026,3,art,Artur Alvim,48.4
+2026-07-06,2026,3,bas,Brás,64.9
+2026-07-06,2026,3,bel,Belém,33.3
+2026-07-06,2026,3,bfu,Palmeiras-Barra Funda,129.5
+2026-07-06,2026,3,bre,Bresser-Moóca,23.8
+2026-07-06,2026,3,car,Carrão,37.2
+2026-07-06,2026,3,cec,Santa Cecília,20.1
+2026-07-06,2026,3,deo,Marechal Deodoro,22.9
+2026-07-06,2026,3,gbu,Anhangabaú,47
+2026-07-06,2026,3,itq,Corinthians-Itaquera,60.2
+2026-07-06,2026,3,pca,Patriarca,20.2
+2026-07-06,2026,3,pds,Pedro II,13.6
+2026-07-06,2026,3,pen,Penha,24.4
+2026-07-06,2026,3,pse,Sé,21
+2026-07-06,2026,3,rep,República,110.7
+2026-07-06,2026,3,tat,Tatuapé,57.7
+2026-07-06,2026,3,vpa,Guilhermina-Esperança,18.8
+2026-07-06,2026,3,vtd,Vila Matilde,24.4
+2026-07-06,2026,15,cad,Camilo Haddad,3.5
+2026-07-06,2026,15,fjt,Fazenda da Juta,4
+2026-07-06,2026,15,igt,Jardim Colonial,12.7
+2026-07-06,2026,15,jpl,Jardim Planalto,4.4
+2026-07-06,2026,15,mat,São Mateus,16.4
+2026-07-06,2026,15,ort,Oratório,7.2
+2026-07-06,2026,15,sap,Sapopemba,9
+2026-07-06,2026,15,slu,São Lucas,5.1
+2026-07-06,2026,15,vpm,Vila Prudente,8.9
+2026-07-06,2026,15,vtl,Vila Tolstói,5.3
+2026-07-06,2026,15,vun,Vila União,5.6
+2026-07-07,2026,1,anr,Ana Rosa,20.4
+2026-07-07,2026,1,arv,Praça da Árvore,14.8
+2026-07-07,2026,1,bto,São Bento,52.1
+2026-07-07,2026,1,cdu,Carandiru,10.4
+2026-07-07,2026,1,con,Conceição,30.4
+2026-07-07,2026,1,jab,Jabaquara,65.7
+2026-07-07,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.5
+2026-07-07,2026,1,jqm,São Joaquim,22.2
+2026-07-07,2026,1,jud,São Judas,16.2
+2026-07-07,2026,1,lib,Japão-Liberdade,22.8
+2026-07-07,2026,1,luz,Luz,110.2
+2026-07-07,2026,1,pig,Parada Inglesa,13
+2026-07-07,2026,1,ppq,Armênia,17.3
+2026-07-07,2026,1,pse,Sé,14.9
+2026-07-07,2026,1,pso,Paraíso,24.8
+2026-07-07,2026,1,san,Santana,46.1
+2026-07-07,2026,1,sau,Saúde,23.5
+2026-07-07,2026,1,scz,Santa Cruz,90.3
+2026-07-07,2026,1,trd,Tiradentes,12.8
+2026-07-07,2026,1,tte,Portuguesa-Tietê,40
+2026-07-07,2026,1,tuc,Tucuruvi,55.5
+2026-07-07,2026,1,vgo,Vergueiro,25.9
+2026-07-07,2026,1,vmn,Vila Mariana,15.2
+2026-07-07,2026,2,aip,Alto do Ipiranga,17.9
+2026-07-07,2026,2,anr,Ana Rosa,11.5
+2026-07-07,2026,2,bgd,Brigadeiro,52.6
+2026-07-07,2026,2,ckb,Chácara Klabin,85.7
+2026-07-07,2026,2,cli,Clínicas,22.2
+2026-07-07,2026,2,cns,Consolação,97.6
+2026-07-07,2026,2,img,Santos-Imigrantes,15
+2026-07-07,2026,2,pso,Paraíso,13.9
+2026-07-07,2026,2,sac,Sacomã,39.9
+2026-07-07,2026,2,sum,Sumaré,9.9
+2026-07-07,2026,2,tri,Trianon-Masp,49.1
+2026-07-07,2026,2,tti,Tamanduateí,78.3
+2026-07-07,2026,2,vmd,Vila Madalena,21.3
+2026-07-07,2026,2,vpt,Vila Prudente,18.8
+2026-07-07,2026,3,art,Artur Alvim,50.6
+2026-07-07,2026,3,bas,Brás,67.6
+2026-07-07,2026,3,bel,Belém,35.6
+2026-07-07,2026,3,bfu,Palmeiras-Barra Funda,135.4
+2026-07-07,2026,3,bre,Bresser-Moóca,25.1
+2026-07-07,2026,3,car,Carrão,39.7
+2026-07-07,2026,3,cec,Santa Cecília,21.3
+2026-07-07,2026,3,deo,Marechal Deodoro,24.5
+2026-07-07,2026,3,gbu,Anhangabaú,49.2
+2026-07-07,2026,3,itq,Corinthians-Itaquera,63.5
+2026-07-07,2026,3,pca,Patriarca,21.5
+2026-07-07,2026,3,pds,Pedro II,16.4
+2026-07-07,2026,3,pen,Penha,25.9
+2026-07-07,2026,3,pse,Sé,21.5
+2026-07-07,2026,3,rep,República,121.5
+2026-07-07,2026,3,tat,Tatuapé,65
+2026-07-07,2026,3,vpa,Guilhermina-Esperança,20.3
+2026-07-07,2026,3,vtd,Vila Matilde,26.1
+2026-07-07,2026,15,cad,Camilo Haddad,3.7
+2026-07-07,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-07,2026,15,igt,Jardim Colonial,13.6
+2026-07-07,2026,15,jpl,Jardim Planalto,4.7
+2026-07-07,2026,15,mat,São Mateus,17.1
+2026-07-07,2026,15,ort,Oratório,7.8
+2026-07-07,2026,15,sap,Sapopemba,9.4
+2026-07-07,2026,15,slu,São Lucas,5.6
+2026-07-07,2026,15,vpm,Vila Prudente,9.6
+2026-07-07,2026,15,vtl,Vila Tolstói,5.6
+2026-07-07,2026,15,vun,Vila União,5.9
+2026-07-08,2026,1,anr,Ana Rosa,20.5
+2026-07-08,2026,1,arv,Praça da Árvore,15.3
+2026-07-08,2026,1,bto,São Bento,53.3
+2026-07-08,2026,1,cdu,Carandiru,10.7
+2026-07-08,2026,1,con,Conceição,29.8
+2026-07-08,2026,1,jab,Jabaquara,67.5
+2026-07-08,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.6
+2026-07-08,2026,1,jqm,São Joaquim,22.1
+2026-07-08,2026,1,jud,São Judas,19
+2026-07-08,2026,1,lib,Japão-Liberdade,24.6
+2026-07-08,2026,1,luz,Luz,121.5
+2026-07-08,2026,1,pig,Parada Inglesa,13.1
+2026-07-08,2026,1,ppq,Armênia,17.5
+2026-07-08,2026,1,pse,Sé,15.6
+2026-07-08,2026,1,pso,Paraíso,19.5
+2026-07-08,2026,1,san,Santana,47.1
+2026-07-08,2026,1,sau,Saúde,24.6
+2026-07-08,2026,1,scz,Santa Cruz,93.8
+2026-07-08,2026,1,trd,Tiradentes,12.8
+2026-07-08,2026,1,tte,Portuguesa-Tietê,40.2
+2026-07-08,2026,1,tuc,Tucuruvi,55.9
+2026-07-08,2026,1,vgo,Vergueiro,25.9
+2026-07-08,2026,1,vmn,Vila Mariana,15.8
+2026-07-08,2026,2,aip,Alto do Ipiranga,18.6
+2026-07-08,2026,2,anr,Ana Rosa,11.5
+2026-07-08,2026,2,bgd,Brigadeiro,52.8
+2026-07-08,2026,2,ckb,Chácara Klabin,85.1
+2026-07-08,2026,2,cli,Clínicas,21.7
+2026-07-08,2026,2,cns,Consolação,95.2
+2026-07-08,2026,2,img,Santos-Imigrantes,15
+2026-07-08,2026,2,pso,Paraíso,11
+2026-07-08,2026,2,sac,Sacomã,40.3
+2026-07-08,2026,2,sum,Sumaré,9.9
+2026-07-08,2026,2,tri,Trianon-Masp,47.2
+2026-07-08,2026,2,tti,Tamanduateí,78.2
+2026-07-08,2026,2,vmd,Vila Madalena,21.5
+2026-07-08,2026,2,vpt,Vila Prudente,19
+2026-07-08,2026,3,art,Artur Alvim,51.8
+2026-07-08,2026,3,bas,Brás,69.4
+2026-07-08,2026,3,bel,Belém,36.6
+2026-07-08,2026,3,bfu,Palmeiras-Barra Funda,138.1
+2026-07-08,2026,3,bre,Bresser-Moóca,25.6
+2026-07-08,2026,3,car,Carrão,40.5
+2026-07-08,2026,3,cec,Santa Cecília,21.9
+2026-07-08,2026,3,deo,Marechal Deodoro,25.3
+2026-07-08,2026,3,gbu,Anhangabaú,50.3
+2026-07-08,2026,3,itq,Corinthians-Itaquera,64.6
+2026-07-08,2026,3,pca,Patriarca,21.6
+2026-07-08,2026,3,pds,Pedro II,15.5
+2026-07-08,2026,3,pen,Penha,26.6
+2026-07-08,2026,3,pse,Sé,22.5
+2026-07-08,2026,3,rep,República,123.6
+2026-07-08,2026,3,tat,Tatuapé,65.3
+2026-07-08,2026,3,vpa,Guilhermina-Esperança,20.6
+2026-07-08,2026,3,vtd,Vila Matilde,26.4
+2026-07-08,2026,15,cad,Camilo Haddad,3.7
+2026-07-08,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-08,2026,15,igt,Jardim Colonial,13.6
+2026-07-08,2026,15,jpl,Jardim Planalto,4.8
+2026-07-08,2026,15,mat,São Mateus,17.6
+2026-07-08,2026,15,ort,Oratório,7.8
+2026-07-08,2026,15,sap,Sapopemba,9.6
+2026-07-08,2026,15,slu,São Lucas,5.6
+2026-07-08,2026,15,vpm,Vila Prudente,9.7
+2026-07-08,2026,15,vtl,Vila Tolstói,5.7
+2026-07-08,2026,15,vun,Vila União,6.1
+2026-07-09,2026,1,anr,Ana Rosa,8.9
+2026-07-09,2026,1,arv,Praça da Árvore,6.6
+2026-07-09,2026,1,bto,São Bento,17.7
+2026-07-09,2026,1,cdu,Carandiru,4
+2026-07-09,2026,1,con,Conceição,9.8
+2026-07-09,2026,1,jab,Jabaquara,34.1
+2026-07-09,2026,1,jpa,Jardim São Paulo-Ayrton Senna,4.1
+2026-07-09,2026,1,jqm,São Joaquim,8.2
+2026-07-09,2026,1,jud,São Judas,7.4
+2026-07-09,2026,1,lib,Japão-Liberdade,23.3
+2026-07-09,2026,1,luz,Luz,39.1
+2026-07-09,2026,1,pig,Parada Inglesa,4.8
+2026-07-09,2026,1,ppq,Armênia,7.2
+2026-07-09,2026,1,pse,Sé,4.9
+2026-07-09,2026,1,pso,Paraíso,8.4
+2026-07-09,2026,1,san,Santana,19.2
+2026-07-09,2026,1,sau,Saúde,11
+2026-07-09,2026,1,scz,Santa Cruz,41.4
+2026-07-09,2026,1,trd,Tiradentes,4.9
+2026-07-09,2026,1,tte,Portuguesa-Tietê,25.1
+2026-07-09,2026,1,tuc,Tucuruvi,23.9
+2026-07-09,2026,1,vgo,Vergueiro,11.2
+2026-07-09,2026,1,vmn,Vila Mariana,6.2
+2026-07-09,2026,2,aip,Alto do Ipiranga,7.5
+2026-07-09,2026,2,anr,Ana Rosa,3.6
+2026-07-09,2026,2,bgd,Brigadeiro,20.1
+2026-07-09,2026,2,ckb,Chácara Klabin,32.1
+2026-07-09,2026,2,cli,Clínicas,5.9
+2026-07-09,2026,2,cns,Consolação,37.3
+2026-07-09,2026,2,img,Santos-Imigrantes,6.5
+2026-07-09,2026,2,pso,Paraíso,3.9
+2026-07-09,2026,2,sac,Sacomã,17.2
+2026-07-09,2026,2,sum,Sumaré,3.7
+2026-07-09,2026,2,tri,Trianon-Masp,19.5
+2026-07-09,2026,2,tti,Tamanduateí,33.7
+2026-07-09,2026,2,vmd,Vila Madalena,8.9
+2026-07-09,2026,2,vpt,Vila Prudente,7.1
+2026-07-09,2026,3,art,Artur Alvim,23.9
+2026-07-09,2026,3,bas,Brás,31.4
+2026-07-09,2026,3,bel,Belém,15.6
+2026-07-09,2026,3,bfu,Palmeiras-Barra Funda,63.9
+2026-07-09,2026,3,bre,Bresser-Moóca,10.2
+2026-07-09,2026,3,car,Carrão,16
+2026-07-09,2026,3,cec,Santa Cecília,10.4
+2026-07-09,2026,3,deo,Marechal Deodoro,11.9
+2026-07-09,2026,3,gbu,Anhangabaú,18.2
+2026-07-09,2026,3,itq,Corinthians-Itaquera,35.2
+2026-07-09,2026,3,pca,Patriarca,10.1
+2026-07-09,2026,3,pds,Pedro II,6.9
+2026-07-09,2026,3,pen,Penha,11.7
+2026-07-09,2026,3,pse,Sé,7.3
+2026-07-09,2026,3,rep,República,52.1
+2026-07-09,2026,3,tat,Tatuapé,41.5
+2026-07-09,2026,3,vpa,Guilhermina-Esperança,9
+2026-07-09,2026,3,vtd,Vila Matilde,10.9
+2026-07-09,2026,15,cad,Camilo Haddad,1.5
+2026-07-09,2026,15,fjt,Fazenda da Juta,2
+2026-07-09,2026,15,igt,Jardim Colonial,5.8
+2026-07-09,2026,15,jpl,Jardim Planalto,2.4
+2026-07-09,2026,15,mat,São Mateus,8.4
+2026-07-09,2026,15,ort,Oratório,3.3
+2026-07-09,2026,15,sap,Sapopemba,4.7
+2026-07-09,2026,15,slu,São Lucas,2.5
+2026-07-09,2026,15,vpm,Vila Prudente,3.5
+2026-07-09,2026,15,vtl,Vila Tolstói,2.6
+2026-07-09,2026,15,vun,Vila União,2.8
+2026-07-10,2026,1,anr,Ana Rosa,17.1
+2026-07-10,2026,1,arv,Praça da Árvore,12
+2026-07-10,2026,1,bto,São Bento,47.2
+2026-07-10,2026,1,cdu,Carandiru,7.7
+2026-07-10,2026,1,con,Conceição,18.5
+2026-07-10,2026,1,jab,Jabaquara,56.6
+2026-07-10,2026,1,jpa,Jardim São Paulo-Ayrton Senna,8.1
+2026-07-10,2026,1,jqm,São Joaquim,15.7
+2026-07-10,2026,1,jud,São Judas,17.7
+2026-07-10,2026,1,lib,Japão-Liberdade,27
+2026-07-10,2026,1,luz,Luz,94
+2026-07-10,2026,1,pig,Parada Inglesa,8.8
+2026-07-10,2026,1,ppq,Armênia,13.1
+2026-07-10,2026,1,pse,Sé,11.9
+2026-07-10,2026,1,pso,Paraíso,16.6
+2026-07-10,2026,1,san,Santana,36
+2026-07-10,2026,1,sau,Saúde,19.1
+2026-07-10,2026,1,scz,Santa Cruz,69.7
+2026-07-10,2026,1,trd,Tiradentes,9.8
+2026-07-10,2026,1,tte,Portuguesa-Tietê,36.6
+2026-07-10,2026,1,tuc,Tucuruvi,42.6
+2026-07-10,2026,1,vgo,Vergueiro,17.8
+2026-07-10,2026,1,vmn,Vila Mariana,12
+2026-07-10,2026,2,aip,Alto do Ipiranga,13.4
+2026-07-10,2026,2,anr,Ana Rosa,5.7
+2026-07-10,2026,2,bgd,Brigadeiro,36.3
+2026-07-10,2026,2,ckb,Chácara Klabin,60.1
+2026-07-10,2026,2,cli,Clínicas,9.3
+2026-07-10,2026,2,cns,Consolação,63.8
+2026-07-10,2026,2,img,Santos-Imigrantes,11.3
+2026-07-10,2026,2,pso,Paraíso,5.3
+2026-07-10,2026,2,sac,Sacomã,30.4
+2026-07-10,2026,2,sum,Sumaré,6.7
+2026-07-10,2026,2,tri,Trianon-Masp,32.2
+2026-07-10,2026,2,tti,Tamanduateí,58.5
+2026-07-10,2026,2,vmd,Vila Madalena,15
+2026-07-10,2026,2,vpt,Vila Prudente,12.9
+2026-07-10,2026,3,art,Artur Alvim,42.1
+2026-07-10,2026,3,bas,Brás,63.9
+2026-07-10,2026,3,bel,Belém,29.3
+2026-07-10,2026,3,bfu,Palmeiras-Barra Funda,108.2
+2026-07-10,2026,3,bre,Bresser-Moóca,21.4
+2026-07-10,2026,3,car,Carrão,30.2
+2026-07-10,2026,3,cec,Santa Cecília,17.9
+2026-07-10,2026,3,deo,Marechal Deodoro,19.9
+2026-07-10,2026,3,gbu,Anhangabaú,34.7
+2026-07-10,2026,3,itq,Corinthians-Itaquera,53.6
+2026-07-10,2026,3,pca,Patriarca,17.2
+2026-07-10,2026,3,pds,Pedro II,12.6
+2026-07-10,2026,3,pen,Penha,20.9
+2026-07-10,2026,3,pse,Sé,15.2
+2026-07-10,2026,3,rep,República,92.3
+2026-07-10,2026,3,tat,Tatuapé,55
+2026-07-10,2026,3,vpa,Guilhermina-Esperança,15.7
+2026-07-10,2026,3,vtd,Vila Matilde,19.9
+2026-07-10,2026,15,cad,Camilo Haddad,2.7
+2026-07-10,2026,15,fjt,Fazenda da Juta,3.4
+2026-07-10,2026,15,igt,Jardim Colonial,10.1
+2026-07-10,2026,15,jpl,Jardim Planalto,4
+2026-07-10,2026,15,mat,São Mateus,14.5
+2026-07-10,2026,15,ort,Oratório,5.7
+2026-07-10,2026,15,sap,Sapopemba,7.6
+2026-07-10,2026,15,slu,São Lucas,4.2
+2026-07-10,2026,15,vpm,Vila Prudente,7.3
+2026-07-10,2026,15,vtl,Vila Tolstói,4.5
+2026-07-10,2026,15,vun,Vila União,4.7
+2026-07-11,2026,1,anr,Ana Rosa,12.1
+2026-07-11,2026,1,arv,Praça da Árvore,8.5
+2026-07-11,2026,1,bto,São Bento,35.6
+2026-07-11,2026,1,cdu,Carandiru,5.6
+2026-07-11,2026,1,con,Conceição,12.8
+2026-07-11,2026,1,jab,Jabaquara,47.9
+2026-07-11,2026,1,jpa,Jardim São Paulo-Ayrton Senna,5.6
+2026-07-11,2026,1,jqm,São Joaquim,11.3
+2026-07-11,2026,1,jud,São Judas,18.3
+2026-07-11,2026,1,lib,Japão-Liberdade,32.1
+2026-07-11,2026,1,luz,Luz,63
+2026-07-11,2026,1,pig,Parada Inglesa,6.3
+2026-07-11,2026,1,ppq,Armênia,10.1
+2026-07-11,2026,1,pse,Sé,8.8
+2026-07-11,2026,1,pso,Paraíso,11.2
+2026-07-11,2026,1,san,Santana,25.8
+2026-07-11,2026,1,sau,Saúde,14.7
+2026-07-11,2026,1,scz,Santa Cruz,48.1
+2026-07-11,2026,1,trd,Tiradentes,7.4
+2026-07-11,2026,1,tte,Portuguesa-Tietê,32.8
+2026-07-11,2026,1,tuc,Tucuruvi,32.4
+2026-07-11,2026,1,vgo,Vergueiro,12.4
+2026-07-11,2026,1,vmn,Vila Mariana,8.5
+2026-07-11,2026,2,aip,Alto do Ipiranga,9.4
+2026-07-11,2026,2,anr,Ana Rosa,4
+2026-07-11,2026,2,bgd,Brigadeiro,22.5
+2026-07-11,2026,2,ckb,Chácara Klabin,40.7
+2026-07-11,2026,2,cli,Clínicas,6.1
+2026-07-11,2026,2,cns,Consolação,45.8
+2026-07-11,2026,2,img,Santos-Imigrantes,7.7
+2026-07-11,2026,2,pso,Paraíso,3.5
+2026-07-11,2026,2,sac,Sacomã,22
+2026-07-11,2026,2,sum,Sumaré,4.1
+2026-07-11,2026,2,tri,Trianon-Masp,20.5
+2026-07-11,2026,2,tti,Tamanduateí,39.1
+2026-07-11,2026,2,vmd,Vila Madalena,10.1
+2026-07-11,2026,2,vpt,Vila Prudente,8.6
+2026-07-11,2026,3,art,Artur Alvim,30.9
+2026-07-11,2026,3,bas,Brás,44.4
+2026-07-11,2026,3,bel,Belém,20.2
+2026-07-11,2026,3,bfu,Palmeiras-Barra Funda,99.9
+2026-07-11,2026,3,bre,Bresser-Moóca,15.8
+2026-07-11,2026,3,car,Carrão,21.6
+2026-07-11,2026,3,cec,Santa Cecília,13.4
+2026-07-11,2026,3,deo,Marechal Deodoro,14.2
+2026-07-11,2026,3,gbu,Anhangabaú,22.5
+2026-07-11,2026,3,itq,Corinthians-Itaquera,41.3
+2026-07-11,2026,3,pca,Patriarca,12.6
+2026-07-11,2026,3,pds,Pedro II,9.8
+2026-07-11,2026,3,pen,Penha,15.4
+2026-07-11,2026,3,pse,Sé,11.2
+2026-07-11,2026,3,rep,República,72.5
+2026-07-11,2026,3,tat,Tatuapé,53.7
+2026-07-11,2026,3,vpa,Guilhermina-Esperança,11.7
+2026-07-11,2026,3,vtd,Vila Matilde,14.7
+2026-07-11,2026,15,cad,Camilo Haddad,2.1
+2026-07-11,2026,15,fjt,Fazenda da Juta,2.4
+2026-07-11,2026,15,igt,Jardim Colonial,6.3
+2026-07-11,2026,15,jpl,Jardim Planalto,3
+2026-07-11,2026,15,mat,São Mateus,10.1
+2026-07-11,2026,15,ort,Oratório,4
+2026-07-11,2026,15,sap,Sapopemba,5.6
+2026-07-11,2026,15,slu,São Lucas,3.3
+2026-07-11,2026,15,vpm,Vila Prudente,4.4
+2026-07-11,2026,15,vtl,Vila Tolstói,3.3
+2026-07-11,2026,15,vun,Vila União,3.4
+2026-07-12,2026,1,anr,Ana Rosa,6.3
+2026-07-12,2026,1,arv,Praça da Árvore,4.5
+2026-07-12,2026,1,bto,São Bento,7.1
+2026-07-12,2026,1,cdu,Carandiru,3.5
+2026-07-12,2026,1,con,Conceição,7.5
+2026-07-12,2026,1,jab,Jabaquara,32.2
+2026-07-12,2026,1,jpa,Jardim São Paulo-Ayrton Senna,3
+2026-07-12,2026,1,jqm,São Joaquim,6.5
+2026-07-12,2026,1,jud,São Judas,11.9
+2026-07-12,2026,1,lib,Japão-Liberdade,22.1
+2026-07-12,2026,1,luz,Luz,25.2
+2026-07-12,2026,1,pig,Parada Inglesa,3.6
+2026-07-12,2026,1,ppq,Armênia,6.1
+2026-07-12,2026,1,pse,Sé,3.6
+2026-07-12,2026,1,pso,Paraíso,6
+2026-07-12,2026,1,san,Santana,14.5
+2026-07-12,2026,1,sau,Saúde,8
+2026-07-12,2026,1,scz,Santa Cruz,31.4
+2026-07-12,2026,1,trd,Tiradentes,4
+2026-07-12,2026,1,tte,Portuguesa-Tietê,32.9
+2026-07-12,2026,1,tuc,Tucuruvi,17.8
+2026-07-12,2026,1,vgo,Vergueiro,7.5
+2026-07-12,2026,1,vmn,Vila Mariana,4.3
+2026-07-12,2026,2,aip,Alto do Ipiranga,5
+2026-07-12,2026,2,anr,Ana Rosa,2.6
+2026-07-12,2026,2,bgd,Brigadeiro,15.6
+2026-07-12,2026,2,ckb,Chácara Klabin,21.5
+2026-07-12,2026,2,cli,Clínicas,4.6
+2026-07-12,2026,2,cns,Consolação,31.3
+2026-07-12,2026,2,img,Santos-Imigrantes,4.4
+2026-07-12,2026,2,pso,Paraíso,2.8
+2026-07-12,2026,2,sac,Sacomã,12.2
+2026-07-12,2026,2,sum,Sumaré,2.6
+2026-07-12,2026,2,tri,Trianon-Masp,17.4
+2026-07-12,2026,2,tti,Tamanduateí,22.1
+2026-07-12,2026,2,vmd,Vila Madalena,6
+2026-07-12,2026,2,vpt,Vila Prudente,5
+2026-07-12,2026,3,art,Artur Alvim,17.4
+2026-07-12,2026,3,bas,Brás,19.2
+2026-07-12,2026,3,bel,Belém,11.9
+2026-07-12,2026,3,bfu,Palmeiras-Barra Funda,57.3
+2026-07-12,2026,3,bre,Bresser-Moóca,9.3
+2026-07-12,2026,3,car,Carrão,10.8
+2026-07-12,2026,3,cec,Santa Cecília,8.7
+2026-07-12,2026,3,deo,Marechal Deodoro,10
+2026-07-12,2026,3,gbu,Anhangabaú,11.6
+2026-07-12,2026,3,itq,Corinthians-Itaquera,27.4
+2026-07-12,2026,3,pca,Patriarca,6.7
+2026-07-12,2026,3,pds,Pedro II,8.2
+2026-07-12,2026,3,pen,Penha,8.6
+2026-07-12,2026,3,pse,Sé,5.5
+2026-07-12,2026,3,rep,República,40.6
+2026-07-12,2026,3,tat,Tatuapé,31.6
+2026-07-12,2026,3,vpa,Guilhermina-Esperança,6.2
+2026-07-12,2026,3,vtd,Vila Matilde,8.3
+2026-07-12,2026,15,cad,Camilo Haddad,1
+2026-07-12,2026,15,fjt,Fazenda da Juta,1.4
+2026-07-12,2026,15,igt,Jardim Colonial,3.5
+2026-07-12,2026,15,jpl,Jardim Planalto,1.5
+2026-07-12,2026,15,mat,São Mateus,5.4
+2026-07-12,2026,15,ort,Oratório,2
+2026-07-12,2026,15,sap,Sapopemba,3
+2026-07-12,2026,15,slu,São Lucas,1.6
+2026-07-12,2026,15,vpm,Vila Prudente,2.1
+2026-07-12,2026,15,vtl,Vila Tolstói,1.7
+2026-07-12,2026,15,vun,Vila União,1.8
+2026-07-13,2026,1,anr,Ana Rosa,17.1
+2026-07-13,2026,1,arv,Praça da Árvore,13.3
+2026-07-13,2026,1,bto,São Bento,49.8
+2026-07-13,2026,1,cdu,Carandiru,9.5
+2026-07-13,2026,1,con,Conceição,27
+2026-07-13,2026,1,jab,Jabaquara,65
+2026-07-13,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.1
+2026-07-13,2026,1,jqm,São Joaquim,19.9
+2026-07-13,2026,1,jud,São Judas,18.3
+2026-07-13,2026,1,lib,Japão-Liberdade,22.2
+2026-07-13,2026,1,luz,Luz,102.4
+2026-07-13,2026,1,pig,Parada Inglesa,11.7
+2026-07-13,2026,1,ppq,Armênia,16.6
+2026-07-13,2026,1,pse,Sé,14.7
+2026-07-13,2026,1,pso,Paraíso,17.7
+2026-07-13,2026,1,san,Santana,42.6
+2026-07-13,2026,1,sau,Saúde,21.4
+2026-07-13,2026,1,scz,Santa Cruz,90.2
+2026-07-13,2026,1,trd,Tiradentes,11.6
+2026-07-13,2026,1,tte,Portuguesa-Tietê,46.9
+2026-07-13,2026,1,tuc,Tucuruvi,51.4
+2026-07-13,2026,1,vgo,Vergueiro,24
+2026-07-13,2026,1,vmn,Vila Mariana,13.8
+2026-07-13,2026,2,aip,Alto do Ipiranga,16
+2026-07-13,2026,2,anr,Ana Rosa,9.6
+2026-07-13,2026,2,bgd,Brigadeiro,46.8
+2026-07-13,2026,2,ckb,Chácara Klabin,78.1
+2026-07-13,2026,2,cli,Clínicas,21.3
+2026-07-13,2026,2,cns,Consolação,85.8
+2026-07-13,2026,2,img,Santos-Imigrantes,13.9
+2026-07-13,2026,2,pso,Paraíso,9.9
+2026-07-13,2026,2,sac,Sacomã,36.9
+2026-07-13,2026,2,sum,Sumaré,9.1
+2026-07-13,2026,2,tri,Trianon-Masp,42.2
+2026-07-13,2026,2,tti,Tamanduateí,72.9
+2026-07-13,2026,2,vmd,Vila Madalena,19.2
+2026-07-13,2026,2,vpt,Vila Prudente,17
+2026-07-13,2026,3,art,Artur Alvim,47.3
+2026-07-13,2026,3,bas,Brás,65.6
+2026-07-13,2026,3,bel,Belém,32.9
+2026-07-13,2026,3,bfu,Palmeiras-Barra Funda,129.9
+2026-07-13,2026,3,bre,Bresser-Moóca,24
+2026-07-13,2026,3,car,Carrão,36.5
+2026-07-13,2026,3,cec,Santa Cecília,19.6
+2026-07-13,2026,3,deo,Marechal Deodoro,22.7
+2026-07-13,2026,3,gbu,Anhangabaú,47
+2026-07-13,2026,3,itq,Corinthians-Itaquera,60
+2026-07-13,2026,3,pca,Patriarca,20
+2026-07-13,2026,3,pds,Pedro II,13.8
+2026-07-13,2026,3,pen,Penha,23.7
+2026-07-13,2026,3,pse,Sé,21.2
+2026-07-13,2026,3,rep,República,109.6
+2026-07-13,2026,3,tat,Tatuapé,64.1
+2026-07-13,2026,3,vpa,Guilhermina-Esperança,18.4
+2026-07-13,2026,3,vtd,Vila Matilde,23.9
+2026-07-13,2026,15,cad,Camilo Haddad,3.5
+2026-07-13,2026,15,fjt,Fazenda da Juta,3.9
+2026-07-13,2026,15,igt,Jardim Colonial,12.8
+2026-07-13,2026,15,jpl,Jardim Planalto,4.3
+2026-07-13,2026,15,mat,São Mateus,16.3
+2026-07-13,2026,15,ort,Oratório,7
+2026-07-13,2026,15,sap,Sapopemba,9
+2026-07-13,2026,15,slu,São Lucas,5.1
+2026-07-13,2026,15,vpm,Vila Prudente,8.8
+2026-07-13,2026,15,vtl,Vila Tolstói,5.2
+2026-07-13,2026,15,vun,Vila União,5.6
+2026-07-14,2026,1,anr,Ana Rosa,18.3
+2026-07-14,2026,1,arv,Praça da Árvore,14.3
+2026-07-14,2026,1,bto,São Bento,50
+2026-07-14,2026,1,cdu,Carandiru,10
+2026-07-14,2026,1,con,Conceição,28.8
+2026-07-14,2026,1,jab,Jabaquara,64.1
+2026-07-14,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11
+2026-07-14,2026,1,jqm,São Joaquim,20.9
+2026-07-14,2026,1,jud,São Judas,18.7
+2026-07-14,2026,1,lib,Japão-Liberdade,23.9
+2026-07-14,2026,1,luz,Luz,111.4
+2026-07-14,2026,1,pig,Parada Inglesa,12.4
+2026-07-14,2026,1,ppq,Armênia,16.7
+2026-07-14,2026,1,pse,Sé,15.3
+2026-07-14,2026,1,pso,Paraíso,18.9
+2026-07-14,2026,1,san,Santana,44.4
+2026-07-14,2026,1,sau,Saúde,22.2
+2026-07-14,2026,1,scz,Santa Cruz,92.4
+2026-07-14,2026,1,trd,Tiradentes,12.3
+2026-07-14,2026,1,tte,Portuguesa-Tietê,41.6
+2026-07-14,2026,1,tuc,Tucuruvi,53.6
+2026-07-14,2026,1,vgo,Vergueiro,24.8
+2026-07-14,2026,1,vmn,Vila Mariana,14.5
+2026-07-14,2026,2,aip,Alto do Ipiranga,17.3
+2026-07-14,2026,2,anr,Ana Rosa,10.3
+2026-07-14,2026,2,bgd,Brigadeiro,51.1
+2026-07-14,2026,2,ckb,Chácara Klabin,82.7
+2026-07-14,2026,2,cli,Clínicas,21.4
+2026-07-14,2026,2,cns,Consolação,93.2
+2026-07-14,2026,2,img,Santos-Imigrantes,14.7
+2026-07-14,2026,2,pso,Paraíso,10.6
+2026-07-14,2026,2,sac,Sacomã,38.6
+2026-07-14,2026,2,sum,Sumaré,9.6
+2026-07-14,2026,2,tri,Trianon-Masp,47.4
+2026-07-14,2026,2,tti,Tamanduateí,76.3
+2026-07-14,2026,2,vmd,Vila Madalena,20.5
+2026-07-14,2026,2,vpt,Vila Prudente,18.1
+2026-07-14,2026,3,art,Artur Alvim,49.3
+2026-07-14,2026,3,bas,Brás,66.5
+2026-07-14,2026,3,bel,Belém,34.7
+2026-07-14,2026,3,bfu,Palmeiras-Barra Funda,129.6
+2026-07-14,2026,3,bre,Bresser-Moóca,24.4
+2026-07-14,2026,3,car,Carrão,37.7
+2026-07-14,2026,3,cec,Santa Cecília,21.8
+2026-07-14,2026,3,deo,Marechal Deodoro,23.6
+2026-07-14,2026,3,gbu,Anhangabaú,48.4
+2026-07-14,2026,3,itq,Corinthians-Itaquera,61.1
+2026-07-14,2026,3,pca,Patriarca,20.7
+2026-07-14,2026,3,pds,Pedro II,17
+2026-07-14,2026,3,pen,Penha,24.9
+2026-07-14,2026,3,pse,Sé,22
+2026-07-14,2026,3,rep,República,116.7
+2026-07-14,2026,3,tat,Tatuapé,66
+2026-07-14,2026,3,vpa,Guilhermina-Esperança,19.6
+2026-07-14,2026,3,vtd,Vila Matilde,25.2
+2026-07-14,2026,15,cad,Camilo Haddad,3.6
+2026-07-14,2026,15,fjt,Fazenda da Juta,4
+2026-07-14,2026,15,igt,Jardim Colonial,13
+2026-07-14,2026,15,jpl,Jardim Planalto,4.7
+2026-07-14,2026,15,mat,São Mateus,17
+2026-07-14,2026,15,ort,Oratório,7.3
+2026-07-14,2026,15,sap,Sapopemba,9.3
+2026-07-14,2026,15,slu,São Lucas,5.4
+2026-07-14,2026,15,vpm,Vila Prudente,9.3
+2026-07-14,2026,15,vtl,Vila Tolstói,5.4
+2026-07-14,2026,15,vun,Vila União,5.8
+2026-07-15,2026,1,anr,Ana Rosa,18.8
+2026-07-15,2026,1,arv,Praça da Árvore,14.3
+2026-07-15,2026,1,bto,São Bento,50.2
+2026-07-15,2026,1,cdu,Carandiru,10.1
+2026-07-15,2026,1,con,Conceição,28.6
+2026-07-15,2026,1,jab,Jabaquara,64.7
+2026-07-15,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11
+2026-07-15,2026,1,jqm,São Joaquim,20.8
+2026-07-15,2026,1,jud,São Judas,18.3
+2026-07-15,2026,1,lib,Japão-Liberdade,25.9
+2026-07-15,2026,1,luz,Luz,128
+2026-07-15,2026,1,pig,Parada Inglesa,12.5
+2026-07-15,2026,1,ppq,Armênia,17
+2026-07-15,2026,1,pse,Sé,15.1
+2026-07-15,2026,1,pso,Paraíso,19
+2026-07-15,2026,1,san,Santana,44.6
+2026-07-15,2026,1,sau,Saúde,22.5
+2026-07-15,2026,1,scz,Santa Cruz,88.1
+2026-07-15,2026,1,trd,Tiradentes,12
+2026-07-15,2026,1,tte,Portuguesa-Tietê,40.5
+2026-07-15,2026,1,tuc,Tucuruvi,53.2
+2026-07-15,2026,1,vgo,Vergueiro,25.3
+2026-07-15,2026,1,vmn,Vila Mariana,14.7
+2026-07-15,2026,2,aip,Alto do Ipiranga,18
+2026-07-15,2026,2,anr,Ana Rosa,10.6
+2026-07-15,2026,2,bgd,Brigadeiro,51
+2026-07-15,2026,2,ckb,Chácara Klabin,83
+2026-07-15,2026,2,cli,Clínicas,20.8
+2026-07-15,2026,2,cns,Consolação,93.1
+2026-07-15,2026,2,img,Santos-Imigrantes,14.7
+2026-07-15,2026,2,pso,Paraíso,10.7
+2026-07-15,2026,2,sac,Sacomã,38.8
+2026-07-15,2026,2,sum,Sumaré,9.6
+2026-07-15,2026,2,tri,Trianon-Masp,46.2
+2026-07-15,2026,2,tti,Tamanduateí,76.5
+2026-07-15,2026,2,vmd,Vila Madalena,20.7
+2026-07-15,2026,2,vpt,Vila Prudente,18
+2026-07-15,2026,3,art,Artur Alvim,49.8
+2026-07-15,2026,3,bas,Brás,66.7
+2026-07-15,2026,3,bel,Belém,35.3
+2026-07-15,2026,3,bfu,Palmeiras-Barra Funda,132.5
+2026-07-15,2026,3,bre,Bresser-Moóca,24.8
+2026-07-15,2026,3,car,Carrão,38.2
+2026-07-15,2026,3,cec,Santa Cecília,20.9
+2026-07-15,2026,3,deo,Marechal Deodoro,24.2
+2026-07-15,2026,3,gbu,Anhangabaú,48.6
+2026-07-15,2026,3,itq,Corinthians-Itaquera,61.8
+2026-07-15,2026,3,pca,Patriarca,20.9
+2026-07-15,2026,3,pds,Pedro II,14.9
+2026-07-15,2026,3,pen,Penha,25.3
+2026-07-15,2026,3,pse,Sé,21.7
+2026-07-15,2026,3,rep,República,117.8
+2026-07-15,2026,3,tat,Tatuapé,67.7
+2026-07-15,2026,3,vpa,Guilhermina-Esperança,19.8
+2026-07-15,2026,3,vtd,Vila Matilde,24.4
+2026-07-15,2026,15,cad,Camilo Haddad,3.7
+2026-07-15,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-15,2026,15,igt,Jardim Colonial,13.3
+2026-07-15,2026,15,jpl,Jardim Planalto,4.6
+2026-07-15,2026,15,mat,São Mateus,16.7
+2026-07-15,2026,15,ort,Oratório,7.5
+2026-07-15,2026,15,sap,Sapopemba,9.2
+2026-07-15,2026,15,slu,São Lucas,5.3
+2026-07-15,2026,15,vpm,Vila Prudente,9.5
+2026-07-15,2026,15,vtl,Vila Tolstói,5.5
+2026-07-15,2026,15,vun,Vila União,5.9
+2026-07-16,2026,1,anr,Ana Rosa,19.1
+2026-07-16,2026,1,arv,Praça da Árvore,14.7
+2026-07-16,2026,1,bto,São Bento,51.7
+2026-07-16,2026,1,cdu,Carandiru,10.2
+2026-07-16,2026,1,con,Conceição,28.7
+2026-07-16,2026,1,jab,Jabaquara,64.5
+2026-07-16,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.9
+2026-07-16,2026,1,jqm,São Joaquim,21.1
+2026-07-16,2026,1,jud,São Judas,16.6
+2026-07-16,2026,1,lib,Japão-Liberdade,27.6
+2026-07-16,2026,1,luz,Luz,118.1
+2026-07-16,2026,1,pig,Parada Inglesa,12.5
+2026-07-16,2026,1,ppq,Armênia,16.8
+2026-07-16,2026,1,pse,Sé,15.4
+2026-07-16,2026,1,pso,Paraíso,19.1
+2026-07-16,2026,1,san,Santana,45.2
+2026-07-16,2026,1,sau,Saúde,23.1
+2026-07-16,2026,1,scz,Santa Cruz,89.1
+2026-07-16,2026,1,trd,Tiradentes,12.7
+2026-07-16,2026,1,tte,Portuguesa-Tietê,42.7
+2026-07-16,2026,1,tuc,Tucuruvi,54
+2026-07-16,2026,1,vgo,Vergueiro,25.6
+2026-07-16,2026,1,vmn,Vila Mariana,15.2
+2026-07-16,2026,2,aip,Alto do Ipiranga,17.9
+2026-07-16,2026,2,anr,Ana Rosa,10.7
+2026-07-16,2026,2,bgd,Brigadeiro,51.1
+2026-07-16,2026,2,ckb,Chácara Klabin,83.3
+2026-07-16,2026,2,cli,Clínicas,21.2
+2026-07-16,2026,2,cns,Consolação,94.1
+2026-07-16,2026,2,img,Santos-Imigrantes,14.6
+2026-07-16,2026,2,pso,Paraíso,10.7
+2026-07-16,2026,2,sac,Sacomã,39.3
+2026-07-16,2026,2,sum,Sumaré,10.1
+2026-07-16,2026,2,tri,Trianon-Masp,44.3
+2026-07-16,2026,2,tti,Tamanduateí,75
+2026-07-16,2026,2,vmd,Vila Madalena,21.2
+2026-07-16,2026,2,vpt,Vila Prudente,18.4
+2026-07-16,2026,3,art,Artur Alvim,49.8
+2026-07-16,2026,3,bas,Brás,67.7
+2026-07-16,2026,3,bel,Belém,35.4
+2026-07-16,2026,3,bfu,Palmeiras-Barra Funda,130
+2026-07-16,2026,3,bre,Bresser-Moóca,24.8
+2026-07-16,2026,3,car,Carrão,38.4
+2026-07-16,2026,3,cec,Santa Cecília,20.8
+2026-07-16,2026,3,deo,Marechal Deodoro,24.4
+2026-07-16,2026,3,gbu,Anhangabaú,48.8
+2026-07-16,2026,3,itq,Corinthians-Itaquera,62.4
+2026-07-16,2026,3,pca,Patriarca,21.5
+2026-07-16,2026,3,pds,Pedro II,14.6
+2026-07-16,2026,3,pen,Penha,25.8
+2026-07-16,2026,3,pse,Sé,22.2
+2026-07-16,2026,3,rep,República,119.3
+2026-07-16,2026,3,tat,Tatuapé,69.2
+2026-07-16,2026,3,vpa,Guilhermina-Esperança,20
+2026-07-16,2026,3,vtd,Vila Matilde,25.6
+2026-07-16,2026,15,cad,Camilo Haddad,3.7
+2026-07-16,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-16,2026,15,igt,Jardim Colonial,13.3
+2026-07-16,2026,15,jpl,Jardim Planalto,4.7
+2026-07-16,2026,15,mat,São Mateus,16.8
+2026-07-16,2026,15,ort,Oratório,7.5
+2026-07-16,2026,15,sap,Sapopemba,9.2
+2026-07-16,2026,15,slu,São Lucas,5.4
+2026-07-16,2026,15,vpm,Vila Prudente,9.5
+2026-07-16,2026,15,vtl,Vila Tolstói,5.4
+2026-07-16,2026,15,vun,Vila União,5.8
+2026-07-17,2026,1,anr,Ana Rosa,18.3
+2026-07-17,2026,1,arv,Praça da Árvore,14.1
+2026-07-17,2026,1,bto,São Bento,51.2
+2026-07-17,2026,1,cdu,Carandiru,9.8
+2026-07-17,2026,1,con,Conceição,24.6
+2026-07-17,2026,1,jab,Jabaquara,64.9
+2026-07-17,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.6
+2026-07-17,2026,1,jqm,São Joaquim,20.2
+2026-07-17,2026,1,jud,São Judas,15.5
+2026-07-17,2026,1,lib,Japão-Liberdade,27.7
+2026-07-17,2026,1,luz,Luz,114.1
+2026-07-17,2026,1,pig,Parada Inglesa,11.8
+2026-07-17,2026,1,ppq,Armênia,16.7
+2026-07-17,2026,1,pse,Sé,14.9
+2026-07-17,2026,1,pso,Paraíso,18
+2026-07-17,2026,1,san,Santana,44.4
+2026-07-17,2026,1,sau,Saúde,22.5
+2026-07-17,2026,1,scz,Santa Cruz,86.8
+2026-07-17,2026,1,trd,Tiradentes,12.5
+2026-07-17,2026,1,tte,Portuguesa-Tietê,45.4
+2026-07-17,2026,1,tuc,Tucuruvi,52.9
+2026-07-17,2026,1,vgo,Vergueiro,24.4
+2026-07-17,2026,1,vmn,Vila Mariana,15
+2026-07-17,2026,2,aip,Alto do Ipiranga,17
+2026-07-17,2026,2,anr,Ana Rosa,10.3
+2026-07-17,2026,2,bgd,Brigadeiro,48
+2026-07-17,2026,2,ckb,Chácara Klabin,77.8
+2026-07-17,2026,2,cli,Clínicas,20.3
+2026-07-17,2026,2,cns,Consolação,90.3
+2026-07-17,2026,2,img,Santos-Imigrantes,14.2
+2026-07-17,2026,2,pso,Paraíso,10.1
+2026-07-17,2026,2,sac,Sacomã,38.7
+2026-07-17,2026,2,sum,Sumaré,9.4
+2026-07-17,2026,2,tri,Trianon-Masp,42.6
+2026-07-17,2026,2,tti,Tamanduateí,71.1
+2026-07-17,2026,2,vmd,Vila Madalena,19.6
+2026-07-17,2026,2,vpt,Vila Prudente,17.4
+2026-07-17,2026,3,art,Artur Alvim,50.2
+2026-07-17,2026,3,bas,Brás,65.8
+2026-07-17,2026,3,bel,Belém,35.9
+2026-07-17,2026,3,bfu,Palmeiras-Barra Funda,127.2
+2026-07-17,2026,3,bre,Bresser-Moóca,24.9
+2026-07-17,2026,3,car,Carrão,37.8
+2026-07-17,2026,3,cec,Santa Cecília,21.8
+2026-07-17,2026,3,deo,Marechal Deodoro,23.9
+2026-07-17,2026,3,gbu,Anhangabaú,48.7
+2026-07-17,2026,3,itq,Corinthians-Itaquera,62.8
+2026-07-17,2026,3,pca,Patriarca,20.9
+2026-07-17,2026,3,pds,Pedro II,15.1
+2026-07-17,2026,3,pen,Penha,25.6
+2026-07-17,2026,3,pse,Sé,21.5
+2026-07-17,2026,3,rep,República,118.7
+2026-07-17,2026,3,tat,Tatuapé,69.8
+2026-07-17,2026,3,vpa,Guilhermina-Esperança,19.7
+2026-07-17,2026,3,vtd,Vila Matilde,24.9
+2026-07-17,2026,15,cad,Camilo Haddad,3.5
+2026-07-17,2026,15,fjt,Fazenda da Juta,4.3
+2026-07-17,2026,15,igt,Jardim Colonial,12.9
+2026-07-17,2026,15,jpl,Jardim Planalto,4.6
+2026-07-17,2026,15,mat,São Mateus,17.1
+2026-07-17,2026,15,ort,Oratório,7.4
+2026-07-17,2026,15,sap,Sapopemba,9.1
+2026-07-17,2026,15,slu,São Lucas,5.1
+2026-07-17,2026,15,vpm,Vila Prudente,9.1
+2026-07-17,2026,15,vtl,Vila Tolstói,5.5
+2026-07-17,2026,15,vun,Vila União,5.7
+2026-07-18,2026,1,anr,Ana Rosa,13.1
+2026-07-18,2026,1,arv,Praça da Árvore,9
+2026-07-18,2026,1,bto,São Bento,35.4
+2026-07-18,2026,1,cdu,Carandiru,6.1
+2026-07-18,2026,1,con,Conceição,13.4
+2026-07-18,2026,1,jab,Jabaquara,45.9
+2026-07-18,2026,1,jpa,Jardim São Paulo-Ayrton Senna,5.9
+2026-07-18,2026,1,jqm,São Joaquim,12.8
+2026-07-18,2026,1,jud,São Judas,9.7
+2026-07-18,2026,1,lib,Japão-Liberdade,35.3
+2026-07-18,2026,1,luz,Luz,65.6
+2026-07-18,2026,1,pig,Parada Inglesa,6.6
+2026-07-18,2026,1,ppq,Armênia,10.2
+2026-07-18,2026,1,pse,Sé,9.7
+2026-07-18,2026,1,pso,Paraíso,12.4
+2026-07-18,2026,1,san,Santana,27.2
+2026-07-18,2026,1,sau,Saúde,15.3
+2026-07-18,2026,1,scz,Santa Cruz,56.3
+2026-07-18,2026,1,trd,Tiradentes,10.6
+2026-07-18,2026,1,tte,Portuguesa-Tietê,34.1
+2026-07-18,2026,1,tuc,Tucuruvi,33.8
+2026-07-18,2026,1,vgo,Vergueiro,13
+2026-07-18,2026,1,vmn,Vila Mariana,9.2
+2026-07-18,2026,2,aip,Alto do Ipiranga,10.2
+2026-07-18,2026,2,anr,Ana Rosa,4.4
+2026-07-18,2026,2,bgd,Brigadeiro,27.5
+2026-07-18,2026,2,ckb,Chácara Klabin,39.1
+2026-07-18,2026,2,cli,Clínicas,6.9
+2026-07-18,2026,2,cns,Consolação,52.9
+2026-07-18,2026,2,img,Santos-Imigrantes,8
+2026-07-18,2026,2,pso,Paraíso,3.9
+2026-07-18,2026,2,sac,Sacomã,23.7
+2026-07-18,2026,2,sum,Sumaré,4.8
+2026-07-18,2026,2,tri,Trianon-Masp,22.7
+2026-07-18,2026,2,tti,Tamanduateí,38.3
+2026-07-18,2026,2,vmd,Vila Madalena,11.7
+2026-07-18,2026,2,vpt,Vila Prudente,9.5
+2026-07-18,2026,3,art,Artur Alvim,32.4
+2026-07-18,2026,3,bas,Brás,44.6
+2026-07-18,2026,3,bel,Belém,22.6
+2026-07-18,2026,3,bfu,Palmeiras-Barra Funda,93.2
+2026-07-18,2026,3,bre,Bresser-Moóca,16.5
+2026-07-18,2026,3,car,Carrão,22.6
+2026-07-18,2026,3,cec,Santa Cecília,14
+2026-07-18,2026,3,deo,Marechal Deodoro,15.2
+2026-07-18,2026,3,gbu,Anhangabaú,23.7
+2026-07-18,2026,3,itq,Corinthians-Itaquera,42.8
+2026-07-18,2026,3,pca,Patriarca,13.2
+2026-07-18,2026,3,pds,Pedro II,10.2
+2026-07-18,2026,3,pen,Penha,16
+2026-07-18,2026,3,pse,Sé,12.4
+2026-07-18,2026,3,rep,República,77.7
+2026-07-18,2026,3,tat,Tatuapé,62
+2026-07-18,2026,3,vpa,Guilhermina-Esperança,12.3
+2026-07-18,2026,3,vtd,Vila Matilde,15.5
+2026-07-18,2026,15,cad,Camilo Haddad,2.1
+2026-07-18,2026,15,fjt,Fazenda da Juta,2.6
+2026-07-18,2026,15,igt,Jardim Colonial,6.7
+2026-07-18,2026,15,jpl,Jardim Planalto,3.2
+2026-07-18,2026,15,mat,São Mateus,10.7
+2026-07-18,2026,15,ort,Oratório,4.3
+2026-07-18,2026,15,sap,Sapopemba,5.8
+2026-07-18,2026,15,slu,São Lucas,3.4
+2026-07-18,2026,15,vpm,Vila Prudente,4.7
+2026-07-18,2026,15,vtl,Vila Tolstói,3.5
+2026-07-18,2026,15,vun,Vila União,3.7
+2026-07-19,2026,1,anr,Ana Rosa,6.9
+2026-07-19,2026,1,arv,Praça da Árvore,4.6
+2026-07-19,2026,1,bto,São Bento,7.6
+2026-07-19,2026,1,cdu,Carandiru,3.5
+2026-07-19,2026,1,con,Conceição,7.8
+2026-07-19,2026,1,jab,Jabaquara,31.7
+2026-07-19,2026,1,jpa,Jardim São Paulo-Ayrton Senna,3
+2026-07-19,2026,1,jqm,São Joaquim,6.4
+2026-07-19,2026,1,jud,São Judas,5.4
+2026-07-19,2026,1,lib,Japão-Liberdade,25
+2026-07-19,2026,1,luz,Luz,32.8
+2026-07-19,2026,1,pig,Parada Inglesa,3.6
+2026-07-19,2026,1,ppq,Armênia,5.7
+2026-07-19,2026,1,pse,Sé,4
+2026-07-19,2026,1,pso,Paraíso,6.4
+2026-07-19,2026,1,san,Santana,14.7
+2026-07-19,2026,1,sau,Saúde,8
+2026-07-19,2026,1,scz,Santa Cruz,31.1
+2026-07-19,2026,1,trd,Tiradentes,5.5
+2026-07-19,2026,1,tte,Portuguesa-Tietê,27.2
+2026-07-19,2026,1,tuc,Tucuruvi,18.1
+2026-07-19,2026,1,vgo,Vergueiro,7.6
+2026-07-19,2026,1,vmn,Vila Mariana,4.6
+2026-07-19,2026,2,aip,Alto do Ipiranga,5.7
+2026-07-19,2026,2,anr,Ana Rosa,2.8
+2026-07-19,2026,2,bgd,Brigadeiro,18.3
+2026-07-19,2026,2,ckb,Chácara Klabin,22.4
+2026-07-19,2026,2,cli,Clínicas,4.5
+2026-07-19,2026,2,cns,Consolação,35.7
+2026-07-19,2026,2,img,Santos-Imigrantes,4.7
+2026-07-19,2026,2,pso,Paraíso,3
+2026-07-19,2026,2,sac,Sacomã,12.7
+2026-07-19,2026,2,sum,Sumaré,2.7
+2026-07-19,2026,2,tri,Trianon-Masp,20.6
+2026-07-19,2026,2,tti,Tamanduateí,21
+2026-07-19,2026,2,vmd,Vila Madalena,6.5
+2026-07-19,2026,2,vpt,Vila Prudente,5.2
+2026-07-19,2026,3,art,Artur Alvim,17.7
+2026-07-19,2026,3,bas,Brás,20.1
+2026-07-19,2026,3,bel,Belém,12.7
+2026-07-19,2026,3,bfu,Palmeiras-Barra Funda,55.6
+2026-07-19,2026,3,bre,Bresser-Moóca,9.1
+2026-07-19,2026,3,car,Carrão,11
+2026-07-19,2026,3,cec,Santa Cecília,9.7
+2026-07-19,2026,3,deo,Marechal Deodoro,9
+2026-07-19,2026,3,gbu,Anhangabaú,12.3
+2026-07-19,2026,3,itq,Corinthians-Itaquera,27.9
+2026-07-19,2026,3,pca,Patriarca,6.7
+2026-07-19,2026,3,pds,Pedro II,6.9
+2026-07-19,2026,3,pen,Penha,8.5
+2026-07-19,2026,3,pse,Sé,6
+2026-07-19,2026,3,rep,República,41.9
+2026-07-19,2026,3,tat,Tatuapé,34.5
+2026-07-19,2026,3,vpa,Guilhermina-Esperança,6.5
+2026-07-19,2026,3,vtd,Vila Matilde,8.7
+2026-07-19,2026,15,cad,Camilo Haddad,1.2
+2026-07-19,2026,15,fjt,Fazenda da Juta,1.5
+2026-07-19,2026,15,igt,Jardim Colonial,3.8
+2026-07-19,2026,15,jpl,Jardim Planalto,1.7
+2026-07-19,2026,15,mat,São Mateus,5.8
+2026-07-19,2026,15,ort,Oratório,2.3
+2026-07-19,2026,15,sap,Sapopemba,3.2
+2026-07-19,2026,15,slu,São Lucas,1.8
+2026-07-19,2026,15,vpm,Vila Prudente,2.2
+2026-07-19,2026,15,vtl,Vila Tolstói,2.1
+2026-07-19,2026,15,vun,Vila União,2
+2026-07-20,2026,1,anr,Ana Rosa,17.9
+2026-07-20,2026,1,arv,Praça da Árvore,13.4
+2026-07-20,2026,1,bto,São Bento,50.5
+2026-07-20,2026,1,cdu,Carandiru,9.6
+2026-07-20,2026,1,con,Conceição,27.3
+2026-07-20,2026,1,jab,Jabaquara,64.8
+2026-07-20,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.4
+2026-07-20,2026,1,jqm,São Joaquim,20.6
+2026-07-20,2026,1,jud,São Judas,15.4
+2026-07-20,2026,1,lib,Japão-Liberdade,24
+2026-07-20,2026,1,luz,Luz,111.9
+2026-07-20,2026,1,pig,Parada Inglesa,11.9
+2026-07-20,2026,1,ppq,Armênia,17
+2026-07-20,2026,1,pse,Sé,14.6
+2026-07-20,2026,1,pso,Paraíso,18.1
+2026-07-20,2026,1,san,Santana,43.1
+2026-07-20,2026,1,sau,Saúde,21.4
+2026-07-20,2026,1,scz,Santa Cruz,89
+2026-07-20,2026,1,trd,Tiradentes,11.8
+2026-07-20,2026,1,tte,Portuguesa-Tietê,44.9
+2026-07-20,2026,1,tuc,Tucuruvi,51.9
+2026-07-20,2026,1,vgo,Vergueiro,24.1
+2026-07-20,2026,1,vmn,Vila Mariana,13.9
+2026-07-20,2026,2,aip,Alto do Ipiranga,16.6
+2026-07-20,2026,2,anr,Ana Rosa,10.1
+2026-07-20,2026,2,bgd,Brigadeiro,47.2
+2026-07-20,2026,2,ckb,Chácara Klabin,78.4
+2026-07-20,2026,2,cli,Clínicas,20.4
+2026-07-20,2026,2,cns,Consolação,86.1
+2026-07-20,2026,2,img,Santos-Imigrantes,13.9
+2026-07-20,2026,2,pso,Paraíso,10.2
+2026-07-20,2026,2,sac,Sacomã,37.4
+2026-07-20,2026,2,sum,Sumaré,9.2
+2026-07-20,2026,2,tri,Trianon-Masp,42.7
+2026-07-20,2026,2,tti,Tamanduateí,73.5
+2026-07-20,2026,2,vmd,Vila Madalena,19.5
+2026-07-20,2026,2,vpt,Vila Prudente,17.6
+2026-07-20,2026,3,art,Artur Alvim,48.1
+2026-07-20,2026,3,bas,Brás,65.7
+2026-07-20,2026,3,bel,Belém,33.5
+2026-07-20,2026,3,bfu,Palmeiras-Barra Funda,126
+2026-07-20,2026,3,bre,Bresser-Moóca,24.2
+2026-07-20,2026,3,car,Carrão,37
+2026-07-20,2026,3,cec,Santa Cecília,20.1
+2026-07-20,2026,3,deo,Marechal Deodoro,22.9
+2026-07-20,2026,3,gbu,Anhangabaú,46.5
+2026-07-20,2026,3,itq,Corinthians-Itaquera,59.8
+2026-07-20,2026,3,pca,Patriarca,20.3
+2026-07-20,2026,3,pds,Pedro II,13.6
+2026-07-20,2026,3,pen,Penha,24.3
+2026-07-20,2026,3,pse,Sé,21.1
+2026-07-20,2026,3,rep,República,110.6
+2026-07-20,2026,3,tat,Tatuapé,64.8
+2026-07-20,2026,3,vpa,Guilhermina-Esperança,18.8
+2026-07-20,2026,3,vtd,Vila Matilde,24.5
+2026-07-20,2026,15,cad,Camilo Haddad,3.6
+2026-07-20,2026,15,fjt,Fazenda da Juta,4
+2026-07-20,2026,15,igt,Jardim Colonial,12.3
+2026-07-20,2026,15,jpl,Jardim Planalto,4.5
+2026-07-20,2026,15,mat,São Mateus,16.4
+2026-07-20,2026,15,ort,Oratório,7.1
+2026-07-20,2026,15,sap,Sapopemba,9.1
+2026-07-20,2026,15,slu,São Lucas,5.2
+2026-07-20,2026,15,vpm,Vila Prudente,8.8
+2026-07-20,2026,15,vtl,Vila Tolstói,5.2
+2026-07-20,2026,15,vun,Vila União,5.7
+2026-07-21,2026,1,anr,Ana Rosa,19.6
+2026-07-21,2026,1,arv,Praça da Árvore,14.7
+2026-07-21,2026,1,bto,São Bento,52.6
+2026-07-21,2026,1,cdu,Carandiru,10.9
+2026-07-21,2026,1,con,Conceição,29.7
+2026-07-21,2026,1,jab,Jabaquara,66.3
+2026-07-21,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.4
+2026-07-21,2026,1,jqm,São Joaquim,21.9
+2026-07-21,2026,1,jud,São Judas,16.6
+2026-07-21,2026,1,lib,Japão-Liberdade,26.3
+2026-07-21,2026,1,luz,Luz,117
+2026-07-21,2026,1,pig,Parada Inglesa,12.8
+2026-07-21,2026,1,ppq,Armênia,17.6
+2026-07-21,2026,1,pse,Sé,15.2
+2026-07-21,2026,1,pso,Paraíso,19.6
+2026-07-21,2026,1,san,Santana,45.6
+2026-07-21,2026,1,sau,Saúde,23.4
+2026-07-21,2026,1,scz,Santa Cruz,89.6
+2026-07-21,2026,1,trd,Tiradentes,12.7
+2026-07-21,2026,1,tte,Portuguesa-Tietê,42.9
+2026-07-21,2026,1,tuc,Tucuruvi,55.1
+2026-07-21,2026,1,vgo,Vergueiro,26
+2026-07-21,2026,1,vmn,Vila Mariana,15.2
+2026-07-21,2026,2,aip,Alto do Ipiranga,18
+2026-07-21,2026,2,anr,Ana Rosa,11
+2026-07-21,2026,2,bgd,Brigadeiro,53.5
+2026-07-21,2026,2,ckb,Chácara Klabin,85.1
+2026-07-21,2026,2,cli,Clínicas,21.8
+2026-07-21,2026,2,cns,Consolação,96.4
+2026-07-21,2026,2,img,Santos-Imigrantes,14.9
+2026-07-21,2026,2,pso,Paraíso,11
+2026-07-21,2026,2,sac,Sacomã,40.4
+2026-07-21,2026,2,sum,Sumaré,10.1
+2026-07-21,2026,2,tri,Trianon-Masp,49.3
+2026-07-21,2026,2,tti,Tamanduateí,78.9
+2026-07-21,2026,2,vmd,Vila Madalena,21.8
+2026-07-21,2026,2,vpt,Vila Prudente,18.9
+2026-07-21,2026,3,art,Artur Alvim,50.7
+2026-07-21,2026,3,bas,Brás,69
+2026-07-21,2026,3,bel,Belém,36.1
+2026-07-21,2026,3,bfu,Palmeiras-Barra Funda,131.4
+2026-07-21,2026,3,bre,Bresser-Moóca,25.6
+2026-07-21,2026,3,car,Carrão,39.1
+2026-07-21,2026,3,cec,Santa Cecília,21.5
+2026-07-21,2026,3,deo,Marechal Deodoro,24.2
+2026-07-21,2026,3,gbu,Anhangabaú,49.2
+2026-07-21,2026,3,itq,Corinthians-Itaquera,62.4
+2026-07-21,2026,3,pca,Patriarca,21.4
+2026-07-21,2026,3,pds,Pedro II,17.2
+2026-07-21,2026,3,pen,Penha,26
+2026-07-21,2026,3,pse,Sé,21.9
+2026-07-21,2026,3,rep,República,120
+2026-07-21,2026,3,tat,Tatuapé,69.3
+2026-07-21,2026,3,vpa,Guilhermina-Esperança,19.9
+2026-07-21,2026,3,vtd,Vila Matilde,26.1
+2026-07-21,2026,15,cad,Camilo Haddad,3.8
+2026-07-21,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-21,2026,15,igt,Jardim Colonial,13.4
+2026-07-21,2026,15,jpl,Jardim Planalto,4.8
+2026-07-21,2026,15,mat,São Mateus,17.2
+2026-07-21,2026,15,ort,Oratório,7.8
+2026-07-21,2026,15,sap,Sapopemba,9.6
+2026-07-21,2026,15,slu,São Lucas,5.5
+2026-07-21,2026,15,vpm,Vila Prudente,9.5
+2026-07-21,2026,15,vtl,Vila Tolstói,5.7
+2026-07-21,2026,15,vun,Vila União,5.9
+2026-07-22,2026,1,anr,Ana Rosa,19.8
+2026-07-22,2026,1,arv,Praça da Árvore,14.6
+2026-07-22,2026,1,bto,São Bento,50.7
+2026-07-22,2026,1,cdu,Carandiru,11.2
+2026-07-22,2026,1,con,Conceição,29.3
+2026-07-22,2026,1,jab,Jabaquara,66
+2026-07-22,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.5
+2026-07-22,2026,1,jqm,São Joaquim,21.6
+2026-07-22,2026,1,jud,São Judas,16.2
+2026-07-22,2026,1,lib,Japão-Liberdade,26.3
+2026-07-22,2026,1,luz,Luz,120.1
+2026-07-22,2026,1,pig,Parada Inglesa,12.9
+2026-07-22,2026,1,ppq,Armênia,17.6
+2026-07-22,2026,1,pse,Sé,15.2
+2026-07-22,2026,1,pso,Paraíso,19.7
+2026-07-22,2026,1,san,Santana,45.3
+2026-07-22,2026,1,sau,Saúde,23.1
+2026-07-22,2026,1,scz,Santa Cruz,89.2
+2026-07-22,2026,1,trd,Tiradentes,12.8
+2026-07-22,2026,1,tte,Portuguesa-Tietê,40.7
+2026-07-22,2026,1,tuc,Tucuruvi,54.5
+2026-07-22,2026,1,vgo,Vergueiro,26.3
+2026-07-22,2026,1,vmn,Vila Mariana,15.3
+2026-07-22,2026,2,aip,Alto do Ipiranga,19.8
+2026-07-22,2026,2,anr,Ana Rosa,11.1
+2026-07-22,2026,2,bgd,Brigadeiro,52.4
+2026-07-22,2026,2,ckb,Chácara Klabin,85.4
+2026-07-22,2026,2,cli,Clínicas,21.2
+2026-07-22,2026,2,cns,Consolação,95.2
+2026-07-22,2026,2,img,Santos-Imigrantes,15.2
+2026-07-22,2026,2,pso,Paraíso,11.1
+2026-07-22,2026,2,sac,Sacomã,40
+2026-07-22,2026,2,sum,Sumaré,10.1
+2026-07-22,2026,2,tri,Trianon-Masp,47.7
+2026-07-22,2026,2,tti,Tamanduateí,77.7
+2026-07-22,2026,2,vmd,Vila Madalena,21.7
+2026-07-22,2026,2,vpt,Vila Prudente,19
+2026-07-22,2026,3,art,Artur Alvim,50.3
+2026-07-22,2026,3,bas,Brás,68.3
+2026-07-22,2026,3,bel,Belém,36.7
+2026-07-22,2026,3,bfu,Palmeiras-Barra Funda,130.9
+2026-07-22,2026,3,bre,Bresser-Moóca,25.3
+2026-07-22,2026,3,car,Carrão,39.4
+2026-07-22,2026,3,cec,Santa Cecília,21.7
+2026-07-22,2026,3,deo,Marechal Deodoro,24.5
+2026-07-22,2026,3,gbu,Anhangabaú,49.5
+2026-07-22,2026,3,itq,Corinthians-Itaquera,62.6
+2026-07-22,2026,3,pca,Patriarca,21.4
+2026-07-22,2026,3,pds,Pedro II,15
+2026-07-22,2026,3,pen,Penha,26.3
+2026-07-22,2026,3,pse,Sé,21.8
+2026-07-22,2026,3,rep,República,122
+2026-07-22,2026,3,tat,Tatuapé,69.7
+2026-07-22,2026,3,vpa,Guilhermina-Esperança,20
+2026-07-22,2026,3,vtd,Vila Matilde,26.2
+2026-07-22,2026,15,cad,Camilo Haddad,3.8
+2026-07-22,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-22,2026,15,igt,Jardim Colonial,13.5
+2026-07-22,2026,15,jpl,Jardim Planalto,4.8
+2026-07-22,2026,15,mat,São Mateus,17.3
+2026-07-22,2026,15,ort,Oratório,7.8
+2026-07-22,2026,15,sap,Sapopemba,9.5
+2026-07-22,2026,15,slu,São Lucas,5.5
+2026-07-22,2026,15,vpm,Vila Prudente,9.6
+2026-07-22,2026,15,vtl,Vila Tolstói,5.5
+2026-07-22,2026,15,vun,Vila União,6.1
+2026-07-23,2026,1,anr,Ana Rosa,19.1
+2026-07-23,2026,1,arv,Praça da Árvore,14.1
+2026-07-23,2026,1,bto,São Bento,45.7
+2026-07-23,2026,1,cdu,Carandiru,10.7
+2026-07-23,2026,1,con,Conceição,27.8
+2026-07-23,2026,1,jab,Jabaquara,65.5
+2026-07-23,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.8
+2026-07-23,2026,1,jqm,São Joaquim,20.6
+2026-07-23,2026,1,jud,São Judas,15.5
+2026-07-23,2026,1,lib,Japão-Liberdade,23.4
+2026-07-23,2026,1,luz,Luz,85.1
+2026-07-23,2026,1,pig,Parada Inglesa,12.3
+2026-07-23,2026,1,ppq,Armênia,18.2
+2026-07-23,2026,1,pse,Sé,14.1
+2026-07-23,2026,1,pso,Paraíso,18.8
+2026-07-23,2026,1,san,Santana,43.1
+2026-07-23,2026,1,sau,Saúde,22.5
+2026-07-23,2026,1,scz,Santa Cruz,85.9
+2026-07-23,2026,1,trd,Tiradentes,12.5
+2026-07-23,2026,1,tte,Portuguesa-Tietê,42.6
+2026-07-23,2026,1,tuc,Tucuruvi,53.8
+2026-07-23,2026,1,vgo,Vergueiro,24.5
+2026-07-23,2026,1,vmn,Vila Mariana,14.6
+2026-07-23,2026,2,aip,Alto do Ipiranga,17.2
+2026-07-23,2026,2,anr,Ana Rosa,10.7
+2026-07-23,2026,2,bgd,Brigadeiro,49.7
+2026-07-23,2026,2,ckb,Chácara Klabin,82
+2026-07-23,2026,2,cli,Clínicas,20.3
+2026-07-23,2026,2,cns,Consolação,88.2
+2026-07-23,2026,2,img,Santos-Imigrantes,14.5
+2026-07-23,2026,2,pso,Paraíso,10.6
+2026-07-23,2026,2,sac,Sacomã,38.7
+2026-07-23,2026,2,sum,Sumaré,9.8
+2026-07-23,2026,2,tri,Trianon-Masp,44.5
+2026-07-23,2026,2,tti,Tamanduateí,71.1
+2026-07-23,2026,2,vmd,Vila Madalena,21
+2026-07-23,2026,2,vpt,Vila Prudente,18.3
+2026-07-23,2026,3,art,Artur Alvim,57.7
+2026-07-23,2026,3,bas,Brás,50.3
+2026-07-23,2026,3,bel,Belém,32.7
+2026-07-23,2026,3,bfu,Palmeiras-Barra Funda,127
+2026-07-23,2026,3,bre,Bresser-Moóca,22.8
+2026-07-23,2026,3,car,Carrão,37.8
+2026-07-23,2026,3,cec,Santa Cecília,19.8
+2026-07-23,2026,3,deo,Marechal Deodoro,22.8
+2026-07-23,2026,3,gbu,Anhangabaú,44.4
+2026-07-23,2026,3,itq,Corinthians-Itaquera,111.3
+2026-07-23,2026,3,pca,Patriarca,20.9
+2026-07-23,2026,3,pds,Pedro II,14
+2026-07-23,2026,3,pen,Penha,28
+2026-07-23,2026,3,pse,Sé,20.2
+2026-07-23,2026,3,rep,República,113.8
+2026-07-23,2026,3,tat,Tatuapé,65.6
+2026-07-23,2026,3,vpa,Guilhermina-Esperança,21.8
+2026-07-23,2026,3,vtd,Vila Matilde,27.6
+2026-07-23,2026,15,cad,Camilo Haddad,3.7
+2026-07-23,2026,15,fjt,Fazenda da Juta,4.2
+2026-07-23,2026,15,igt,Jardim Colonial,14.5
+2026-07-23,2026,15,jpl,Jardim Planalto,4.7
+2026-07-23,2026,15,mat,São Mateus,17.3
+2026-07-23,2026,15,ort,Oratório,7.5
+2026-07-23,2026,15,sap,Sapopemba,9.3
+2026-07-23,2026,15,slu,São Lucas,5.4
+2026-07-23,2026,15,vpm,Vila Prudente,9.4
+2026-07-23,2026,15,vtl,Vila Tolstói,5.4
+2026-07-23,2026,15,vun,Vila União,5.8
+2026-07-24,2026,1,anr,Ana Rosa,18.3
+2026-07-24,2026,1,arv,Praça da Árvore,13.9
+2026-07-24,2026,1,bto,São Bento,47.6
+2026-07-24,2026,1,cdu,Carandiru,10.6
+2026-07-24,2026,1,con,Conceição,24.1
+2026-07-24,2026,1,jab,Jabaquara,65.6
+2026-07-24,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.5
+2026-07-24,2026,1,jqm,São Joaquim,19.9
+2026-07-24,2026,1,jud,São Judas,15.3
+2026-07-24,2026,1,lib,Japão-Liberdade,24.7
+2026-07-24,2026,1,luz,Luz,111.8
+2026-07-24,2026,1,pig,Parada Inglesa,11.6
+2026-07-24,2026,1,ppq,Armênia,18.1
+2026-07-24,2026,1,pse,Sé,14.3
+2026-07-24,2026,1,pso,Paraíso,18
+2026-07-24,2026,1,san,Santana,42.9
+2026-07-24,2026,1,sau,Saúde,21.8
+2026-07-24,2026,1,scz,Santa Cruz,85
+2026-07-24,2026,1,trd,Tiradentes,12.3
+2026-07-24,2026,1,tte,Portuguesa-Tietê,43.6
+2026-07-24,2026,1,tuc,Tucuruvi,52.1
+2026-07-24,2026,1,vgo,Vergueiro,24.2
+2026-07-24,2026,1,vmn,Vila Mariana,14.8
+2026-07-24,2026,2,aip,Alto do Ipiranga,16.9
+2026-07-24,2026,2,anr,Ana Rosa,10.3
+2026-07-24,2026,2,bgd,Brigadeiro,47.5
+2026-07-24,2026,2,ckb,Chácara Klabin,77.5
+2026-07-24,2026,2,cli,Clínicas,19.9
+2026-07-24,2026,2,cns,Consolação,88.5
+2026-07-24,2026,2,img,Santos-Imigrantes,14
+2026-07-24,2026,2,pso,Paraíso,10.1
+2026-07-24,2026,2,sac,Sacomã,37.8
+2026-07-24,2026,2,sum,Sumaré,9.3
+2026-07-24,2026,2,tri,Trianon-Masp,41.6
+2026-07-24,2026,2,tti,Tamanduateí,72.8
+2026-07-24,2026,2,vmd,Vila Madalena,19.5
+2026-07-24,2026,2,vpt,Vila Prudente,17.5
+2026-07-24,2026,3,art,Artur Alvim,49.5
+2026-07-24,2026,3,bas,Brás,65.3
+2026-07-24,2026,3,bel,Belém,34.9
+2026-07-24,2026,3,bfu,Palmeiras-Barra Funda,124.9
+2026-07-24,2026,3,bre,Bresser-Moóca,24.3
+2026-07-24,2026,3,car,Carrão,37.2
+2026-07-24,2026,3,cec,Santa Cecília,20.9
+2026-07-24,2026,3,deo,Marechal Deodoro,23.9
+2026-07-24,2026,3,gbu,Anhangabaú,46.6
+2026-07-24,2026,3,itq,Corinthians-Itaquera,63
+2026-07-24,2026,3,pca,Patriarca,20.6
+2026-07-24,2026,3,pds,Pedro II,14.9
+2026-07-24,2026,3,pen,Penha,25.2
+2026-07-24,2026,3,pse,Sé,20.5
+2026-07-24,2026,3,rep,República,116.5
+2026-07-24,2026,3,tat,Tatuapé,66.9
+2026-07-24,2026,3,vpa,Guilhermina-Esperança,19.5
+2026-07-24,2026,3,vtd,Vila Matilde,24.7
+2026-07-24,2026,15,cad,Camilo Haddad,3.6
+2026-07-24,2026,15,fjt,Fazenda da Juta,4.1
+2026-07-24,2026,15,igt,Jardim Colonial,12.9
+2026-07-24,2026,15,jpl,Jardim Planalto,4.8
+2026-07-24,2026,15,mat,São Mateus,17
+2026-07-24,2026,15,ort,Oratório,7.4
+2026-07-24,2026,15,sap,Sapopemba,9.1
+2026-07-24,2026,15,slu,São Lucas,5.2
+2026-07-24,2026,15,vpm,Vila Prudente,9.2
+2026-07-24,2026,15,vtl,Vila Tolstói,5.5
+2026-07-24,2026,15,vun,Vila União,5.6
+2026-07-25,2026,1,anr,Ana Rosa,12.8
+2026-07-25,2026,1,arv,Praça da Árvore,9
+2026-07-25,2026,1,bto,São Bento,33
+2026-07-25,2026,1,cdu,Carandiru,5.8
+2026-07-25,2026,1,con,Conceição,13.2
+2026-07-25,2026,1,jab,Jabaquara,45.9
+2026-07-25,2026,1,jpa,Jardim São Paulo-Ayrton Senna,5.7
+2026-07-25,2026,1,jqm,São Joaquim,12.3
+2026-07-25,2026,1,jud,São Judas,9.4
+2026-07-25,2026,1,lib,Japão-Liberdade,32
+2026-07-25,2026,1,luz,Luz,66.7
+2026-07-25,2026,1,pig,Parada Inglesa,6.4
+2026-07-25,2026,1,ppq,Armênia,10.2
+2026-07-25,2026,1,pse,Sé,9.2
+2026-07-25,2026,1,pso,Paraíso,12.5
+2026-07-25,2026,1,san,Santana,26.6
+2026-07-25,2026,1,sau,Saúde,14.4
+2026-07-25,2026,1,scz,Santa Cruz,54.3
+2026-07-25,2026,1,trd,Tiradentes,8.2
+2026-07-25,2026,1,tte,Portuguesa-Tietê,32.4
+2026-07-25,2026,1,tuc,Tucuruvi,32
+2026-07-25,2026,1,vgo,Vergueiro,13.2
+2026-07-25,2026,1,vmn,Vila Mariana,9.1
+2026-07-25,2026,2,aip,Alto do Ipiranga,9.8
+2026-07-25,2026,2,anr,Ana Rosa,4.3
+2026-07-25,2026,2,bgd,Brigadeiro,23.8
+2026-07-25,2026,2,ckb,Chácara Klabin,38.5
+2026-07-25,2026,2,cli,Clínicas,7.2
+2026-07-25,2026,2,cns,Consolação,47.3
+2026-07-25,2026,2,img,Santos-Imigrantes,8.1
+2026-07-25,2026,2,pso,Paraíso,4
+2026-07-25,2026,2,sac,Sacomã,22.8
+2026-07-25,2026,2,sum,Sumaré,4.7
+2026-07-25,2026,2,tri,Trianon-Masp,21.9
+2026-07-25,2026,2,tti,Tamanduateí,40.7
+2026-07-25,2026,2,vmd,Vila Madalena,11.3
+2026-07-25,2026,2,vpt,Vila Prudente,9.2
+2026-07-25,2026,3,art,Artur Alvim,31.5
+2026-07-25,2026,3,bas,Brás,42.7
+2026-07-25,2026,3,bel,Belém,21.3
+2026-07-25,2026,3,bfu,Palmeiras-Barra Funda,87.1
+2026-07-25,2026,3,bre,Bresser-Moóca,16.5
+2026-07-25,2026,3,car,Carrão,22.8
+2026-07-25,2026,3,cec,Santa Cecília,14
+2026-07-25,2026,3,deo,Marechal Deodoro,15
+2026-07-25,2026,3,gbu,Anhangabaú,24.2
+2026-07-25,2026,3,itq,Corinthians-Itaquera,44
+2026-07-25,2026,3,pca,Patriarca,12.8
+2026-07-25,2026,3,pds,Pedro II,10.3
+2026-07-25,2026,3,pen,Penha,15.7
+2026-07-25,2026,3,pse,Sé,11.7
+2026-07-25,2026,3,rep,República,73.5
+2026-07-25,2026,3,tat,Tatuapé,58.9
+2026-07-25,2026,3,vpa,Guilhermina-Esperança,11.7
+2026-07-25,2026,3,vtd,Vila Matilde,15.1
+2026-07-25,2026,15,cad,Camilo Haddad,2.1
+2026-07-25,2026,15,fjt,Fazenda da Juta,2.5
+2026-07-25,2026,15,igt,Jardim Colonial,6.8
+2026-07-25,2026,15,jpl,Jardim Planalto,3
+2026-07-25,2026,15,mat,São Mateus,10.2
+2026-07-25,2026,15,ort,Oratório,4.1
+2026-07-25,2026,15,sap,Sapopemba,5.6
+2026-07-25,2026,15,slu,São Lucas,3.4
+2026-07-25,2026,15,vpm,Vila Prudente,4.6
+2026-07-25,2026,15,vtl,Vila Tolstói,3.4
+2026-07-25,2026,15,vun,Vila União,3.6
+2026-07-26,2026,1,anr,Ana Rosa,7.2
+2026-07-26,2026,1,arv,Praça da Árvore,4.8
+2026-07-26,2026,1,bto,São Bento,10.8
+2026-07-26,2026,1,cdu,Carandiru,3.9
+2026-07-26,2026,1,con,Conceição,8.2
+2026-07-26,2026,1,jab,Jabaquara,31.9
+2026-07-26,2026,1,jpa,Jardim São Paulo-Ayrton Senna,3.3
+2026-07-26,2026,1,jqm,São Joaquim,7.4
+2026-07-26,2026,1,jud,São Judas,5.7
+2026-07-26,2026,1,lib,Japão-Liberdade,24.9
+2026-07-26,2026,1,luz,Luz,27.7
+2026-07-26,2026,1,pig,Parada Inglesa,4.1
+2026-07-26,2026,1,ppq,Armênia,6.7
+2026-07-26,2026,1,pse,Sé,4.3
+2026-07-26,2026,1,pso,Paraíso,7.1
+2026-07-26,2026,1,san,Santana,16.1
+2026-07-26,2026,1,sau,Saúde,8.9
+2026-07-26,2026,1,scz,Santa Cruz,34.7
+2026-07-26,2026,1,trd,Tiradentes,4.3
+2026-07-26,2026,1,tte,Portuguesa-Tietê,29.2
+2026-07-26,2026,1,tuc,Tucuruvi,19.8
+2026-07-26,2026,1,vgo,Vergueiro,8.3
+2026-07-26,2026,1,vmn,Vila Mariana,5
+2026-07-26,2026,2,aip,Alto do Ipiranga,5.9
+2026-07-26,2026,2,anr,Ana Rosa,2.9
+2026-07-26,2026,2,bgd,Brigadeiro,19.7
+2026-07-26,2026,2,ckb,Chácara Klabin,24.8
+2026-07-26,2026,2,cli,Clínicas,5.1
+2026-07-26,2026,2,cns,Consolação,40.4
+2026-07-26,2026,2,img,Santos-Imigrantes,5.1
+2026-07-26,2026,2,pso,Paraíso,3.3
+2026-07-26,2026,2,sac,Sacomã,13.6
+2026-07-26,2026,2,sum,Sumaré,3
+2026-07-26,2026,2,tri,Trianon-Masp,24.7
+2026-07-26,2026,2,tti,Tamanduateí,25
+2026-07-26,2026,2,vmd,Vila Madalena,7.1
+2026-07-26,2026,2,vpt,Vila Prudente,5.9
+2026-07-26,2026,3,art,Artur Alvim,18.7
+2026-07-26,2026,3,bas,Brás,20.9
+2026-07-26,2026,3,bel,Belém,13.5
+2026-07-26,2026,3,bfu,Palmeiras-Barra Funda,64.2
+2026-07-26,2026,3,bre,Bresser-Moóca,9.8
+2026-07-26,2026,3,car,Carrão,14.3
+2026-07-26,2026,3,cec,Santa Cecília,10.1
+2026-07-26,2026,3,deo,Marechal Deodoro,10.2
+2026-07-26,2026,3,gbu,Anhangabaú,17.4
+2026-07-26,2026,3,itq,Corinthians-Itaquera,32.7
+2026-07-26,2026,3,pca,Patriarca,7.2
+2026-07-26,2026,3,pds,Pedro II,7.5
+2026-07-26,2026,3,pen,Penha,9.5
+2026-07-26,2026,3,pse,Sé,6.5
+2026-07-26,2026,3,rep,República,48.8
+2026-07-26,2026,3,tat,Tatuapé,35
+2026-07-26,2026,3,vpa,Guilhermina-Esperança,7.2
+2026-07-26,2026,3,vtd,Vila Matilde,9.4
+2026-07-26,2026,15,cad,Camilo Haddad,1.2
+2026-07-26,2026,15,fjt,Fazenda da Juta,1.5
+2026-07-26,2026,15,igt,Jardim Colonial,3.7
+2026-07-26,2026,15,jpl,Jardim Planalto,1.8
+2026-07-26,2026,15,mat,São Mateus,5.8
+2026-07-26,2026,15,ort,Oratório,2.2
+2026-07-26,2026,15,sap,Sapopemba,3.3
+2026-07-26,2026,15,slu,São Lucas,1.8
+2026-07-26,2026,15,vpm,Vila Prudente,2.4
+2026-07-26,2026,15,vtl,Vila Tolstói,1.9
+2026-07-26,2026,15,vun,Vila União,2
+2026-07-27,2026,1,anr,Ana Rosa,18.3
+2026-07-27,2026,1,arv,Praça da Árvore,14
+2026-07-27,2026,1,bto,São Bento,48.5
+2026-07-27,2026,1,cdu,Carandiru,10.4
+2026-07-27,2026,1,con,Conceição,28.1
+2026-07-27,2026,1,jab,Jabaquara,63.9
+2026-07-27,2026,1,jpa,Jardim São Paulo-Ayrton Senna,10.7
+2026-07-27,2026,1,jqm,São Joaquim,20.9
+2026-07-27,2026,1,jud,São Judas,15.4
+2026-07-27,2026,1,lib,Japão-Liberdade,21.7
+2026-07-27,2026,1,luz,Luz,110.8
+2026-07-27,2026,1,pig,Parada Inglesa,11.9
+2026-07-27,2026,1,ppq,Armênia,18.9
+2026-07-27,2026,1,pse,Sé,14.5
+2026-07-27,2026,1,pso,Paraíso,18.7
+2026-07-27,2026,1,san,Santana,43.5
+2026-07-27,2026,1,sau,Saúde,21.8
+2026-07-27,2026,1,scz,Santa Cruz,86.9
+2026-07-27,2026,1,trd,Tiradentes,13
+2026-07-27,2026,1,tte,Portuguesa-Tietê,43.8
+2026-07-27,2026,1,tuc,Tucuruvi,52.1
+2026-07-27,2026,1,vgo,Vergueiro,24.6
+2026-07-27,2026,1,vmn,Vila Mariana,15.6
+2026-07-27,2026,2,aip,Alto do Ipiranga,17.1
+2026-07-27,2026,2,anr,Ana Rosa,10.3
+2026-07-27,2026,2,bgd,Brigadeiro,47.8
+2026-07-27,2026,2,ckb,Chácara Klabin,80.1
+2026-07-27,2026,2,cli,Clínicas,20.8
+2026-07-27,2026,2,cns,Consolação,87.4
+2026-07-27,2026,2,img,Santos-Imigrantes,14.3
+2026-07-27,2026,2,pso,Paraíso,10.5
+2026-07-27,2026,2,sac,Sacomã,37.8
+2026-07-27,2026,2,sum,Sumaré,9.6
+2026-07-27,2026,2,tri,Trianon-Masp,43.4
+2026-07-27,2026,2,tti,Tamanduateí,74.4
+2026-07-27,2026,2,vmd,Vila Madalena,20.2
+2026-07-27,2026,2,vpt,Vila Prudente,18.1
+2026-07-27,2026,3,art,Artur Alvim,49.1
+2026-07-27,2026,3,bas,Brás,64.2
+2026-07-27,2026,3,bel,Belém,34
+2026-07-27,2026,3,bfu,Palmeiras-Barra Funda,124.2
+2026-07-27,2026,3,bre,Bresser-Moóca,24.4
+2026-07-27,2026,3,car,Carrão,37.8
+2026-07-27,2026,3,cec,Santa Cecília,20.4
+2026-07-27,2026,3,deo,Marechal Deodoro,23.3
+2026-07-27,2026,3,gbu,Anhangabaú,47.1
+2026-07-27,2026,3,itq,Corinthians-Itaquera,60.9
+2026-07-27,2026,3,pca,Patriarca,20.8
+2026-07-27,2026,3,pds,Pedro II,13.9
+2026-07-27,2026,3,pen,Penha,25.5
+2026-07-27,2026,3,pse,Sé,20.9
+2026-07-27,2026,3,rep,República,110.4
+2026-07-27,2026,3,tat,Tatuapé,65.3
+2026-07-27,2026,3,vpa,Guilhermina-Esperança,19.4
+2026-07-27,2026,3,vtd,Vila Matilde,24.9
+2026-07-27,2026,15,cad,Camilo Haddad,3.7
+2026-07-27,2026,15,fjt,Fazenda da Juta,4.4
+2026-07-27,2026,15,igt,Jardim Colonial,13.2
+2026-07-27,2026,15,jpl,Jardim Planalto,4.7
+2026-07-27,2026,15,mat,São Mateus,16.5
+2026-07-27,2026,15,ort,Oratório,7.6
+2026-07-27,2026,15,sap,Sapopemba,9.3
+2026-07-27,2026,15,slu,São Lucas,5.3
+2026-07-27,2026,15,vpm,Vila Prudente,9.2
+2026-07-27,2026,15,vtl,Vila Tolstói,5.4
+2026-07-27,2026,15,vun,Vila União,5.7
+2026-07-28,2026,1,anr,Ana Rosa,20.1
+2026-07-28,2026,1,arv,Praça da Árvore,14.9
+2026-07-28,2026,1,bto,São Bento,49.8
+2026-07-28,2026,1,cdu,Carandiru,11.7
+2026-07-28,2026,1,con,Conceição,30.5
+2026-07-28,2026,1,jab,Jabaquara,65.4
+2026-07-28,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.6
+2026-07-28,2026,1,jqm,São Joaquim,22.3
+2026-07-28,2026,1,jud,São Judas,18.8
+2026-07-28,2026,1,lib,Japão-Liberdade,23.3
+2026-07-28,2026,1,luz,Luz,118
+2026-07-28,2026,1,pig,Parada Inglesa,13
+2026-07-28,2026,1,ppq,Armênia,19.4
+2026-07-28,2026,1,pse,Sé,15.4
+2026-07-28,2026,1,pso,Paraíso,20.3
+2026-07-28,2026,1,san,Santana,46
+2026-07-28,2026,1,sau,Saúde,23.9
+2026-07-28,2026,1,scz,Santa Cruz,90.6
+2026-07-28,2026,1,trd,Tiradentes,13.3
+2026-07-28,2026,1,tte,Portuguesa-Tietê,41.7
+2026-07-28,2026,1,tuc,Tucuruvi,55.3
+2026-07-28,2026,1,vgo,Vergueiro,26.3
+2026-07-28,2026,1,vmn,Vila Mariana,16.7
+2026-07-28,2026,2,aip,Alto do Ipiranga,18.6
+2026-07-28,2026,2,anr,Ana Rosa,11.3
+2026-07-28,2026,2,bgd,Brigadeiro,53.6
+2026-07-28,2026,2,ckb,Chácara Klabin,86.4
+2026-07-28,2026,2,cli,Clínicas,21.9
+2026-07-28,2026,2,cns,Consolação,96.4
+2026-07-28,2026,2,img,Santos-Imigrantes,15.2
+2026-07-28,2026,2,pso,Paraíso,11.4
+2026-07-28,2026,2,sac,Sacomã,40.3
+2026-07-28,2026,2,sum,Sumaré,10.3
+2026-07-28,2026,2,tri,Trianon-Masp,49.1
+2026-07-28,2026,2,tti,Tamanduateí,78.8
+2026-07-28,2026,2,vmd,Vila Madalena,22.3
+2026-07-28,2026,2,vpt,Vila Prudente,19.6
+2026-07-28,2026,3,art,Artur Alvim,51.4
+2026-07-28,2026,3,bas,Brás,66.4
+2026-07-28,2026,3,bel,Belém,36.7
+2026-07-28,2026,3,bfu,Palmeiras-Barra Funda,135.4
+2026-07-28,2026,3,bre,Bresser-Moóca,25.9
+2026-07-28,2026,3,car,Carrão,40.4
+2026-07-28,2026,3,cec,Santa Cecília,21.5
+2026-07-28,2026,3,deo,Marechal Deodoro,24.8
+2026-07-28,2026,3,gbu,Anhangabaú,51.9
+2026-07-28,2026,3,itq,Corinthians-Itaquera,62.7
+2026-07-28,2026,3,pca,Patriarca,21.7
+2026-07-28,2026,3,pds,Pedro II,16.1
+2026-07-28,2026,3,pen,Penha,26.8
+2026-07-28,2026,3,pse,Sé,22.1
+2026-07-28,2026,3,rep,República,119.6
+2026-07-28,2026,3,tat,Tatuapé,68
+2026-07-28,2026,3,vpa,Guilhermina-Esperança,20.5
+2026-07-28,2026,3,vtd,Vila Matilde,26.4
+2026-07-28,2026,15,cad,Camilo Haddad,4
+2026-07-28,2026,15,fjt,Fazenda da Juta,4.8
+2026-07-28,2026,15,igt,Jardim Colonial,13.8
+2026-07-28,2026,15,jpl,Jardim Planalto,4.8
+2026-07-28,2026,15,mat,São Mateus,17.3
+2026-07-28,2026,15,ort,Oratório,8.2
+2026-07-28,2026,15,sap,Sapopemba,9.6
+2026-07-28,2026,15,slu,São Lucas,5.7
+2026-07-28,2026,15,vpm,Vila Prudente,9.9
+2026-07-28,2026,15,vtl,Vila Tolstói,5.7
+2026-07-28,2026,15,vun,Vila União,6.1
+2026-07-29,2026,1,anr,Ana Rosa,19.8
+2026-07-29,2026,1,arv,Praça da Árvore,14.8
+2026-07-29,2026,1,bto,São Bento,47.4
+2026-07-29,2026,1,cdu,Carandiru,11.6
+2026-07-29,2026,1,con,Conceição,29.7
+2026-07-29,2026,1,jab,Jabaquara,64.6
+2026-07-29,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.6
+2026-07-29,2026,1,jqm,São Joaquim,22
+2026-07-29,2026,1,jud,São Judas,16.1
+2026-07-29,2026,1,lib,Japão-Liberdade,22
+2026-07-29,2026,1,luz,Luz,114.5
+2026-07-29,2026,1,pig,Parada Inglesa,13.1
+2026-07-29,2026,1,ppq,Armênia,19.5
+2026-07-29,2026,1,pse,Sé,15
+2026-07-29,2026,1,pso,Paraíso,20.2
+2026-07-29,2026,1,san,Santana,45.8
+2026-07-29,2026,1,sau,Saúde,23.2
+2026-07-29,2026,1,scz,Santa Cruz,90.8
+2026-07-29,2026,1,trd,Tiradentes,13.4
+2026-07-29,2026,1,tte,Portuguesa-Tietê,40.7
+2026-07-29,2026,1,tuc,Tucuruvi,54.9
+2026-07-29,2026,1,vgo,Vergueiro,26.3
+2026-07-29,2026,1,vmn,Vila Mariana,17
+2026-07-29,2026,2,aip,Alto do Ipiranga,18.7
+2026-07-29,2026,2,anr,Ana Rosa,11.1
+2026-07-29,2026,2,bgd,Brigadeiro,52.2
+2026-07-29,2026,2,ckb,Chácara Klabin,86.1
+2026-07-29,2026,2,cli,Clínicas,21.5
+2026-07-29,2026,2,cns,Consolação,95.6
+2026-07-29,2026,2,img,Santos-Imigrantes,15
+2026-07-29,2026,2,pso,Paraíso,11.3
+2026-07-29,2026,2,sac,Sacomã,40.2
+2026-07-29,2026,2,sum,Sumaré,10.3
+2026-07-29,2026,2,tri,Trianon-Masp,48.1
+2026-07-29,2026,2,tti,Tamanduateí,79
+2026-07-29,2026,2,vmd,Vila Madalena,22.3
+2026-07-29,2026,2,vpt,Vila Prudente,19.5
+2026-07-29,2026,3,art,Artur Alvim,50.8
+2026-07-29,2026,3,bas,Brás,65.3
+2026-07-29,2026,3,bel,Belém,36
+2026-07-29,2026,3,bfu,Palmeiras-Barra Funda,135.8
+2026-07-29,2026,3,bre,Bresser-Moóca,25.2
+2026-07-29,2026,3,car,Carrão,40.5
+2026-07-29,2026,3,cec,Santa Cecília,21.7
+2026-07-29,2026,3,deo,Marechal Deodoro,25.1
+2026-07-29,2026,3,gbu,Anhangabaú,57.2
+2026-07-29,2026,3,itq,Corinthians-Itaquera,63.3
+2026-07-29,2026,3,pca,Patriarca,21.8
+2026-07-29,2026,3,pds,Pedro II,14.8
+2026-07-29,2026,3,pen,Penha,26.8
+2026-07-29,2026,3,pse,Sé,21.6
+2026-07-29,2026,3,rep,República,119.1
+2026-07-29,2026,3,tat,Tatuapé,61.4
+2026-07-29,2026,3,vpa,Guilhermina-Esperança,20.4
+2026-07-29,2026,3,vtd,Vila Matilde,26.4
+2026-07-29,2026,15,cad,Camilo Haddad,3.9
+2026-07-29,2026,15,fjt,Fazenda da Juta,4.7
+2026-07-29,2026,15,igt,Jardim Colonial,13.9
+2026-07-29,2026,15,jpl,Jardim Planalto,4.9
+2026-07-29,2026,15,mat,São Mateus,17.3
+2026-07-29,2026,15,ort,Oratório,7.9
+2026-07-29,2026,15,sap,Sapopemba,9.7
+2026-07-29,2026,15,slu,São Lucas,5.7
+2026-07-29,2026,15,vpm,Vila Prudente,9.7
+2026-07-29,2026,15,vtl,Vila Tolstói,5.6
+2026-07-29,2026,15,vun,Vila União,6
+2026-07-30,2026,1,anr,Ana Rosa,21.7
+2026-07-30,2026,1,arv,Praça da Árvore,15.1
+2026-07-30,2026,1,bto,São Bento,50.1
+2026-07-30,2026,1,cdu,Carandiru,11.6
+2026-07-30,2026,1,con,Conceição,29.4
+2026-07-30,2026,1,jab,Jabaquara,64.8
+2026-07-30,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.5
+2026-07-30,2026,1,jqm,São Joaquim,22.4
+2026-07-30,2026,1,jud,São Judas,16.6
+2026-07-30,2026,1,lib,Japão-Liberdade,22.6
+2026-07-30,2026,1,luz,Luz,104.8
+2026-07-30,2026,1,pig,Parada Inglesa,13.2
+2026-07-30,2026,1,ppq,Armênia,19.3
+2026-07-30,2026,1,pse,Sé,14.8
+2026-07-30,2026,1,pso,Paraíso,20.3
+2026-07-30,2026,1,san,Santana,45.5
+2026-07-30,2026,1,sau,Saúde,23.6
+2026-07-30,2026,1,scz,Santa Cruz,91
+2026-07-30,2026,1,trd,Tiradentes,13.5
+2026-07-30,2026,1,tte,Portuguesa-Tietê,40.7
+2026-07-30,2026,1,tuc,Tucuruvi,54.9
+2026-07-30,2026,1,vgo,Vergueiro,26.6
+2026-07-30,2026,1,vmn,Vila Mariana,17.2
+2026-07-30,2026,2,aip,Alto do Ipiranga,18.6
+2026-07-30,2026,2,anr,Ana Rosa,12.2
+2026-07-30,2026,2,bgd,Brigadeiro,51.7
+2026-07-30,2026,2,ckb,Chácara Klabin,85.6
+2026-07-30,2026,2,cli,Clínicas,21.2
+2026-07-30,2026,2,cns,Consolação,95.1
+2026-07-30,2026,2,img,Santos-Imigrantes,15.3
+2026-07-30,2026,2,pso,Paraíso,11.4
+2026-07-30,2026,2,sac,Sacomã,40.7
+2026-07-30,2026,2,sum,Sumaré,10.7
+2026-07-30,2026,2,tri,Trianon-Masp,47.7
+2026-07-30,2026,2,tti,Tamanduateí,78.9
+2026-07-30,2026,2,vmd,Vila Madalena,22.3
+2026-07-30,2026,2,vpt,Vila Prudente,19.3
+2026-07-30,2026,3,art,Artur Alvim,53.6
+2026-07-30,2026,3,bas,Brás,65.6
+2026-07-30,2026,3,bel,Belém,36.5
+2026-07-30,2026,3,bfu,Palmeiras-Barra Funda,135
+2026-07-30,2026,3,bre,Bresser-Moóca,25.4
+2026-07-30,2026,3,car,Carrão,41.6
+2026-07-30,2026,3,cec,Santa Cecília,21.6
+2026-07-30,2026,3,deo,Marechal Deodoro,25.4
+2026-07-30,2026,3,gbu,Anhangabaú,54.1
+2026-07-30,2026,3,itq,Corinthians-Itaquera,73
+2026-07-30,2026,3,pca,Patriarca,22.3
+2026-07-30,2026,3,pds,Pedro II,15
+2026-07-30,2026,3,pen,Penha,26.9
+2026-07-30,2026,3,pse,Sé,21.4
+2026-07-30,2026,3,rep,República,120.1
+2026-07-30,2026,3,tat,Tatuapé,66.2
+2026-07-30,2026,3,vpa,Guilhermina-Esperança,20.5
+2026-07-30,2026,3,vtd,Vila Matilde,27.1
+2026-07-30,2026,15,cad,Camilo Haddad,4
+2026-07-30,2026,15,fjt,Fazenda da Juta,4.7
+2026-07-30,2026,15,igt,Jardim Colonial,13.8
+2026-07-30,2026,15,jpl,Jardim Planalto,4.9
+2026-07-30,2026,15,mat,São Mateus,17.4
+2026-07-30,2026,15,ort,Oratório,8.1
+2026-07-30,2026,15,sap,Sapopemba,9.7
+2026-07-30,2026,15,slu,São Lucas,5.6
+2026-07-30,2026,15,vpm,Vila Prudente,9.8
+2026-07-30,2026,15,vtl,Vila Tolstói,5.7
+2026-07-30,2026,15,vun,Vila União,6.2
+2026-07-31,2026,1,anr,Ana Rosa,19.8
+2026-07-31,2026,1,arv,Praça da Árvore,14.9
+2026-07-31,2026,1,bto,São Bento,49.6
+2026-07-31,2026,1,cdu,Carandiru,10.8
+2026-07-31,2026,1,con,Conceição,26
+2026-07-31,2026,1,jab,Jabaquara,66.8
+2026-07-31,2026,1,jpa,Jardim São Paulo-Ayrton Senna,11.2
+2026-07-31,2026,1,jqm,São Joaquim,21.9
+2026-07-31,2026,1,jud,São Judas,17.4
+2026-07-31,2026,1,lib,Japão-Liberdade,24.3
+2026-07-31,2026,1,luz,Luz,109.4
+2026-07-31,2026,1,pig,Parada Inglesa,12.4
+2026-07-31,2026,1,ppq,Armênia,19.2
+2026-07-31,2026,1,pse,Sé,15.2
+2026-07-31,2026,1,pso,Paraíso,20.7
+2026-07-31,2026,1,san,Santana,46.3
+2026-07-31,2026,1,sau,Saúde,24.5
+2026-07-31,2026,1,scz,Santa Cruz,90.5
+2026-07-31,2026,1,trd,Tiradentes,13.3
+2026-07-31,2026,1,tte,Portuguesa-Tietê,40.9
+2026-07-31,2026,1,tuc,Tucuruvi,54.7
+2026-07-31,2026,1,vgo,Vergueiro,25.5
+2026-07-31,2026,1,vmn,Vila Mariana,16.5
+2026-07-31,2026,2,aip,Alto do Ipiranga,18
+2026-07-31,2026,2,anr,Ana Rosa,11.1
+2026-07-31,2026,2,bgd,Brigadeiro,49.6
+2026-07-31,2026,2,ckb,Chácara Klabin,81.2
+2026-07-31,2026,2,cli,Clínicas,20.7
+2026-07-31,2026,2,cns,Consolação,90.2
+2026-07-31,2026,2,img,Santos-Imigrantes,15.9
+2026-07-31,2026,2,pso,Paraíso,11.6
+2026-07-31,2026,2,sac,Sacomã,39.5
+2026-07-31,2026,2,sum,Sumaré,9.8
+2026-07-31,2026,2,tri,Trianon-Masp,43.9
+2026-07-31,2026,2,tti,Tamanduateí,76
+2026-07-31,2026,2,vmd,Vila Madalena,20.7
+2026-07-31,2026,2,vpt,Vila Prudente,18.1
+2026-07-31,2026,3,art,Artur Alvim,52.2
+2026-07-31,2026,3,bas,Brás,67.7
+2026-07-31,2026,3,bel,Belém,36.5
+2026-07-31,2026,3,bfu,Palmeiras-Barra Funda,144.4
+2026-07-31,2026,3,bre,Bresser-Moóca,26
+2026-07-31,2026,3,car,Carrão,40.3
+2026-07-31,2026,3,cec,Santa Cecília,22.6
+2026-07-31,2026,3,deo,Marechal Deodoro,25
+2026-07-31,2026,3,gbu,Anhangabaú,49.6
+2026-07-31,2026,3,itq,Corinthians-Itaquera,66
+2026-07-31,2026,3,pca,Patriarca,21.9
+2026-07-31,2026,3,pds,Pedro II,15.6
+2026-07-31,2026,3,pen,Penha,27.1
+2026-07-31,2026,3,pse,Sé,21.8
+2026-07-31,2026,3,rep,República,119.5
+2026-07-31,2026,3,tat,Tatuapé,72.7
+2026-07-31,2026,3,vpa,Guilhermina-Esperança,20.8
+2026-07-31,2026,3,vtd,Vila Matilde,26.8
+2026-07-31,2026,15,cad,Camilo Haddad,3.8
+2026-07-31,2026,15,fjt,Fazenda da Juta,4.6
+2026-07-31,2026,15,igt,Jardim Colonial,13.6
+2026-07-31,2026,15,jpl,Jardim Planalto,5
+2026-07-31,2026,15,mat,São Mateus,17.5
+2026-07-31,2026,15,ort,Oratório,7.6
+2026-07-31,2026,15,sap,Sapopemba,9.6
+2026-07-31,2026,15,slu,São Lucas,5.6
+2026-07-31,2026,15,vpm,Vila Prudente,9.6
+2026-07-31,2026,15,vtl,Vila Tolstói,5.7
+2026-07-31,2026,15,vun,Vila União,6
