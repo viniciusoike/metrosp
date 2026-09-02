@@ -1,25 +1,37 @@
-# CRAN submission comments — metrosp 1.0.0
+# CRAN submission comments — metrosp 1.2.1
 
 ## Test environments
 
 * Local: macOS aarch64 (Apple M), R 4.5.1
-* win-builder: R-devel (Windows Server 2022) — 0 errors, 0 warnings, 1 note
+* win-builder: R-devel (Windows Server 2022, R-devel 2026-08-31) — 0 errors,
+  0 warnings, 1 note
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
 * checking CRAN incoming feasibility: NOTE
-  New submission.
+  Maintainer: 'Vinicius Oike <viniciusoike@gmail.com>'
 
-* Possibly misspelled words in DESCRIPTION: GeoSampa, Paulo, Sao.
-  These are proper Portuguese geographic names (São Paulo, Brazil);
-  GeoSampa is the name of the city's official geospatial data portal.
-  All three words are listed in inst/WORDLIST.
+* Possibly misspelled word in DESCRIPTION: Paulo.
+  This is part of the proper geographic name São Paulo, Brazil, and is listed
+  in inst/WORDLIST.
+
+## Changes in this version
+
+This update improves the dataset documentation, fixes data and pipeline issues,
+and adds observations to the bundled static datasets. METRO has published
+previously unavailable data for 2016–2017, and newer observations are now
+included as well.
+
+The long-term plan is to keep the lazy-loaded datasets as a frozen snapshot and
+provide `read_metro_demand()` for users who need more up-to-date data. This
+will let the package receive current data without requiring a new CRAN
+submission every time the upstream sources are updated.
 
 ## Downstream dependencies
 
-None (new package).
+None.
 
 ## Notes for reviewers
 
