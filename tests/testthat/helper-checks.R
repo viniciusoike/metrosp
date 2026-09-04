@@ -154,6 +154,30 @@ check_station_names <- function(x, name) {
   problems
 }
 
+# July 2017 entrance data was never published for the METRO-operated lines.
+# Line 4 is present because it comes from the separate Dataverse source. Keep
+# this exception source-aware: a generic monthly-grid check would either flag
+# valid data or silently normalize the gap away.
+check_entrance_july_2017_gap <- function(df, name = "passengers_entrance") {
+  if (!all(c("date", "line_number") %in% names(df))) {
+    return(character(0))
+  }
+
+  july <- df[format(df$date, "%Y-%m") == "2017-07", , drop = FALSE]
+  actual <- sort(unique(as.integer(july$line_number)))
+  expected <- 4L
+
+  if (isTRUE(all.equal(actual, expected))) {
+    return(character(0))
+  }
+
+  sprintf(
+    "%s: July 2017 should contain only Line 4; found line(s): %s",
+    name,
+    if (length(actual) == 0) "none" else paste(actual, collapse = ", ")
+  )
+}
+
 # --- Freshness ---------------------------------------------------------------
 
 #' Flag a dataset whose coverage has fallen far behind the present.
@@ -225,6 +249,7 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
     # metric labels come from a lookup keyed on Portuguese text; an unmatched
     # key leaves them NA rather than erroring, so assert them directly.
     check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
+    check_entrance_july_2017_gap(df, name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)
