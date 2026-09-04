@@ -16,6 +16,27 @@ test_that("passengers_entrance satisfies its structural invariants", {
   expect_equal(check_passengers_entrance(metrosp::passengers_entrance), character(0))
 })
 
+test_that("passengers_entrance preserves the July 2017 source gap", {
+  expect_equal(
+    check_entrance_july_2017_gap(metrosp::passengers_entrance),
+    character(0)
+  )
+
+  extra_line <- metrosp::passengers_entrance[1, c("date", "line_number")]
+  extra_line$date <- as.Date("2017-07-01")
+  extra_line$line_number <- 1
+
+  expect_match(
+    check_entrance_july_2017_gap(
+      rbind(
+        metrosp::passengers_entrance[, c("date", "line_number")],
+        extra_line
+      )
+    ),
+    "should contain only Line 4"
+  )
+})
+
 test_that("passengers_transported satisfies its structural invariants", {
   expect_equal(
     check_passengers_transported(metrosp::passengers_transported),
