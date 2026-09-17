@@ -3,7 +3,7 @@
 # Validation step of the scheduled refresh workflow. Run after tar_make() has
 # rebuilt the datasets and staged data-raw/cache/.
 #
-#   Rscript data-raw/ci_validate.R
+#   Rscript data-raw/ci/ci_validate.R
 #
 # Downloads the previously published batch from the `data-latest` release,
 # compares it against the fresh build, writes the markdown report that becomes
@@ -21,7 +21,7 @@ suppressPackageStartupMessages({
 
 targets::tar_source("data-raw/R")
 
-REPORT_PATH <- here::here("data-raw/validation-report.md")
+REPORT_PATH <- here::here("data-raw/outputs/validation-report.md")
 BASELINE_TAG <- "data-latest"
 
 # --- Fetch the previously published batch ------------------------------------
@@ -29,25 +29,41 @@ BASELINE_TAG <- "data-latest"
 baseline_dir <- file.path(tempdir(), "metrosp-baseline")
 dir.create(baseline_dir, showWarnings = FALSE, recursive = TRUE)
 
-baseline <- tryCatch(
-  {
-    piggyback::pb_download(
-      dest = baseline_dir,
-      tag = BASELINE_TAG,
-      show_progress = FALSE
-    )
-    load_baseline(baseline_dir)
-  },
-  error = function(e) {
-    cli::cli_alert_warning(
-      "No baseline from tag {.val {BASELINE_TAG}}: {conditionMessage(e)}"
-    )
-    NULL
-  }
-)
+# "No baseline" used to cover both a genuine first publish and any failure on
+# the way to one, so a broken download read as business as usual and the
+# baseline-dependent checks below quietly did nothing. The three cases are now
+# reported separately.
+baseline <- NULL
+
+if (!release_exists(BASELINE_TAG)) {
+  cli::cli_alert_info(
+    "No {.val {BASELINE_TAG}} release yet; this is a first publish."
+  )
+} else if (length(release_asset_names(BASELINE_TAG)) == 0) {
+  cli::cli_alert_warning(
+    "Release {.val {BASELINE_TAG}} exists but carries no assets."
+  )
+} else {
+  baseline <- tryCatch(
+    {
+      download_release_assets(BASELINE_TAG, baseline_dir)
+      load_baseline(baseline_dir)
+    },
+    error = function(e) {
+      cli::cli_alert_warning(
+        "Could not load the {.val {BASELINE_TAG}} baseline:
+         {conditionMessage(e)}"
+      )
+      return(NULL)
+    }
+  )
+}
 
 if (is.null(baseline)) {
-  cli::cli_alert_info("Proceeding without a baseline (first publish).")
+  cli::cli_alert_warning(
+    "Baseline-dependent checks (shrinkage, coverage regression, retroactive
+     drift, magnitude outliers) are skipped."
+  )
 } else {
   cli::cli_alert_success("Baseline loaded: {length(baseline)} dataset{?s}.")
 }

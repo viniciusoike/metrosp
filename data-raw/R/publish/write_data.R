@@ -2,8 +2,8 @@
 # -----------------------------------------------------------------------------
 # write_all_data() is the single side-effecting writer: it persists each
 # assembled object to data/<name>.rda via usethis::use_data(), replacing the
-# scattered use_data() calls in the former make_datasets.R / import_geosampa.R /
-# build_*.R. Run as the terminal target of the graph.
+# scattered use_data() calls in the former dataset builders. Run as the terminal
+# target of the graph.
 # -----------------------------------------------------------------------------
 
 #' Write all package datasets to data/*.rda.

@@ -7,8 +7,8 @@
 #
 # It never touches data/*.rda: the shipped snapshot is frozen and regenerated
 # only on a schema change (METROSP_FREEZE, run by hand). What lands in the PR
-# is the refreshed data-raw/processed/*.csv, which is also the only committed
-# evidence of an upstream restatement.
+# is the refreshed data-raw/outputs/processed/*.csv, which is also the only
+# committed evidence of an upstream restatement.
 
 on:
   schedule:
@@ -55,7 +55,6 @@ jobs:
           extra-packages: >-
             any::targets,
             any::tarchetypes,
-            any::piggyback,
             any::devtools,
             any::data.table,
             any::fs,
@@ -93,17 +92,17 @@ jobs:
               >> "$GITHUB_ENV"
           fi
 
-      # The change gate. data-raw/processed/ is deterministic text, so a
+      # The change gate. data-raw/outputs/processed/ is deterministic text, so a
       # byte-identical tree means upstream published nothing new.
       - name: Detect upstream change
         id: gate
         run: |
-          if [ -z "$(git status --porcelain data-raw/processed/)" ]; then
+          if [ -z "$(git status --porcelain data-raw/outputs/processed/)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No upstream change; nothing to publish."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            git status --porcelain data-raw/processed/
+            git status --porcelain data-raw/outputs/processed/
           fi
 
       - name: Run package tests
@@ -112,7 +111,7 @@ jobs:
 
       - name: Validate against last published batch
         if: steps.gate.outputs.changed == 'true'
-        run: Rscript data-raw/ci_validate.R
+        run: Rscript data-raw/ci/ci_validate.R
 
       - name: Read validation report
         if: steps.gate.outputs.changed == 'true'
@@ -120,7 +119,7 @@ jobs:
         run: |
           {
             echo "body<<VALIDATION_EOF"
-            cat data-raw/validation-report.md
+            cat data-raw/outputs/validation-report.md
             echo ""
             echo "---"
             echo "Opened by \`data-refresh.yaml\`. Merging publishes these"
@@ -144,4 +143,4 @@ jobs:
             Automated weekly refresh. data/*.rda is untouched (frozen
             snapshot); only the intermediate CSVs move.
           add-paths: |
-            data-raw/processed/
+            data-raw/outputs/processed/

@@ -11,7 +11,7 @@
 # implausibly few links (a layout change must fail the run, not quietly serve
 # stale data), and every network call retries with backoff.
 #
-# Refactored from download_metro.R.
+# Refactored from the former standalone downloader.
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
@@ -71,7 +71,7 @@ download_metro <- function(force_all = FALSE) {
       "Found only {n_links} download link{?s} on the METRO portal
        (expected at least {min_links}).",
       "i" = "The page layout at {.url {url}} has probably changed; the XPath
-             selectors in {.file data-raw/R/download_metro.R} need updating.",
+             selectors in this file need updating.",
       "x" = "Refusing to continue -- a partial scrape would silently publish
              stale data."
     ))

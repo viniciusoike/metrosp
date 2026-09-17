@@ -2,7 +2,7 @@
 #
 # The assertions live in helper-checks.R so the scheduled pipeline can run the
 # identical checks against freshly rebuilt data before publishing it. Here they
-# guard the snapshot in data/*.rda; see data-raw/R/validate_refresh.R for the
+# guard the snapshot in data/*.rda; see data-raw/R/publish/validate_refresh.R for the
 # other caller.
 
 test_that("all datasets load as data frames", {

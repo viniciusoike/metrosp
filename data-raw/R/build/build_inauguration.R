@@ -1,15 +1,15 @@
 # build_inauguration.R
 # -----------------------------------------------------------------------------
 # build_station_inauguration() assembles the station_inauguration dataset from
-# the hand-maintained data-raw/station_inauguration.csv, validated against the
+# the hand-maintained data-raw/inputs/station_inauguration.csv, validated against the
 # station lists in station_daily / station_averages (passed in as arguments
-# rather than via devtools::load_all()/metrosp::). Refactored from
-# build_station_inauguration.R.
+# rather than via devtools::load_all()/metrosp::). Refactored from the former
+# standalone builder.
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
 
-#' @param csv_path Path to data-raw/station_inauguration.csv.
+#' @param csv_path Path to data-raw/inputs/station_inauguration.csv.
 #' @param station_daily The assembled station_daily dataset.
 #' @param station_averages The assembled station_averages dataset.
 build_station_inauguration <- function(

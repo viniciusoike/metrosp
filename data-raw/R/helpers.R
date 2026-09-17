@@ -1,8 +1,7 @@
 # helpers.R
 # -----------------------------------------------------------------------------
 # Path lookup, CSV parsing, and numeric-conversion helpers used by the import
-# builders. Lifted verbatim from the former data-raw/utils.R (and the
-# n_days_in_month helper from import_station_daily.R).
+# builders. Lifted from the former shared utilities and station-daily builder.
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
@@ -178,7 +177,7 @@ get_path_flds <- function(year, variable = "transport") {
   return(df_line)
 }
 
-#' Number of days in a given month/year (from import_station_daily.R).
+#' Number of days in a given month/year.
 n_days_in_month <- function(year, month) {
   next_first <- if (month == 12L) {
     as.Date(paste(year + 1L, 1L, 1L, sep = "-"))

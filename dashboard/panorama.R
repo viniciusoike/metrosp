@@ -13,26 +13,6 @@ library(htmltools)
 
 source("shared.R", local = TRUE)
 
-# Forecasts are pre-computed by data-raw/build_forecasts.R and shipped with
-# the package; gracefully degrade if the datasets are missing.
-HAS_FORECASTS <- tryCatch(
-  is.data.frame(metrosp::forecasts) && nrow(metrosp::forecasts) > 0,
-  error = function(e) FALSE
-)
-
-if (!HAS_FORECASTS) {
-  message(
-    "metrosp::forecasts not available; projection tab will be disabled. ",
-    "Rebuild with: source(\"data-raw/build_forecasts.R\")"
-  )
-}
-
-forecast_model_labels <- c(
-  arima = "ARIMA (Box-Cox)",
-  ets = "ETS (Box-Cox)",
-  stlf = "STL + ETS (robusto)"
-)
-
 # Metadata ---------------------------------------------------------------------
 
 covid_start <- as.Date("2020-03-01")
@@ -255,24 +235,6 @@ seasonality <- ent |>
     line_label = unname(line_labels[line_number])
   )
 
-## Forecasts (precomputed by data-raw/build_forecasts.R) ----
-
-if (HAS_FORECASTS) {
-  forecasts_all <- metrosp::forecasts |>
-    mutate(line_number = as.character(line_number)) |>
-    filter(line_number %in% LINES)
-
-  forecast_acc <- tryCatch(
-    metrosp::forecast_accuracy |>
-      mutate(line_number = as.character(line_number)) |>
-      filter(line_number %in% LINES),
-    error = function(e) NULL
-  )
-} else {
-  forecasts_all <- NULL
-  forecast_acc <- NULL
-}
-
 ## Station data ----
 
 sta_avg <- metrosp::station_averages |>
@@ -477,28 +439,6 @@ spark_ui <- function(line_id) {
   )
 }
 
-## Forecast mini-card ----
-
-forecast_mini_ui <- function(line_id) {
-  div(
-    class = "mini-chart",
-    div(
-      class = "mini-title d-flex align-items-center",
-      span(
-        class = "mini-tag",
-        style = paste0("background:", line_colors[line_id], ";")
-      ),
-      line_labels[line_id],
-      span(
-        class = "ms-auto text-muted small",
-        style = "font-weight: 400;",
-        textOutput(paste0("fc_acc_", line_id), inline = TRUE)
-      )
-    ),
-    echarts4rOutput(paste0("fc_", line_id), height = "180px")
-  )
-}
-
 ## Seasonality mini-card ----
 
 season_mini_ui <- function(line_id) {
@@ -603,67 +543,6 @@ ui <- function(request) {
       echarts4rOutput("overview_trend", height = "320px")
     ),
 
-    div(class = "section-label mt-4", "Projeção de demanda"),
-
-    card(
-      full_screen = TRUE,
-      card_header(
-        class = "d-flex align-items-center justify-content-between gap-2",
-        tags$div(
-          tags$span("Projeção 6 meses por linha"),
-          tags$small(
-            class = "ms-2 text-muted",
-            "área sombreada = IC 80% · ✓ = menor MAPE em validação"
-          )
-        ),
-        tags$div(
-          class = "d-flex align-items-center gap-2",
-          if (HAS_FORECASTS) {
-            radioButtons(
-              "forecast_model",
-              NULL,
-              choices = setNames(names(forecast_model_labels), forecast_model_labels),
-              selected = "arima",
-              inline = TRUE
-            )
-          } else {
-            NULL
-          },
-          if (HAS_FORECASTS) {
-            downloadButton(
-              "dl_forecasts",
-              NULL,
-              icon = icon("download"),
-              class = "btn-sm btn-link p-1 download-icon",
-              title = "Baixar CSV"
-            )
-          } else {
-            NULL
-          }
-        )
-      ),
-      if (HAS_FORECASTS) {
-        layout_column_wrap(
-          width = 1 / 3,
-          heights_equal = "row",
-          !!!lapply(LINES, forecast_mini_ui)
-        )
-      } else {
-        div(
-          class = "station-empty",
-          div(class = "empty-icon", bs_icon("graph-up-arrow")),
-          div(class = "empty-title", "Previsões não disponíveis"),
-          div(
-            class = "empty-text",
-            "Atualize o pacote para a versão que inclui o dataset ",
-            tags$code("forecasts"),
-            ", ou regenere localmente:",
-            tags$br(),
-            tags$code("source(\"data-raw/build_forecasts.R\")")
-          )
-        )
-      }
-    )
   ),
 
   ## ── Tab 2: Recuperação 2019 ─────────────────────────────────────────────
@@ -1116,137 +995,6 @@ server <- function(input, output, session) {
       ln_local <- ln
       output[[paste0("spark_", ln_local)]] <- render_spark(ln_local)
     })
-  }
-
-  ## ── Tab 1: Forecast small multiples (one chart per line) ───────────────
-
-  forecast_df <- reactive({
-    req(HAS_FORECASTS, input$forecast_model)
-    forecasts_all |> filter(model == input$forecast_model)
-  })
-
-  render_forecast_acc <- function(line_id) {
-    renderText({
-      req(HAS_FORECASTS, input$forecast_model)
-      if (is.null(forecast_acc)) {
-        return("")
-      }
-      row <- forecast_acc |>
-        filter(line_number == line_id, model == input$forecast_model)
-      if (nrow(row) == 0 || is.na(row$mape)) {
-        return("modelo instável")
-      }
-      best_row <- forecast_acc |>
-        filter(line_number == line_id, isTRUE(best))
-      mark <- if (nrow(best_row) > 0 && best_row$model == input$forecast_model) {
-        " ✓"
-      } else {
-        ""
-      }
-      sprintf("MAPE %.1f%%%s", row$mape, mark)
-    })
-  }
-
-  if (HAS_FORECASTS) {
-    for (ln in LINES) {
-      local({
-        ln_local <- ln
-        output[[paste0("fc_acc_", ln_local)]] <- render_forecast_acc(ln_local)
-      })
-    }
-  }
-
-  render_forecast_mini <- function(line_id) {
-    renderEcharts4r({
-      fc_all <- forecast_df()
-      req(!is.null(fc_all), nrow(fc_all) > 0)
-
-      hist_start <- max(ent_all$date, na.rm = TRUE) - (365L * 3L)
-      hist <- ent_all |>
-        filter(
-          line_number == line_id,
-          !is.na(value),
-          date >= hist_start
-        ) |>
-        arrange(date) |>
-        transmute(
-          date,
-          historico = value / 1e6,
-          previsto = NA_real_,
-          lo = NA_real_,
-          hi = NA_real_
-        )
-
-      fc <- fc_all |>
-        filter(line_number == line_id) |>
-        arrange(date) |>
-        transmute(
-          date,
-          historico = NA_real_,
-          previsto = mean / 1e6,
-          lo = lo80 / 1e6,
-          hi = hi80 / 1e6
-        )
-
-      # Bridge: last historic point also opens the forecast line
-      bridge <- tail(hist, 1)
-      if (nrow(bridge) > 0 && nrow(fc) > 0) {
-        bridge$previsto <- bridge$historico
-        bridge$lo <- bridge$historico
-        bridge$hi <- bridge$historico
-      }
-
-      df <- bind_rows(hist, bridge, fc) |> arrange(date)
-
-      col <- unname(line_colors[line_id])
-
-      df |>
-        e_charts(date) |>
-        e_band(
-          lo, hi,
-          areaStyle = list(
-            list(color = "rgba(0,0,0,0)"),
-            list(color = paste0(col, "33"))
-          )
-        ) |>
-        e_line(
-          historico,
-          name = "Histórico",
-          symbol = "none",
-          smooth = FALSE,
-          lineStyle = list(width = 2, color = col),
-          legend = FALSE,
-          connectNulls = FALSE
-        ) |>
-        e_line(
-          previsto,
-          name = "Projeção",
-          symbol = "circle",
-          symbolSize = 4,
-          smooth = FALSE,
-          lineStyle = list(width = 2, color = col, type = "dashed"),
-          itemStyle = list(color = col),
-          legend = FALSE,
-          connectNulls = FALSE
-        ) |>
-        e_x_axis(type = "time") |>
-        e_y_axis(
-          axisLabel = list(formatter = "{value} M"),
-          splitLine = list(lineStyle = list(color = "#EDEEF3"))
-        ) |>
-        e_grid(left = 50, right = 12, top = 10, bottom = 28) |>
-        e_tooltip(trigger = "axis") |>
-        e_legend(show = FALSE)
-    })
-  }
-
-  if (HAS_FORECASTS) {
-    for (ln in LINES) {
-      local({
-        ln_local <- ln
-        output[[paste0("fc_", ln_local)]] <- render_forecast_mini(ln_local)
-      })
-    }
   }
 
   ## ── Tab 2: Compare — monthly series ────────────────────────────────────
@@ -2061,12 +1809,6 @@ server <- function(input, output, session) {
         base_mensal_2019 = base,
         indice_2019 = round(index, 2)
       )
-  })
-
-  output$dl_forecasts <- csv_dl("projecao-6m", function() {
-    if (!HAS_FORECASTS) return(data.frame())
-    forecasts_all |>
-      filter(model == (input$forecast_model %||% "arima"))
   })
 
   output$dl_compare_series <- csv_dl("comparar-linhas", function() {

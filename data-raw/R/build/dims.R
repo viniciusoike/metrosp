@@ -6,8 +6,8 @@
 # `targets::tar_source("data-raw/R")` loads them as tracked globals: editing
 # any table re-hashes it and invalidates every target that depends on it.
 #
-# Lifted verbatim from the former data-raw/utils.R (dimension tables) and
-# data-raw/make_datasets.R (metro_lines, metro_colors, column constants).
+# Lifted from the former dimension and dataset builders (metro_lines,
+# metro_colors, and column constants).
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
@@ -286,7 +286,7 @@ metro_colors <- c(
 
 # --- Column-order constants --------------------------------------------------
 
-# Final column order for the assembled passenger tables (from make_datasets.R).
+# Final column order for the assembled passenger tables.
 .cols_psg <- c(
   "date",
   "line_number",
@@ -299,7 +299,7 @@ metro_colors <- c(
   "year"
 )
 
-# Intermediate schemas produced by the import builders (from utils.R).
+# Intermediate schemas produced by the import builders.
 .cols_psg_entrance <- c(
   "date",
   "line_number",

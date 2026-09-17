@@ -12,9 +12,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "data-raw/processed/**"
-      - "data-raw/geosampa/**"
-      - "data-raw/station_inauguration.csv"
+      - "data-raw/outputs/processed/**"
+      - "data-raw/inputs/geosampa/**"
+      - "data-raw/inputs/station_inauguration.csv"
       - "data-raw/R/**"
   workflow_dispatch:
 
@@ -55,7 +55,6 @@ jobs:
           extra-packages: >-
             any::targets,
             any::tarchetypes,
-            any::piggyback,
             any::devtools,
             any::data.table,
             any::fs,
@@ -93,4 +92,4 @@ jobs:
         run: Rscript -e 'devtools::test(stop_on_failure = TRUE)'
 
       - name: Publish to data-latest
-        run: Rscript data-raw/ci_publish.R
+        run: Rscript data-raw/ci/ci_publish.R
