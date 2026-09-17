@@ -2,6 +2,8 @@
 
 ## metrosp 1.2.1
 
+CRAN release: 2026-09-03
+
 ### Datasets
 
 - Refroze the bundled snapshot with the latest upstream refresh, adding

@@ -68,9 +68,10 @@ Paulo, ViaQuatro, ViaMobilidade).
 
 ## Details
 
-The table is compiled by hand from `data-raw/station_inauguration.csv`
-in the package repository. Contributions that extend the table or verify
-uncertain dates are welcome.
+The table is compiled by hand from
+`data-raw/inputs/station_inauguration.csv` in the package repository.
+Contributions that extend the table or verify uncertain dates are
+welcome.
 
 When computing pre/post comparisons (e.g.\\ 12m-vs-prior-12m or
 recovery-vs-2019), exclude stations where either window overlaps
