@@ -45,7 +45,7 @@ toward steady-state and should generally be excluded from year-on-year or
 baseline comparisons.
 }
 \details{
-The table is compiled by hand from \code{data-raw/station_inauguration.csv}
+The table is compiled by hand from \code{data-raw/inputs/station_inauguration.csv}
 in the package repository. Contributions that extend the table or verify
 uncertain dates are welcome.
 

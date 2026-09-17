@@ -7,14 +7,14 @@
 # examples and vignettes, and is regenerated ONLY when a schema changes -- never
 # because new months arrived. Fresh data comes from get_data(). For that split
 # to be safe, something has to notice when a rebuilt dataset stops matching the
-# shape of the shipped one; data-raw/schema.json is that something, and
+# shape of the shipped one; data-raw/inputs/schema.json is that something, and
 # check_schema() is the gate the scheduled pipeline runs on every refresh.
 #
 # Column *values* change every month and that is fine. Column names and types
 # changing is what invalidates the snapshot.
 # -----------------------------------------------------------------------------
 
-schema_path <- function() here::here("data-raw/schema.json")
+schema_path <- function() here::here("data-raw/inputs/schema.json")
 
 # Record the class that actually matters for downstream code. typeof() alone
 # loses Date (double) and factor (integer); class()[1] alone is noisy for plain
@@ -54,7 +54,7 @@ build_schema <- function(datasets) {
   lapply(datasets[order(names(datasets))], dataset_schema)
 }
 
-#' Write the schema contract to data-raw/schema.json.
+#' Write the schema contract to data-raw/inputs/schema.json.
 write_schema <- function(datasets, path = schema_path()) {
   jsonlite::write_json(
     build_schema(datasets),
@@ -210,7 +210,7 @@ check_schema <- function(datasets, path = schema_path()) {
       stats::setNames(as.character(problems), rep("x", length(problems))),
       "i" = "Regenerate the snapshot with {.code METROSP_FREEZE=true} and
              {.code targets::tar_make()}, then bump the package version and
-             update {.file data-raw/schema.json}."
+             update {.file data-raw/inputs/schema.json}."
     ))
   }
 

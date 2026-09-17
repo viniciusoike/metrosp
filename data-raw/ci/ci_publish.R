@@ -2,12 +2,15 @@
 # -----------------------------------------------------------------------------
 # Publish the staged batch to the rolling `data-latest` GitHub Release.
 #
-#   Rscript data-raw/ci_publish.R
+#   Rscript data-raw/ci/ci_publish.R
 #
 # Expects data-raw/cache/ to hold the .rds assets and manifest.json written by
 # the release_payload target. Creates the release if it does not exist, then
 # overwrites the assets in place -- the tag is a moving pointer to "current",
 # and manifest.json carries the vintage.
+#
+# Release I/O goes through data-raw/R/publish/gh_release.R; see that file for why this
+# shells out to `gh` rather than using piggyback.
 # -----------------------------------------------------------------------------
 
 suppressPackageStartupMessages(library(dplyr))
@@ -31,7 +34,7 @@ cli::cli_alert_info(
    (commit {manifest$pipeline_commit}, schema {manifest$schema_version})."
 )
 
-repo <- Sys.getenv("GITHUB_REPOSITORY", unset = "viniciusoike/metrosp")
+repo <- github_repo()
 
 # Every batch goes to two tags. `data-latest` is the rolling pointer and is
 # overwritten on every run; the dated tag is the immutable copy, so an analysis
@@ -39,33 +42,24 @@ repo <- Sys.getenv("GITHUB_REPOSITORY", unset = "viniciusoike/metrosp")
 # that month's tag with the more complete batch.
 VINTAGE_TAG <- format(Sys.Date(), "data-%Y-%m")
 
-publish <- function(tag, name, body) {
-  # pb_release_create() errors when the release already exists; for the rolling
-  # tag that is the steady state, so treat failure as "already there".
-  tryCatch(
-    {
-      piggyback::pb_release_create(
-        repo = repo,
-        tag = tag,
-        name = name,
-        body = body
-      )
-      cli::cli_alert_success("Created release {.val {tag}}.")
-    },
-    error = function(e) {
-      cli::cli_alert_info("Release {.val {tag}} already exists; updating assets.")
-    }
-  )
+# Publishing is create-then-upload, and for five runs the upload half failed
+# while the create half succeeded, leaving a release with a body and no files.
+# Nothing noticed, because the script's last word was the create. So the upload
+# is now read back and the batch is only reported published once every staged
+# file is attached.
+publish <- function(tag, title, notes) {
+  create_release(tag, title, notes, repo = repo)
+  upload_release_assets(assets, tag, repo = repo)
 
-  piggyback::pb_upload(
-    file = assets,
-    repo = repo,
-    tag = tag,
-    overwrite = TRUE,
-    show_progress = FALSE
-  )
+  missing <- setdiff(basename(assets), release_asset_names(tag, repo = repo))
+  if (length(missing) > 0) {
+    cli::cli_abort(c(
+      "Release {.val {tag}} is missing {length(missing)} uploaded asset{?s}.",
+      "x" = "{.file {missing}}"
+    ))
+  }
 
-  cli::cli_alert_success("Published {length(assets)} asset{?s} to {.val {tag}}.")
+  return(invisible(tag))
 }
 
 publish(

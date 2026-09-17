@@ -1,11 +1,11 @@
 # import_geosampa.R
 # -----------------------------------------------------------------------------
 # GeoSampa spatial data for the metro and CPTM train networks.
-# build_geosampa() reads the GPKG files in data-raw/geosampa/ and returns a
+# build_geosampa() reads the GPKG files in data-raw/inputs/geosampa/ and returns a
 # list(lines = <sf>, stations = <sf>), both in EPSG:4326. No .rda side effects.
 #
-# Refactored from import_geosampa.R (the usethis::use_data() tail moved to the
-# write_all_data() writer target).
+# Refactored from the former GeoSampa importer (the usethis::use_data() tail
+# moved to the write_all_data() writer target).
 #
 # Source: https://geosampa.prefeitura.sp.gov.br/
 # -----------------------------------------------------------------------------
@@ -171,7 +171,7 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
 #' @param geosampa_files Character vector of GPKG paths (or the directory).
 #' @return list(lines = <sf>, stations = <sf>).
 build_geosampa <- function(
-  geosampa_files = here::here("data-raw/geosampa")
+  geosampa_files = here::here("data-raw/inputs/geosampa")
 ) {
   dir_geo <- if (length(geosampa_files) == 1 && dir.exists(geosampa_files)) {
     geosampa_files

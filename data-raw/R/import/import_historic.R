@@ -2,15 +2,14 @@
 # -----------------------------------------------------------------------------
 # Gated refresh of the 2016-2019 historical processed CSVs from the raw files
 # (data-raw/metro_sp/metro/{Demanda 2016,2017,2018,demanda_2019}/). These
-# rarely change, so the committed CSVs in data-raw/processed/ are the normal
+# rarely change, so the committed CSVs in data-raw/outputs/processed/ are the normal
 # pipeline input (read by assemble_*). refresh_historic_*() regenerate them.
 #
 # 2016 was published retroactively by METRO in 2026 as annual files that
 # follow the current-era layout, not the 2017-2019 monthly one; see the
 # "2016 retroactive publication" section below.
 #
-# Refactored from import_passengers_2017_2019.R and
-# import_station_averages_2017_2019.R.
+# Refactored from the former historic passenger and station-average importers.
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
@@ -164,12 +163,12 @@ psg_file_pattern <- function(variable) {
 # --- Jan-Sep 2017, transcribed from PDF ---------------------------------------
 # METRO published Jan-Sep 2017 only as PDFs whose pages are pasted screenshots
 # with no text layer, so those months were transcribed by hand into
-# data-raw/pdf2017/. See data-raw/pdf2017/README.md for the procedure and
+# data-raw/inputs/pdf2017/. See data-raw/inputs/pdf2017/README.md for the procedure and
 # report_2017.md for the source defects the checksums exposed. The transcribed
 # CSVs are committed and are the input here; the PDFs themselves are not read.
 
 path_pdf2017 <- function(file) {
-  path <- here::here("data-raw/pdf2017", file)
+  path <- here::here("data-raw/inputs/pdf2017", file)
 
   if (!file.exists(path)) {
     cli::cli_abort("Missing transcription {.path {path}}.")
@@ -233,7 +232,7 @@ import_stn_avg_2017_pdf <- function() {
 #' Every branch below returns the same four columns (date, line_number,
 #' metric_abb, value), so the eras differ only in where the numbers come from.
 refresh_historic_passengers <- function(
-  proc_dir = here::here("data-raw/processed")
+  proc_dir = here::here("data-raw/outputs/processed")
 ) {
   import_year <- function(year, measure) {
     if (year == 2016) {
@@ -390,7 +389,7 @@ import_stn_avg_2016 <- function() {
 
 #' Regenerate metro_sp_station_averages_historic.csv from raw. Returns the path.
 refresh_historic_averages <- function(
-  proc_dir = here::here("data-raw/processed")
+  proc_dir = here::here("data-raw/outputs/processed")
 ) {
   years <- 2017:2019
   stations_files <- rlang::set_names(

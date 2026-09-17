@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------------------
 # Harmonize the 2016-2019 (historic), current-era (2020-present), and Lines
 # 4/5 sources into the four exported passenger/station datasets. Refactored
-# from make_datasets.R: each section becomes a function taking its inputs as
+# from the former monolithic builder: each section becomes a function taking its inputs as
 # arguments (historic / Lines 4/5 read from the committed processed CSVs;
 # current-era passed in from the import builders). Sanity checks (stopifnot)
 # live inside the relevant function so a failed check fails that target.
@@ -202,7 +202,7 @@ assemble_daily <- function(daily_current, daily_4_5) {
     arrange(date, station_order) |>
     select(-station_order)
 
-  # --- Sanity checks (from make_datasets.R) ---
+  # --- Sanity checks ---------------------------------------------------------
   stopifnot(
     "NA dates in station_daily" = !any(is.na(station_daily$date)),
     "station_daily date range starts before 2012" = min(station_daily$date) >=

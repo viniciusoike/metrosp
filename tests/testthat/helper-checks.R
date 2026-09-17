@@ -5,7 +5,7 @@
 #
 #   1. tests/testthat/test-datasets.R -- against the frozen data/*.rda that
 #      ships with the package (guards the snapshot; runs on CRAN).
-#   2. data-raw/R/validate_refresh.R  -- against the freshly rebuilt datasets in
+#   2. data-raw/R/publish/validate_refresh.R  -- against the freshly rebuilt datasets in
 #      the scheduled pipeline (guards what gets published).
 #
 # That second caller is the reason these live here rather than in data-raw/R/:
@@ -189,7 +189,7 @@ check_freshness <- function(df, name, max_months_behind = 4, today = Sys.Date())
 #' to its own last published point. So "is a line missing from the latest
 #' month?" is not a structural question -- it can only be answered against a
 #' baseline, which is why the regression check on this lives in
-#' data-raw/R/validate_refresh.R rather than here.
+#' data-raw/R/publish/validate_refresh.R rather than here.
 line_coverage <- function(df) {
   needed <- c("date", "line_number")
   if (!all(needed %in% names(df)) || nrow(df) == 0) {

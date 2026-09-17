@@ -6,13 +6,12 @@
 #
 # Each build_*_current() returns an in-memory tibble. refresh_metro_current() is
 # the gated side-effecting step that writes them to the committed processed CSVs
-# (data-raw/processed/metro_sp_*_current.csv), which the assemble_*() functions
+# (data-raw/outputs/processed/metro_sp_*_current.csv), which the assemble_*() functions
 # then read -- mirroring refresh_historic_*() and refresh_dataverse(). This is
 # what makes the graph rebuildable offline and gives every upstream change a
 # reviewable text diff.
 #
-# Refactored from import_passengers_entrance.R, import_passengers_transported.R,
-# import_station_averages.R, and import_station_daily.R.
+# Refactored from the former current-era passenger and station importers.
 # -----------------------------------------------------------------------------
 
 library(dplyr, warn.conflicts = FALSE)
@@ -209,7 +208,7 @@ build_stn_daily_current <- function(years = get_available_years()) {
 #' Rebuild the four current-era processed CSVs from the raw portal files.
 #' Returns the path of the directory written (so a target can depend on it).
 refresh_metro_current <- function(
-  proc_dir = here::here("data-raw/processed")
+  proc_dir = here::here("data-raw/outputs/processed")
 ) {
   readr::write_csv(
     build_entrance_current(),

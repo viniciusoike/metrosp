@@ -37,7 +37,7 @@ library(tidyr)
 .tol_line <- .tol(5)
 
 read_line_2017 <- function(
-  path = here::here("data-raw/pdf2017/transcribed_passengers_line_2017.csv")
+  path = here::here("data-raw/inputs/pdf2017/transcribed_passengers_line_2017.csv")
 ) {
   readr::read_csv(path, show_col_types = FALSE, na = "NA")
 }
@@ -45,7 +45,7 @@ read_line_2017 <- function(
 #' Read the station transcription, which is stored one row per station and one
 #' column per month to mirror the source table, and return it long.
 read_station_2017 <- function(
-  path = here::here("data-raw/pdf2017/transcribed_station_averages_2017.csv")
+  path = here::here("data-raw/inputs/pdf2017/transcribed_station_averages_2017.csv")
 ) {
   readr::read_csv(path, show_col_types = FALSE, na = "NA") |>
     pivot_longer(
@@ -146,7 +146,7 @@ check_station_vs_line <- function(
 #' Check that the station roster matches the one used by the Oct-Dec 2017 data.
 check_station_roster <- function(
   dat = read_station_2017(),
-  processed = here::here("data-raw/processed/metro_sp_station_averages_historic.csv")
+  processed = here::here("data-raw/outputs/processed/metro_sp_station_averages_historic.csv")
 ) {
   baseline <- readr::read_csv(processed, show_col_types = FALSE) |>
     filter(date == as.Date("2017-10-01")) |>
@@ -178,7 +178,7 @@ validate_2017 <- function() {
   out <- list(lines = bad_lines)
 
   station_path <- here::here(
-    "data-raw/pdf2017/transcribed_station_averages_2017.csv"
+    "data-raw/inputs/pdf2017/transcribed_station_averages_2017.csv"
   )
 
   if (file.exists(station_path)) {

@@ -14,10 +14,10 @@ data-raw/metro_sp/
 data-raw/cache/
 
 # Page renders for the 2017 PDF transcription; regenerate with render_pdf_2017.R
-data-raw/pdf2017/img/
+data-raw/inputs/pdf2017/img/
 
 # CI validation report (regenerated every run; surfaced as the refresh PR body)
-data-raw/validation-report.md
+data-raw/outputs/validation-report.md
 
 # targets object store (rebuildable via tar_make())
 data-raw/_targets/

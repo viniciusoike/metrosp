@@ -6,11 +6,11 @@
 # import_dataverse() fetches the raw daily-gate-entries data frame from the
 # network. The clean_*_4_5() functions transform it into the three intermediate
 # schemas. refresh_dataverse() is the gated side-effecting step that rewrites
-# the committed processed CSVs (data-raw/processed/metro_sp_*_lines_4_5.csv),
+# the committed processed CSVs (data-raw/outputs/processed/metro_sp_*_lines_4_5.csv),
 # which the assemble_*() functions then read — mirroring the historical data
 # treatment and keeping offline rebuilds reproducible.
 #
-# Refactored from import_lines_4_5_dataverse.R. The dataverse clean function for
+# Refactored from the former Lines 4/5 Dataverse importer. The dataverse clean function for
 # daily data was renamed (clean_daily_4_5) to avoid colliding with the METRO
 # daily cleaner (clean_station_daily_metro).
 # -----------------------------------------------------------------------------
@@ -182,7 +182,7 @@ clean_daily_4_5 <- function(dat) {
 #' Fetch from Dataverse and regenerate the three Lines 4/5 processed CSVs.
 #' Returns the path of the directory written (so a target can depend on it).
 refresh_dataverse <- function(
-  proc_dir = here::here("data-raw/processed")
+  proc_dir = here::here("data-raw/outputs/processed")
 ) {
   raw <- import_dataverse()
 

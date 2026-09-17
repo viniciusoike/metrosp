@@ -36,7 +36,6 @@ Suggests:
     dplyr (>= 1.2.0),
     ggplot2,
     knitr,
-    piggyback,
     quarto,
     rmarkdown,
     sf,

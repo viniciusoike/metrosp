@@ -11,7 +11,7 @@
 #   Rscript -e 'devtools::document()'                # refresh man/*.Rd
 #
 # Pipeline boundary: the graph assembles data/*.rda from the committed
-# intermediate CSVs (data-raw/processed/), the GeoSampa GPKGs, and the
+# intermediate CSVs (data-raw/outputs/processed/), the GeoSampa GPKGs, and the
 # station_inauguration.csv. The expensive/network stages — METRO download,
 # 2016-2019 reimport, Lines 4/5 Dataverse fetch — are gated with
 # tarchetypes::tar_force(). Each only re-runs when its env-var flag is TRUE;
@@ -19,7 +19,7 @@
 # their own inputs changed.
 #
 # All three sources follow one shape: a gated refresh_*() writes committed
-# CSVs under data-raw/processed/, and the graph reads only those CSVs. Nothing
+# CSVs under data-raw/outputs/processed/, and the graph reads only those CSVs. Nothing
 # downstream of the refresh targets touches the network or the gitignored raw
 # files, so a fresh clone rebuilds every dataset offline. Because the committed
 # CSVs are the only inputs, any upstream change — including METRO restating an
@@ -29,7 +29,6 @@
 # populate the store), but each body is a no-op when its flag is off, so a
 # fresh clone's first tar_make() makes no network calls.
 #
-# Forecasts (build_forecasts.R) are intentionally out of scope for now.
 # -----------------------------------------------------------------------------
 
 library(targets)
@@ -78,7 +77,7 @@ refresh_flag <- function(name) {
   isTRUE(as.logical(Sys.getenv(name, unset = "FALSE")))
 }
 
-proc <- function(f) here::here("data-raw/processed", f)
+proc <- function(f) here::here("data-raw/outputs/processed", f)
 
 list(
   # --- Gated source refreshes (tar_force) ------------------------------------
@@ -86,7 +85,7 @@ list(
   # is guarded by its own flag so that when the flag is off the side-effecting
   # refresh (network scrape / reading the gitignored raw files) never runs --
   # not even on the first build or after a flag toggle invalidates the target.
-  # Each refresh rewrites committed CSVs in data-raw/processed/; the *_csv file
+  # Each refresh rewrites committed CSVs in data-raw/outputs/processed/; the *_csv file
   # targets below re-hash them, so a real upstream change propagates and a
   # no-op refresh leaves the whole downstream graph skipped.
   tar_force(
@@ -197,13 +196,13 @@ list(
   ),
   tar_target(
     inauguration_csv,
-    here::here("data-raw/station_inauguration.csv"),
+    here::here("data-raw/inputs/station_inauguration.csv"),
     format = "file"
   ),
   tar_target(
     geosampa_files,
     list.files(
-      here::here("data-raw/geosampa"),
+      here::here("data-raw/inputs/geosampa"),
       pattern = "\\.gpkg$",
       full.names = TRUE
     ),
@@ -305,7 +304,7 @@ list(
   ),
 
   # --- Schema gate ------------------------------------------------------------
-  # Hard-fails when the rebuilt data stops matching data-raw/schema.json, which
+  # Hard-fails when the rebuilt data stops matching data-raw/inputs/schema.json, which
   # is the one condition that invalidates the frozen data/*.rda snapshot.
   # Everything downstream depends on it, so a drifted build publishes nothing.
   tar_target(schema_ok, check_schema(datasets)),

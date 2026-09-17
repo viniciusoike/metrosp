@@ -14,7 +14,7 @@
 library(magick)
 
 pdf_dir <- here::here("data-raw/metro_sp/metro/2017")
-img_dir <- here::here("data-raw/pdf2017/img")
+img_dir <- here::here("data-raw/inputs/pdf2017/img")
 
 dir.create(img_dir, showWarnings = FALSE, recursive = TRUE)
 

@@ -24,7 +24,7 @@ library(tidyr)
 .transcribed_months <- as.Date(paste0("2017-", sprintf("%02d", 1:9), "-01"))
 
 read_stations <- function(
-  path = here::here("data-raw/processed/metro_sp_station_averages_historic.csv")
+  path = here::here("data-raw/outputs/processed/metro_sp_station_averages_historic.csv")
 ) {
   readr::read_csv(path, show_col_types = FALSE) |>
     mutate(year = as.integer(format(date, "%Y")), mon = as.integer(format(date, "%m"))) |>
@@ -32,7 +32,7 @@ read_stations <- function(
 }
 
 read_lines_psg <- function(
-  path = here::here("data-raw/processed/metro_sp_passengers_historic.csv")
+  path = here::here("data-raw/outputs/processed/metro_sp_passengers_historic.csv")
 ) {
   readr::read_csv(path, show_col_types = FALSE) |>
     mutate(year = as.integer(format(date, "%Y")), mon = as.integer(format(date, "%m"))) |>
