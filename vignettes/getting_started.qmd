@@ -19,7 +19,7 @@ knitr:
 
 The `metrosp` package provides access to the [Metro de São Paulo](https://transparencia.metrosp.com.br/) public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a "lazy" format. All data comes prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through July 2026. Data newer than the snapshot is published to the `data-latest` [GitHub release](https://github.com/viniciusoike/metrosp/releases).
+The bundled data is a fixed snapshot, current through July 2026. `read_metro_demand()` reads newer data, published separately on every pipeline run (see [Newer data](#newer-data)).
 
 ```{r}
 #| label: setup
@@ -55,6 +55,23 @@ glimpse(passengers_entrance)
 ```
 
 All datasets are returned as `tibble` so using the `dplyr` package is recommended.
+
+## Newer data {#newer-data}
+
+The bundled snapshot stays put across package versions, so examples and analyses remain reproducible. Fresh data goes somewhere else: every pipeline run publishes the four demand datasets to a GitHub release. `read_metro_demand()` reads from there.
+
+```{r}
+#| eval: false
+# Latest published data
+entrance <- read_metro_demand("passengers_entrance")
+
+# A pinned monthly batch, named in the analysis that used it
+entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+```
+
+Downloads go to a temporary directory until you allow a persistent cache with `metrosp_cache_enable()`; `metrosp_cache_list()` and `metrosp_cache_clear()` manage it afterwards. Columns match the bundled datasets, so code written against one works with the other.
+
+The rest of this tutorial uses the bundled data, which needs no download.
 
 # The datasets
 

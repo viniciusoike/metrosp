@@ -12,3 +12,38 @@ template:
     primary: "#171796"
     bg: "#fefefe"
     fg: "#000000"
+
+reference:
+- title: Demand datasets
+  desc: Passenger counts by line and by station.
+  contents:
+  - passengers_entrance
+  - passengers_transported
+  - station_averages
+  - station_daily
+
+- title: Spatial and reference datasets
+  desc: Geometries and lookup tables.
+  contents:
+  - lines
+  - stations
+  - station_inauguration
+  - calendar_spo
+  - metro_colors
+
+- title: Published data
+  desc: Read data newer than the bundled snapshot, and manage the download cache.
+  contents:
+  - read_metro_demand
+  - metrosp_cache_dir
+  - metrosp_cache_enable
+  - metrosp_cache_list
+  - metrosp_cache_clear
+
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - getting_started
+  - data-dictionary
+  - articles/metro-demand-data

@@ -9,10 +9,8 @@
 # cheap: freshness is a timestamp comparison and integrity is a hash check, so
 # a warm cache re-downloads nothing.
 #
-# Nothing here is exported yet. The code ships unexported so it stays under
-# test and in one place while the published-data contract settles; exporting
-# it is a later release, and until then the package's public surface is the
-# datasets alone.
+# read_metro_demand() is exported; everything below it is internal. fetch_url()
+# is the single network seam, so the tests mock it and never reach GitHub.
 
 demand_datasets <- c(
   "passengers_entrance",
@@ -38,7 +36,7 @@ demand_datasets <- c(
 #'   * `"remote"` downloads and errors if that fails.
 #'   * `"bundled"` reads the frozen snapshot and never touches the network.
 #' @param vintage Which published batch to read. `"latest"` tracks the rolling
-#'   release; a year-month string such as `"2026-08"` pins an immutable batch.
+#'   release; a year-month string such as `"2026-09"` pins an immutable batch.
 #' @param cache Whether to write downloads to `metrosp_cache_dir()`.
 #' @param quiet Whether to suppress progress messages.
 #'
@@ -54,10 +52,25 @@ demand_datasets <- c(
 #' Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 #' installed and skip verification otherwise.
 #'
-#' @seealso `metrosp_cache_dir()` and `metrosp_cache_clear()` for cache
-#'   management.
+#' @seealso [metrosp_cache_dir()], [metrosp_cache_enable()],
+#'   [metrosp_cache_list()], and [metrosp_cache_clear()] for cache management.
 #'
-#' @noRd
+#' @examples
+#' # The bundled snapshot, read without touching the network.
+#' head(read_metro_demand("passengers_entrance", source = "bundled"))
+#'
+#' \donttest{
+#' # The most recently published data, cached between calls.
+#' entrance <- read_metro_demand("passengers_entrance")
+#'
+#' # A pinned vintage, so an analysis can name the batch it used.
+#' entrance_sep <- read_metro_demand(
+#'   "passengers_entrance",
+#'   vintage = "2026-09"
+#' )
+#' }
+#'
+#' @export
 read_metro_demand <- function(
   dataset = c(
     "passengers_entrance",
@@ -264,7 +277,7 @@ vintage_tag <- function(vintage) {
 
   cli::cli_abort(c(
     "Unrecognised {.arg vintage}: {.val {vintage}}.",
-    "i" = 'Use {.val latest} or a year-month such as {.val 2026-08}.'
+    "i" = 'Use {.val latest} or a year-month such as {.val 2026-09}.'
   ))
 }
 
