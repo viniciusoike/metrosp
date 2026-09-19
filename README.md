@@ -43,8 +43,9 @@ spatial datasets.
 
 Coverage refers to `passengers_entrance`, which is missing July 2017 for
 every METRO-sourced line. The other datasets start later for some lines.
-The data dictionary vignette gives the coverage window of every dataset
-by line.
+The [Metro Demand
+Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
+article gives the coverage window of every dataset by line.
 
 ## Installation
 
@@ -81,8 +82,12 @@ rest are auxiliary tables that support analysis and visualization.
 
 `passengers_entrance` and the two station datasets count individual
 passengers. `passengers_transported` reports thousands of passengers, as
-the METRÔ source does. For more details on the data, see the [data
-dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html).
+the METRÔ source does. The [data
+dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html)
+defines every column, and the [Metro Demand
+Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
+article covers coverage windows, source defects, and the conventions
+behind the numbers.
 
 ## Data vintage
 
@@ -90,9 +95,24 @@ The bundled data is a fixed snapshot, current through July 2026. It is
 regenerated when the column schema changes, not when new months are
 published, so examples and analyses stay reproducible across package
 versions. METRÔ publishes on an irregular schedule and revises past
-years, so these numbers drift from the source over time. Freshly rebuilt
-data is published on every pipeline run to the [`data-latest`
-release](https://github.com/viniciusoike/metrosp/releases).
+years, so these numbers drift from the source over time.
+
+`read_metro_demand()` reads the newer data. Every pipeline run publishes
+a fresh build of the four demand datasets to the rolling [`data-latest`
+release](https://github.com/viniciusoike/metrosp/releases), plus a dated
+tag that pins that month’s batch.
+
+``` r
+# Latest published data
+entrance <- read_metro_demand("passengers_entrance")
+
+# A pinned monthly batch, so an analysis can name the vintage it used
+entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+```
+
+Downloads go to a temporary directory until you allow a persistent cache
+with `metrosp_cache_enable()`. Columns match the bundled datasets, so
+the same code works with either.
 
 ## Usage
 

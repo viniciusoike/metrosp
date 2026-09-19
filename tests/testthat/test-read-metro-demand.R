@@ -9,7 +9,9 @@
 # Builds a directory shaped like a release: one .rds per dataset plus the
 # manifest.json the reader navigates by.
 local_fake_release <- function(
-  datasets = list(passengers_entrance = data.frame(date = as.Date("2026-01-01"), value = 1)),
+  datasets = list(
+    passengers_entrance = data.frame(date = as.Date("2026-01-01"), value = 1)
+  ),
   corrupt = character(0),
   env = parent.frame()
 ) {
@@ -51,7 +53,9 @@ local_release_source <- function(release, env = parent.frame()) {
   testthat::local_mocked_bindings(
     fetch_url = function(url, path, quiet = FALSE) {
       src <- file.path(release, basename(url))
-      if (!file.exists(src)) stop("404: ", url)
+      if (!file.exists(src)) {
+        stop("404: ", url)
+      }
       dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
       file.copy(src, path, overwrite = TRUE)
       invisible(path)
@@ -96,7 +100,10 @@ test_that("dataset defaults to the first demand dataset", {
 
 test_that("non-demand datasets are rejected with a pointer to the bundled ones", {
   expect_error(read_metro_demand("lines", source = "bundled"), "must be one of")
-  expect_error(read_metro_demand("metro_colors", source = "bundled"), "must be one of")
+  expect_error(
+    read_metro_demand("metro_colors", source = "bundled"),
+    "must be one of"
+  )
   expect_error(read_metro_demand(1, source = "bundled"), "must be one of")
 })
 
@@ -284,7 +291,11 @@ test_that("a stale manifest that cannot be refreshed falls back to the cached co
   unlink(file.path(release, "manifest.json"))
 
   expect_warning(
-    out <- read_metro_demand("passengers_entrance", source = "auto", quiet = TRUE),
+    out <- read_metro_demand(
+      "passengers_entrance",
+      source = "auto",
+      quiet = TRUE
+    ),
     "using the cached copy"
   )
   expect_s3_class(out, "data.frame")

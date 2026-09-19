@@ -73,7 +73,9 @@ publish(
     "current data. See `manifest.json` for the vintage, row counts, date",
     "coverage, and SHA-256 of every asset.",
     "",
-    "Each `.rds` asset reads with `readRDS()` once downloaded.",
+    "Read these from R with `metrosp::read_metro_demand(\"<dataset>\")`,",
+    "which checks the manifest and caches the download. Each `.rds` asset",
+    "also reads with `readRDS()` once downloaded.",
     sep = "\n"
   )
 )
@@ -87,7 +89,11 @@ publish(
       format(Sys.Date(), "%B %Y")
     ),
     "",
-    "Use this tag to hold an analysis to one batch while `data-latest` moves on.",
+    "Use this tag to hold an analysis to one batch while `data-latest` moves on:",
+    sprintf(
+      "`metrosp::read_metro_demand(\"<dataset>\", vintage = \"%s\")`.",
+      format(Sys.Date(), "%Y-%m")
+    ),
     sep = "\n"
   )
 )

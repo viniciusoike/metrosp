@@ -6,7 +6,7 @@
 # user agrees, downloads land in the session's temporary directory and vanish
 # on exit.
 #
-# Unexported for now, alongside read_metro_demand() itself.
+# The four cache functions are exported; the consent helpers below are not.
 
 the <- new.env(parent = emptyenv())
 
@@ -24,7 +24,13 @@ the <- new.env(parent = emptyenv())
 #'
 #' @return The cache directory path, as a string.
 #'
-#' @noRd
+#' @seealso [metrosp_cache_enable()], [metrosp_cache_list()],
+#'   [metrosp_cache_clear()].
+#'
+#' @examples
+#' metrosp_cache_dir()
+#'
+#' @export
 metrosp_cache_dir <- function(create = FALSE) {
   dir <- getOption("metrosp.cache_dir")
 
@@ -59,7 +65,15 @@ metrosp_cache_dir <- function(create = FALSE) {
 #'
 #' @return The resulting cache directory, invisibly.
 #'
-#' @noRd
+#' @seealso [metrosp_cache_dir()], [metrosp_cache_clear()].
+#'
+#' @examples
+#' \dontrun{
+#' metrosp_cache_enable()
+#' metrosp_cache_enable(persist = FALSE)
+#' }
+#'
+#' @export
 metrosp_cache_enable <- function(persist = TRUE) {
   marker <- consent_marker()
 
@@ -71,7 +85,9 @@ metrosp_cache_enable <- function(persist = TRUE) {
       "Caching to {.path {tools::R_user_dir('metrosp', 'cache')}}."
     )
   } else {
-    if (file.exists(marker)) file.remove(marker)
+    if (file.exists(marker)) {
+      file.remove(marker)
+    }
     the$consent <- FALSE
     cli::cli_alert_info("Caching to a temporary directory for this session.")
   }
@@ -85,7 +101,12 @@ metrosp_cache_enable <- function(persist = TRUE) {
 #'   file name, size in bytes, and modification time. Zero rows when the cache
 #'   is empty.
 #'
-#' @noRd
+#' @seealso [metrosp_cache_dir()], [metrosp_cache_clear()].
+#'
+#' @examples
+#' metrosp_cache_list()
+#'
+#' @export
 metrosp_cache_list <- function() {
   dir <- metrosp_cache_dir()
   empty <- data.frame(
@@ -116,12 +137,20 @@ metrosp_cache_list <- function() {
 
 #' Delete cached datasets
 #'
-#' @param vintage Vintage to remove, such as `"latest"` or `"2026-08"`. When
+#' @param vintage Vintage to remove, such as `"latest"` or `"2026-09"`. When
 #'   `NULL`, removes every cached vintage.
 #'
 #' @return The number of files removed, invisibly.
 #'
-#' @noRd
+#' @seealso [metrosp_cache_dir()], [metrosp_cache_list()].
+#'
+#' @examples
+#' \dontrun{
+#' metrosp_cache_clear("2026-09")
+#' metrosp_cache_clear()
+#' }
+#'
+#' @export
 metrosp_cache_clear <- function(vintage = NULL) {
   dir <- metrosp_cache_dir()
   target <- if (is.null(vintage)) dir else file.path(dir, vintage_tag(vintage))

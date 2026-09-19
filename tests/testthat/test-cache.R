@@ -46,8 +46,14 @@ test_that("consent reads the option and the environment variable", {
   the$consent <- NULL
   withr::defer(the$consent <- NULL)
 
-  withr::with_options(list(metrosp.cache = TRUE), expect_true(cache_consented()))
-  withr::with_options(list(metrosp.cache = FALSE), expect_false(cache_consented()))
+  withr::with_options(
+    list(metrosp.cache = TRUE),
+    expect_true(cache_consented())
+  )
+  withr::with_options(
+    list(metrosp.cache = FALSE),
+    expect_false(cache_consented())
+  )
 
   withr::with_options(
     list(metrosp.cache = NULL),
@@ -69,7 +75,9 @@ test_that("create = TRUE makes the directory", {
 })
 
 test_that("listing an empty or absent cache returns zero rows", {
-  withr::local_options(metrosp.cache_dir = file.path(tempdir(), "does-not-exist"))
+  withr::local_options(
+    metrosp.cache_dir = file.path(tempdir(), "does-not-exist")
+  )
   expect_identical(nrow(metrosp_cache_list()), 0L)
 
   withr::local_options(metrosp.cache_dir = withr::local_tempdir())

@@ -163,13 +163,19 @@ check_station_names <- function(x, name) {
 #' well-formed. Lenient by default: METRO publishes irregularly, with observed
 #' gaps of up to two months, so this is meant to catch "months behind", not
 #' "this month is late".
-check_freshness <- function(df, name, max_months_behind = 4, today = Sys.Date()) {
+check_freshness <- function(
+  df,
+  name,
+  max_months_behind = 4,
+  today = Sys.Date()
+) {
   if (!"date" %in% names(df) || nrow(df) == 0) {
     return(character(0))
   }
   months_behind <- as.numeric(
     difftime(today, max(df$date, na.rm = TRUE), units = "days")
-  ) / 30.44
+  ) /
+    30.44
   if (months_behind <= max_months_behind) {
     return(character(0))
   }
@@ -206,8 +212,14 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
     check_columns(
       df,
       c(
-        "date", "year", "line_number", "line_name_pt", "line_name",
-        "metric", "metric_abb", "value"
+        "date",
+        "year",
+        "line_number",
+        "line_name_pt",
+        "line_name",
+        "metric",
+        "metric_abb",
+        "value"
       ),
       name
     ),
@@ -246,8 +258,12 @@ check_station_averages <- function(df, name = "station_averages") {
     check_columns(
       df,
       c(
-        "date", "station_name", "avg_passenger", "line_number",
-        "line_name_pt", "line_name"
+        "date",
+        "station_name",
+        "avg_passenger",
+        "line_number",
+        "line_name_pt",
+        "line_name"
       ),
       name
     ),
@@ -273,8 +289,14 @@ check_station_daily <- function(df, name = "station_daily") {
     check_columns(
       df,
       c(
-        "date", "year", "line_number", "line_name_pt", "line_name",
-        "station_code", "station_name", "passengers"
+        "date",
+        "year",
+        "line_number",
+        "line_name_pt",
+        "line_name",
+        "station_code",
+        "station_name",
+        "passengers"
       ),
       name
     ),

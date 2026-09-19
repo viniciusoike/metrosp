@@ -287,7 +287,11 @@ refresh_historic_passengers <- function(
 
 #' Encoding of one raw monthly station file. Two 2018 exports are UTF-8.
 stn_avg_month_encoding <- function(path) {
-  if (str_detect(path, "(Junho - 2018)|(Julho - 2018)")) "UTF-8" else "ISO-8859-1"
+  if (str_detect(path, "(Junho - 2018)|(Julho - 2018)")) {
+    "UTF-8"
+  } else {
+    "ISO-8859-1"
+  }
 }
 
 #' Read one monthly station-averages file into a wide frame of side-by-side
@@ -377,7 +381,10 @@ import_stn_avg_monthly <- function(year) {
 #' the parsing; this only maps the result onto the historic long schema.
 import_stn_avg_2016 <- function() {
   clean_stn_avg(read_stn_avg(path_2016("Esta")), year = 2016) |>
-    left_join(select(dim_line, line_number, line_name_full), by = "line_number") |>
+    left_join(
+      select(dim_line, line_number, line_name_full),
+      by = "line_number"
+    ) |>
     mutate(
       month = dim_month$month_name[as.integer(format(date, "%m"))],
       name_station = station_name,

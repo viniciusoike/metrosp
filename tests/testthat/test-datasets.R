@@ -13,7 +13,10 @@ test_that("all datasets load as data frames", {
 })
 
 test_that("passengers_entrance satisfies its structural invariants", {
-  expect_equal(check_passengers_entrance(metrosp::passengers_entrance), character(0))
+  expect_equal(
+    check_passengers_entrance(metrosp::passengers_entrance),
+    character(0)
+  )
 })
 
 test_that("passengers_transported satisfies its structural invariants", {
