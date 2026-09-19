@@ -222,11 +222,10 @@ split_line_labels <- function(row) {
   labels[nzchar(labels)]
 }
 
-#' Line number behind a raw block label. "REDE" carries no digits: it is the
-#' network total, which the pipeline numbers 99.
+#' Line number behind a raw block label. Labels without a line number, such as
+#' the published system total, return NA and are discarded by the cleaners.
 label_line_number <- function(labels) {
-  num <- suppressWarnings(as.integer(stringr::str_extract(labels, "\\d{1,2}")))
-  if_else(is.na(num), 99L, num)
+  suppressWarnings(as.integer(stringr::str_extract(labels, "\\d{1,2}")))
 }
 
 # --- Passengers by line (annual files: 2016 and 2020-present) -----------------
@@ -299,6 +298,7 @@ clean_psg_line <- function(dat, year) {
       year = local(year),
       date = as.Date(paste(year, month_num, "01", sep = "-"))
     ) |>
+    filter(!is.na(line_number)) |>
     select(all_of(.cols_psg_entrance))
 }
 

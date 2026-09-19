@@ -50,6 +50,22 @@ check_no_na <- function(df, cols, name) {
   problems
 }
 
+check_allowed_values <- function(df, col, allowed, name) {
+  if (!col %in% names(df)) {
+    return(character(0))
+  }
+  unexpected <- setdiff(unique(df[[col]]), allowed)
+  if (length(unexpected) == 0) {
+    return(character(0))
+  }
+  sprintf(
+    "%s$%s: unexpected value(s) %s",
+    name,
+    col,
+    paste(unexpected, collapse = ", ")
+  )
+}
+
 check_non_negative <- function(df, col, name) {
   if (!col %in% names(df)) {
     return(character(0))
@@ -237,6 +253,12 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
     # metric labels come from a lookup keyed on Portuguese text; an unmatched
     # key leaves them NA rather than erroring, so assert them directly.
     check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
+    check_allowed_values(
+      df,
+      "line_number",
+      c(1L, 2L, 3L, 4L, 5L, 15L),
+      name
+    ),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)
@@ -247,6 +269,7 @@ check_passengers_transported <- function(df, name = "passengers_transported") {
   c(
     check_columns(df, c("date", "value", "line_number"), name),
     check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
+    check_allowed_values(df, "line_number", c(1L, 2L, 3L, 5L, 15L), name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)

@@ -263,8 +263,8 @@ Line numbers and their Portuguese/English names are already included as columns 
 
 The METRO source files define these terms as:
 
-- **Entrada de passageiros** (*passenger entries*): passengers entering through the turnstile gates (*linha de bloqueios*). This is a station-level measurement.
-- **Passageiros transportados** (*passengers transported*): the sum of turnstile entries **plus** transfer passengers between lines at interchange stations (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). This is a system-level measurement that better captures total demand but double-counts passengers who transfer.
+- **Entrada de passageiros** (*passenger entries*): passengers entering through the turnstile gates (*linha de bloqueios*). A passenger enters once, so summing lines gives a network entry count.
+- **Passageiros transportados** (*passengers transported*): the sum of turnstile entries **plus** transfer passengers between lines at interchange stations (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). It measures demand carried by each line. Summing lines double-counts interchange journeys and does not give a count of unique network passengers.
 
 The original Portuguese footnote reads:
 
@@ -326,9 +326,9 @@ The `station_code` column (three-letter abbreviation) is only available for METR
 
 ## 2017 source formats {#source-formats-2017}
 
-The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the line and network totals printed beside them.
+The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the published totals.
 
-Two defects in the source survive the transcription. July 2017 has no entrance table: the file published under that name repeats the transported figures, so Lines 1, 2, 3, 5, and 15 have no entrance value that month. June 2017 reprints May's network column in `passengers_transported`, so the network total (`line_number = 99`) is `NA` for that month while the per-line values stand.
+One defect in the source survives the transcription. July 2017 has no entrance table: the file published under that name repeats the transported figures, so Lines 1, 2, 3, 5, and 15 have no entrance value that month.
 
 If a 2017 figure looks wrong, please open an issue.
 

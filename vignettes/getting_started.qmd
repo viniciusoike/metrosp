@@ -119,11 +119,11 @@ This dataset is identified by month (`date`), line (`line_number`, `line_name`),
 glimpse(passengers_entrance)
 ```
 
-Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_number = 99`). For most uses, it's best to filter out this line.
+Because a passenger enters through a turnstile only once, summing entries across lines gives the corresponding network entry count. Transfers do not create another entry.
 
 ```{r}
 total_entrance <- passengers_entrance |>
-  filter(metric_abb == "total", line_number != 99)
+  filter(metric_abb == "total")
 ```
 
 The plot shows the total monthly passenger entrances by metro line. Line 4 starts in 2012 and the other lines in January 2016. July 2017 is the one gap, a month METRO never published an entrance table for.
@@ -154,11 +154,11 @@ Coverage is limited to the METRÔ-operated system. Line 4 never appears, and Lin
 glimpse(passengers_transported)
 ```
 
-Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_number = 99`). For most uses, it's best to filter out this line.
+A transported passenger is counted on every line used. Summing the lines therefore double-counts interchange journeys and should not be interpreted as the number of unique passengers in the network.
 
 ```{r}
 daily_avg <- passengers_transported |>
-  filter(metric_abb == "mdu", line_number != 99)
+  filter(metric_abb == "mdu")
 ```
 
 The plot below shows the daily average (business days) passengers transported by metro line. The Lilac panel stops in 2018, when Line 5 left the METRÔ reports.

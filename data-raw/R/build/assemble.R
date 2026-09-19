@@ -42,6 +42,7 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     mutate(value = value * 1000)
 
   passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
+    filter(!is.na(line_number), line_number != 99L) |>
     drop_trailing_na(value) |>
     select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)
@@ -72,6 +73,7 @@ assemble_transported <- function(psg_historic, transported_current) {
     left_join(metro_lines, by = join_by(line_number))
 
   passengers_transported <- bind_rows(transported_hist, transported_20) |>
+    filter(!is.na(line_number), line_number != 99L) |>
     drop_trailing_na(value) |>
     select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)

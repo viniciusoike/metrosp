@@ -8,8 +8,7 @@
 A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
-\item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
-the network total (integer).}
+\item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 \item{metric_abb}{Abbreviated metric code (character). One of:
 \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 \code{"max"}.}
@@ -51,17 +50,20 @@ January 2012–2026.
 \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
 January 2016–July 2018, except July 2017; Insper Dataverse,
 August 2018–2026.
-\item Network total (\code{line_number = 99}): METRO SP transparency
-portal only; may not be available for all years.
 }
 
 METRO published January–September 2017 only as PDFs, with no
 machine-readable equivalent. Those months were transcribed from the
-reports and reconciled against the printed line and network totals. July
+reports and reconciled against the published totals. July
 2017 has no entrance table at all, because the file METRO published under
-that name repeats the transported figures. Lines 1, 2, 3, 5, and 15 and
-the network total therefore carry no value for that month; Line 4 comes
-from the Dataverse and is unaffected.
+that name repeats the transported figures. Lines 1, 2, 3, 5, and 15
+therefore carry no value for that month; Line 4 comes from the Dataverse
+and is unaffected.
+
+Summing a metric across lines gives the corresponding network entry count:
+each passenger enters through a turnstile once, and transfers do not count
+as new entries. See the Metro Demand Data article on the pkgdown site for
+the detailed counting conventions.
 
 Metrics:
 \itemize{
