@@ -92,7 +92,7 @@ brown <- tibble(
 find_slope(c(0.25, -1), c(2, 0.5))
 compute_y(1, c(-0.5, 3.15), find_slope(c(0, 4.5), c(-1.8, 2.5)))
 
-lwd = 1.5
+lwd <- 1.5
 
 base_plot <- ggplot() +
   stat_connect(

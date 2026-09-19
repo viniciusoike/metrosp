@@ -85,7 +85,9 @@ metrosp_cache_enable <- function(persist = TRUE) {
       "Caching to {.path {tools::R_user_dir('metrosp', 'cache')}}."
     )
   } else {
-    if (file.exists(marker)) file.remove(marker)
+    if (file.exists(marker)) {
+      file.remove(marker)
+    }
     the$consent <- FALSE
     cli::cli_alert_info("Caching to a temporary directory for this session.")
   }
