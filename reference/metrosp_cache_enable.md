@@ -25,15 +25,14 @@ The resulting cache directory, invisibly.
 
 ## See also
 
-Other cache:
-[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md),
 [`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md),
-[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
+[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md).
 
 ## Examples
 
 ``` r
 if (FALSE) { # \dontrun{
 metrosp_cache_enable()
+metrosp_cache_enable(persist = FALSE)
 } # }
 ```

@@ -13,7 +13,7 @@ rebuilt from the upstream sources on every pipeline run."><meta property="og:ima
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,9 @@ rebuilt from the upstream sources on every pipeline run."><meta property="og:ima
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
-    <li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
+    <li><a class="dropdown-item" href="../articles/metro-demand-data.html">Metro Demand Data</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -83,7 +84,7 @@ fails.</p></li>
 
 <dt id="arg-vintage">vintage<a class="anchor" aria-label="anchor" href="#arg-vintage"></a></dt>
 <dd><p>Which published batch to read. <code>"latest"</code> tracks the rolling
-release; a year-month string such as <code>"2026-08"</code> pins an immutable batch.</p></dd>
+release; a year-month string such as <code>"2026-09"</code> pins an immutable batch.</p></dd>
 
 
 <dt id="arg-cache">cache<a class="anchor" aria-label="anchor" href="#arg-cache"></a></dt>
@@ -110,15 +111,14 @@ installed and skip verification otherwise.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="metrosp_cache_dir.html">metrosp_cache_dir()</a></code> and <code><a href="metrosp_cache_clear.html">metrosp_cache_clear()</a></code> for cache
-management.</p></div>
+    <div class="dont-index"><p><code><a href="metrosp_cache_dir.html">metrosp_cache_dir()</a></code>, <code><a href="metrosp_cache_enable.html">metrosp_cache_enable()</a></code>,
+<code><a href="metrosp_cache_list.html">metrosp_cache_list()</a></code>, and <code><a href="metrosp_cache_clear.html">metrosp_cache_clear()</a></code> for cache management.</p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># The bundled snapshot needs no network access.</span></span></span>
-<span class="r-in"><span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"passengers_entrance"</span>, source <span class="op">=</span> <span class="st">"bundled"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">entrance</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># The bundled snapshot, read without touching the network.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"passengers_entrance"</span>, source <span class="op">=</span> <span class="st">"bundled"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   date       line_number metric_abb    value metric          metric_pt line_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
@@ -130,13 +130,19 @@ management.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 2012-02-01           4 max         <span style="text-decoration: underline;">131</span>405  Daily Peak      Máxima D… Yellow   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: line_name_pt &lt;chr&gt;, year &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># The most recently published build.</span></span></span>
-<span class="r-in"><span><span class="va">daily</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"station_daily"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co"># The most recently published data, cached between calls.</span></span></span>
+<span class="r-in"><span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"passengers_entrance"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Downloading <span style="color: #0000BB;">passengers_entrance.rds</span> (14.0 KB).</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># A pinned vintage, for a reproducible analysis.</span></span></span>
-<span class="r-in"><span><span class="va">daily_aug</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"station_daily"</span>, vintage <span class="op">=</span> <span class="st">"2026-08"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># A pinned vintage, so an analysis can name the batch it used.</span></span></span>
+<span class="r-in"><span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"passengers_entrance"</span>,</span></span>
+<span class="r-in"><span>  vintage <span class="op">=</span> <span class="st">"2026-09"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Downloading <span style="color: #0000BB;">passengers_entrance.rds</span> (14.0 KB).</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

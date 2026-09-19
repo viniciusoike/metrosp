@@ -31,8 +31,9 @@ spatial datasets.
 
 Coverage refers to `passengers_entrance`, which is missing July 2017 for
 every METRO-sourced line. The other datasets start later for some lines.
-The data dictionary vignette gives the coverage window of every dataset
-by line.
+The [Metro Demand
+Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
+article gives the coverage window of every dataset by line.
 
 ## Installation
 
@@ -71,8 +72,12 @@ rest are auxiliary tables that support analysis and visualization.
 
 `passengers_entrance` and the two station datasets count individual
 passengers. `passengers_transported` reports thousands of passengers, as
-the METRÔ source does. For more details on the data, see the [data
-dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html).
+the METRÔ source does. The [data
+dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html)
+defines every column, and the [Metro Demand
+Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
+article covers coverage windows, source defects, and the conventions
+behind the numbers.
 
 ## Data vintage
 
@@ -80,9 +85,27 @@ The bundled data is a fixed snapshot, current through July 2026. It is
 regenerated when the column schema changes, not when new months are
 published, so examples and analyses stay reproducible across package
 versions. METRÔ publishes on an irregular schedule and revises past
-years, so these numbers drift from the source over time. Freshly rebuilt
-data is published on every pipeline run to the [`data-latest`
-release](https://github.com/viniciusoike/metrosp/releases).
+years, so these numbers drift from the source over time.
+
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+reads the newer data. Every pipeline run publishes a fresh build of the
+four demand datasets to the rolling [`data-latest`
+release](https://github.com/viniciusoike/metrosp/releases), plus a dated
+tag that pins that month’s batch.
+
+``` r
+
+# Latest published data
+entrance <- read_metro_demand("passengers_entrance")
+
+# A pinned monthly batch, so an analysis can name the vintage it used
+entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+```
+
+Downloads go to a temporary directory until you allow a persistent cache
+with
+[`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md).
+Columns match the bundled datasets, so the same code works with either.
 
 ## Usage
 
@@ -133,14 +156,10 @@ issue](https://github.com/viniciusoike/metrosp/issues/new).
 
 # Package index
 
-## All functions
+## Demand datasets
 
-- [`calendar_spo`](https://viniciusoike.github.io/metrosp/reference/calendar_spo.md)
-  : São Paulo Holiday and Business-Day Calendar
-- [`lines`](https://viniciusoike.github.io/metrosp/reference/lines.md) :
-  Metro and Train Line Routes
-- [`metro_colors`](https://viniciusoike.github.io/metrosp/reference/metro_colors.md)
-  : Metro SP Official Line Colors
+Passenger counts by line and by station.
+
 - [`passengers_entrance`](https://viniciusoike.github.io/metrosp/reference/passengers_entrance.md)
   : Passengers Entering Metro SP Stations by Line
 - [`passengers_transported`](https://viniciusoike.github.io/metrosp/reference/passengers_transported.md)
@@ -149,16 +168,45 @@ issue](https://github.com/viniciusoike/metrosp/issues/new).
   : Average Weekday Passenger Entries by Station
 - [`station_daily`](https://viniciusoike.github.io/metrosp/reference/station_daily.md)
   : Daily Passenger Entries by Metro SP Station
-- [`station_inauguration`](https://viniciusoike.github.io/metrosp/reference/station_inauguration.md)
-  : Station Commercial Opening Dates
+
+## Spatial and reference datasets
+
+Geometries and lookup tables.
+
+- [`lines`](https://viniciusoike.github.io/metrosp/reference/lines.md) :
+  Metro and Train Line Routes
 - [`stations`](https://viniciusoike.github.io/metrosp/reference/stations.md)
   : Metro and Train Station Locations
+- [`station_inauguration`](https://viniciusoike.github.io/metrosp/reference/station_inauguration.md)
+  : Station Commercial Opening Dates
+- [`calendar_spo`](https://viniciusoike.github.io/metrosp/reference/calendar_spo.md)
+  : São Paulo Holiday and Business-Day Calendar
+- [`metro_colors`](https://viniciusoike.github.io/metrosp/reference/metro_colors.md)
+  : Metro SP Official Line Colors
+
+## Published data
+
+Read data newer than the bundled snapshot, and manage the download
+cache.
+
+- [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+  : Read Metro SP demand data
+- [`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md)
+  : Where metrosp stores downloaded data
+- [`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md)
+  : Allow metrosp to cache data across sessions
+- [`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
+  : List cached datasets
+- [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
+  : Delete cached datasets
 
 # Articles
 
-### All vignettes
+### Articles
 
-- [Data
-  Dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.md):
 - [Getting
   Started](https://viniciusoike.github.io/metrosp/articles/getting_started.md):
+- [Data
+  Dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.md):
+- [Metro Demand
+  Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.md):

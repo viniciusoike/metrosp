@@ -30,14 +30,13 @@ once consent is on record, then a temporary directory.
 
 ## See also
 
-Other cache:
-[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md),
 [`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md),
-[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
+[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md),
+[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md).
 
 ## Examples
 
 ``` r
 metrosp_cache_dir()
-#> [1] "/tmp/Rtmp0u4APV/metrosp-cache"
+#> [1] "/tmp/Rtmpy0EFlH/metrosp-cache"
 ```

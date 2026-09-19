@@ -1,5 +1,35 @@
 # Changelog
 
+## metrosp 1.3.0
+
+### New features
+
+- Added
+  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md),
+  which reads the four demand datasets from the published GitHub
+  releases instead of the bundled snapshot. `vintage` pins a dated
+  monthly batch, and `source` chooses between the cache, a download, and
+  the bundled data.
+- Added
+  [`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md),
+  [`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md),
+  [`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md),
+  and
+  [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md).
+  Downloads land in a session-temporary directory until you allow a
+  persistent cache.
+
+### Documentation
+
+- Split the data dictionary in two. The vignette now defines the columns
+  and types of every dataset; the new “Metro Demand Data” article
+  carries the coverage windows by line, the known source defects, and
+  the counting conventions.
+- Added the published-data workflow to the getting started vignette and
+  the README. The examples still run on the bundled datasets.
+
+The bundled snapshot is unchanged in this release.
+
 ## metrosp 1.2.1
 
 CRAN release: 2026-09-03

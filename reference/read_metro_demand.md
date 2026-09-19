@@ -43,7 +43,7 @@ read_metro_demand(
 - vintage:
 
   Which published batch to read. `"latest"` tracks the rolling release;
-  a year-month string such as `"2026-08"` pins an immutable batch.
+  a year-month string such as `"2026-09"` pins an immutable batch.
 
 - cache:
 
@@ -81,7 +81,9 @@ installed and skip verification otherwise.
 
 ## See also
 
-[`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md)
+[`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md),
+[`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md),
+[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md),
 and
 [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
 for cache management.
@@ -89,9 +91,8 @@ for cache management.
 ## Examples
 
 ``` r
-# The bundled snapshot needs no network access.
-entrance <- read_metro_demand("passengers_entrance", source = "bundled")
-head(entrance)
+# The bundled snapshot, read without touching the network.
+head(read_metro_demand("passengers_entrance", source = "bundled"))
 #> # A tibble: 6 × 9
 #>   date       line_number metric_abb    value metric          metric_pt line_name
 #>   <date>           <dbl> <chr>         <dbl> <chr>           <chr>     <chr>    
@@ -103,11 +104,16 @@ head(entrance)
 #> 6 2012-02-01           4 max         131405  Daily Peak      Máxima D… Yellow   
 #> # ℹ 2 more variables: line_name_pt <chr>, year <dbl>
 
-if (FALSE) { # \dontrun{
-# The most recently published build.
-daily <- read_metro_demand("station_daily")
+# \donttest{
+# The most recently published data, cached between calls.
+entrance <- read_metro_demand("passengers_entrance")
+#> ℹ Downloading passengers_entrance.rds (14.0 KB).
 
-# A pinned vintage, for a reproducible analysis.
-daily_aug <- read_metro_demand("station_daily", vintage = "2026-08")
-} # }
+# A pinned vintage, so an analysis can name the batch it used.
+entrance_sep <- read_metro_demand(
+  "passengers_entrance",
+  vintage = "2026-09"
+)
+#> ℹ Downloading passengers_entrance.rds (14.0 KB).
+# }
 ```

@@ -8,9 +8,10 @@ data. The datasets are compact and the sources publish irregularly, so
 the package ships the data in a “lazy” format. All data comes
 prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through July 2026. Data
-newer than the snapshot is published to the `data-latest` [GitHub
-release](https://github.com/viniciusoike/metrosp/releases).
+The bundled data is a fixed snapshot, current through July 2026.
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+reads newer data, published separately on every pipeline run (see [Newer
+data](#newer-data)).
 
 ``` r
 
@@ -100,6 +101,35 @@ glimpse(passengers_entrance)
 
 All datasets are returned as `tibble` so using the `dplyr` package is
 recommended.
+
+### Newer data
+
+The bundled snapshot stays put across package versions, so examples and
+analyses remain reproducible. Fresh data goes somewhere else: every
+pipeline run publishes the four demand datasets to a GitHub release.
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+reads from there.
+
+``` r
+
+# Latest published data
+entrance <- read_metro_demand("passengers_entrance")
+
+# A pinned monthly batch, named in the analysis that used it
+entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+```
+
+Downloads go to a temporary directory until you allow a persistent cache
+with
+[`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md);
+[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
+and
+[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
+manage it afterwards. Columns match the bundled datasets, so code
+written against one works with the other.
+
+The rest of this tutorial uses the bundled data, which needs no
+download.
 
 ## The datasets
 
@@ -201,7 +231,7 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
   theme_series
 ```
 
-![](getting_started_files/figure-html/unnamed-chunk-7-1.png)
+![](getting_started_files/figure-html/unnamed-chunk-8-1.png)
 
 #### Transported
 
@@ -262,7 +292,7 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
   theme_series
 ```
 
-![](getting_started_files/figure-html/unnamed-chunk-10-1.png)
+![](getting_started_files/figure-html/unnamed-chunk-11-1.png)
 
 ### Station Averages
 
@@ -308,7 +338,7 @@ ggplot(line4st, aes(x = date, y = avg_passenger)) +
   theme_series
 ```
 
-![](getting_started_files/figure-html/unnamed-chunk-12-1.png)
+![](getting_started_files/figure-html/unnamed-chunk-13-1.png)
 
 ### Station Daily
 
@@ -362,4 +392,4 @@ ggplot(line4st_daily, aes(x = date, y = passengers)) +
   theme_series
 ```
 
-![](getting_started_files/figure-html/unnamed-chunk-14-1.png)
+![](getting_started_files/figure-html/unnamed-chunk-15-1.png)
