@@ -222,10 +222,24 @@ split_line_labels <- function(row) {
   labels[nzchar(labels)]
 }
 
-#' Line number behind a raw block label. Labels without a line number, such as
-#' the published system total, return NA and are discarded by the cleaners.
+#' Line number behind a raw block label. The published REDE total is retained
+#' as line 99 in the source-faithful intermediate data and removed at assembly.
 label_line_number <- function(labels) {
-  suppressWarnings(as.integer(stringr::str_extract(labels, "\\d{1,2}")))
+  normalized <- stringr::str_to_upper(stringr::str_squish(labels))
+  is_total <- normalized == "REDE"
+  line_number <- suppressWarnings(
+    as.integer(stringr::str_extract(labels, "\\d{1,2}"))
+  )
+
+  unknown <- is.na(line_number) & !is_total
+  if (any(unknown)) {
+    cli::cli_abort(
+      "Unrecognized line label{?s}: {.val {unique(labels[unknown])}}."
+    )
+  }
+
+  line_number[is_total] <- 99L
+  return(line_number)
 }
 
 # --- Passengers by line (annual files: 2016 and 2020-present) -----------------
@@ -298,7 +312,6 @@ clean_psg_line <- function(dat, year) {
       year = local(year),
       date = as.Date(paste(year, month_num, "01", sep = "-"))
     ) |>
-    filter(!is.na(line_number)) |>
     select(all_of(.cols_psg_entrance))
 }
 

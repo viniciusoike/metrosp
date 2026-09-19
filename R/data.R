@@ -47,10 +47,11 @@
 #' therefore carry no value for that month; Line 4 comes from the Dataverse
 #' and is unaffected.
 #'
-#' Summing a metric across lines gives the corresponding network entry count:
-#' each passenger enters through a turnstile once, and transfers do not count
-#' as new entries. See the Metro Demand Data article on the pkgdown site for
-#' the detailed counting conventions.
+#' Summing \code{total}, \code{mdu}, \code{msa}, or \code{mdo} across lines
+#' gives the corresponding network entry figure. Do not sum \code{max}:
+#' individual lines may peak on different days. See the Metro Demand Data
+#' article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
 #' Metrics:
 #' \itemize{
@@ -125,8 +126,8 @@
 #' transferred between lines at an interchange station, so transported counts
 #' run above entry counts for the same line and month. Do not sum this dataset
 #' to estimate unique network passengers: a journey using multiple lines is
-#' counted once on each line. See the Metro Demand Data article on the pkgdown
-#' site for the detailed counting conventions.
+#' counted once on each line. See the Metro Demand Data article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
 #' All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 #' is not available in this dataset — the Insper Dataverse source does not

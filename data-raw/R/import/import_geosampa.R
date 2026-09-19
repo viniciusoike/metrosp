@@ -25,6 +25,20 @@ standardize_company <- function(x) {
   )
 }
 
+# GeoSampa still files Line 5 under METRO. Its geometries have no time
+# dimension, so use the current operator unconditionally.
+correct_line_operator <- function(dat) {
+  dat <- dat |>
+    mutate(
+      company_name = if_else(
+        type == "metro" & line_number == 5L,
+        "ViaMobilidade",
+        company_name
+      )
+    )
+  return(dat)
+}
+
 standardize_stations <- function(x) {
   dplyr::replace_values(
     x,
@@ -191,14 +205,8 @@ build_geosampa <- function(
   train_lines <- purrr::map(train_lines, geo_clean_lines)
   tab_train_lines <- bind_rows(train_lines, .id = "status")
 
-  lines <- bind_rows(tab_metro_lines, tab_train_lines) |>
-    mutate(
-      company_name = if_else(
-        type == "metro" & line_number == 5L,
-        "ViaMobilidade",
-        company_name
-      )
-    )
+  lines <- bind_rows(tab_metro_lines, tab_train_lines)
+  lines <- correct_line_operator(lines)
 
   # --- Metro stations (custom current/future ordering) ---
   path_files <- list.files(dir_geo, pattern = "estacaometro", full.names = TRUE)
@@ -244,14 +252,8 @@ build_geosampa <- function(
   stations <- bind_rows(
     list("train" = tab_train_stations, "metro" = tab_metro_stations),
     .id = "type"
-  ) |>
-    mutate(
-      company_name = if_else(
-        type == "metro" & line_number == 5L,
-        "ViaMobilidade",
-        company_name
-      )
-    )
+  )
+  stations <- correct_line_operator(stations)
 
   stations <- stations |>
     arrange(type, line_number, station_name)

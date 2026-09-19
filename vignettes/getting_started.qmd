@@ -119,7 +119,7 @@ This dataset is identified by month (`date`), line (`line_number`, `line_name`),
 glimpse(passengers_entrance)
 ```
 
-Because a passenger enters through a turnstile only once, summing entries across lines gives the corresponding network entry count. Transfers do not create another entry.
+Because a passenger enters through a turnstile only once, summing `total`, `mdu`, `msa`, or `mdo` across lines gives the corresponding network entry figure. Do not sum `max`: individual lines may peak on different days.
 
 ```{r}
 total_entrance <- passengers_entrance |>

@@ -50,19 +50,19 @@ check_no_na <- function(df, cols, name) {
   problems
 }
 
-check_allowed_values <- function(df, col, allowed, name) {
+check_absent_values <- function(df, col, disallowed, name) {
   if (!col %in% names(df)) {
     return(character(0))
   }
-  unexpected <- setdiff(unique(df[[col]]), allowed)
-  if (length(unexpected) == 0) {
+  present <- intersect(unique(df[[col]]), disallowed)
+  if (length(present) == 0) {
     return(character(0))
   }
   sprintf(
-    "%s$%s: unexpected value(s) %s",
+    "%s$%s: disallowed value(s) %s",
     name,
     col,
-    paste(unexpected, collapse = ", ")
+    paste(present, collapse = ", ")
   )
 }
 
@@ -252,13 +252,12 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
     ),
     # metric labels come from a lookup keyed on Portuguese text; an unmatched
     # key leaves them NA rather than erroring, so assert them directly.
-    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
-    check_allowed_values(
+    check_no_na(
       df,
-      "line_number",
-      c(1L, 2L, 3L, 4L, 5L, 15L),
+      c("date", "line_number", "metric_abb", "metric", "metric_pt"),
       name
     ),
+    check_absent_values(df, "line_number", 99L, name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)
@@ -268,8 +267,12 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
 check_passengers_transported <- function(df, name = "passengers_transported") {
   c(
     check_columns(df, c("date", "value", "line_number"), name),
-    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
-    check_allowed_values(df, "line_number", c(1L, 2L, 3L, 5L, 15L), name),
+    check_no_na(
+      df,
+      c("date", "line_number", "metric_abb", "metric", "metric_pt"),
+      name
+    ),
+    check_absent_values(df, "line_number", 99L, name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
     check_rows(df, 1L, name)
@@ -299,7 +302,7 @@ check_station_averages <- function(df, name = "station_averages") {
       ),
       name
     ),
-    check_no_na(df, "date", name),
+    check_no_na(df, c("date", "line_number"), name),
     check_non_negative(df, "avg_passenger", name),
     check_no_duplicates(df, c("date", "line_number", "station_name"), name),
     check_rows(df, 1L, name),
@@ -335,7 +338,11 @@ check_station_daily <- function(df, name = "station_daily") {
       ),
       name
     ),
-    check_no_na(df, c("date", "station_name", "passengers"), name),
+    check_no_na(
+      df,
+      c("date", "line_number", "station_name", "passengers"),
+      name
+    ),
     check_non_negative(df, "passengers", name),
     check_no_duplicates(df, c("date", "line_number", "station_name"), name),
     check_rows(df, 100000L, name),
@@ -351,6 +358,30 @@ check_station_daily <- function(df, name = "station_daily") {
   problems
 }
 
+check_line_5_operator <- function(df, name) {
+  needed <- c("type", "line_number", "company_name")
+  if (!all(needed %in% names(df))) {
+    return(character(0))
+  }
+
+  line_5 <- df$type %in% "metro" & df$line_number %in% 5L
+  wrong <- line_5 &
+    (is.na(df$company_name) | df$company_name != "ViaMobilidade")
+  n <- sum(wrong)
+  if (n == 0) {
+    return(character(0))
+  }
+  sprintf("%s: %d Line 5 row(s) have the wrong operator", name, n)
+}
+
+check_lines <- function(df, name = "lines") {
+  check_line_5_operator(df, name)
+}
+
+check_stations <- function(df, name = "stations") {
+  check_line_5_operator(df, name)
+}
+
 #' Run every dataset check over a named list of built datasets.
 #' Returns a named list of character vectors (empty ones included).
 check_all_datasets <- function(datasets) {
@@ -358,7 +389,9 @@ check_all_datasets <- function(datasets) {
     passengers_entrance = check_passengers_entrance,
     passengers_transported = check_passengers_transported,
     station_averages = check_station_averages,
-    station_daily = check_station_daily
+    station_daily = check_station_daily,
+    lines = check_lines,
+    stations = check_stations
   )
 
   out <- list()

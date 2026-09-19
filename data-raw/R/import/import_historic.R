@@ -90,8 +90,7 @@ clean_psg_month <- function(dat) {
       names_transform = as.integer,
       values_to = "value",
       values_transform = as_numeric_pt
-    ) |>
-    filter(!is.na(line_number))
+    )
 }
 
 #' Import one year of monthly files for one measure.
@@ -202,7 +201,6 @@ import_psg_line_2017_pdf <- function(variable = "transport") {
       metric_abb = map_metric(metric),
       line_number = label_line_number(line_label)
     ) |>
-    filter(!is.na(line_number)) |>
     select(date, line_number, metric_abb, value)
 }
 

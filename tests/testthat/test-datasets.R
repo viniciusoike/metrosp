@@ -34,6 +34,20 @@ test_that("station_daily satisfies its structural invariants", {
   expect_equal(check_station_daily(metrosp::station_daily), character(0))
 })
 
+test_that("line checks reject system totals without fixing the line roster", {
+  future_line <- data.frame(line_number = c(1L, 6L))
+  system_total <- data.frame(line_number = c(1L, 99L))
+
+  expect_equal(
+    check_absent_values(future_line, "line_number", 99L, "demand"),
+    character(0)
+  )
+  expect_match(
+    check_absent_values(system_total, "line_number", 99L, "demand"),
+    "99"
+  )
+})
+
 test_that("station_inauguration station names carry no footnote markers", {
   # Not covered by check_station_names(): this table is hand-maintained and
   # holds only the stations that have an inauguration record, so the

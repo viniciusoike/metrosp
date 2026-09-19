@@ -49,8 +49,8 @@ A transported passenger is one who crossed a turnstile plus one who
 transferred between lines at an interchange station, so transported counts
 run above entry counts for the same line and month. Do not sum this dataset
 to estimate unique network passengers: a journey using multiple lines is
-counted once on each line. See the Metro Demand Data article on the pkgdown
-site for the detailed counting conventions.
+counted once on each line. See the Metro Demand Data article for details:
+\url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 
 All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 is not available in this dataset — the Insper Dataverse source does not
