@@ -43,7 +43,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          # Windows: the quarto::html vignette engine's subprocess can't see
+          # the temp library R CMD build installs into (quarto-dev/quarto-r#217),
+          # so pre-install the package into the default library.
+          extra-packages: any::rcmdcheck, local::.
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
