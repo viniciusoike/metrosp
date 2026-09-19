@@ -21,11 +21,9 @@ knitr::opts_chunk$set(
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-This package distributes demand data from the São Paulo metro system inside R. The data covers 2012 to 2026 and comes from several operators. Most of it is already [public](https://transparencia.metrosp.com.br/dataset/demanda), but it is scattered across poorly structured CSV and PDF files.
+This package distributes demand data from the São Paulo metro system in R. The data covers 2012 to 2026 and comes from several operators. Most of it is already [public](https://transparencia.metrosp.com.br/dataset/demanda), but it's scattered across poorly structured CSV and PDF files.
 
-METRÔ publishes lines 1, 2, 3, 15, and line 5 through July 2018 on its open data portal. Line 4, and line 5 from August 2018 onward, come from the Insper Dataverse.
-
-All datasets are `tibble` objects bundled with the package, so they load without a download. The data is cleaned and standardized to make it easier to work with.
+The data is cleaned and standardized to make it easier to work with. The datasets are updated weekly and are accessible through `read_metro_demand()`.
 
 ## Line coverage
 
@@ -44,7 +42,7 @@ Coverage refers to `passengers_entrance`, which is missing July 2017 for every M
 
 ## Installation
 
-Currently, the best option is to install the package from R-Universe which is more up to date.
+For the most up-to-date version, install the package from R-Universe.
 
 ```r
 install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
@@ -56,29 +54,22 @@ The package is also available on CRAN.
 install.packages("metrosp")
 ```
 
-## Datasets
+## Core datasets
 
-Four datasets carry the demand data: `passengers_entrance`, `passengers_transported`, `station_averages`, and `station_daily`. The rest are auxiliary tables that support analysis and visualization.
+The core demand datasets are listed below. The package also bundles auxiliary datasets, such as `stations` and `lines`, which provide spatial datasets for the stations and metro lines.
 
-| Dataset                  | Description                                           | Frequency | Spatial |
-|--------------------------|-------------------------------------------------------|-----------|---------|
-| `passengers_entrance`    | Monthly passenger entries by line and day-type metric | Monthly   | No      |
-| `passengers_transported` | Monthly passengers transported by line, in thousands  | Monthly   | No      |
-| `station_averages`       | Average weekday passenger entries by station          | Monthly   | No      |
-| `station_daily`          | Daily passenger entries by station                    | Daily     | No      |
-| `station_inauguration`   | Station opening dates and ramp-up window flag         | —         | No      |
-| `calendar_spo`           | São Paulo holiday and business-day calendar           | Daily     | No      |
-| `metro_colors`           | Named vector of official metro line colors            | —         | No      |
-| `lines`                  | Metro and train line routes (current + planned)       | —         | Yes     |
-| `stations`               | Metro and train station locations (current + planned) | —         | Yes     |
+| Dataset                  | Description                                           | Frequency |
+|--------------------------|-------------------------------------------------------|-----------|
+| `passengers_entrance`    | Monthly passenger entries by line and day-type metric | Monthly   |
+| `passengers_transported` | Monthly passengers transported by line, in thousands  | Monthly   |
+| `station_averages`       | Average weekday passenger entries by station          | Monthly   |
+| `station_daily`          | Daily passenger entries by station                    | Daily     |
 
-`passengers_entrance` and the two station datasets count individual passengers. `passengers_transported` reports thousands of passengers, as the METRÔ source does. The [data dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html) defines every column, and the [Metro Demand Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html) article covers coverage windows, source defects, and the conventions behind the numbers.
+The [data dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html) defines every column, and the [Metro Demand Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html) article covers coverage windows, source defects, and the conventions behind the numbers.
 
-## Data vintage
+## Usage
 
-The bundled data is a fixed snapshot, current through July 2026. It is regenerated when the column schema changes, not when new months are published, so examples and analyses stay reproducible across package versions. METRÔ publishes on an irregular schedule and revises past years, so these numbers drift from the source over time.
-
-`read_metro_demand()` reads the newer data. Every pipeline run publishes a fresh build of the four demand datasets to the rolling [`data-latest` release](https://github.com/viniciusoike/metrosp/releases), plus a dated tag that pins that month's batch.
+Most users should start with `read_metro_demand()`, which loads the most recent demand data. Every pipeline run publishes a fresh build of the four demand datasets to the [`data-latest` release](https://github.com/viniciusoike/metrosp/releases), plus a dated tag that pins that month's batch. Downloads go to a temporary directory unless the user allows a persistent cache with `metrosp_cache_enable()`.
 
 ```r
 # Latest published data
@@ -88,11 +79,7 @@ entrance <- read_metro_demand("passengers_entrance")
 entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
 ```
 
-Downloads go to a temporary directory until you allow a persistent cache with `metrosp_cache_enable()`. Columns match the bundled datasets, so the same code works with either.
-
-## Usage
-
-The data is bundled with the package, meaning it works out of the box and doesn't rely on internet connection. To use a dataset simply call its name.
+The package also includes a fixed, bundled snapshot with observations through July 2026. It works offline and is useful for examples across packages. The snapshot will not be updated unless METRÔ revises past values.
 
 ```r
 library(metrosp)
@@ -120,7 +107,3 @@ An interactive dashboard for browsing and downloading these datasets lives in a 
 - METRÔ: [Companhia do Metropolitano de São Paulo (METRO)](https://transparencia.metrosp.com.br/dataset/demanda).
 - Lines 4/5 data: [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I) (ViaQuatro / ViaMobilidade).
 - Spatial data: [GeoSampa, Prefeitura de São Paulo](https://geosampa.prefeitura.sp.gov.br/).
-
-## Next steps
-
-This package is still in development. While the datasets are stable and checked on every new release, there may still be errors. If you find any, please [open an issue](https://github.com/viniciusoike/metrosp/issues/new).
