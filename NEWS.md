@@ -1,3 +1,9 @@
+# metrosp 2.0.0
+
+## Breaking changes
+
+* Removed the published `line_number = 99` system rows from `passengers_entrance` and `passengers_transported`. They did not provide a consistent whole-network measure; sum entry counts across lines when a network total is needed, but do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `lines` and `stations` to ViaMobilidade (#22).
+
 # metrosp 1.3.0
 
 ## New features

@@ -87,7 +87,7 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
-| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, 15, or 99 for the network total) |
+| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, or 15) |
 | `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
 | `value` | numeric | Passenger count |
 | `metric` | character | Metric label in English |
@@ -96,6 +96,8 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | `line_name_pt` | character | Line color in Portuguese |
 | `year` | integer | Calendar year |
 : `passengers_entrance` columns
+
+The `total`, `mdu`, `msa`, and `mdo` metrics can be summed across lines. The `max` metric cannot: individual lines may peak on different days.
 
 ### Day-type metrics
 
@@ -117,7 +119,7 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
-| `line_number` | integer | Line identifier (1, 2, 3, 5, 15, or 99 for the network total) |
+| `line_number` | integer | Line identifier (1, 2, 3, 5, or 15) |
 | `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
 | `value` | numeric | Passenger count, in thousands |
 | `metric` | character | Metric label in English |
@@ -126,6 +128,8 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | `line_name_pt` | character | Line color in Portuguese |
 | `year` | integer | Calendar year |
 : `passengers_transported` columns
+
+Transported counts cannot be summed into a unique network count: a journey using multiple lines is counted once on each line.
 
 ## `station_averages`
 

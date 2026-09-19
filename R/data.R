@@ -9,8 +9,7 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
-#'     the network total (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 #'   \item{metric_abb}{Abbreviated metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
@@ -38,17 +37,21 @@
 #'   \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
 #'     January 2016–July 2018, except July 2017; Insper Dataverse,
 #'     August 2018–2026.
-#'   \item Network total (\code{line_number = 99}): METRO SP transparency
-#'     portal only; may not be available for all years.
 #' }
 #'
 #' METRO published January–September 2017 only as PDFs, with no
 #' machine-readable equivalent. Those months were transcribed from the
-#' reports and reconciled against the printed line and network totals. July
+#' reports and reconciled against the published totals. July
 #' 2017 has no entrance table at all, because the file METRO published under
-#' that name repeats the transported figures. Lines 1, 2, 3, 5, and 15 and
-#' the network total therefore carry no value for that month; Line 4 comes
-#' from the Dataverse and is unaffected.
+#' that name repeats the transported figures. Lines 1, 2, 3, 5, and 15
+#' therefore carry no value for that month; Line 4 comes from the Dataverse
+#' and is unaffected.
+#'
+#' Summing \code{total}, \code{mdu}, \code{msa}, or \code{mdo} across lines
+#' gives the corresponding network entry figure. Do not sum \code{max}:
+#' individual lines may peak on different days. See the Metro Demand Data
+#' article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
 #' Metrics:
 #' \itemize{
@@ -96,8 +99,7 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
-#'     the network total (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, 5, or 15 (integer).}
 #'   \item{metric_abb}{Abbreviated metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
@@ -122,21 +124,21 @@
 #'
 #' A transported passenger is one who crossed a turnstile plus one who
 #' transferred between lines at an interchange station, so transported counts
-#' run above entry counts for the same line and month.
+#' run above entry counts for the same line and month. Do not sum this dataset
+#' to estimate unique network passengers: a journey using multiple lines is
+#' counted once on each line. See the Metro Demand Data article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
 #' All data comes from the METRO SP transparency portal. Line 4 (Amarela)
 #' is not available in this dataset — the Insper Dataverse source does not
 #' include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
 #' from the METRO portal only for January 2016–August 2018: the line was
 #' handed over to ViaMobilidade in August 2018 and the portal stopped
-#' reporting its transported counts afterwards. The network
-#' total (\code{line_number = 99}) may not be available for all years.
+#' reporting its transported counts afterwards.
 #'
 #' METRO published January–September 2017 only as PDFs, with no
 #' machine-readable equivalent. Those months were transcribed from the
-#' reports and reconciled against the printed line and network totals. June
-#' 2017 is the one month whose network total is missing, because the report
-#' reprinted May's network column; the per-line values for June are sound.
+#' reports and reconciled against the published totals.
 #'
 #' Metrics:
 #' \itemize{

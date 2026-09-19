@@ -41,13 +41,23 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(value = value * 1000)
 
-  passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
+  passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5)
+
+  if (anyNA(passengers_entrance$line_number)) {
+    cli::cli_abort("Unparsed line number reached assemble_entrance().")
+  }
+
+  passengers_entrance <- passengers_entrance |>
+    filter(line_number != 99L) |>
     drop_trailing_na(value) |>
     select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)
 
   stopifnot(
-    "NA dates in passengers_entrance" = !any(is.na(passengers_entrance$date))
+    "NA dates in passengers_entrance" = !any(is.na(passengers_entrance$date)),
+    "NA line numbers in passengers_entrance" = !any(
+      is.na(passengers_entrance$line_number)
+    )
   )
 
   passengers_entrance
@@ -71,7 +81,14 @@ assemble_transported <- function(psg_historic, transported_current) {
     mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
-  passengers_transported <- bind_rows(transported_hist, transported_20) |>
+  passengers_transported <- bind_rows(transported_hist, transported_20)
+
+  if (anyNA(passengers_transported$line_number)) {
+    cli::cli_abort("Unparsed line number reached assemble_transported().")
+  }
+
+  passengers_transported <- passengers_transported |>
+    filter(line_number != 99L) |>
     drop_trailing_na(value) |>
     select(all_of(.cols_psg)) |>
     arrange(date, line_number, metric_abb)
@@ -79,6 +96,9 @@ assemble_transported <- function(psg_historic, transported_current) {
   stopifnot(
     "NA dates in passengers_transported" = !any(
       is.na(passengers_transported$date)
+    ),
+    "NA line numbers in passengers_transported" = !any(
+      is.na(passengers_transported$line_number)
     )
   )
 
