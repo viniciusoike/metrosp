@@ -9,7 +9,6 @@
 ^README\.html$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
-^dashboard$
 ^\.claude$
 ^AGENTS\.md$
 ^\.vscode$
@@ -26,3 +25,4 @@
 ^\.positai$
 ^vignettes/\.quarto$
 ^vignettes/articles$
+^dev$
