@@ -176,6 +176,8 @@
 #'   \item{date}{First day of the month (Date).}
 #'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number (integer).}
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Treat as opaque.}
 #'   \item{station_name}{Name of the metro station (character).}
 #'   \item{line_name}{English name of the metro line (character).}
 #'   \item{line_name_pt}{Portuguese name of the metro line (character).}
@@ -242,6 +244,8 @@
 #'   \item{date}{Date of observation (Date).}
 #'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Treat as opaque.}
 #'   \item{station_name}{Full station name (character).}
 #'   \item{station_code}{Three-letter station abbreviation used internally
 #'     by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
@@ -323,7 +327,11 @@
 #' @format An sf data frame with POINT geometry (CRS: WGS84 / EPSG:4326)
 #'   and the following columns:
 #' \describe{
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Shared across lines and modes; treat as opaque.}
 #'   \item{station_name}{Station name in title case (character).}
+#'   \item{station_code}{Three-letter METRO abbreviation when available
+#'     (character).}
 #'   \item{line_number}{Line number the station belongs to (integer).}
 #'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{line_name}{English color name of the line (character).}

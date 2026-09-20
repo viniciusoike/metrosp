@@ -276,6 +276,7 @@ check_station_averages <- function(df, name = "station_averages") {
       df,
       c(
         "date",
+        "station_id",
         "station_name",
         "value",
         "line_number",
@@ -293,18 +294,19 @@ check_station_averages <- function(df, name = "station_averages") {
         date = function(x) inherits(x, "Date"),
         year = is.integer,
         line_number = is.integer,
+        station_id = is.character,
         value = is.double,
         metric = is.character
       ),
       name
     ),
-    check_no_na(df, "date", name),
+    check_no_na(df, c("date", "station_id"), name),
     check_no_na(df, c("metric", "metric_name", "metric_name_pt"), name),
     check_values(df, "metric", "mdu", name),
     check_non_negative(df, "value", name),
     check_no_duplicates(
       df,
-      c("date", "line_number", "station_name", "metric"),
+      c("date", "line_number", "station_id", "metric"),
       name
     ),
     check_rows(df, 1L, name),
@@ -320,6 +322,7 @@ check_station_daily <- function(df, name = "station_daily") {
         "date",
         "year",
         "line_number",
+        "station_id",
         "line_name_pt",
         "line_name",
         "station_code",
@@ -334,15 +337,16 @@ check_station_daily <- function(df, name = "station_daily") {
         date = function(x) inherits(x, "Date"),
         year = is.integer,
         line_number = is.integer,
+        station_id = is.character,
         station_code = is.character,
         station_name = is.character,
         value = is.double
       ),
       name
     ),
-    check_no_na(df, c("date", "station_name", "value"), name),
+    check_no_na(df, c("date", "station_id", "station_name", "value"), name),
     check_non_negative(df, "value", name),
-    check_no_duplicates(df, c("date", "line_number", "station_name"), name),
+    check_no_duplicates(df, c("date", "line_number", "station_id"), name),
     check_rows(df, 100000L, name),
     check_station_names(df$station_name, name)
   )

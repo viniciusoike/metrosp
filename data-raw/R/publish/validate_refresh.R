@@ -23,8 +23,8 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 .drift_keys <- list(
   passengers_entrance = c("date", "line_number", "metric"),
   passengers_transported = c("date", "line_number", "metric"),
-  station_averages = c("date", "line_number", "station_name"),
-  station_daily = c("date", "line_number", "station_name")
+  station_averages = c("date", "line_number", "station_id"),
+  station_daily = c("date", "line_number", "station_id")
 )
 
 .drift_values <- list(
@@ -100,6 +100,11 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     }
     nw <- new[[nm]]
     bl <- baseline[[nm]]
+
+    if ("station_id" %in% names(nw) && !"station_id" %in% names(bl)) {
+      station_map <- unique(nw[c("station_name", "station_id")])
+      bl <- merge(bl, station_map, by = "station_name", all.x = TRUE)
+    }
 
     # --- Shrinkage (hard fail) ----------------------------------------------
     if (nrow(nw) < nrow(bl)) {

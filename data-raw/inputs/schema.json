@@ -66,6 +66,7 @@
       "date": "Date",
       "year": "integer",
       "line_number": "integer",
+      "station_id": "character",
       "station_name": "character",
       "line_name": "character",
       "line_name_pt": "character",
@@ -81,6 +82,7 @@
       "date": "Date",
       "year": "integer",
       "line_number": "integer",
+      "station_id": "character",
       "station_name": "character",
       "station_code": "character",
       "line_name": "character",
@@ -107,10 +109,12 @@
       "type": "character",
       "status": "character",
       "company_name": "character",
-      "station_name": "character",
+      "station_code": "character",
       "line_number": "integer",
       "line_name": "character",
       "line_name_pt": "character",
+      "station_id": "character",
+      "station_name": "character",
       "geom": "sfc"
     }
   }

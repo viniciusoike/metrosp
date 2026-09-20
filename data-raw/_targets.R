@@ -200,6 +200,16 @@ list(
     format = "file"
   ),
   tar_target(
+    dim_station_csv,
+    here::here("data-raw/inputs/dim_station.csv"),
+    format = "file"
+  ),
+  tar_target(
+    dim_station_alias_csv,
+    here::here("data-raw/inputs/dim_station_alias.csv"),
+    format = "file"
+  ),
+  tar_target(
     geosampa_files,
     list.files(
       here::here("data-raw/inputs/geosampa"),
@@ -247,9 +257,14 @@ list(
     readr::read_csv(averages_4_5_csv, show_col_types = FALSE)
   ),
   tar_target(daily_4_5, readr::read_csv(daily_4_5_csv, show_col_types = FALSE)),
+  tar_target(dim_station, read_station_dimension(dim_station_csv)),
+  tar_target(dim_station_alias, read_station_dimension(dim_station_alias_csv)),
 
   # --- GeoSampa spatial datasets ---------------------------------------------
-  tar_target(geo, build_geosampa(geosampa_files)),
+  tar_target(
+    geo,
+    build_geosampa(geosampa_files, dim_station, dim_station_alias)
+  ),
   tar_target(lines, geo$lines),
   tar_target(stations, geo$stations),
 
@@ -264,9 +279,23 @@ list(
   ),
   tar_target(
     station_averages,
-    assemble_averages(stations_historic, averages_current, averages_4_5)
+    assemble_averages(
+      stations_historic,
+      averages_current,
+      averages_4_5,
+      dim_station,
+      dim_station_alias
+    )
   ),
-  tar_target(station_daily, assemble_daily(daily_current, daily_4_5)),
+  tar_target(
+    station_daily,
+    assemble_daily(
+      daily_current,
+      daily_4_5,
+      dim_station,
+      dim_station_alias
+    )
+  ),
   tar_target(
     station_inauguration,
     build_station_inauguration(

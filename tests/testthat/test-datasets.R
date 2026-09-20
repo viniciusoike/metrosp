@@ -34,6 +34,29 @@ test_that("station_daily satisfies its structural invariants", {
   expect_equal(check_station_daily(metrosp::station_daily), character(0))
 })
 
+test_that("station identities are stable across demand grains", {
+  monthly <- metrosp::station_averages |>
+    dplyr::distinct(station_id, station_name)
+  daily <- metrosp::station_daily |>
+    dplyr::distinct(station_id, station_name)
+
+  expect_length(intersect(monthly$station_id, daily$station_id), 86L)
+  expect_identical(
+    unique(metrosp::station_averages$station_id[
+      metrosp::station_averages$station_name == "República"
+    ]),
+    unique(metrosp::station_daily$station_id[
+      metrosp::station_daily$station_name == "República"
+    ])
+  )
+  expect_equal(
+    unique(metrosp::station_daily$line_number[
+      metrosp::station_daily$station_name == "República"
+    ]),
+    3L
+  )
+})
+
 test_that("station_inauguration station names carry no footnote markers", {
   # Not covered by check_station_names(): this table is hand-maintained and
   # holds only the stations that have an inauguration record, so the

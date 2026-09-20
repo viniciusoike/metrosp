@@ -136,6 +136,7 @@ Monthly average weekday passenger entries per station. Only the weekday average 
 | `date`          | Date      | First day of the month                 |
 | `year`          | integer   | Calendar year                          |
 | `line_number`   | integer   | Line identifier                        |
+| `station_id` | character | Stable, opaque physical-station identifier |
 | `station_name`  | character | Full station name                      |
 | `line_name`     | character | Line color in English                  |
 | `line_name_pt`  | character | Line color in Portuguese               |
@@ -154,6 +155,7 @@ Daily passenger entries at each station.
 | `date` | Date | Date of observation |
 | `year` | integer | Calendar year |
 | `line_number` | integer | Line identifier |
+| `station_id` | character | Stable, opaque physical-station identifier |
 | `station_name` | character | Full station name |
 | `station_code` | character | Three-letter METRO abbreviation (`NA` for Lines 4--5) |
 | `line_name` | character | Line color in English |
@@ -183,6 +185,8 @@ Daily passenger entries at each station.
 | Column         | Type      | Description               |
 |----------------|-----------|---------------------------|
 | `station_name` | character | Station name (title case) |
+| `station_id` | character | Stable, opaque physical-station identifier |
+| `station_code` | character | Three-letter METRO abbreviation when available |
 | `line_number`  | integer   | Line number               |
 | `line_name_pt` | character | Line color in Portuguese  |
 | `line_name`    | character | Line color in English     |

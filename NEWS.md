@@ -2,6 +2,8 @@
 
 ## Breaking changes
 
+* Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Physical interchange complexes share an ID across lines and modes, while `station_name` remains the current display label (#24).
+
 * Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_averages` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
 
 # metrosp 1.3.0

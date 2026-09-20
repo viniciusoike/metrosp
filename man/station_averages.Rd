@@ -10,6 +10,8 @@ A data frame with the following columns:
 \item{date}{First day of the month (Date).}
 \item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number (integer).}
+\item{station_id}{Stable identifier for the physical station complex
+(character). Treat as opaque.}
 \item{station_name}{Name of the metro station (character).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}

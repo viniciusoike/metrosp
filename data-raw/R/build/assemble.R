@@ -105,12 +105,10 @@ assemble_transported <- function(psg_historic, transported_current) {
 assemble_averages <- function(
   stations_historic,
   averages_current,
-  averages_4_5
+  averages_4_5,
+  dim_station,
+  dim_station_alias
 ) {
-  # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
-  station_renames <- dim_station_name_change$station_name
-  names(station_renames) <- dim_station_name_change$station_name_raw
-
   stations_hist <- stations_historic |>
     # One source month prints the label with a footnote digit ("Linha 5 -
     # Lilás9"); stripping it first means dim_line is the only lookup.
@@ -119,39 +117,33 @@ assemble_averages <- function(
       select(dim_line, line_name_full, line_number),
       by = join_by(line_name_full)
     ) |>
-    mutate(station_name = name_station) |>
+    mutate(station_name = strip_footnotes(name_station)) |>
     rename(avg_passenger = value) |>
     select(all_of(.cols_stn_avg_in)) |>
     # Line 5 was handed over to ViaMobilidade in Aug 2018: the Dataverse
     # source covers it from 2018-08-01, so drop the overlapping historic
     # month (mirrors assemble_entrance). Keeps one series per station.
-    filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
+    filter_out(line_number == 5L & date >= as.Date("2018-08-01")) |>
+    resolve_stations("metro_historic", dim_station, dim_station_alias)
+
+  averages_current <- resolve_stations(
+    averages_current,
+    "metro_current_averages",
+    dim_station,
+    dim_station_alias
+  )
+
+  averages_4_5 <- resolve_stations(
+    averages_4_5,
+    "dataverse_averages",
+    dim_station,
+    dim_station_alias
+  )
 
   station_averages <- bind_rows(stations_hist, averages_current) |>
     mutate(avg_passenger = avg_passenger * 1000)
 
   station_averages <- bind_rows(station_averages, averages_4_5) |>
-    # Defense in depth: re-clean names so a stale committed CSV can never
-    # leak footnote markers (e.g. "Sé4", "Brooklin7") into the package data.
-    mutate(station_name = strip_footnotes(station_name))
-
-  station_averages <- station_averages |>
-    mutate(
-      station_name = if_else(
-        station_name %in% names(station_renames),
-        unname(station_renames[station_name]),
-        station_name
-      )
-    )
-
-  station_averages <- station_averages |>
-    mutate(
-      station_name = if_else(
-        station_name == "Santuário N.S. de Fátima-Sumaré",
-        "Sumaré",
-        station_name
-      )
-    ) |>
     left_join(metro_lines, join_by(line_number))
 
   station_averages <- station_averages |>
@@ -199,26 +191,28 @@ assemble_averages <- function(
 
 #' @param daily_current Current-era daily tibble (builder output).
 #' @param daily_4_5 Lines 4/5 daily tibble (committed CSV).
-assemble_daily <- function(daily_current, daily_4_5) {
-  # Collapse sponsor/renamed variants to the canonical name (raw -> canonical).
-  station_renames <- dim_station_name_change$station_name
-  names(station_renames) <- dim_station_name_change$station_name_raw
-
+assemble_daily <- function(
+  daily_current,
+  daily_4_5,
+  dim_station,
+  dim_station_alias
+) {
   station_daily <- daily_current |>
-    mutate(passengers = passengers * 1000)
-
-  station_daily <- bind_rows(station_daily, daily_4_5) |>
-    # Defense in depth: same footnote-marker cleaning as assemble_averages.
-    mutate(station_name = strip_footnotes(station_name))
-
-  station_daily <- station_daily |>
-    mutate(
-      station_name = if_else(
-        station_name %in% names(station_renames),
-        unname(station_renames[station_name]),
-        station_name
-      )
+    mutate(passengers = passengers * 1000) |>
+    resolve_stations(
+      "metro_current_daily",
+      dim_station,
+      dim_station_alias
     )
+
+  daily_4_5 <- resolve_stations(
+    daily_4_5,
+    "dataverse_daily",
+    dim_station,
+    dim_station_alias
+  )
+
+  station_daily <- bind_rows(station_daily, daily_4_5)
 
   station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
 

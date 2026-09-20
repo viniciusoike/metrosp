@@ -131,6 +131,7 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
   cols_select <- c(
     "company_name",
     "station_name",
+    "station_code",
     "line_number",
     "line_name",
     "line_name_pt"
@@ -159,6 +160,8 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
       bind_rows(dim_station_code, dim_station_lilac),
       by = c("station_name", "line_number")
     )
+  } else {
+    clean_dat <- mutate(clean_dat, station_code = NA_character_)
   }
 
   clean_dat <- select(clean_dat, all_of(cols_select))
@@ -171,7 +174,9 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
 #' @param geosampa_files Character vector of GPKG paths (or the directory).
 #' @return list(lines = <sf>, stations = <sf>).
 build_geosampa <- function(
-  geosampa_files = here::here("data-raw/inputs/geosampa")
+  geosampa_files = here::here("data-raw/inputs/geosampa"),
+  dim_station,
+  dim_station_alias
 ) {
   dir_geo <- if (length(geosampa_files) == 1 && dir.exists(geosampa_files)) {
     geosampa_files
@@ -240,7 +245,13 @@ build_geosampa <- function(
     .id = "type"
   )
 
+  station_sources <- if_else(
+    stations$type == "metro",
+    "geosampa_metro",
+    "geosampa_train"
+  )
   stations <- stations |>
+    resolve_stations(station_sources, dim_station, dim_station_alias) |>
     mutate(line_number = as.integer(line_number)) |>
     arrange(type, line_number, station_name)
 

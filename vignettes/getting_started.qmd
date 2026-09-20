@@ -181,7 +181,7 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
 
 ## Station Averages
 
-This dataset is identified by month (`date`), line (`line_number`, `line_name`), station (`station_name`), and the constant `mdu` metric. `value` is the daily average on business days.
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), physical station (`station_id`), and the constant `mdu` metric. `station_name` is the current display label and `value` is the daily average on business days.
 
 ```{r}
 glimpse(station_averages)
@@ -207,7 +207,7 @@ ggplot(line4st, aes(x = date, y = value)) +
 
 ## Station Daily
 
-This dataset is identified by day (`date`), line (`line_number`, `line_name`), and station (`station_name`). `value` is the daily number of passengers entering the station. Additionally, `station_code` contains three-letter abbreviations for stations, but only for METRÔ-operated lines.
+This dataset is identified by day (`date`), line (`line_number`, `line_name`), and physical station (`station_id`). `station_name` is the current display label and `value` is the daily number of passengers entering the station. Additionally, `station_code` contains three-letter abbreviations for stations, but only for METRÔ-operated lines.
 
 ```{r}
 glimpse(station_daily)

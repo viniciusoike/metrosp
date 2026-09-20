@@ -252,7 +252,7 @@ sta_years <- sort(unique(sta_daily_df$year), decreasing = TRUE)
 
 latest_sta_avg <- sta_avg |>
   filter(year == max(year, na.rm = TRUE), !is.na(value)) |>
-  group_by(line_number, station_name) |>
+  group_by(line_number, station_id, station_name) |>
   summarise(avg = mean(value, na.rm = TRUE), .groups = "drop")
 
 max_avg_global <- max(latest_sta_avg$avg, na.rm = TRUE)
@@ -261,7 +261,7 @@ max_avg_global <- max(latest_sta_avg$avg, na.rm = TRUE)
 
 station_movers <- sta_avg |>
   filter(!is.na(value)) |>
-  group_by(line_number, station_name) |>
+  group_by(line_number, station_id, station_name) |>
   summarise(
     avg_recent = mean(
       value[date > recovery_window_start],
@@ -291,7 +291,7 @@ station_movers <- sta_avg |>
 
 station_covid <- sta_avg |>
   filter(!is.na(value)) |>
-  group_by(line_number, station_name) |>
+  group_by(line_number, station_id, station_name) |>
   summarise(
     avg_2019 = mean(value[year == 2019], na.rm = TRUE),
     n_2019 = sum(year == 2019 & !is.na(value)),
@@ -328,7 +328,7 @@ sf_metro_stations <- tryCatch(
       filter(status == "current", type == "metro") |>
       mutate(line_number = as.character(line_number)) |>
       filter(line_number %in% LINES) |>
-      left_join(latest_sta_avg, by = c("line_number", "station_name")) |>
+      left_join(latest_sta_avg, by = c("line_number", "station_id"), suffix = c("", "_demand")) |>
       mutate(
         radius = ifelse(is.na(avg), 4, 4 + 14 * sqrt(avg / max_avg_global)),
         popup_text = paste0(

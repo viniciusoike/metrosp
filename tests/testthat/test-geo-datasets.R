@@ -16,7 +16,9 @@ test_that("lines has expected columns", {
 
 test_that("stations has expected columns", {
   cols <- names(metrosp::stations)
+  expect_true("station_id" %in% cols)
   expect_true("station_name" %in% cols)
+  expect_true("station_code" %in% cols)
   expect_true("line_number" %in% cols)
   expect_true("line_name_pt" %in% cols)
   expect_true("line_name" %in% cols)
@@ -24,6 +26,16 @@ test_that("stations has expected columns", {
   expect_true("type" %in% cols)
   expect_true("status" %in% cols)
   expect_false(is.null(sf::st_geometry(metrosp::stations)))
+})
+
+test_that("station ids identify physical complexes", {
+  se <- metrosp::stations[metrosp::stations$station_name == "Sé", ]
+  santo <- metrosp::stations[
+    metrosp::stations$station_name == "Santo Antônio",
+  ]
+
+  expect_length(unique(se$station_id), 1L)
+  expect_length(unique(santo$station_id), 2L)
 })
 
 test_that("lines type and status values are valid", {

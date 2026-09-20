@@ -8,7 +8,11 @@
 An sf data frame with POINT geometry (CRS: WGS84 / EPSG:4326)
 and the following columns:
 \describe{
+\item{station_id}{Stable identifier for the physical station complex
+(character). Shared across lines and modes; treat as opaque.}
 \item{station_name}{Station name in title case (character).}
+\item{station_code}{Three-letter METRO abbreviation when available
+(character).}
 \item{line_number}{Line number the station belongs to (integer).}
 \item{line_name_pt}{Portuguese color name of the line (character).}
 \item{line_name}{English color name of the line (character).}

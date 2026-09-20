@@ -21,7 +21,7 @@ sta_daily <- metrosp::station_daily |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
-  select(date, line_number, station_name, value = value, year)
+  select(date, line_number, station_id, station_name, value = value, year)
 
 ## Available years per station ----
 sta_daily_years <- sta_daily |>
@@ -43,7 +43,7 @@ coords <- sf::st_coordinates(sf_stations)
 stations_geo <- sf_stations |>
   sf::st_drop_geometry() |>
   mutate(lng = coords[, 1], lat = coords[, 2]) |>
-  select(station_name, line_number, lng, lat)
+  select(station_id, station_name, line_number, lng, lat)
 
 sta_avg_raw <- metrosp::station_averages |>
   filter(date >= DATA_START, !is.na(value)) |>
@@ -57,7 +57,7 @@ sta_demand <- sta_avg_raw |>
   summarise(avg_demand = round(mean(value, na.rm = TRUE)), .groups = "drop")
 
 station_map_data <- sta_demand |>
-  inner_join(stations_geo, by = c("line_number", "station_name"))
+  inner_join(stations_geo, by = c("line_number", "station_id"), suffix = c("", "_geo"))
 
 ## Line geometries ----
 sf_lines <- tryCatch(

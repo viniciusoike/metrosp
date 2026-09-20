@@ -10,6 +10,8 @@ A data frame with the following columns:
 \item{date}{Date of observation (Date).}
 \item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+\item{station_id}{Stable identifier for the physical station complex
+(character). Treat as opaque.}
 \item{station_name}{Full station name (character).}
 \item{station_code}{Three-letter station abbreviation used internally
 by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
