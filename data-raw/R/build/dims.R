@@ -309,14 +309,14 @@ metro_colors <- c(
 # Final column order for the assembled passenger tables.
 .cols_psg <- c(
   "date",
+  "year",
   "line_number",
-  "metric_abb",
-  "value",
-  "metric",
-  "metric_pt",
   "line_name",
   "line_name_pt",
-  "year"
+  "metric",
+  "metric_name",
+  "metric_name_pt",
+  "value"
 )
 
 # Intermediate schemas produced by the import builders.
@@ -369,21 +369,24 @@ metro_colors <- c(
 
 .cols_stn_avg_out <- c(
   "date",
+  "year",
   "line_number",
   "station_name",
-  "avg_passenger",
   "line_name",
   "line_name_pt",
-  "year"
+  "metric",
+  "metric_name",
+  "metric_name_pt",
+  "value"
 )
 
 .cols_stn_daily_out <- c(
   "date",
+  "year",
   "line_number",
   "station_name",
-  "passengers",
+  "station_code",
   "line_name",
   "line_name_pt",
-  "station_code",
-  "year"
+  "value"
 )

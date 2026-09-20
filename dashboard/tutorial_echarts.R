@@ -3,7 +3,7 @@ library(metrosp)
 library(dplyr)
 
 dat <- passengers_entrance |>
-  filter(line_number == 1, date >= "2019-01-01", metric_abb == "total") |>
+  filter(line_number == 1, date >= "2019-01-01", metric == "total") |>
   mutate(
     trunc_val = value / 1000
   )
@@ -20,15 +20,15 @@ coldat <- station_averages |>
   filter(date == max(date), line_number == 1) |>
   mutate(
     station_name = factor(station_name),
-    station_name = forcats::fct_reorder(station_name, avg_passenger)
+    station_name = forcats::fct_reorder(station_name, value)
   ) |>
   arrange(station_name)
 
 e_charts(coldat, station_name) |>
-  e_bar(serie = avg_passenger)
+  e_bar(serie = value)
 
 e_charts(coldat, station_name) |>
-  e_bar(serie = avg_passenger) |>
+  e_bar(serie = value) |>
   e_labels(position = c("50%", "25%")) |>
   e_flip_coords()
 
@@ -36,13 +36,13 @@ subdat <- passengers_entrance |>
   filter(
     line_number %in% c(1, 2),
     date >= "2019-01-01",
-    metric_abb %in% c("mdu", "mdo")
+    metric %in% c("mdu", "mdo")
   )
 
 subdat <- subdat |>
   tidyr::pivot_wider(
     id_cols = c(date, line_number, line_name),
-    names_from = metric_abb,
+    names_from = metric,
     values_from = value
   ) |>
   mutate(year = lubridate::year(date)) |>
@@ -60,7 +60,7 @@ brigs <- station_daily |>
 
 e_charts(brigs, date) |>
   e_calendar(range = 2025) |>
-  e_heatmap(passengers, coord_system = "calendar", bind = station_name) |>
+  e_heatmap(value, coord_system = "calendar", bind = station_name) |>
   e_tooltip(
     trigger = "item",
     formatter = htmlwidgets::JS(
@@ -69,7 +69,7 @@ e_charts(brigs, date) |>
       }"
     )
   ) |>
-  e_visual_map(max = max(brigs$passengers))
+  e_visual_map(max = max(brigs$value))
 
 library(gapminder)
 
@@ -94,7 +94,7 @@ brigs <- station_daily |>
 
 e_charts(brigs, x = date, timeline = TRUE) |>
   e_calendar(range = 2021) |>
-  e_heatmap(passengers, coord_system = "calendar") |>
+  e_heatmap(value, coord_system = "calendar") |>
   e_tooltip(
     trigger = "item",
     formatter = htmlwidgets::JS(
@@ -103,7 +103,7 @@ e_charts(brigs, x = date, timeline = TRUE) |>
       }"
     )
   ) |>
-  e_visual_map(max = max(brigs$passengers))
+  e_visual_map(max = max(brigs$value))
 
 verde <- station_daily |>
   mutate(
@@ -115,7 +115,7 @@ verde <- station_daily |>
   group_by(station_name)
 
 e_charts(verde, x = month, timeline = TRUE) |>
-  e_heatmap(y = year, z = passengers) |>
+  e_heatmap(y = year, z = value) |>
   e_tooltip(
     trigger = "item",
     formatter = htmlwidgets::JS(
@@ -124,7 +124,7 @@ e_charts(verde, x = month, timeline = TRUE) |>
       }"
     )
   ) |>
-  e_visual_map(passengers)
+  e_visual_map(value)
 
 
 ekioplot::show_ekio_palette("contrast")

@@ -8,15 +8,15 @@
 A data frame with the following columns:
 \describe{
 \item{date}{Date of observation (Date).}
+\item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 \item{station_name}{Full station name (character).}
-\item{passengers}{Daily passenger entries (numeric).}
-\item{line_name}{English name of the metro line (character).}
-\item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{station_code}{Three-letter station abbreviation used internally
 by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
 source).}
-\item{year}{Calendar year (integer).}
+\item{line_name}{English name of the metro line (character).}
+\item{line_name_pt}{Portuguese name of the metro line (character).}
+\item{value}{Daily passenger entries (numeric).}
 }
 }
 \source{

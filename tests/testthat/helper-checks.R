@@ -61,6 +61,22 @@ check_non_negative <- function(df, col, name) {
   sprintf("%s$%s: %d negative value(s)", name, col, n)
 }
 
+check_values <- function(df, col, allowed, name) {
+  if (!col %in% names(df)) {
+    return(character(0))
+  }
+  unexpected <- setdiff(unique(df[[col]]), allowed)
+  if (length(unexpected) == 0) {
+    return(character(0))
+  }
+  sprintf(
+    "%s$%s: unexpected value(s) %s",
+    name,
+    col,
+    paste(unexpected, collapse = ", ")
+  )
+}
+
 check_no_duplicates <- function(df, keys, name) {
   keys <- intersect(keys, names(df))
   if (length(keys) == 0) {
@@ -215,10 +231,11 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
         "date",
         "year",
         "line_number",
-        "line_name_pt",
         "line_name",
+        "line_name_pt",
         "metric",
-        "metric_abb",
+        "metric_name",
+        "metric_name_pt",
         "value"
       ),
       name
@@ -227,18 +244,18 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
       df,
       list(
         date = function(x) inherits(x, "Date"),
-        year = is.numeric,
-        line_number = is.numeric,
+        year = is.integer,
+        line_number = is.integer,
         value = is.double,
-        metric_abb = is.character
+        metric = is.character
       ),
       name
     ),
     # metric labels come from a lookup keyed on Portuguese text; an unmatched
     # key leaves them NA rather than erroring, so assert them directly.
-    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
+    check_no_na(df, c("date", "metric", "metric_name", "metric_name_pt"), name),
     check_non_negative(df, "value", name),
-    check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
+    check_no_duplicates(df, c("date", "line_number", "metric"), name),
     check_rows(df, 1L, name)
   )
 }
@@ -246,9 +263,9 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
 check_passengers_transported <- function(df, name = "passengers_transported") {
   c(
     check_columns(df, c("date", "value", "line_number"), name),
-    check_no_na(df, c("date", "metric_abb", "metric", "metric_pt"), name),
+    check_no_na(df, c("date", "metric", "metric_name", "metric_name_pt"), name),
     check_non_negative(df, "value", name),
-    check_no_duplicates(df, c("date", "line_number", "metric_abb"), name),
+    check_no_duplicates(df, c("date", "line_number", "metric"), name),
     check_rows(df, 1L, name)
   )
 }
@@ -260,10 +277,13 @@ check_station_averages <- function(df, name = "station_averages") {
       c(
         "date",
         "station_name",
-        "avg_passenger",
+        "value",
         "line_number",
         "line_name_pt",
-        "line_name"
+        "line_name",
+        "metric",
+        "metric_name",
+        "metric_name_pt"
       ),
       name
     ),
@@ -271,14 +291,22 @@ check_station_averages <- function(df, name = "station_averages") {
       df,
       list(
         date = function(x) inherits(x, "Date"),
-        line_number = is.numeric,
-        avg_passenger = is.double
+        year = is.integer,
+        line_number = is.integer,
+        value = is.double,
+        metric = is.character
       ),
       name
     ),
     check_no_na(df, "date", name),
-    check_non_negative(df, "avg_passenger", name),
-    check_no_duplicates(df, c("date", "line_number", "station_name"), name),
+    check_no_na(df, c("metric", "metric_name", "metric_name_pt"), name),
+    check_values(df, "metric", "mdu", name),
+    check_non_negative(df, "value", name),
+    check_no_duplicates(
+      df,
+      c("date", "line_number", "station_name", "metric"),
+      name
+    ),
     check_rows(df, 1L, name),
     check_station_names(df$station_name, name)
   )
@@ -296,7 +324,7 @@ check_station_daily <- function(df, name = "station_daily") {
         "line_name",
         "station_code",
         "station_name",
-        "passengers"
+        "value"
       ),
       name
     ),
@@ -304,16 +332,16 @@ check_station_daily <- function(df, name = "station_daily") {
       df,
       list(
         date = function(x) inherits(x, "Date"),
-        year = is.numeric,
-        line_number = is.numeric,
+        year = is.integer,
+        line_number = is.integer,
         station_code = is.character,
         station_name = is.character,
-        passengers = is.double
+        value = is.double
       ),
       name
     ),
-    check_no_na(df, c("date", "station_name", "passengers"), name),
-    check_non_negative(df, "passengers", name),
+    check_no_na(df, c("date", "station_name", "value"), name),
+    check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "station_name"), name),
     check_rows(df, 100000L, name),
     check_station_names(df$station_name, name)

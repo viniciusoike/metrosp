@@ -191,7 +191,8 @@ build_geosampa <- function(
   train_lines <- purrr::map(train_lines, geo_clean_lines)
   tab_train_lines <- bind_rows(train_lines, .id = "status")
 
-  lines <- bind_rows(tab_metro_lines, tab_train_lines)
+  lines <- bind_rows(tab_metro_lines, tab_train_lines) |>
+    mutate(line_number = as.integer(line_number))
 
   # --- Metro stations (custom current/future ordering) ---
   path_files <- list.files(dir_geo, pattern = "estacaometro", full.names = TRUE)
@@ -240,6 +241,7 @@ build_geosampa <- function(
   )
 
   stations <- stations |>
+    mutate(line_number = as.integer(line_number)) |>
     arrange(type, line_number, station_name)
 
   list(lines = lines, stations = stations)

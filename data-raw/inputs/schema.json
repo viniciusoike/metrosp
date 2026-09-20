@@ -3,15 +3,15 @@
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "year": "double",
-      "weekday": "double",
+      "year": "integer",
+      "weekday": "integer",
       "is_weekend": "logical",
       "is_holiday": "logical",
       "is_business_day": "logical",
       "holiday_name": "character",
       "holiday_scope": "character",
-      "is_ponto_facultativo": "logical",
-      "is_feriadao": "logical"
+      "is_optional_holiday": "logical",
+      "is_long_weekend": "logical"
     }
   },
   "lines": {
@@ -19,7 +19,7 @@
     "columns": {
       "status": "character",
       "company_name": "character",
-      "line_number": "double",
+      "line_number": "integer",
       "type": "character",
       "line_name_pt": "character",
       "line_name": "character",
@@ -36,59 +36,62 @@
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "line_number": "double",
-      "metric_abb": "character",
-      "value": "double",
-      "metric": "character",
-      "metric_pt": "character",
+      "year": "integer",
+      "line_number": "integer",
       "line_name": "character",
       "line_name_pt": "character",
-      "year": "double"
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
     }
   },
   "passengers_transported": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "line_number": "double",
-      "metric_abb": "character",
-      "value": "double",
-      "metric": "character",
-      "metric_pt": "character",
+      "year": "integer",
+      "line_number": "integer",
       "line_name": "character",
       "line_name_pt": "character",
-      "year": "double"
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
     }
   },
   "station_averages": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "line_number": "double",
+      "year": "integer",
+      "line_number": "integer",
       "station_name": "character",
-      "avg_passenger": "double",
       "line_name": "character",
       "line_name_pt": "character",
-      "year": "double"
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
     }
   },
   "station_daily": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "line_number": "double",
+      "year": "integer",
+      "line_number": "integer",
       "station_name": "character",
-      "passengers": "double",
+      "station_code": "character",
       "line_name": "character",
       "line_name_pt": "character",
-      "station_code": "character",
-      "year": "double"
+      "value": "double"
     }
   },
   "station_inauguration": {
     "kind": "data.frame",
     "columns": {
-      "line_number": "double",
+      "line_number": "integer",
       "station_name": "character",
       "inauguration_date": "Date",
       "phase": "character",

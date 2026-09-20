@@ -21,10 +21,10 @@ nor a holiday (logical).}
 \item{holiday_scope}{Scope of the holiday (character).
 One of \code{"national"}, \code{"state"}, or \code{"municipal"};
 \code{NA} on non-holiday dates.}
-\item{is_ponto_facultativo}{\code{TRUE} for holidays that are technically
+\item{is_optional_holiday}{\code{TRUE} for holidays that are technically
 optional at the federal level (Carnaval, Corpus Christi) but observed
 as holidays in São Paulo (logical).}
-\item{is_feriadao}{\code{TRUE} when a holiday falls on Monday, Tuesday,
+\item{is_long_weekend}{\code{TRUE} when a holiday falls on Monday, Tuesday,
 Thursday, or Friday, creating a potential extended weekend with the
 adjacent Saturday/Sunday (logical).}
 }
@@ -36,8 +36,8 @@ calendar_spo
 A daily calendar for São Paulo (city) covering 2012–2030, classifying each
 date as a holiday or business day. Includes national, state, and municipal
 holidays in São Paulo, with flags for optional work days
-(is_ponto_facultativo) and extended holiday weekends
-(is_feriadao).
+(\code{is_optional_holiday}) and extended holiday weekends
+(\code{is_long_weekend}).
 }
 \details{
 The calendar covers the full date range of the

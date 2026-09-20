@@ -1,3 +1,9 @@
+# metrosp 2.0.0
+
+## Breaking changes
+
+* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_averages` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
+
 # metrosp 1.3.0
 
 ## New features

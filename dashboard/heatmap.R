@@ -21,7 +21,7 @@ sta_daily <- metrosp::station_daily |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
-  select(date, line_number, station_name, value = passengers, year)
+  select(date, line_number, station_name, value = value, year)
 
 ## Available years per station ----
 sta_daily_years <- sta_daily |>
@@ -46,7 +46,7 @@ stations_geo <- sf_stations |>
   select(station_name, line_number, lng, lat)
 
 sta_avg_raw <- metrosp::station_averages |>
-  filter(date >= DATA_START, !is.na(avg_passenger)) |>
+  filter(date >= DATA_START, !is.na(value)) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES)
 
@@ -54,7 +54,7 @@ latest_avg <- max(sta_avg_raw$date, na.rm = TRUE)
 sta_demand <- sta_avg_raw |>
   filter(date > latest_avg - 365) |>
   group_by(line_number, station_name) |>
-  summarise(avg_demand = round(mean(avg_passenger, na.rm = TRUE)), .groups = "drop")
+  summarise(avg_demand = round(mean(value, na.rm = TRUE)), .groups = "drop")
 
 station_map_data <- sta_demand |>
   inner_join(stations_geo, by = c("line_number", "station_name"))

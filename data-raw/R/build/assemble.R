@@ -43,8 +43,14 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
 
   passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
     drop_trailing_na(value) |>
+    rename(
+      metric_name = metric,
+      metric_name_pt = metric_pt,
+      metric = metric_abb
+    ) |>
+    mutate(year = as.integer(year), line_number = as.integer(line_number)) |>
     select(all_of(.cols_psg)) |>
-    arrange(date, line_number, metric_abb)
+    arrange(date, line_number, metric)
 
   stopifnot(
     "NA dates in passengers_entrance" = !any(is.na(passengers_entrance$date))
@@ -73,8 +79,14 @@ assemble_transported <- function(psg_historic, transported_current) {
 
   passengers_transported <- bind_rows(transported_hist, transported_20) |>
     drop_trailing_na(value) |>
+    rename(
+      metric_name = metric,
+      metric_name_pt = metric_pt,
+      metric = metric_abb
+    ) |>
+    mutate(year = as.integer(year), line_number = as.integer(line_number)) |>
     select(all_of(.cols_psg)) |>
-    arrange(date, line_number, metric_abb)
+    arrange(date, line_number, metric)
 
   stopifnot(
     "NA dates in passengers_transported" = !any(
@@ -144,6 +156,21 @@ assemble_averages <- function(
 
   station_averages <- station_averages |>
     drop_trailing_na(avg_passenger) |>
+    rename(value = avg_passenger) |>
+    mutate(
+      year = as.integer(year),
+      line_number = as.integer(line_number),
+      metric = "mdu"
+    ) |>
+    left_join(
+      select(
+        dim_metric,
+        metric = metric_abb,
+        metric_name = metric,
+        metric_name_pt = metric_pt
+      ),
+      by = join_by(metric)
+    ) |>
     select(all_of(.cols_stn_avg_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>
@@ -197,6 +224,8 @@ assemble_daily <- function(daily_current, daily_4_5) {
 
   station_daily <- station_daily |>
     drop_trailing_na(passengers) |>
+    rename(value = passengers) |>
+    mutate(year = as.integer(year), line_number = as.integer(line_number)) |>
     select(all_of(.cols_stn_daily_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>
@@ -216,7 +245,7 @@ assemble_daily <- function(daily_current, daily_4_5) {
       ])
     ),
     "station_daily has negative passengers" = all(
-      station_daily$passengers >= 0
+      station_daily$value >= 0
     ),
     "station_daily missing station_name" = !any(
       is.na(station_daily$station_name)

@@ -87,14 +87,14 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
+| `year` | integer | Calendar year |
 | `line_number` | integer | Line identifier (1, 2, 3, 4, 5, 15, or 99 for the network total) |
-| `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
-| `value` | numeric | Passenger count |
-| `metric` | character | Metric label in English |
-| `metric_pt` | character | Metric label in Portuguese |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
-| `year` | integer | Calendar year |
+| `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Passenger count |
 : `passengers_entrance` columns
 
 ### Day-type metrics
@@ -117,14 +117,14 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
+| `year` | integer | Calendar year |
 | `line_number` | integer | Line identifier (1, 2, 3, 5, 15, or 99 for the network total) |
-| `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
-| `value` | numeric | Passenger count, in thousands |
-| `metric` | character | Metric label in English |
-| `metric_pt` | character | Metric label in Portuguese |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
-| `year` | integer | Calendar year |
+| `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Passenger count, in thousands |
 : `passengers_transported` columns
 
 ## `station_averages`
@@ -134,12 +134,15 @@ Monthly average weekday passenger entries per station. Only the weekday average 
 | Column          | Type      | Description                            |
 |-----------------|-----------|----------------------------------------|
 | `date`          | Date      | First day of the month                 |
+| `year`          | integer   | Calendar year                          |
 | `line_number`   | integer   | Line identifier                        |
 | `station_name`  | character | Full station name                      |
-| `avg_passenger` | numeric   | Average weekday (business day) entries |
 | `line_name`     | character | Line color in English                  |
 | `line_name_pt`  | character | Line color in Portuguese               |
-| `year`          | integer   | Calendar year                          |
+| `metric` | character | Metric code, always `mdu` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Average weekday (business day) entries |
 : `station_averages` columns
 
 ## `station_daily`
@@ -149,13 +152,13 @@ Daily passenger entries at each station.
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `date` | Date | Date of observation |
+| `year` | integer | Calendar year |
 | `line_number` | integer | Line identifier |
 | `station_name` | character | Full station name |
-| `passengers` | numeric | Daily passenger entries |
+| `station_code` | character | Three-letter METRO abbreviation (`NA` for Lines 4--5) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
-| `station_code` | character | Three-letter METRO abbreviation (`NA` for Lines 4--5) |
-| `year` | integer | Calendar year |
+| `value` | numeric | Daily passenger entries |
 : `station_daily` columns
 
 # Spatial datasets
@@ -223,8 +226,8 @@ Daily calendar for the city of São Paulo, 2012--2030, flagging national, state,
 | `is_business_day` | logical | `TRUE` when the date is neither a weekend nor a holiday |
 | `holiday_name` | character | Holiday name in Portuguese, `NA` otherwise |
 | `holiday_scope` | character | `"national"`, `"state"`, or `"municipal"` |
-| `is_ponto_facultativo` | logical | `TRUE` for optional holidays, such as Carnaval Monday |
-| `is_feriadao` | logical | `TRUE` when a holiday falls on a Monday, Tuesday, Thursday, or Friday |
+| `is_optional_holiday` | logical | `TRUE` for optional holidays, such as Carnaval Monday |
+| `is_long_weekend` | logical | `TRUE` when a holiday falls on a Monday, Tuesday, Thursday, or Friday |
 : `calendar_spo` columns
 
 ## `metro_colors`

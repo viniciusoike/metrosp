@@ -9,23 +9,23 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
 #'     the network total (integer).}
-#'   \item{metric_abb}{Abbreviated metric code (character). One of:
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{metric}{Metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count, in individual passengers (numeric).}
-#'   \item{metric}{Measurement type in English (character). One of:
+#'   \item{metric_name}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
 #'     \code{"Daily Peak"}.}
-#'   \item{metric_pt}{Measurement type in Portuguese (character). One of:
+#'   \item{metric_name_pt}{Measurement type in Portuguese (character). One of:
 #'     \code{"Total"}, \code{"Média dos Dias Úteis"},
 #'     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 #'     \code{"Máxima Diária"}.}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{value}{Passenger count, in individual passengers (numeric).}
 #' }
 #'
 #' @details
@@ -96,23 +96,23 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
 #'     the network total (integer).}
-#'   \item{metric_abb}{Abbreviated metric code (character). One of:
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{metric}{Metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count, in thousands of passengers (numeric).}
-#'   \item{metric}{Measurement type in English (character). One of:
+#'   \item{metric_name}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
 #'     \code{"Daily Peak"}.}
-#'   \item{metric_pt}{Measurement type in Portuguese (character). One of:
+#'   \item{metric_name_pt}{Measurement type in Portuguese (character). One of:
 #'     \code{"Total"}, \code{"Média dos Dias Úteis"},
 #'     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 #'     \code{"Máxima Diária"}.}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{value}{Passenger count, in thousands of passengers (numeric).}
 #' }
 #'
 #' @details
@@ -174,12 +174,15 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number (integer).}
 #'   \item{station_name}{Name of the metro station (character).}
-#'   \item{avg_passenger}{Average weekday passenger entries (numeric).}
 #'   \item{line_name}{English name of the metro line (character).}
 #'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{metric}{Metric code: \code{"mdu"} (character).}
+#'   \item{metric_name}{Metric name in English (character).}
+#'   \item{metric_name_pt}{Metric name in Portuguese (character).}
+#'   \item{value}{Average weekday passenger entries (numeric).}
 #' }
 #'
 #' @details
@@ -237,15 +240,15 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{Date of observation (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 #'   \item{station_name}{Full station name (character).}
-#'   \item{passengers}{Daily passenger entries (numeric).}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
 #'   \item{station_code}{Three-letter station abbreviation used internally
 #'     by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
 #'     source).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{value}{Daily passenger entries (numeric).}
 #' }
 #'
 #' @details
@@ -426,8 +429,8 @@
 #' A daily calendar for São Paulo (city) covering 2012–2030, classifying each
 #' date as a holiday or business day. Includes national, state, and municipal
 #' holidays in São Paulo, with flags for optional work days
-#' (is_ponto_facultativo) and extended holiday weekends
-#' (is_feriadao).
+#' (\code{is_optional_holiday}) and extended holiday weekends
+#' (\code{is_long_weekend}).
 #'
 #' @format A data frame with one row per day and the following columns:
 #' \describe{
@@ -445,10 +448,10 @@
 #'   \item{holiday_scope}{Scope of the holiday (character).
 #'     One of \code{"national"}, \code{"state"}, or \code{"municipal"};
 #'     \code{NA} on non-holiday dates.}
-#'   \item{is_ponto_facultativo}{\code{TRUE} for holidays that are technically
+#'   \item{is_optional_holiday}{\code{TRUE} for holidays that are technically
 #'     optional at the federal level (Carnaval, Corpus Christi) but observed
 #'     as holidays in São Paulo (logical).}
-#'   \item{is_feriadao}{\code{TRUE} when a holiday falls on Monday, Tuesday,
+#'   \item{is_long_weekend}{\code{TRUE} when a holiday falls on Monday, Tuesday,
 #'     Thursday, or Friday, creating a potential extended weekend with the
 #'     adjacent Saturday/Sunday (logical).}
 #' }

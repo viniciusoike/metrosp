@@ -21,8 +21,8 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 
 # Join keys per dataset, used for the retroactive-drift comparison.
 .drift_keys <- list(
-  passengers_entrance = c("date", "line_number", "metric_abb"),
-  passengers_transported = c("date", "line_number", "metric_abb"),
+  passengers_entrance = c("date", "line_number", "metric"),
+  passengers_transported = c("date", "line_number", "metric"),
   station_averages = c("date", "line_number", "station_name"),
   station_daily = c("date", "line_number", "station_name")
 )
@@ -30,9 +30,31 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 .drift_values <- list(
   passengers_entrance = "value",
   passengers_transported = "value",
-  station_averages = "avg_passenger",
-  station_daily = "passengers"
+  station_averages = "value",
+  station_daily = "value"
 )
+
+# Translate the 1.x release contract before comparing it with a 2.0 build.
+normalize_baseline_schema <- function(datasets) {
+  for (name in intersect(names(.drift_keys), names(datasets))) {
+    dat <- datasets[[name]]
+    if ("metric_abb" %in% names(dat)) {
+      dat$metric_name <- dat$metric
+      dat$metric_name_pt <- dat$metric_pt
+      dat$metric <- dat$metric_abb
+      dat$metric_abb <- NULL
+      dat$metric_pt <- NULL
+    }
+    if ("avg_passenger" %in% names(dat)) {
+      names(dat)[names(dat) == "avg_passenger"] <- "value"
+    }
+    if ("passengers" %in% names(dat)) {
+      names(dat)[names(dat) == "passengers"] <- "value"
+    }
+    datasets[[name]] <- dat
+  }
+  return(datasets)
+}
 
 #' Validate a rebuilt batch against the previously published one.
 #'
@@ -67,6 +89,8 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     notes <- c(notes, "No baseline available; differential checks skipped.")
     return(validation_result(failures, warnings, notes, list()))
   }
+
+  baseline <- normalize_baseline_schema(baseline)
 
   drift <- list()
 
@@ -196,8 +220,8 @@ magnitude_outliers <- function(df, name, value, tol) {
   if (!all(c("date", "line_number", value) %in% names(df))) {
     return(character(0))
   }
-  if ("metric_abb" %in% names(df)) {
-    df <- df[df$metric_abb == "total", , drop = FALSE]
+  if ("metric" %in% names(df)) {
+    df <- df[df$metric == "total", , drop = FALSE]
   }
   if (nrow(df) == 0) {
     return(character(0))

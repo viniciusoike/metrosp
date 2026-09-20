@@ -8,12 +8,15 @@
 A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
+\item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number (integer).}
 \item{station_name}{Name of the metro station (character).}
-\item{avg_passenger}{Average weekday passenger entries (numeric).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
-\item{year}{Calendar year (integer).}
+\item{metric}{Metric code: \code{"mdu"} (character).}
+\item{metric_name}{Metric name in English (character).}
+\item{metric_name_pt}{Metric name in Portuguese (character).}
+\item{value}{Average weekday passenger entries (numeric).}
 }
 }
 \source{

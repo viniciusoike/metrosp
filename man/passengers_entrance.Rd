@@ -8,23 +8,23 @@
 A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
+\item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
 the network total (integer).}
-\item{metric_abb}{Abbreviated metric code (character). One of:
+\item{line_name}{English name of the metro line (character).}
+\item{line_name_pt}{Portuguese name of the metro line (character).}
+\item{metric}{Metric code (character). One of:
 \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 \code{"max"}.}
-\item{value}{Passenger count, in individual passengers (numeric).}
-\item{metric}{Measurement type in English (character). One of:
+\item{metric_name}{Measurement type in English (character). One of:
 \code{"Total"}, \code{"Average on Business Days"},
 \code{"Average on Saturdays"}, \code{"Average on Sundays"},
 \code{"Daily Peak"}.}
-\item{metric_pt}{Measurement type in Portuguese (character). One of:
+\item{metric_name_pt}{Measurement type in Portuguese (character). One of:
 \code{"Total"}, \code{"Média dos Dias Úteis"},
     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 \code{"Máxima Diária"}.}
-\item{line_name}{English name of the metro line (character).}
-\item{line_name_pt}{Portuguese name of the metro line (character).}
-\item{year}{Calendar year (integer).}
+\item{value}{Passenger count, in individual passengers (numeric).}
 }
 }
 \source{

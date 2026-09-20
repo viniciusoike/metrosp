@@ -83,7 +83,7 @@ roll_mean <- function(x, k = 7L) {
 ## Monthly totals by line ----
 
 ent_all <- metrosp::passengers_entrance |>
-  filter(metric_abb == "total", line_number %in% as.integer(LINES)) |>
+  filter(metric == "total", line_number %in% as.integer(LINES)) |>
   mutate(line_number = as.character(line_number))
 
 # Series shown in charts: from mid-2018 onward
@@ -251,24 +251,24 @@ sta_daily_df <- metrosp::station_daily |>
 sta_years <- sort(unique(sta_daily_df$year), decreasing = TRUE)
 
 latest_sta_avg <- sta_avg |>
-  filter(year == max(year, na.rm = TRUE), !is.na(avg_passenger)) |>
+  filter(year == max(year, na.rm = TRUE), !is.na(value)) |>
   group_by(line_number, station_name) |>
-  summarise(avg = mean(avg_passenger, na.rm = TRUE), .groups = "drop")
+  summarise(avg = mean(value, na.rm = TRUE), .groups = "drop")
 
 max_avg_global <- max(latest_sta_avg$avg, na.rm = TRUE)
 
 ## Station-level movers — trailing 12m vs prior 12m ----
 
 station_movers <- sta_avg |>
-  filter(!is.na(avg_passenger)) |>
+  filter(!is.na(value)) |>
   group_by(line_number, station_name) |>
   summarise(
     avg_recent = mean(
-      avg_passenger[date > recovery_window_start],
+      value[date > recovery_window_start],
       na.rm = TRUE
     ),
     avg_prior = mean(
-      avg_passenger[date > prev_window_start & date <= recovery_window_start],
+      value[date > prev_window_start & date <= recovery_window_start],
       na.rm = TRUE
     ),
     n_recent = sum(date > recovery_window_start),
@@ -290,13 +290,13 @@ station_movers <- sta_avg |>
 ## Pre/post-COVID delta at station level ----
 
 station_covid <- sta_avg |>
-  filter(!is.na(avg_passenger)) |>
+  filter(!is.na(value)) |>
   group_by(line_number, station_name) |>
   summarise(
-    avg_2019 = mean(avg_passenger[year == 2019], na.rm = TRUE),
-    n_2019 = sum(year == 2019 & !is.na(avg_passenger)),
+    avg_2019 = mean(value[year == 2019], na.rm = TRUE),
+    n_2019 = sum(year == 2019 & !is.na(value)),
     avg_recent = mean(
-      avg_passenger[date > recovery_window_start],
+      value[date > recovery_window_start],
       na.rm = TRUE
     ),
     n_recent = sum(date > recovery_window_start),
@@ -1342,7 +1342,7 @@ server <- function(input, output, session) {
     if (nrow(wd) == 0) {
       return("—")
     }
-    fmt_n(mean(wd$passengers, na.rm = TRUE))
+    fmt_n(mean(wd$value, na.rm = TRUE))
   })
 
   output$vb_sta_weekend <- renderText({
@@ -1351,7 +1351,7 @@ server <- function(input, output, session) {
     if (nrow(we) == 0) {
       return("—")
     }
-    fmt_n(mean(we$passengers, na.rm = TRUE))
+    fmt_n(mean(we$value, na.rm = TRUE))
   })
 
   output$sta_calendar <- renderEcharts4r({
@@ -1363,7 +1363,7 @@ server <- function(input, output, session) {
 
     df |>
       mutate(date = as.character(date)) |>
-      select(date, passengers) |>
+      select(date, value) |>
       e_charts() |>
       e_calendar(
         range = as.character(yr),
@@ -1389,9 +1389,9 @@ server <- function(input, output, session) {
         itemStyle = list(borderColor = "white", borderWidth = 2),
         splitLine = list(show = FALSE)
       ) |>
-      e_heatmap(date, passengers, coord_system = "calendar") |>
+      e_heatmap(date, value, coord_system = "calendar") |>
       e_visual_map(
-        passengers,
+        value,
         type = "continuous",
         inRange = list(color = c("#F2F3F8", col)),
         orient = "vertical",
@@ -1423,12 +1423,12 @@ server <- function(input, output, session) {
 
     df <- df |>
       arrange(date) |>
-      mutate(rolling7 = roll_mean(passengers))
+      mutate(rolling7 = roll_mean(value))
 
     e <- df |>
       e_charts(date) |>
       e_line(
-        passengers,
+        value,
         name = "Diário",
         symbol = "none",
         smooth = FALSE,
@@ -1463,7 +1463,7 @@ server <- function(input, output, session) {
     req(ln)
 
     latest_yr_line <- sta_avg |>
-      filter(line_number == ln, !is.na(avg_passenger)) |>
+      filter(line_number == ln, !is.na(value)) |>
       pull(year) |>
       max(na.rm = TRUE)
 
@@ -1471,10 +1471,10 @@ server <- function(input, output, session) {
       filter(
         line_number == ln,
         year == latest_yr_line,
-        !is.na(avg_passenger)
+        !is.na(value)
       ) |>
       group_by(station_name) |>
-      summarise(avg = mean(avg_passenger, na.rm = TRUE), .groups = "drop") |>
+      summarise(avg = mean(value, na.rm = TRUE), .groups = "drop") |>
       arrange(avg) |>
       mutate(
         avg_k = avg / 1e3,
@@ -1882,18 +1882,18 @@ server <- function(input, output, session) {
   output$dl_station_rank <- csv_dl("ranking-estacoes", function() {
     ln <- input$line_rank %||% "1"
     latest_yr_line <- sta_avg |>
-      filter(line_number == ln, !is.na(avg_passenger)) |>
+      filter(line_number == ln, !is.na(value)) |>
       pull(year) |>
       max(na.rm = TRUE)
     sta_avg |>
       filter(
         line_number == ln,
         year == latest_yr_line,
-        !is.na(avg_passenger)
+        !is.na(value)
       ) |>
       group_by(line_number, station_name) |>
       summarise(
-        media_dia_util = round(mean(avg_passenger, na.rm = TRUE)),
+        media_dia_util = round(mean(value, na.rm = TRUE)),
         ano = latest_yr_line,
         .groups = "drop"
       ) |>
