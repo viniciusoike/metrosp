@@ -6,6 +6,18 @@
 
 * Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_averages` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
 
+### Migrating from 1.x
+
+The `metric` rename changes meaning: in 1.x it contained the English label, while in 2.0 it contains the stable abbreviated code. Code that groups, filters, or pivots on metric columns should use this mapping:
+
+| 1.x column | 2.0 column | Meaning |
+|---|---|---|
+| `metric_abb` | `metric` | Stable code such as `total` or `mdu` |
+| `metric` | `metric_name` | English display label |
+| `metric_pt` | `metric_name_pt` | Portuguese display label |
+
+The measure columns `passengers`, `avg_passenger`, and `passengers_entrance` are now consistently named `value`. The calendar columns `is_ponto_facultativo` and `is_feriadao` are now `is_optional_holiday` and `is_long_weekend`.
+
 # metrosp 1.3.0
 
 ## New features

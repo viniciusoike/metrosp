@@ -1,7 +1,7 @@
 Package: metrosp
 Type: Package
 Title: São Paulo Metro Passenger Demand Data
-Version: 1.3.0
+Version: 1.3.0.9000
 Authors@R: c(
     person(
       "Vinicius", "Oike",

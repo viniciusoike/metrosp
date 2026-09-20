@@ -35,6 +35,8 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 )
 
 # Translate the 1.x release contract before comparing it with a 2.0 build.
+# Keep this adapter through the first successful 2.0 publication; remove it
+# only after data-latest itself carries the 2.0 schema.
 normalize_baseline_schema <- function(datasets) {
   for (name in intersect(names(.drift_keys), names(datasets))) {
     dat <- datasets[[name]]

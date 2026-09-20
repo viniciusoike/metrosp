@@ -43,6 +43,7 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
 
   passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
     drop_trailing_na(value) |>
+    # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
       metric_name = metric,
       metric_name_pt = metric_pt,
@@ -79,6 +80,7 @@ assemble_transported <- function(psg_historic, transported_current) {
 
   passengers_transported <- bind_rows(transported_hist, transported_20) |>
     drop_trailing_na(value) |>
+    # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
       metric_name = metric,
       metric_name_pt = metric_pt,
@@ -154,15 +156,7 @@ assemble_averages <- function(
       line_number = as.integer(line_number),
       metric = "mdu"
     ) |>
-    left_join(
-      select(
-        dim_metric,
-        metric = metric_abb,
-        metric_name = metric,
-        metric_name_pt = metric_pt
-      ),
-      by = join_by(metric)
-    ) |>
+    left_join(dim_metric_public, by = join_by(metric)) |>
     select(all_of(.cols_stn_avg_out)) |>
     mutate(station_order = paste(line_number, station_name, sep = "_")) |>
     arrange(date, station_order) |>

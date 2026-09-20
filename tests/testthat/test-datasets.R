@@ -26,6 +26,26 @@ test_that("passengers_transported satisfies its structural invariants", {
   )
 })
 
+test_that("demand checks enforce the 2.0 metric and type contract", {
+  bad_metric <- metrosp::passengers_entrance
+  bad_metric$metric[[1]] <- "weekday_average"
+  expect_match(
+    check_passengers_entrance(bad_metric)[[1]],
+    "unexpected value"
+  )
+
+  bad_type <- metrosp::passengers_transported
+  bad_type$year <- as.double(bad_type$year)
+  expect_match(
+    check_passengers_transported(bad_type)[[1]],
+    "unexpected type"
+  )
+
+  missing_year <- metrosp::station_averages |>
+    dplyr::select(-year)
+  expect_match(check_station_averages(missing_year)[[1]], "missing column")
+})
+
 test_that("station_averages satisfies its structural invariants", {
   expect_equal(check_station_averages(metrosp::station_averages), character(0))
 })

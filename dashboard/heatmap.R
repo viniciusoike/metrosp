@@ -21,7 +21,7 @@ sta_daily <- metrosp::station_daily |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
-  select(date, line_number, station_id, station_name, value = value, year)
+  select(date, line_number, station_id, station_name, value, year)
 
 ## Available years per station ----
 sta_daily_years <- sta_daily |>

@@ -21,7 +21,7 @@ sta_avg <- metrosp::station_averages |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
-  select(date, line_number, station_id, station_name, value = value, year)
+  select(date, line_number, station_id, station_name, value, year)
 
 ## Station demand summary (last 12 months) ----
 latest_date <- max(sta_avg$date, na.rm = TRUE)

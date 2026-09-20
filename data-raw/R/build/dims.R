@@ -138,6 +138,15 @@ dim_metric <- tibble(
   )
 )
 
+# Public 2.0 metric vocabulary. Processed inputs keep the historical names;
+# assemblers use this table at the publication boundary.
+dim_metric_public <- dim_metric |>
+  rename(
+    metric = metric_abb,
+    metric_name = metric,
+    metric_name_pt = metric_pt
+  )
+
 # Map the Portuguese metric label printed in the raw files to its abbreviation.
 # Keys are accent-stripped ASCII on purpose. R stores the names of a named
 # vector in the native encoding, so accented keys parsed under a non-UTF-8
