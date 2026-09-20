@@ -21,17 +21,17 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 
 # Join keys per dataset, used for the retroactive-drift comparison.
 .drift_keys <- list(
-  passengers_entrance = c("date", "line_number", "metric"),
-  passengers_transported = c("date", "line_number", "metric"),
-  station_averages = c("date", "line_number", "station_id"),
-  station_daily = c("date", "line_number", "station_id")
+  line_entries_monthly = c("date", "line_number", "metric"),
+  line_transported_monthly = c("date", "line_number", "metric"),
+  station_entries_monthly = c("date", "line_number", "station_id"),
+  station_entries_daily = c("date", "line_number", "station_id")
 )
 
 .drift_values <- list(
-  passengers_entrance = "value",
-  passengers_transported = "value",
-  station_averages = "value",
-  station_daily = "value"
+  line_entries_monthly = "value",
+  line_transported_monthly = "value",
+  station_entries_monthly = "value",
+  station_entries_daily = "value"
 )
 
 # Translate the 1.x release contract before comparing it with a 2.0 build.

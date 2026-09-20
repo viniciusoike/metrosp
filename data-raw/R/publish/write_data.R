@@ -10,35 +10,32 @@
 #' Each argument is an assembled dataset; the parameter name becomes the .rda
 #' name. Returns the character vector of dataset names written.
 write_all_data <- function(
-  passengers_entrance,
-  passengers_transported,
-  station_averages,
-  station_daily,
-  lines,
-  stations,
+  line_entries_monthly,
+  line_transported_monthly,
+  station_entries_monthly,
+  station_entries_daily,
+  rail_lines,
+  rail_stations,
   metro_colors,
-  station_inauguration,
   calendar_spo
 ) {
-  usethis::use_data(passengers_entrance, overwrite = TRUE)
-  usethis::use_data(passengers_transported, overwrite = TRUE)
-  usethis::use_data(station_averages, overwrite = TRUE)
-  usethis::use_data(station_daily, overwrite = TRUE)
-  usethis::use_data(lines, overwrite = TRUE)
-  usethis::use_data(stations, overwrite = TRUE)
+  usethis::use_data(line_entries_monthly, overwrite = TRUE)
+  usethis::use_data(line_transported_monthly, overwrite = TRUE)
+  usethis::use_data(station_entries_monthly, overwrite = TRUE)
+  usethis::use_data(station_entries_daily, overwrite = TRUE)
+  usethis::use_data(rail_lines, overwrite = TRUE)
+  usethis::use_data(rail_stations, overwrite = TRUE)
   usethis::use_data(metro_colors, overwrite = TRUE)
-  usethis::use_data(station_inauguration, overwrite = TRUE)
   usethis::use_data(calendar_spo, overwrite = TRUE)
 
   c(
-    "passengers_entrance",
-    "passengers_transported",
-    "station_averages",
-    "station_daily",
-    "lines",
-    "stations",
+    "line_entries_monthly",
+    "line_transported_monthly",
+    "station_entries_monthly",
+    "station_entries_daily",
+    "rail_lines",
+    "rail_stations",
     "metro_colors",
-    "station_inauguration",
     "calendar_spo"
   )
 }

@@ -41,9 +41,9 @@ spatial datasets.
 |    5 | Lilás (Lilac)    | METRÔ / ViaMobilidade | Jan 2016 – Apr 2026 |
 |   15 | Prata (Silver)   | METRÔ                 | Jan 2016 – Jul 2026 |
 
-Coverage refers to `passengers_entrance`, which is missing July 2017 for
-every METRO-sourced line. The other datasets start later for some lines.
-The [Metro Demand
+Coverage refers to `line_entries_monthly`, which is missing July 2017
+for every METRO-sourced line. The other datasets start later for some
+lines. The [Metro Demand
 Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
 article gives the coverage window of every dataset by line.
 
@@ -64,25 +64,25 @@ install.packages("metrosp")
 
 ## Datasets
 
-Four datasets carry the demand data: `passengers_entrance`,
-`passengers_transported`, `station_averages`, and `station_daily`. The
-rest are auxiliary tables that support analysis and visualization.
+Four datasets carry the demand data: `line_entries_monthly`,
+`line_transported_monthly`, `station_entries_monthly`, and
+`station_entries_daily`. The rest are auxiliary tables that support
+analysis and visualization.
 
 | Dataset | Description | Frequency | Spatial |
 |----|----|----|----|
-| `passengers_entrance` | Monthly passenger entries by line and day-type metric | Monthly | No |
-| `passengers_transported` | Monthly passengers transported by line, in thousands | Monthly | No |
-| `station_averages` | Average weekday passenger entries by station | Monthly | No |
-| `station_daily` | Daily passenger entries by station | Daily | No |
-| `station_inauguration` | Station opening dates and ramp-up window flag | — | No |
+| `line_entries_monthly` | Monthly passenger entries by line and day-type metric | Monthly | No |
+| `line_transported_monthly` | Monthly passengers transported by line, in thousands | Monthly | No |
+| `station_entries_monthly` | Average weekday passenger entries by station | Monthly | No |
+| `station_entries_daily` | Daily passenger entries by station | Daily | No |
 | `calendar_spo` | São Paulo holiday and business-day calendar | Daily | No |
 | `metro_colors` | Named vector of official metro line colors | — | No |
-| `lines` | Metro and train line routes (current + planned) | — | Yes |
-| `stations` | Metro and train station locations (current + planned) | — | Yes |
+| `rail_lines` | Metro and train line routes (current + planned) | — | Yes |
+| `rail_stations` | Metro and train station locations (current + planned) | — | Yes |
 
-`passengers_entrance` and the two station datasets count individual
-passengers. `passengers_transported` reports thousands of passengers, as
-the METRÔ source does. The [data
+`line_entries_monthly` and the two station datasets count individual
+passengers. `line_transported_monthly` reports thousands of passengers,
+as the METRÔ source does. The [data
 dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html)
 defines every column, and the [Metro Demand
 Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)
@@ -104,10 +104,10 @@ tag that pins that month’s batch.
 
 ``` r
 # Latest published data
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned monthly batch, so an analysis can name the vintage it used
-entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
 Downloads go to a temporary directory until you allow a persistent cache
@@ -122,19 +122,19 @@ its name.
 
 ``` r
 library(metrosp)
-# To work with spatial datasets (lines, stations)
+# To work with spatial datasets (rail lines and stations)
 library(sf)
 # For better tables load dplyr or tibble
 library(dplyr)
 
 # Passenger entries by line
-passengers_entrance
+line_entries_monthly
 
 # Station-level weekday averages
-station_averages
+station_entries_monthly
 
 # Spatial line routes
-lines
+rail_lines
 ```
 
 ## Explorer dashboard

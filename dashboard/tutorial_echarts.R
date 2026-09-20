@@ -2,7 +2,7 @@ library(echarts4r)
 library(metrosp)
 library(dplyr)
 
-dat <- passengers_entrance |>
+dat <- line_entries_monthly |>
   filter(line_number == 1, date >= "2019-01-01", metric == "total") |>
   mutate(
     trunc_val = value / 1000
@@ -16,7 +16,7 @@ e_charts(dat, x = date) |>
     textStyle = list(fontSize = 10, fontFamily = "Poppins", fontWeight = "bold")
   )
 
-coldat <- station_averages |>
+coldat <- station_entries_monthly |>
   filter(date == max(date), line_number == 1) |>
   mutate(
     station_name = factor(station_name),
@@ -32,7 +32,7 @@ e_charts(coldat, station_name) |>
   e_labels(position = c("50%", "25%")) |>
   e_flip_coords()
 
-subdat <- passengers_entrance |>
+subdat <- line_entries_monthly |>
   filter(
     line_number %in% c(1, 2),
     date >= "2019-01-01",
@@ -51,7 +51,7 @@ subdat <- subdat |>
 e_charts(subdat, x = mdo) |>
   e_scatter(serie = mdu, symbol_size = 15)
 
-brigs <- station_daily |>
+brigs <- station_entries_daily |>
   filter(
     station_name == "Brigadeiro",
     date >= "2025-01-01",
@@ -80,7 +80,7 @@ gapminder <- gapminder |>
 e_charts(gapminder, lgdp, timeline = TRUE) |>
   e_scatter(serie = lifeExp, size = lpop)
 
-brigs <- station_daily |>
+brigs <- station_entries_daily |>
   mutate(
     year = lubridate::year(date),
     month = lubridate::month(date)
@@ -105,7 +105,7 @@ e_charts(brigs, x = date, timeline = TRUE) |>
   ) |>
   e_visual_map(max = max(brigs$value))
 
-verde <- station_daily |>
+verde <- station_entries_daily |>
   mutate(
     year = lubridate::year(date),
     year = as.character(year),

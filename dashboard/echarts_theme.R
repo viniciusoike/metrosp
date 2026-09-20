@@ -2,7 +2,7 @@ library(echarts4r)
 library(metrosp)
 library(dplyr)
 
-dat <- passengers_entrance |>
+dat <- line_entries_monthly |>
   filter(line_number == 1, date >= "2019-01-01", metric == "total") |>
   mutate(
     trunc_val = value / 1000

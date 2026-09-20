@@ -41,11 +41,11 @@ holidays in São Paulo, with flags for optional work days
 }
 \details{
 The calendar covers the full date range of the
-\code{\link{station_daily}} dataset (Lines 4/5 from January 2012) and
+\code{\link{station_entries_daily}} dataset (Lines 4/5 from January 2012) and
 extends through 2030 for forecasting use.
 }
 \seealso{
-\code{\link{station_daily}} for daily passenger data that can be
+\code{\link{station_entries_daily}} for daily passenger data that can be
 joined on \code{date}.
 }
 \keyword{datasets}

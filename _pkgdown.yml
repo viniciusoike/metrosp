@@ -17,17 +17,16 @@ reference:
 - title: Demand datasets
   desc: Passenger counts by line and by station.
   contents:
-  - passengers_entrance
-  - passengers_transported
-  - station_averages
-  - station_daily
+  - line_entries_monthly
+  - line_transported_monthly
+  - station_entries_monthly
+  - station_entries_daily
 
 - title: Spatial and reference datasets
   desc: Geometries and lookup tables.
   contents:
-  - lines
-  - stations
-  - station_inauguration
+  - rail_lines
+  - rail_stations
   - calendar_spo
   - metro_colors
 

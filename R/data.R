@@ -81,9 +81,9 @@
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{passengers_transported}} for transported counts,
-#'   \code{\link{station_averages}} for station-level weekday averages.
-"passengers_entrance"
+#' @seealso \code{\link{line_transported_monthly}} for transported counts,
+#'   \code{\link{station_entries_monthly}} for station-level weekday averages.
+"line_entries_monthly"
 
 #' Passengers Transported by Metro SP Line
 #'
@@ -118,7 +118,7 @@
 #' @details
 #' Values are in thousands of passengers, as published by METRO SP. The other
 #' demand datasets count individual passengers, so multiply by 1000 before
-#' comparing \code{value} with \code{\link{passengers_entrance}}.
+#' comparing \code{value} with \code{\link{line_entries_monthly}}.
 #'
 #' A transported passenger is one who crossed a turnstile plus one who
 #' transferred between lines at an interchange station, so transported counts
@@ -154,14 +154,14 @@
 #' during assembly; interior \code{NA}s (e.g. operational outages) are
 #' preserved.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{passengers_entrance}} for entry counts,
-#'   \code{\link{station_averages}} for station-level weekday averages.
-"passengers_transported"
+#' @seealso \code{\link{line_entries_monthly}} for entry counts,
+#'   \code{\link{station_entries_monthly}} for station-level weekday averages.
+"line_transported_monthly"
 
 #' Average Weekday Passenger Entries by Station
 #'
@@ -190,7 +190,7 @@
 #' @details
 #' Only the weekday average (mdu) metric is available at the station level.
 #' For line-level data with all five metrics, see
-#' \code{\link{passengers_entrance}}. Months beyond the last published data
+#' \code{\link{line_entries_monthly}}. Months beyond the last published data
 #' point for each line are trimmed during assembly; interior \code{NA}s
 #' (e.g. operational outages) are preserved.
 #'
@@ -217,20 +217,20 @@
 #'
 #' February–June 2016 carries a defect in the Line 1 values. Across those
 #' five months the station figures fall well short of what the surrounding
-#' months and the line total in \code{\link{passengers_entrance}} imply, and
+#' months and the line total in \code{\link{line_entries_monthly}} imply, and
 #' they are misallocated across stations, with Santa Cruz and Sé too high and
 #' São Bento and Portuguesa-Tietê too low. The defect comes from METRO's
 #' retroactive publication of 2016 and is not corrected here, so exclude
 #' those five months from station-level baselines.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{station_daily}} for daily station entries,
-#'   \code{\link{passengers_entrance}} for monthly line-level totals.
-"station_averages"
+#' @seealso \code{\link{station_entries_daily}} for daily station entries,
+#'   \code{\link{line_entries_monthly}} for monthly line-level totals.
+"station_entries_monthly"
 
 #' Daily Passenger Entries by Metro SP Station
 #'
@@ -277,14 +277,14 @@
 #' during assembly; interior \code{NA}s (e.g. operational outages) are
 #' preserved.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{station_averages}} for monthly weekday averages,
-#'   \code{\link{passengers_entrance}} for monthly line-level totals.
-"station_daily"
+#' @seealso \code{\link{station_entries_monthly}} for monthly weekday averages,
+#'   \code{\link{line_entries_monthly}} for monthly line-level totals.
+"station_entries_daily"
 
 #' Metro and Train Line Routes
 #'
@@ -315,8 +315,8 @@
 #' @source GeoSampa, Prefeitura de São Paulo.
 #'   \url{https://geosampa.prefeitura.sp.gov.br/}
 #'
-#' @seealso \code{\link{stations}} for station point locations.
-"lines"
+#' @seealso \code{\link{rail_stations}} for station point locations.
+"rail_lines"
 
 #' Metro and Train Station Locations
 #'
@@ -352,9 +352,9 @@
 #' @source GeoSampa, Prefeitura de São Paulo.
 #'   \url{https://geosampa.prefeitura.sp.gov.br/}
 #'
-#' @seealso \code{\link{lines}} for line route geometries,
-#'   \code{\link{station_averages}} for passenger data by station.
-"stations"
+#' @seealso \code{\link{rail_lines}} for line route geometries,
+#'   \code{\link{station_entries_monthly}} for passenger data by station.
+"rail_stations"
 
 #' Metro SP Official Line Colors
 #'
@@ -378,59 +378,9 @@
 #' currently operating metro lines are included; CPTM train lines and planned
 #' future lines (e.g., Line 6 Orange, Line 17 Gold) are not covered.
 #'
-#' @seealso \code{\link{lines}} for the full line reference (numbers, names,
+#' @seealso \code{\link{rail_lines}} for the full line reference (numbers, names,
 #'   and route geometries).
 "metro_colors"
-
-#' Station Commercial Opening Dates
-#'
-#' Inauguration (commercial opening) dates for São Paulo metro stations,
-#' covering stations whose opening falls within or near the
-#' \code{\link{station_daily}} / \code{\link{station_averages}} window. Used
-#' to flag ramp-up periods in which monthly ridership is still climbing
-#' toward steady-state and should generally be excluded from year-on-year or
-#' baseline comparisons.
-#'
-#' @format A data frame with one row per (line, station):
-#' \describe{
-#'   \item{line_number}{Metro line number (integer).}
-#'   \item{station_name}{Full station name (character).}
-#'   \item{inauguration_date}{Date of commercial opening (Date). \code{NA}
-#'     for stations whose opening predates the dataset window (i.e., they
-#'     were already operating when the data record begins).}
-#'   \item{phase}{Short label identifying the expansion phase, e.g.
-#'     \code{"L15 Fase 4"} (character).}
-#'   \item{verified}{Whether the inauguration date has been cross-checked
-#'     against the operator's announcement or an equivalently reliable
-#'     source (logical). Stations with \code{verified = FALSE} carry
-#'     best-effort dates and should not be relied on for legal or
-#'     publication purposes without re-checking.}
-#'   \item{notes}{Free-text annotations about the source or any caveats
-#'     (character, possibly \code{NA}).}
-#'   \item{pre_data_window}{\code{TRUE} when \code{inauguration_date} is
-#'     \code{NA} because the station opened before the data starts
-#'     (logical).}
-#'   \item{ramp_up_end}{\code{inauguration_date + 180} days — a heuristic
-#'     end of the initial ramp-up period (Date). \code{NA} when
-#'     \code{pre_data_window} is \code{TRUE}.}
-#' }
-#'
-#' @details
-#' The table is compiled by hand from \code{data-raw/inputs/station_inauguration.csv}
-#' in the package repository. Contributions that extend the table or verify
-#' uncertain dates are welcome.
-#'
-#' When computing pre/post comparisons (e.g.\ 12m-vs-prior-12m or
-#' recovery-vs-2019), exclude stations where either window overlaps
-#' \code{ramp_up_end} to avoid mistaking ramp-up growth for organic demand
-#' change.
-#'
-#' @source Compiled from operator announcements (Companhia do Metropolitano
-#'   de São Paulo, ViaQuatro, ViaMobilidade).
-#'
-#' @seealso \code{\link{stations}} for spatial point locations,
-#'   \code{\link{station_averages}} for monthly weekday averages.
-"station_inauguration"
 
 #' São Paulo Holiday and Business-Day Calendar
 #'
@@ -466,9 +416,9 @@
 #'
 #' @details
 #' The calendar covers the full date range of the
-#' \code{\link{station_daily}} dataset (Lines 4/5 from January 2012) and
+#' \code{\link{station_entries_daily}} dataset (Lines 4/5 from January 2012) and
 #' extends through 2030 for forecasting use.
 #'
-#' @seealso \code{\link{station_daily}} for daily passenger data that can be
+#' @seealso \code{\link{station_entries_daily}} for daily passenger data that can be
 #'   joined on \code{date}.
 "calendar_spo"

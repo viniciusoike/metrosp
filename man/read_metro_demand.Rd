@@ -5,8 +5,8 @@
 \title{Read Metro SP demand data}
 \usage{
 read_metro_demand(
-  dataset = c("passengers_entrance", "passengers_transported", "station_averages",
-    "station_daily"),
+  dataset = c("line_entries_monthly", "line_transported_monthly",
+    "station_entries_monthly", "station_entries_daily"),
   source = c("auto", "cache", "remote", "bundled"),
   vintage = "latest",
   cache = TRUE,
@@ -14,8 +14,9 @@ read_metro_demand(
 )
 }
 \arguments{
-\item{dataset}{Dataset to read. One of \code{"passengers_entrance"},
-\code{"passengers_transported"}, \code{"station_averages"}, or \code{"station_daily"}.}
+\item{dataset}{Dataset to read. One of \code{"line_entries_monthly"},
+\code{"line_transported_monthly"}, \code{"station_entries_monthly"}, or
+\code{"station_entries_daily"}.}
 
 \item{source}{Where to read from.
 \itemize{
@@ -35,9 +36,9 @@ release; a year-month string such as \code{"2026-09"} pins an immutable batch.}
 \item{quiet}{Whether to suppress progress messages.}
 }
 \value{
-A data frame. See \link{passengers_entrance}, \link{passengers_transported},
-\link{station_averages}, and \link{station_daily} for the column definitions, which
-are identical across sources.
+A data frame. See \link{line_entries_monthly}, \link{line_transported_monthly},
+\link{station_entries_monthly}, and \link{station_entries_daily} for the column
+definitions, which are identical across sources.
 }
 \description{
 Reads one of the four passenger demand datasets, preferring the most
@@ -47,23 +48,23 @@ rebuilt from the upstream sources on every pipeline run.
 }
 \details{
 Only the demand datasets are published separately. The reference datasets
-(\link{lines}, \link{stations}, \link{station_inauguration}, \link{calendar_spo}, and
-\link{metro_colors}) do not change with new months, so read them directly.
+(\link{rail_lines}, \link{rail_stations}, \link{calendar_spo}, and \link{metro_colors}) do not
+change with new months, so read them directly.
 
 Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 installed and skip verification otherwise.
 }
 \examples{
 # The bundled snapshot, read without touching the network.
-head(read_metro_demand("passengers_entrance", source = "bundled"))
+head(read_metro_demand("line_entries_monthly", source = "bundled"))
 
 \donttest{
 # The most recently published data, cached between calls.
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned vintage, so an analysis can name the batch it used.
 entrance_sep <- read_metro_demand(
-  "passengers_entrance",
+  "line_entries_monthly",
   vintage = "2026-09"
 )
 }

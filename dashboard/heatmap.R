@@ -17,7 +17,7 @@ DATA_START <- as.Date("2019-01-01")
 # Pre-build data ----
 
 ## Station daily entries ----
-sta_daily <- metrosp::station_daily |>
+sta_daily <- metrosp::station_entries_daily |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
@@ -34,7 +34,7 @@ stations_by_line <- sta_daily |>
   arrange(line_number, station_name)
 
 ## Station coordinates + demand for map markers ----
-sf_stations <- metrosp::stations |>
+sf_stations <- metrosp::rail_stations |>
   filter(status == "current", type == "metro") |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES)
@@ -45,7 +45,7 @@ stations_geo <- sf_stations |>
   mutate(lng = coords[, 1], lat = coords[, 2]) |>
   select(station_id, station_name, line_number, lng, lat)
 
-sta_avg_raw <- metrosp::station_averages |>
+sta_avg_raw <- metrosp::station_entries_monthly |>
   filter(date >= DATA_START, !is.na(value)) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES)
@@ -61,7 +61,7 @@ station_map_data <- sta_demand |>
 
 ## Line geometries ----
 sf_lines <- tryCatch(
-  metrosp::lines |>
+  metrosp::rail_lines |>
     filter(status == "current", type == "metro") |>
     mutate(line_number = as.character(line_number)) |>
     filter(line_number %in% LINES),

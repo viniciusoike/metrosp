@@ -13,11 +13,20 @@
 # is the single network seam, so the tests mock it and never reach GitHub.
 
 demand_datasets <- c(
-  "passengers_entrance",
-  "passengers_transported",
-  "station_averages",
-  "station_daily"
+  "line_entries_monthly",
+  "line_transported_monthly",
+  "station_entries_monthly",
+  "station_entries_daily"
 )
+
+legacy_demand_datasets <- c(
+  line_entries_monthly = "passengers_entrance",
+  line_transported_monthly = "passengers_transported",
+  station_entries_monthly = "station_averages",
+  station_entries_daily = "station_daily"
+)
+
+last_legacy_vintage <- "data-2026-09"
 
 #' Read Metro SP demand data
 #'
@@ -26,8 +35,9 @@ demand_datasets <- c(
 #' package. Published data lives in the repository's GitHub releases and is
 #' rebuilt from the upstream sources on every pipeline run.
 #'
-#' @param dataset Dataset to read. One of `"passengers_entrance"`,
-#'   `"passengers_transported"`, `"station_averages"`, or `"station_daily"`.
+#' @param dataset Dataset to read. One of `"line_entries_monthly"`,
+#'   `"line_transported_monthly"`, `"station_entries_monthly"`, or
+#'   `"station_entries_daily"`.
 #' @param source Where to read from.
 #'   * `"auto"` (default) uses the cache, downloads when it is stale or empty,
 #'     and falls back to the bundled snapshot with a warning if the download
@@ -40,14 +50,14 @@ demand_datasets <- c(
 #' @param cache Whether to write downloads to `metrosp_cache_dir()`.
 #' @param quiet Whether to suppress progress messages.
 #'
-#' @return A data frame. See [passengers_entrance], [passengers_transported],
-#'   [station_averages], and [station_daily] for the column definitions, which
-#'   are identical across sources.
+#' @return A data frame. See [line_entries_monthly], [line_transported_monthly],
+#'   [station_entries_monthly], and [station_entries_daily] for the column
+#'   definitions, which are identical across sources.
 #'
 #' @details
 #' Only the demand datasets are published separately. The reference datasets
-#' ([lines], [stations], [station_inauguration], [calendar_spo], and
-#' [metro_colors]) do not change with new months, so read them directly.
+#' ([rail_lines], [rail_stations], [calendar_spo], and [metro_colors]) do not
+#' change with new months, so read them directly.
 #'
 #' Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 #' installed and skip verification otherwise.
@@ -57,15 +67,15 @@ demand_datasets <- c(
 #'
 #' @examples
 #' # The bundled snapshot, read without touching the network.
-#' head(read_metro_demand("passengers_entrance", source = "bundled"))
+#' head(read_metro_demand("line_entries_monthly", source = "bundled"))
 #'
 #' \donttest{
 #' # The most recently published data, cached between calls.
-#' entrance <- read_metro_demand("passengers_entrance")
+#' entrance <- read_metro_demand("line_entries_monthly")
 #'
 #' # A pinned vintage, so an analysis can name the batch it used.
 #' entrance_sep <- read_metro_demand(
-#'   "passengers_entrance",
+#'   "line_entries_monthly",
 #'   vintage = "2026-09"
 #' )
 #' }
@@ -73,10 +83,10 @@ demand_datasets <- c(
 #' @export
 read_metro_demand <- function(
   dataset = c(
-    "passengers_entrance",
-    "passengers_transported",
-    "station_averages",
-    "station_daily"
+    "line_entries_monthly",
+    "line_transported_monthly",
+    "station_entries_monthly",
+    "station_entries_daily"
   ),
   source = c("auto", "cache", "remote", "bundled"),
   vintage = "latest",
@@ -119,10 +129,11 @@ read_bundled <- function(dataset) {
 read_published <- function(dataset, vintage, mode, cache, quiet) {
   tag <- vintage_tag(vintage)
   dir <- vintage_dir(tag, cache)
+  release_dataset <- release_dataset_name(dataset, tag)
 
   manifest <- read_release_manifest(tag, dir, mode, quiet)
 
-  entry <- manifest$datasets[[dataset]]
+  entry <- manifest$datasets[[release_dataset]]
   if (is.null(entry)) {
     cli::cli_abort(
       "Vintage {.val {vintage}} does not contain {.val {dataset}}."
@@ -142,6 +153,28 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
   }
 
   readRDS(path)
+}
+
+release_dataset_name <- function(dataset, tag) {
+  if (!is_legacy_vintage(tag)) {
+    return(dataset)
+  }
+
+  if (!dataset %in% names(legacy_demand_datasets)) {
+    cli::cli_warn(c(
+      "No archived-release mapping exists for {.val {dataset}} in {.val {tag}}.",
+      "i" = "This is an unhandled pre-2.0 archive tag; please report it."
+    ))
+    return(dataset)
+  }
+
+  legacy_name <- unname(legacy_demand_datasets[[dataset]])
+  return(legacy_name)
+}
+
+is_legacy_vintage <- function(tag) {
+  is_dated <- grepl("^data-[0-9]{4}-[0-9]{2}$", tag)
+  return(is_dated && tag <= last_legacy_vintage)
 }
 
 # Manifest --------------------------------------------------------------------
@@ -250,8 +283,9 @@ match_dataset <- function(dataset) {
   if (!is.character(dataset) || !dataset %in% demand_datasets) {
     cli::cli_abort(c(
       "{.arg dataset} must be one of {.val {demand_datasets}}.",
-      "i" = "Reference datasets such as {.code lines} and {.code stations} are
-             bundled with the package; use them directly."
+      "i" = "Reference datasets such as {.code rail_lines} and
+             {.code rail_stations} are bundled with the package; use them
+             directly."
     ))
   }
 

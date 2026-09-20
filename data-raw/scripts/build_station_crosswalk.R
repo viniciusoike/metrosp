@@ -29,7 +29,7 @@ slug_station <- function(x) {
   return(slug)
 }
 
-stations <- tar_read(stations) |>
+stations <- tar_read(rail_stations) |>
   st_transform(31983)
 
 station_rows <- stations |>

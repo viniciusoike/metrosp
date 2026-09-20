@@ -29,20 +29,22 @@ library(dplyr)
 
 There are four main datasets:
 
-- `passengers_entrance`: monthly passengers entering the metro system, by line
-- `passengers_transported`: monthly passengers transported by the metro system, by line
-- `station_averages`: monthly average of weekday passengers per station
-- `station_daily`: daily passengers per station
+- `line_entries_monthly`: monthly passengers entering the metro system, by line
+- `line_transported_monthly`: monthly passengers transported by the metro system, by line
+- `station_entries_monthly`: monthly average of weekday passengers per station
+- `station_entries_daily`: daily passengers per station
 
-For convenience, `metrosp` also provides information on stations and lines of the metro system (`lines` and `stations`). The `lines` dataset is a spatial dataset and requires the `sf` package to work properly; it carries the line numbers and Portuguese/English line names for the full network (including planned and CPTM lines).
+For convenience, `metrosp` also provides information on stations and lines of the metro system (`rail_lines` and `rail_stations`). The `rail_lines` dataset is a spatial dataset and requires the `sf` package to work properly; it carries the line numbers and Portuguese/English line names for the full network (including planned and CPTM lines).
 
 ```{r}
 library(sf)
 
-lines
+rail_lines
 ```
 
-The package also provides a named vector of colors for each line of the metro system (`metro_colors`), station opening dates (`station_inauguration`), and a São Paulo holiday and business-day calendar (`calendar_spo`).
+The package also provides a named vector of colors for each line of the metro
+system (`metro_colors`) and a São Paulo holiday and business-day calendar
+(`calendar_spo`).
 
 ```{r}
 metro_colors
@@ -51,7 +53,7 @@ metro_colors
 Using the datasets is straightforward, just call the dataset name.
 
 ```{r}
-glimpse(passengers_entrance)
+glimpse(line_entries_monthly)
 ```
 
 All datasets are returned as `tibble` so using the `dplyr` package is recommended.
@@ -63,10 +65,10 @@ The bundled snapshot stays put across package versions, so examples and analyses
 ```{r}
 #| eval: false
 # Latest published data
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned monthly batch, named in the analysis that used it
-entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
 Downloads go to a temporary directory until you allow a persistent cache with `metrosp_cache_enable()`; `metrosp_cache_list()` and `metrosp_cache_clear()` manage it afterwards. Columns match the bundled datasets, so code written against one works with the other.
@@ -101,7 +103,7 @@ theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
 
 ## Entrance and Transported
 
-Both `passengers_entrance` and `passengers_transported` are monthly series by line. An entry is a passenger crossing a turnstile; a transported passenger is a turnstile entry plus a transfer between lines at an interchange station, so transported counts run above entry counts for the same line and month.
+Both `line_entries_monthly` and `line_transported_monthly` are monthly series by line. An entry is a passenger crossing a turnstile; a transported passenger is a turnstile entry plus a transfer between lines at an interchange station, so transported counts run above entry counts for the same line and month.
 
 The data is aggregated into metrics:
 
@@ -116,13 +118,13 @@ The data is aggregated into metrics:
 This dataset is identified by month (`date`), line (`line_number`, `line_name`), and metric (`metric`, `metric_name`). The data is in tidy format and values are in **individual passengers**.
 
 ```{r}
-glimpse(passengers_entrance)
+glimpse(line_entries_monthly)
 ```
 
 Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_number = 99`). For most uses, it's best to filter out this line.
 
 ```{r}
-total_entrance <- passengers_entrance |>
+total_entrance <- line_entries_monthly |>
   filter(metric == "total", line_number != 99)
 ```
 
@@ -146,18 +148,18 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
 
 ### Transported
 
-This dataset has the same columns as `passengers_entrance`, but values are in **thousands of passengers**, as METRÔ publishes them. Multiply by 1000 before comparing the two datasets.
+This dataset has the same columns as `line_entries_monthly`, but values are in **thousands of passengers**, as METRÔ publishes them. Multiply by 1000 before comparing the two datasets.
 
 Coverage is limited to the METRÔ-operated system. Line 4 never appears, and Line 5 stops in August 2018, when the line passed to ViaMobilidade: the Dataverse source that covers both lines does not publish transported counts.
 
 ```{r}
-glimpse(passengers_transported)
+glimpse(line_transported_monthly)
 ```
 
 Note that a special line was defined to aggregate the total of the METRÔ system (`line_name = "METRO System"` or `line_number = 99`). For most uses, it's best to filter out this line.
 
 ```{r}
-daily_avg <- passengers_transported |>
+daily_avg <- line_transported_monthly |>
   filter(metric == "mdu", line_number != 99)
 ```
 
@@ -184,14 +186,14 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
 This dataset is identified by month (`date`), line (`line_number`, `line_name`), physical station (`station_id`), and the constant `mdu` metric. `station_name` is the current display label and `value` is the daily average on business days.
 
 ```{r}
-glimpse(station_averages)
+glimpse(station_entries_monthly)
 ```
 
 The plot below shows the daily average (business days) passengers entering each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.
 
 ```{r}
 #| code-fold: true
-line4st <- station_averages |>
+line4st <- station_entries_monthly |>
   filter(line_number == 4)
 
 ggplot(line4st, aes(x = date, y = value)) +
@@ -210,7 +212,7 @@ ggplot(line4st, aes(x = date, y = value)) +
 This dataset is identified by day (`date`), line (`line_number`, `line_name`), and physical station (`station_id`). `station_name` is the current display label and `value` is the daily number of passengers entering the station. Additionally, `station_code` contains three-letter abbreviations for stations, but only for METRÔ-operated lines.
 
 ```{r}
-glimpse(station_daily)
+glimpse(station_entries_daily)
 ```
 
 The plot below shows the trend of daily passengers entering each station of line 4 in 2023.
@@ -219,7 +221,7 @@ The plot below shows the trend of daily passengers entering each station of line
 #| code-fold: true
 #| fig-width: 10
 #| fig-height: 8
-line4st_daily <- station_daily |>
+line4st_daily <- station_entries_daily |>
   filter(line_number == 4, year == 2023)
 
 ggplot(line4st_daily, aes(x = date, y = value)) +

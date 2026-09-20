@@ -223,7 +223,7 @@ line_coverage <- function(df) {
 
 # --- Dataset-level composites ------------------------------------------------
 
-check_passengers_entrance <- function(df, name = "passengers_entrance") {
+check_line_entries_monthly <- function(df, name = "line_entries_monthly") {
   c(
     check_columns(
       df,
@@ -261,7 +261,10 @@ check_passengers_entrance <- function(df, name = "passengers_entrance") {
   )
 }
 
-check_passengers_transported <- function(df, name = "passengers_transported") {
+check_line_transported_monthly <- function(
+  df,
+  name = "line_transported_monthly"
+) {
   c(
     check_columns(
       df,
@@ -297,7 +300,10 @@ check_passengers_transported <- function(df, name = "passengers_transported") {
   )
 }
 
-check_station_averages <- function(df, name = "station_averages") {
+check_station_entries_monthly <- function(
+  df,
+  name = "station_entries_monthly"
+) {
   c(
     check_columns(
       df,
@@ -342,7 +348,7 @@ check_station_averages <- function(df, name = "station_averages") {
   )
 }
 
-check_station_daily <- function(df, name = "station_daily") {
+check_station_entries_daily <- function(df, name = "station_entries_daily") {
   problems <- c(
     check_columns(
       df,
@@ -392,10 +398,10 @@ check_station_daily <- function(df, name = "station_daily") {
 #' Returns a named list of character vectors (empty ones included).
 check_all_datasets <- function(datasets) {
   checkers <- list(
-    passengers_entrance = check_passengers_entrance,
-    passengers_transported = check_passengers_transported,
-    station_averages = check_station_averages,
-    station_daily = check_station_daily
+    line_entries_monthly = check_line_entries_monthly,
+    line_transported_monthly = check_line_transported_monthly,
+    station_entries_monthly = check_station_entries_monthly,
+    station_entries_daily = check_station_entries_daily
   )
 
   out <- list()

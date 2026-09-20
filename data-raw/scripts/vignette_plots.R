@@ -100,80 +100,82 @@ plot_line_timespan <- function(
     )
 }
 
-# passengers_entrance ----
+# line_entries_monthly ----
 
-timespan_passengers <- compute_line_timespan(passengers_entrance)
+timespan_passengers <- compute_line_timespan(line_entries_monthly)
 
-plot_passengers_entrance <- plot_line_timespan(
+plot_line_entries_monthly <- plot_line_timespan(
   timespan_passengers,
   "Passenger entries by line: time coverage",
-  "Detailed time coverage for each line of the <b>passengers_entrance</b> dataset"
+  "Detailed time coverage for each line of the <b>line_entries_monthly</b> dataset"
 )
 
-plot_passengers_entrance
+plot_line_entries_monthly
 
-# passengers_transported ----
+# line_transported_monthly ----
 
-timespan_transported <- compute_line_timespan(passengers_transported)
+timespan_transported <- compute_line_timespan(line_transported_monthly)
 
-plot_passengers_transported <- plot_line_timespan(
+plot_line_transported_monthly <- plot_line_timespan(
   timespan_transported,
   "Passengers transported by line: time coverage",
-  "Detailed time coverage for each line of the <b>passengers_transported</b> dataset"
+  "Detailed time coverage for each line of the <b>line_transported_monthly</b> dataset"
 )
 
-plot_passengers_transported
+plot_line_transported_monthly
 
-# station_averages ----
+# station_entries_monthly ----
 
-timespan_station_averages <- compute_line_timespan(station_averages)
+timespan_station_entries_monthly <- compute_line_timespan(
+  station_entries_monthly
+)
 
-plot_station_averages <- plot_line_timespan(
-  timespan_station_averages,
+plot_station_entries_monthly <- plot_line_timespan(
+  timespan_station_entries_monthly,
   "Station averages by line: time coverage",
-  "Time coverage aggregated by line for the <b>station_averages</b> dataset (station-level weekday averages)"
+  "Time coverage aggregated by line for the <b>station_entries_monthly</b> dataset (station-level weekday averages)"
 )
 
-plot_station_averages
+plot_station_entries_monthly
 
-# station_daily ----
+# station_entries_daily ----
 
-timespan_station_daily <- compute_line_timespan(station_daily)
+timespan_station_entries_daily <- compute_line_timespan(station_entries_daily)
 
-plot_station_daily <- plot_line_timespan(
-  timespan_station_daily,
+plot_station_entries_daily <- plot_line_timespan(
+  timespan_station_entries_daily,
   "Daily station entries by line: time coverage",
-  "Time coverage aggregated by line for the <b>station_daily</b> dataset (station-level daily entries)"
+  "Time coverage aggregated by line for the <b>station_entries_daily</b> dataset (station-level daily entries)"
 )
 
-plot_station_daily
+plot_station_entries_daily
 
 # Export ----
 
 ggsave(
-  "man/figures/timespan_passengers_entrance.png",
-  plot_passengers_entrance,
+  "man/figures/timespan_line_entries_monthly.png",
+  plot_line_entries_monthly,
   width = 8,
   height = 4.5,
   dpi = 300
 )
 ggsave(
-  "man/figures/timespan_passengers_transported.png",
-  plot_passengers_transported,
+  "man/figures/timespan_line_transported_monthly.png",
+  plot_line_transported_monthly,
   width = 8,
   height = 4.5,
   dpi = 300
 )
 ggsave(
-  "man/figures/timespan_station_averages.png",
-  plot_station_averages,
+  "man/figures/timespan_station_entries_monthly.png",
+  plot_station_entries_monthly,
   width = 8,
   height = 4.5,
   dpi = 300
 )
 ggsave(
-  "man/figures/timespan_station_daily.png",
-  plot_station_daily,
+  "man/figures/timespan_station_entries_daily.png",
+  plot_station_entries_daily,
   width = 8,
   height = 4.5,
   dpi = 300

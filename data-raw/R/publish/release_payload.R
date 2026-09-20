@@ -30,8 +30,8 @@ write_release_payload <- function(datasets, dir = cache_dir()) {
   for (nm in names(datasets)) {
     x <- datasets[[nm]]
     path <- file.path(dir, paste0(nm, ".rds"))
-    # compress = "xz" keeps station_daily (the only large one) modest over the
-    # wire; the cost is build-time only.
+    # compress = "xz" keeps station_entries_daily (the only large one) modest
+    # over the wire; the cost is build-time only.
     saveRDS(x, path, compress = "xz")
 
     entries[[nm]] <- c(

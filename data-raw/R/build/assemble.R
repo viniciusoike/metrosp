@@ -13,7 +13,7 @@ library(dplyr, warn.conflicts = FALSE)
 # map_metric() and the .cols_* constants live in dims.R, next to the dimension
 # tables they read.
 
-# --- passengers_entrance -----------------------------------------------------
+# --- line_entries_monthly -----------------------------------------------------
 
 #' @param psg_historic Raw historic passengers tibble (entrance + transport).
 #' @param entrance_current Current-era entrance tibble (import builder output).
@@ -37,11 +37,11 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
     left_join(metro_lines, by = join_by(line_number))
 
-  passengers_entrance <- bind_rows(entrance_hist, entrance_20) |>
+  line_entries_monthly <- bind_rows(entrance_hist, entrance_20) |>
     # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(value = value * 1000)
 
-  passengers_entrance <- bind_rows(passengers_entrance, entrance_4_5) |>
+  line_entries_monthly <- bind_rows(line_entries_monthly, entrance_4_5) |>
     drop_trailing_na(value) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
@@ -54,13 +54,13 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     arrange(date, line_number, metric)
 
   stopifnot(
-    "NA dates in passengers_entrance" = !any(is.na(passengers_entrance$date))
+    "NA dates in line_entries_monthly" = !any(is.na(line_entries_monthly$date))
   )
 
-  passengers_entrance
+  line_entries_monthly
 }
 
-# --- passengers_transported --------------------------------------------------
+# --- line_transported_monthly --------------------------------------------------
 
 #' @param psg_historic Raw historic passengers tibble (entrance + transport).
 #' @param transported_current Current-era transported tibble (builder output).
@@ -78,7 +78,7 @@ assemble_transported <- function(psg_historic, transported_current) {
     mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
-  passengers_transported <- bind_rows(transported_hist, transported_20) |>
+  line_transported_monthly <- bind_rows(transported_hist, transported_20) |>
     drop_trailing_na(value) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
@@ -91,15 +91,15 @@ assemble_transported <- function(psg_historic, transported_current) {
     arrange(date, line_number, metric)
 
   stopifnot(
-    "NA dates in passengers_transported" = !any(
-      is.na(passengers_transported$date)
+    "NA dates in line_transported_monthly" = !any(
+      is.na(line_transported_monthly$date)
     )
   )
 
-  passengers_transported
+  line_transported_monthly
 }
 
-# --- station_averages --------------------------------------------------------
+# --- station_entries_monthly --------------------------------------------------------
 
 #' @param stations_historic Raw historic station-averages tibble (committed CSV).
 #' @param averages_current Current-era averages tibble (builder output).
@@ -142,13 +142,13 @@ assemble_averages <- function(
     dim_station_alias
   )
 
-  station_averages <- bind_rows(stations_hist, averages_current) |>
+  station_entries_monthly <- bind_rows(stations_hist, averages_current) |>
     mutate(avg_passenger = avg_passenger * 1000)
 
-  station_averages <- bind_rows(station_averages, averages_4_5) |>
+  station_entries_monthly <- bind_rows(station_entries_monthly, averages_4_5) |>
     left_join(metro_lines, join_by(line_number))
 
-  station_averages <- station_averages |>
+  station_entries_monthly <- station_entries_monthly |>
     drop_trailing_na(avg_passenger) |>
     rename(value = avg_passenger) |>
     mutate(
@@ -163,25 +163,27 @@ assemble_averages <- function(
     select(-station_order)
 
   stopifnot(
-    "NA dates in station_averages" = !any(is.na(station_averages$date)),
-    "station_averages has footnote markers in station_name" = !any(
+    "NA dates in station_entries_monthly" = !any(is.na(
+      station_entries_monthly$date
+    )),
+    "station_entries_monthly has footnote markers in station_name" = !any(
       stringr::str_detect(
-        station_averages$station_name,
+        station_entries_monthly$station_name,
         "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
       )
     ),
     # Footnote variants of one station must merge into a single series; a
     # duplicate key here means two sources overlap — investigate, never sum.
-    "station_averages has duplicate date/line/station" = nrow(
-      station_averages
+    "station_entries_monthly has duplicate date/line/station" = nrow(
+      station_entries_monthly
     ) ==
-      nrow(distinct(station_averages, date, line_number, station_name))
+      nrow(distinct(station_entries_monthly, date, line_number, station_name))
   )
 
-  station_averages
+  station_entries_monthly
 }
 
-# --- station_daily -----------------------------------------------------------
+# --- station_entries_daily -----------------------------------------------------------
 
 #' @param daily_current Current-era daily tibble (builder output).
 #' @param daily_4_5 Lines 4/5 daily tibble (committed CSV).
@@ -191,7 +193,7 @@ assemble_daily <- function(
   dim_station,
   dim_station_alias
 ) {
-  station_daily <- daily_current |>
+  station_entries_daily <- daily_current |>
     mutate(passengers = passengers * 1000) |>
     resolve_stations(
       "metro_current_daily",
@@ -206,11 +208,15 @@ assemble_daily <- function(
     dim_station_alias
   )
 
-  station_daily <- bind_rows(station_daily, daily_4_5)
+  station_entries_daily <- bind_rows(station_entries_daily, daily_4_5)
 
-  station_daily <- left_join(station_daily, metro_lines, join_by(line_number))
+  station_entries_daily <- left_join(
+    station_entries_daily,
+    metro_lines,
+    join_by(line_number)
+  )
 
-  station_daily <- station_daily |>
+  station_entries_daily <- station_entries_daily |>
     drop_trailing_na(passengers) |>
     rename(value = passengers) |>
     mutate(year = as.integer(year), line_number = as.integer(line_number)) |>
@@ -221,38 +227,47 @@ assemble_daily <- function(
 
   # --- Sanity checks ---------------------------------------------------------
   stopifnot(
-    "NA dates in station_daily" = !any(is.na(station_daily$date)),
-    "station_daily date range starts before 2012" = min(station_daily$date) >=
+    "NA dates in station_entries_daily" = !any(is.na(
+      station_entries_daily$date
+    )),
+    "station_entries_daily date range starts before 2012" = min(
+      station_entries_daily$date
+    ) >=
       as.Date("2012-01-01"),
-    "station_daily should only have lines 1, 2, 3, 4, 5, 15" = all(
-      station_daily$line_number %in% c(1L, 2L, 3L, 4L, 5L, 15L)
+    "station_entries_daily should only have lines 1, 2, 3, 4, 5, 15" = all(
+      station_entries_daily$line_number %in% c(1L, 2L, 3L, 4L, 5L, 15L)
     ),
-    "station_daily lines 4 and 5 should have NA station_code" = all(
-      is.na(station_daily$station_code[
-        station_daily$line_number %in% c(4L, 5L)
+    "station_entries_daily lines 4 and 5 should have NA station_code" = all(
+      is.na(station_entries_daily$station_code[
+        station_entries_daily$line_number %in% c(4L, 5L)
       ])
     ),
-    "station_daily has negative passengers" = all(
-      station_daily$value >= 0
+    "station_entries_daily has negative passengers" = all(
+      station_entries_daily$value >= 0
     ),
-    "station_daily missing station_name" = !any(
-      is.na(station_daily$station_name)
+    "station_entries_daily missing station_name" = !any(
+      is.na(station_entries_daily$station_name)
     ),
-    "station_daily has footnote markers in station_name" = !any(
+    "station_entries_daily has footnote markers in station_name" = !any(
       stringr::str_detect(
-        station_daily$station_name,
+        station_entries_daily$station_name,
         "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
       )
     ),
-    "station_daily lines 1/2/3/15 missing station_code" = !any(
-      is.na(station_daily$station_code[
-        station_daily$line_number %in% c(1L, 2L, 3L, 15L)
+    "station_entries_daily lines 1/2/3/15 missing station_code" = !any(
+      is.na(station_entries_daily$station_code[
+        station_entries_daily$line_number %in% c(1L, 2L, 3L, 15L)
       ])
     ),
-    "station_daily has duplicate date/line/station" = nrow(station_daily) ==
-      nrow(distinct(station_daily, date, line_number, station_name)),
-    "station_daily too few rows (expect > 100k)" = nrow(station_daily) > 100000
+    "station_entries_daily has duplicate date/line/station" = nrow(
+      station_entries_daily
+    ) ==
+      nrow(distinct(station_entries_daily, date, line_number, station_name)),
+    "station_entries_daily too few rows (expect > 100k)" = nrow(
+      station_entries_daily
+    ) >
+      100000
   )
 
-  station_daily
+  station_entries_daily
 }

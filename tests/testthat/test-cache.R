@@ -89,13 +89,13 @@ test_that("listing reports one row per cached file, tagged by vintage", {
   withr::local_options(metrosp.cache_dir = dir)
 
   dir.create(file.path(dir, "data-latest"))
-  saveRDS(1:10, file.path(dir, "data-latest", "station_daily.rds"))
+  saveRDS(1:10, file.path(dir, "data-latest", "station_entries_daily.rds"))
   file.create(file.path(dir, "data-latest", "manifest.json"))
 
   cached <- metrosp_cache_list()
   expect_identical(nrow(cached), 2L)
   expect_identical(unique(cached$vintage), "data-latest")
-  expect_true("station_daily.rds" %in% cached$file)
+  expect_true("station_entries_daily.rds" %in% cached$file)
   expect_true(all(cached$bytes >= 0))
 })
 
@@ -105,7 +105,7 @@ test_that("clearing removes one vintage or the whole cache", {
 
   for (tag in c("data-latest", "data-2026-08")) {
     dir.create(file.path(dir, tag))
-    saveRDS(1, file.path(dir, tag, "passengers_entrance.rds"))
+    saveRDS(1, file.path(dir, tag, "line_entries_monthly.rds"))
   }
 
   expect_message(metrosp_cache_clear("2026-08"), "Removed")

@@ -17,7 +17,7 @@ DATA_START <- as.Date("2019-01-01")
 # Pre-build data ----
 
 ## Station monthly averages ----
-sta_avg <- metrosp::station_averages |>
+sta_avg <- metrosp::station_entries_monthly |>
   filter(date >= DATA_START) |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES) |>
@@ -32,7 +32,7 @@ sta_summary <- sta_avg |>
   summarise(avg_demand = round(mean(value, na.rm = TRUE)), .groups = "drop")
 
 ## Station coordinates ----
-sf_stations <- metrosp::stations |>
+sf_stations <- metrosp::rail_stations |>
   filter(status == "current", type == "metro") |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES)
@@ -48,7 +48,7 @@ station_map_data <- sta_summary |>
 
 ## Line geometries ----
 sf_lines <- tryCatch(
-  metrosp::lines |>
+  metrosp::rail_lines |>
     filter(status == "current", type == "metro") |>
     mutate(line_number = as.character(line_number)) |>
     filter(line_number %in% LINES),

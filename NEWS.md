@@ -2,6 +2,16 @@
 
 ## Breaking changes
 
+* Renamed the exported datasets to a consistent convention: `passengers_entrance`
+  to `line_entries_monthly`, `passengers_transported` to
+  `line_transported_monthly`, `station_averages` to `station_entries_monthly`,
+  `station_daily` to `station_entries_daily`, `lines` to `rail_lines`, and
+  `stations` to `rail_stations`. `read_metro_demand()` accepts the new names
+  while continuing to read archived release assets through `data-2026-09` (#25).
+
+* Unshipped the incomplete `station_inauguration` dataset. Its source and
+  builder remain under `data-raw/` for future curation (#25).
+
 * Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Physical interchange complexes share an ID across lines and modes, while `station_name` remains the current display label (#24).
 
 * Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_averages` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).

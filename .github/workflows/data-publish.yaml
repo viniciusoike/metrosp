@@ -14,7 +14,6 @@ on:
     paths:
       - "data-raw/outputs/processed/**"
       - "data-raw/inputs/geosampa/**"
-      - "data-raw/inputs/station_inauguration.csv"
       - "data-raw/R/**"
   workflow_dispatch:
 

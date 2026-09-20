@@ -14,7 +14,7 @@
       "is_long_weekend": "logical"
     }
   },
-  "lines": {
+  "rail_lines": {
     "kind": "data.frame",
     "columns": {
       "status": "character",
@@ -32,7 +32,7 @@
     "length": 6,
     "names": ["Blue", "Green", "Red", "Yellow", "Lilac", "Silver"]
   },
-  "passengers_entrance": {
+  "line_entries_monthly": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
@@ -46,7 +46,7 @@
       "value": "double"
     }
   },
-  "passengers_transported": {
+  "line_transported_monthly": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
@@ -60,7 +60,7 @@
       "value": "double"
     }
   },
-  "station_averages": {
+  "station_entries_monthly": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
@@ -76,7 +76,7 @@
       "value": "double"
     }
   },
-  "station_daily": {
+  "station_entries_daily": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",
@@ -90,20 +90,7 @@
       "value": "double"
     }
   },
-  "station_inauguration": {
-    "kind": "data.frame",
-    "columns": {
-      "line_number": "integer",
-      "station_name": "character",
-      "inauguration_date": "Date",
-      "phase": "character",
-      "verified": "logical",
-      "notes": "character",
-      "pre_data_window": "logical",
-      "ramp_up_end": "Date"
-    }
-  },
-  "stations": {
+  "rail_stations": {
     "kind": "data.frame",
     "columns": {
       "type": "character",

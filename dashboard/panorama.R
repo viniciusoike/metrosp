@@ -82,7 +82,7 @@ roll_mean <- function(x, k = 7L) {
 
 ## Monthly totals by line ----
 
-ent_all <- metrosp::passengers_entrance |>
+ent_all <- metrosp::line_entries_monthly |>
   filter(metric == "total", line_number %in% as.integer(LINES)) |>
   mutate(line_number = as.character(line_number))
 
@@ -237,11 +237,11 @@ seasonality <- ent |>
 
 ## Station data ----
 
-sta_avg <- metrosp::station_averages |>
+sta_avg <- metrosp::station_entries_monthly |>
   mutate(line_number = as.character(line_number)) |>
   filter(line_number %in% LINES)
 
-sta_daily_df <- metrosp::station_daily |>
+sta_daily_df <- metrosp::station_entries_daily |>
   mutate(
     line_number = as.character(line_number),
     dow_num = as.integer(format(date, "%u"))
@@ -315,7 +315,7 @@ station_covid <- sta_avg |>
 ## Spatial data ----
 
 sf_metro_lines <- tryCatch(
-  metrosp::lines |>
+  metrosp::rail_lines |>
     filter(status == "current", type == "metro") |>
     mutate(line_number = as.character(line_number)) |>
     filter(line_number %in% LINES),
@@ -324,7 +324,7 @@ sf_metro_lines <- tryCatch(
 
 sf_metro_stations <- tryCatch(
   {
-    metrosp::stations |>
+    metrosp::rail_stations |>
       filter(status == "current", type == "metro") |>
       mutate(line_number = as.character(line_number)) |>
       filter(line_number %in% LINES) |>
@@ -1323,7 +1323,7 @@ server <- function(input, output, session) {
     )
   })
 
-  station_daily_slice <- reactive({
+  station_entries_daily_slice <- reactive({
     sel <- selected_station()
     req(sel, input$profile_year)
     yr <- as.integer(input$profile_year)
@@ -1337,7 +1337,7 @@ server <- function(input, output, session) {
   })
 
   output$vb_sta_weekday <- renderText({
-    df <- station_daily_slice()
+    df <- station_entries_daily_slice()
     wd <- df[df$dow_num <= 5L, ]
     if (nrow(wd) == 0) {
       return("—")
@@ -1346,7 +1346,7 @@ server <- function(input, output, session) {
   })
 
   output$vb_sta_weekend <- renderText({
-    df <- station_daily_slice()
+    df <- station_entries_daily_slice()
     we <- df[df$dow_num >= 6L, ]
     if (nrow(we) == 0) {
       return("—")
@@ -1355,7 +1355,7 @@ server <- function(input, output, session) {
   })
 
   output$sta_calendar <- renderEcharts4r({
-    df <- station_daily_slice()
+    df <- station_entries_daily_slice()
     req(nrow(df) > 0)
     sel <- selected_station()
     col <- unname(line_colors[sel$line])
@@ -1416,7 +1416,7 @@ server <- function(input, output, session) {
   })
 
   output$sta_timeseries <- renderEcharts4r({
-    df <- station_daily_slice()
+    df <- station_entries_daily_slice()
     req(nrow(df) > 0)
     sel <- selected_station()
     col <- unname(line_colors[sel$line])

@@ -26,17 +26,19 @@ The package ships four demand datasets. Two measure passengers at the line level
 
 | Dataset | Description | Unit | Time span | Frequency |
 |------------|------------|------------|------------|------------|
-| `passengers_entrance` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
-| `passengers_transported` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016--2026 | Monthly |
-| `station_averages` | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
-| `station_daily` | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily |
+| `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
+| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016--2026 | Monthly |
+| `station_entries_monthly` | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
+| `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily |
 : Demand datasets
 
 A **passenger entry** is a passenger who crossed the station's turnstile gates. A **transported passenger** is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.
 
-Three of these datasets count individual passengers and cover every metro line. `passengers_transported` is the exception. It reports thousands of passengers, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its `value` by 1000 before comparing it with the other datasets.
+Three of these datasets count individual passengers and cover every metro line. `line_transported_monthly` is the exception. It reports thousands of passengers, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its `value` by 1000 before comparing it with the other datasets.
 
-Five further datasets support analysis. `lines` and `stations` carry route and station geometries; `station_inauguration`, `calendar_spo`, and `metro_colors` are lookup tables.
+Four further datasets support analysis. `rail_lines` and `rail_stations` carry
+route and station geometries; `calendar_spo` and `metro_colors` are lookup
+tables.
 
 ## Data vintage
 
@@ -48,10 +50,10 @@ The bundled datasets are a fixed snapshot, current through July 2026. The snapsh
 library(metrosp)
 
 # Latest published data
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned monthly batch
-entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
 Columns are identical across sources, so everything below applies to both the bundled snapshot and the published data.
@@ -62,12 +64,12 @@ Three producers stand behind these datasets.
 
 | Dataset | Granularity | Producer | Line coverage |
 |---------------|---------------|---------------|---------------|
-| `passengers_entrance` | line $\times$ month $\times$ metric | METRO + Dataverse | All |
-| `passengers_transported` | line $\times$ month $\times$ metric | METRO | Lines 1, 2, 3, 5, and 15 |
-| `station_averages` | station $\times$ month | METRO + Dataverse | All |
-| `station_daily` | station $\times$ day | METRO + Dataverse | All |
-| `lines` | line (spatial) | GeoSampa | All |
-| `stations` | station (spatial) | GeoSampa | All |
+| `line_entries_monthly` | line $\times$ month $\times$ metric | METRO + Dataverse | All |
+| `line_transported_monthly` | line $\times$ month $\times$ metric | METRO | Lines 1, 2, 3, 5, and 15 |
+| `station_entries_monthly` | station $\times$ month | METRO + Dataverse | All |
+| `station_entries_daily` | station $\times$ day | METRO + Dataverse | All |
+| `rail_lines` | line (spatial) | GeoSampa | All |
+| `rail_stations` | station (spatial) | GeoSampa | All |
 : Producer and granularity by dataset
 
 **METRO SP transparency portal.** The Companhia do Metropolitano de São Paulo publishes monthly demand reports at its [transparency portal](https://transparencia.metrosp.com.br/dataset/demanda), covering Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in thousands.
@@ -80,7 +82,7 @@ The term *producer* is deliberate. Combining these sources takes substantial cle
 
 # Demand datasets
 
-## `passengers_entrance`
+## `line_entries_monthly`
 
 Monthly passenger entries by metro line and day-type metric, in individual passengers.
 
@@ -95,11 +97,11 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | `metric_name` | character | Metric label in English |
 | `metric_name_pt` | character | Metric label in Portuguese |
 | `value` | numeric | Passenger count |
-: `passengers_entrance` columns
+: `line_entries_monthly` columns
 
 ### Day-type metrics
 
-METRO breaks each month into five metrics, shared by `passengers_entrance` and `passengers_transported`.
+METRO breaks each month into five metrics, shared by `line_entries_monthly` and `line_transported_monthly`.
 
 | Code    | English                       | Portuguese           |
 |---------|-------------------------------|----------------------|
@@ -110,7 +112,7 @@ METRO breaks each month into five metrics, shared by `passengers_entrance` and `
 | `max`   | Daily peak                    | Máxima Diária        |
 : Metric definitions
 
-## `passengers_transported`
+## `line_transported_monthly`
 
 Monthly passengers transported by metro line and day-type metric, in **thousands of passengers**.
 
@@ -125,11 +127,11 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | `metric_name` | character | Metric label in English |
 | `metric_name_pt` | character | Metric label in Portuguese |
 | `value` | numeric | Passenger count, in thousands |
-: `passengers_transported` columns
+: `line_transported_monthly` columns
 
-## `station_averages`
+## `station_entries_monthly`
 
-Monthly average weekday passenger entries per station. Only the weekday average is available at the station level; `passengers_entrance` carries all five metrics at the line level.
+Monthly average weekday passenger entries per station. Only the weekday average is available at the station level; `line_entries_monthly` carries all five metrics at the line level.
 
 | Column          | Type      | Description                            |
 |-----------------|-----------|----------------------------------------|
@@ -144,9 +146,9 @@ Monthly average weekday passenger entries per station. Only the weekday average 
 | `metric_name` | character | Metric label in English |
 | `metric_name_pt` | character | Metric label in Portuguese |
 | `value` | numeric | Average weekday (business day) entries |
-: `station_averages` columns
+: `station_entries_monthly` columns
 
-## `station_daily`
+## `station_entries_daily`
 
 Daily passenger entries at each station.
 
@@ -161,13 +163,13 @@ Daily passenger entries at each station.
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
 | `value` | numeric | Daily passenger entries |
-: `station_daily` columns
+: `station_entries_daily` columns
 
 # Spatial datasets
 
-`lines` and `stations` are `sf` objects in WGS 84 (EPSG:4326). Both cover METRO SP and CPTM commuter rail, operating and planned.
+`rail_lines` and `rail_stations` are `sf` objects in WGS 84 (EPSG:4326). Both cover METRO SP and CPTM commuter rail, operating and planned.
 
-## `lines`
+## `rail_lines`
 
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
@@ -178,9 +180,9 @@ Daily passenger entries at each station.
 | `type` | character | `"metro"` (underground) or `"train"` (CPTM commuter rail) |
 | `status` | character | `"current"` (operating) or `"future"` (planned) |
 | `geometry` | LINESTRING | Route geometry |
-: `lines` columns
+: `rail_lines` columns
 
-## `stations`
+## `rail_stations`
 
 | Column         | Type      | Description               |
 |----------------|-----------|---------------------------|
@@ -194,31 +196,15 @@ Daily passenger entries at each station.
 | `type`         | character | `"metro"` or `"train"`    |
 | `status`       | character | `"current"` or `"future"` |
 | `geometry`     | POINT     | Station location          |
-: `stations` columns
+: `rail_stations` columns
 
 Transfer stations such as Sé, Paraíso, and Ana Rosa appear once per line they serve.
 
 # Reference datasets
 
-## `station_inauguration`
-
-Commercial opening dates by station, compiled by hand and still incomplete.
-
-| Column | Type | Description |
-|------------------------|------------------------|------------------------|
-| `line_number` | integer | Line number |
-| `station_name` | character | Full station name |
-| `inauguration_date` | Date | Commercial opening date. `NA` for stations that opened before the data window |
-| `phase` | character | Expansion phase label |
-| `verified` | logical | `TRUE` once the date has been cross-checked against a source |
-| `notes` | character | Free-text annotations on the source or caveats |
-| `pre_data_window` | logical | `TRUE` when the station opened before the data window |
-| `ramp_up_end` | Date | `inauguration_date + 180` days, the end of the ramp-up window to exclude from baselines |
-: `station_inauguration` columns
-
 ## `calendar_spo`
 
-Daily calendar for the city of São Paulo, 2012--2030, flagging national, state, and municipal holidays. Join on `date` to build business-day aggregates from `station_daily`.
+Daily calendar for the city of São Paulo, 2012--2030, flagging national, state, and municipal holidays. Join on `date` to build business-day aggregates from `station_entries_daily`.
 
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
