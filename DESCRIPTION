@@ -22,7 +22,7 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.0.0)
 Imports:
     cli,
     jsonlite,

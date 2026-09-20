@@ -87,7 +87,10 @@ entrance <- read_metro_demand("line_entries_monthly")
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
-Downloads go to a temporary directory until you allow a persistent cache with `metrosp_cache_enable()`. Columns match the bundled datasets, so the same code works with either.
+Downloads use the platform-specific user cache returned by `tools::R_user_dir()`.
+Use `metrosp_cache()` to inspect it, `metrosp_cache_clear()` to remove files, or
+`cache = FALSE` to keep a download only for the current session. Columns match
+the bundled datasets, so the same code works with either.
 
 ## Usage
 

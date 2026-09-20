@@ -34,9 +34,7 @@ reference:
   desc: Read data newer than the bundled snapshot, and manage the download cache.
   contents:
   - read_metro_demand
-  - metrosp_cache_dir
-  - metrosp_cache_enable
-  - metrosp_cache_list
+  - metrosp_cache
   - metrosp_cache_clear
 
 articles:

@@ -47,7 +47,8 @@ last_legacy_vintage <- "data-2026-09"
 #'   * `"bundled"` reads the frozen snapshot and never touches the network.
 #' @param vintage Which published batch to read. `"latest"` tracks the rolling
 #'   release; a year-month string such as `"2026-09"` pins an immutable batch.
-#' @param cache Whether to write downloads to `metrosp_cache_dir()`.
+#' @param cache Whether to store downloads in the persistent cache. Set to
+#'   `FALSE` to use session-temporary storage instead.
 #' @param quiet Whether to suppress progress messages.
 #'
 #' @return A data frame. See [line_entries_monthly], [line_transported_monthly],
@@ -62,8 +63,7 @@ last_legacy_vintage <- "data-2026-09"
 #' Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 #' installed and skip verification otherwise.
 #'
-#' @seealso [metrosp_cache_dir()], [metrosp_cache_enable()],
-#'   [metrosp_cache_list()], and [metrosp_cache_clear()] for cache management.
+#' @seealso [metrosp_cache()] and [metrosp_cache_clear()] for cache management.
 #'
 #' @examples
 #' # The bundled snapshot, read without touching the network.
@@ -201,8 +201,6 @@ read_release_manifest <- function(tag, dir, mode, quiet = FALSE) {
     return(jsonlite::read_json(path, simplifyVector = FALSE))
   }
 
-  ask_cache_consent()
-
   tryCatch(
     fetch_url(asset_url(tag, "manifest.json"), path, quiet = quiet),
     error = function(e) {
@@ -235,8 +233,6 @@ manifest_stale <- function(path, tag) {
 # Downloads -------------------------------------------------------------------
 
 download_asset <- function(tag, entry, path, quiet = FALSE) {
-  ask_cache_consent()
-
   if (!quiet) {
     cli::cli_alert_info(
       "Downloading {.file {entry$file}} ({format_bytes(entry$bytes)})."
@@ -317,7 +313,7 @@ vintage_tag <- function(vintage) {
 
 vintage_dir <- function(tag, cache = TRUE) {
   dir <- if (isTRUE(cache)) {
-    metrosp_cache_dir()
+    cache_dir()
   } else {
     file.path(tempdir(), "metrosp-nocache")
   }

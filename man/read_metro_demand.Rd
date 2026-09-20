@@ -31,7 +31,8 @@ fails.
 \item{vintage}{Which published batch to read. \code{"latest"} tracks the rolling
 release; a year-month string such as \code{"2026-09"} pins an immutable batch.}
 
-\item{cache}{Whether to write downloads to \code{metrosp_cache_dir()}.}
+\item{cache}{Whether to store downloads in the persistent cache. Set to
+\code{FALSE} to use session-temporary storage instead.}
 
 \item{quiet}{Whether to suppress progress messages.}
 }
@@ -71,6 +72,5 @@ entrance_sep <- read_metro_demand(
 
 }
 \seealso{
-\code{\link[=metrosp_cache_dir]{metrosp_cache_dir()}}, \code{\link[=metrosp_cache_enable]{metrosp_cache_enable()}},
-\code{\link[=metrosp_cache_list]{metrosp_cache_list()}}, and \code{\link[=metrosp_cache_clear]{metrosp_cache_clear()}} for cache management.
+\code{\link[=metrosp_cache]{metrosp_cache()}} and \code{\link[=metrosp_cache_clear]{metrosp_cache_clear()}} for cache management.
 }

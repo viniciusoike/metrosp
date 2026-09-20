@@ -2,6 +2,13 @@
 
 ## Breaking changes
 
+* Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and
+  `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing
+  and prints its location. Downloads now use the platform-specific
+  `tools::R_user_dir()` cache by default; `cache = FALSE`,
+  `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to
+  opt out or override the location (#26).
+
 * Renamed the exported datasets to a consistent convention: `passengers_entrance`
   to `line_entries_monthly`, `passengers_transported` to
   `line_transported_monthly`, `station_averages` to `station_entries_monthly`,

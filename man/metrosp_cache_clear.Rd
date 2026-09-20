@@ -2,7 +2,7 @@
 % Please edit documentation in R/cache.R
 \name{metrosp_cache_clear}
 \alias{metrosp_cache_clear}
-\title{Delete cached datasets}
+\title{Delete cached Metro SP data}
 \usage{
 metrosp_cache_clear(vintage = NULL)
 }
@@ -14,7 +14,7 @@ metrosp_cache_clear(vintage = NULL)
 The number of files removed, invisibly.
 }
 \description{
-Delete cached datasets
+Delete cached Metro SP data
 }
 \examples{
 \dontrun{
@@ -24,5 +24,5 @@ metrosp_cache_clear()
 
 }
 \seealso{
-\code{\link[=metrosp_cache_dir]{metrosp_cache_dir()}}, \code{\link[=metrosp_cache_list]{metrosp_cache_list()}}.
+\code{\link[=metrosp_cache]{metrosp_cache()}} to inspect cached files.
 }

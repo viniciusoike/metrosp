@@ -58,7 +58,10 @@ entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 entrance_bundled <- read_metro_demand("line_entries_monthly", source = "bundled")
 ```
 
-Downloads land in a session-temporary directory until you allow a persistent cache with `metrosp_cache_enable()`. `metrosp_cache_list()` shows what is on disk and `metrosp_cache_clear()` removes it. Columns are identical across sources, so the definitions below hold for both.
+Downloads use the platform-specific user cache returned by `tools::R_user_dir()`.
+`metrosp_cache()` shows what is on disk and `metrosp_cache_clear()` removes it;
+set `cache = FALSE` to keep a download only for the current session. Columns
+are identical across sources, so the definitions below hold for both.
 
 Only the four demand datasets are published separately. The reference datasets do not change with new months, so read them from the package.
 
