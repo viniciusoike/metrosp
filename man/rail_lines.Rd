@@ -9,14 +9,14 @@ An sf data frame with LINESTRING geometry (CRS: WGS84 / EPSG:4326)
 and the following columns:
 \describe{
 \item{line_number}{Official line number (integer).}
-\item{line_name_pt}{Portuguese color name of the line (character).}
 \item{line_name}{English color name of the line (character).}
+\item{line_name_pt}{Portuguese color name of the line (character).}
 \item{company_name}{Operating company name (character).}
 \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 (character).}
 \item{status}{Either \code{"current"} (operating) or \code{"future"}
 (planned expansion) (character).}
-\item{geometry}{Line route geometry (sfc_LINESTRING).}
+\item{geom}{Line route geometry (sfc_LINESTRING).}
 }
 }
 \source{

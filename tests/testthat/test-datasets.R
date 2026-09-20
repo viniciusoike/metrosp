@@ -83,14 +83,21 @@ test_that("station identities are stable across demand grains", {
   daily <- metrosp::station_entries_daily |>
     dplyr::distinct(station_id, station_name)
 
-  expect_length(intersect(monthly$station_id, daily$station_id), 86L)
+  expect_setequal(
+    intersect(monthly$station_id, daily$station_id),
+    unique(daily$station_id)
+  )
   expect_identical(
     unique(metrosp::station_entries_monthly$station_id[
       metrosp::station_entries_monthly$station_name == "República"
     ]),
-    unique(metrosp::station_entries_daily$station_id[
-      metrosp::station_entries_daily$station_name == "República"
-    ])
+    "republica"
+  )
+  expect_setequal(
+    unique(metrosp::station_entries_monthly$line_number[
+      metrosp::station_entries_monthly$station_name == "República"
+    ]),
+    c(3L, 4L)
   )
   expect_equal(
     unique(metrosp::station_entries_daily$line_number[

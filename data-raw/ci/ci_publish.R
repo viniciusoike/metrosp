@@ -59,6 +59,11 @@ publish <- function(tag, title, notes) {
     ))
   }
 
+  stale <- setdiff(release_asset_names(tag, repo = repo), basename(assets))
+  if (length(stale) > 0) {
+    delete_release_assets(stale, tag, repo = repo)
+  }
+
   return(invisible(tag))
 }
 

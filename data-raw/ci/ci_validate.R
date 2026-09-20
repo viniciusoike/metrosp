@@ -71,7 +71,14 @@ if (is.null(baseline)) {
 # --- Validate ----------------------------------------------------------------
 
 datasets <- targets::tar_read(datasets)
-result <- validate_refresh(datasets, baseline)
+dim_station <- targets::tar_read(dim_station)
+dim_station_alias <- targets::tar_read(dim_station_alias)
+result <- validate_refresh(
+  datasets,
+  baseline,
+  dim_station = dim_station,
+  dim_station_alias = dim_station_alias
+)
 
 # A partial refresh (e.g. Dataverse unreachable) is recorded by the workflow so
 # the PR says which source is stale rather than silently implying both moved.

@@ -188,7 +188,7 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
 #' @param geosampa_files Character vector of GPKG paths (or the directory).
 #' @return list(lines = <sf>, stations = <sf>).
 build_geosampa <- function(
-  geosampa_files = here::here("data-raw/inputs/geosampa"),
+  geosampa_files,
   dim_station,
   dim_station_alias
 ) {
@@ -212,7 +212,16 @@ build_geosampa <- function(
 
   lines <- bind_rows(tab_metro_lines, tab_train_lines) |>
     mutate(line_number = as.integer(line_number))
-  lines <- correct_line_operator(lines)
+  lines <- correct_line_operator(lines) |>
+    select(
+      line_number,
+      line_name,
+      line_name_pt,
+      company_name,
+      type,
+      status,
+      geom
+    )
 
   # --- Metro stations (custom current/future ordering) ---
   path_files <- list.files(dir_geo, pattern = "estacaometro", full.names = TRUE)
@@ -269,7 +278,19 @@ build_geosampa <- function(
   stations <- stations |>
     resolve_stations(station_sources, dim_station, dim_station_alias) |>
     mutate(line_number = as.integer(line_number)) |>
-    arrange(type, line_number, station_name)
+    arrange(type, line_number, station_name) |>
+    select(
+      station_id,
+      station_name,
+      station_code,
+      line_number,
+      line_name,
+      line_name_pt,
+      company_name,
+      type,
+      status,
+      geom
+    )
 
   list(lines = lines, stations = stations)
 }

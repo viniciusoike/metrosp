@@ -30,11 +30,21 @@ test_that("rail_stations has expected columns", {
 
 test_that("station ids identify physical complexes", {
   se <- metrosp::rail_stations[metrosp::rail_stations$station_name == "Sé", ]
+  paulista <- metrosp::rail_stations[
+    metrosp::rail_stations$station_name %in% c("Consolação", "Paulista"),
+  ]
+  santo_amaro <- metrosp::rail_stations[
+    metrosp::rail_stations$station_name %in%
+      c("Santo Amaro", "Santo Amaro (Linha 9)"),
+  ]
   santo <- metrosp::rail_stations[
     metrosp::rail_stations$station_name == "Santo Antônio",
   ]
 
   expect_length(unique(se$station_id), 1L)
+  expect_setequal(unique(paulista$station_name), c("Consolação", "Paulista"))
+  expect_length(unique(paulista$station_id), 1L)
+  expect_length(unique(santo_amaro$station_id), 1L)
   expect_length(unique(santo$station_id), 2L)
 })
 

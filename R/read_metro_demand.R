@@ -26,8 +26,6 @@ legacy_demand_datasets <- c(
   station_entries_daily = "station_daily"
 )
 
-last_legacy_vintage <- "data-2026-09"
-
 #' Read Metro SP demand data
 #'
 #' Reads one of the four passenger demand datasets, preferring the most
@@ -100,6 +98,13 @@ read_metro_demand <- function(
     return(read_bundled(dataset))
   }
 
+  # Validate before the `auto` fallback below, which is there to absorb a
+  # failed download. A malformed `vintage` is a typo in the call, and letting
+  # the fallback catch it hands back the bundled snapshot for a batch the
+  # caller never asked for. The tag itself is re-derived downstream; this call
+  # is for its error.
+  vintage_tag(vintage)
+
   if (identical(source, "auto")) {
     out <- tryCatch(
       read_published(dataset, vintage, "auto", cache, quiet),
@@ -129,15 +134,16 @@ read_bundled <- function(dataset) {
 read_published <- function(dataset, vintage, mode, cache, quiet) {
   tag <- vintage_tag(vintage)
   dir <- vintage_dir(tag, cache)
-  release_dataset <- release_dataset_name(dataset, tag)
 
   manifest <- read_release_manifest(tag, dir, mode, quiet)
 
-  entry <- manifest$datasets[[release_dataset]]
+  entry <- release_dataset_entry(manifest, dataset)
   if (is.null(entry)) {
-    cli::cli_abort(
-      "Vintage {.val {vintage}} does not contain {.val {dataset}}."
-    )
+    legacy_name <- unname(legacy_demand_datasets[[dataset]])
+    cli::cli_abort(c(
+      "Vintage {.val {vintage}} does not contain {.val {dataset}}.",
+      "i" = "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
+    ))
   }
 
   path <- file.path(dir, entry$file)
@@ -152,29 +158,133 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
     download_asset(tag, entry, path, quiet = quiet)
   }
 
-  readRDS(path)
+  dat <- readRDS(path)
+  if (isTRUE(attr(entry, "legacy"))) {
+    dat <- normalize_published_dataset(dat, dataset)
+  }
+  return(dat)
 }
 
-release_dataset_name <- function(dataset, tag) {
-  if (!is_legacy_vintage(tag)) {
-    return(dataset)
-  }
-
-  if (!dataset %in% names(legacy_demand_datasets)) {
-    cli::cli_warn(c(
-      "No archived-release mapping exists for {.val {dataset}} in {.val {tag}}.",
-      "i" = "This is an unhandled pre-2.0 archive tag; please report it."
-    ))
-    return(dataset)
+release_dataset_entry <- function(manifest, dataset) {
+  entry <- manifest$datasets[[dataset]]
+  if (!is.null(entry)) {
+    attr(entry, "legacy") <- FALSE
+    return(entry)
   }
 
   legacy_name <- unname(legacy_demand_datasets[[dataset]])
-  return(legacy_name)
+  entry <- manifest$datasets[[legacy_name]]
+  if (!is.null(entry)) {
+    attr(entry, "legacy") <- TRUE
+  }
+  return(entry)
 }
 
-is_legacy_vintage <- function(tag) {
-  is_dated <- grepl("^data-[0-9]{4}-[0-9]{2}$", tag)
-  return(is_dated && tag <= last_legacy_vintage)
+normalize_published_dataset <- function(dat, dataset) {
+  # 2.0 drops METRO's SISTEMA row. It equals the sum of the per-line rows, so a
+  # legacy asset read without this counts the whole network twice under the
+  # documented "sum the lines" recipe.
+  if ("line_number" %in% names(dat)) {
+    dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
+  }
+
+  if ("metric_abb" %in% names(dat)) {
+    dat$metric_name <- dat$metric
+    dat$metric_name_pt <- dat$metric_pt
+    dat$metric <- dat$metric_abb
+    dat$metric_abb <- NULL
+    dat$metric_pt <- NULL
+  }
+  if ("avg_passenger" %in% names(dat)) {
+    names(dat)[names(dat) == "avg_passenger"] <- "value"
+  }
+  if ("passengers" %in% names(dat)) {
+    names(dat)[names(dat) == "passengers"] <- "value"
+  }
+
+  if (dataset == "station_entries_monthly" && !"metric" %in% names(dat)) {
+    dat$metric <- "mdu"
+    dat$metric_name <- "Average on Business Days"
+    dat$metric_name_pt <- "M\u00e9dia dos Dias \u00dateis"
+  }
+  if (grepl("^station_", dataset) && !"station_id" %in% names(dat)) {
+    dat$station_id <- station_ids_from_names(dat$station_name)
+  }
+
+  dat$year <- as.integer(dat$year)
+  dat$line_number <- as.integer(dat$line_number)
+
+  columns <- switch(
+    dataset,
+    line_entries_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    line_transported_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    station_entries_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "station_id",
+      "station_name",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    station_entries_daily = c(
+      "date",
+      "year",
+      "line_number",
+      "station_id",
+      "station_name",
+      "station_code",
+      "line_name",
+      "line_name_pt",
+      "value"
+    )
+  )
+
+  return(dat[columns])
+}
+
+station_ids_from_names <- function(station_names) {
+  stations <- getExportedValue("metrosp", "rail_stations")
+  mapping <- unique(stations[c("station_name", "station_id")])
+  counts <- table(mapping$station_name)
+  mapping <- mapping[counts[mapping$station_name] == 1L, ]
+  station_ids <- unname(mapping$station_id[match(
+    station_names,
+    mapping$station_name
+  )])
+
+  missing <- unique(station_names[is.na(station_ids)])
+  if (length(missing) > 0) {
+    cli::cli_abort(
+      "Archived station names do not resolve to station_id: {.val {missing}}."
+    )
+  }
+
+  return(station_ids)
 }
 
 # Manifest --------------------------------------------------------------------

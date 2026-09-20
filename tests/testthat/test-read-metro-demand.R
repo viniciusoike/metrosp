@@ -129,44 +129,28 @@ test_that("asset URLs point at the release download endpoint", {
   )
 })
 
-test_that("dated pre-2.0 vintages use their archived asset names", {
-  expect_identical(
-    release_dataset_name("line_entries_monthly", "data-2026-09"),
-    "passengers_entrance"
+test_that("release manifests resolve new names before legacy names", {
+  both <- list(
+    datasets = list(
+      line_entries_monthly = list(file = "line_entries_monthly.rds"),
+      passengers_entrance = list(file = "passengers_entrance.rds")
+    )
   )
-  expect_identical(
-    release_dataset_name("line_transported_monthly", "data-2026-08"),
-    "passengers_transported"
+  legacy <- list(
+    datasets = list(
+      passengers_entrance = list(file = "passengers_entrance.rds")
+    )
   )
-  expect_identical(
-    release_dataset_name("station_entries_monthly", "data-2026-09"),
-    "station_averages"
-  )
-  expect_identical(
-    release_dataset_name("station_entries_daily", "data-2026-08"),
-    "station_daily"
-  )
-})
 
-test_that("current vintages use the public dataset names", {
   expect_identical(
-    release_dataset_name("line_entries_monthly", "data-latest"),
-    "line_entries_monthly"
+    release_dataset_entry(both, "line_entries_monthly")$file,
+    "line_entries_monthly.rds"
   )
   expect_identical(
-    release_dataset_name("line_entries_monthly", "data-2026-10"),
-    "line_entries_monthly"
+    release_dataset_entry(legacy, "line_entries_monthly")$file,
+    "passengers_entrance.rds"
   )
-})
-
-test_that("an unmapped archived dataset warns explicitly", {
-  expect_warning(
-    expect_identical(
-      release_dataset_name("new_dataset", "data-2026-08"),
-      "new_dataset"
-    ),
-    "unhandled pre-2.0 archive tag"
-  )
+  expect_null(release_dataset_entry(legacy, "station_entries_daily"))
 })
 
 # Remote round trip -----------------------------------------------------------
@@ -189,7 +173,17 @@ test_that("a remote read downloads the asset and returns it", {
 })
 
 test_that("an archived vintage reads its legacy asset", {
-  payload <- data.frame(date = as.Date("2026-07-01"), value = 42)
+  payload <- data.frame(
+    date = as.Date("2026-07-01"),
+    line_number = 1,
+    metric_abb = "total",
+    value = 42,
+    metric = "Total",
+    metric_pt = "Total",
+    line_name = "Blue",
+    line_name_pt = "Azul",
+    year = 2026
+  )
   release <- local_fake_release(list(passengers_entrance = payload))
   cache <- local_release_source(release)
 
@@ -200,10 +194,78 @@ test_that("an archived vintage reads its legacy asset", {
     quiet = TRUE
   )
 
-  expect_identical(out, payload)
+  expect_identical(out$value, 42)
+  expect_identical(out$metric, "total")
   expect_true(
     file.exists(file.path(cache, "data-2026-09", "passengers_entrance.rds"))
   )
+})
+
+test_that("the rolling vintage reads a legacy asset when necessary", {
+  payload <- data.frame(
+    date = as.Date("2026-07-01"),
+    line_number = 1,
+    metric_abb = "total",
+    value = 42,
+    metric = "Total",
+    metric_pt = "Total",
+    line_name = "Blue",
+    line_name_pt = "Azul",
+    year = 2026
+  )
+  release <- local_fake_release(list(passengers_entrance = payload))
+  cache <- local_release_source(release)
+
+  out <- read_metro_demand(
+    "line_entries_monthly",
+    source = "remote",
+    quiet = TRUE
+  )
+
+  expect_identical(
+    names(out),
+    c(
+      "date",
+      "year",
+      "line_number",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    )
+  )
+  expect_identical(out$metric, "total")
+  expect_identical(out$metric_name, "Total")
+  expect_identical(out$line_number, 1L)
+  expect_true(
+    file.exists(file.path(cache, "data-latest", "passengers_entrance.rds"))
+  )
+})
+
+test_that("legacy station assets receive stable station ids", {
+  payload <- data.frame(
+    date = as.Date("2026-07-01"),
+    year = 2026,
+    line_number = 2,
+    station_name = "Consolação",
+    avg_passenger = 42,
+    line_name = "Green",
+    line_name_pt = "Verde"
+  )
+  release <- local_fake_release(list(station_averages = payload))
+  local_release_source(release)
+
+  out <- read_metro_demand(
+    "station_entries_monthly",
+    source = "remote",
+    quiet = TRUE
+  )
+
+  expect_identical(out$station_id, "consolacao-paulista")
+  expect_identical(out$metric, "mdu")
+  expect_identical(out$value, 42)
 })
 
 test_that("a warm cache serves the asset without downloading again", {
@@ -369,4 +431,53 @@ test_that("byte counts render at a readable scale", {
   expect_identical(format_bytes(2048), "2.0 KB")
   expect_identical(format_bytes(5 * 1024^2), "5.0 MB")
   expect_identical(format_bytes(NULL), "unknown size")
+})
+
+test_that("a legacy asset drops the line 99 system rows", {
+  payload <- data.frame(
+    date = rep(as.Date("2026-07-01"), 3),
+    line_number = c(1, 2, 99),
+    metric_abb = "total",
+    value = c(10, 20, 30),
+    metric = "Total",
+    metric_pt = "Total",
+    line_name = c("Blue", "Green", "System"),
+    line_name_pt = c("Azul", "Verde", "Sistema"),
+    year = 2026
+  )
+  release <- local_fake_release(list(passengers_entrance = payload))
+  local_release_source(release)
+
+  out <- read_metro_demand(
+    "line_entries_monthly",
+    source = "remote",
+    quiet = TRUE
+  )
+
+  expect_false(99L %in% out$line_number)
+  expect_identical(nrow(out), 2L)
+  # The whole point: the documented "sum the lines" recipe must not double.
+  expect_identical(sum(out$value), 30)
+})
+
+test_that("a malformed vintage errors instead of falling back to bundled", {
+  expect_error(
+    read_metro_demand("line_entries_monthly", vintage = "2026"),
+    "Unrecognised"
+  )
+  expect_error(
+    read_metro_demand("line_entries_monthly", vintage = "latest-ish"),
+    "Unrecognised"
+  )
+})
+
+test_that("a failed download still falls back to the bundled snapshot", {
+  release <- local_fake_release(list())
+  local_release_source(release)
+
+  expect_warning(
+    out <- read_metro_demand("line_entries_monthly", quiet = TRUE),
+    "using the bundled snapshot"
+  )
+  expect_identical(out, metrosp::line_entries_monthly)
 })

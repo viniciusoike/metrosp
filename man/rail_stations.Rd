@@ -14,14 +14,14 @@ and the following columns:
 \item{station_code}{Three-letter METRO abbreviation when available
 (character).}
 \item{line_number}{Line number the station belongs to (integer).}
-\item{line_name_pt}{Portuguese color name of the line (character).}
 \item{line_name}{English color name of the line (character).}
+\item{line_name_pt}{Portuguese color name of the line (character).}
 \item{company_name}{Operating company name (character).}
 \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 (character).}
 \item{status}{Either \code{"current"} (operating) or \code{"future"}
 (planned expansion) (character).}
-\item{geometry}{Station location (sfc_POINT).}
+\item{geom}{Station location (sfc_POINT).}
 }
 }
 \source{

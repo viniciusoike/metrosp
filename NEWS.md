@@ -18,19 +18,13 @@ The exported datasets now use a consistent `<grain>_<measure>_<frequency>` conve
 
 * Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure; sum entry counts across lines when a network total is needed, but do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
 
-* Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and
-  `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing
-  and prints its location. Downloads now use the platform-specific
-  `tools::R_user_dir()` cache by default; `cache = FALSE`,
-  `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to
-  opt out or override the location (#26).
+* Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing and prints its location. Downloads now use the platform-specific `tools::R_user_dir()` cache by default; `cache = FALSE`, `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to opt out or override the location. `metrosp_cache_clear()` removes only package-managed vintage directories, preserving unrelated files in a custom cache root (#26).
 
-* `read_metro_demand()` accepts the new dataset names while continuing to read archived release assets through `data-2026-09` (#25).
+* `read_metro_demand()` accepts the new dataset names and detects 1.x asset names from each release manifest, including the rolling `data-latest` release. A 1.x asset is translated to the 2.0 contract on read — columns renamed, `station_id` filled in, and the `line_number = 99` rows dropped — so a read returns the same shape and the same totals whichever vintage it came from. An unrecognised `vintage` is now an error rather than a silent fall back to the bundled snapshot (#25).
 
-* Unshipped the incomplete `station_inauguration` dataset. Its source and
-  builder remain under `data-raw/` for future curation (#25).
+* Unshipped the incomplete `station_inauguration` dataset without replacement. Its source and builder remain under `data-raw/` for future curation (#25).
 
-* Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Physical interchange complexes share an ID across lines and modes, while `station_name` remains the current display label (#24).
+* Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Named station members retain their official `station_name`, while officially documented physical interchange complexes share an ID across lines and modes. Complex membership comes from a committed, source-backed crosswalk rather than name or distance inference (#24).
 
 * Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_entries_monthly` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
 
@@ -44,7 +38,11 @@ The `metric` rename changes meaning: in 1.x it contained the English label, whil
 | `metric` | `metric_name` | English display label |
 | `metric_pt` | `metric_name_pt` | Portuguese display label |
 
-The measure columns `passengers`, `avg_passenger`, and `passengers_entrance` are now consistently named `value`. The calendar columns `is_ponto_facultativo` and `is_feriadao` are now `is_optional_holiday` and `is_long_weekend`.
+The measure columns `passengers` and `avg_passenger` are now consistently named `value`. The calendar columns `is_ponto_facultativo` and `is_feriadao` are now `is_optional_holiday` and `is_long_weekend`.
+
+Code that previously used `line_number == 99` should sum lines for entry counts. Do not sum transported counts: a passenger is counted on every line used, so interchange journeys would be counted more than once.
+
+Only vintages that were actually published can be pinned. The first dated archive is `data-2026-09`; earlier year-month tags do not exist.
 
 # metrosp 1.3.0
 

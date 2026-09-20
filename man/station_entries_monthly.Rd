@@ -11,7 +11,10 @@ A data frame with the following columns:
 \item{year}{Calendar year (integer).}
 \item{line_number}{Metro line number (integer).}
 \item{station_id}{Stable identifier for the physical station complex
-(character). Treat as opaque.}
+(character). Treat as opaque. An interchange complex keeps one id
+across the lines that serve it while each line keeps its own official
+\code{station_name}, so group by \code{station_id} alone to total a
+complex.}
 \item{station_name}{Name of the metro station (character).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}

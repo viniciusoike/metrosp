@@ -35,7 +35,11 @@ metrosp_cache <- function() {
     return(new_cache_listing(empty, dir))
   }
 
-  files <- list.files(dir, recursive = TRUE, full.names = TRUE)
+  vintage_dirs <- cache_vintage_dirs(dir)
+  files <- unlist(
+    lapply(vintage_dirs, list.files, recursive = TRUE, full.names = TRUE),
+    use.names = FALSE
+  )
   if (length(files) == 0) {
     return(new_cache_listing(empty, dir))
   }
@@ -70,7 +74,8 @@ print.metrosp_cache <- function(x, ...) {
 #' Delete cached Metro SP data
 #'
 #' @param vintage Vintage to remove, such as `"latest"` or `"2026-09"`. When
-#'   `NULL`, removes every cached vintage.
+#'   `NULL`, removes every package-managed `data-latest` or `data-YYYY-MM`
+#'   vintage directory. The cache root and unrelated files are preserved.
 #'
 #' @return The number of files removed, invisibly.
 #'
@@ -85,22 +90,30 @@ print.metrosp_cache <- function(x, ...) {
 #' @export
 metrosp_cache_clear <- function(vintage = NULL) {
   dir <- cache_dir()
-  target <- if (is.null(vintage)) dir else file.path(dir, vintage_tag(vintage))
+  targets <- if (is.null(vintage)) {
+    cache_vintage_dirs(dir)
+  } else {
+    file.path(dir, vintage_tag(vintage))
+  }
 
-  if (!dir.exists(target)) {
-    cli::cli_alert_info("Nothing cached in {.path {target}}.")
+  targets <- targets[dir.exists(targets)]
+  if (length(targets) == 0) {
+    cli::cli_alert_info("Nothing cached in {.path {dir}}.")
     return(invisible(0L))
   }
 
-  files <- list.files(target, recursive = TRUE)
-  unlink(target, recursive = TRUE)
+  files <- unlist(
+    lapply(targets, list.files, recursive = TRUE),
+    use.names = FALSE
+  )
+  unlink(targets, recursive = TRUE)
   cli::cli_alert_success("Removed {length(files)} cached file{?s}.")
   return(invisible(length(files)))
 }
 
 # Internal helpers ------------------------------------------------------------
 
-cache_dir <- function(create = FALSE) {
+cache_dir <- function() {
   dir <- getOption("metrosp.cache_dir")
 
   if (is.null(dir)) {
@@ -110,11 +123,16 @@ cache_dir <- function(create = FALSE) {
     }
   }
 
-  if (isTRUE(create) && !dir.exists(dir)) {
-    dir.create(dir, recursive = TRUE, showWarnings = FALSE)
-  }
-
   return(dir)
+}
+
+cache_vintage_dirs <- function(dir) {
+  candidates <- list.dirs(dir, recursive = FALSE, full.names = TRUE)
+  is_vintage <- grepl(
+    "^data-(?:latest|[0-9]{4}-[0-9]{2})$",
+    basename(candidates)
+  )
+  return(candidates[is_vintage])
 }
 
 new_cache_listing <- function(dat, dir) {

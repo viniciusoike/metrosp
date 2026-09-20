@@ -8,7 +8,8 @@ metrosp_cache_clear(vintage = NULL)
 }
 \arguments{
 \item{vintage}{Vintage to remove, such as \code{"latest"} or \code{"2026-09"}. When
-\code{NULL}, removes every cached vintage.}
+\code{NULL}, removes every package-managed \code{data-latest} or \code{data-YYYY-MM}
+vintage directory. The cache root and unrelated files are preserved.}
 }
 \value{
 The number of files removed, invisibly.

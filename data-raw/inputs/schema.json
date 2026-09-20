@@ -51,27 +51,27 @@
   "rail_lines": {
     "kind": "data.frame",
     "columns": {
-      "status": "character",
-      "company_name": "character",
       "line_number": "integer",
-      "type": "character",
-      "line_name_pt": "character",
       "line_name": "character",
+      "line_name_pt": "character",
+      "company_name": "character",
+      "type": "character",
+      "status": "character",
       "geom": "sfc"
     }
   },
   "rail_stations": {
     "kind": "data.frame",
     "columns": {
-      "type": "character",
-      "status": "character",
-      "company_name": "character",
+      "station_id": "character",
+      "station_name": "character",
       "station_code": "character",
       "line_number": "integer",
       "line_name": "character",
       "line_name_pt": "character",
-      "station_id": "character",
-      "station_name": "character",
+      "company_name": "character",
+      "type": "character",
+      "status": "character",
       "geom": "sfc"
     }
   },

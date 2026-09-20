@@ -148,6 +148,31 @@ release_asset_names <- function(tag, repo = github_repo()) {
   return(out[nzchar(out)])
 }
 
+#' Delete named assets from a release.
+#'
+#' @param files Asset names to delete.
+#' @param tag Release tag.
+#' @param repo Repository in `owner/name` form.
+#' @return Invisibly, the deleted asset names.
+delete_release_assets <- function(files, tag, repo = github_repo()) {
+  for (file in files) {
+    run_gh(c(
+      "release",
+      "delete-asset",
+      shQuote(tag),
+      shQuote(file),
+      "--repo",
+      shQuote(repo),
+      "--yes"
+    ))
+  }
+
+  cli::cli_alert_success(
+    "Removed {length(files)} stale asset{?s} from {.val {tag}}."
+  )
+  return(invisible(files))
+}
+
 #' Download every asset attached to a release.
 #'
 #' @param tag Release tag.

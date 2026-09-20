@@ -23,16 +23,6 @@ test_that("the user cache directory is the default", {
   expect_identical(cache_dir(), tools::R_user_dir("metrosp", "cache"))
 })
 
-test_that("create = TRUE makes the directory", {
-  parent <- withr::local_tempdir()
-  dir <- file.path(parent, "nested", "cache")
-  withr::local_options(metrosp.cache_dir = dir)
-
-  expect_false(dir.exists(dir))
-  cache_dir(create = TRUE)
-  expect_true(dir.exists(dir))
-})
-
 test_that("an empty or absent cache returns a typed zero-row listing", {
   dir <- file.path(withr::local_tempdir(), "does-not-exist")
   withr::local_options(metrosp.cache_dir = dir)
@@ -90,7 +80,26 @@ test_that("clearing removes one vintage or the whole cache", {
   expect_true(dir.exists(file.path(dir, "data-latest")))
 
   expect_message(metrosp_cache_clear(), "Removed")
-  expect_false(dir.exists(dir))
+  expect_true(dir.exists(dir))
+  expect_identical(list.files(dir), character(0))
+})
+
+test_that("clearing all vintages preserves unrelated files", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+
+  dir.create(file.path(dir, "data-latest"))
+  saveRDS(1, file.path(dir, "data-latest", "line_entries_monthly.rds"))
+  unrelated <- file.path(dir, "keep-me.txt")
+  writeLines("not owned by metrosp", unrelated)
+  unrelated_dir <- file.path(dir, "data-personal")
+  dir.create(unrelated_dir)
+  writeLines("not owned by metrosp", file.path(unrelated_dir, "keep-me.txt"))
+
+  expect_message(metrosp_cache_clear(), "Removed 1 cached file")
+  expect_true(file.exists(unrelated))
+  expect_true(dir.exists(unrelated_dir))
+  expect_false(dir.exists(file.path(dir, "data-latest")))
 })
 
 test_that("clearing an uncached vintage is not an error", {

@@ -78,6 +78,12 @@ Three producers stand behind these datasets.
 
 **GeoSampa.** Line and station geometries come from [GeoSampa](https://geosampa.prefeitura.sp.gov.br/), the City of São Paulo's open geospatial platform. Both currently operating and planned infrastructure are included.
 
+**Station identity.** `station_id` identifies a physical station complex,
+while `station_name` retains the official name used by each station member.
+Complex membership is maintained in a committed crosswalk from official
+network sources; it is not inferred from name similarity or distance. Thus
+Consolação and Paulista retain different names but share one `station_id`.
+
 The term *producer* is deliberate. Combining these sources takes substantial cleaning, and the pipeline that does it lives in the package's [GitHub repository](https://github.com/viniciusoike/metrosp/tree/main/data-raw).
 
 # Demand datasets
@@ -178,28 +184,28 @@ Daily passenger entries at each station.
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
 | `line_number` | integer | Official line number |
-| `line_name_pt` | character | Line color in Portuguese |
 | `line_name` | character | Line color in English |
+| `line_name_pt` | character | Line color in Portuguese |
 | `company_name` | character | Operator (Metrô, ViaQuatro, ViaMobilidade, CPTM) |
 | `type` | character | `"metro"` (underground) or `"train"` (CPTM commuter rail) |
 | `status` | character | `"current"` (operating) or `"future"` (planned) |
-| `geometry` | LINESTRING | Route geometry |
+| `geom` | LINESTRING | Route geometry |
 : `rail_lines` columns
 
 ## `rail_stations`
 
 | Column         | Type      | Description               |
 |----------------|-----------|---------------------------|
-| `station_name` | character | Station name (title case) |
 | `station_id` | character | Stable, opaque physical-station identifier |
+| `station_name` | character | Station name (title case) |
 | `station_code` | character | Three-letter METRO abbreviation when available |
 | `line_number`  | integer   | Line number               |
-| `line_name_pt` | character | Line color in Portuguese  |
 | `line_name`    | character | Line color in English     |
+| `line_name_pt` | character | Line color in Portuguese  |
 | `company_name` | character | Operator                  |
 | `type`         | character | `"metro"` or `"train"`    |
 | `status`       | character | `"current"` or `"future"` |
-| `geometry`     | POINT     | Station location          |
+| `geom`         | POINT     | Station location          |
 : `rail_stations` columns
 
 Transfer stations such as Sé, Paraíso, and Ana Rosa appear once per line they serve.

@@ -179,7 +179,10 @@
 #'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number (integer).}
 #'   \item{station_id}{Stable identifier for the physical station complex
-#'     (character). Treat as opaque.}
+#'     (character). Treat as opaque. An interchange complex keeps one id
+#'     across the lines that serve it while each line keeps its own official
+#'     \code{station_name}, so group by \code{station_id} alone to total a
+#'     complex.}
 #'   \item{station_name}{Name of the metro station (character).}
 #'   \item{line_name}{English name of the metro line (character).}
 #'   \item{line_name_pt}{Portuguese name of the metro line (character).}
@@ -247,7 +250,10 @@
 #'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 #'   \item{station_id}{Stable identifier for the physical station complex
-#'     (character). Treat as opaque.}
+#'     (character). Treat as opaque. An interchange complex keeps one id
+#'     across the lines that serve it while each line keeps its own official
+#'     \code{station_name}, so group by \code{station_id} alone to total a
+#'     complex.}
 #'   \item{station_name}{Full station name (character).}
 #'   \item{station_code}{Three-letter station abbreviation used internally
 #'     by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
@@ -298,14 +304,14 @@
 #'   and the following columns:
 #' \describe{
 #'   \item{line_number}{Official line number (integer).}
-#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{line_name}{English color name of the line (character).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{company_name}{Operating company name (character).}
 #'   \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 #'     (character).}
 #'   \item{status}{Either \code{"current"} (operating) or \code{"future"}
 #'     (planned expansion) (character).}
-#'   \item{geometry}{Line route geometry (sfc_LINESTRING).}
+#'   \item{geom}{Line route geometry (sfc_LINESTRING).}
 #' }
 #'
 #' @details
@@ -335,14 +341,14 @@
 #'   \item{station_code}{Three-letter METRO abbreviation when available
 #'     (character).}
 #'   \item{line_number}{Line number the station belongs to (integer).}
-#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{line_name}{English color name of the line (character).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{company_name}{Operating company name (character).}
 #'   \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 #'     (character).}
 #'   \item{status}{Either \code{"current"} (operating) or \code{"future"}
 #'     (planned expansion) (character).}
-#'   \item{geometry}{Station location (sfc_POINT).}
+#'   \item{geom}{Station location (sfc_POINT).}
 #' }
 #'
 #' @details
