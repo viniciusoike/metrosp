@@ -66,6 +66,20 @@ test_that("stations geometry type is POINT", {
   expect_true(all(geom_types %in% c("POINT", "MULTIPOINT")))
 })
 
+test_that("Line 5 geometry identifies ViaMobilidade as the operator", {
+  line_5_operators <- unique(metrosp::rail_lines$company_name[
+    metrosp::rail_lines$type == "metro" &
+      metrosp::rail_lines$line_number == 5L
+  ])
+  station_5_operators <- unique(metrosp::rail_stations$company_name[
+    metrosp::rail_stations$type == "metro" &
+      metrosp::rail_stations$line_number == 5L
+  ])
+
+  expect_identical(line_5_operators, "ViaMobilidade")
+  expect_identical(station_5_operators, "ViaMobilidade")
+})
+
 test_that("both networks are represented in lines", {
   types <- metrosp::rail_lines$type
   expect_true("metro" %in% types)

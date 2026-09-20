@@ -49,6 +49,20 @@ test_that("demand checks enforce the 2.0 metric and type contract", {
   )
 })
 
+test_that("line checks reject system totals without fixing the line roster", {
+  future_line <- data.frame(line_number = c(1L, 6L))
+  system_total <- data.frame(line_number = c(1L, 99L))
+
+  expect_equal(
+    check_absent_values(future_line, "line_number", 99L, "demand"),
+    character(0)
+  )
+  expect_match(
+    check_absent_values(system_total, "line_number", 99L, "demand"),
+    "99"
+  )
+})
+
 test_that("station_entries_monthly satisfies its structural invariants", {
   expect_equal(
     check_station_entries_monthly(metrosp::station_entries_monthly),

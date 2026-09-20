@@ -50,6 +50,22 @@ check_no_na <- function(df, cols, name) {
   problems
 }
 
+check_absent_values <- function(df, col, disallowed, name) {
+  if (!col %in% names(df)) {
+    return(character(0))
+  }
+  present <- intersect(unique(df[[col]]), disallowed)
+  if (length(present) == 0) {
+    return(character(0))
+  }
+  sprintf(
+    "%s$%s: disallowed value(s) %s",
+    name,
+    col,
+    paste(present, collapse = ", ")
+  )
+}
+
 check_non_negative <- function(df, col, name) {
   if (!col %in% names(df)) {
     return(character(0))
@@ -253,7 +269,12 @@ check_line_entries_monthly <- function(df, name = "line_entries_monthly") {
     ),
     # metric labels come from a lookup keyed on Portuguese text; an unmatched
     # key leaves them NA rather than erroring, so assert them directly.
-    check_no_na(df, c("date", "metric", "metric_name", "metric_name_pt"), name),
+    check_no_na(
+      df,
+      c("date", "line_number", "metric", "metric_name", "metric_name_pt"),
+      name
+    ),
+    check_absent_values(df, "line_number", 99L, name),
     check_values(df, "metric", c("total", "mdu", "msa", "mdo", "max"), name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric"), name),
@@ -292,7 +313,12 @@ check_line_transported_monthly <- function(
       ),
       name
     ),
-    check_no_na(df, c("date", "metric", "metric_name", "metric_name_pt"), name),
+    check_no_na(
+      df,
+      c("date", "line_number", "metric", "metric_name", "metric_name_pt"),
+      name
+    ),
+    check_absent_values(df, "line_number", 99L, name),
     check_values(df, "metric", c("total", "mdu", "msa", "mdo", "max"), name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric"), name),
@@ -394,6 +420,30 @@ check_station_entries_daily <- function(df, name = "station_entries_daily") {
   problems
 }
 
+check_line_5_operator <- function(df, name) {
+  needed <- c("type", "line_number", "company_name")
+  if (!all(needed %in% names(df))) {
+    return(character(0))
+  }
+
+  line_5 <- df$type %in% "metro" & df$line_number %in% 5L
+  wrong <- line_5 &
+    (is.na(df$company_name) | df$company_name != "ViaMobilidade")
+  n <- sum(wrong)
+  if (n == 0) {
+    return(character(0))
+  }
+  sprintf("%s: %d Line 5 row(s) have the wrong operator", name, n)
+}
+
+check_rail_lines <- function(df, name = "rail_lines") {
+  check_line_5_operator(df, name)
+}
+
+check_rail_stations <- function(df, name = "rail_stations") {
+  check_line_5_operator(df, name)
+}
+
 #' Run every dataset check over a named list of built datasets.
 #' Returns a named list of character vectors (empty ones included).
 check_all_datasets <- function(datasets) {
@@ -401,7 +451,9 @@ check_all_datasets <- function(datasets) {
     line_entries_monthly = check_line_entries_monthly,
     line_transported_monthly = check_line_transported_monthly,
     station_entries_monthly = check_station_entries_monthly,
-    station_entries_daily = check_station_entries_daily
+    station_entries_daily = check_station_entries_daily,
+    rail_lines = check_rail_lines,
+    rail_stations = check_rail_stations
   )
 
   out <- list()

@@ -90,7 +90,7 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
 | `year` | integer | Calendar year |
-| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, 15, or 99 for the network total) |
+| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, or 15) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
 | `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
@@ -98,6 +98,8 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | `metric_name_pt` | character | Metric label in Portuguese |
 | `value` | numeric | Passenger count |
 : `line_entries_monthly` columns
+
+The `total`, `mdu`, `msa`, and `mdo` metrics can be summed across lines. The `max` metric cannot: individual lines may peak on different days.
 
 ### Day-type metrics
 
@@ -120,7 +122,7 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
 | `year` | integer | Calendar year |
-| `line_number` | integer | Line identifier (1, 2, 3, 5, 15, or 99 for the network total) |
+| `line_number` | integer | Line identifier (1, 2, 3, 5, or 15) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
 | `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
@@ -128,6 +130,8 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | `metric_name_pt` | character | Metric label in Portuguese |
 | `value` | numeric | Passenger count, in thousands |
 : `line_transported_monthly` columns
+
+Transported counts cannot be summed into a unique network count: a journey using multiple lines is counted once on each line.
 
 ## `station_entries_monthly`
 

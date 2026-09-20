@@ -41,7 +41,14 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     # Adjust values to match Lines 4/5 (Dataverse source)
     mutate(value = value * 1000)
 
-  line_entries_monthly <- bind_rows(line_entries_monthly, entrance_4_5) |>
+  line_entries_monthly <- bind_rows(line_entries_monthly, entrance_4_5)
+
+  if (anyNA(line_entries_monthly$line_number)) {
+    cli::cli_abort("Unparsed line number reached assemble_entrance().")
+  }
+
+  line_entries_monthly <- line_entries_monthly |>
+    filter(line_number != 99L) |>
     drop_trailing_na(value) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
@@ -54,7 +61,10 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
     arrange(date, line_number, metric)
 
   stopifnot(
-    "NA dates in line_entries_monthly" = !any(is.na(line_entries_monthly$date))
+    "NA dates in line_entries_monthly" = !any(is.na(line_entries_monthly$date)),
+    "NA line numbers in line_entries_monthly" = !any(
+      is.na(line_entries_monthly$line_number)
+    )
   )
 
   line_entries_monthly
@@ -78,7 +88,14 @@ assemble_transported <- function(psg_historic, transported_current) {
     mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
-  line_transported_monthly <- bind_rows(transported_hist, transported_20) |>
+  line_transported_monthly <- bind_rows(transported_hist, transported_20)
+
+  if (anyNA(line_transported_monthly$line_number)) {
+    cli::cli_abort("Unparsed line number reached assemble_transported().")
+  }
+
+  line_transported_monthly <- line_transported_monthly |>
+    filter(line_number != 99L) |>
     drop_trailing_na(value) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
@@ -93,6 +110,9 @@ assemble_transported <- function(psg_historic, transported_current) {
   stopifnot(
     "NA dates in line_transported_monthly" = !any(
       is.na(line_transported_monthly$date)
+    ),
+    "NA line numbers in line_transported_monthly" = !any(
+      is.na(line_transported_monthly$line_number)
     )
   )
 
