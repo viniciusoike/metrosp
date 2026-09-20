@@ -2,6 +2,22 @@
 
 ## Breaking changes
 
+The exported datasets now use a consistent `<grain>_<measure>_<frequency>` convention:
+
+| 1.x name | 2.0 name |
+|---|---|
+| `passengers_entrance` | `line_entries_monthly` |
+| `passengers_transported` | `line_transported_monthly` |
+| `station_averages` | `station_entries_monthly` |
+| `station_daily` | `station_entries_daily` |
+| `lines` | `rail_lines` |
+| `stations` | `rail_stations` |
+| `station_inauguration` | Unshipped |
+| `calendar_spo` | Unchanged |
+| `metro_colors` | Unchanged |
+
+* Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure; sum entry counts across lines when a network total is needed, but do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
+
 * Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and
   `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing
   and prints its location. Downloads now use the platform-specific
@@ -9,19 +25,14 @@
   `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to
   opt out or override the location (#26).
 
-* Renamed the exported datasets to a consistent convention: `passengers_entrance`
-  to `line_entries_monthly`, `passengers_transported` to
-  `line_transported_monthly`, `station_averages` to `station_entries_monthly`,
-  `station_daily` to `station_entries_daily`, `lines` to `rail_lines`, and
-  `stations` to `rail_stations`. `read_metro_demand()` accepts the new names
-  while continuing to read archived release assets through `data-2026-09` (#25).
+* `read_metro_demand()` accepts the new dataset names while continuing to read archived release assets through `data-2026-09` (#25).
 
 * Unshipped the incomplete `station_inauguration` dataset. Its source and
   builder remain under `data-raw/` for future curation (#25).
 
 * Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Physical interchange complexes share an ID across lines and modes, while `station_name` remains the current display label (#24).
 
-* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_averages` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
+* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_entries_monthly` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
 
 ### Migrating from 1.x
 
