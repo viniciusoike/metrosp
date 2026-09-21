@@ -38,5 +38,5 @@ once consent is on record, then a temporary directory.
 
 ``` r
 metrosp_cache_dir()
-#> [1] "/tmp/Rtmp9ioYRo/metrosp-cache"
+#> [1] "/tmp/Rtmp0J7Mhg/metrosp-cache"
 ```
