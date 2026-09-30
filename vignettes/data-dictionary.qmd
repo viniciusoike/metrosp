@@ -27,14 +27,14 @@ The package ships four demand datasets. Two measure passengers at the line level
 | Dataset | Description | Unit | Time span | Frequency |
 |------------|------------|------------|------------|------------|
 | `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
-| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016--2026 | Monthly |
+| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2016--2026 | Monthly |
 | `station_entries_monthly` | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
 | `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily |
 : Demand datasets
 
 A **passenger entry** is a passenger who crossed the station's turnstile gates. A **transported passenger** is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.
 
-Three of these datasets count individual passengers and cover every metro line. `line_transported_monthly` is the exception. It reports thousands of passengers, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its `value` by 1000 before comparing it with the other datasets.
+All four datasets count individual passengers. Three cover every metro line. `line_transported_monthly` has no data for Line 4 and covers Line 5 only through August 2018.
 
 Four further datasets support analysis. `rail_lines` and `rail_stations` carry
 route and station geometries; `calendar_spo` and `metro_colors` are lookup
@@ -122,7 +122,7 @@ METRO breaks each month into five metrics, shared by `line_entries_monthly` and 
 
 ## `line_transported_monthly`
 
-Monthly passengers transported by metro line and day-type metric, in **thousands of passengers**.
+Monthly passengers transported by metro line and day-type metric.
 
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|
@@ -134,7 +134,7 @@ Monthly passengers transported by metro line and day-type metric, in **thousands
 | `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
 | `metric_name` | character | Metric label in English |
 | `metric_name_pt` | character | Metric label in Portuguese |
-| `value` | numeric | Passenger count, in thousands |
+| `value` | numeric | Passengers transported |
 : `line_transported_monthly` columns
 
 Transported counts cannot be summed into a unique network count: a journey using multiple lines is counted once on each line.

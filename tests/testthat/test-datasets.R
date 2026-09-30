@@ -40,6 +40,27 @@ test_that("line_transported_monthly satisfies its structural invariants", {
   )
 })
 
+test_that("transported counts share the entry counts' unit", {
+  # Transported adds transfers to turnstile entries, so it can only run above
+  # entries. Left in thousands, it would sit about 1000 times below them.
+  keys <- c("date", "line_number", "metric")
+  paired <- merge(
+    metrosp::line_entries_monthly[c(keys, "value")],
+    metrosp::line_transported_monthly[c(keys, "value")],
+    by = keys,
+    suffixes = c("_entries", "_transported")
+  )
+  # August 2018 transported covers only the days before Line 5's handover.
+  partial <- paired$line_number == 5L & paired$date == as.Date("2018-08-01")
+  paired <- paired[paired$metric == "total" & !partial, ]
+
+  expect_gt(nrow(paired), 0)
+  expect_true(all(
+    paired$value_transported >= paired$value_entries,
+    na.rm = TRUE
+  ))
+})
+
 test_that("demand checks enforce the 2.0 metric and type contract", {
   bad_metric <- metrosp::line_entries_monthly
   bad_metric$metric[[1]] <- "weekday_average"

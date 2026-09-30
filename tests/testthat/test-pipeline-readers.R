@@ -167,6 +167,14 @@ test_that("the baseline adapter renames 1.x datasets before comparing", {
       metric_pt = "Total",
       passengers = c(10, 10)
     ),
+    passengers_transported = data.frame(
+      date = as.Date("2026-07-01"),
+      line_number = 1,
+      metric_abb = "total",
+      metric = "Total",
+      metric_pt = "Total",
+      value = 26.5
+    ),
     station_averages = data.frame(
       date = as.Date("2026-07-01"),
       avg_passenger = 5
@@ -195,6 +203,9 @@ test_that("the baseline adapter renames 1.x datasets before comparing", {
   expect_identical(out$line_entries_monthly$value, 10)
   expect_false(99 %in% out$line_entries_monthly$line_number)
   expect_identical(out$station_entries_monthly$value, 5)
+
+  # 1.x published transported counts in thousands; 2.0 counts passengers.
+  expect_identical(out$line_transported_monthly$value, 26500)
 })
 
 test_that("a demand dataset missing from the baseline fails validation", {

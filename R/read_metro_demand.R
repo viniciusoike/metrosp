@@ -193,6 +193,11 @@ normalize_published_dataset <- function(dat, dataset) {
     dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
   }
 
+  # 1.x published transported counts in thousands; 2.0 counts passengers.
+  if (dataset == "line_transported_monthly") {
+    dat$value <- dat$value * 1000
+  }
+
   if ("metric_abb" %in% names(dat)) {
     dat$metric_name <- dat$metric
     dat$metric_name_pt <- dat$metric_pt

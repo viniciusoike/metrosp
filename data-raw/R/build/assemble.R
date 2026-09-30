@@ -97,6 +97,9 @@ assemble_transported <- function(psg_historic, transported_current) {
   line_transported_monthly <- line_transported_monthly |>
     filter(line_number != 99L) |>
     drop_trailing_na(value) |>
+    # METRO publishes transported counts in thousands; 2.0 counts passengers,
+    # like every other demand table.
+    mutate(value = value * 1000) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
       metric_name = metric,

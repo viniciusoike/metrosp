@@ -71,7 +71,7 @@ analysis and visualization.
 | Dataset | Description | Frequency | Spatial |
 |----|----|----|----|
 | `line_entries_monthly` | Monthly passenger entries by line and day-type metric | Monthly | No |
-| `line_transported_monthly` | Monthly passengers transported by line, in thousands | Monthly | No |
+| `line_transported_monthly` | Monthly passengers transported by line | Monthly | No |
 | `station_entries_monthly` | Average weekday passenger entries by station | Monthly | No |
 | `station_entries_daily` | Daily passenger entries by station | Daily | No |
 | `calendar_spo` | São Paulo holiday and business-day calendar | Daily | No |
@@ -79,9 +79,7 @@ analysis and visualization.
 | `rail_lines` | Metro and train line routes (current + planned) | — | Yes |
 | `rail_stations` | Metro and train station locations (current + planned) | — | Yes |
 
-`line_entries_monthly` and the two station datasets count individual
-passengers. `line_transported_monthly` reports thousands of passengers,
-as the METRÔ source does. The [data
+Every demand dataset counts individual passengers. The [data
 dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html)
 defines every column, and the [Metro Demand
 Data](https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html)

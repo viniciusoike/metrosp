@@ -151,7 +151,7 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
 
 ### Transported
 
-This dataset has the same columns as `line_entries_monthly`, but values are in **thousands of passengers**, as METRÔ publishes them. Multiply by 1000 before comparing the two datasets.
+This dataset has the same columns and unit as `line_entries_monthly`. METRÔ publishes it in thousands, so values are rounded to the thousand.
 
 Coverage is limited to the METRÔ-operated system. Line 4 never appears, and Line 5 stops in August 2018, when the line passed to ViaMobilidade: the Dataverse source that covers both lines does not publish transported counts.
 
@@ -176,7 +176,7 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
   scale_color_manual(values = metro_colors) +
   labs(
     title = "Daily Average Passenger Transported by Line",
-    subtitle = "Monthly averages across business days (thousands)",
+    subtitle = "Monthly averages across business days",
     x = NULL,
     y = "Daily Average"
   ) +

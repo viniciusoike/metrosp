@@ -56,6 +56,12 @@ normalize_baseline_schema <- function(datasets) {
   names(datasets)[match(legacy, names(datasets))] <-
     unname(.legacy_dataset_names[legacy])
 
+  # 1.x published transported counts in thousands; 2.0 counts passengers.
+  if ("passengers_transported" %in% legacy) {
+    datasets$line_transported_monthly$value <-
+      datasets$line_transported_monthly$value * 1000
+  }
+
   for (name in intersect(names(.drift_keys), names(datasets))) {
     dat <- datasets[[name]]
 

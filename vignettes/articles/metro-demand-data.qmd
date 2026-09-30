@@ -30,11 +30,11 @@ The package ships four demand datasets. Two measure passengers at the line level
 | Dataset | Description | Unit | Time span | Frequency | Package name |
 |------------|------------|------------|------------|------------|------------|
 | Passenger entries by line | Passenger entries, measured by the station's turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly | `line_entries_monthly` |
-| Transported passengers per line | Number of transported passengers, measured by the station's turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016--2026 | Monthly | `line_transported_monthly` |
+| Transported passengers per line | Number of transported passengers, measured by the station's turnstiles plus transfers between lines at interchange stations. | Passengers | 2016--2026 | Monthly | `line_transported_monthly` |
 | Station-level averages | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly | `station_entries_monthly` |
 | Station-level daily | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily | `station_entries_daily` |
 
-Three of these datasets count **individual passengers** and cover every metro line. `line_transported_monthly` is the exception: it reports **thousands of passengers**, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its `value` by 1000 before comparing it with the other datasets.
+All four datasets count **individual passengers**. Three cover every metro line; `line_transported_monthly` has no data for Line 4 and covers Line 5 only through August 2018.
 
 A "passenger entry" is a passenger who crossed the station's turnstile gates. A "transported passenger" is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.
 
@@ -101,7 +101,7 @@ Finally, METRO produces data for lines 1, 2, 3, 5, and 15. Line 5 was initially 
 
 Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 (Line 4) and August 2018 (Line 5). Transported counts are **not available** for Lines 4 or 5.
 
-Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset that combines the two sources reports individual passengers. `line_transported_monthly` draws on METRO alone and keeps the source unit, thousands of passengers.
+Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset reports individual passengers, including `line_transported_monthly`, which draws on METRO alone.
 
 The `station_entries_monthly` dataset for Lines 4 and 5 is derived from `station_entries_daily` using the `bizdays` package with the "Brazil/ANBIMA" calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city's business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships `calendar_spo`, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction.
 
@@ -158,7 +158,7 @@ The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. Eve
 
 ## `line_transported_monthly`
 
-This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers entering the station through the turnstile gates plus passengers changing between lines. Values are in **thousands of passengers**, unlike every other dataset here.
+This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers entering the station through the turnstile gates plus passengers changing between lines. METRO publishes it in thousands; the package multiplies by 1000, so values count individual passengers like every other dataset.
 
 ```{r}
 dplyr::glimpse(line_transported_monthly)
@@ -307,7 +307,7 @@ This means station-level totals at interchange stations are **not** double-count
 Line 5 (Lilás) was originally operated by METRO SP. On August 4, 2018, it was handed over to ViaMobilidade under a concession contract. This affects the data in two ways:
 
 1.  **Source switch**: from January 2016 through July 2018, Line 5 data comes from the METRO transparency portal. From August 2018 onward, it comes from the Insper Dataverse (ViaMobilidade/Insper partnership).
-2.  **Transported counts end**: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse does not provide transported counts, so `line_transported_monthly` has no Line 5 data afterward.
+2.  **Transported counts end**: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse does not provide transported counts, so `line_transported_monthly` has no Line 5 data afterward. The August 2018 row covers only the days before the handover: its `total` is a partial month, and `msa` and `mdo` are `NA`.
 
 ### Line 15 Sunday closures
 

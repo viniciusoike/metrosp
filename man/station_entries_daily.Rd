@@ -33,9 +33,9 @@ station_entries_daily
 }
 \description{
 Daily passenger entries at each station in the São Paulo metro system.
-Data covers January 2012 through 2026 for Lines 4 and 5 (Insper
-Dataverse), and 2020 through 2026 for Lines 1, 2, 3, and 15 (METRO SP
-transparency portal).
+Data covers January 2012 through 2026 for Line 4 and August 2018 through
+2026 for Line 5 (Insper Dataverse), and 2020 through 2026 for Lines 1, 2,
+3, and 15 (METRO SP transparency portal).
 }
 \details{
 Station coverage and date range by line:

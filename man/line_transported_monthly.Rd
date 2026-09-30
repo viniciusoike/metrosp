@@ -23,7 +23,7 @@ A data frame with the following columns:
 \code{"Total"}, \code{"Média dos Dias Úteis"},
     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 \code{"Máxima Diária"}.}
-\item{value}{Passenger count, in thousands of passengers (numeric).}
+\item{value}{Passengers transported (numeric).}
 }
 }
 \source{
@@ -35,15 +35,15 @@ line_transported_monthly
 }
 \description{
 Monthly count of passengers transported by São Paulo metro, aggregated
-by metro line and reported in \strong{thousands of passengers}. Data covers
+by metro line. Data covers
 January 2016 through 2026 for Lines 1, 2, 3, and 15, and January 2016
 through August 2018 for Line 5. Sourced from the METRO SP transparency
 portal.
 }
 \details{
-Values are in thousands of passengers, as published by METRO SP. The other
-demand datasets count individual passengers, so multiply by 1000 before
-comparing \code{value} with \code{\link{line_entries_monthly}}.
+METRO SP publishes these counts in thousands of passengers. They are
+multiplied by 1000 here, so \code{value} counts individual passengers like
+every other demand dataset and carries METRO's rounding to the thousand.
 
 A transported passenger is one who crossed a turnstile plus one who
 transferred between lines at an interchange station, so transported counts
@@ -57,7 +57,9 @@ is not available in this dataset — the Insper Dataverse source does not
 include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
 from the METRO portal only for January 2016–August 2018: the line was
 handed over to ViaMobilidade in August 2018 and the portal stopped
-reporting its transported counts afterwards.
+reporting its transported counts afterwards. August 2018 covers only the
+days before the handover: its \code{total} is a partial month, and
+\code{msa} and \code{mdo} are \code{NA}.
 
 METRO published January–September 2017 only as PDFs, with no
 machine-readable equivalent. Those months were transcribed from the

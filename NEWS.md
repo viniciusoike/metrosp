@@ -18,6 +18,8 @@ The exported datasets now use a consistent `<grain>_<measure>_<frequency>` conve
 
 * Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure; sum entry counts across lines when a network total is needed, but do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
 
+* `line_transported_monthly` now counts individual passengers, like the other demand datasets. METRO publishes transported counts in thousands, and 1.x kept that unit; `value` is now multiplied by 1000. `read_metro_demand()` rescales 1.x release assets the same way.
+
 * Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing and prints its location. Downloads now use the platform-specific `tools::R_user_dir()` cache by default; `cache = FALSE`, `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to opt out or override the location. `metrosp_cache_clear()` removes only package-managed vintage directories, preserving unrelated files in a custom cache root. A cached vintage left unused for 90 days is deleted on the next read (#26).
 
 * `read_metro_demand()` accepts the new dataset names and detects 1.x asset names from each release manifest, including the rolling `data-latest` release. A 1.x asset is translated to the 2.0 contract on read — columns renamed, `station_id` filled in, and the `line_number = 99` rows dropped — so a read returns the same shape and the same totals whichever vintage it came from. An unrecognized `vintage` is now an error rather than a silent fall back to the bundled snapshot (#25).
@@ -39,6 +41,8 @@ The `metric` rename changes meaning: in 1.x it contained the English label, whil
 | `metric_pt` | `metric_name_pt` | Portuguese display label |
 
 The measure columns `passengers` and `avg_passenger` are now consistently named `value`. The calendar columns `is_ponto_facultativo` and `is_feriadao` are now `is_optional_holiday` and `is_long_weekend`.
+
+`line_transported_monthly$value` is 1000 times its 1.x value. Remove any `* 1000` your code applied before comparing it with the entry counts.
 
 Code that previously used `line_number == 99` should sum lines for entry counts. Do not sum transported counts: a passenger is counted on every line used, so interchange journeys would be counted more than once.
 

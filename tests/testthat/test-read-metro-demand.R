@@ -460,6 +460,30 @@ test_that("a legacy asset drops the line 99 system rows", {
   expect_identical(sum(out$value), 30)
 })
 
+test_that("a legacy transported asset is rescaled from thousands", {
+  payload <- data.frame(
+    date = as.Date("2026-07-01"),
+    line_number = 1,
+    metric_abb = "total",
+    value = 26.5,
+    metric = "Total",
+    metric_pt = "Total",
+    line_name = "Blue",
+    line_name_pt = "Azul",
+    year = 2026
+  )
+  release <- local_fake_release(list(passengers_transported = payload))
+  local_release_source(release)
+
+  out <- read_metro_demand(
+    "line_transported_monthly",
+    source = "remote",
+    quiet = TRUE
+  )
+
+  expect_identical(out$value, 26500)
+})
+
 test_that("a malformed vintage errors instead of falling back to bundled", {
   expect_error(
     read_metro_demand("line_entries_monthly", vintage = "2026"),
