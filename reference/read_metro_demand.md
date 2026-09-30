@@ -107,13 +107,13 @@ head(read_metro_demand("passengers_entrance", source = "bundled"))
 # \donttest{
 # The most recently published data, cached between calls.
 entrance <- read_metro_demand("passengers_entrance")
-#> ℹ Downloading passengers_entrance.rds (14.0 KB).
+#> ℹ Downloading passengers_entrance.rds (14.1 KB).
 
 # A pinned vintage, so an analysis can name the batch it used.
 entrance_sep <- read_metro_demand(
   "passengers_entrance",
   vintage = "2026-09"
 )
-#> ℹ Downloading passengers_entrance.rds (14.0 KB).
+#> ℹ Downloading passengers_entrance.rds (14.1 KB).
 # }
 ```
