@@ -27,6 +27,10 @@ resolved from the \code{metrosp.cache_dir} option, then the \code{METROSP_CACHE_
 environment variable, and finally \code{\link[tools:userdir]{tools::R_user_dir()}}. Printing the
 result also shows the resolved directory.
 }
+\details{
+Each read marks its vintage as used. A vintage left unused for 90 days is
+deleted the next time \code{\link[=read_metro_demand]{read_metro_demand()}} touches the cache.
+}
 \examples{
 metrosp_cache()
 

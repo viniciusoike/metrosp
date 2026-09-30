@@ -109,6 +109,40 @@ test_that("clearing an uncached vintage is not an error", {
   expect_identical(n, 0L)
 })
 
+test_that("using the cache prunes vintages left unused for 90 days", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+
+  for (tag in c("data-2026-01", "data-2026-08")) {
+    dir.create(file.path(dir, tag))
+    saveRDS(1, file.path(dir, tag, "line_entries_monthly.rds"))
+  }
+  unrelated_dir <- file.path(dir, "data-personal")
+  dir.create(unrelated_dir)
+  old <- Sys.time() - 91 * 86400
+  Sys.setFileTime(file.path(dir, c("data-2026-01", "data-personal")), old)
+
+  path <- vintage_dir("data-latest")
+
+  expect_false(dir.exists(file.path(dir, "data-2026-01")))
+  expect_true(dir.exists(file.path(dir, "data-2026-08")))
+  expect_true(dir.exists(unrelated_dir))
+  expect_true(dir.exists(path))
+})
+
+test_that("reading a vintage marks it as recently used", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+
+  dir.create(file.path(dir, "data-2026-01"))
+  Sys.setFileTime(file.path(dir, "data-2026-01"), Sys.time() - 91 * 86400)
+
+  vintage_dir("data-2026-01")
+  vintage_dir("data-latest")
+
+  expect_true(dir.exists(file.path(dir, "data-2026-01")))
+})
+
 test_that("cache = FALSE uses session-temporary storage", {
   withr::local_options(metrosp.cache_dir = "/should/be/ignored")
 

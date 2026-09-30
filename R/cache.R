@@ -12,6 +12,9 @@
 #' environment variable, and finally [tools::R_user_dir()]. Printing the
 #' result also shows the resolved directory.
 #'
+#' Each read marks its vintage as used. A vintage left unused for 90 days is
+#' deleted the next time [read_metro_demand()] touches the cache.
+#'
 #' @return A data frame with one row per cached file, holding the vintage tag,
 #'   file name, size in bytes, and modification time. Zero rows when the cache
 #'   is empty.
@@ -133,6 +136,15 @@ cache_vintage_dirs <- function(dir) {
     basename(candidates)
   )
   return(candidates[is_vintage])
+}
+
+# Each read stamps its vintage directory, so the directory's modification time
+# records its last use. Vintages unused for 90 days are removed on the next read.
+prune_cache <- function(dir, max_age_days = 90) {
+  vintages <- cache_vintage_dirs(dir)
+  age <- difftime(Sys.time(), file.mtime(vintages), units = "days")
+  unlink(vintages[age > max_age_days], recursive = TRUE)
+  return(invisible(NULL))
 }
 
 new_cache_listing <- function(dat, dir) {

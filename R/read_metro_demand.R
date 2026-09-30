@@ -68,6 +68,9 @@ legacy_demand_datasets <- c(
 #' head(read_metro_demand("line_entries_monthly", source = "bundled"))
 #'
 #' \donttest{
+#' # Keep this example's downloads out of your persistent cache.
+#' old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+#'
 #' # The most recently published data, cached between calls.
 #' entrance <- read_metro_demand("line_entries_monthly")
 #'
@@ -76,6 +79,8 @@ legacy_demand_datasets <- c(
 #'   "line_entries_monthly",
 #'   vintage = "2026-09"
 #' )
+#'
+#' options(old)
 #' }
 #'
 #' @export
@@ -430,6 +435,10 @@ vintage_dir <- function(tag, cache = TRUE) {
 
   path <- file.path(dir, tag)
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  if (isTRUE(cache)) {
+    Sys.setFileTime(path, Sys.time())
+    prune_cache(dir)
+  }
   path
 }
 

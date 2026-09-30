@@ -60,6 +60,9 @@ installed and skip verification otherwise.
 head(read_metro_demand("line_entries_monthly", source = "bundled"))
 
 \donttest{
+# Keep this example's downloads out of your persistent cache.
+old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+
 # The most recently published data, cached between calls.
 entrance <- read_metro_demand("line_entries_monthly")
 
@@ -68,6 +71,8 @@ entrance_sep <- read_metro_demand(
   "line_entries_monthly",
   vintage = "2026-09"
 )
+
+options(old)
 }
 
 }
