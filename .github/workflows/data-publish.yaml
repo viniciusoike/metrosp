@@ -25,7 +25,9 @@ permissions:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moves to Ubuntu 26 on 2026-10-19. Unpin once the
+    # sf/GDAL stack and the pipeline are verified there.
+    runs-on: ubuntu-24.04
     concurrency:
       group: data-publish
       cancel-in-progress: false

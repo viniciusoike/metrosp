@@ -23,7 +23,9 @@ permissions:
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moves to Ubuntu 26 on 2026-10-19. Unpin once the
+    # sf/GDAL stack and the pipeline are verified there.
+    runs-on: ubuntu-24.04
     concurrency:
       group: data-refresh
       cancel-in-progress: false
@@ -129,7 +131,7 @@ jobs:
 
       - name: Open refresh PR
         if: steps.gate.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: data-refresh/${{ github.run_id }}
