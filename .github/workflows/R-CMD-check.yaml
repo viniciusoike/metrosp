@@ -30,6 +30,13 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
 
+      # CRAN's R 4.6 macOS binaries are zstd/xz-compressed and pak cannot
+      # extract them yet (r-lib/pkgdepends#485); Posit Package Manager still
+      # serves gzip binaries. pak resolves from the repos option, not the RSPM
+      # env var, and the project .Rprofile in the repo root shadows the
+      # profile setup-r writes to $HOME, so point R at a profile that sets PPM.
+      R_PROFILE_USER: ${{ github.workspace }}/.github/ci.Rprofile
+
     steps:
       - uses: actions/checkout@v6
 

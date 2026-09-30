@@ -1949,56 +1949,56 @@ date,line_number,metric_abb,metric,value,year
 2026-06-01,99,msa,Average on Saturdays,1309,2026
 2026-06-01,99,mdo,Average on Sundays,794,2026
 2026-06-01,99,max,Daily Peak,2473,2026
-2026-07-01,1,total,Total,19640,2026
-2026-07-01,1,mdu,Average on Business Days,747,2026
+2026-07-01,1,total,Total,19675,2026
+2026-07-01,1,mdu,Average on Business Days,749,2026
 2026-07-01,1,msa,Average on Saturdays,482,2026
 2026-07-01,1,mdo,Average on Sundays,269,2026
 2026-07-01,1,max,Daily Peak,798,2026
-2026-07-01,2,total,Total,12945,2026
-2026-07-01,2,mdu,Average on Business Days,510,2026
+2026-07-01,2,total,Total,12960,2026
+2026-07-01,2,mdu,Average on Business Days,511,2026
 2026-07-01,2,msa,Average on Saturdays,252,2026
 2026-07-01,2,mdo,Average on Sundays,164,2026
 2026-07-01,2,max,Daily Peak,541,2026
-2026-07-01,3,total,Total,21693,2026
-2026-07-01,3,mdu,Average on Business Days,821,2026
+2026-07-01,3,total,Total,21717,2026
+2026-07-01,3,mdu,Average on Business Days,822,2026
 2026-07-01,3,msa,Average on Saturdays,536,2026
 2026-07-01,3,mdo,Average on Sundays,312,2026
 2026-07-01,3,max,Daily Peak,856,2026
-2026-07-01,15,total,Total,2228,2026
-2026-07-01,15,mdu,Average on Business Days,86,2026
+2026-07-01,15,total,Total,2230,2026
+2026-07-01,15,mdu,Average on Business Days,87,2026
 2026-07-01,15,msa,Average on Saturdays,49,2026
 2026-07-01,15,mdo,Average on Sundays,27,2026
 2026-07-01,15,max,Daily Peak,91,2026
-2026-07-01,99,total,Total,56506,2026
-2026-07-01,99,mdu,Average on Business Days,2165,2026
+2026-07-01,99,total,Total,56582,2026
+2026-07-01,99,mdu,Average on Business Days,2168,2026
 2026-07-01,99,msa,Average on Saturdays,1320,2026
 2026-07-01,99,mdo,Average on Sundays,772,2026
 2026-07-01,99,max,Daily Peak,2271,2026
-2026-08-01,1,total,Total,NA,2026
-2026-08-01,1,mdu,Average on Business Days,NA,2026
-2026-08-01,1,msa,Average on Saturdays,NA,2026
-2026-08-01,1,mdo,Average on Sundays,NA,2026
-2026-08-01,1,max,Daily Peak,NA,2026
-2026-08-01,2,total,Total,NA,2026
-2026-08-01,2,mdu,Average on Business Days,NA,2026
-2026-08-01,2,msa,Average on Saturdays,NA,2026
-2026-08-01,2,mdo,Average on Sundays,NA,2026
-2026-08-01,2,max,Daily Peak,NA,2026
-2026-08-01,3,total,Total,NA,2026
-2026-08-01,3,mdu,Average on Business Days,NA,2026
-2026-08-01,3,msa,Average on Saturdays,NA,2026
-2026-08-01,3,mdo,Average on Sundays,NA,2026
-2026-08-01,3,max,Daily Peak,NA,2026
-2026-08-01,15,total,Total,NA,2026
-2026-08-01,15,mdu,Average on Business Days,NA,2026
-2026-08-01,15,msa,Average on Saturdays,NA,2026
-2026-08-01,15,mdo,Average on Sundays,NA,2026
-2026-08-01,15,max,Daily Peak,NA,2026
-2026-08-01,99,total,Total,NA,2026
-2026-08-01,99,mdu,Average on Business Days,NA,2026
-2026-08-01,99,msa,Average on Saturdays,NA,2026
-2026-08-01,99,mdo,Average on Sundays,NA,2026
-2026-08-01,99,max,Daily Peak,NA,2026
+2026-08-01,1,total,Total,20795,2026
+2026-08-01,1,mdu,Average on Business Days,809,2026
+2026-08-01,1,msa,Average on Saturdays,488,2026
+2026-08-01,1,mdo,Average on Sundays,275,2026
+2026-08-01,1,max,Daily Peak,867,2026
+2026-08-01,2,total,Total,13944,2026
+2026-08-01,2,mdu,Average on Business Days,560,2026
+2026-08-01,2,msa,Average on Saturdays,268,2026
+2026-08-01,2,mdo,Average on Sundays,170,2026
+2026-08-01,2,max,Daily Peak,594,2026
+2026-08-01,3,total,Total,23000,2026
+2026-08-01,3,mdu,Average on Business Days,886,2026
+2026-08-01,3,msa,Average on Saturdays,544,2026
+2026-08-01,3,mdo,Average on Sundays,334,2026
+2026-08-01,3,max,Daily Peak,936,2026
+2026-08-01,15,total,Total,2366,2026
+2026-08-01,15,mdu,Average on Business Days,94,2026
+2026-08-01,15,msa,Average on Saturdays,52,2026
+2026-08-01,15,mdo,Average on Sundays,28,2026
+2026-08-01,15,max,Daily Peak,97,2026
+2026-08-01,99,total,Total,60105,2026
+2026-08-01,99,mdu,Average on Business Days,2348,2026
+2026-08-01,99,msa,Average on Saturdays,1352,2026
+2026-08-01,99,mdo,Average on Sundays,808,2026
+2026-08-01,99,max,Daily Peak,2481,2026
 2026-09-01,1,total,Total,NA,2026
 2026-09-01,1,mdu,Average on Business Days,NA,2026
 2026-09-01,1,msa,Average on Saturdays,NA,2026

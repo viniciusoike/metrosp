@@ -1,0 +1,89 @@
+# Standalone Claude reviewer for metrosp (test setup, no central repo)
+name: Claude review
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened]
+    paths:
+      - "R/**"
+      - "src/**"
+      - "tests/**"
+      - "vignettes/**"
+      - "DESCRIPTION"
+      - "NAMESPACE"
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # Skip drafts and PRs from forks (forks don't get secrets anyway)
+    if: >
+      github.event.pull_request.draft == false &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Give Claude a working R so it can run tests and lintr
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::devtools, any::lintr
+          needs: check
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # If your secret is an API key instead, use:
+          # anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            You are reviewing a pull request to an R package.
+            Read CLAUDE.md first; it holds this package's conventions.
+
+            1. Get the diff with `gh pr diff`. Read changed files in full
+               when surrounding context matters.
+            2. Run:
+                 Rscript -e 'devtools::test()'
+                 Rscript -e 'lintr::lint_package()'
+               Report failures the PR introduced; ignore pre-existing ones.
+            3. Review, in priority order:
+               - Correctness: NA handling, silent recycling, type instability,
+                 factor/character coercion, dates and time zones, empty inputs.
+               - Exported API: breaking changes to arguments, defaults or return
+                 types; if user-facing behavior changed, is NEWS.md updated?
+               - Tidy eval: {{ }}, .data/.env pronouns, globals that will
+                 trigger "no visible binding" notes in R CMD check.
+               - Dependencies: new Imports justified; pkg::fun usage; no
+                 library()/require() inside R/.
+               - Docs: roxygen for exported functions (@param, @return,
+                 @examples); examples must not need network access to run.
+               - Tests: new behavior covered; tests that download data use
+                 skip_if_offline() / skip_on_cran().
+               - CRAN readiness: no writes outside tempdir(); messages via cli,
+                 not print()/cat().
+            4. Post inline comments only for concrete problems, using
+               mcp__github_inline_comment__create_inline_comment. Use a
+               ```suggestion block when the fix is a few lines.
+            5. Post ONE summary comment with `gh pr comment`: verdict
+               (approve / changes needed), test and lint results, top issues.
+               No praise, no nits that lintr already catches. If you are unsure
+               whether something is a bug, say so and explain why.
+          claude_args: |
+            --model claude-opus-5
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(Rscript:*),Read,Glob,Grep"
