@@ -49,17 +49,16 @@ article gives the coverage window of every dataset by line.
 
 ## Installation
 
-Currently, the best option is to install the package from R-Universe
-which is more up to date.
-
-``` r
-install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
-```
-
-The package is also available on CRAN.
+Install the released version from CRAN.
 
 ``` r
 install.packages("metrosp")
+```
+
+The development version is on R-universe.
+
+``` r
+install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## Datasets
@@ -113,8 +112,8 @@ entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 Downloads use the platform-specific user cache returned by
 `tools::R_user_dir()`. Use `metrosp_cache()` to inspect it,
 `metrosp_cache_clear()` to remove files, or `cache = FALSE` to keep a
-download only for the current session. Columns match the bundled datasets,
-so the same code works with either.
+download only for the current session. Columns match the bundled
+datasets, so the same code works with either.
 
 ## Usage
 

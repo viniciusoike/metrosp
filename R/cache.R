@@ -85,10 +85,13 @@ print.metrosp_cache <- function(x, ...) {
 #' @seealso [metrosp_cache()] to inspect cached files.
 #'
 #' @examples
-#' \dontrun{
+#' # Point the cache at a temporary directory so the example leaves yours alone.
+#' old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+#'
 #' metrosp_cache_clear("2026-09")
 #' metrosp_cache_clear()
-#' }
+#'
+#' options(old)
 #'
 #' @export
 metrosp_cache_clear <- function(vintage = NULL) {
