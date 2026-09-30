@@ -239,6 +239,29 @@ line_coverage <- function(df) {
 
 # --- Dataset-level composites ------------------------------------------------
 
+# July 2017 entrance data was never published for the METRO-operated lines.
+# Line 4 is present because it comes from the separate Dataverse source. Keep
+# this exception source-aware: a generic monthly-grid check would either flag
+# valid data or silently normalize the gap away.
+check_entrance_july_2017_gap <- function(df, name = "line_entries_monthly") {
+  if (!all(c("date", "line_number") %in% names(df))) {
+    return(character(0))
+  }
+
+  july <- df[format(df$date, "%Y-%m") == "2017-07", , drop = FALSE]
+  actual <- sort(unique(as.integer(july$line_number)))
+
+  if (identical(actual, 4L)) {
+    return(character(0))
+  }
+
+  sprintf(
+    "%s: July 2017 should contain only Line 4; found line(s): %s",
+    name,
+    if (length(actual) == 0) "none" else paste(actual, collapse = ", ")
+  )
+}
+
 check_line_entries_monthly <- function(df, name = "line_entries_monthly") {
   c(
     check_columns(
@@ -276,6 +299,7 @@ check_line_entries_monthly <- function(df, name = "line_entries_monthly") {
     ),
     check_absent_values(df, "line_number", 99L, name),
     check_values(df, "metric", c("total", "mdu", "msa", "mdo", "max"), name),
+    check_entrance_july_2017_gap(df, name),
     check_non_negative(df, "value", name),
     check_no_duplicates(df, c("date", "line_number", "metric"), name),
     check_rows(df, 1L, name)

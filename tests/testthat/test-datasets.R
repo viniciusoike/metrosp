@@ -19,6 +19,20 @@ test_that("line_entries_monthly satisfies its structural invariants", {
   )
 })
 
+test_that("line_entries_monthly preserves the July 2017 source gap", {
+  entries <- metrosp::line_entries_monthly[, c("date", "line_number")]
+  expect_equal(check_entrance_july_2017_gap(entries), character(0))
+
+  extra_line <- entries[1, ]
+  extra_line$date <- as.Date("2017-07-01")
+  extra_line$line_number <- 1L
+
+  expect_match(
+    check_entrance_july_2017_gap(rbind(entries, extra_line)),
+    "should contain only Line 4"
+  )
+})
+
 test_that("line_transported_monthly satisfies its structural invariants", {
   expect_equal(
     check_line_transported_monthly(metrosp::line_transported_monthly),
