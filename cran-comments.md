@@ -1,46 +1,42 @@
-# CRAN submission comments — metrosp 1.2.1
+# CRAN submission comments — metrosp 2.0.0
 
 ## Test environments
 
 * Local: macOS aarch64 (Apple M), R 4.5.1
-* win-builder: R-devel (Windows Server 2022, R-devel 2026-08-31) — 0 errors,
-  0 warnings, 1 note
+* GitHub Actions: macOS, Windows, and Ubuntu (R release), Ubuntu (R devel
+  and oldrel-1)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* checking CRAN incoming feasibility: NOTE
-  Maintainer: 'Vinicius Oike <viniciusoike@gmail.com>'
-
-* Possibly misspelled word in DESCRIPTION: Paulo.
-  This is part of the proper geographic name São Paulo, Brazil, and is listed
-  in inst/WORDLIST.
+0 errors | 0 warnings | 0 notes
 
 ## Changes in this version
 
-This update improves the dataset documentation, fixes data and pipeline issues,
-and adds observations to the bundled static datasets. METRO has published
-previously unavailable data for 2016–2017, and newer observations are now
-included as well.
+This is a major release with breaking changes. The exported datasets are
+renamed to one naming convention, the demand datasets share one column
+contract, and two data errors are fixed: METRO's network-total rows are
+removed and the Line 5 operator is corrected. NEWS.md carries a migration
+table from the 1.x names and columns.
 
-The long-term plan is to keep the lazy-loaded datasets as a frozen snapshot and
-provide `read_metro_demand()` for users who need more up-to-date data. This
-will let the package receive current data without requiring a new CRAN
-submission every time the upstream sources are updated.
+The bundled datasets are a fixed snapshot. `read_metro_demand()` reads newer
+data from the package's GitHub releases, so new months no longer require a
+CRAN submission.
+
+## Cache
+
+`read_metro_demand()` caches downloads under `tools::R_user_dir("metrosp",
+"cache")`. The cache holds a few small `.rds` files per monthly batch. Each
+read deletes batches left unused for 90 days, and `metrosp_cache_clear()`
+removes the rest. Examples, vignettes, and tests point the cache at a
+temporary directory or do not download.
+
+## URLs
+
+`urlchecker::url_check()` may time out on
+<https://geosampa.prefeitura.sp.gov.br/> and on the Insper Dataverse DOI
+<https://doi.org/10.60873/FK2/UTGQ0I>. Both are the data sources and resolve
+in a browser; the servers reject or throttle some automated requests.
 
 ## Downstream dependencies
 
 None.
-
-## Notes for reviewers
-
-* All datasets are lazy-loaded `.rda` files; the package contains no
-  user-facing functions.
-* Spatial datasets (`lines`, `stations`) require the `sf` package, which
-  is listed in `Suggests`.
-* Several Portuguese words and São Paulo Metro line names appear in
-  documentation. These are added to `inst/WORDLIST`.
-* Data sources: METRO SP transparency portal
-  <https://transparencia.metrosp.com.br/dataset/demanda> and GeoSampa
-  <https://geosampa.prefeitura.sp.gov.br/>.

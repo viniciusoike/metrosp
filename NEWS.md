@@ -1,3 +1,59 @@
+# metrosp 2.0.0
+
+## Breaking changes
+
+The exported datasets now use a consistent `<grain>_<measure>_<frequency>` convention:
+
+| 1.x name | 2.0 name |
+|---|---|
+| `passengers_entrance` | `line_entries_monthly` |
+| `passengers_transported` | `line_transported_monthly` |
+| `station_averages` | `station_transported_monthly` |
+| `station_daily` | `station_entries_daily` |
+| `lines` | `rail_lines` |
+| `stations` | `rail_stations` |
+| `station_inauguration` | Unshipped |
+| `calendar_spo` | Unchanged |
+| `metro_colors` | Unchanged |
+
+* Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure. No clean network total exists across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only. Do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
+
+* Renamed the station monthly dataset to `station_transported_monthly`: METRO's file measures transported passengers (boardings plus transfers), not turnstile entries. Summed over a line's stations its `mdu` equals the line's `mdu` in `line_transported_monthly`.
+
+* Dropped Line 5 rows from August 2018 onward from `station_transported_monthly`. The Dataverse feed records turnstiles only after the ViaMobilidade handover, so those rows are neither measure; station data for that era stays in `station_entries_daily`. METRO-era Line 5 (January 2016 to July 2018) is unchanged.
+
+* Added Line 4 to `line_transported_monthly` from January 2012 with all five metrics, summing turnstile entries and transfers from the Dataverse feed. Line 5 stays absent after August 2018: its feed records no transfers.
+
+* `line_transported_monthly` now counts individual passengers, like the other demand datasets. METRO publishes transported counts in thousands, and 1.x kept that unit; `value` is now multiplied by 1000. `read_metro_demand()` rescales 1.x release assets the same way.
+
+* Replaced `metrosp_cache_dir()`, `metrosp_cache_enable()`, and `metrosp_cache_list()` with `metrosp_cache()`, which returns the cache listing and prints its location. Downloads now use the platform-specific `tools::R_user_dir()` cache by default; `cache = FALSE`, `options(metrosp.cache_dir = "/path")`, and `METROSP_CACHE_DIR` continue to opt out or override the location. `metrosp_cache_clear()` removes only package-managed vintage directories, preserving unrelated files in a custom cache root. A cached vintage left unused for 90 days is deleted on the next read (#26).
+
+* `read_metro_demand()` accepts the new dataset names and detects 1.x asset names from each release manifest, including the rolling `data-latest` release. A 1.x asset is translated to the 2.0 contract on read — columns renamed, `station_id` filled in, and the `line_number = 99` rows dropped — so a read returns the same shape and the same totals whichever vintage it came from. An unrecognized `vintage` is now an error rather than a silent fall back to the bundled snapshot (#25).
+
+* Unshipped the incomplete `station_inauguration` dataset without replacement. Its source and builder remain under `data-raw/` for future curation (#25).
+
+* Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Named station members retain their official `station_name`, while officially documented physical interchange complexes share an ID across lines and modes. Complex membership comes from a committed, source-backed crosswalk rather than name or distance inference (#24).
+
+* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_transported_monthly` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
+
+### Migrating from 1.x
+
+The `metric` rename changes meaning: in 1.x it contained the English label, while in 2.0 it contains the stable abbreviated code. Code that groups, filters, or pivots on metric columns should use this mapping:
+
+| 1.x column | 2.0 column | Meaning |
+|---|---|---|
+| `metric_abb` | `metric` | Stable code such as `total` or `mdu` |
+| `metric` | `metric_name` | English display label |
+| `metric_pt` | `metric_name_pt` | Portuguese display label |
+
+The measure columns `passengers` and `avg_passenger` are now consistently named `value`. The calendar columns `is_ponto_facultativo` and `is_feriadao` are now `is_optional_holiday` and `is_long_weekend`.
+
+`line_transported_monthly$value` is 1000 times its 1.x value. Remove any `* 1000` your code applied before comparing it with the entry counts.
+
+Code that previously used `line_number == 99` has no replacement network total: METRO line entries include transfers from Lines 4 and 5 while those lines count turnstiles only, and transported counts double-count interchange journeys. Do not sum transported counts: a passenger is counted on every line used, so interchange journeys would be counted more than once.
+
+Only vintages that were actually published can be pinned. The first dated archive is `data-2026-09`; earlier year-month tags do not exist.
+
 # metrosp 1.3.0
 
 ## New features

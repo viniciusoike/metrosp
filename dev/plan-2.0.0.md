@@ -10,8 +10,8 @@ Status: decided, not started. Each phase becomes a GitHub issue.
 rename, type change and dataset removal lands here; after it, the dataset names
 and column contract are fixed.
 
-Distribution is R-universe and GitHub, not CRAN, so the install base is small
-enough to break cleanly. No deprecated aliases.
+2.0.0 goes to CRAN (which holds 1.0.0 and 1.2.1) as well as R-universe. The
+break is taken once, with a migration table in NEWS. No deprecated aliases.
 
 ## Decisions
 
@@ -239,6 +239,104 @@ even though the package ships via R-universe.
   bullet, the `station_inauguration` gap note
 - Follow-up in `metrosp-explorer`, which reads these release assets and breaks
   on the renamed ones
+
+## Phase 7 — Measure definitions (lands before release)
+
+Status: decided 2026-09-30, not started. Lands on `dev/2.0.0` (PR #33) before
+the CRAN submission. Already done on the same PR: `line_transported_monthly`
+counts individual passengers (`87a4997`).
+
+### Findings
+
+METRO publishes two different station measures, and the package labels both
+"entries".
+
+- **`station_entries_monthly` is a transported measure.** METRO's file is
+  *Demanda de Passageiros por Estação*; its footnotes define each interchange
+  value as boardings on that line plus transfers from the other lines. Summed
+  over stations it equals the line's `mdu` in `line_transported_monthly`
+  (median ratio 1.000 on Lines 1, 2, 3 and 15, in every era from 2016 on).
+  Against entries the ratio is 1.19–1.80, which is the "1.34 is healthy" rule
+  in CLAUDE.md.
+- **`station_entries_daily` is an entries measure.** METRO's file is *Entrada
+  de Passageiros por Estação*: turnstile entries plus transfers arriving from
+  other operators (CPTM, Line 4, Line 5), excluding transfers between METRO
+  lines. Its station sums equal `line_entries_monthly` exactly.
+- **Dataverse (`emb_diarios.rds`) has two `tipo_embarque` values:** `Bloqueio`
+  (turnstile) and `Integracao` (transfer). Only ViaQuatro (Line 4) has
+  `Integracao` rows (2012-01 to 2026-03). `clean_averages_4_5()` sums both
+  types, so Line 4 station monthly is transported, consistent with METRO.
+  Line 5 has `Bloqueio` only, so its Dataverse-era station monthly is plain
+  turnstile entries: neither measure.
+- **Line entries do not sum to a network total.** METRO line entries include
+  transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles
+  only. Summing all six lines counts a Line 4 → Line 1 journey twice. NEWS,
+  `R/data.R` and the vignettes currently say entries "sum cleanly".
+- The Feb–Jun 2016 Line 1 defect shows up directly: station sum 14% below the
+  transported `mdu`. A better diagnostic than the entries ratio.
+
+### Decisions
+
+| Question | Decision |
+|---|---|
+| Station monthly name | `station_entries_monthly` → `station_transported_monthly` |
+| Line 5 Aug 2018+ in that table | Drop. Turnstile-only; station data stays in `station_entries_daily`. METRO-era Line 5 (2016 to Jul 2018) stays |
+| Line 4 line-level transported | Add to `line_transported_monthly` from 2012, all five metrics, from `Bloqueio + Integracao` |
+| Line 4/5 entries | Keep turnstile-only; fix the docs, not the data |
+
+### Steps
+
+Write the tests first for each step.
+
+1. **Rename.** Every file that names `station_entries_monthly`: `R/data.R`,
+   `R/read_metro_demand.R` (`demand_datasets`, `legacy_demand_datasets`, the
+   column switch in `normalize_published_dataset()`), `README.Rmd`,
+   `_pkgdown.yml`, `data-raw/_targets.R`, `data-raw/R/build/assemble.R`,
+   `data-raw/R/publish/{validate_refresh,write_data,release_payload}.R`,
+   `data-raw/inputs/schema.json` (dataset key only; columns unchanged),
+   `data-raw/scripts/vignette_plots.R` (and the `timespan_*` figure),
+   `tests/testthat/*`, the three vignettes. `station_entries_monthly` was never
+   published to a release, so the legacy map only needs `station_averages` →
+   `station_transported_monthly`.
+2. **Drop Line 5 Dataverse rows** from the transported station table in
+   `assemble_averages()`: `line_number == 5 & date >= 2018-08-01`. Apply the
+   same filter in `normalize_published_dataset()` for the legacy
+   `station_averages` asset and in `normalize_baseline_schema()`. Add a
+   structural check that the table holds no Line 5 rows from Aug 2018.
+3. **Line 4 transported.** New `clean_transported_4_5()` in
+   `import_dataverse.R`: per line-day sum of both `tipo_embarque` values for
+   ViaQuatro, then the same `entrance_tag_days()` / `entrance_monthly_metrics()`
+   / `entrance_to_long()` chain as entrance. Write
+   `metro_sp_passengers_transported_lines_4_5.csv` from `refresh_dataverse()`,
+   add a file target in `_targets.R`, bind it in `assemble_transported()`.
+   Line 5 stays absent (no transfers recorded). Check: June 2025 total should be
+   6,077,931 + 10,211,759 = 16,289,690.
+4. **Reconciliation checks** in `helper-checks.R`, run by both the test suite
+   and the pipeline:
+   - station transported `mdu` summed by line ≈ line transported `mdu`
+     (within 2%, excluding Line 15 rounding and Feb–Jun 2016 Line 1);
+   - station daily summed by line-month = line entries `total`;
+   - transported ≥ entries (exists; keep the Aug 2018 Line 5 exemption).
+5. **Docs.** Define the two measures once, in METRO's terms, in `R/data.R`, the
+   data dictionary and the Metro Demand Data article. Rewrite the "sum the
+   lines" advice in NEWS, `R/data.R` and `getting_started.qmd`: no clean
+   network total exists across operators. Reword the `station_id` advice: on
+   the transported table, grouping by `station_id` gives boardings across a
+   complex's platforms, not people entering it. Restate the 2016 Line 1 defect
+   against transported. NEWS gets the rename in the mapping table and one
+   bullet per change.
+6. **Refreeze with the July 2026 cutoff.** The Line 4 transported CSV needs
+   `METROSP_DATAVERSE=true`, which rewrites all three Lines 4/5 CSVs with
+   whatever Dataverse now holds. Freeze from the pre-merge processed CSVs
+   (`git checkout e0d0bf6 -- data-raw/outputs/processed`) plus the new Line 4
+   transported CSV trimmed to the snapshot's Line 4 end (March 2026), then
+   restore. Verify that only `line_transported_monthly` and the renamed table
+   change, and that nothing else moves.
+7. **Close out.** Regenerate `schema.json`, `devtools::document()`,
+   `build_readme()`, tests, `R CMD check --as-cran`. Update CLAUDE.md (dataset
+   table, the 1.34 rule, Known Data Gaps: Line 4 transported now present,
+   Line 5 transported station data absent from Aug 2018). Open the follow-up in
+   `metrosp-explorer` for the renamed asset.
 
 ## Sequencing
 

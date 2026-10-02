@@ -3,27 +3,43 @@
     "kind": "data.frame",
     "columns": {
       "date": "Date",
-      "year": "double",
-      "weekday": "double",
+      "year": "integer",
+      "weekday": "integer",
       "is_weekend": "logical",
       "is_holiday": "logical",
       "is_business_day": "logical",
       "holiday_name": "character",
       "holiday_scope": "character",
-      "is_ponto_facultativo": "logical",
-      "is_feriadao": "logical"
+      "is_optional_holiday": "logical",
+      "is_long_weekend": "logical"
     }
   },
-  "lines": {
+  "line_entries_monthly": {
     "kind": "data.frame",
     "columns": {
-      "status": "character",
-      "company_name": "character",
-      "line_number": "double",
-      "type": "character",
-      "line_name_pt": "character",
+      "date": "Date",
+      "year": "integer",
+      "line_number": "integer",
       "line_name": "character",
-      "geom": "sfc"
+      "line_name_pt": "character",
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
+    }
+  },
+  "line_transported_monthly": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "year": "integer",
+      "line_number": "integer",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
     }
   },
   "metro_colors": {
@@ -32,83 +48,61 @@
     "length": 6,
     "names": ["Blue", "Green", "Red", "Yellow", "Lilac", "Silver"]
   },
-  "passengers_entrance": {
+  "rail_lines": {
     "kind": "data.frame",
     "columns": {
-      "date": "Date",
-      "line_number": "double",
-      "metric_abb": "character",
-      "value": "double",
-      "metric": "character",
-      "metric_pt": "character",
-      "line_name": "character",
-      "line_name_pt": "character",
-      "year": "double"
-    }
-  },
-  "passengers_transported": {
-    "kind": "data.frame",
-    "columns": {
-      "date": "Date",
-      "line_number": "double",
-      "metric_abb": "character",
-      "value": "double",
-      "metric": "character",
-      "metric_pt": "character",
-      "line_name": "character",
-      "line_name_pt": "character",
-      "year": "double"
-    }
-  },
-  "station_averages": {
-    "kind": "data.frame",
-    "columns": {
-      "date": "Date",
-      "line_number": "double",
-      "station_name": "character",
-      "avg_passenger": "double",
-      "line_name": "character",
-      "line_name_pt": "character",
-      "year": "double"
-    }
-  },
-  "station_daily": {
-    "kind": "data.frame",
-    "columns": {
-      "date": "Date",
-      "line_number": "double",
-      "station_name": "character",
-      "passengers": "double",
-      "line_name": "character",
-      "line_name_pt": "character",
-      "station_code": "character",
-      "year": "double"
-    }
-  },
-  "station_inauguration": {
-    "kind": "data.frame",
-    "columns": {
-      "line_number": "double",
-      "station_name": "character",
-      "inauguration_date": "Date",
-      "phase": "character",
-      "verified": "logical",
-      "notes": "character",
-      "pre_data_window": "logical",
-      "ramp_up_end": "Date"
-    }
-  },
-  "stations": {
-    "kind": "data.frame",
-    "columns": {
-      "type": "character",
-      "status": "character",
-      "company_name": "character",
-      "station_name": "character",
       "line_number": "integer",
       "line_name": "character",
       "line_name_pt": "character",
+      "company_name": "character",
+      "type": "character",
+      "status": "character",
       "geom": "sfc"
+    }
+  },
+  "rail_stations": {
+    "kind": "data.frame",
+    "columns": {
+      "station_id": "character",
+      "station_name": "character",
+      "station_code": "character",
+      "line_number": "integer",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "company_name": "character",
+      "type": "character",
+      "status": "character",
+      "geom": "sfc"
+    }
+  },
+  "station_entries_daily": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "year": "integer",
+      "line_number": "integer",
+      "station_id": "character",
+      "station_name": "character",
+      "station_code": "character",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "value": "double"
+    }
+  },
+  "station_transported_monthly": {
+    "kind": "data.frame",
+    "columns": {
+      "date": "Date",
+      "year": "integer",
+      "line_number": "integer",
+      "station_id": "character",
+      "station_name": "character",
+      "line_name": "character",
+      "line_name_pt": "character",
+      "metric": "character",
+      "metric_name": "character",
+      "metric_name_pt": "character",
+      "value": "double"
     }
   }
 }

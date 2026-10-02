@@ -13,10 +13,17 @@
 # is the single network seam, so the tests mock it and never reach GitHub.
 
 demand_datasets <- c(
-  "passengers_entrance",
-  "passengers_transported",
-  "station_averages",
-  "station_daily"
+  "line_entries_monthly",
+  "line_transported_monthly",
+  "station_transported_monthly",
+  "station_entries_daily"
+)
+
+legacy_demand_datasets <- c(
+  line_entries_monthly = "passengers_entrance",
+  line_transported_monthly = "passengers_transported",
+  station_transported_monthly = "station_averages",
+  station_entries_daily = "station_daily"
 )
 
 #' Read Metro SP demand data
@@ -26,8 +33,9 @@ demand_datasets <- c(
 #' package. Published data lives in the repository's GitHub releases and is
 #' rebuilt from the upstream sources on every pipeline run.
 #'
-#' @param dataset Dataset to read. One of `"passengers_entrance"`,
-#'   `"passengers_transported"`, `"station_averages"`, or `"station_daily"`.
+#' @param dataset Dataset to read. One of `"line_entries_monthly"`,
+#'   `"line_transported_monthly"`, `"station_transported_monthly"`, or
+#'   `"station_entries_daily"`.
 #' @param source Where to read from.
 #'   * `"auto"` (default) uses the cache, downloads when it is stale or empty,
 #'     and falls back to the bundled snapshot with a warning if the download
@@ -37,46 +45,51 @@ demand_datasets <- c(
 #'   * `"bundled"` reads the frozen snapshot and never touches the network.
 #' @param vintage Which published batch to read. `"latest"` tracks the rolling
 #'   release; a year-month string such as `"2026-09"` pins an immutable batch.
-#' @param cache Whether to write downloads to `metrosp_cache_dir()`.
+#' @param cache Whether to store downloads in the persistent cache. Set to
+#'   `FALSE` to use session-temporary storage instead.
 #' @param quiet Whether to suppress progress messages.
 #'
-#' @return A data frame. See [passengers_entrance], [passengers_transported],
-#'   [station_averages], and [station_daily] for the column definitions, which
-#'   are identical across sources.
+#' @return A data frame. See [line_entries_monthly], [line_transported_monthly],
+#'   [station_transported_monthly], and [station_entries_daily] for the column
+#'   definitions, which are identical across sources.
 #'
 #' @details
 #' Only the demand datasets are published separately. The reference datasets
-#' ([lines], [stations], [station_inauguration], [calendar_spo], and
-#' [metro_colors]) do not change with new months, so read them directly.
+#' ([rail_lines], [rail_stations], [calendar_spo], and [metro_colors]) do not
+#' change with new months, so read them directly.
 #'
 #' Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 #' installed and skip verification otherwise.
 #'
-#' @seealso [metrosp_cache_dir()], [metrosp_cache_enable()],
-#'   [metrosp_cache_list()], and [metrosp_cache_clear()] for cache management.
+#' @seealso [metrosp_cache()] and [metrosp_cache_clear()] for cache management.
 #'
 #' @examples
 #' # The bundled snapshot, read without touching the network.
-#' head(read_metro_demand("passengers_entrance", source = "bundled"))
+#' head(read_metro_demand("line_entries_monthly", source = "bundled"))
 #'
 #' \donttest{
+#' # Keep this example's downloads out of your persistent cache.
+#' old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+#'
 #' # The most recently published data, cached between calls.
-#' entrance <- read_metro_demand("passengers_entrance")
+#' entrance <- read_metro_demand("line_entries_monthly")
 #'
 #' # A pinned vintage, so an analysis can name the batch it used.
 #' entrance_sep <- read_metro_demand(
-#'   "passengers_entrance",
+#'   "line_entries_monthly",
 #'   vintage = "2026-09"
 #' )
+#'
+#' options(old)
 #' }
 #'
 #' @export
 read_metro_demand <- function(
   dataset = c(
-    "passengers_entrance",
-    "passengers_transported",
-    "station_averages",
-    "station_daily"
+    "line_entries_monthly",
+    "line_transported_monthly",
+    "station_transported_monthly",
+    "station_entries_daily"
   ),
   source = c("auto", "cache", "remote", "bundled"),
   vintage = "latest",
@@ -89,6 +102,13 @@ read_metro_demand <- function(
   if (identical(source, "bundled")) {
     return(read_bundled(dataset))
   }
+
+  # Validate before the `auto` fallback below, which is there to absorb a
+  # failed download. A malformed `vintage` is a typo in the call, and letting
+  # the fallback catch it hands back the bundled snapshot for a batch the
+  # caller never asked for. The tag itself is re-derived downstream; this call
+  # is for its error.
+  vintage_tag(vintage)
 
   if (identical(source, "auto")) {
     out <- tryCatch(
@@ -122,11 +142,13 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
 
   manifest <- read_release_manifest(tag, dir, mode, quiet)
 
-  entry <- manifest$datasets[[dataset]]
+  entry <- release_dataset_entry(manifest, dataset)
   if (is.null(entry)) {
-    cli::cli_abort(
-      "Vintage {.val {vintage}} does not contain {.val {dataset}}."
-    )
+    legacy_name <- unname(legacy_demand_datasets[[dataset]])
+    cli::cli_abort(c(
+      "Vintage {.val {vintage}} does not contain {.val {dataset}}.",
+      "i" = "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
+    ))
   }
 
   path <- file.path(dir, entry$file)
@@ -141,7 +163,151 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
     download_asset(tag, entry, path, quiet = quiet)
   }
 
-  readRDS(path)
+  dat <- readRDS(path)
+  if (isTRUE(attr(entry, "legacy"))) {
+    dat <- normalize_published_dataset(dat, dataset)
+  }
+  return(dat)
+}
+
+release_dataset_entry <- function(manifest, dataset) {
+  entry <- manifest$datasets[[dataset]]
+  if (!is.null(entry)) {
+    attr(entry, "legacy") <- FALSE
+    return(entry)
+  }
+
+  legacy_name <- unname(legacy_demand_datasets[[dataset]])
+  entry <- manifest$datasets[[legacy_name]]
+  if (!is.null(entry)) {
+    attr(entry, "legacy") <- TRUE
+  }
+  return(entry)
+}
+
+normalize_published_dataset <- function(dat, dataset) {
+  # 2.0 drops METRO's SISTEMA row. It equals the sum of the per-line rows, so a
+  # legacy asset read without this counts the whole network twice under the
+  # documented "sum the lines" recipe.
+  if ("line_number" %in% names(dat)) {
+    dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
+  }
+
+  # The station transported table drops Line 5's post-handover turnstile-only
+  # rows (Aug 2018+); a legacy station_averages asset still carries them.
+  if (
+    dataset == "station_transported_monthly" &&
+      all(c("line_number", "date") %in% names(dat))
+  ) {
+    dat <- dat[
+      !(dat$line_number %in% 5L & dat$date >= as.Date("2018-08-01")),
+      ,
+      drop = FALSE
+    ]
+  }
+
+  # 1.x published transported counts in thousands; 2.0 counts passengers.
+  if (dataset == "line_transported_monthly") {
+    dat$value <- dat$value * 1000
+  }
+
+  if ("metric_abb" %in% names(dat)) {
+    dat$metric_name <- dat$metric
+    dat$metric_name_pt <- dat$metric_pt
+    dat$metric <- dat$metric_abb
+    dat$metric_abb <- NULL
+    dat$metric_pt <- NULL
+  }
+  if ("avg_passenger" %in% names(dat)) {
+    names(dat)[names(dat) == "avg_passenger"] <- "value"
+  }
+  if ("passengers" %in% names(dat)) {
+    names(dat)[names(dat) == "passengers"] <- "value"
+  }
+
+  if (dataset == "station_transported_monthly" && !"metric" %in% names(dat)) {
+    dat$metric <- "mdu"
+    dat$metric_name <- "Average on Business Days"
+    dat$metric_name_pt <- "M\u00e9dia dos Dias \u00dateis"
+  }
+  if (grepl("^station_", dataset) && !"station_id" %in% names(dat)) {
+    dat$station_id <- station_ids_from_names(dat$station_name)
+  }
+
+  dat$year <- as.integer(dat$year)
+  dat$line_number <- as.integer(dat$line_number)
+
+  columns <- switch(
+    dataset,
+    line_entries_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    line_transported_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    station_transported_monthly = c(
+      "date",
+      "year",
+      "line_number",
+      "station_id",
+      "station_name",
+      "line_name",
+      "line_name_pt",
+      "metric",
+      "metric_name",
+      "metric_name_pt",
+      "value"
+    ),
+    station_entries_daily = c(
+      "date",
+      "year",
+      "line_number",
+      "station_id",
+      "station_name",
+      "station_code",
+      "line_name",
+      "line_name_pt",
+      "value"
+    )
+  )
+
+  return(dat[columns])
+}
+
+station_ids_from_names <- function(station_names) {
+  stations <- getExportedValue("metrosp", "rail_stations")
+  mapping <- unique(stations[c("station_name", "station_id")])
+  counts <- table(mapping$station_name)
+  mapping <- mapping[counts[mapping$station_name] == 1L, ]
+  station_ids <- unname(mapping$station_id[match(
+    station_names,
+    mapping$station_name
+  )])
+
+  missing <- unique(station_names[is.na(station_ids)])
+  if (length(missing) > 0) {
+    cli::cli_abort(
+      "Archived station names do not resolve to station_id: {.val {missing}}."
+    )
+  }
+
+  return(station_ids)
 }
 
 # Manifest --------------------------------------------------------------------
@@ -167,8 +333,6 @@ read_release_manifest <- function(tag, dir, mode, quiet = FALSE) {
   if (fresh) {
     return(jsonlite::read_json(path, simplifyVector = FALSE))
   }
-
-  ask_cache_consent()
 
   tryCatch(
     fetch_url(asset_url(tag, "manifest.json"), path, quiet = quiet),
@@ -202,8 +366,6 @@ manifest_stale <- function(path, tag) {
 # Downloads -------------------------------------------------------------------
 
 download_asset <- function(tag, entry, path, quiet = FALSE) {
-  ask_cache_consent()
-
   if (!quiet) {
     cli::cli_alert_info(
       "Downloading {.file {entry$file}} ({format_bytes(entry$bytes)})."
@@ -250,8 +412,9 @@ match_dataset <- function(dataset) {
   if (!is.character(dataset) || !dataset %in% demand_datasets) {
     cli::cli_abort(c(
       "{.arg dataset} must be one of {.val {demand_datasets}}.",
-      "i" = "Reference datasets such as {.code lines} and {.code stations} are
-             bundled with the package; use them directly."
+      "i" = "Reference datasets such as {.code rail_lines} and
+             {.code rail_stations} are bundled with the package; use them
+             directly."
     ))
   }
 
@@ -283,13 +446,17 @@ vintage_tag <- function(vintage) {
 
 vintage_dir <- function(tag, cache = TRUE) {
   dir <- if (isTRUE(cache)) {
-    metrosp_cache_dir()
+    cache_dir()
   } else {
     file.path(tempdir(), "metrosp-nocache")
   }
 
   path <- file.path(dir, tag)
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  if (isTRUE(cache)) {
+    Sys.setFileTime(path, Sys.time())
+    prune_cache(dir)
+  }
   path
 }
 

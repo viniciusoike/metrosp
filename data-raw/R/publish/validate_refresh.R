@@ -21,18 +21,116 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 
 # Join keys per dataset, used for the retroactive-drift comparison.
 .drift_keys <- list(
-  passengers_entrance = c("date", "line_number", "metric_abb"),
-  passengers_transported = c("date", "line_number", "metric_abb"),
-  station_averages = c("date", "line_number", "station_name"),
-  station_daily = c("date", "line_number", "station_name")
+  line_entries_monthly = c("date", "line_number", "metric"),
+  line_transported_monthly = c("date", "line_number", "metric"),
+  station_transported_monthly = c("date", "line_number", "station_id"),
+  station_entries_daily = c("date", "line_number", "station_id")
 )
 
 .drift_values <- list(
-  passengers_entrance = "value",
-  passengers_transported = "value",
-  station_averages = "avg_passenger",
-  station_daily = "passengers"
+  line_entries_monthly = "value",
+  line_transported_monthly = "value",
+  station_transported_monthly = "value",
+  station_entries_daily = "value"
 )
+
+# 1.x published each dataset under a different name, so the adapter has to
+# rename before anything keyed on the 2.0 names can find the baseline.
+.legacy_dataset_names <- c(
+  passengers_entrance = "line_entries_monthly",
+  passengers_transported = "line_transported_monthly",
+  station_averages = "station_transported_monthly",
+  station_daily = "station_entries_daily",
+  lines = "rail_lines",
+  stations = "rail_stations"
+)
+
+# Translate the 1.x release contract before comparing it with a 2.0 build.
+# Keep this adapter through the first successful 2.0 publication; remove it
+# only after data-latest itself carries the 2.0 schema.
+normalize_baseline_schema <- function(datasets) {
+  # Rename first. Every lookup below, and every caller, keys on the 2.0 names,
+  # so renaming last leaves the loop iterating an empty intersection and the
+  # whole adapter a silent no-op.
+  legacy <- intersect(names(.legacy_dataset_names), names(datasets))
+  names(datasets)[match(legacy, names(datasets))] <-
+    unname(.legacy_dataset_names[legacy])
+
+  # 1.x published transported counts in thousands; 2.0 counts passengers.
+  if ("passengers_transported" %in% legacy) {
+    datasets$line_transported_monthly$value <-
+      datasets$line_transported_monthly$value * 1000
+  }
+
+  for (name in intersect(names(.drift_keys), names(datasets))) {
+    dat <- datasets[[name]]
+
+    # 2.0 drops METRO's SISTEMA row, so a 1.x baseline still carries it. Left
+    # in, the intended removal reads as a 630-row shrinkage.
+    if ("line_number" %in% names(dat)) {
+      dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
+    }
+
+    # The station transported table drops Line 5's post-handover
+    # turnstile-only rows (Aug 2018+), so a 1.x baseline still carrying them
+    # would read as shrinkage. Filter before comparing.
+    if (
+      name == "station_transported_monthly" &&
+        all(c("line_number", "date") %in% names(dat))
+    ) {
+      dat <- dat[
+        !(dat$line_number %in% 5L & dat$date >= as.Date("2018-08-01")),
+        ,
+        drop = FALSE
+      ]
+    }
+
+    if ("metric_abb" %in% names(dat)) {
+      dat$metric_name <- dat$metric
+      dat$metric_name_pt <- dat$metric_pt
+      dat$metric <- dat$metric_abb
+      dat$metric_abb <- NULL
+      dat$metric_pt <- NULL
+    }
+    if ("avg_passenger" %in% names(dat)) {
+      names(dat)[names(dat) == "avg_passenger"] <- "value"
+    }
+    if ("passengers" %in% names(dat)) {
+      names(dat)[names(dat) == "passengers"] <- "value"
+    }
+    datasets[[name]] <- dat
+  }
+  return(datasets)
+}
+
+add_baseline_station_ids <- function(baseline, dim_station, dim_station_alias) {
+  station_members <- dim_station |>
+    dplyr::select(station_member_id, station_id, station_name)
+
+  alias_lookup <- dim_station_alias |>
+    dplyr::filter(!grepl("^geosampa_", source)) |>
+    dplyr::select(station_name = station_name_raw, station_member_id) |>
+    dplyr::left_join(
+      station_members |>
+        dplyr::select(station_member_id, station_id),
+      by = "station_member_id"
+    ) |>
+    dplyr::select(station_name, station_id)
+
+  canonical_lookup <- station_members |>
+    dplyr::select(station_name, station_id)
+
+  station_lookup <- dplyr::bind_rows(alias_lookup, canonical_lookup) |>
+    dplyr::distinct() |>
+    dplyr::add_count(station_name) |>
+    dplyr::filter(n == 1L) |>
+    dplyr::select(-n)
+
+  baseline <- baseline |>
+    dplyr::left_join(station_lookup, by = "station_name")
+
+  return(baseline)
+}
 
 #' Validate a rebuilt batch against the previously published one.
 #'
@@ -43,7 +141,13 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 #'   median above which a month is flagged.
 #' @return A list with `ok` (logical), `failures`, `warnings`, and `report`
 #'   (markdown).
-validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
+validate_refresh <- function(
+  new,
+  baseline = NULL,
+  dim_station = NULL,
+  dim_station_alias = NULL,
+  magnitude_tol = 0.4
+) {
   source(checks_helper(), local = TRUE)
 
   failures <- character(0)
@@ -68,14 +172,54 @@ validate_refresh <- function(new, baseline = NULL, magnitude_tol = 0.4) {
     return(validation_result(failures, warnings, notes, list()))
   }
 
+  baseline <- normalize_baseline_schema(baseline)
+
   drift <- list()
 
   for (nm in names(.drift_keys)) {
-    if (is.null(new[[nm]]) || is.null(baseline[[nm]])) {
+    if (is.null(new[[nm]])) {
+      next
+    }
+    # A baseline that loaded but has nothing under this name means the two
+    # contracts disagree -- a rename the adapter above does not cover. Skipping
+    # it quietly is how a batch reports "validation passed" having compared
+    # nothing, so fail instead.
+    if (is.null(baseline[[nm]])) {
+      failures <- c(
+        failures,
+        sprintf(
+          "%s: absent from the baseline; differential checks cannot run",
+          nm
+        )
+      )
       next
     }
     nw <- new[[nm]]
     bl <- baseline[[nm]]
+
+    if ("station_id" %in% names(nw) && !"station_id" %in% names(bl)) {
+      if (is.null(dim_station) || is.null(dim_station_alias)) {
+        failures <- c(
+          failures,
+          sprintf("%s: station dimensions are required for a 1.x baseline", nm)
+        )
+        next
+      }
+
+      bl <- add_baseline_station_ids(bl, dim_station, dim_station_alias)
+      missing_names <- unique(bl$station_name[is.na(bl$station_id)])
+      if (length(missing_names) > 0) {
+        failures <- c(
+          failures,
+          sprintf(
+            "%s: baseline station names do not resolve: %s",
+            nm,
+            paste(utils::head(missing_names, 10), collapse = ", ")
+          )
+        )
+        next
+      }
+    }
 
     # --- Shrinkage (hard fail) ----------------------------------------------
     if (nrow(nw) < nrow(bl)) {
@@ -196,8 +340,8 @@ magnitude_outliers <- function(df, name, value, tol) {
   if (!all(c("date", "line_number", value) %in% names(df))) {
     return(character(0))
   }
-  if ("metric_abb" %in% names(df)) {
-    df <- df[df$metric_abb == "total", , drop = FALSE]
+  if ("metric" %in% names(df)) {
+    df <- df[df$metric == "total", , drop = FALSE]
   }
   if (nrow(df) == 0) {
     return(character(0))

@@ -134,7 +134,12 @@ build_calendar_spo <- function(
   # wday: 1=Sun, 2=Mon, 3=Tue, 4=Wed, 5=Thu, 6=Fri, 7=Sat
   calendar <- calendar |>
     mutate(
-      is_feriadao = is_holiday & weekday %in% c(2L, 3L, 5L, 6L)
+      is_long_weekend = is_holiday & weekday %in% c(2L, 3L, 5L, 6L)
+    ) |>
+    rename(is_optional_holiday = is_ponto_facultativo) |>
+    mutate(
+      year = as.integer(year),
+      weekday = as.integer(weekday)
     )
 
   calendar |>
@@ -147,7 +152,7 @@ build_calendar_spo <- function(
       is_business_day,
       holiday_name,
       holiday_scope,
-      is_ponto_facultativo,
-      is_feriadao
+      is_optional_holiday,
+      is_long_weekend
     )
 }

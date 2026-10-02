@@ -12,7 +12,7 @@
 #
 # Pipeline boundary: the graph assembles data/*.rda from the committed
 # intermediate CSVs (data-raw/outputs/processed/), the GeoSampa GPKGs, and the
-# station_inauguration.csv. The expensive/network stages — METRO download,
+# station dimension files. The expensive/network stages — METRO download,
 # 2016-2019 reimport, Lines 4/5 Dataverse fetch — are gated with
 # tarchetypes::tar_force(). Each only re-runs when its env-var flag is TRUE;
 # otherwise the cached result is reused and downstream targets skip unless
@@ -147,6 +147,14 @@ list(
     format = "file"
   ),
   tar_target(
+    transported_4_5_csv,
+    {
+      dataverse_refresh
+      proc("metro_sp_passengers_transported_lines_4_5.csv")
+    },
+    format = "file"
+  ),
+  tar_target(
     averages_4_5_csv,
     {
       dataverse_refresh
@@ -195,8 +203,13 @@ list(
     format = "file"
   ),
   tar_target(
-    inauguration_csv,
-    here::here("data-raw/inputs/station_inauguration.csv"),
+    dim_station_csv,
+    here::here("data-raw/inputs/dim_station.csv"),
+    format = "file"
+  ),
+  tar_target(
+    dim_station_alias_csv,
+    here::here("data-raw/inputs/dim_station_alias.csv"),
     format = "file"
   ),
   tar_target(
@@ -243,46 +256,60 @@ list(
     readr::read_csv(entrance_4_5_csv, show_col_types = FALSE)
   ),
   tar_target(
+    transported_4_5,
+    readr::read_csv(transported_4_5_csv, show_col_types = FALSE)
+  ),
+  tar_target(
     averages_4_5,
     readr::read_csv(averages_4_5_csv, show_col_types = FALSE)
   ),
   tar_target(daily_4_5, readr::read_csv(daily_4_5_csv, show_col_types = FALSE)),
+  tar_target(dim_station, read_station_dimension(dim_station_csv)),
+  tar_target(dim_station_alias, read_station_dimension(dim_station_alias_csv)),
 
   # --- GeoSampa spatial datasets ---------------------------------------------
-  tar_target(geo, build_geosampa(geosampa_files)),
-  tar_target(lines, geo$lines),
-  tar_target(stations, geo$stations),
+  tar_target(
+    geo,
+    build_geosampa(geosampa_files, dim_station, dim_station_alias)
+  ),
+  tar_target(rail_lines, geo$lines),
+  tar_target(rail_stations, geo$stations),
 
   # --- Assemble exported datasets --------------------------------------------
   tar_target(
-    passengers_entrance,
+    line_entries_monthly,
     assemble_entrance(psg_historic, entrance_current, entrance_4_5)
   ),
   tar_target(
-    passengers_transported,
-    assemble_transported(psg_historic, transported_current)
+    line_transported_monthly,
+    assemble_transported(psg_historic, transported_current, transported_4_5)
   ),
   tar_target(
-    station_averages,
-    assemble_averages(stations_historic, averages_current, averages_4_5)
-  ),
-  tar_target(station_daily, assemble_daily(daily_current, daily_4_5)),
-  tar_target(
-    station_inauguration,
-    build_station_inauguration(
-      inauguration_csv,
-      station_daily,
-      station_averages
+    station_transported_monthly,
+    assemble_averages(
+      stations_historic,
+      averages_current,
+      averages_4_5,
+      dim_station,
+      dim_station_alias
     )
   ),
-
+  tar_target(
+    station_entries_daily,
+    assemble_daily(
+      daily_current,
+      daily_4_5,
+      dim_station,
+      dim_station_alias
+    )
+  ),
   # --- Calendar ---------------------------------------------------------------
   tar_target(calendar_spo, build_calendar_spo()),
 
   # --- Reference datasets (surfaced from dims.R) -----------------------------
   # metro_lines stays an internal join dimension in dims.R (not exported); its
   # line-name columns are already denormalized onto every passenger/station
-  # dataset and the full line list lives in `lines`.
+  # dataset and the full line list lives in `rail_lines`.
   tar_target(metro_colors_out, metro_colors),
 
   # --- Collected build --------------------------------------------------------
@@ -291,14 +318,13 @@ list(
   tar_target(
     datasets,
     list(
-      passengers_entrance = passengers_entrance,
-      passengers_transported = passengers_transported,
-      station_averages = station_averages,
-      station_daily = station_daily,
-      lines = lines,
-      stations = stations,
+      line_entries_monthly = line_entries_monthly,
+      line_transported_monthly = line_transported_monthly,
+      station_transported_monthly = station_transported_monthly,
+      station_entries_daily = station_entries_daily,
+      rail_lines = rail_lines,
+      rail_stations = rail_stations,
       metro_colors = metro_colors_out,
-      station_inauguration = station_inauguration,
       calendar_spo = calendar_spo
     )
   ),
@@ -332,14 +358,13 @@ list(
       schema_ok
       if (refresh_flag("METROSP_FREEZE")) {
         write_all_data(
-          passengers_entrance = passengers_entrance,
-          passengers_transported = passengers_transported,
-          station_averages = station_averages,
-          station_daily = station_daily,
-          lines = lines,
-          stations = stations,
+          line_entries_monthly = line_entries_monthly,
+          line_transported_monthly = line_transported_monthly,
+          station_transported_monthly = station_transported_monthly,
+          station_entries_daily = station_entries_daily,
+          rail_lines = rail_lines,
+          rail_stations = rail_stations,
           metro_colors = metro_colors_out,
-          station_inauguration = station_inauguration,
           calendar_spo = calendar_spo
         )
       } else {

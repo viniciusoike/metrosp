@@ -15,7 +15,6 @@ library(dplyr, warn.conflicts = FALSE)
 # --- Line dimension tables ---------------------------------------------------
 
 # Metro line reference table: maps Portuguese/English names to line numbers.
-# Line 99 represents the network total ("Sistema METRO").
 dim_metro_line <- tibble(
   line_name_pt = c(
     "Azul",
@@ -29,8 +28,7 @@ dim_metro_line <- tibble(
     "Ouro",
     "Celeste",
     "Rosa",
-    "Marrom",
-    "Sistema METRO"
+    "Marrom"
   ),
   line_name = c(
     "Blue",
@@ -44,10 +42,9 @@ dim_metro_line <- tibble(
     "Gold",
     "Sky Blue",
     "Pink",
-    "Brown",
-    "METRO System"
+    "Brown"
   ),
-  line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L, 99L)
+  line_number = c(1L, 2L, 3L, 4L, 5L, 6L, 15L, 16L, 17L, 19L, 20L, 22L)
 )
 
 # CPTM train line reference table: maps Portuguese/English names to line numbers.
@@ -82,40 +79,9 @@ dim_line <- bind_rows(
 
 # line_name_full is the label the raw METRO files print above each block
 # ("Linha 1 - Azul"). Building it here gives every reader and assemble_averages()
-# one lookup instead of a private copy each. Line 99 is the network total and
-# never appears under that label, so it gets NA.
+# one lookup instead of a private copy each.
 dim_line <- dim_line |>
-  mutate(
-    line_name_full = if_else(
-      line_number == 99L,
-      NA_character_,
-      paste0("Linha ", line_number, " - ", line_name_pt)
-    )
-  )
-
-# Station-name canonicalization (source variant -> published canonical name).
-# Sponsor / commercial names are collapsed BACK to the plain station name so
-# published demand data never carries a sponsor: both eras of each station map
-# to the short canonical name. "Liberdade" is the lone honorific rename (not
-# commercial) and instead maps forward to its current official name.
-dim_station_name_change <- tibble(
-  station_name_raw = c(
-    "Carrão-Assaí Atacadista",
-    "Penha-Lojas Besni",
-    "Saúde-Ultrafarma",
-    "Patriarca-Vila Ré",
-    "Liberdade",
-    "Giovani Gronchi"
-  ),
-  station_name = c(
-    "Carrão",
-    "Penha",
-    "Saúde",
-    "Patriarca",
-    "Japão-Liberdade",
-    "Giovanni Gronchi"
-  )
-)
+  mutate(line_name_full = paste0("Linha ", line_number, " - ", line_name_pt))
 
 # Metric categories used in passenger data.
 # Abbreviations: total, mdu (weekday avg), msa (Saturday avg),
@@ -137,6 +103,15 @@ dim_metric <- tibble(
     "Máxima Diária"
   )
 )
+
+# Public 2.0 metric vocabulary. Processed inputs keep the historical names;
+# assemblers use this table at the publication boundary.
+dim_metric_public <- dim_metric |>
+  rename(
+    metric = metric_abb,
+    metric_name = metric,
+    metric_name_pt = metric_pt
+  )
 
 # Map the Portuguese metric label printed in the raw files to its abbreviation.
 # Keys are accent-stripped ASCII on purpose. R stores the names of a named
@@ -309,14 +284,14 @@ metro_colors <- c(
 # Final column order for the assembled passenger tables.
 .cols_psg <- c(
   "date",
+  "year",
   "line_number",
-  "metric_abb",
-  "value",
-  "metric",
-  "metric_pt",
   "line_name",
   "line_name_pt",
-  "year"
+  "metric",
+  "metric_name",
+  "metric_name_pt",
+  "value"
 )
 
 # Intermediate schemas produced by the import builders.
@@ -369,21 +344,26 @@ metro_colors <- c(
 
 .cols_stn_avg_out <- c(
   "date",
+  "year",
   "line_number",
+  "station_id",
   "station_name",
-  "avg_passenger",
   "line_name",
   "line_name_pt",
-  "year"
+  "metric",
+  "metric_name",
+  "metric_name_pt",
+  "value"
 )
 
 .cols_stn_daily_out <- c(
   "date",
+  "year",
   "line_number",
+  "station_id",
   "station_name",
-  "passengers",
+  "station_code",
   "line_name",
   "line_name_pt",
-  "station_code",
-  "year"
+  "value"
 )

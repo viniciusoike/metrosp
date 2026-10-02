@@ -1,0 +1,856 @@
+date,line_number,metric_abb,metric,value,year
+2012-01-01,4,max,Daily Peak,573606,2012
+2012-01-01,4,mdo,Average on Sundays,128101,2012
+2012-01-01,4,mdu,Average on Business Days,494526.9090909091,2012
+2012-01-01,4,msa,Average on Saturdays,214406.5,2012
+2012-01-01,4,total,Total,12377723,2012
+2012-02-01,4,max,Daily Peak,665675,2012
+2012-02-01,4,mdo,Average on Sundays,133984.5,2012
+2012-02-01,4,mdu,Average on Business Days,559469,2012
+2012-02-01,4,msa,Average on Saturdays,232824.25,2012
+2012-02-01,4,total,Total,12429451,2012
+2012-03-01,4,max,Daily Peak,726783,2012
+2012-03-01,4,mdo,Average on Sundays,144741.75,2012
+2012-03-01,4,mdu,Average on Business Days,608260.4090909091,2012
+2012-03-01,4,msa,Average on Saturdays,267737.4,2012
+2012-03-01,4,total,Total,15299383,2012
+2012-04-01,4,max,Daily Peak,1013387,2012
+2012-04-01,4,mdo,Average on Sundays,118345.8,2012
+2012-04-01,4,mdu,Average on Business Days,648529.7,2012
+2012-04-01,4,msa,Average on Saturdays,262866.5,2012
+2012-04-01,4,total,Total,14773904,2012
+2012-05-01,4,max,Daily Peak,744812,2012
+2012-05-01,4,mdo,Average on Sundays,169382.25,2012
+2012-05-01,4,mdu,Average on Business Days,620856.8636363636,2012
+2012-05-01,4,msa,Average on Saturdays,297693.5,2012
+2012-05-01,4,total,Total,15676373,2012
+2012-06-01,4,max,Daily Peak,886143,2012
+2012-06-01,4,mdo,Average on Sundays,175298,2012
+2012-06-01,4,mdu,Average on Business Days,643171,2012
+2012-06-01,4,msa,Average on Saturdays,400279.8,2012
+2012-06-01,4,total,Total,15724031,2012
+2012-07-01,4,max,Daily Peak,5350696,2012
+2012-07-01,4,mdo,Average on Sundays,1198031.2,2012
+2012-07-01,4,mdu,Average on Business Days,591600.9090909091,2012
+2012-07-01,4,msa,Average on Saturdays,282987.75,2012
+2012-07-01,4,total,Total,20137327,2012
+2012-08-01,4,max,Daily Peak,812951,2012
+2012-08-01,4,mdo,Average on Sundays,159670.5,2012
+2012-08-01,4,mdu,Average on Business Days,643872.0869565217,2012
+2012-08-01,4,msa,Average on Saturdays,291799.25,2012
+2012-08-01,4,total,Total,16614937,2012
+2012-09-01,4,max,Daily Peak,887367,2012
+2012-09-01,4,mdo,Average on Sundays,157351.8,2012
+2012-09-01,4,mdu,Average on Business Days,692713,2012
+2012-09-01,4,msa,Average on Saturdays,311339.8,2012
+2012-09-01,4,total,Total,15730987,2012
+2012-10-01,4,max,Daily Peak,788052,2012
+2012-10-01,4,mdo,Average on Sundays,183895.75,2012
+2012-10-01,4,mdu,Average on Business Days,663995.3181818182,2012
+2012-10-01,4,msa,Average on Saturdays,284046.25,2012
+2012-10-01,4,total,Total,16630347,2012
+2012-11-01,4,max,Daily Peak,3818613,2012
+2012-11-01,4,mdo,Average on Sundays,189646.25,2012
+2012-11-01,4,mdu,Average on Business Days,809494.7,2012
+2012-11-01,4,msa,Average on Saturdays,288263.75,2012
+2012-11-01,4,total,Total,18462190,2012
+2012-12-01,4,max,Daily Peak,674854,2012
+2012-12-01,4,mdo,Average on Sundays,176156,2012
+2012-12-01,4,mdu,Average on Business Days,571485.25,2012
+2012-12-01,4,msa,Average on Saturdays,297880.2,2012
+2012-12-01,4,total,Total,13928536,2012
+2013-01-01,4,max,Daily Peak,603240,2013
+2013-01-01,4,mdo,Average on Sundays,147549.25,2013
+2013-01-01,4,mdu,Average on Business Days,546430.6363636364,2013
+2013-01-01,4,msa,Average on Saturdays,255090,2013
+2013-01-01,4,total,Total,13750492,2013
+2013-02-01,4,max,Daily Peak,2336201,2013
+2013-02-01,4,mdo,Average on Sundays,672547.5,2013
+2013-02-01,4,mdu,Average on Business Days,743584.2222222222,2013
+2013-02-01,4,msa,Average on Saturdays,610857.5,2013
+2013-02-01,4,total,Total,18916164,2013
+2013-03-01,4,max,Daily Peak,704366,2013
+2013-03-01,4,mdo,Average on Sundays,179395,2013
+2013-03-01,4,mdu,Average on Business Days,669612.5,2013
+2013-03-01,4,msa,Average on Saturdays,310411.4,2013
+2013-03-01,4,total,Total,16034504,2013
+2013-04-01,4,max,Daily Peak,690665,2013
+2013-04-01,4,mdo,Average on Sundays,169601.25,2013
+2013-04-01,4,mdu,Average on Business Days,672308.2727272727,2013
+2013-04-01,4,msa,Average on Saturdays,314912,2013
+2013-04-01,4,total,Total,16728835,2013
+2013-05-01,4,max,Daily Peak,692292,2013
+2013-05-01,4,mdo,Average on Sundays,181545,2013
+2013-05-01,4,mdu,Average on Business Days,670275.6666666666,2013
+2013-05-01,4,msa,Average on Saturdays,332294,2013
+2013-05-01,4,total,Total,16481384,2013
+2013-06-01,4,max,Daily Peak,744366,2013
+2013-06-01,4,mdo,Average on Sundays,167033,2013
+2013-06-01,4,mdu,Average on Business Days,667090,2013
+2013-06-01,4,msa,Average on Saturdays,315887,2013
+2013-06-01,4,total,Total,15756400,2013
+2013-07-01,4,max,Daily Peak,667557,2013
+2013-07-01,4,mdo,Average on Sundays,213716,2013
+2013-07-01,4,mdu,Average on Business Days,599603.8260869565,2013
+2013-07-01,4,msa,Average on Saturdays,304125.5,2013
+2013-07-01,4,total,Total,15862254,2013
+2013-08-01,4,max,Daily Peak,707289,2013
+2013-08-01,4,mdo,Average on Sundays,173740.25,2013
+2013-08-01,4,mdu,Average on Business Days,682504.9545454546,2013
+2013-08-01,4,msa,Average on Saturdays,322738.8,2013
+2013-08-01,4,total,Total,17323764,2013
+2013-09-01,4,max,Daily Peak,712058,2013
+2013-09-01,4,mdo,Average on Sundays,163064.4,2013
+2013-09-01,4,mdu,Average on Business Days,680738.9523809524,2013
+2013-09-01,4,msa,Average on Saturdays,312707.25,2013
+2013-09-01,4,total,Total,16361669,2013
+2013-10-01,4,max,Daily Peak,719487,2013
+2013-10-01,4,mdo,Average on Sundays,166529.25,2013
+2013-10-01,4,mdu,Average on Business Days,685926.7391304348,2013
+2013-10-01,4,msa,Average on Saturdays,313408.5,2013
+2013-10-01,4,total,Total,17696066,2013
+2013-11-01,4,max,Daily Peak,746073,2013
+2013-11-01,4,mdo,Average on Sundays,166363.5,2013
+2013-11-01,4,mdu,Average on Business Days,680984.4,2013
+2013-11-01,4,msa,Average on Saturdays,311080,2013
+2013-11-01,4,total,Total,16070256,2013
+2013-12-01,4,max,Daily Peak,724675,2013
+2013-12-01,4,mdo,Average on Sundays,167300,2013
+2013-12-01,4,mdu,Average on Business Days,600851.619047619,2013
+2013-12-01,4,msa,Average on Saturdays,332919.25,2013
+2013-12-01,4,total,Total,14900657,2013
+2014-01-01,4,max,Daily Peak,663577,2014
+2014-01-01,4,mdo,Average on Sundays,154352.5,2014
+2014-01-01,4,mdu,Average on Business Days,597631.3181818182,2014
+2014-01-01,4,msa,Average on Saturdays,268852.75,2014
+2014-01-01,4,total,Total,14958101,2014
+2014-02-01,4,max,Daily Peak,714091,2014
+2014-02-01,4,mdo,Average on Sundays,172506.75,2014
+2014-02-01,4,mdu,Average on Business Days,686800.7,2014
+2014-02-01,4,msa,Average on Saturdays,315555.5,2014
+2014-02-01,4,total,Total,15688263,2014
+2014-03-01,4,max,Daily Peak,725827,2014
+2014-03-01,4,mdo,Average on Sundays,140934.2,2014
+2014-03-01,4,mdu,Average on Business Days,688174.6315789474,2014
+2014-03-01,4,msa,Average on Saturdays,316587,2014
+2014-03-01,4,total,Total,15784737,2014
+2014-04-01,4,max,Daily Peak,726965,2014
+2014-04-01,4,mdo,Average on Sundays,153281.75,2014
+2014-04-01,4,mdu,Average on Business Days,703168.8,2014
+2014-04-01,4,msa,Average on Saturdays,325364.5,2014
+2014-04-01,4,total,Total,16340327,2014
+2014-05-01,4,max,Daily Peak,785463,2014
+2014-05-01,4,mdo,Average on Sundays,171342.75,2014
+2014-05-01,4,mdu,Average on Business Days,693474.7619047619,2014
+2014-05-01,4,msa,Average on Saturdays,331136,2014
+2014-05-01,4,total,Total,17074821,2014
+2014-06-01,4,max,Daily Peak,720860,2014
+2014-06-01,4,mdo,Average on Sundays,119578.2,2014
+2014-06-01,4,mdu,Average on Business Days,618034.55,2014
+2014-06-01,4,msa,Average on Saturdays,286505.5,2014
+2014-06-01,4,total,Total,14322619,2014
+2014-07-01,4,max,Daily Peak,681041,2014
+2014-07-01,4,mdo,Average on Sundays,124277,2014
+2014-07-01,4,mdu,Average on Business Days,628254.5217391305,2014
+2014-07-01,4,msa,Average on Saturdays,311085.5,2014
+2014-07-01,4,total,Total,16191304,2014
+2014-08-01,4,max,Daily Peak,713730,2014
+2014-08-01,4,mdo,Average on Sundays,135292.2,2014
+2014-08-01,4,mdu,Average on Business Days,691211.2857142857,2014
+2014-08-01,4,msa,Average on Saturdays,334104,2014
+2014-08-01,4,total,Total,16862418,2014
+2014-09-01,4,max,Daily Peak,716671,2014
+2014-09-01,4,mdo,Average on Sundays,143110.25,2014
+2014-09-01,4,mdu,Average on Business Days,696155.1818181818,2014
+2014-09-01,4,msa,Average on Saturdays,333243,2014
+2014-09-01,4,total,Total,17220827,2014
+2014-10-01,4,max,Daily Peak,729079,2014
+2014-10-01,4,mdo,Average on Sundays,177054,2014
+2014-10-01,4,mdu,Average on Business Days,694756.9130434783,2014
+2014-10-01,4,msa,Average on Saturdays,338117,2014
+2014-10-01,4,total,Total,18040093,2014
+2014-11-01,4,max,Daily Peak,739742,2014
+2014-11-01,4,mdo,Average on Sundays,162978.8,2014
+2014-11-01,4,mdu,Average on Business Days,678086,2014
+2014-11-01,4,msa,Average on Saturdays,333126.8,2014
+2014-11-01,4,total,Total,16042248,2014
+2014-12-01,4,max,Daily Peak,743682,2014
+2014-12-01,4,mdo,Average on Sundays,211612.5,2014
+2014-12-01,4,mdu,Average on Business Days,616767.2727272727,2014
+2014-12-01,4,msa,Average on Saturdays,350028,2014
+2014-12-01,4,total,Total,15923856,2014
+2015-01-01,4,max,Daily Peak,658491,2015
+2015-01-01,4,mdo,Average on Sundays,181016.25,2015
+2015-01-01,4,mdu,Average on Business Days,604128.6666666666,2015
+2015-01-01,4,msa,Average on Saturdays,293124,2015
+2015-01-01,4,total,Total,14985851,2015
+2015-02-01,4,max,Daily Peak,710403,2015
+2015-02-01,4,mdo,Average on Sundays,199814,2015
+2015-02-01,4,mdu,Average on Business Days,668984.9444444445,2015
+2015-02-01,4,msa,Average on Saturdays,340162.5,2015
+2015-02-01,4,total,Total,14685548,2015
+2015-03-01,4,max,Daily Peak,743838,2015
+2015-03-01,4,mdo,Average on Sundays,154701,2015
+2015-03-01,4,mdu,Average on Business Days,704475.5,2015
+2015-03-01,4,msa,Average on Saturdays,340341.25,2015
+2015-03-01,4,total,Total,17633331,2015
+2015-04-01,4,max,Daily Peak,755491,2015
+2015-04-01,4,mdo,Average on Sundays,147458.25,2015
+2015-04-01,4,mdu,Average on Business Days,705711.75,2015
+2015-04-01,4,msa,Average on Saturdays,324583.75,2015
+2015-04-01,4,total,Total,16372444,2015
+2015-05-01,4,max,Daily Peak,744562,2015
+2015-05-01,4,mdo,Average on Sundays,128849,2015
+2015-05-01,4,mdu,Average on Business Days,710503.25,2015
+2015-05-01,4,msa,Average on Saturdays,336463.4,2015
+2015-05-01,4,total,Total,16757162,2015
+2015-06-01,4,max,Daily Peak,730349,2015
+2015-06-01,4,mdo,Average on Sundays,195057.25,2015
+2015-06-01,4,mdu,Average on Business Days,682970.1428571428,2015
+2015-06-01,4,msa,Average on Saturdays,332625.5,2015
+2015-06-01,4,total,Total,16608359,2015
+2015-07-01,4,max,Daily Peak,684556,2015
+2015-07-01,4,mdo,Average on Sundays,180353.75,2015
+2015-07-01,4,mdu,Average on Business Days,635845.0869565217,2015
+2015-07-01,4,msa,Average on Saturdays,307047.5,2015
+2015-07-01,4,total,Total,16574042,2015
+2015-08-01,4,max,Daily Peak,752413,2015
+2015-08-01,4,mdo,Average on Sundays,199811.4,2015
+2015-08-01,4,mdu,Average on Business Days,707477.7142857143,2015
+2015-08-01,4,msa,Average on Saturdays,353568.8,2015
+2015-08-01,4,total,Total,17623933,2015
+2015-09-01,4,max,Daily Peak,732601,2015
+2015-09-01,4,mdo,Average on Sundays,190445.75,2015
+2015-09-01,4,mdu,Average on Business Days,707186.1428571428,2015
+2015-09-01,4,msa,Average on Saturdays,336012,2015
+2015-09-01,4,total,Total,17143240,2015
+2015-10-01,4,max,Daily Peak,743676,2015
+2015-10-01,4,mdo,Average on Sundays,199516.25,2015
+2015-10-01,4,mdu,Average on Business Days,710689.4285714285,2015
+2015-10-01,4,msa,Average on Saturdays,346161.2,2015
+2015-10-01,4,total,Total,17655245,2015
+2015-11-01,4,max,Daily Peak,739270,2015
+2015-11-01,4,mdo,Average on Sundays,200632.4,2015
+2015-11-01,4,mdu,Average on Business Days,691977.75,2015
+2015-11-01,4,msa,Average on Saturdays,352475.5,2015
+2015-11-01,4,total,Total,16440998,2015
+2015-12-01,4,max,Daily Peak,748210,2015
+2015-12-01,4,mdo,Average on Sundays,219898,2015
+2015-12-01,4,mdu,Average on Business Days,608164.1818181819,2015
+2015-12-01,4,msa,Average on Saturdays,345759.5,2015
+2015-12-01,4,total,Total,15748082,2015
+2016-01-01,4,max,Daily Peak,662586,2016
+2016-01-01,4,mdo,Average on Sundays,209720.4,2016
+2016-01-01,4,mdu,Average on Business Days,592253.8,2016
+2016-01-01,4,msa,Average on Saturdays,305594.6,2016
+2016-01-01,4,total,Total,14529117,2016
+2016-02-01,4,max,Daily Peak,710595,2016
+2016-02-01,4,mdo,Average on Sundays,209536.25,2016
+2016-02-01,4,mdu,Average on Business Days,664889.8947368421,2016
+2016-02-01,4,msa,Average on Saturdays,359296.25,2016
+2016-02-01,4,total,Total,15530956,2016
+2016-03-01,4,max,Daily Peak,764350,2016
+2016-03-01,4,mdo,Average on Sundays,232388.5,2016
+2016-03-01,4,mdu,Average on Business Days,709192.8181818182,2016
+2016-03-01,4,msa,Average on Saturdays,343870,2016
+2016-03-01,4,total,Total,18094478,2016
+2016-04-01,4,max,Daily Peak,736400,2016
+2016-04-01,4,mdo,Average on Sundays,207846.25,2016
+2016-04-01,4,mdu,Average on Business Days,693342.2,2016
+2016-04-01,4,msa,Average on Saturdays,338226.4,2016
+2016-04-01,4,total,Total,16609773,2016
+2016-05-01,4,max,Daily Peak,724495,2016
+2016-05-01,4,mdo,Average on Sundays,222893.4,2016
+2016-05-01,4,mdu,Average on Business Days,685995.619047619,2016
+2016-05-01,4,msa,Average on Saturdays,334870,2016
+2016-05-01,4,total,Total,17102222,2016
+2016-06-01,4,max,Daily Peak,728700,2016
+2016-06-01,4,mdo,Average on Sundays,198600.5,2016
+2016-06-01,4,mdu,Average on Business Days,684089.9090909091,2016
+2016-06-01,4,msa,Average on Saturdays,340496.75,2016
+2016-06-01,4,total,Total,17206367,2016
+2016-07-01,4,max,Daily Peak,682059,2016
+2016-07-01,4,mdo,Average on Sundays,211131,2016
+2016-07-01,4,mdu,Average on Business Days,646550.2380952381,2016
+2016-07-01,4,msa,Average on Saturdays,324096,2016
+2016-07-01,4,total,Total,16253690,2016
+2016-08-01,4,max,Daily Peak,728181,2016
+2016-08-01,4,mdo,Average on Sundays,195420.5,2016
+2016-08-01,4,mdu,Average on Business Days,689320.8695652174,2016
+2016-08-01,4,msa,Average on Saturdays,345760,2016
+2016-08-01,4,total,Total,18019102,2016
+2016-09-01,4,max,Daily Peak,721450,2016
+2016-09-01,4,mdo,Average on Sundays,210367.5,2016
+2016-09-01,4,mdu,Average on Business Days,696573.2857142857,2016
+2016-09-01,4,msa,Average on Saturdays,350892,2016
+2016-09-01,4,total,Total,17098112,2016
+2016-10-01,4,max,Daily Peak,737778,2016
+2016-10-01,4,mdo,Average on Sundays,201396.4,2016
+2016-10-01,4,mdu,Average on Business Days,697355.7,2016
+2016-10-01,4,msa,Average on Saturdays,350658.8,2016
+2016-10-01,4,total,Total,16930268,2016
+2016-11-01,4,max,Daily Peak,741764,2016
+2016-11-01,4,mdo,Average on Sundays,209345.75,2016
+2016-11-01,4,mdu,Average on Business Days,694829.35,2016
+2016-11-01,4,msa,Average on Saturdays,355556.25,2016
+2016-11-01,4,total,Total,16582347,2016
+2016-12-01,4,max,Daily Peak,728951,2016
+2016-12-01,4,mdo,Average on Sundays,210157.75,2016
+2016-12-01,4,mdu,Average on Business Days,628755.5454545454,2016
+2016-12-01,4,msa,Average on Saturdays,316018.2,2016
+2016-12-01,4,total,Total,16253344,2016
+2017-01-01,4,max,Daily Peak,654522,2017
+2017-01-01,4,mdo,Average on Sundays,160735.6,2017
+2017-01-01,4,mdu,Average on Business Days,575214.0454545454,2017
+2017-01-01,4,msa,Average on Saturdays,301209.25,2017
+2017-01-01,4,total,Total,14663224,2017
+2017-02-01,4,max,Daily Peak,706491,2017
+2017-02-01,4,mdo,Average on Sundays,248607.75,2017
+2017-02-01,4,mdu,Average on Business Days,685258.2777777778,2017
+2017-02-01,4,msa,Average on Saturdays,445527.25,2017
+2017-02-01,4,total,Total,15872099,2017
+2017-03-01,4,max,Daily Peak,749499,2017
+2017-03-01,4,mdo,Average on Sundays,195921.75,2017
+2017-03-01,4,mdu,Average on Business Days,699034.3913043478,2017
+2017-03-01,4,msa,Average on Saturdays,392724.25,2017
+2017-03-01,4,total,Total,18432375,2017
+2017-04-01,4,max,Daily Peak,762141,2017
+2017-04-01,4,mdo,Average on Sundays,133076,2017
+2017-04-01,4,mdu,Average on Business Days,691706.5,2017
+2017-04-01,4,msa,Average on Saturdays,329563.2,2017
+2017-04-01,4,total,Total,15103059,2017
+2017-05-01,4,max,Daily Peak,738553,2017
+2017-05-01,4,mdo,Average on Sundays,137343.5,2017
+2017-05-01,4,mdu,Average on Business Days,715319.4545454546,2017
+2017-05-01,4,msa,Average on Saturdays,370283.5,2017
+2017-05-01,4,total,Total,17966012,2017
+2017-06-01,4,max,Daily Peak,740921,2017
+2017-06-01,4,mdo,Average on Sundays,199939,2017
+2017-06-01,4,mdu,Average on Business Days,695503.5238095238,2017
+2017-06-01,4,msa,Average on Saturdays,346162,2017
+2017-06-01,4,total,Total,16972697,2017
+2017-07-01,4,max,Daily Peak,694558,2017
+2017-07-01,4,mdo,Average on Sundays,127022.6,2017
+2017-07-01,4,mdu,Average on Business Days,658678.3333333334,2017
+2017-07-01,4,msa,Average on Saturdays,342170.4,2017
+2017-07-01,4,total,Total,16178210,2017
+2017-08-01,4,max,Daily Peak,735805,2017
+2017-08-01,4,mdo,Average on Sundays,75918.5,2017
+2017-08-01,4,mdu,Average on Business Days,712006.1304347826,2017
+2017-08-01,4,msa,Average on Saturdays,346995,2017
+2017-08-01,4,total,Total,18067795,2017
+2017-09-01,4,max,Daily Peak,760114,2017
+2017-09-01,4,mdo,Average on Sundays,112693,2017
+2017-09-01,4,mdu,Average on Business Days,716039.35,2017
+2017-09-01,4,msa,Average on Saturdays,342102.4,2017
+2017-09-01,4,total,Total,16618323,2017
+2017-10-01,4,max,Daily Peak,771664,2017
+2017-10-01,4,mdo,Average on Sundays,124483.6,2017
+2017-10-01,4,mdu,Average on Business Days,720718.7619047619,2017
+2017-10-01,4,msa,Average on Saturdays,346840.25,2017
+2017-10-01,4,total,Total,17358610,2017
+2017-11-01,4,max,Daily Peak,767906,2017
+2017-11-01,4,mdo,Average on Sundays,146656.75,2017
+2017-11-01,4,mdu,Average on Business Days,705392.2,2017
+2017-11-01,4,msa,Average on Saturdays,347867,2017
+2017-11-01,4,total,Total,16299798,2017
+2017-12-01,4,max,Daily Peak,761762,2017
+2017-12-01,4,mdo,Average on Sundays,156718,2017
+2017-12-01,4,mdu,Average on Business Days,673713.85,2017
+2017-12-01,4,msa,Average on Saturdays,345088,2017
+2017-12-01,4,total,Total,16094217,2017
+2018-01-01,4,max,Daily Peak,695896,2018
+2018-01-01,4,mdo,Average on Sundays,150755.5,2018
+2018-01-01,4,mdu,Average on Business Days,594772.5909090909,2018
+2018-01-01,4,msa,Average on Saturdays,313124.75,2018
+2018-01-01,4,total,Total,15072156,2018
+2018-02-01,4,max,Daily Peak,771928,2018
+2018-02-01,4,mdo,Average on Sundays,250901,2018
+2018-02-01,4,mdu,Average on Business Days,722190.7222222222,2018
+2018-02-01,4,msa,Average on Saturdays,517016.25,2018
+2018-02-01,4,total,Total,16795270,2018
+2018-03-01,4,max,Daily Peak,835717,2018
+2018-03-01,4,mdo,Average on Sundays,217272.25,2018
+2018-03-01,4,mdu,Average on Business Days,786253.5714285715,2018
+2018-03-01,4,msa,Average on Saturdays,370654.2,2018
+2018-03-01,4,total,Total,19440974,2018
+2018-04-01,4,max,Daily Peak,808404,2018
+2018-04-01,4,mdo,Average on Sundays,204765.2,2018
+2018-04-01,4,mdu,Average on Business Days,773649.2380952381,2018
+2018-04-01,4,msa,Average on Saturdays,369875.25,2018
+2018-04-01,4,total,Total,18749961,2018
+2018-05-01,4,max,Daily Peak,811979,2018
+2018-05-01,4,mdo,Average on Sundays,250994,2018
+2018-05-01,4,mdu,Average on Business Days,789453.619047619,2018
+2018-05-01,4,msa,Average on Saturdays,409002.25,2018
+2018-05-01,4,total,Total,19761977,2018
+2018-06-01,4,max,Daily Peak,818472,2018
+2018-06-01,4,mdo,Average on Sundays,241283,2018
+2018-06-01,4,mdu,Average on Business Days,750019.4761904762,2018
+2018-06-01,4,msa,Average on Saturdays,378674,2018
+2018-06-01,4,total,Total,18608911,2018
+2018-07-01,4,max,Daily Peak,744351,2018
+2018-07-01,4,mdo,Average on Sundays,232908.8,2018
+2018-07-01,4,mdu,Average on Business Days,690096,2018
+2018-07-01,4,msa,Average on Saturdays,375495.75,2018
+2018-07-01,4,total,Total,17848639,2018
+2018-08-01,4,max,Daily Peak,826553,2018
+2018-08-01,4,mdo,Average on Sundays,226677,2018
+2018-08-01,4,mdu,Average on Business Days,797226.8695652174,2018
+2018-08-01,4,msa,Average on Saturdays,396728.75,2018
+2018-08-01,4,total,Total,20829841,2018
+2018-09-01,4,max,Daily Peak,840749,2018
+2018-09-01,4,mdo,Average on Sundays,112137,2018
+2018-09-01,4,mdu,Average on Business Days,799465.4210526316,2018
+2018-09-01,4,msa,Average on Saturdays,410556.4,2018
+2018-09-01,4,total,Total,18079757,2018
+2018-10-01,4,max,Daily Peak,828013,2018
+2018-10-01,4,mdo,Average on Sundays,117066.25,2018
+2018-10-01,4,mdu,Average on Business Days,760539.5454545454,2018
+2018-10-01,4,msa,Average on Saturdays,361826.25,2018
+2018-10-01,4,total,Total,18903233,2018
+2018-11-01,4,max,Daily Peak,802462,2018
+2018-11-01,4,mdo,Average on Sundays,211290.5,2018
+2018-11-01,4,mdu,Average on Business Days,711252.9,2018
+2018-11-01,4,msa,Average on Saturdays,354190.75,2018
+2018-11-01,4,total,Total,16981015,2018
+2018-12-01,4,max,Daily Peak,794823,2018
+2018-12-01,4,mdo,Average on Sundays,230646.2,2018
+2018-12-01,4,mdu,Average on Business Days,666118.1,2018
+2018-12-01,4,msa,Average on Saturdays,373228,2018
+2018-12-01,4,total,Total,16457846,2018
+2019-01-01,4,max,Daily Peak,712882,2019
+2019-01-01,4,mdo,Average on Sundays,201905.5,2019
+2019-01-01,4,mdu,Average on Business Days,633464.1363636364,2019
+2019-01-01,4,msa,Average on Saturdays,313254.25,2019
+2019-01-01,4,total,Total,16127292,2019
+2019-02-01,4,max,Daily Peak,808440,2019
+2019-02-01,4,mdo,Average on Sundays,270282.75,2019
+2019-02-01,4,mdu,Average on Business Days,764879.25,2019
+2019-02-01,4,msa,Average on Saturdays,436662.5,2019
+2019-02-01,4,total,Total,18125366,2019
+2019-03-01,4,max,Daily Peak,834772,2019
+2019-03-01,4,mdo,Average on Sundays,258800.4,2019
+2019-03-01,4,mdu,Average on Business Days,763486.7368421053,2019
+2019-03-01,4,msa,Average on Saturdays,426169.6,2019
+2019-03-01,4,total,Total,18687713,2019
+2019-04-01,4,max,Daily Peak,843427,2019
+2019-04-01,4,mdo,Average on Sundays,224642.25,2019
+2019-04-01,4,mdu,Average on Business Days,807119.0952380953,2019
+2019-04-01,4,msa,Average on Saturdays,386008.5,2019
+2019-04-01,4,total,Total,19609235,2019
+2019-05-01,4,max,Daily Peak,847711,2019
+2019-05-01,4,mdo,Average on Sundays,248616,2019
+2019-05-01,4,mdu,Average on Business Days,809458.5909090909,2019
+2019-05-01,4,msa,Average on Saturdays,392826.25,2019
+2019-05-01,4,total,Total,20618672,2019
+2019-06-01,4,max,Daily Peak,826524,2019
+2019-06-01,4,mdo,Average on Sundays,244783.6,2019
+2019-06-01,4,mdu,Average on Business Days,767258.1052631579,2019
+2019-06-01,4,msa,Average on Saturdays,387799,2019
+2019-06-01,4,total,Total,18015820,2019
+2019-07-01,4,max,Daily Peak,760089,2019
+2019-07-01,4,mdo,Average on Sundays,219907.25,2019
+2019-07-01,4,mdu,Average on Business Days,700690.1304347826,2019
+2019-07-01,4,msa,Average on Saturdays,378425,2019
+2019-07-01,4,total,Total,18509202,2019
+2019-08-01,4,max,Daily Peak,837943,2019
+2019-08-01,4,mdo,Average on Sundays,221467.75,2019
+2019-08-01,4,mdu,Average on Business Days,810068.5454545454,2019
+2019-08-01,4,msa,Average on Saturdays,394039,2019
+2019-08-01,4,total,Total,20677574,2019
+2019-09-01,4,max,Daily Peak,854977,2019
+2019-09-01,4,mdo,Average on Sundays,231485.8,2019
+2019-09-01,4,mdu,Average on Business Days,817995.4761904762,2019
+2019-09-01,4,msa,Average on Saturdays,384965.25,2019
+2019-09-01,4,total,Total,19875195,2019
+2019-10-01,4,max,Daily Peak,854085,2019
+2019-10-01,4,mdo,Average on Sundays,252054,2019
+2019-10-01,4,mdu,Average on Business Days,818433.3913043478,2019
+2019-10-01,4,msa,Average on Saturdays,386065.75,2019
+2019-10-01,4,total,Total,21376447,2019
+2019-11-01,4,max,Daily Peak,871559,2019
+2019-11-01,4,mdo,Average on Sundays,235121.25,2019
+2019-11-01,4,mdu,Average on Business Days,811429.1,2019
+2019-11-01,4,msa,Average on Saturdays,391916,2019
+2019-11-01,4,total,Total,19401389,2019
+2019-12-01,4,max,Daily Peak,859023,2019
+2019-12-01,4,mdo,Average on Sundays,258351,2019
+2019-12-01,4,mdu,Average on Business Days,702843.619047619,2019
+2019-12-01,4,msa,Average on Saturdays,399694.5,2019
+2019-12-01,4,total,Total,17774398,2019
+2020-01-01,4,max,Daily Peak,776516,2020
+2020-01-01,4,mdo,Average on Sundays,200171.5,2020
+2020-01-01,4,mdu,Average on Business Days,701809.3636363636,2020
+2020-01-01,4,msa,Average on Saturdays,334505.25,2020
+2020-01-01,4,total,Total,17710221,2020
+2020-02-01,4,max,Daily Peak,853120,2020
+2020-02-01,4,mdo,Average on Sundays,307836.25,2020
+2020-02-01,4,mdu,Average on Business Days,780757.1111111111,2020
+2020-02-01,4,msa,Average on Saturdays,441094,2020
+2020-02-01,4,total,Total,18285805,2020
+2020-03-01,4,max,Daily Peak,861486,2020
+2020-03-01,4,mdo,Average on Sundays,149618,2020
+2020-03-01,4,mdu,Average on Business Days,520837.59090909094,2020
+2020-03-01,4,msa,Average on Saturdays,231547.25,2020
+2020-03-01,4,total,Total,13132706,2020
+2020-04-01,4,max,Daily Peak,173980,2020
+2020-04-01,4,mdo,Average on Sundays,47601,2020
+2020-04-01,4,mdu,Average on Business Days,158029.1,2020
+2020-04-01,4,msa,Average on Saturdays,82700,2020
+2020-04-01,4,total,Total,3806107,2020
+2020-05-01,4,max,Daily Peak,182105,2020
+2020-05-01,4,mdo,Average on Sundays,48763.8,2020
+2020-05-01,4,mdu,Average on Business Days,164809.8,2020
+2020-05-01,4,msa,Average on Saturdays,90851.6,2020
+2020-05-01,4,total,Total,4061491,2020
+2020-06-01,4,max,Daily Peak,230273,2020
+2020-06-01,4,mdo,Average on Sundays,60107.75,2020
+2020-06-01,4,mdu,Average on Business Days,209556.04761904763,2020
+2020-06-01,4,msa,Average on Saturdays,113336,2020
+2020-06-01,4,total,Total,5277830,2020
+2020-07-01,4,max,Daily Peak,276020,2020
+2020-07-01,4,mdo,Average on Sundays,71084,2020
+2020-07-01,4,mdu,Average on Business Days,255081,2020
+2020-07-01,4,msa,Average on Saturdays,148274.75,2020
+2020-07-01,4,total,Total,6744298,2020
+2020-08-01,4,max,Daily Peak,311668,2020
+2020-08-01,4,mdo,Average on Sundays,80856,2020
+2020-08-01,4,mdu,Average on Business Days,289514.71428571426,2020
+2020-08-01,4,msa,Average on Saturdays,167426.2,2020
+2020-08-01,4,total,Total,7321220,2020
+2020-09-01,4,max,Daily Peak,338257,2020
+2020-09-01,4,mdo,Average on Sundays,94690.5,2020
+2020-09-01,4,mdu,Average on Business Days,319589.90476190473,2020
+2020-09-01,4,msa,Average on Saturdays,193345.25,2020
+2020-09-01,4,total,Total,7980561,2020
+2020-10-01,4,max,Daily Peak,367531,2020
+2020-10-01,4,mdo,Average on Sundays,107466,2020
+2020-10-01,4,mdu,Average on Business Days,347210.4285714286,2020
+2020-10-01,4,msa,Average on Saturdays,207559.2,2020
+2020-10-01,4,total,Total,8886092,2020
+2020-11-01,4,max,Daily Peak,385060,2020
+2020-11-01,4,mdo,Average on Sundays,122275,2020
+2020-11-01,4,mdu,Average on Business Days,365218.45,2020
+2020-11-01,4,msa,Average on Saturdays,233877,2020
+2020-11-01,4,total,Total,8975744,2020
+2020-12-01,4,max,Daily Peak,392093,2020
+2020-12-01,4,mdo,Average on Sundays,114248.75,2020
+2020-12-01,4,mdu,Average on Business Days,336980.40909090906,2020
+2020-12-01,4,msa,Average on Saturdays,213028.25,2020
+2020-12-01,4,total,Total,8787707,2020
+2021-01-01,4,max,Daily Peak,365610,2021
+2021-01-01,4,mdo,Average on Sundays,101059.8,2021
+2021-01-01,4,mdu,Average on Business Days,331467.55,2021
+2021-01-01,4,msa,Average on Saturdays,172370.4,2021
+2021-01-01,4,total,Total,8052828,2021
+2021-02-01,4,max,Daily Peak,375698,2021
+2021-02-01,4,mdo,Average on Sundays,110236,2021
+2021-02-01,4,mdu,Average on Business Days,363129.5,2021
+2021-02-01,4,msa,Average on Saturdays,206123.25,2021
+2021-02-01,4,total,Total,8405700,2021
+2021-03-01,4,max,Daily Peak,373030,2021
+2021-03-01,4,mdo,Average on Sundays,68877,2021
+2021-03-01,4,mdu,Average on Business Days,271863.2173913043,2021
+2021-03-01,4,msa,Average on Saturdays,135390.75,2021
+2021-03-01,4,total,Total,7069925,2021
+2021-04-01,4,max,Daily Peak,317744,2021
+2021-04-01,4,mdo,Average on Sundays,76875,2021
+2021-04-01,4,mdu,Average on Business Days,272763.65,2021
+2021-04-01,4,msa,Average on Saturdays,141651,2021
+2021-04-01,4,total,Total,6540659,2021
+2021-05-01,4,max,Daily Peak,346339,2021
+2021-05-01,4,mdo,Average on Sundays,103434.4,2021
+2021-05-01,4,mdu,Average on Business Days,324521.85714285716,2021
+2021-05-01,4,msa,Average on Saturdays,193324.8,2021
+2021-05-01,4,total,Total,8298755,2021
+2021-06-01,4,max,Daily Peak,357681,2021
+2021-06-01,4,mdo,Average on Sundays,113678.25,2021
+2021-06-01,4,mdu,Average on Business Days,341909.61904761905,2021
+2021-06-01,4,msa,Average on Saturdays,216801.25,2021
+2021-06-01,4,total,Total,8735193,2021
+2021-07-01,4,max,Daily Peak,374051,2021
+2021-07-01,4,mdo,Average on Sundays,119448.25,2021
+2021-07-01,4,mdu,Average on Business Days,343762.1818181818,2021
+2021-07-01,4,msa,Average on Saturdays,222673.2,2021
+2021-07-01,4,total,Total,9153927,2021
+2021-08-01,4,max,Daily Peak,404763,2021
+2021-08-01,4,mdo,Average on Sundays,129011.2,2021
+2021-08-01,4,mdu,Average on Business Days,385683.5909090909,2021
+2021-08-01,4,msa,Average on Saturdays,231198.5,2021
+2021-08-01,4,total,Total,10054889,2021
+2021-09-01,4,max,Daily Peak,430991,2021
+2021-09-01,4,mdo,Average on Sundays,148874,2021
+2021-09-01,4,mdu,Average on Business Days,408960.4761904762,2021
+2021-09-01,4,msa,Average on Saturdays,252363.75,2021
+2021-09-01,4,total,Total,10407203,2021
+2021-10-01,4,max,Daily Peak,478420,2021
+2021-10-01,4,mdo,Average on Sundays,146867.6,2021
+2021-10-01,4,mdu,Average on Business Days,434269.6,2021
+2021-10-01,4,msa,Average on Saturdays,270896.8,2021
+2021-10-01,4,total,Total,10938528,2021
+2021-11-01,4,max,Daily Peak,497474,2021
+2021-11-01,4,mdo,Average on Sundays,188665,2021
+2021-11-01,4,mdu,Average on Business Days,469227.1,2021
+2021-11-01,4,msa,Average on Saturdays,300213,2021
+2021-11-01,4,total,Total,11711891,2021
+2021-12-01,4,max,Daily Peak,514812,2021
+2021-12-01,4,mdo,Average on Sundays,183100.75,2021
+2021-12-01,4,mdu,Average on Business Days,423652.3913043478,2021
+2021-12-01,4,msa,Average on Saturdays,272632.5,2021
+2021-12-01,4,total,Total,11566938,2021
+2022-01-01,4,max,Daily Peak,420108,2022
+2022-01-01,4,mdo,Average on Sundays,135967.6,2022
+2022-01-01,4,mdu,Average on Business Days,381931.95238095237,2022
+2022-01-01,4,msa,Average on Saturdays,209476.8,2022
+2022-01-01,4,total,Total,9747793,2022
+2022-02-01,4,max,Daily Peak,487274,2022
+2022-02-01,4,mdo,Average on Sundays,179689.25,2022
+2022-02-01,4,mdu,Average on Business Days,460493,2022
+2022-02-01,4,msa,Average on Saturdays,289192.25,2022
+2022-02-01,4,total,Total,10903868,2022
+2022-03-01,4,max,Daily Peak,571319,2022
+2022-03-01,4,mdo,Average on Sundays,169607.75,2022
+2022-03-01,4,mdu,Average on Business Days,522444.13636363635,2022
+2022-03-01,4,msa,Average on Saturdays,321053.25,2022
+2022-03-01,4,total,Total,13678782,2022
+2022-04-01,4,max,Daily Peak,591210,2022
+2022-04-01,4,mdo,Average on Sundays,164873.25,2022
+2022-04-01,4,mdu,Average on Business Days,550024.5263157894,2022
+2022-04-01,4,msa,Average on Saturdays,298755.8,2022
+2022-04-01,4,total,Total,13020483,2022
+2022-05-01,4,max,Daily Peak,606108,2022
+2022-05-01,4,mdo,Average on Sundays,199521.2,2022
+2022-05-01,4,mdu,Average on Business Days,569163.1818181818,2022
+2022-05-01,4,msa,Average on Saturdays,337691,2022
+2022-05-01,4,total,Total,14869960,2022
+2022-06-01,4,max,Daily Peak,587652,2022
+2022-06-01,4,mdo,Average on Sundays,223521.5,2022
+2022-06-01,4,mdu,Average on Business Days,559599.619047619,2022
+2022-06-01,4,msa,Average on Saturdays,322697.5,2022
+2022-06-01,4,total,Total,14241257,2022
+2022-07-01,4,max,Daily Peak,586314,2022
+2022-07-01,4,mdo,Average on Sundays,203953.2,2022
+2022-07-01,4,mdu,Average on Business Days,548129.7619047619,2022
+2022-07-01,4,msa,Average on Saturdays,328552.2,2022
+2022-07-01,4,total,Total,14173252,2022
+2022-08-01,4,max,Daily Peak,640197,2022
+2022-08-01,4,mdo,Average on Sundays,192913,2022
+2022-08-01,4,mdu,Average on Business Days,599691.9130434783,2022
+2022-08-01,4,msa,Average on Saturdays,327853.5,2022
+2022-08-01,4,total,Total,15875980,2022
+2022-09-01,4,max,Daily Peak,653671,2022
+2022-09-01,4,mdo,Average on Sundays,205373.25,2022
+2022-09-01,4,mdu,Average on Business Days,619319.4285714285,2022
+2022-09-01,4,msa,Average on Saturdays,341254.75,2022
+2022-09-01,4,total,Total,15425354,2022
+2022-10-01,4,max,Daily Peak,660204,2022
+2022-10-01,4,mdo,Average on Sundays,210184.2,2022
+2022-10-01,4,mdu,Average on Business Days,626831.6,2022
+2022-10-01,4,msa,Average on Saturdays,350848,2022
+2022-10-01,4,total,Total,15579257,2022
+2022-11-01,4,max,Daily Peak,662322,2022
+2022-11-01,4,mdo,Average on Sundays,205722.5,2022
+2022-11-01,4,mdu,Average on Business Days,614026.75,2022
+2022-11-01,4,msa,Average on Saturdays,356997.25,2022
+2022-11-01,4,total,Total,14971240,2022
+2022-12-01,4,max,Daily Peak,693280,2022
+2022-12-01,4,mdo,Average on Sundays,187760.25,2022
+2022-12-01,4,mdu,Average on Business Days,544983.6363636364,2022
+2022-12-01,4,msa,Average on Saturdays,306944.8,2022
+2022-12-01,4,total,Total,14275405,2022
+2023-01-01,4,max,Daily Peak,594236,2023
+2023-01-01,4,mdo,Average on Sundays,183218.6,2023
+2023-01-01,4,mdu,Average on Business Days,519273.2272727273,2023
+2023-01-01,4,msa,Average on Saturdays,311824.5,2023
+2023-01-01,4,total,Total,13587402,2023
+2023-02-01,4,max,Daily Peak,639510,2023
+2023-02-01,4,mdo,Average on Sundays,224678,2023
+2023-02-01,4,mdu,Average on Business Days,591817.5555555555,2023
+2023-02-01,4,msa,Average on Saturdays,387563.5,2023
+2023-02-01,4,total,Total,13777330,2023
+2023-03-01,4,max,Daily Peak,710376,2023
+2023-03-01,4,mdo,Average on Sundays,218125.75,2023
+2023-03-01,4,mdu,Average on Business Days,648941.2608695652,2023
+2023-03-01,4,msa,Average on Saturdays,384757.25,2023
+2023-03-01,4,total,Total,17337181,2023
+2023-04-01,4,max,Daily Peak,701709,2023
+2023-04-01,4,mdo,Average on Sundays,201597.2,2023
+2023-04-01,4,mdu,Average on Business Days,661454.1111111111,2023
+2023-04-01,4,msa,Average on Saturdays,338323.2,2023
+2023-04-01,4,total,Total,15070780,2023
+2023-05-01,4,max,Daily Peak,682411,2023
+2023-05-01,4,mdo,Average on Sundays,221960.5,2023
+2023-05-01,4,mdu,Average on Business Days,661454.7272727273,2023
+2023-05-01,4,msa,Average on Saturdays,383435.25,2023
+2023-05-01,4,total,Total,17184218,2023
+2023-06-01,4,max,Daily Peak,706857,2023
+2023-06-01,4,mdo,Average on Sundays,237373,2023
+2023-06-01,4,mdu,Average on Business Days,634948.5714285715,2023
+2023-06-01,4,msa,Average on Saturdays,361313,2023
+2023-06-01,4,total,Total,16028919,2023
+2023-07-01,4,max,Daily Peak,656524,2023
+2023-07-01,4,mdo,Average on Sundays,216830.4,2023
+2023-07-01,4,mdu,Average on Business Days,599977.5714285715,2023
+2023-07-01,4,msa,Average on Saturdays,353483.8,2023
+2023-07-01,4,total,Total,15451100,2023
+2023-08-01,4,max,Daily Peak,733579,2023
+2023-08-01,4,mdo,Average on Sundays,207284,2023
+2023-08-01,4,mdu,Average on Business Days,670442.3913043478,2023
+2023-08-01,4,msa,Average on Saturdays,363288.25,2023
+2023-08-01,4,total,Total,17702464,2023
+2023-09-01,4,max,Daily Peak,709137,2023
+2023-09-01,4,mdo,Average on Sundays,243441.25,2023
+2023-09-01,4,mdu,Average on Business Days,670329.8,2023
+2023-09-01,4,msa,Average on Saturdays,375095.6,2023
+2023-09-01,4,total,Total,16528877,2023
+2023-10-01,4,max,Daily Peak,713758,2023
+2023-10-01,4,mdo,Average on Sundays,194459.6,2023
+2023-10-01,4,mdu,Average on Business Days,644174.4285714285,2023
+2023-10-01,4,msa,Average on Saturdays,358944.5,2023
+2023-10-01,4,total,Total,16170999,2023
+2023-11-01,4,max,Daily Peak,744081,2023
+2023-11-01,4,mdo,Average on Sundays,206734,2023
+2023-11-01,4,mdu,Average on Business Days,656059.2,2023
+2023-11-01,4,msa,Average on Saturdays,370481,2023
+2023-11-01,4,total,Total,15965709,2023
+2023-12-01,4,max,Daily Peak,731293,2023
+2023-12-01,4,mdo,Average on Sundays,213034,2023
+2023-12-01,4,mdu,Average on Business Days,619584.3,2023
+2023-12-01,4,msa,Average on Saturdays,352662,2023
+2023-12-01,4,total,Total,15327908,2023
+2024-01-01,4,max,Daily Peak,642585,2024
+2024-01-01,4,mdo,Average on Sundays,193185.75,2024
+2024-01-01,4,mdu,Average on Business Days,545901.8181818182,2024
+2024-01-01,4,msa,Average on Saturdays,331104.75,2024
+2024-01-01,4,total,Total,14220651,2024
+2024-02-01,4,max,Daily Peak,698034,2024
+2024-02-01,4,mdo,Average on Sundays,252145.75,2024
+2024-02-01,4,mdu,Average on Business Days,646242.8421052631,2024
+2024-02-01,4,msa,Average on Saturdays,385022.75,2024
+2024-02-01,4,total,Total,15453832,2024
+2024-03-01,4,max,Daily Peak,712499,2024
+2024-03-01,4,mdo,Average on Sundays,207666.4,2024
+2024-03-01,4,mdu,Average on Business Days,685690.05,2024
+2024-03-01,4,msa,Average on Saturdays,345894.4,2024
+2024-03-01,4,total,Total,16687404,2024
+2024-04-01,4,max,Daily Peak,726099,2024
+2024-04-01,4,mdo,Average on Sundays,207708.25,2024
+2024-04-01,4,mdu,Average on Business Days,689228.7727272727,2024
+2024-04-01,4,msa,Average on Saturdays,370262.5,2024
+2024-04-01,4,total,Total,17474916,2024
+2024-05-01,4,max,Daily Peak,721637,2024
+2024-05-01,4,mdo,Average on Sundays,192996.5,2024
+2024-05-01,4,mdu,Average on Business Days,676324.9047619047,2024
+2024-05-01,4,msa,Average on Saturdays,363619.75,2024
+2024-05-01,4,total,Total,16942091,2024
+2024-06-01,4,max,Daily Peak,704301,2024
+2024-06-01,4,mdo,Average on Sundays,235522.8,2024
+2024-06-01,4,mdu,Average on Business Days,670887.25,2024
+2024-06-01,4,msa,Average on Saturdays,367848,2024
+2024-06-01,4,total,Total,16434599,2024
+2024-07-01,4,max,Daily Peak,676226,2024
+2024-07-01,4,mdo,Average on Sundays,213105.75,2024
+2024-07-01,4,mdu,Average on Business Days,601513.4782608695,2024
+2024-07-01,4,msa,Average on Saturdays,359111,2024
+2024-07-01,4,total,Total,16123677,2024
+2024-08-01,4,max,Daily Peak,753671,2024
+2024-08-01,4,mdo,Average on Sundays,205682.25,2024
+2024-08-01,4,mdu,Average on Business Days,686274.7727272727,2024
+2024-08-01,4,msa,Average on Saturdays,358500.2,2024
+2024-08-01,4,total,Total,17713275,2024
+2024-09-01,4,max,Daily Peak,732960,2024
+2024-09-01,4,mdo,Average on Sundays,201137.2,2024
+2024-09-01,4,mdu,Average on Business Days,693845.7619047619,2024
+2024-09-01,4,msa,Average on Saturdays,361173,2024
+2024-09-01,4,total,Total,17021139,2024
+2024-10-01,4,max,Daily Peak,750924,2024
+2024-10-01,4,mdo,Average on Sundays,191771.5,2024
+2024-10-01,4,mdu,Average on Business Days,698898,2024
+2024-10-01,4,msa,Average on Saturdays,357996.75,2024
+2024-10-01,4,total,Total,18273727,2024
+2024-11-01,4,max,Daily Peak,742517,2024
+2024-11-01,4,mdo,Average on Sundays,197104,2024
+2024-11-01,4,mdu,Average on Business Days,714059.3684210526,2024
+2024-11-01,4,msa,Average on Saturdays,369076.6,2024
+2024-11-01,4,total,Total,16802440,2024
+2024-12-01,4,max,Daily Peak,744113,2024
+2024-12-01,4,mdo,Average on Sundays,224754.8,2024
+2024-12-01,4,mdu,Average on Business Days,596592.8095238095,2024
+2024-12-01,4,msa,Average on Saturdays,374771.5,2024
+2024-12-01,4,total,Total,15257053,2024
+2025-01-01,4,max,Daily Peak,653817,2025
+2025-01-01,4,mdo,Average on Sundays,197244,2025
+2025-01-01,4,mdu,Average on Business Days,589525.1818181818,2025
+2025-01-01,4,msa,Average on Saturdays,311231.5,2025
+2025-01-01,4,total,Total,15116821,2025
+2025-02-01,4,max,Daily Peak,758699,2025
+2025-02-01,4,mdo,Average on Sundays,225945.25,2025
+2025-02-01,4,mdu,Average on Business Days,691407.95,2025
+2025-02-01,4,msa,Average on Saturdays,391550.75,2025
+2025-02-01,4,total,Total,16298143,2025
+2025-03-01,4,max,Daily Peak,747372,2025
+2025-03-01,4,mdo,Average on Sundays,227391,2025
+2025-03-01,4,mdu,Average on Business Days,697010.7368421053,2025
+2025-03-01,4,msa,Average on Saturdays,389303.2,2025
+2025-03-01,4,total,Total,16985109,2025
+2025-04-01,4,max,Daily Peak,746608,2025
+2025-04-01,4,mdo,Average on Sundays,229013.25,2025
+2025-04-01,4,mdu,Average on Business Days,718483.5,2025
+2025-04-01,4,msa,Average on Saturdays,366913.5,2025
+2025-04-01,4,total,Total,17208435,2025
+2025-05-01,4,max,Daily Peak,758781,2025
+2025-05-01,4,mdo,Average on Sundays,223789,2025
+2025-05-01,4,mdu,Average on Business Days,699978.8571428572,2025
+2025-05-01,4,msa,Average on Saturdays,372995.8,2025
+2025-05-01,4,total,Total,17711124,2025
+2025-06-01,4,max,Daily Peak,718013,2025
+2025-06-01,4,mdo,Average on Sundays,222414.6,2025
+2025-06-01,4,mdu,Average on Business Days,671593.1,2025
+2025-06-01,4,msa,Average on Saturdays,365571.75,2025
+2025-06-01,4,total,Total,16289690,2025
+2025-07-01,4,max,Daily Peak,688163,2025
+2025-07-01,4,mdo,Average on Sundays,217323.5,2025
+2025-07-01,4,mdu,Average on Business Days,621983.5652173914,2025
+2025-07-01,4,msa,Average on Saturdays,357719.5,2025
+2025-07-01,4,total,Total,16605794,2025
+2025-08-01,4,max,Daily Peak,756265,2025
+2025-08-01,4,mdo,Average on Sundays,224460,2025
+2025-08-01,4,mdu,Average on Business Days,702267.2857142857,2025
+2025-08-01,4,msa,Average on Saturdays,370487,2025
+2025-08-01,4,total,Total,17722348,2025
+2025-09-01,4,max,Daily Peak,751801,2025
+2025-09-01,4,mdo,Average on Sundays,240470.75,2025
+2025-09-01,4,mdu,Average on Business Days,697997.4090909091,2025
+2025-09-01,4,msa,Average on Saturdays,369484.5,2025
+2025-09-01,4,total,Total,17795764,2025
+2025-10-01,4,max,Daily Peak,719950,2025
+2025-10-01,4,mdo,Average on Sundays,221164.25,2025
+2025-10-01,4,mdu,Average on Business Days,683606.695652174,2025
+2025-10-01,4,msa,Average on Saturdays,357273,2025
+2025-10-01,4,total,Total,18036703,2025
+2025-11-01,4,max,Daily Peak,738543,2025
+2025-11-01,4,mdo,Average on Sundays,209750.6,2025
+2025-11-01,4,mdu,Average on Business Days,698890.8947368421,2025
+2025-11-01,4,msa,Average on Saturdays,401308.2,2025
+2025-11-01,4,total,Total,16630580,2025
+2025-12-01,4,max,Daily Peak,741991,2025
+2025-12-01,4,mdo,Average on Sundays,247146.75,2025
+2025-12-01,4,mdu,Average on Business Days,589997.7727272727,2025
+2025-12-01,4,msa,Average on Saturdays,369375.75,2025
+2025-12-01,4,total,Total,15549746,2025
+2026-01-01,4,max,Daily Peak,670449,2026
+2026-01-01,4,mdo,Average on Sundays,198918,2026
+2026-01-01,4,mdu,Average on Business Days,590327.5714285715,2026
+2026-01-01,4,msa,Average on Saturdays,321192,2026
+2026-01-01,4,total,Total,14901780,2026
+2026-02-01,4,max,Daily Peak,754749,2026
+2026-02-01,4,mdo,Average on Sundays,285171.75,2026
+2026-02-01,4,mdu,Average on Business Days,676350.8888888889,2026
+2026-02-01,4,msa,Average on Saturdays,399251.75,2026
+2026-02-01,4,total,Total,15568003,2026
+2026-03-01,4,max,Daily Peak,775706,2026
+2026-03-01,4,mdo,Average on Sundays,231139.8,2026
+2026-03-01,4,mdu,Average on Business Days,728803.7727272727,2026
+2026-03-01,4,msa,Average on Saturdays,392497.5,2026
+2026-03-01,4,total,Total,18759372,2026

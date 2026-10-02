@@ -9,23 +9,22 @@
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, 15, or 99 for
-#'     the network total (integer).}
-#'   \item{metric_abb}{Abbreviated metric code (character). One of:
+#'   \item{year}{Calendar year (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{metric}{Metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count, in individual passengers (numeric).}
-#'   \item{metric}{Measurement type in English (character). One of:
+#'   \item{metric_name}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
 #'     \code{"Daily Peak"}.}
-#'   \item{metric_pt}{Measurement type in Portuguese (character). One of:
+#'   \item{metric_name_pt}{Measurement type in Portuguese (character). One of:
 #'     \code{"Total"}, \code{"Média dos Dias Úteis"},
 #'     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 #'     \code{"Máxima Diária"}.}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{value}{Passenger count, in individual passengers (numeric).}
 #' }
 #'
 #' @details
@@ -38,17 +37,22 @@
 #'   \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
 #'     January 2016–July 2018, except July 2017; Insper Dataverse,
 #'     August 2018–2026.
-#'   \item Network total (\code{line_number = 99}): METRO SP transparency
-#'     portal only; may not be available for all years.
 #' }
 #'
 #' METRO published January–September 2017 only as PDFs, with no
 #' machine-readable equivalent. Those months were transcribed from the
-#' reports and reconciled against the printed line and network totals. July
+#' reports and reconciled against the published totals. July
 #' 2017 has no entrance table at all, because the file METRO published under
-#' that name repeats the transported figures. Lines 1, 2, 3, 5, and 15 and
-#' the network total therefore carry no value for that month; Line 4 comes
-#' from the Dataverse and is unaffected.
+#' that name repeats the transported figures. Lines 1, 2, 3, 5, and 15
+#' therefore carry no value for that month; Line 4 comes from the Dataverse
+#' and is unaffected.
+#'
+#' Summing across lines does not give a clean network total. METRO line entries
+#' include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count
+#' turnstiles only, so a Line 4 → Line 1 journey counts twice. Do not sum
+#' `max`: individual lines may peak on different days. See the Metro Demand
+#' Data article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
 #' Metrics:
 #' \itemize{
@@ -81,71 +85,77 @@
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{passengers_transported}} for transported counts,
-#'   \code{\link{station_averages}} for station-level weekday averages.
-"passengers_entrance"
+#' @seealso \code{\link{line_transported_monthly}} for transported counts,
+#'   \code{\link{station_transported_monthly}} for station-level weekday averages.
+"line_entries_monthly"
 
 #' Passengers Transported by Metro SP Line
 #'
 #' Monthly count of passengers transported by São Paulo metro, aggregated
-#' by metro line and reported in \strong{thousands of passengers}. Data covers
-#' January 2016 through 2026 for Lines 1, 2, 3, and 15, and January 2016
-#' through August 2018 for Line 5. Sourced from the METRO SP transparency
-#' portal.
+#' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
+#' and 15; January 2016 through August 2018 for Line 5; and January 2012
+#' through 2026 for Line 4. Sourced from the METRO SP transparency portal
+#' and the Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
-#'   \item{line_number}{Metro line number: 1, 2, 3, 5, 15, or 99 for
-#'     the network total (integer).}
-#'   \item{metric_abb}{Abbreviated metric code (character). One of:
+#'   \item{year}{Calendar year (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{metric}{Metric code (character). One of:
 #'     \code{"total"}, \code{"mdu"}, \code{"msa"}, \code{"mdo"},
 #'     \code{"max"}.}
-#'   \item{value}{Passenger count, in thousands of passengers (numeric).}
-#'   \item{metric}{Measurement type in English (character). One of:
+#'   \item{metric_name}{Measurement type in English (character). One of:
 #'     \code{"Total"}, \code{"Average on Business Days"},
 #'     \code{"Average on Saturdays"}, \code{"Average on Sundays"},
 #'     \code{"Daily Peak"}.}
-#'   \item{metric_pt}{Measurement type in Portuguese (character). One of:
+#'   \item{metric_name_pt}{Measurement type in Portuguese (character). One of:
 #'     \code{"Total"}, \code{"Média dos Dias Úteis"},
 #'     \code{"Média dos Sábados"}, \code{"Média dos Domingos"},
 #'     \code{"Máxima Diária"}.}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{value}{Passengers transported (numeric).}
 #' }
 #'
 #' @details
-#' Values are in thousands of passengers, as published by METRO SP. The other
-#' demand datasets count individual passengers, so multiply by 1000 before
-#' comparing \code{value} with \code{\link{passengers_entrance}}.
+#' A transported passenger is one who boarded a train on that line, whether
+#' through a turnstile or by transferring from another line at an interchange
+#' station. METRO's term is \emph{passageiros transportados}: turnstile
+#' entries plus transfers between lines. Transported counts therefore run
+#' above entry counts for the same line and month. Do not sum this dataset
+#' to estimate unique network passengers: a journey using multiple lines is
+#' counted once on each line. See the Metro Demand Data article for details:
+#' \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 #'
-#' A transported passenger is one who crossed a turnstile plus one who
-#' transferred between lines at an interchange station, so transported counts
-#' run above entry counts for the same line and month.
-#'
-#' All data comes from the METRO SP transparency portal. Line 4 (Amarela)
-#' is not available in this dataset — the Insper Dataverse source does not
-#' include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
+#' Line 4 (Amarela/ViaQuatro) comes from the Insper Dataverse, January
+#' 2012–2026, all five metrics, summing both \code{Bloqueio} (turnstile) and
+#' \code{Integracao} (transfer) boarding types. Line 5 (Lilás) is available
 #' from the METRO portal only for January 2016–August 2018: the line was
 #' handed over to ViaMobilidade in August 2018 and the portal stopped
-#' reporting its transported counts afterwards. The network
-#' total (\code{line_number = 99}) may not be available for all years.
+#' reporting its transported counts afterwards. The Dataverse feed for Line 5
+#' records turnstiles only, so no transported measure exists for it after the
+#' handover. August 2018 covers only the days before the handover: its
+#' \code{total} is a partial month, and \code{msa} and \code{mdo} are
+#' \code{NA}.
+#'
+#' METRO SP publishes these counts in thousands of passengers. They are
+#' multiplied by 1000 here, so \code{value} counts individual passengers like
+#' every other demand dataset and carries METRO's rounding to the thousand.
+#' Line 4 comes from the Dataverse in individual passengers.
 #'
 #' METRO published January–September 2017 only as PDFs, with no
 #' machine-readable equivalent. Those months were transcribed from the
-#' reports and reconciled against the printed line and network totals. June
-#' 2017 is the one month whose network total is missing, because the report
-#' reprinted May's network column; the per-line values for June are sound.
+#' reports and reconciled against the published totals.
 #'
 #' Metrics:
 #' \itemize{
 #'   \item \code{total}: Total passengers in the month.
-#'   \item \code{mdu}: Average daily entries on business days
+#'   \item \code{mdu}: Average daily transported passengers on business days
 #'     (Média dos Dias Úteis).
-#'   \item \code{msa}: Average daily entries on Saturdays
+#'   \item \code{msa}: Average daily transported passengers on Saturdays
 #'     (Média dos Sábados).
-#'   \item \code{mdo}: Average daily entries on Sundays
+#'   \item \code{mdo}: Average daily transported passengers on Sundays
 #'     (Média dos Domingos).
 #'   \item \code{max}: Daily maximum (Máxima Diária).
 #' }
@@ -154,38 +164,50 @@
 #' during assembly; interior \code{NA}s (e.g. operational outages) are
 #' preserved.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{passengers_entrance}} for entry counts,
-#'   \code{\link{station_averages}} for station-level weekday averages.
-"passengers_transported"
+#' @seealso \code{\link{line_entries_monthly}} for entry counts,
+#'   \code{\link{station_transported_monthly}} for station-level weekday averages.
+"line_transported_monthly"
 
-#' Average Weekday Passenger Entries by Station
+#' Average Weekday Passengers Transported by Station
 #'
-#' Monthly average of weekday (business day) passenger entries for each
-#' station in the São Paulo metro system. Data covers January 2016 through
+#' Monthly average of weekday (business day) passengers transported for each
+#' station in the São Paulo metro system. This is METRO's transported
+#' measure — \emph{Demanda de Passageiros por Estação}: boardings on that
+#' line plus transfers from the other lines — not turnstile entries. Summed
+#' over a line's stations it equals the line's \code{mdu} in
+#' \code{\link{line_transported_monthly}}. Data covers January 2016 through
 #' 2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
-#' January 2016. Sourced from the METRO SP transparency portal and the
-#' Insper Dataverse.
+#' January 2016 through July 2018. Sourced from the METRO SP transparency
+#' portal and the Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{First day of the month (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number (integer).}
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Treat as opaque. An interchange complex keeps one id
+#'     across the lines that serve it while each line keeps its own official
+#'     \code{station_name}. Grouping by \code{station_id} on this table gives
+#'     boardings across the complex's platforms, not people entering it.}
 #'   \item{station_name}{Name of the metro station (character).}
-#'   \item{avg_passenger}{Average weekday passenger entries (numeric).}
 #'   \item{line_name}{English name of the metro line (character).}
 #'   \item{line_name_pt}{Portuguese name of the metro line (character).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{metric}{Metric code: \code{"mdu"} (character).}
+#'   \item{metric_name}{Metric name in English (character).}
+#'   \item{metric_name_pt}{Metric name in Portuguese (character).}
+#'   \item{value}{Average weekday passengers transported (numeric).}
 #' }
 #'
 #' @details
 #' Only the weekday average (mdu) metric is available at the station level.
 #' For line-level data with all five metrics, see
-#' \code{\link{passengers_entrance}}. Months beyond the last published data
+#' \code{\link{line_transported_monthly}}. Months beyond the last published data
 #' point for each line are trimmed during assembly; interior \code{NA}s
 #' (e.g. operational outages) are preserved.
 #'
@@ -197,9 +219,12 @@
 #'     portal).
 #'   \item Line 3 (Vermelha/Red): 18 stations, January 2016–2026 (METRO SP
 #'     portal).
-#'   \item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse).
-#'   \item Line 5 (Lilás/Lilac): January 2016–July 2018 (METRO SP portal)
-#'     and August 2018–2026 (Insper Dataverse).
+#'   \item Line 4 (Amarela/Yellow): January 2012–2026 (Insper Dataverse,
+#'     \code{Bloqueio} plus \code{Integracao}).
+#'   \item Line 5 (Lilás/Lilac): January 2016–July 2018 (METRO SP portal).
+#'     From August 2018 the Dataverse feed records turnstiles only, so those
+#'     rows are dropped here; station data for that era lives in
+#'     \code{\link{station_entries_daily}}.
 #'   \item Line 15 (Prata/Silver): 2 stations in 2016–2017 (assisted
 #'     operation: Vila Prudente and Oratório), 10 stations in 2020, 11 from
 #'     January 2021 onward (Jardim Colonial added), January 2016–2026
@@ -211,44 +236,55 @@
 #' reports and reconciled against the published line totals.
 #'
 #' February–June 2016 carries a defect in the Line 1 values. Across those
-#' five months the station figures fall well short of what the surrounding
-#' months and the line total in \code{\link{passengers_entrance}} imply, and
-#' they are misallocated across stations, with Santa Cruz and Sé too high and
+#' five months the station sum runs about 14% below the transported
+#' \code{mdu} in \code{\link{line_transported_monthly}}, and the figures are
+#' misallocated across stations, with Santa Cruz and Sé too high and
 #' São Bento and Portuguesa-Tietê too low. The defect comes from METRO's
 #' retroactive publication of 2016 and is not corrected here, so exclude
 #' those five months from station-level baselines.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{station_daily}} for daily station entries,
-#'   \code{\link{passengers_entrance}} for monthly line-level totals.
-"station_averages"
+#' @seealso \code{\link{station_entries_daily}} for daily station entries,
+#'   \code{\link{line_transported_monthly}} for monthly line-level totals.
+"station_transported_monthly"
 
 #' Daily Passenger Entries by Metro SP Station
 #'
 #' Daily passenger entries at each station in the São Paulo metro system.
-#' Data covers January 2012 through 2026 for Lines 4 and 5 (Insper
-#' Dataverse), and 2020 through 2026 for Lines 1, 2, 3, and 15 (METRO SP
-#' transparency portal).
+#' Data covers January 2012 through 2026 for Line 4 and August 2018 through
+#' 2026 for Line 5 (Insper Dataverse), and 2020 through 2026 for Lines 1, 2,
+#' 3, and 15 (METRO SP transparency portal).
 #'
 #' @format A data frame with the following columns:
 #' \describe{
 #'   \item{date}{Date of observation (Date).}
+#'   \item{year}{Calendar year (integer).}
 #'   \item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Treat as opaque. An interchange complex keeps one id
+#'     across the lines that serve it while each line keeps its own official
+#'     \code{station_name}, so group by \code{station_id} alone to total a
+#'     complex.}
 #'   \item{station_name}{Full station name (character).}
-#'   \item{passengers}{Daily passenger entries (numeric).}
-#'   \item{line_name}{English name of the metro line (character).}
-#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
 #'   \item{station_code}{Three-letter station abbreviation used internally
 #'     by METRO SP (character). \code{NA} for Lines 4 and 5 (Dataverse
 #'     source).}
-#'   \item{year}{Calendar year (integer).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{value}{Daily passenger entries (numeric).}
 #' }
 #'
 #' @details
+#' This is an entries measure — METRO's \emph{Entrada de Passageiros por
+#' Estação}: turnstile entries plus transfers arriving from other operators
+#' (CPTM, Line 4, Line 5), excluding transfers between METRO lines. Station
+#' sums equal the line's \code{total} in
+#' \code{\link{line_entries_monthly}} exactly.
+#'
 #' Station coverage and date range by line:
 #' \itemize{
 #'   \item Line 1 (Azul/Blue): 23 stations, 2020–2026 (METRO SP portal).
@@ -270,14 +306,14 @@
 #' during assembly; interior \code{NA}s (e.g. operational outages) are
 #' preserved.
 #'
-#' @inheritSection passengers_entrance Data vintage
+#' @inheritSection line_entries_monthly Data vintage
 #'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
-#' @seealso \code{\link{station_averages}} for monthly weekday averages,
-#'   \code{\link{passengers_entrance}} for monthly line-level totals.
-"station_daily"
+#' @seealso \code{\link{station_transported_monthly}} for monthly weekday averages,
+#'   \code{\link{line_entries_monthly}} for monthly line-level totals.
+"station_entries_daily"
 
 #' Metro and Train Line Routes
 #'
@@ -289,14 +325,14 @@
 #'   and the following columns:
 #' \describe{
 #'   \item{line_number}{Official line number (integer).}
-#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{line_name}{English color name of the line (character).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{company_name}{Operating company name (character).}
 #'   \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 #'     (character).}
 #'   \item{status}{Either \code{"current"} (operating) or \code{"future"}
 #'     (planned expansion) (character).}
-#'   \item{geometry}{Line route geometry (sfc_LINESTRING).}
+#'   \item{geom}{Line route geometry (sfc_LINESTRING).}
 #' }
 #'
 #' @details
@@ -308,8 +344,8 @@
 #' @source GeoSampa, Prefeitura de São Paulo.
 #'   \url{https://geosampa.prefeitura.sp.gov.br/}
 #'
-#' @seealso \code{\link{stations}} for station point locations.
-"lines"
+#' @seealso \code{\link{rail_stations}} for station point locations.
+"rail_lines"
 
 #' Metro and Train Station Locations
 #'
@@ -320,16 +356,20 @@
 #' @format An sf data frame with POINT geometry (CRS: WGS84 / EPSG:4326)
 #'   and the following columns:
 #' \describe{
+#'   \item{station_id}{Stable identifier for the physical station complex
+#'     (character). Shared across lines and modes; treat as opaque.}
 #'   \item{station_name}{Station name in title case (character).}
+#'   \item{station_code}{Three-letter METRO abbreviation when available
+#'     (character).}
 #'   \item{line_number}{Line number the station belongs to (integer).}
-#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{line_name}{English color name of the line (character).}
+#'   \item{line_name_pt}{Portuguese color name of the line (character).}
 #'   \item{company_name}{Operating company name (character).}
 #'   \item{type}{Either \code{"metro"} (METRO SP) or \code{"train"} (CPTM)
 #'     (character).}
 #'   \item{status}{Either \code{"current"} (operating) or \code{"future"}
 #'     (planned expansion) (character).}
-#'   \item{geometry}{Station location (sfc_POINT).}
+#'   \item{geom}{Station location (sfc_POINT).}
 #' }
 #'
 #' @details
@@ -341,9 +381,9 @@
 #' @source GeoSampa, Prefeitura de São Paulo.
 #'   \url{https://geosampa.prefeitura.sp.gov.br/}
 #'
-#' @seealso \code{\link{lines}} for line route geometries,
-#'   \code{\link{station_averages}} for passenger data by station.
-"stations"
+#' @seealso \code{\link{rail_lines}} for line route geometries,
+#'   \code{\link{station_transported_monthly}} for passenger data by station.
+"rail_stations"
 
 #' Metro SP Official Line Colors
 #'
@@ -367,67 +407,17 @@
 #' currently operating metro lines are included; CPTM train lines and planned
 #' future lines (e.g., Line 6 Orange, Line 17 Gold) are not covered.
 #'
-#' @seealso \code{\link{lines}} for the full line reference (numbers, names,
+#' @seealso \code{\link{rail_lines}} for the full line reference (numbers, names,
 #'   and route geometries).
 "metro_colors"
-
-#' Station Commercial Opening Dates
-#'
-#' Inauguration (commercial opening) dates for São Paulo metro stations,
-#' covering stations whose opening falls within or near the
-#' \code{\link{station_daily}} / \code{\link{station_averages}} window. Used
-#' to flag ramp-up periods in which monthly ridership is still climbing
-#' toward steady-state and should generally be excluded from year-on-year or
-#' baseline comparisons.
-#'
-#' @format A data frame with one row per (line, station):
-#' \describe{
-#'   \item{line_number}{Metro line number (integer).}
-#'   \item{station_name}{Full station name (character).}
-#'   \item{inauguration_date}{Date of commercial opening (Date). \code{NA}
-#'     for stations whose opening predates the dataset window (i.e., they
-#'     were already operating when the data record begins).}
-#'   \item{phase}{Short label identifying the expansion phase, e.g.
-#'     \code{"L15 Fase 4"} (character).}
-#'   \item{verified}{Whether the inauguration date has been cross-checked
-#'     against the operator's announcement or an equivalently reliable
-#'     source (logical). Stations with \code{verified = FALSE} carry
-#'     best-effort dates and should not be relied on for legal or
-#'     publication purposes without re-checking.}
-#'   \item{notes}{Free-text annotations about the source or any caveats
-#'     (character, possibly \code{NA}).}
-#'   \item{pre_data_window}{\code{TRUE} when \code{inauguration_date} is
-#'     \code{NA} because the station opened before the data starts
-#'     (logical).}
-#'   \item{ramp_up_end}{\code{inauguration_date + 180} days — a heuristic
-#'     end of the initial ramp-up period (Date). \code{NA} when
-#'     \code{pre_data_window} is \code{TRUE}.}
-#' }
-#'
-#' @details
-#' The table is compiled by hand from \code{data-raw/inputs/station_inauguration.csv}
-#' in the package repository. Contributions that extend the table or verify
-#' uncertain dates are welcome.
-#'
-#' When computing pre/post comparisons (e.g.\ 12m-vs-prior-12m or
-#' recovery-vs-2019), exclude stations where either window overlaps
-#' \code{ramp_up_end} to avoid mistaking ramp-up growth for organic demand
-#' change.
-#'
-#' @source Compiled from operator announcements (Companhia do Metropolitano
-#'   de São Paulo, ViaQuatro, ViaMobilidade).
-#'
-#' @seealso \code{\link{stations}} for spatial point locations,
-#'   \code{\link{station_averages}} for monthly weekday averages.
-"station_inauguration"
 
 #' São Paulo Holiday and Business-Day Calendar
 #'
 #' A daily calendar for São Paulo (city) covering 2012–2030, classifying each
 #' date as a holiday or business day. Includes national, state, and municipal
 #' holidays in São Paulo, with flags for optional work days
-#' (is_ponto_facultativo) and extended holiday weekends
-#' (is_feriadao).
+#' (\code{is_optional_holiday}) and extended holiday weekends
+#' (\code{is_long_weekend}).
 #'
 #' @format A data frame with one row per day and the following columns:
 #' \describe{
@@ -445,19 +435,19 @@
 #'   \item{holiday_scope}{Scope of the holiday (character).
 #'     One of \code{"national"}, \code{"state"}, or \code{"municipal"};
 #'     \code{NA} on non-holiday dates.}
-#'   \item{is_ponto_facultativo}{\code{TRUE} for holidays that are technically
+#'   \item{is_optional_holiday}{\code{TRUE} for holidays that are technically
 #'     optional at the federal level (Carnaval, Corpus Christi) but observed
 #'     as holidays in São Paulo (logical).}
-#'   \item{is_feriadao}{\code{TRUE} when a holiday falls on Monday, Tuesday,
+#'   \item{is_long_weekend}{\code{TRUE} when a holiday falls on Monday, Tuesday,
 #'     Thursday, or Friday, creating a potential extended weekend with the
 #'     adjacent Saturday/Sunday (logical).}
 #' }
 #'
 #' @details
 #' The calendar covers the full date range of the
-#' \code{\link{station_daily}} dataset (Lines 4/5 from January 2012) and
+#' \code{\link{station_entries_daily}} dataset (Lines 4/5 from January 2012) and
 #' extends through 2030 for forecasting use.
 #'
-#' @seealso \code{\link{station_daily}} for daily passenger data that can be
+#' @seealso \code{\link{station_entries_daily}} for daily passenger data that can be
 #'   joined on \code{date}.
 "calendar_spo"

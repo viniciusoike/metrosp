@@ -222,11 +222,24 @@ split_line_labels <- function(row) {
   labels[nzchar(labels)]
 }
 
-#' Line number behind a raw block label. "REDE" carries no digits: it is the
-#' network total, which the pipeline numbers 99.
+#' Line number behind a raw block label. The published REDE total is retained
+#' as line 99 in the source-faithful intermediate data and removed at assembly.
 label_line_number <- function(labels) {
-  num <- suppressWarnings(as.integer(stringr::str_extract(labels, "\\d{1,2}")))
-  if_else(is.na(num), 99L, num)
+  normalized <- stringr::str_to_upper(stringr::str_squish(labels))
+  is_total <- normalized == "REDE"
+  line_number <- suppressWarnings(
+    as.integer(stringr::str_extract(labels, "\\d{1,2}"))
+  )
+
+  unknown <- is.na(line_number) & !is_total
+  if (any(unknown)) {
+    cli::cli_abort(
+      "Unrecognized line label{?s}: {.val {unique(labels[unknown])}}."
+    )
+  }
+
+  line_number[is_total] <- 99L
+  return(line_number)
 }
 
 # --- Passengers by line (annual files: 2016 and 2020-present) -----------------

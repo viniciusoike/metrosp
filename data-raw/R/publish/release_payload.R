@@ -25,13 +25,25 @@ cache_dir <- function() here::here("data-raw/cache")
 write_release_payload <- function(datasets, dir = cache_dir()) {
   fs::dir_create(dir)
 
+  # Clear what a previous build staged. ci_publish.R uploads whatever sits
+  # here, so a rename would otherwise republish the superseded assets beside
+  # the new ones -- 1.x names carrying 1.x columns, next to 2.0.
+  stale <- list.files(
+    dir,
+    pattern = "[.](rds|json)$",
+    full.names = TRUE
+  )
+  if (length(stale) > 0) {
+    fs::file_delete(stale)
+  }
+
   entries <- list()
 
   for (nm in names(datasets)) {
     x <- datasets[[nm]]
     path <- file.path(dir, paste0(nm, ".rds"))
-    # compress = "xz" keeps station_daily (the only large one) modest over the
-    # wire; the cost is build-time only.
+    # compress = "xz" keeps station_entries_daily (the only large one) modest
+    # over the wire; the cost is build-time only.
     saveRDS(x, path, compress = "xz")
 
     entries[[nm]] <- c(

@@ -25,6 +25,20 @@ standardize_company <- function(x) {
   )
 }
 
+# GeoSampa still files Line 5 under METRO. Its geometries have no time
+# dimension, so use the current operator unconditionally.
+correct_line_operator <- function(dat) {
+  dat <- dat |>
+    mutate(
+      company_name = if_else(
+        type == "metro" & line_number == 5L,
+        "ViaMobilidade",
+        company_name
+      )
+    )
+  return(dat)
+}
+
 standardize_stations <- function(x) {
   dplyr::replace_values(
     x,
@@ -131,6 +145,7 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
   cols_select <- c(
     "company_name",
     "station_name",
+    "station_code",
     "line_number",
     "line_name",
     "line_name_pt"
@@ -159,6 +174,8 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
       bind_rows(dim_station_code, dim_station_lilac),
       by = c("station_name", "line_number")
     )
+  } else {
+    clean_dat <- mutate(clean_dat, station_code = NA_character_)
   }
 
   clean_dat <- select(clean_dat, all_of(cols_select))
@@ -171,7 +188,9 @@ geo_clean_stations <- function(dat, station_code = TRUE) {
 #' @param geosampa_files Character vector of GPKG paths (or the directory).
 #' @return list(lines = <sf>, stations = <sf>).
 build_geosampa <- function(
-  geosampa_files = here::here("data-raw/inputs/geosampa")
+  geosampa_files,
+  dim_station,
+  dim_station_alias
 ) {
   dir_geo <- if (length(geosampa_files) == 1 && dir.exists(geosampa_files)) {
     geosampa_files
@@ -191,7 +210,18 @@ build_geosampa <- function(
   train_lines <- purrr::map(train_lines, geo_clean_lines)
   tab_train_lines <- bind_rows(train_lines, .id = "status")
 
-  lines <- bind_rows(tab_metro_lines, tab_train_lines)
+  lines <- bind_rows(tab_metro_lines, tab_train_lines) |>
+    mutate(line_number = as.integer(line_number))
+  lines <- correct_line_operator(lines) |>
+    select(
+      line_number,
+      line_name,
+      line_name_pt,
+      company_name,
+      type,
+      status,
+      geom
+    )
 
   # --- Metro stations (custom current/future ordering) ---
   path_files <- list.files(dir_geo, pattern = "estacaometro", full.names = TRUE)
@@ -238,9 +268,29 @@ build_geosampa <- function(
     list("train" = tab_train_stations, "metro" = tab_metro_stations),
     .id = "type"
   )
+  stations <- correct_line_operator(stations)
 
+  station_sources <- if_else(
+    stations$type == "metro",
+    "geosampa_metro",
+    "geosampa_train"
+  )
   stations <- stations |>
-    arrange(type, line_number, station_name)
+    resolve_stations(station_sources, dim_station, dim_station_alias) |>
+    mutate(line_number = as.integer(line_number)) |>
+    arrange(type, line_number, station_name) |>
+    select(
+      station_id,
+      station_name,
+      station_code,
+      line_number,
+      line_name,
+      line_name_pt,
+      company_name,
+      type,
+      status,
+      geom
+    )
 
   list(lines = lines, stations = stations)
 }

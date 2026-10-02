@@ -2,27 +2,31 @@
 % Please edit documentation in R/cache.R
 \name{metrosp_cache_clear}
 \alias{metrosp_cache_clear}
-\title{Delete cached datasets}
+\title{Delete cached Metro SP data}
 \usage{
 metrosp_cache_clear(vintage = NULL)
 }
 \arguments{
 \item{vintage}{Vintage to remove, such as \code{"latest"} or \code{"2026-09"}. When
-\code{NULL}, removes every cached vintage.}
+\code{NULL}, removes every package-managed \code{data-latest} or \code{data-YYYY-MM}
+vintage directory. The cache root and unrelated files are preserved.}
 }
 \value{
 The number of files removed, invisibly.
 }
 \description{
-Delete cached datasets
+Delete cached Metro SP data
 }
 \examples{
-\dontrun{
+# Point the cache at a temporary directory so the example leaves yours alone.
+old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+
 metrosp_cache_clear("2026-09")
 metrosp_cache_clear()
-}
+
+options(old)
 
 }
 \seealso{
-\code{\link[=metrosp_cache_dir]{metrosp_cache_dir()}}, \code{\link[=metrosp_cache_list]{metrosp_cache_list()}}.
+\code{\link[=metrosp_cache]{metrosp_cache()}} to inspect cached files.
 }
