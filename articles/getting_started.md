@@ -21,41 +21,42 @@ library(dplyr)
 
 There are four main datasets:
 
-- `passengers_entrance`: monthly passengers entering the metro system,
+- `line_entries_monthly`: monthly passengers entering the metro system,
   by line
-- `passengers_transported`: monthly passengers transported by the metro
-  system, by line
-- `station_averages`: monthly average of weekday passengers per station
-- `station_daily`: daily passengers per station
+- `line_transported_monthly`: monthly passengers transported by the
+  metro system, by line
+- `station_transported_monthly`: monthly average of weekday passengers
+  per station
+- `station_entries_daily`: daily passengers per station
 
 For convenience, `metrosp` also provides information on stations and
-lines of the metro system (`lines` and `stations`). The `lines` dataset
-is a spatial dataset and requires the `sf` package to work properly; it
-carries the line numbers and Portuguese/English line names for the full
-network (including planned and CPTM lines).
+lines of the metro system (`rail_lines` and `rail_stations`). The
+`rail_lines` dataset is a spatial dataset and requires the `sf` package
+to work properly; it carries the line numbers and Portuguese/English
+line names for the full network (including planned and CPTM lines).
 
 ``` r
 
 library(sf)
 
-lines
+rail_lines
 #> Simple feature collection with 55 features and 6 fields
 #> Geometry type: GEOMETRY
 #> Dimension:     XY
 #> Bounding box:  xmin: -46.98358 ymin: -23.77875 xmax: -46.18294 ymax: -23.19513
 #> Geodetic CRS:  WGS 84
 #> First 10 features:
-#>     status company_name line_number  type line_name_pt line_name
-#> 1  current        Metrô           1 metro         Azul      Blue
-#> 2  current        Metrô           2 metro        Verde     Green
-#> 3  current        Metrô           3 metro     Vermelha       Red
-#> 4  current        Metrô           5 metro        Lilás     Lilac
-#> 5  current        Metrô          15 metro        Prata    Silver
-#> 6  current    ViaQuatro           4 metro      Amarela    Yellow
-#> 7   future        Metrô           2 metro        Verde     Green
-#> 8   future        Metrô           2 metro        Verde     Green
-#> 9   future        Metrô           2 metro        Verde     Green
-#> 10  future        Metrô          15 metro        Prata    Silver
+#>    line_number line_name line_name_pt  company_name  type  status
+#> 1            1      Blue         Azul         Metrô metro current
+#> 2            2     Green        Verde         Metrô metro current
+#> 3            3       Red     Vermelha         Metrô metro current
+#> 4            5     Lilac        Lilás ViaMobilidade metro current
+#> 5           15    Silver        Prata         Metrô metro current
+#> 6            4    Yellow      Amarela     ViaQuatro metro current
+#> 7            2     Green        Verde         Metrô metro  future
+#> 8            2     Green        Verde         Metrô metro  future
+#> 9            2     Green        Verde         Metrô metro  future
+#> 10          15    Silver        Prata         Metrô metro  future
 #>                              geom
 #> 1  LINESTRING (-46.60291 -23.4...
 #> 2  LINESTRING (-46.69089 -23.5...
@@ -70,8 +71,7 @@ lines
 ```
 
 The package also provides a named vector of colors for each line of the
-metro system (`metro_colors`), station opening dates
-(`station_inauguration`), and a São Paulo holiday and business-day
+metro system (`metro_colors`) and a São Paulo holiday and business-day
 calendar (`calendar_spo`).
 
 ``` r
@@ -85,18 +85,18 @@ Using the datasets is straightforward, just call the dataset name.
 
 ``` r
 
-glimpse(passengers_entrance)
-#> Rows: 4,620
+glimpse(line_entries_monthly)
+#> Rows: 3,990
 #> Columns: 9
-#> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
-#> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
-#> $ metric_abb   <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…
-#> $ value        <dbl> 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 1314…
-#> $ metric       <chr> "Daily Peak", "Average on Sundays", "Average on Business …
-#> $ metric_pt    <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…
-#> $ line_name    <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…
-#> $ line_name_pt <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…
-#> $ year         <dbl> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…
+#> $ date           <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…
+#> $ year           <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…
+#> $ line_number    <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+#> $ line_name      <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…
+#> $ line_name_pt   <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …
+#> $ metric         <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu…
+#> $ metric_name    <chr> "Daily Peak", "Average on Sundays", "Average on Busines…
+#> $ metric_name_pt <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias …
+#> $ value          <dbl> 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 13…
 ```
 
 All datasets are returned as `tibble` so using the `dplyr` package is
@@ -113,20 +113,20 @@ reads from there.
 ``` r
 
 # Latest published data
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned monthly batch, named in the analysis that used it
-entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
-Downloads go to a temporary directory until you allow a persistent cache
-with
-[`metrosp_cache_enable()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.md);
-[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md)
-and
+Downloads use the platform-specific user cache returned by
+[`tools::R_user_dir()`](https://rdrr.io/r/tools/userdir.html).
+[`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md)
+lists its contents and
 [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
-manage it afterwards. Columns match the bundled datasets, so code
-written against one works with the other.
+removes them; set `cache = FALSE` to keep a download only for the
+current session. Columns match the bundled datasets, so code written
+against one works with the other.
 
 The rest of this tutorial uses the bundled data, which needs no
 download.
@@ -163,7 +163,7 @@ theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
 
 ### Entrance and Transported
 
-Both `passengers_entrance` and `passengers_transported` are monthly
+Both `line_entries_monthly` and `line_transported_monthly` are monthly
 series by line. An entry is a passenger crossing a turnstile; a
 transported passenger is a turnstile entry plus a transfer between lines
 at an interchange station, so transported counts run above entry counts
@@ -180,33 +180,35 @@ The data is aggregated into metrics:
 #### Entrance
 
 This dataset is identified by month (`date`), line (`line_number`,
-`line_name`), and metric (`metric_abb`, `metric`). The data is in tidy
+`line_name`), and metric (`metric`, `metric_name`). The data is in tidy
 format and values are in **individual passengers**.
 
 ``` r
 
-glimpse(passengers_entrance)
-#> Rows: 4,620
+glimpse(line_entries_monthly)
+#> Rows: 3,990
 #> Columns: 9
-#> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
-#> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
-#> $ metric_abb   <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…
-#> $ value        <dbl> 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 1314…
-#> $ metric       <chr> "Daily Peak", "Average on Sundays", "Average on Business …
-#> $ metric_pt    <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…
-#> $ line_name    <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…
-#> $ line_name_pt <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…
-#> $ year         <dbl> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…
+#> $ date           <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…
+#> $ year           <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…
+#> $ line_number    <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+#> $ line_name      <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…
+#> $ line_name_pt   <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …
+#> $ metric         <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu…
+#> $ metric_name    <chr> "Daily Peak", "Average on Sundays", "Average on Busines…
+#> $ metric_name_pt <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias …
+#> $ value          <dbl> 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 13…
 ```
 
-Note that a special line was defined to aggregate the total of the METRÔ
-system (`line_name = "METRO System"` or `line_number = 99`). For most
-uses, it’s best to filter out this line.
+Because METRO line entries include transfers arriving from Lines 4 and
+5, while Lines 4 and 5 count turnstiles only, summing across all six
+lines counts a Line 4 → Line 1 journey twice. No clean network total
+exists across operators. Do not sum `max`: individual lines may peak on
+different days.
 
 ``` r
 
-total_entrance <- passengers_entrance |>
-  filter(metric_abb == "total", line_number != 99)
+total_entrance <- line_entries_monthly |>
+  filter(metric == "total")
 ```
 
 The plot shows the total monthly passenger entrances by metro line. Line
@@ -235,39 +237,39 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
 
 #### Transported
 
-This dataset has the same columns as `passengers_entrance`, but values
-are in **thousands of passengers**, as METRÔ publishes them. Multiply by
-1000 before comparing the two datasets.
+This dataset has the same columns and unit as `line_entries_monthly`.
+METRÔ publishes it in thousands, so values are rounded to the thousand;
+Line 4 comes from the Dataverse in individual passengers.
 
-Coverage is limited to the METRÔ-operated system. Line 4 never appears,
-and Line 5 stops in August 2018, when the line passed to ViaMobilidade:
-the Dataverse source that covers both lines does not publish transported
-counts.
+Line 4 runs from January 2012 with all five metrics, summing turnstile
+entries and transfers. Line 5 stops in August 2018, when the line passed
+to ViaMobilidade: the Dataverse feed records turnstiles only, so no
+transported measure exists for it afterward.
 
 ``` r
 
-glimpse(passengers_transported)
-#> Rows: 3,335
+glimpse(line_transported_monthly)
+#> Rows: 3,555
 #> Columns: 9
-#> $ date         <date> 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…
-#> $ line_number  <dbl> 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …
-#> $ metric_abb   <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…
-#> $ value        <dbl> 1301, 453, 1202, 691, 29345, 622, 173, 574, 251, 13328, 1…
-#> $ metric       <chr> "Daily Peak", "Average on Sundays", "Average on Business …
-#> $ metric_pt    <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…
-#> $ line_name    <chr> "Blue", "Blue", "Blue", "Blue", "Blue", "Green", "Green",…
-#> $ line_name_pt <chr> "Azul", "Azul", "Azul", "Azul", "Azul", "Verde", "Verde",…
-#> $ year         <dbl> 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 201…
+#> $ date           <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…
+#> $ year           <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…
+#> $ line_number    <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+#> $ line_name      <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…
+#> $ line_name_pt   <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …
+#> $ metric         <chr> "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu…
+#> $ metric_name    <chr> "Daily Peak", "Average on Sundays", "Average on Busines…
+#> $ metric_name_pt <chr> "Máxima Diária", "Média dos Domingos", "Média dos Dias …
+#> $ value          <dbl> 573606.0, 128101.0, 494526.9, 214406.5, 12377723.0, 665…
 ```
 
-Note that a special line was defined to aggregate the total of the METRÔ
-system (`line_name = "METRO System"` or `line_number = 99`). For most
-uses, it’s best to filter out this line.
+A transported passenger is counted on every line used. Summing the lines
+therefore double-counts interchange journeys and should not be
+interpreted as the number of unique passengers in the network.
 
 ``` r
 
-daily_avg <- passengers_transported |>
-  filter(metric_abb == "mdu", line_number != 99)
+daily_avg <- line_transported_monthly |>
+  filter(metric == "mdu")
 ```
 
 The plot below shows the daily average (business days) passengers
@@ -284,7 +286,7 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
   scale_color_manual(values = metro_colors) +
   labs(
     title = "Daily Average Passenger Transported by Line",
-    subtitle = "Monthly averages across business days (thousands)",
+    subtitle = "Monthly averages across business days",
     x = NULL,
     y = "Daily Average"
   ) +
@@ -294,25 +296,33 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
 
 ![](getting_started_files/figure-html/unnamed-chunk-11-1.png)
 
-### Station Averages
+### Station Transported
 
 This dataset is identified by month (`date`), line (`line_number`,
-`line_name`), and station (`station_name`). The only value column
-available is `avg_passenger`, which is the daily average (business days)
-of passengers entering the station.
+`line_name`), physical station (`station_id`), and the constant `mdu`
+metric. `station_name` is the current display label and `value` is the
+daily average on business days. It measures transported passengers —
+boardings plus transfers — so grouping by `station_id` gives boardings
+across a complex’s platforms, not people entering it. Line 5 covers
+January 2016–July 2018 only; later station data lives in
+`station_entries_daily`.
 
 ``` r
 
-glimpse(station_averages)
-#> Rows: 11,281
-#> Columns: 7
-#> $ date          <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…
-#> $ line_number   <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…
-#> $ station_name  <chr> "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros",…
-#> $ avg_passenger <dbl> 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 9919…
-#> $ line_name     <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yello…
-#> $ line_name_pt  <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "…
-#> $ year          <dbl> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 20…
+glimpse(station_transported_monthly)
+#> Rows: 9,711
+#> Columns: 11
+#> $ date           <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…
+#> $ year           <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…
+#> $ line_number    <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…
+#> $ station_id     <chr> "butanta", "faria-lima", "luz", "consolacao-paulista", …
+#> $ station_name   <chr> "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros"…
+#> $ line_name      <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…
+#> $ line_name_pt   <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …
+#> $ metric         <chr> "mdu", "mdu", "mdu", "mdu", "mdu", "mdu", "mdu", "mdu",…
+#> $ metric_name    <chr> "Average on Business Days", "Average on Business Days",…
+#> $ metric_name_pt <chr> "Média dos Dias Úteis", "Média dos Dias Úteis", "Média …
+#> $ value          <dbl> 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 991…
 ```
 
 The plot below shows the daily average (business days) passengers
@@ -324,10 +334,10 @@ Code
 
 ``` r
 
-line4st <- station_averages |>
+line4st <- station_transported_monthly |>
   filter(line_number == 4)
 
-ggplot(line4st, aes(x = date, y = avg_passenger)) +
+ggplot(line4st, aes(x = date, y = value)) +
   geom_line(lwd = 0.8, color = metro_colors["Yellow"]) +
   facet_wrap(vars(station_name), scales = "free_y") +
   labs(
@@ -343,25 +353,25 @@ ggplot(line4st, aes(x = date, y = avg_passenger)) +
 ### Station Daily
 
 This dataset is identified by day (`date`), line (`line_number`,
-`line_name`), and station (`station_name`). The only value column
-available is `passengers`, which is the daily number of passengers
-entering the station. Additionally, the column `station_code` contains
-three-letter abbreviations for stations, but only for METRÔ-operated
-lines.
+`line_name`), and physical station (`station_id`). `station_name` is the
+current display label and `value` is the daily number of passengers
+entering the station. Additionally, `station_code` contains three-letter
+abbreviations for stations, but only for METRÔ-operated lines.
 
 ``` r
 
-glimpse(station_daily)
+glimpse(station_entries_daily)
 #> Rows: 244,174
-#> Columns: 8
+#> Columns: 9
 #> $ date         <date> 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…
-#> $ line_number  <dbl> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
+#> $ year         <int> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…
+#> $ line_number  <int> 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …
+#> $ station_id   <chr> "butanta", "faria-lima", "luz", "consolacao-paulista", "p…
 #> $ station_name <chr> "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros", …
-#> $ passengers   <dbl> 7742, 4737, 695, 2277, 332, 25317, 21930, 3923, 14356, 39…
+#> $ station_code <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
 #> $ line_name    <chr> "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…
 #> $ line_name_pt <chr> "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…
-#> $ station_code <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-#> $ year         <dbl> 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…
+#> $ value        <dbl> 7742, 4737, 695, 2277, 332, 25317, 21930, 3923, 14356, 39…
 ```
 
 The plot below shows the trend of daily passengers entering each station
@@ -371,10 +381,10 @@ Code
 
 ``` r
 
-line4st_daily <- station_daily |>
+line4st_daily <- station_entries_daily |>
   filter(line_number == 4, year == 2023)
 
-ggplot(line4st_daily, aes(x = date, y = passengers)) +
+ggplot(line4st_daily, aes(x = date, y = value)) +
   geom_smooth(
     lwd = 0.8,
     color = metro_colors["Yellow"],

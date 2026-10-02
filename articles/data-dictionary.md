@@ -13,27 +13,28 @@ line level, and two at the station level.
 
 | Dataset | Description | Unit | Time span | Frequency |
 |----|----|----|----|----|
-| `passengers_entrance` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly |
-| `passengers_transported` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Thousand passengers | 2016–2026 | Monthly |
-| `station_averages` | Average business day passenger entries per station, aggregated by month. | Passengers | 2012–2026 | Monthly |
-| `station_daily` | Daily passenger entries at each station. | Passengers | 2012–2026 | Daily |
+| `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly |
+| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2012–2026 | Monthly |
+| `station_transported_monthly` | Average business day passengers transported per station, aggregated by month. | Passengers | 2012–2026 | Monthly |
+| `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012–2026 | Daily |
 
 Demand datasets {.table .caption-top}
 
-A **passenger entry** is a passenger who crossed the station’s turnstile
-gates. A **transported passenger** is one who either crossed the
-turnstile gates or changed between lines at an interchange station, so
-transported counts are always equal to or greater than entry counts.
+A **passenger entry** (*entrada de passageiros*) is a passenger who
+crossed the station’s turnstile gates (*linha de bloqueios*). A
+**transported passenger** (*passageiro transportado*) is one who boarded
+a train on that line, whether through a turnstile or by transferring
+from another line at an interchange station, so transported counts are
+always equal to or greater than entry counts.
 
-Three of these datasets count individual passengers and cover every
-metro line. `passengers_transported` is the exception. It reports
-thousands of passengers, has no data for Line 4, and covers Line 5 only
-through August 2018. Multiply its `value` by 1000 before comparing it
-with the other datasets.
+All four datasets count individual passengers.
+`line_transported_monthly` covers Line 4 from 2012 and Line 5 only
+through August 2018; `station_transported_monthly` covers Line 5 only
+through July 2018.
 
-Five further datasets support analysis. `lines` and `stations` carry
-route and station geometries; `station_inauguration`, `calendar_spo`,
-and `metro_colors` are lookup tables.
+Four further datasets support analysis. `rail_lines` and `rail_stations`
+carry route and station geometries; `calendar_spo` and `metro_colors`
+are lookup tables.
 
 ### Data vintage
 
@@ -52,10 +53,10 @@ reads the most recently published data instead, from the rolling
 library(metrosp)
 
 # Latest published data
-entrance <- read_metro_demand("passengers_entrance")
+entrance <- read_metro_demand("line_entries_monthly")
 
 # A pinned monthly batch
-entrance_sep <- read_metro_demand("passengers_entrance", vintage = "2026-09")
+entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
 Columns are identical across sources, so everything below applies to
@@ -67,12 +68,12 @@ Three producers stand behind these datasets.
 
 | Dataset | Granularity | Producer | Line coverage |
 |----|----|----|----|
-| `passengers_entrance` | line $`\times`$ month $`\times`$ metric | METRO + Dataverse | All |
-| `passengers_transported` | line $`\times`$ month $`\times`$ metric | METRO | Lines 1, 2, 3, 5, and 15 |
-| `station_averages` | station $`\times`$ month | METRO + Dataverse | All |
-| `station_daily` | station $`\times`$ day | METRO + Dataverse | All |
-| `lines` | line (spatial) | GeoSampa | All |
-| `stations` | station (spatial) | GeoSampa | All |
+| `line_entries_monthly` | line $`\times`$ month $`\times`$ metric | METRO + Dataverse | All |
+| `line_transported_monthly` | line $`\times`$ month $`\times`$ metric | METRO + Dataverse | Lines 1, 2, 3, 4, 5, and 15 |
+| `station_transported_monthly` | station $`\times`$ month | METRO + Dataverse | Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15 |
+| `station_entries_daily` | station $`\times`$ day | METRO + Dataverse | All |
+| `rail_lines` | line (spatial) | GeoSampa | All |
+| `rail_stations` | station (spatial) | GeoSampa | All |
 
 Producer and granularity by dataset {.table .caption-top}
 
@@ -94,6 +95,13 @@ combining the two.
 Paulo’s open geospatial platform. Both currently operating and planned
 infrastructure are included.
 
+**Station identity.** `station_id` identifies a physical station
+complex, while `station_name` retains the official name used by each
+station member. Complex membership is maintained in a committed
+crosswalk from official network sources; it is not inferred from name
+similarity or distance. Thus Consolação and Paulista retain different
+names but share one `station_id`.
+
 The term *producer* is deliberate. Combining these sources takes
 substantial cleaning, and the pipeline that does it lives in the
 package’s [GitHub
@@ -101,7 +109,7 @@ repository](https://github.com/viniciusoike/metrosp/tree/main/data-raw).
 
 ## Demand datasets
 
-### `passengers_entrance`
+### `line_entries_monthly`
 
 Monthly passenger entries by metro line and day-type metric, in
 individual passengers.
@@ -109,21 +117,27 @@ individual passengers.
 | Column | Type | Description |
 |----|----|----|
 | `date` | Date | First day of the month |
-| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, 15, or 99 for the network total) |
-| `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
-| `value` | numeric | Passenger count |
-| `metric` | character | Metric label in English |
-| `metric_pt` | character | Metric label in Portuguese |
+| `year` | integer | Calendar year |
+| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, or 15) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
-| `year` | integer | Calendar year |
+| `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Passenger count |
 
-`passengers_entrance` columns {.table .caption-top}
+`line_entries_monthly` columns {.table .caption-top}
+
+The `total`, `mdu`, `msa`, and `mdo` metrics cannot be summed into a
+clean network total across operators: METRO line entries include
+transfers arriving from Lines 4 and 5, while Lines 4 and 5 count
+turnstiles only. The `max` metric cannot be summed either: individual
+lines may peak on different days.
 
 #### Day-type metrics
 
 METRO breaks each month into five metrics, shared by
-`passengers_entrance` and `passengers_transported`.
+`line_entries_monthly` and `line_transported_monthly`.
 
 | Code    | English                       | Portuguese           |
 |---------|-------------------------------|----------------------|
@@ -135,122 +149,118 @@ METRO breaks each month into five metrics, shared by
 
 Metric definitions {.table .caption-top}
 
-### `passengers_transported`
+### `line_transported_monthly`
 
-Monthly passengers transported by metro line and day-type metric, in
-**thousands of passengers**.
+Monthly passengers transported by metro line and day-type metric.
 
 | Column | Type | Description |
 |----|----|----|
 | `date` | Date | First day of the month |
-| `line_number` | integer | Line identifier (1, 2, 3, 5, 15, or 99 for the network total) |
-| `metric_abb` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
-| `value` | numeric | Passenger count, in thousands |
-| `metric` | character | Metric label in English |
-| `metric_pt` | character | Metric label in Portuguese |
+| `year` | integer | Calendar year |
+| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, or 15) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
+| `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Passengers transported |
+
+`line_transported_monthly` columns {.table .caption-top}
+
+Transported counts cannot be summed into a unique network count: a
+journey using multiple lines is counted once on each line.
+
+### `station_transported_monthly`
+
+Monthly average weekday passengers transported per station. Only the
+weekday average is available at the station level;
+`line_transported_monthly` carries all five metrics at the line level.
+Grouping by `station_id` gives boardings across a complex’s platforms,
+not people entering it. Line 5 covers January 2016–July 2018 only.
+
+| Column | Type | Description |
+|----|----|----|
+| `date` | Date | First day of the month |
 | `year` | integer | Calendar year |
+| `line_number` | integer | Line identifier |
+| `station_id` | character | Stable, opaque physical-station identifier |
+| `station_name` | character | Full station name |
+| `line_name` | character | Line color in English |
+| `line_name_pt` | character | Line color in Portuguese |
+| `metric` | character | Metric code, always `mdu` |
+| `metric_name` | character | Metric label in English |
+| `metric_name_pt` | character | Metric label in Portuguese |
+| `value` | numeric | Average weekday (business day) transported passengers |
 
-`passengers_transported` columns {.table .caption-top}
+`station_transported_monthly` columns {.table .caption-top}
 
-### `station_averages`
+### `station_entries_daily`
 
-Monthly average weekday passenger entries per station. Only the weekday
-average is available at the station level; `passengers_entrance` carries
-all five metrics at the line level.
-
-| Column          | Type      | Description                            |
-|-----------------|-----------|----------------------------------------|
-| `date`          | Date      | First day of the month                 |
-| `line_number`   | integer   | Line identifier                        |
-| `station_name`  | character | Full station name                      |
-| `avg_passenger` | numeric   | Average weekday (business day) entries |
-| `line_name`     | character | Line color in English                  |
-| `line_name_pt`  | character | Line color in Portuguese               |
-| `year`          | integer   | Calendar year                          |
-
-`station_averages` columns {.table .caption-top}
-
-### `station_daily`
-
-Daily passenger entries at each station.
+Daily passenger entries at each station: turnstile entries plus
+transfers arriving from other operators, excluding transfers between
+METRO lines. Station sums equal the line’s `total` in
+`line_entries_monthly`.
 
 | Column | Type | Description |
 |----|----|----|
 | `date` | Date | Date of observation |
+| `year` | integer | Calendar year |
 | `line_number` | integer | Line identifier |
+| `station_id` | character | Stable, opaque physical-station identifier |
 | `station_name` | character | Full station name |
-| `passengers` | numeric | Daily passenger entries |
+| `station_code` | character | Three-letter METRO abbreviation (`NA` for Lines 4–5) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
-| `station_code` | character | Three-letter METRO abbreviation (`NA` for Lines 4–5) |
-| `year` | integer | Calendar year |
+| `value` | numeric | Daily passenger entries |
 
-`station_daily` columns {.table .caption-top}
+`station_entries_daily` columns {.table .caption-top}
 
 ## Spatial datasets
 
-`lines` and `stations` are `sf` objects in WGS 84 (EPSG:4326). Both
-cover METRO SP and CPTM commuter rail, operating and planned.
+`rail_lines` and `rail_stations` are `sf` objects in WGS 84 (EPSG:4326).
+Both cover METRO SP and CPTM commuter rail, operating and planned.
 
-### `lines`
+### `rail_lines`
 
 | Column | Type | Description |
 |----|----|----|
 | `line_number` | integer | Official line number |
-| `line_name_pt` | character | Line color in Portuguese |
 | `line_name` | character | Line color in English |
+| `line_name_pt` | character | Line color in Portuguese |
 | `company_name` | character | Operator (Metrô, ViaQuatro, ViaMobilidade, CPTM) |
 | `type` | character | `"metro"` (underground) or `"train"` (CPTM commuter rail) |
 | `status` | character | `"current"` (operating) or `"future"` (planned) |
-| `geometry` | LINESTRING | Route geometry |
+| `geom` | LINESTRING | Route geometry |
 
-`lines` columns {.table .caption-top}
+`rail_lines` columns {.table .caption-top}
 
-### `stations`
+### `rail_stations`
 
-| Column         | Type      | Description               |
-|----------------|-----------|---------------------------|
-| `station_name` | character | Station name (title case) |
-| `line_number`  | integer   | Line number               |
-| `line_name_pt` | character | Line color in Portuguese  |
-| `line_name`    | character | Line color in English     |
-| `company_name` | character | Operator                  |
-| `type`         | character | `"metro"` or `"train"`    |
-| `status`       | character | `"current"` or `"future"` |
-| `geometry`     | POINT     | Station location          |
+| Column         | Type      | Description                                    |
+|----------------|-----------|------------------------------------------------|
+| `station_id`   | character | Stable, opaque physical-station identifier     |
+| `station_name` | character | Station name (title case)                      |
+| `station_code` | character | Three-letter METRO abbreviation when available |
+| `line_number`  | integer   | Line number                                    |
+| `line_name`    | character | Line color in English                          |
+| `line_name_pt` | character | Line color in Portuguese                       |
+| `company_name` | character | Operator                                       |
+| `type`         | character | `"metro"` or `"train"`                         |
+| `status`       | character | `"current"` or `"future"`                      |
+| `geom`         | POINT     | Station location                               |
 
-`stations` columns {.table .caption-top}
+`rail_stations` columns {.table .caption-top}
 
 Transfer stations such as Sé, Paraíso, and Ana Rosa appear once per line
 they serve.
 
 ## Reference datasets
 
-### `station_inauguration`
-
-Commercial opening dates by station, compiled by hand and still
-incomplete.
-
-| Column | Type | Description |
-|----|----|----|
-| `line_number` | integer | Line number |
-| `station_name` | character | Full station name |
-| `inauguration_date` | Date | Commercial opening date. `NA` for stations that opened before the data window |
-| `phase` | character | Expansion phase label |
-| `verified` | logical | `TRUE` once the date has been cross-checked against a source |
-| `notes` | character | Free-text annotations on the source or caveats |
-| `pre_data_window` | logical | `TRUE` when the station opened before the data window |
-| `ramp_up_end` | Date | `inauguration_date + 180` days, the end of the ramp-up window to exclude from baselines |
-
-`station_inauguration` columns {.table .caption-top}
-
 ### `calendar_spo`
 
 Daily calendar for the city of São Paulo, 2012–2030, flagging national,
 state, and municipal holidays. Join on `date` to build business-day
-aggregates from `station_daily`.
+aggregates from `station_entries_daily`.
 
 | Column | Type | Description |
 |----|----|----|
@@ -262,8 +272,8 @@ aggregates from `station_daily`.
 | `is_business_day` | logical | `TRUE` when the date is neither a weekend nor a holiday |
 | `holiday_name` | character | Holiday name in Portuguese, `NA` otherwise |
 | `holiday_scope` | character | `"national"`, `"state"`, or `"municipal"` |
-| `is_ponto_facultativo` | logical | `TRUE` for optional holidays, such as Carnaval Monday |
-| `is_feriadao` | logical | `TRUE` when a holiday falls on a Monday, Tuesday, Thursday, or Friday |
+| `is_optional_holiday` | logical | `TRUE` for optional holidays, such as Carnaval Monday |
+| `is_long_weekend` | logical | `TRUE` when a holiday falls on a Monday, Tuesday, Thursday, or Friday |
 
 `calendar_spo` columns {.table .caption-top}
 

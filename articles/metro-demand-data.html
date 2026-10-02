@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,23 +111,23 @@ table {
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
-<td><code>passengers_entrance</code></td>
+<td><code>line_entries_monthly</code></td>
 </tr>
 <tr class="even">
 <td>Transported passengers per line</td>
-<td>Number of transported passengers, measured by the station’s turnstiles plus transfers between lines at interchange stations.</td>
-<td>Thousand passengers</td>
-<td>2016–2026</td>
-<td>Monthly</td>
-<td><code>passengers_transported</code></td>
-</tr>
-<tr class="odd">
-<td>Station-level averages</td>
-<td>Average business day passenger entries per station, aggregated by month.</td>
+<td>Number of transported passengers, measured by boardings plus transfers between lines at interchange stations.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
-<td><code>station_averages</code></td>
+<td><code>line_transported_monthly</code></td>
+</tr>
+<tr class="odd">
+<td>Station-level transported</td>
+<td>Average business day passengers transported per station, aggregated by month.</td>
+<td>Passengers</td>
+<td>2012–2026</td>
+<td>Monthly</td>
+<td><code>station_transported_monthly</code></td>
 </tr>
 <tr class="even">
 <td>Station-level daily</td>
@@ -135,12 +135,12 @@ table {
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Daily</td>
-<td><code>station_daily</code></td>
+<td><code>station_entries_daily</code></td>
 </tr>
 </tbody>
 </table>
-<p>Three of these datasets count <strong>individual passengers</strong> and cover every metro line. <code>passengers_transported</code> is the exception: it reports <strong>thousands of passengers</strong>, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its <code>value</code> by 1000 before comparing it with the other datasets.</p>
-<p>A “passenger entry” is a passenger who crossed the station’s turnstile gates. A “transported passenger” is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.</p>
+<p>All four datasets count <strong>individual passengers</strong>. <code>line_transported_monthly</code> covers Line 4 from 2012 and Line 5 only through August 2018; <code>station_transported_monthly</code> covers Line 5 only through July 2018.</p>
+<p>A “passenger entry” (<em>entrada de passageiros</em>) is a passenger who crossed the station’s turnstile gates (<em>linha de bloqueios</em>). A “transported passenger” (<em>passageiro transportado</em>) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts. No clean network total exists across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only.</p>
 <p>The table simplifies in two ways. First, the time span varies by line; each dataset section below gives the window per line. Second, the producer changes over time: METRO ran Line 5 at first and later handed it to ViaMobilidade.</p>
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
@@ -149,15 +149,15 @@ table {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest published data, downloaded once and cached afterwards</span></span>
-<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span><span class="op">)</span></span>
+<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># A pinned batch, so an analysis can name the vintage it used</span></span>
-<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span>
+<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># The bundled snapshot, with no network access</span></span>
-<span><span class="va">entrance_bundled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span>, source <span class="op">=</span> <span class="st">"bundled"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">entrance_bundled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, source <span class="op">=</span> <span class="st">"bundled"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<p>Downloads land in a session-temporary directory until you allow a persistent cache with <code><a href="../reference/metrosp_cache_enable.html">metrosp_cache_enable()</a></code>. <code><a href="../reference/metrosp_cache_list.html">metrosp_cache_list()</a></code> shows what is on disk and <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> removes it. Columns are identical across sources, so the definitions below hold for both.</p>
+<p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. <code><a href="../reference/metrosp_cache.html">metrosp_cache()</a></code> shows what is on disk and <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> removes package-managed vintage directories without deleting unrelated files; set <code>cache = FALSE</code> to keep a download only for the current session. Columns are identical across sources, so the definitions below hold for both.</p>
 <p>Only the four demand datasets are published separately. The reference datasets do not change with new months, so read them from the package.</p>
 </section></section><section class="section level2"><h2 id="data-producers">Data producers<a class="anchor" aria-label="anchor" href="#data-producers"></a>
 </h2>
@@ -180,42 +180,42 @@ table {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>passengers_entrance</code></td>
+<td><code>line_entries_monthly</code></td>
 <td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
 <td>METRO + Dataverse</td>
 <td>2012–2026</td>
 <td>All</td>
 </tr>
 <tr class="even">
-<td><code>passengers_transported</code></td>
+<td><code>line_transported_monthly</code></td>
 <td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
-<td>METRO</td>
-<td>2016–2026</td>
-<td>Lines 1, 2, 3, 5, and 15</td>
+<td>METRO + Dataverse</td>
+<td>2012–2026</td>
+<td>Lines 1, 2, 3, 4, 5, and 15</td>
 </tr>
 <tr class="odd">
-<td><code>station_averages</code></td>
+<td><code>station_transported_monthly</code></td>
 <td>station <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month</td>
 <td>METRO + Dataverse</td>
 <td>2012–2026</td>
-<td>All</td>
+<td>Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15</td>
 </tr>
 <tr class="even">
-<td><code>station_daily</code></td>
+<td><code>station_entries_daily</code></td>
 <td>station <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> day</td>
 <td>METRO + Dataverse</td>
 <td>2012–2026</td>
 <td>All</td>
 </tr>
 <tr class="odd">
-<td><code>lines</code></td>
+<td><code>rail_lines</code></td>
 <td>line (spatial)</td>
 <td>GeoSampa</td>
 <td>Last updated: 2026/04/10</td>
 <td>All</td>
 </tr>
 <tr class="even">
-<td><code>stations</code></td>
+<td><code>rail_stations</code></td>
 <td>station (spatial)</td>
 <td>GeoSampa</td>
 <td>Last updated: 2026/04/10</td>
@@ -226,41 +226,42 @@ table {
 <section class="level2"><h3 id="source-metro">METRO SP transparency portal<a class="anchor" aria-label="anchor" href="#source-metro"></a>
 </h3>
 <p>The Companhia do Metropolitano de São Paulo (a.k.a. METRÔ) publishes monthly demand reports at its <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">data transparency portal</a>. Reports cover Lines 1 (Azul/Blue), 2 (Verde/Green), 3 (Vermelha/Red), 5 (Lilás/Lilac, until Jul 2018), and 15 (Prata/Silver), and are available from January 2016 onward. Values are reported in thousands (<em>milhares</em>).</p>
-<p>Before 2020, these monthly reports were published as monthly PDF and <code>csv</code> files. The <code>csv</code> files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see <a href="#source-formats-2017">2017 source formats</a>). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of entries in each station, on business days (<code>station_averages</code>); 2) the number of passenger entries per line (<code>passengers_entrance</code>); and 3) the number of transported passengers per line (<code>passengers_transported</code>).</p>
-<p>From 2020 onwards, the monthly reports started to be published in annual PDF and <code>csv</code> files that are updated monthly. Also, a new report was published that contained the daily number of entrances per station (<code>station_daily</code>).</p>
+<p>Before 2020, these monthly reports were published as monthly PDF and <code>csv</code> files. The <code>csv</code> files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see <a href="#source-formats-2017">2017 source formats</a>). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of transported passengers in each station, on business days (<code>station_transported_monthly</code>); 2) the number of passenger entries per line (<code>line_entries_monthly</code>); and 3) the number of transported passengers per line (<code>line_transported_monthly</code>).</p>
+<p>From 2020 onwards, the monthly reports started to be published in annual PDF and <code>csv</code> files that are updated monthly. Also, a new report was published that contained the daily number of entrances per station (<code>station_entries_daily</code>).</p>
 <p>Both the PDF and <code>csv</code> files are poorly structured, which is part of why <code>metrosp</code> exists. The data is public but hard to use: the format, encoding, and layout of the <code>csv</code> files shift from release to release, so each year and report needs its own import strategy. That fragility has produced processing errors in the past. The pipeline now runs a set of checks on every build, but errors may still slip through — if you find one, please open an issue on the <a href="https://github.com/viniciusoike/metrosp/issues" class="external-link">GitHub repository</a>.</p>
 <p>Going back to the datasets, it’s important to note that each monthly passenger report breaks demand into five day-type metrics: total (monthly aggregate), average on business days, average on Saturdays, average on Sundays, and daily peak (maximum within the month). These are aggregated by METRO.</p>
 <p>Daily station-level data (one row per station per day) is available from 2020 onwards. Stations with integrations to other lines always present the total daily entrance plus the transfers from other lines. For example, Paraíso from Line 1 presents all station entries plus transfers from Line 2. Paraíso from Line 2 presents all entries in the station plus transfers from Line 1.</p>
 <p>Finally, METRO produces data for lines 1, 2, 3, 5, and 15. Line 5 was initially operated by METRO SP and later passed on to ViaMobilidade (see below).</p>
 </section><section class="level2"><h3 id="source-dataverse">Insper Dataverse<a class="anchor" aria-label="anchor" href="#source-dataverse"></a>
 </h3>
-<p>Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a>, starting January 2012 (Line 4) and August 2018 (Line 5). Transported counts are <strong>not available</strong> for Lines 4 or 5.</p>
-<p>Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset that combines the two sources reports individual passengers. <code>passengers_transported</code> draws on METRO alone and keeps the source unit, thousands of passengers.</p>
-<p>The <code>station_averages</code> dataset for Lines 4 and 5 is derived from <code>station_daily</code> using the <code>bizdays</code> package with the “Brazil/ANBIMA” calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city’s business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships <code>calendar_spo</code>, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction.</p>
+<p>Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a>, starting January 2012 (Line 4) and August 2018 (Line 5). The Dataverse feed records two boarding types: <code>Bloqueio</code> (turnstile) and <code>Integracao</code> (transfer). Only Line 4 records transfers, so line-level transported counts exist for Line 4 but not for Line 5 after the handover.</p>
+<p>Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset reports individual passengers.</p>
+<p>The <code>station_transported_monthly</code> dataset for Line 4 is derived from <code>station_entries_daily</code> using the <code>bizdays</code> package with the “Brazil/ANBIMA” calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city’s business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships <code>calendar_spo</code>, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction. Line 5’s Dataverse feed records turnstiles only, so its post-handover rows are dropped from the transported station table; they remain in <code>station_entries_daily</code>.</p>
+<p>República appears on Lines 3 and 4 in <code>station_transported_monthly</code>, but only on Line 3 in <code>station_entries_daily</code>. The Line 4 daily feed does not publish the station; this is a source coverage gap, not a station-name mismatch.</p>
 </section><section class="level2"><h3 id="source-geosampa">GeoSampa<a class="anchor" aria-label="anchor" href="#source-geosampa"></a>
 </h3>
 <p>Spatial geometries for metro and commuter train (CPTM) lines and stations come from <a href="https://geosampa.prefeitura.sp.gov.br/" class="external-link">GeoSampa</a>, the City of São Paulo’s open geospatial platform. The data includes both currently operating infrastructure and planned future expansions.</p>
 </section></section><section class="section level2"><h2 id="core-datasets">Core datasets<a class="anchor" aria-label="anchor" href="#core-datasets"></a>
 </h2>
 <p>Each section below shows the structure of one dataset and its coverage by line. The <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">Data Dictionary</a> defines every column and type.</p>
-<section class="level2"><h3 id="passengers_entrance">
-<code>passengers_entrance</code><a class="anchor" aria-label="anchor" href="#passengers_entrance"></a>
+<section class="level2"><h3 id="line_entries_monthly">
+<code>line_entries_monthly</code><a class="anchor" aria-label="anchor" href="#line_entries_monthly"></a>
 </h3>
 <p>This table shows the number of monthly passenger entries aggregated by metro line and day-type metrics.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_entrance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,620</span></span>
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">line_entries_monthly</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 3,990</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
-<span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
-<span><span class="co">#&gt; $ metric_abb   &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…</span></span>
-<span><span class="co">#&gt; $ value        &lt;dbl&gt; 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 1314…</span></span>
-<span><span class="co">#&gt; $ metric       &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Business …</span></span>
-<span><span class="co">#&gt; $ metric_pt    &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…</span></span>
-<span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…</span></span>
-<span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…</span></span>
-<span><span class="co">#&gt; $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ date           &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…</span></span>
+<span><span class="co">#&gt; $ year           &lt;int&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…</span></span>
+<span><span class="co">#&gt; $ line_number    &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…</span></span>
+<span><span class="co">#&gt; $ line_name      &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…</span></span>
+<span><span class="co">#&gt; $ line_name_pt   &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …</span></span>
+<span><span class="co">#&gt; $ metric         &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu…</span></span>
+<span><span class="co">#&gt; $ metric_name    &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Busines…</span></span>
+<span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias …</span></span>
+<span><span class="co">#&gt; $ value          &lt;dbl&gt; 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 13…</span></span></code></pre></div>
 </div>
 <p>This table is organized by day-type metrics that are defined below.</p>
 <section class="level3"><h4 id="metrics">Metrics<a class="anchor" aria-label="anchor" href="#metrics"></a>
@@ -303,8 +304,8 @@ table {
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_passengers_entrance.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_entrance dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."></p>
-<figcaption>Time coverage by line for the passengers_entrance dataset</figcaption></figure>
+<figure><p><img src="../reference/figures/timespan_line_entries_monthly.png" alt="Horizontal bar chart showing each metro line's data coverage window in the line_entries_monthly dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026. Each bar spans first to last month, so the single missing month of July 2017 does not appear as a break."></p>
+<figcaption>Time coverage by line for the line_entries_monthly dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
 <caption>Time coverage by line</caption>
@@ -353,12 +354,6 @@ table {
 </tr>
 <tr class="even">
 <td>15 – Silver</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-<tr class="odd">
-<td>99 – System</td>
 <td>METRO portal</td>
 <td>Jan 2016</td>
 <td>Jul 2026</td>
@@ -366,111 +361,32 @@ table {
 </tbody>
 </table>
 <p>The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. Every METRO-sourced line is missing July 2017, the one month the portal never published an entrance table for (see <a href="#source-formats-2017">2017 source formats</a>).</p>
-</section></section><section class="level2"><h3 id="passengers_transported">
-<code>passengers_transported</code><a class="anchor" aria-label="anchor" href="#passengers_transported"></a>
+</section></section><section class="level2"><h3 id="line_transported_monthly">
+<code>line_transported_monthly</code><a class="anchor" aria-label="anchor" href="#line_transported_monthly"></a>
 </h3>
-<p>This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers entering the station through the turnstile gates plus passengers changing between lines. Values are in <strong>thousands of passengers</strong>, unlike every other dataset here.</p>
+<p>This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers boarding a train on that line, whether through the turnstile gates or by transferring from another line. METRO publishes it in thousands; the package multiplies by 1000, so values count individual passengers like every other dataset. Line 4 comes from the Dataverse in individual passengers, summing turnstile entries and transfers.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">passengers_transported</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 3,335</span></span>
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">line_transported_monthly</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 3,555</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ date         &lt;date&gt; 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-01, 2016-01-…</span></span>
-<span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 5, 5, 5, 5, …</span></span>
-<span><span class="co">#&gt; $ metric_abb   &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu",…</span></span>
-<span><span class="co">#&gt; $ value        &lt;dbl&gt; 1301, 453, 1202, 691, 29345, 622, 173, 574, 251, 13328, 1…</span></span>
-<span><span class="co">#&gt; $ metric       &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Business …</span></span>
-<span><span class="co">#&gt; $ metric_pt    &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias Út…</span></span>
-<span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Blue", "Blue", "Blue", "Blue", "Blue", "Green", "Green",…</span></span>
-<span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Azul", "Azul", "Azul", "Azul", "Azul", "Verde", "Verde",…</span></span>
-<span><span class="co">#&gt; $ year         &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 201…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ date           &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…</span></span>
+<span><span class="co">#&gt; $ year           &lt;int&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…</span></span>
+<span><span class="co">#&gt; $ line_number    &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…</span></span>
+<span><span class="co">#&gt; $ line_name      &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…</span></span>
+<span><span class="co">#&gt; $ line_name_pt   &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …</span></span>
+<span><span class="co">#&gt; $ metric         &lt;chr&gt; "max", "mdo", "mdu", "msa", "total", "max", "mdo", "mdu…</span></span>
+<span><span class="co">#&gt; $ metric_name    &lt;chr&gt; "Daily Peak", "Average on Sundays", "Average on Busines…</span></span>
+<span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias …</span></span>
+<span><span class="co">#&gt; $ value          &lt;dbl&gt; 573606.0, 128101.0, 494526.9, 214406.5, 12377723.0, 665…</span></span></code></pre></div>
 </div>
-<p>This dataset uses the same day-type metrics as <code>passengers_entrance</code> (see Metrics above).</p>
+<p>This dataset uses the same day-type metrics as <code>line_entries_monthly</code> (see Metrics above).</p>
 <section class="level3"><h4 id="time-coverage-by-line-1">Time coverage by line<a class="anchor" aria-label="anchor" href="#time-coverage-by-line-1"></a>
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_passengers_transported.png" alt="Horizontal bar chart showing each metro line's data coverage window in the passengers_transported dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."></p>
-<figcaption>Time coverage by line for the passengers_transported dataset</figcaption></figure>
-</div>
-<table class="table caption-top">
-<caption>Time coverage by line</caption>
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead><tr class="header">
-<th>Line</th>
-<th>Source</th>
-<th>From</th>
-<th>To</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>1 – Blue</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-<tr class="even">
-<td>2 – Green</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-<tr class="odd">
-<td>3 – Red</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-<tr class="even">
-<td>5 – Lilac</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Aug 2018</td>
-</tr>
-<tr class="odd">
-<td>15 – Silver</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-<tr class="even">
-<td>99 – System</td>
-<td>METRO portal</td>
-<td>Jan 2016</td>
-<td>Jul 2026</td>
-</tr>
-</tbody>
-</table>
-<p>Line 4 is absent entirely. The Dataverse source does not include transported counts for Lines 4 or 5.</p>
-</section></section><section class="level2"><h3 id="station_averages">
-<code>station_averages</code><a class="anchor" aria-label="anchor" href="#station_averages"></a>
-</h3>
-<p>Monthly average weekday passenger entries per station.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_averages</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 11,281</span></span>
-<span><span class="co">#&gt; Columns: 7</span></span>
-<span><span class="co">#&gt; $ date          &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01…</span></span>
-<span><span class="co">#&gt; $ line_number   &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,…</span></span>
-<span><span class="co">#&gt; $ station_name  &lt;chr&gt; "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros",…</span></span>
-<span><span class="co">#&gt; $ avg_passenger &lt;dbl&gt; 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 9919…</span></span>
-<span><span class="co">#&gt; $ line_name     &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yello…</span></span>
-<span><span class="co">#&gt; $ line_name_pt  &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "…</span></span>
-<span><span class="co">#&gt; $ year          &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 20…</span></span></code></pre></div>
-</div>
-<p>Only the weekday average metric is available at the station level. For line-level data with all five metrics, see <code>passengers_entrance</code>.</p>
-<section class="level3"><h4 id="time-coverage-by-line-2">Time coverage by line<a class="anchor" aria-label="anchor" href="#time-coverage-by-line-2"></a>
-</h4>
-<p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_station_averages.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_averages dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."></p>
-<figcaption>Time coverage by line for the station_averages dataset</figcaption></figure>
+<figure><p><img src="../reference/figures/timespan_line_transported_monthly.png" alt="Horizontal bar chart showing each metro line's data coverage window in the line_transported_monthly dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 4 runs from January 2012 to March 2026. Line 5 covers January 2016 to August 2018 only."></p>
+<figcaption>Time coverage by line for the line_transported_monthly dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
 <caption>Time coverage by line</caption>
@@ -513,9 +429,9 @@ table {
 </tr>
 <tr class="odd">
 <td>5 – Lilac</td>
-<td>METRO (Jan 2016–Jul 2018), Dataverse (Aug 2018+)</td>
+<td>METRO portal</td>
 <td>Jan 2016</td>
-<td>Apr 2026</td>
+<td>Aug 2018</td>
 </tr>
 <tr class="even">
 <td>15 – Silver</td>
@@ -525,31 +441,115 @@ table {
 </tr>
 </tbody>
 </table>
-<p>February through June 2016 carries a defect in the Line 1 values. Across those five months the station figures fall well short of what the surrounding months and the Line 1 total in <code>passengers_entrance</code> imply, and they are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO’s retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.</p>
-</section></section><section class="level2"><h3 id="station_daily">
-<code>station_daily</code><a class="anchor" aria-label="anchor" href="#station_daily"></a>
+<p>Line 5 ends in August 2018, when the line passed to ViaMobilidade. The Dataverse feed records turnstiles only, so no transported measure exists for it afterward.</p>
+</section></section><section class="level2"><h3 id="station_transported_monthly">
+<code>station_transported_monthly</code><a class="anchor" aria-label="anchor" href="#station_transported_monthly"></a>
 </h3>
-<p>Daily passenger entries at each station.</p>
+<p>Monthly average weekday passengers transported per station: boardings on that line plus transfers from the other lines. Summed over a line’s stations it equals the line’s <code>mdu</code> in <code>line_transported_monthly</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_transported_monthly</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 9,711</span></span>
+<span><span class="co">#&gt; Columns: 11</span></span>
+<span><span class="co">#&gt; $ date           &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-0…</span></span>
+<span><span class="co">#&gt; $ year           &lt;int&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2…</span></span>
+<span><span class="co">#&gt; $ line_number    &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4…</span></span>
+<span><span class="co">#&gt; $ station_id     &lt;chr&gt; "butanta", "faria-lima", "luz", "consolacao-paulista", …</span></span>
+<span><span class="co">#&gt; $ station_name   &lt;chr&gt; "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros"…</span></span>
+<span><span class="co">#&gt; $ line_name      &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yell…</span></span>
+<span><span class="co">#&gt; $ line_name_pt   &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", …</span></span>
+<span><span class="co">#&gt; $ metric         &lt;chr&gt; "mdu", "mdu", "mdu", "mdu", "mdu", "mdu", "mdu", "mdu",…</span></span>
+<span><span class="co">#&gt; $ metric_name    &lt;chr&gt; "Average on Business Days", "Average on Business Days",…</span></span>
+<span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Média dos Dias Úteis", "Média dos Dias Úteis", "Média …</span></span>
+<span><span class="co">#&gt; $ value          &lt;dbl&gt; 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 991…</span></span></code></pre></div>
+</div>
+<p>Only the weekday average metric is available at the station level. For line-level data with all five metrics, see <code>line_transported_monthly</code>. Grouping by <code>station_id</code> gives boardings across a complex’s platforms, not people entering it.</p>
+<section class="level3"><h4 id="time-coverage-by-line-2">Time coverage by line<a class="anchor" aria-label="anchor" href="#time-coverage-by-line-2"></a>
+</h4>
+<p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img src="../reference/figures/timespan_station_transported_monthly.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_transported_monthly dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 4 runs from January 2012 to March 2026; Line 5 runs from January 2016 to July 2018."></p>
+<figcaption>Time coverage by line for the station_transported_monthly dataset</figcaption></figure>
+</div>
+<table class="table caption-top">
+<caption>Time coverage by line</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead><tr class="header">
+<th>Line</th>
+<th>Source</th>
+<th>From</th>
+<th>To</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1 – Blue</td>
+<td>METRO portal</td>
+<td>Jan 2016</td>
+<td>Jul 2026</td>
+</tr>
+<tr class="even">
+<td>2 – Green</td>
+<td>METRO portal</td>
+<td>Jan 2016</td>
+<td>Jul 2026</td>
+</tr>
+<tr class="odd">
+<td>3 – Red</td>
+<td>METRO portal</td>
+<td>Jan 2016</td>
+<td>Jul 2026</td>
+</tr>
+<tr class="even">
+<td>4 – Yellow</td>
+<td>Dataverse</td>
+<td>Jan 2012</td>
+<td>Mar 2026</td>
+</tr>
+<tr class="odd">
+<td>5 – Lilac</td>
+<td>METRO portal</td>
+<td>Jan 2016</td>
+<td>Jul 2018</td>
+</tr>
+<tr class="even">
+<td>15 – Silver</td>
+<td>METRO portal</td>
+<td>Jan 2016</td>
+<td>Jul 2026</td>
+</tr>
+</tbody>
+</table>
+<p>February through June 2016 carries a defect in the Line 1 values. Across those five months the station sum runs about 14% below the transported <code>mdu</code> in <code>line_transported_monthly</code>, and the figures are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO’s retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.</p>
+</section></section><section class="level2"><h3 id="station_entries_daily">
+<code>station_entries_daily</code><a class="anchor" aria-label="anchor" href="#station_entries_daily"></a>
+</h3>
+<p>Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Station sums equal the line’s <code>total</code> in <code>line_entries_monthly</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_daily</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_entries_daily</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 244,174</span></span>
-<span><span class="co">#&gt; Columns: 8</span></span>
+<span><span class="co">#&gt; Columns: 9</span></span>
 <span><span class="co">#&gt; $ date         &lt;date&gt; 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-01, 2012-01-…</span></span>
-<span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
+<span><span class="co">#&gt; $ year         &lt;int&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…</span></span>
+<span><span class="co">#&gt; $ line_number  &lt;int&gt; 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, …</span></span>
+<span><span class="co">#&gt; $ station_id   &lt;chr&gt; "butanta", "faria-lima", "luz", "consolacao-paulista", "p…</span></span>
 <span><span class="co">#&gt; $ station_name &lt;chr&gt; "Butantã", "Faria Lima", "Luz", "Paulista", "Pinheiros", …</span></span>
-<span><span class="co">#&gt; $ passengers   &lt;dbl&gt; 7742, 4737, 695, 2277, 332, 25317, 21930, 3923, 14356, 39…</span></span>
+<span><span class="co">#&gt; $ station_code &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Yellow", "Yellow", "Yellow", "Yellow", "Yellow", "Yellow…</span></span>
 <span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Amarela", "Amarela", "Amarela", "Amarela", "Amarela", "A…</span></span>
-<span><span class="co">#&gt; $ station_code &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ year         &lt;dbl&gt; 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 201…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ value        &lt;dbl&gt; 7742, 4737, 695, 2277, 332, 25317, 21930, 3923, 14356, 39…</span></span></code></pre></div>
 </div>
 <section class="level3"><h4 id="time-coverage-by-line-3">Time coverage by line<a class="anchor" aria-label="anchor" href="#time-coverage-by-line-3"></a>
 </h4>
 <p>The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img src="../reference/figures/timespan_station_daily.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to July 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."></p>
-<figcaption>Time coverage by line for the station_daily dataset</figcaption></figure>
+<figure><p><img src="../reference/figures/timespan_station_entries_daily.png" alt="Horizontal bar chart showing each metro line's data coverage window in the station_entries_daily dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2020 to July 2026; Line 4 from January 2012 to March 2026; Line 5 from August 2018 to April 2026."></p>
+<figcaption>Time coverage by line for the station_entries_daily dataset</figcaption></figure>
 </div>
 <table class="table caption-top">
 <caption>Time coverage by line</caption>
@@ -605,51 +605,51 @@ table {
 </tbody>
 </table></section></section></section><section class="section level2"><h2 id="spatial-datasets">Spatial datasets<a class="anchor" aria-label="anchor" href="#spatial-datasets"></a>
 </h2>
-<p>The <code>lines</code> and <code>stations</code> datasets are <code>sf</code> objects in WGS 84 (EPSG:4326), sourced from <a href="#source-geosampa">GeoSampa</a>. Both include currently operating and planned future infrastructure for METRO SP and CPTM.</p>
-<section class="level2"><h3 id="lines">lines<a class="anchor" aria-label="anchor" href="#lines"></a>
+<p>The <code>rail_lines</code> and <code>rail_stations</code> datasets are <code>sf</code> objects in WGS 84 (EPSG:4326), sourced from <a href="#source-geosampa">GeoSampa</a>. Both include currently operating and planned future infrastructure for METRO SP and CPTM.</p>
+<section class="level2"><h3 id="rail_lines">rail_lines<a class="anchor" aria-label="anchor" href="#rail_lines"></a>
 </h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">lines</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">rail_lines</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 55</span></span>
 <span><span class="co">#&gt; Columns: 7</span></span>
-<span><span class="co">#&gt; $ status       &lt;chr&gt; "current", "current", "current", "current", "current", "c…</span></span>
-<span><span class="co">#&gt; $ company_name &lt;chr&gt; "Metrô", "Metrô", "Metrô", "Metrô", "Metrô", "ViaQuatro",…</span></span>
-<span><span class="co">#&gt; $ line_number  &lt;dbl&gt; 1, 2, 3, 5, 15, 4, 2, 2, 2, 15, 15, 19, 20, 22, 16, 4, 5,…</span></span>
-<span><span class="co">#&gt; $ type         &lt;chr&gt; "metro", "metro", "metro", "metro", "metro", "metro", "me…</span></span>
-<span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Azul", "Verde", "Vermelha", "Lilás", "Prata", "Amarela",…</span></span>
+<span><span class="co">#&gt; $ line_number  &lt;int&gt; 1, 2, 3, 5, 15, 4, 2, 2, 2, 15, 15, 19, 20, 22, 16, 4, 5,…</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Blue", "Green", "Red", "Lilac", "Silver", "Yellow", "Gre…</span></span>
+<span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Azul", "Verde", "Vermelha", "Lilás", "Prata", "Amarela",…</span></span>
+<span><span class="co">#&gt; $ company_name &lt;chr&gt; "Metrô", "Metrô", "Metrô", "ViaMobilidade", "Metrô", "Via…</span></span>
+<span><span class="co">#&gt; $ type         &lt;chr&gt; "metro", "metro", "metro", "metro", "metro", "metro", "me…</span></span>
+<span><span class="co">#&gt; $ status       &lt;chr&gt; "current", "current", "current", "current", "current", "c…</span></span>
 <span><span class="co">#&gt; $ geom         &lt;GEOMETRY [°]&gt; LINESTRING (-46.60291 -23.4..., LINESTRING (-46.…</span></span></code></pre></div>
 </div>
-</section><section class="level2"><h3 id="stations">stations<a class="anchor" aria-label="anchor" href="#stations"></a>
+</section><section class="level2"><h3 id="rail_stations">rail_stations<a class="anchor" aria-label="anchor" href="#rail_stations"></a>
 </h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">stations</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">rail_stations</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 407</span></span>
-<span><span class="co">#&gt; Columns: 8</span></span>
-<span><span class="co">#&gt; $ type         &lt;chr&gt; "metro", "metro", "metro", "metro", "metro", "metro", "me…</span></span>
-<span><span class="co">#&gt; $ status       &lt;chr&gt; "current", "current", "current", "current", "current", "c…</span></span>
-<span><span class="co">#&gt; $ company_name &lt;chr&gt; "Metrô", "Metrô", "Metrô", "Metrô", "Metrô", "Metrô", "Me…</span></span>
+<span><span class="co">#&gt; Columns: 10</span></span>
+<span><span class="co">#&gt; $ station_id   &lt;chr&gt; "ana-rosa", "armenia", "carandiru", "conceicao", "jabaqua…</span></span>
 <span><span class="co">#&gt; $ station_name &lt;chr&gt; "Ana Rosa", "Armênia", "Carandiru", "Conceição", "Jabaqua…</span></span>
+<span><span class="co">#&gt; $ station_code &lt;chr&gt; "anr", "ppq", "cdu", "con", "jab", "lib", "jpa", "luz", "…</span></span>
 <span><span class="co">#&gt; $ line_number  &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span></span>
 <span><span class="co">#&gt; $ line_name    &lt;chr&gt; "Blue", "Blue", "Blue", "Blue", "Blue", "Blue", "Blue", "…</span></span>
 <span><span class="co">#&gt; $ line_name_pt &lt;chr&gt; "Azul", "Azul", "Azul", "Azul", "Azul", "Azul", "Azul", "…</span></span>
+<span><span class="co">#&gt; $ company_name &lt;chr&gt; "Metrô", "Metrô", "Metrô", "Metrô", "Metrô", "Metrô", "Me…</span></span>
+<span><span class="co">#&gt; $ type         &lt;chr&gt; "metro", "metro", "metro", "metro", "metro", "metro", "me…</span></span>
+<span><span class="co">#&gt; $ status       &lt;chr&gt; "current", "current", "current", "current", "current", "c…</span></span>
 <span><span class="co">#&gt; $ geom         &lt;POINT [°]&gt; POINT (-46.63845 -23.58126), POINT (-46.62934 -23.5…</span></span></code></pre></div>
 </div>
 <p>Transfer stations (e.g., Sé, Paraíso, Ana Rosa) appear once per line they serve.</p>
 </section></section><section class="section level2"><h2 id="auxiliary-datasets">Auxiliary datasets<a class="anchor" aria-label="anchor" href="#auxiliary-datasets"></a>
 </h2>
-<p>Three lookup tables support the core datasets.</p>
+<p>Two lookup tables support the core datasets.</p>
 <ul>
 <li>
 <strong><code>metro_colors</code></strong> — named character vector of official hex color codes for the six lines with ridership data (e.g., <code>metro_colors["Blue"]</code> returns <code>"#171796"</code>). Useful for consistent plot styling with <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual()</a></code>.</li>
 <li>
-<strong><code>station_inauguration</code></strong> — commercial opening dates by station, with a <code>ramp_up_end</code> column marking the end of the initial ramp-up window. See <a href="#station-openings">Station openings</a>.</li>
-<li>
-<strong><code>calendar_spo</code></strong> — daily calendar for the city of São Paulo, 2012–2030, flagging national, state, and municipal holidays and business days. Join on <code>date</code> to build business-day aggregates from <code>station_daily</code>.</li>
+<strong><code>calendar_spo</code></strong> — daily calendar for the city of São Paulo, 2012–2030, flagging national, state, and municipal holidays and business days. Join on <code>date</code> to build business-day aggregates from <code>station_entries_daily</code>.</li>
 </ul>
-<p>Line numbers and their Portuguese/English names are already included as columns on every passenger and station dataset, and the full network line list (including planned and CPTM lines) is available in <code>lines</code>.</p>
+<p>Line numbers and their Portuguese/English names are already included as columns on every passenger and station dataset, and the full network line list (including planned and CPTM lines) is available in <code>rail_lines</code>.</p>
 </section><section class="section level2"><h2 id="data-notes-and-caveats">Data notes and caveats<a class="anchor" aria-label="anchor" href="#data-notes-and-caveats"></a>
 </h2>
 <section class="level2"><h3 id="entrance-vs-transported">Entrance vs. transported<a class="anchor" aria-label="anchor" href="#entrance-vs-transported"></a>
@@ -657,9 +657,9 @@ table {
 <p>The METRO source files define these terms as:</p>
 <ul>
 <li>
-<strong>Entrada de passageiros</strong> (<em>passenger entries</em>): passengers entering through the turnstile gates (<em>linha de bloqueios</em>). This is a station-level measurement.</li>
+<strong>Entrada de passageiros</strong> (<em>passenger entries</em>): passengers entering through the turnstile gates (<em>linha de bloqueios</em>). METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only, so no clean network total exists across operators. The <code>max</code> metric cannot be summed because individual lines may peak on different days.</li>
 <li>
-<strong>Passageiros transportados</strong> (<em>passengers transported</em>): the sum of turnstile entries <strong>plus</strong> transfer passengers between lines at interchange stations (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). This is a system-level measurement that better captures total demand but double-counts passengers who transfer.</li>
+<strong>Passageiros transportados</strong> (<em>passengers transported</em>): boardings on that line, whether through the turnstile gates or by transferring from another line at an interchange station (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). It measures demand carried by each line. Summing lines double-counts interchange journeys and does not give a count of unique network passengers.</li>
 </ul>
 <p>The original Portuguese footnote reads:</p>
 <blockquote>
@@ -705,7 +705,7 @@ table {
 <td>2, 5</td>
 </tr>
 <tr class="odd">
-<td>Consolação</td>
+<td>Consolação–Paulista</td>
 <td>2, 4</td>
 </tr>
 <tr class="even">
@@ -744,11 +744,8 @@ table {
 <li>
 <strong>Source switch</strong>: from January 2016 through July 2018, Line 5 data comes from the METRO transparency portal. From August 2018 onward, it comes from the Insper Dataverse (ViaMobilidade/Insper partnership).</li>
 <li>
-<strong>Transported counts end</strong>: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse does not provide transported counts, so <code>passengers_transported</code> has no Line 5 data afterward.</li>
-</ol></section><section class="level2"><h3 id="station-openings">Station openings during the data window<a class="anchor" aria-label="anchor" href="#station-openings"></a>
-</h3>
-<p>Several stations opened during the time coverage of the datasets, which produces step changes and ramp-up periods when a station or line runs well below its steady state. New METRO lines often operate at reduced rates in their first months, on shorter timetables or fewer days of the week — some close on weekends for testing.</p>
-<p>The <code>station_inauguration</code> dataset lists opening dates by station (see <code><a href="../reference/station_inauguration.html">?station_inauguration</a></code>). It covers the stations that opened within or near the data window, and remains incomplete.</p>
+<strong>Transported counts end</strong>: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse feed records turnstiles only, so <code>line_transported_monthly</code> has no Line 5 data afterward and <code>station_transported_monthly</code> drops Line 5 from August 2018 onward (station data for that era lives in <code>station_entries_daily</code>). The August 2018 row covers only the days before the handover: its <code>total</code> is a partial month, and <code>msa</code> and <code>mdo</code> are <code>NA</code>.</li>
+</ol>
 <section class="level3"><h4 id="line-15-sunday-closures">Line 15 Sunday closures<a class="anchor" aria-label="anchor" href="#line-15-sunday-closures"></a>
 </h4>
 <p>In February and March 2018, Line 15 (Prata) was closed on Sundays for control system testing. Sunday averages (<code>mdo</code>) for these months reflect zero or near-zero ridership, which is a testing artifact rather than demand.</p>
@@ -763,12 +760,12 @@ table {
 <p>The <code>station_code</code> column (three-letter abbreviation) is only available for METRO-operated lines (1, 2, 3, 15). Lines 4 and 5 have <code>station_code = NA</code> because these abbreviations are internal to METRO SP and not used by ViaQuatro/ViaMobilidade.</p>
 </section><section class="level2"><h3 id="source-formats-2017">2017 source formats<a class="anchor" aria-label="anchor" href="#source-formats-2017"></a>
 </h3>
-<p>The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the line and network totals printed beside them.</p>
-<p>Two defects in the source survive the transcription. July 2017 has no entrance table: the file published under that name repeats the transported figures, so Lines 1, 2, 3, 5, and 15 have no entrance value that month. June 2017 reprints May’s network column in <code>passengers_transported</code>, so the network total (<code>line_number = 99</code>) is <code>NA</code> for that month while the per-line values stand.</p>
+<p>The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the published totals.</p>
+<p>One defect in the source survives the transcription. July 2017 has no entrance table: the file published under that name repeats the transported figures, so Lines 1, 2, 3, 5, and 15 have no entrance value that month.</p>
 <p>If a 2017 figure looks wrong, please open an issue.</p>
 </section><section class="level2"><h3 id="trailing-months-and-na-values">Trailing months and NA values<a class="anchor" aria-label="anchor" href="#trailing-months-and-na-values"></a>
 </h3>
-<p>Months (or days, for <code>station_daily</code>) beyond the last published data point for each line are trimmed during assembly, so the datasets do not contain unpublished trailing <code>NA</code> rows. Interior <code>NA</code> values — for example, days when Line 15 (Silver) was not operating — are preserved as-is.</p>
+<p>Months (or days, for <code>station_entries_daily</code>) beyond the last published data point for each line are trimmed during assembly, so the datasets do not contain unpublished trailing <code>NA</code> rows. Interior <code>NA</code> values — for example, days when Line 15 (Silver) was not operating — are preserved as-is.</p>
 </section></section><section class="section level2"><h2 id="source-attribution">Source attribution<a class="anchor" aria-label="anchor" href="#source-attribution"></a>
 </h2>
 <p>The datasets in this package are heavily processed and curated, so cite the package as well as the original producers. Run <code>citation("metrosp")</code> for the entry.</p>

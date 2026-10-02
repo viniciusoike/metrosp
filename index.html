@@ -19,8 +19,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="São Paulo Metro Passenger Demand Data">
-<meta name="description" content="Provides passenger demand data for the São Paulo metro system, covering 2012 to 2026. Datasets include monthly passenger entries and transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations. The bundled datasets are a fixed snapshot, so analyses stay reproducible and examples run offline; more recent data is published separately as the upstream sources are updated.">
-<meta property="og:description" content="Provides passenger demand data for the São Paulo metro system, covering 2012 to 2026. Datasets include monthly passenger entries and transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations. The bundled datasets are a fixed snapshot, so analyses stay reproducible and examples run offline; more recent data is published separately as the upstream sources are updated.">
+<meta name="description" content="Provides passenger demand data for the São Paulo metro system, covering 2012 to 2026. Datasets include monthly passenger entries and transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations. The bundled datasets are a fixed snapshot, so analyses stay reproducible and examples run offline. More recent data is published to GitHub releases as the upstream sources are updated, and read_metro_demand() downloads, caches, and reads it, optionally pinned to a dated monthly batch.">
+<meta property="og:description" content="Provides passenger demand data for the São Paulo metro system, covering 2012 to 2026. Datasets include monthly passenger entries and transported counts by line, average weekday station entries, daily station entries, and spatial geometries for metro and commuter train lines and stations. The bundled datasets are a fixed snapshot, so analyses stay reproducible and examples run offline. More recent data is published to GitHub releases as the upstream sources are updated, and read_metro_demand() downloads, caches, and reads it, optionally pinned to a dated monthly batch.">
 <meta property="og:image" content="https://viniciusoike.github.io/metrosp/logo.png">
 </head>
 <body>
@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,22 +129,22 @@
 </tr>
 </tbody>
 </table>
-<p>Coverage refers to <code>passengers_entrance</code>, which is missing July 2017 for every METRO-sourced line. The other datasets start later for some lines. The <a href="https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html">Metro Demand Data</a> article gives the coverage window of every dataset by line.</p>
+<p>Coverage refers to <code>line_entries_monthly</code>, which is missing July 2017 for every METRO-sourced line. The other datasets start later for some lines. The <a href="https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html">Metro Demand Data</a> article gives the coverage window of every dataset by line.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Currently, the best option is to install the package from R-Universe which is more up to date.</p>
+<p>Install the released version from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'metrosp'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://viniciusoike.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The package is also available on CRAN.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"metrosp"</span><span class="op">)</span></span></code></pre></div>
+<p>The development version is on R-universe.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'metrosp'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://viniciusoike.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h2>
-<p>Four datasets carry the demand data: <code>passengers_entrance</code>, <code>passengers_transported</code>, <code>station_averages</code>, and <code>station_daily</code>. The rest are auxiliary tables that support analysis and visualization.</p>
+<p>Four datasets carry the demand data: <code>line_entries_monthly</code>, <code>line_transported_monthly</code>, <code>station_transported_monthly</code>, and <code>station_entries_daily</code>. The rest are auxiliary tables that support analysis and visualization.</p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -160,33 +160,27 @@
 </tr></thead>
 <tbody>
 <tr>
-<td><code>passengers_entrance</code></td>
+<td><code>line_entries_monthly</code></td>
 <td>Monthly passenger entries by line and day-type metric</td>
 <td>Monthly</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>passengers_transported</code></td>
-<td>Monthly passengers transported by line, in thousands</td>
+<td><code>line_transported_monthly</code></td>
+<td>Monthly passengers transported by line</td>
 <td>Monthly</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>station_averages</code></td>
-<td>Average weekday passenger entries by station</td>
+<td><code>station_transported_monthly</code></td>
+<td>Average weekday passengers transported by station</td>
 <td>Monthly</td>
 <td>No</td>
 </tr>
 <tr>
-<td><code>station_daily</code></td>
+<td><code>station_entries_daily</code></td>
 <td>Daily passenger entries by station</td>
 <td>Daily</td>
-<td>No</td>
-</tr>
-<tr>
-<td><code>station_inauguration</code></td>
-<td>Station opening dates and ramp-up window flag</td>
-<td>—</td>
 <td>No</td>
 </tr>
 <tr>
@@ -202,20 +196,20 @@
 <td>No</td>
 </tr>
 <tr>
-<td><code>lines</code></td>
+<td><code>rail_lines</code></td>
 <td>Metro and train line routes (current + planned)</td>
 <td>—</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td><code>stations</code></td>
+<td><code>rail_stations</code></td>
 <td>Metro and train station locations (current + planned)</td>
 <td>—</td>
 <td>Yes</td>
 </tr>
 </tbody>
 </table>
-<p><code>passengers_entrance</code> and the two station datasets count individual passengers. <code>passengers_transported</code> reports thousands of passengers, as the METRÔ source does. The <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">data dictionary</a> defines every column, and the <a href="https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html">Metro Demand Data</a> article covers coverage windows, source defects, and the conventions behind the numbers.</p>
+<p>Every demand dataset counts individual passengers. The <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html">data dictionary</a> defines every column, and the <a href="https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html">Metro Demand Data</a> article covers coverage windows, source defects, and the conventions behind the numbers.</p>
 </div>
 <div class="section level2">
 <h2 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
@@ -224,11 +218,11 @@
 <p><code><a href="reference/read_metro_demand.html">read_metro_demand()</a></code> reads the newer data. Every pipeline run publishes a fresh build of the four demand datasets to the rolling <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link"><code>data-latest</code> release</a>, plus a dated tag that pins that month’s batch.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest published data</span></span>
-<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span><span class="op">)</span></span>
+<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># A pinned monthly batch, so an analysis can name the vintage it used</span></span>
-<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
-<p>Downloads go to a temporary directory until you allow a persistent cache with <code><a href="reference/metrosp_cache_enable.html">metrosp_cache_enable()</a></code>. Columns match the bundled datasets, so the same code works with either.</p>
+<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
+<p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. Use <code><a href="reference/metrosp_cache.html">metrosp_cache()</a></code> to inspect it, <code><a href="reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> to remove files, or <code>cache = FALSE</code> to keep a download only for the current session. Columns match the bundled datasets, so the same code works with either.</p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -236,19 +230,19 @@
 <p>The data is bundled with the package, meaning it works out of the box and doesn’t rely on internet connection. To use a dataset simply call its name.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
-<span><span class="co"># To work with spatial datasets (lines, stations)</span></span>
+<span><span class="co"># To work with spatial datasets (rail lines and stations)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="co"># For better tables load dplyr or tibble</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Passenger entries by line</span></span>
-<span><span class="va">passengers_entrance</span></span>
+<span><span class="va">line_entries_monthly</span></span>
 <span></span>
 <span><span class="co"># Station-level weekday averages</span></span>
-<span><span class="va">station_averages</span></span>
+<span><span class="va">station_transported_monthly</span></span>
 <span></span>
 <span><span class="co"># Spatial line routes</span></span>
-<span><span class="va">lines</span></span></code></pre></div>
+<span><span class="va">rail_lines</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="explorer-dashboard">Explorer dashboard<a class="anchor" aria-label="anchor" href="#explorer-dashboard"></a>

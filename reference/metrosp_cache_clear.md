@@ -1,6 +1,6 @@
-# Delete cached datasets
+# Delete cached Metro SP data
 
-Delete cached datasets
+Delete cached Metro SP data
 
 ## Usage
 
@@ -13,7 +13,8 @@ metrosp_cache_clear(vintage = NULL)
 - vintage:
 
   Vintage to remove, such as `"latest"` or `"2026-09"`. When `NULL`,
-  removes every cached vintage.
+  removes every package-managed `data-latest` or `data-YYYY-MM` vintage
+  directory. The cache root and unrelated files are preserved.
 
 ## Value
 
@@ -21,14 +22,19 @@ The number of files removed, invisibly.
 
 ## See also
 
-[`metrosp_cache_dir()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.md),
-[`metrosp_cache_list()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.md).
+[`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md)
+to inspect cached files.
 
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# Point the cache at a temporary directory so the example leaves yours alone.
+old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+
 metrosp_cache_clear("2026-09")
+#> ℹ Nothing cached in /tmp/RtmpwMRHSj/metrosp-cache20d21fe9cdcc.
 metrosp_cache_clear()
-} # }
+#> ℹ Nothing cached in /tmp/RtmpwMRHSj/metrosp-cache20d21fe9cdcc.
+
+options(old)
 ```

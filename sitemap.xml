@@ -11,19 +11,16 @@
 <url><loc>https://viniciusoike.github.io/metrosp/news/index.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/calendar_spo.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/index.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/lines.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/line_entries_monthly.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/line_transported_monthly.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/metro_colors.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache_dir.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache_enable.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache_list.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/passengers_entrance.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/passengers_transported.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/rail_lines.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/rail_stations.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/read_metro_demand.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/station_averages.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/station_daily.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/station_inauguration.html</loc></url>
-<url><loc>https://viniciusoike.github.io/metrosp/reference/stations.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/station_entries_daily.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/station_transported_monthly.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/release-v1.0.0.html</loc></url>
 </urlset>
 

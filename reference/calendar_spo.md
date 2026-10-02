@@ -3,7 +3,8 @@
 A daily calendar for São Paulo (city) covering 2012–2030, classifying
 each date as a holiday or business day. Includes national, state, and
 municipal holidays in São Paulo, with flags for optional work days
-(is_ponto_facultativo) and extended holiday weekends (is_feriadao).
+(`is_optional_holiday`) and extended holiday weekends
+(`is_long_weekend`).
 
 ## Usage
 
@@ -51,13 +52,13 @@ A data frame with one row per day and the following columns:
   Scope of the holiday (character). One of `"national"`, `"state"`, or
   `"municipal"`; `NA` on non-holiday dates.
 
-- is_ponto_facultativo:
+- is_optional_holiday:
 
   `TRUE` for holidays that are technically optional at the federal level
   (Carnaval, Corpus Christi) but observed as holidays in São Paulo
   (logical).
 
-- is_feriadao:
+- is_long_weekend:
 
   `TRUE` when a holiday falls on Monday, Tuesday, Thursday, or Friday,
   creating a potential extended weekend with the adjacent
@@ -66,11 +67,11 @@ A data frame with one row per day and the following columns:
 ## Details
 
 The calendar covers the full date range of the
-[`station_daily`](https://viniciusoike.github.io/metrosp/reference/station_daily.md)
+[`station_entries_daily`](https://viniciusoike.github.io/metrosp/reference/station_entries_daily.md)
 dataset (Lines 4/5 from January 2012) and extends through 2030 for
 forecasting use.
 
 ## See also
 
-[`station_daily`](https://viniciusoike.github.io/metrosp/reference/station_daily.md)
+[`station_entries_daily`](https://viniciusoike.github.io/metrosp/reference/station_entries_daily.md)
 for daily passenger data that can be joined on `date`.

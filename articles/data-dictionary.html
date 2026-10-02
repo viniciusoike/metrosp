@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,28 +105,28 @@ table {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>passengers_entrance</code></td>
+<td><code>line_entries_monthly</code></td>
 <td>Passenger entries, measured at the station turnstiles, aggregated by day-type metrics.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
 </tr>
 <tr class="even">
-<td><code>passengers_transported</code></td>
+<td><code>line_transported_monthly</code></td>
 <td>Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations.</td>
-<td>Thousand passengers</td>
-<td>2016–2026</td>
+<td>Passengers</td>
+<td>2012–2026</td>
 <td>Monthly</td>
 </tr>
 <tr class="odd">
-<td><code>station_averages</code></td>
-<td>Average business day passenger entries per station, aggregated by month.</td>
+<td><code>station_transported_monthly</code></td>
+<td>Average business day passengers transported per station, aggregated by month.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
 </tr>
 <tr class="even">
-<td><code>station_daily</code></td>
+<td><code>station_entries_daily</code></td>
 <td>Daily passenger entries at each station.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
@@ -134,9 +134,9 @@ table {
 </tr>
 </tbody>
 </table>
-<p>A <strong>passenger entry</strong> is a passenger who crossed the station’s turnstile gates. A <strong>transported passenger</strong> is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.</p>
-<p>Three of these datasets count individual passengers and cover every metro line. <code>passengers_transported</code> is the exception. It reports thousands of passengers, has no data for Line 4, and covers Line 5 only through August 2018. Multiply its <code>value</code> by 1000 before comparing it with the other datasets.</p>
-<p>Five further datasets support analysis. <code>lines</code> and <code>stations</code> carry route and station geometries; <code>station_inauguration</code>, <code>calendar_spo</code>, and <code>metro_colors</code> are lookup tables.</p>
+<p>A <strong>passenger entry</strong> (<em>entrada de passageiros</em>) is a passenger who crossed the station’s turnstile gates (<em>linha de bloqueios</em>). A <strong>transported passenger</strong> (<em>passageiro transportado</em>) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts.</p>
+<p>All four datasets count individual passengers. <code>line_transported_monthly</code> covers Line 4 from 2012 and Line 5 only through August 2018; <code>station_transported_monthly</code> covers Line 5 only through July 2018.</p>
+<p>Four further datasets support analysis. <code>rail_lines</code> and <code>rail_stations</code> carry route and station geometries; <code>calendar_spo</code> and <code>metro_colors</code> are lookup tables.</p>
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
 <p>The bundled datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, never because new months were published upstream, so results computed from a given package version stay reproducible.</p>
@@ -145,10 +145,10 @@ table {
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Latest published data</span></span>
-<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span><span class="op">)</span></span>
+<span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># A pinned monthly batch</span></span>
-<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"passengers_entrance"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
 <p>Columns are identical across sources, so everything below applies to both the bundled snapshot and the published data.</p>
 </section></section><section class="section level2"><h2 id="data-producers">Data producers<a class="anchor" aria-label="anchor" href="#data-producers"></a>
 </h2>
@@ -169,37 +169,37 @@ table {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>passengers_entrance</code></td>
+<td><code>line_entries_monthly</code></td>
 <td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
 <td>METRO + Dataverse</td>
 <td>All</td>
 </tr>
 <tr class="even">
-<td><code>passengers_transported</code></td>
+<td><code>line_transported_monthly</code></td>
 <td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
-<td>METRO</td>
-<td>Lines 1, 2, 3, 5, and 15</td>
+<td>METRO + Dataverse</td>
+<td>Lines 1, 2, 3, 4, 5, and 15</td>
 </tr>
 <tr class="odd">
-<td><code>station_averages</code></td>
+<td><code>station_transported_monthly</code></td>
 <td>station <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month</td>
 <td>METRO + Dataverse</td>
-<td>All</td>
+<td>Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15</td>
 </tr>
 <tr class="even">
-<td><code>station_daily</code></td>
+<td><code>station_entries_daily</code></td>
 <td>station <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> day</td>
 <td>METRO + Dataverse</td>
 <td>All</td>
 </tr>
 <tr class="odd">
-<td><code>lines</code></td>
+<td><code>rail_lines</code></td>
 <td>line (spatial)</td>
 <td>GeoSampa</td>
 <td>All</td>
 </tr>
 <tr class="even">
-<td><code>stations</code></td>
+<td><code>rail_stations</code></td>
 <td>station (spatial)</td>
 <td>GeoSampa</td>
 <td>All</td>
@@ -209,16 +209,17 @@ table {
 <p><strong>METRO SP transparency portal.</strong> The Companhia do Metropolitano de São Paulo publishes monthly demand reports at its <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">transparency portal</a>, covering Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in thousands.</p>
 <p><strong>Insper Dataverse.</strong> Line 4 (ViaQuatro) and Line 5 from August 2018 (ViaMobilidade) come from the <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a>, starting January 2012 and August 2018 respectively. Counts are not rounded to the nearest thousand, so the pipeline multiplies METRO values by 1,000 before combining the two.</p>
 <p><strong>GeoSampa.</strong> Line and station geometries come from <a href="https://geosampa.prefeitura.sp.gov.br/" class="external-link">GeoSampa</a>, the City of São Paulo’s open geospatial platform. Both currently operating and planned infrastructure are included.</p>
+<p><strong>Station identity.</strong> <code>station_id</code> identifies a physical station complex, while <code>station_name</code> retains the official name used by each station member. Complex membership is maintained in a committed crosswalk from official network sources; it is not inferred from name similarity or distance. Thus Consolação and Paulista retain different names but share one <code>station_id</code>.</p>
 <p>The term <em>producer</em> is deliberate. Combining these sources takes substantial cleaning, and the pipeline that does it lives in the package’s <a href="https://github.com/viniciusoike/metrosp/tree/main/data-raw" class="external-link">GitHub repository</a>.</p>
 </section><section class="section level2"><h2 id="demand-datasets">Demand datasets<a class="anchor" aria-label="anchor" href="#demand-datasets"></a>
 </h2>
-<section class="level2"><h3 id="passengers_entrance">
-<code>passengers_entrance</code><a class="anchor" aria-label="anchor" href="#passengers_entrance"></a>
+<section class="level2"><h3 id="line_entries_monthly">
+<code>line_entries_monthly</code><a class="anchor" aria-label="anchor" href="#line_entries_monthly"></a>
 </h3>
 <p>Monthly passenger entries by metro line and day-type metric, in individual passengers.</p>
 <table class="table caption-top">
 <caption>
-<code>passengers_entrance</code> columns</caption>
+<code>line_entries_monthly</code> columns</caption>
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -236,51 +237,52 @@ table {
 <td>First day of the month</td>
 </tr>
 <tr class="even">
-<td><code>line_number</code></td>
-<td>integer</td>
-<td>Line identifier (1, 2, 3, 4, 5, 15, or 99 for the network total)</td>
-</tr>
-<tr class="odd">
-<td><code>metric_abb</code></td>
-<td>character</td>
-<td>Metric code: <code>total</code>, <code>mdu</code>, <code>msa</code>, <code>mdo</code>, <code>max</code>
-</td>
-</tr>
-<tr class="even">
-<td><code>value</code></td>
-<td>numeric</td>
-<td>Passenger count</td>
-</tr>
-<tr class="odd">
-<td><code>metric</code></td>
-<td>character</td>
-<td>Metric label in English</td>
-</tr>
-<tr class="even">
-<td><code>metric_pt</code></td>
-<td>character</td>
-<td>Metric label in Portuguese</td>
-</tr>
-<tr class="odd">
-<td><code>line_name</code></td>
-<td>character</td>
-<td>Line color in English</td>
-</tr>
-<tr class="even">
-<td><code>line_name_pt</code></td>
-<td>character</td>
-<td>Line color in Portuguese</td>
-</tr>
-<tr class="odd">
 <td><code>year</code></td>
 <td>integer</td>
 <td>Calendar year</td>
 </tr>
+<tr class="odd">
+<td><code>line_number</code></td>
+<td>integer</td>
+<td>Line identifier (1, 2, 3, 4, 5, or 15)</td>
+</tr>
+<tr class="even">
+<td><code>line_name</code></td>
+<td>character</td>
+<td>Line color in English</td>
+</tr>
+<tr class="odd">
+<td><code>line_name_pt</code></td>
+<td>character</td>
+<td>Line color in Portuguese</td>
+</tr>
+<tr class="even">
+<td><code>metric</code></td>
+<td>character</td>
+<td>Metric code: <code>total</code>, <code>mdu</code>, <code>msa</code>, <code>mdo</code>, <code>max</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>metric_name</code></td>
+<td>character</td>
+<td>Metric label in English</td>
+</tr>
+<tr class="even">
+<td><code>metric_name_pt</code></td>
+<td>character</td>
+<td>Metric label in Portuguese</td>
+</tr>
+<tr class="odd">
+<td><code>value</code></td>
+<td>numeric</td>
+<td>Passenger count</td>
+</tr>
 </tbody>
 </table>
+<p>The <code>total</code>, <code>mdu</code>, <code>msa</code>, and <code>mdo</code> metrics cannot be summed into a clean network total across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only. The <code>max</code> metric cannot be summed either: individual lines may peak on different days.</p>
 <section class="level3"><h4 id="day-type-metrics">Day-type metrics<a class="anchor" aria-label="anchor" href="#day-type-metrics"></a>
 </h4>
-<p>METRO breaks each month into five metrics, shared by <code>passengers_entrance</code> and <code>passengers_transported</code>.</p>
+<p>METRO breaks each month into five metrics, shared by <code>line_entries_monthly</code> and <code>line_transported_monthly</code>.</p>
 <table class="table caption-top">
 <caption>Metric definitions</caption>
 <thead><tr class="header">
@@ -315,13 +317,13 @@ table {
 <td>Máxima Diária</td>
 </tr>
 </tbody>
-</table></section></section><section class="level2"><h3 id="passengers_transported">
-<code>passengers_transported</code><a class="anchor" aria-label="anchor" href="#passengers_transported"></a>
+</table></section></section><section class="level2"><h3 id="line_transported_monthly">
+<code>line_transported_monthly</code><a class="anchor" aria-label="anchor" href="#line_transported_monthly"></a>
 </h3>
-<p>Monthly passengers transported by metro line and day-type metric, in <strong>thousands of passengers</strong>.</p>
+<p>Monthly passengers transported by metro line and day-type metric.</p>
 <table class="table caption-top">
 <caption>
-<code>passengers_transported</code> columns</caption>
+<code>line_transported_monthly</code> columns</caption>
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -339,54 +341,61 @@ table {
 <td>First day of the month</td>
 </tr>
 <tr class="even">
-<td><code>line_number</code></td>
-<td>integer</td>
-<td>Line identifier (1, 2, 3, 5, 15, or 99 for the network total)</td>
-</tr>
-<tr class="odd">
-<td><code>metric_abb</code></td>
-<td>character</td>
-<td>Metric code: <code>total</code>, <code>mdu</code>, <code>msa</code>, <code>mdo</code>, <code>max</code>
-</td>
-</tr>
-<tr class="even">
-<td><code>value</code></td>
-<td>numeric</td>
-<td>Passenger count, in thousands</td>
-</tr>
-<tr class="odd">
-<td><code>metric</code></td>
-<td>character</td>
-<td>Metric label in English</td>
-</tr>
-<tr class="even">
-<td><code>metric_pt</code></td>
-<td>character</td>
-<td>Metric label in Portuguese</td>
-</tr>
-<tr class="odd">
-<td><code>line_name</code></td>
-<td>character</td>
-<td>Line color in English</td>
-</tr>
-<tr class="even">
-<td><code>line_name_pt</code></td>
-<td>character</td>
-<td>Line color in Portuguese</td>
-</tr>
-<tr class="odd">
 <td><code>year</code></td>
 <td>integer</td>
 <td>Calendar year</td>
 </tr>
+<tr class="odd">
+<td><code>line_number</code></td>
+<td>integer</td>
+<td>Line identifier (1, 2, 3, 4, 5, or 15)</td>
+</tr>
+<tr class="even">
+<td><code>line_name</code></td>
+<td>character</td>
+<td>Line color in English</td>
+</tr>
+<tr class="odd">
+<td><code>line_name_pt</code></td>
+<td>character</td>
+<td>Line color in Portuguese</td>
+</tr>
+<tr class="even">
+<td><code>metric</code></td>
+<td>character</td>
+<td>Metric code: <code>total</code>, <code>mdu</code>, <code>msa</code>, <code>mdo</code>, <code>max</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>metric_name</code></td>
+<td>character</td>
+<td>Metric label in English</td>
+</tr>
+<tr class="even">
+<td><code>metric_name_pt</code></td>
+<td>character</td>
+<td>Metric label in Portuguese</td>
+</tr>
+<tr class="odd">
+<td><code>value</code></td>
+<td>numeric</td>
+<td>Passengers transported</td>
+</tr>
 </tbody>
-</table></section><section class="level2"><h3 id="station_averages">
-<code>station_averages</code><a class="anchor" aria-label="anchor" href="#station_averages"></a>
+</table>
+<p>Transported counts cannot be summed into a unique network count: a journey using multiple lines is counted once on each line.</p>
+</section><section class="level2"><h3 id="station_transported_monthly">
+<code>station_transported_monthly</code><a class="anchor" aria-label="anchor" href="#station_transported_monthly"></a>
 </h3>
-<p>Monthly average weekday passenger entries per station. Only the weekday average is available at the station level; <code>passengers_entrance</code> carries all five metrics at the line level.</p>
+<p>Monthly average weekday passengers transported per station. Only the weekday average is available at the station level; <code>line_transported_monthly</code> carries all five metrics at the line level. Grouping by <code>station_id</code> gives boardings across a complex’s platforms, not people entering it. Line 5 covers January 2016–July 2018 only.</p>
 <table class="table caption-top">
 <caption>
-<code>station_averages</code> columns</caption>
+<code>station_transported_monthly</code> columns</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 16%">
+<col style="width: 58%">
+</colgroup>
 <thead><tr class="header">
 <th>Column</th>
 <th>Type</th>
@@ -399,9 +408,19 @@ table {
 <td>First day of the month</td>
 </tr>
 <tr class="even">
+<td><code>year</code></td>
+<td>integer</td>
+<td>Calendar year</td>
+</tr>
+<tr class="odd">
 <td><code>line_number</code></td>
 <td>integer</td>
 <td>Line identifier</td>
+</tr>
+<tr class="even">
+<td><code>station_id</code></td>
+<td>character</td>
+<td>Stable, opaque physical-station identifier</td>
 </tr>
 <tr class="odd">
 <td><code>station_name</code></td>
@@ -409,33 +428,44 @@ table {
 <td>Full station name</td>
 </tr>
 <tr class="even">
-<td><code>avg_passenger</code></td>
-<td>numeric</td>
-<td>Average weekday (business day) entries</td>
-</tr>
-<tr class="odd">
 <td><code>line_name</code></td>
 <td>character</td>
 <td>Line color in English</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>line_name_pt</code></td>
 <td>character</td>
 <td>Line color in Portuguese</td>
 </tr>
+<tr class="even">
+<td><code>metric</code></td>
+<td>character</td>
+<td>Metric code, always <code>mdu</code>
+</td>
+</tr>
 <tr class="odd">
-<td><code>year</code></td>
-<td>integer</td>
-<td>Calendar year</td>
+<td><code>metric_name</code></td>
+<td>character</td>
+<td>Metric label in English</td>
+</tr>
+<tr class="even">
+<td><code>metric_name_pt</code></td>
+<td>character</td>
+<td>Metric label in Portuguese</td>
+</tr>
+<tr class="odd">
+<td><code>value</code></td>
+<td>numeric</td>
+<td>Average weekday (business day) transported passengers</td>
 </tr>
 </tbody>
-</table></section><section class="level2"><h3 id="station_daily">
-<code>station_daily</code><a class="anchor" aria-label="anchor" href="#station_daily"></a>
+</table></section><section class="level2"><h3 id="station_entries_daily">
+<code>station_entries_daily</code><a class="anchor" aria-label="anchor" href="#station_entries_daily"></a>
 </h3>
-<p>Daily passenger entries at each station.</p>
+<p>Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Station sums equal the line’s <code>total</code> in <code>line_entries_monthly</code>.</p>
 <table class="table caption-top">
 <caption>
-<code>station_daily</code> columns</caption>
+<code>station_entries_daily</code> columns</caption>
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -453,9 +483,19 @@ table {
 <td>Date of observation</td>
 </tr>
 <tr class="even">
+<td><code>year</code></td>
+<td>integer</td>
+<td>Calendar year</td>
+</tr>
+<tr class="odd">
 <td><code>line_number</code></td>
 <td>integer</td>
 <td>Line identifier</td>
+</tr>
+<tr class="even">
+<td><code>station_id</code></td>
+<td>character</td>
+<td>Stable, opaque physical-station identifier</td>
 </tr>
 <tr class="odd">
 <td><code>station_name</code></td>
@@ -463,9 +503,9 @@ table {
 <td>Full station name</td>
 </tr>
 <tr class="even">
-<td><code>passengers</code></td>
-<td>numeric</td>
-<td>Daily passenger entries</td>
+<td><code>station_code</code></td>
+<td>character</td>
+<td>Three-letter METRO abbreviation (<code>NA</code> for Lines 4–5)</td>
 </tr>
 <tr class="odd">
 <td><code>line_name</code></td>
@@ -478,25 +518,20 @@ table {
 <td>Line color in Portuguese</td>
 </tr>
 <tr class="odd">
-<td><code>station_code</code></td>
-<td>character</td>
-<td>Three-letter METRO abbreviation (<code>NA</code> for Lines 4–5)</td>
-</tr>
-<tr class="even">
-<td><code>year</code></td>
-<td>integer</td>
-<td>Calendar year</td>
+<td><code>value</code></td>
+<td>numeric</td>
+<td>Daily passenger entries</td>
 </tr>
 </tbody>
 </table></section></section><section class="section level2"><h2 id="spatial-datasets">Spatial datasets<a class="anchor" aria-label="anchor" href="#spatial-datasets"></a>
 </h2>
-<p><code>lines</code> and <code>stations</code> are <code>sf</code> objects in WGS 84 (EPSG:4326). Both cover METRO SP and CPTM commuter rail, operating and planned.</p>
-<section class="level2"><h3 id="lines">
-<code>lines</code><a class="anchor" aria-label="anchor" href="#lines"></a>
+<p><code>rail_lines</code> and <code>rail_stations</code> are <code>sf</code> objects in WGS 84 (EPSG:4326). Both cover METRO SP and CPTM commuter rail, operating and planned.</p>
+<section class="level2"><h3 id="rail_lines">
+<code>rail_lines</code><a class="anchor" aria-label="anchor" href="#rail_lines"></a>
 </h3>
 <table class="table caption-top">
 <caption>
-<code>lines</code> columns</caption>
+<code>rail_lines</code> columns</caption>
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -514,14 +549,14 @@ table {
 <td>Official line number</td>
 </tr>
 <tr class="even">
-<td><code>line_name_pt</code></td>
-<td>character</td>
-<td>Line color in Portuguese</td>
-</tr>
-<tr class="odd">
 <td><code>line_name</code></td>
 <td>character</td>
 <td>Line color in English</td>
+</tr>
+<tr class="odd">
+<td><code>line_name_pt</code></td>
+<td>character</td>
+<td>Line color in Portuguese</td>
 </tr>
 <tr class="even">
 <td><code>company_name</code></td>
@@ -541,17 +576,22 @@ table {
 <code>"current"</code> (operating) or <code>"future"</code> (planned)</td>
 </tr>
 <tr class="odd">
-<td><code>geometry</code></td>
+<td><code>geom</code></td>
 <td>LINESTRING</td>
 <td>Route geometry</td>
 </tr>
 </tbody>
-</table></section><section class="level2"><h3 id="stations">
-<code>stations</code><a class="anchor" aria-label="anchor" href="#stations"></a>
+</table></section><section class="level2"><h3 id="rail_stations">
+<code>rail_stations</code><a class="anchor" aria-label="anchor" href="#rail_stations"></a>
 </h3>
 <table class="table caption-top">
 <caption>
-<code>stations</code> columns</caption>
+<code>rail_stations</code> columns</caption>
+<colgroup>
+<col style="width: 29%">
+<col style="width: 20%">
+<col style="width: 50%">
+</colgroup>
 <thead><tr class="header">
 <th>Column</th>
 <th>Type</th>
@@ -559,9 +599,19 @@ table {
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td><code>station_id</code></td>
+<td>character</td>
+<td>Stable, opaque physical-station identifier</td>
+</tr>
+<tr class="even">
 <td><code>station_name</code></td>
 <td>character</td>
 <td>Station name (title case)</td>
+</tr>
+<tr class="odd">
+<td><code>station_code</code></td>
+<td>character</td>
+<td>Three-letter METRO abbreviation when available</td>
 </tr>
 <tr class="even">
 <td><code>line_number</code></td>
@@ -569,14 +619,14 @@ table {
 <td>Line number</td>
 </tr>
 <tr class="odd">
-<td><code>line_name_pt</code></td>
-<td>character</td>
-<td>Line color in Portuguese</td>
-</tr>
-<tr class="even">
 <td><code>line_name</code></td>
 <td>character</td>
 <td>Line color in English</td>
+</tr>
+<tr class="even">
+<td><code>line_name_pt</code></td>
+<td>character</td>
+<td>Line color in Portuguese</td>
 </tr>
 <tr class="odd">
 <td><code>company_name</code></td>
@@ -598,7 +648,7 @@ table {
 </td>
 </tr>
 <tr class="even">
-<td><code>geometry</code></td>
+<td><code>geom</code></td>
 <td>POINT</td>
 <td>Station location</td>
 </tr>
@@ -607,72 +657,10 @@ table {
 <p>Transfer stations such as Sé, Paraíso, and Ana Rosa appear once per line they serve.</p>
 </section></section><section class="section level2"><h2 id="reference-datasets">Reference datasets<a class="anchor" aria-label="anchor" href="#reference-datasets"></a>
 </h2>
-<section class="level2"><h3 id="station_inauguration">
-<code>station_inauguration</code><a class="anchor" aria-label="anchor" href="#station_inauguration"></a>
-</h3>
-<p>Commercial opening dates by station, compiled by hand and still incomplete.</p>
-<table class="table caption-top">
-<caption>
-<code>station_inauguration</code> columns</caption>
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead><tr class="header">
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><code>line_number</code></td>
-<td>integer</td>
-<td>Line number</td>
-</tr>
-<tr class="even">
-<td><code>station_name</code></td>
-<td>character</td>
-<td>Full station name</td>
-</tr>
-<tr class="odd">
-<td><code>inauguration_date</code></td>
-<td>Date</td>
-<td>Commercial opening date. <code>NA</code> for stations that opened before the data window</td>
-</tr>
-<tr class="even">
-<td><code>phase</code></td>
-<td>character</td>
-<td>Expansion phase label</td>
-</tr>
-<tr class="odd">
-<td><code>verified</code></td>
-<td>logical</td>
-<td>
-<code>TRUE</code> once the date has been cross-checked against a source</td>
-</tr>
-<tr class="even">
-<td><code>notes</code></td>
-<td>character</td>
-<td>Free-text annotations on the source or caveats</td>
-</tr>
-<tr class="odd">
-<td><code>pre_data_window</code></td>
-<td>logical</td>
-<td>
-<code>TRUE</code> when the station opened before the data window</td>
-</tr>
-<tr class="even">
-<td><code>ramp_up_end</code></td>
-<td>Date</td>
-<td>
-<code>inauguration_date + 180</code> days, the end of the ramp-up window to exclude from baselines</td>
-</tr>
-</tbody>
-</table></section><section class="level2"><h3 id="calendar_spo">
+<section class="level2"><h3 id="calendar_spo">
 <code>calendar_spo</code><a class="anchor" aria-label="anchor" href="#calendar_spo"></a>
 </h3>
-<p>Daily calendar for the city of São Paulo, 2012–2030, flagging national, state, and municipal holidays. Join on <code>date</code> to build business-day aggregates from <code>station_daily</code>.</p>
+<p>Daily calendar for the city of São Paulo, 2012–2030, flagging national, state, and municipal holidays. Join on <code>date</code> to build business-day aggregates from <code>station_entries_daily</code>.</p>
 <table class="table caption-top">
 <caption>
 <code>calendar_spo</code> columns</caption>
@@ -733,13 +721,13 @@ table {
 </td>
 </tr>
 <tr class="odd">
-<td><code>is_ponto_facultativo</code></td>
+<td><code>is_optional_holiday</code></td>
 <td>logical</td>
 <td>
 <code>TRUE</code> for optional holidays, such as Carnaval Monday</td>
 </tr>
 <tr class="even">
-<td><code>is_feriadao</code></td>
+<td><code>is_long_weekend</code></td>
 <td>logical</td>
 <td>
 <code>TRUE</code> when a holiday falls on a Monday, Tuesday, Thursday, or Friday</td>
