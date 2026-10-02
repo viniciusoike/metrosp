@@ -74,7 +74,12 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
 
 #' @param psg_historic Raw historic passengers tibble (entrance + transport).
 #' @param transported_current Current-era transported tibble (builder output).
-assemble_transported <- function(psg_historic, transported_current) {
+#' @param transported_4_5 Line 4 transported tibble (committed CSV).
+assemble_transported <- function(
+  psg_historic,
+  transported_current,
+  transported_4_5
+) {
   transported_hist <- psg_historic |>
     filter(measure == "transport") |>
     mutate(metric_abb = map_metric(variable)) |>
@@ -88,7 +93,19 @@ assemble_transported <- function(psg_historic, transported_current) {
     mutate(line_number = as.integer(line_number)) |>
     left_join(metro_lines, by = join_by(line_number))
 
-  line_transported_monthly <- bind_rows(transported_hist, transported_20)
+  transported_4_5 <- transported_4_5 |>
+    left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
+    left_join(metro_lines, by = join_by(line_number))
+
+  line_transported_monthly <- bind_rows(transported_hist, transported_20) |>
+    # METRO publishes transported counts in thousands; 2.0 counts passengers,
+    # like every other demand table. Dataverse already counts individuals.
+    mutate(value = value * 1000)
+
+  line_transported_monthly <- bind_rows(
+    line_transported_monthly,
+    transported_4_5
+  )
 
   if (anyNA(line_transported_monthly$line_number)) {
     cli::cli_abort("Unparsed line number reached assemble_transported().")
@@ -97,9 +114,6 @@ assemble_transported <- function(psg_historic, transported_current) {
   line_transported_monthly <- line_transported_monthly |>
     filter(line_number != 99L) |>
     drop_trailing_na(value) |>
-    # METRO publishes transported counts in thousands; 2.0 counts passengers,
-    # like every other demand table.
-    mutate(value = value * 1000) |>
     # Processed inputs retain the 1.x names; the public contract changes here.
     rename(
       metric_name = metric,
@@ -122,7 +136,7 @@ assemble_transported <- function(psg_historic, transported_current) {
   line_transported_monthly
 }
 
-# --- station_entries_monthly --------------------------------------------------------
+# --- station_transported_monthly --------------------------------------------------------
 
 #' @param stations_historic Raw historic station-averages tibble (committed CSV).
 #' @param averages_current Current-era averages tibble (builder output).
@@ -163,15 +177,25 @@ assemble_averages <- function(
     "dataverse_averages",
     dim_station,
     dim_station_alias
-  )
+  ) |>
+    # The station monthly table measures transported passengers (boardings
+    # plus transfers). Line 4's Dataverse feed records both Bloqueio and
+    # Integracao, so it belongs here; Line 5's records Bloqueio only, so its
+    # post-handover rows are turnstile entries under a transported name.
+    # Drop them: station data for Line 5 from Aug 2018 lives in
+    # station_entries_daily. METRO-era Line 5 (2016 to Jul 2018) stays.
+    filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
-  station_entries_monthly <- bind_rows(stations_hist, averages_current) |>
+  station_transported_monthly <- bind_rows(stations_hist, averages_current) |>
     mutate(avg_passenger = avg_passenger * 1000)
 
-  station_entries_monthly <- bind_rows(station_entries_monthly, averages_4_5) |>
+  station_transported_monthly <- bind_rows(
+    station_transported_monthly,
+    averages_4_5
+  ) |>
     left_join(metro_lines, join_by(line_number))
 
-  station_entries_monthly <- station_entries_monthly |>
+  station_transported_monthly <- station_transported_monthly |>
     drop_trailing_na(avg_passenger) |>
     rename(value = avg_passenger) |>
     mutate(
@@ -186,24 +210,33 @@ assemble_averages <- function(
     select(-station_order)
 
   stopifnot(
-    "NA dates in station_entries_monthly" = !any(is.na(
-      station_entries_monthly$date
+    "NA dates in station_transported_monthly" = !any(is.na(
+      station_transported_monthly$date
     )),
-    "station_entries_monthly has footnote markers in station_name" = !any(
+    "station_transported_monthly has footnote markers in station_name" = !any(
       stringr::str_detect(
-        station_entries_monthly$station_name,
+        station_transported_monthly$station_name,
         "[0-9¹²³⁰⁴⁵⁶⁷⁸⁹*]$|\\("
       )
     ),
     # Footnote variants of one station must merge into a single series; a
     # duplicate key here means two sources overlap — investigate, never sum.
-    "station_entries_monthly has duplicate date/line/station" = nrow(
-      station_entries_monthly
+    "station_transported_monthly has duplicate date/line/station" = nrow(
+      station_transported_monthly
     ) ==
-      nrow(distinct(station_entries_monthly, date, line_number, station_name))
+      nrow(distinct(
+        station_transported_monthly,
+        date,
+        line_number,
+        station_name
+      )),
+    "station_transported_monthly holds Line 5 rows from Aug 2018" = !any(
+      station_transported_monthly$line_number == 5L &
+        station_transported_monthly$date >= as.Date("2018-08-01")
+    )
   )
 
-  station_entries_monthly
+  station_transported_monthly
 }
 
 # --- station_entries_daily -----------------------------------------------------------

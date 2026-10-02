@@ -23,14 +23,14 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 .drift_keys <- list(
   line_entries_monthly = c("date", "line_number", "metric"),
   line_transported_monthly = c("date", "line_number", "metric"),
-  station_entries_monthly = c("date", "line_number", "station_id"),
+  station_transported_monthly = c("date", "line_number", "station_id"),
   station_entries_daily = c("date", "line_number", "station_id")
 )
 
 .drift_values <- list(
   line_entries_monthly = "value",
   line_transported_monthly = "value",
-  station_entries_monthly = "value",
+  station_transported_monthly = "value",
   station_entries_daily = "value"
 )
 
@@ -39,7 +39,7 @@ checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 .legacy_dataset_names <- c(
   passengers_entrance = "line_entries_monthly",
   passengers_transported = "line_transported_monthly",
-  station_averages = "station_entries_monthly",
+  station_averages = "station_transported_monthly",
   station_daily = "station_entries_daily",
   lines = "rail_lines",
   stations = "rail_stations"
@@ -69,6 +69,20 @@ normalize_baseline_schema <- function(datasets) {
     # in, the intended removal reads as a 630-row shrinkage.
     if ("line_number" %in% names(dat)) {
       dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
+    }
+
+    # The station transported table drops Line 5's post-handover
+    # turnstile-only rows (Aug 2018+), so a 1.x baseline still carrying them
+    # would read as shrinkage. Filter before comparing.
+    if (
+      name == "station_transported_monthly" &&
+        all(c("line_number", "date") %in% names(dat))
+    ) {
+      dat <- dat[
+        !(dat$line_number %in% 5L & dat$date >= as.Date("2018-08-01")),
+        ,
+        drop = FALSE
+      ]
     }
 
     if ("metric_abb" %in% names(dat)) {

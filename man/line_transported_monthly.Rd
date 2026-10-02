@@ -9,7 +9,7 @@ A data frame with the following columns:
 \describe{
 \item{date}{First day of the month (Date).}
 \item{year}{Calendar year (integer).}
-\item{line_number}{Metro line number: 1, 2, 3, 5, or 15 (integer).}
+\item{line_number}{Metro line number: 1, 2, 3, 4, 5, or 15 (integer).}
 \item{line_name}{English name of the metro line (character).}
 \item{line_name_pt}{Portuguese name of the metro line (character).}
 \item{metric}{Metric code (character). One of:
@@ -35,31 +35,36 @@ line_transported_monthly
 }
 \description{
 Monthly count of passengers transported by São Paulo metro, aggregated
-by metro line. Data covers
-January 2016 through 2026 for Lines 1, 2, 3, and 15, and January 2016
-through August 2018 for Line 5. Sourced from the METRO SP transparency
-portal.
+by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
+and 15; January 2016 through August 2018 for Line 5; and January 2012
+through 2026 for Line 4. Sourced from the METRO SP transparency portal
+and the Insper Dataverse.
 }
 \details{
-METRO SP publishes these counts in thousands of passengers. They are
-multiplied by 1000 here, so \code{value} counts individual passengers like
-every other demand dataset and carries METRO's rounding to the thousand.
-
-A transported passenger is one who crossed a turnstile plus one who
-transferred between lines at an interchange station, so transported counts
-run above entry counts for the same line and month. Do not sum this dataset
+A transported passenger is one who boarded a train on that line, whether
+through a turnstile or by transferring from another line at an interchange
+station. METRO's term is \emph{passageiros transportados}: turnstile
+entries plus transfers between lines. Transported counts therefore run
+above entry counts for the same line and month. Do not sum this dataset
 to estimate unique network passengers: a journey using multiple lines is
 counted once on each line. See the Metro Demand Data article for details:
 \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 
-All data comes from the METRO SP transparency portal. Line 4 (Amarela)
-is not available in this dataset — the Insper Dataverse source does not
-include transported counts for Lines 4 or 5. Line 5 (Lilás) is available
+Line 4 (Amarela/ViaQuatro) comes from the Insper Dataverse, January
+2012–2026, all five metrics, summing both \code{Bloqueio} (turnstile) and
+\code{Integracao} (transfer) boarding types. Line 5 (Lilás) is available
 from the METRO portal only for January 2016–August 2018: the line was
 handed over to ViaMobilidade in August 2018 and the portal stopped
-reporting its transported counts afterwards. August 2018 covers only the
-days before the handover: its \code{total} is a partial month, and
-\code{msa} and \code{mdo} are \code{NA}.
+reporting its transported counts afterwards. The Dataverse feed for Line 5
+records turnstiles only, so no transported measure exists for it after the
+handover. August 2018 covers only the days before the handover: its
+\code{total} is a partial month, and \code{msa} and \code{mdo} are
+\code{NA}.
+
+METRO SP publishes these counts in thousands of passengers. They are
+multiplied by 1000 here, so \code{value} counts individual passengers like
+every other demand dataset and carries METRO's rounding to the thousand.
+Line 4 comes from the Dataverse in individual passengers.
 
 METRO published January–September 2017 only as PDFs, with no
 machine-readable equivalent. Those months were transcribed from the
@@ -68,11 +73,11 @@ reports and reconciled against the published totals.
 Metrics:
 \itemize{
 \item \code{total}: Total passengers in the month.
-\item \code{mdu}: Average daily entries on business days
+\item \code{mdu}: Average daily transported passengers on business days
 (Média dos Dias Úteis).
-\item \code{msa}: Average daily entries on Saturdays
+\item \code{msa}: Average daily transported passengers on Saturdays
 (Média dos Sábados).
-\item \code{mdo}: Average daily entries on Sundays
+\item \code{mdo}: Average daily transported passengers on Sundays
 (Média dos Domingos).
 \item \code{max}: Daily maximum (Máxima Diária).
 }
@@ -97,6 +102,6 @@ rebuilt data is published on every pipeline run at
 
 \seealso{
 \code{\link{line_entries_monthly}} for entry counts,
-\code{\link{station_entries_monthly}} for station-level weekday averages.
+\code{\link{station_transported_monthly}} for station-level weekday averages.
 }
 \keyword{datasets}

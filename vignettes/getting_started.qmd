@@ -31,7 +31,7 @@ There are four main datasets:
 
 - `line_entries_monthly`: monthly passengers entering the metro system, by line
 - `line_transported_monthly`: monthly passengers transported by the metro system, by line
-- `station_entries_monthly`: monthly average of weekday passengers per station
+- `station_transported_monthly`: monthly average of weekday passengers per station
 - `station_entries_daily`: daily passengers per station
 
 For convenience, `metrosp` also provides information on stations and lines of the metro system (`rail_lines` and `rail_stations`). The `rail_lines` dataset is a spatial dataset and requires the `sf` package to work properly; it carries the line numbers and Portuguese/English line names for the full network (including planned and CPTM lines).
@@ -124,7 +124,7 @@ This dataset is identified by month (`date`), line (`line_number`, `line_name`),
 glimpse(line_entries_monthly)
 ```
 
-Because a passenger enters through a turnstile only once, summing `total`, `mdu`, `msa`, or `mdo` across lines gives the corresponding network entry figure. Do not sum `max`: individual lines may peak on different days.
+Because METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only, summing across all six lines counts a Line 4 → Line 1 journey twice. No clean network total exists across operators. Do not sum `max`: individual lines may peak on different days.
 
 ```{r}
 total_entrance <- line_entries_monthly |>
@@ -151,9 +151,9 @@ ggplot(total_entrance, aes(x = date, y = value, color = line_name)) +
 
 ### Transported
 
-This dataset has the same columns and unit as `line_entries_monthly`. METRÔ publishes it in thousands, so values are rounded to the thousand.
+This dataset has the same columns and unit as `line_entries_monthly`. METRÔ publishes it in thousands, so values are rounded to the thousand; Line 4 comes from the Dataverse in individual passengers.
 
-Coverage is limited to the METRÔ-operated system. Line 4 never appears, and Line 5 stops in August 2018, when the line passed to ViaMobilidade: the Dataverse source that covers both lines does not publish transported counts.
+Line 4 runs from January 2012 with all five metrics, summing turnstile entries and transfers. Line 5 stops in August 2018, when the line passed to ViaMobilidade: the Dataverse feed records turnstiles only, so no transported measure exists for it afterward.
 
 ```{r}
 glimpse(line_transported_monthly)
@@ -184,19 +184,19 @@ ggplot(daily_avg, aes(x = date, y = value, color = line_name)) +
   theme_series
 ```
 
-## Station Averages
+## Station Transported
 
-This dataset is identified by month (`date`), line (`line_number`, `line_name`), physical station (`station_id`), and the constant `mdu` metric. `station_name` is the current display label and `value` is the daily average on business days.
+This dataset is identified by month (`date`), line (`line_number`, `line_name`), physical station (`station_id`), and the constant `mdu` metric. `station_name` is the current display label and `value` is the daily average on business days. It measures transported passengers — boardings plus transfers — so grouping by `station_id` gives boardings across a complex's platforms, not people entering it. Line 5 covers January 2016–July 2018 only; later station data lives in `station_entries_daily`.
 
 ```{r}
-glimpse(station_entries_monthly)
+glimpse(station_transported_monthly)
 ```
 
 The plot below shows the daily average (business days) passengers entering each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.
 
 ```{r}
 #| code-fold: true
-line4st <- station_entries_monthly |>
+line4st <- station_transported_monthly |>
   filter(line_number == 4)
 
 ggplot(line4st, aes(x = date, y = value)) +

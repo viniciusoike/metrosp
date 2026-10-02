@@ -15,14 +15,14 @@
 demand_datasets <- c(
   "line_entries_monthly",
   "line_transported_monthly",
-  "station_entries_monthly",
+  "station_transported_monthly",
   "station_entries_daily"
 )
 
 legacy_demand_datasets <- c(
   line_entries_monthly = "passengers_entrance",
   line_transported_monthly = "passengers_transported",
-  station_entries_monthly = "station_averages",
+  station_transported_monthly = "station_averages",
   station_entries_daily = "station_daily"
 )
 
@@ -34,7 +34,7 @@ legacy_demand_datasets <- c(
 #' rebuilt from the upstream sources on every pipeline run.
 #'
 #' @param dataset Dataset to read. One of `"line_entries_monthly"`,
-#'   `"line_transported_monthly"`, `"station_entries_monthly"`, or
+#'   `"line_transported_monthly"`, `"station_transported_monthly"`, or
 #'   `"station_entries_daily"`.
 #' @param source Where to read from.
 #'   * `"auto"` (default) uses the cache, downloads when it is stale or empty,
@@ -50,7 +50,7 @@ legacy_demand_datasets <- c(
 #' @param quiet Whether to suppress progress messages.
 #'
 #' @return A data frame. See [line_entries_monthly], [line_transported_monthly],
-#'   [station_entries_monthly], and [station_entries_daily] for the column
+#'   [station_transported_monthly], and [station_entries_daily] for the column
 #'   definitions, which are identical across sources.
 #'
 #' @details
@@ -88,7 +88,7 @@ read_metro_demand <- function(
   dataset = c(
     "line_entries_monthly",
     "line_transported_monthly",
-    "station_entries_monthly",
+    "station_transported_monthly",
     "station_entries_daily"
   ),
   source = c("auto", "cache", "remote", "bundled"),
@@ -193,6 +193,19 @@ normalize_published_dataset <- function(dat, dataset) {
     dat <- dat[!dat$line_number %in% 99, , drop = FALSE]
   }
 
+  # The station transported table drops Line 5's post-handover turnstile-only
+  # rows (Aug 2018+); a legacy station_averages asset still carries them.
+  if (
+    dataset == "station_transported_monthly" &&
+      all(c("line_number", "date") %in% names(dat))
+  ) {
+    dat <- dat[
+      !(dat$line_number %in% 5L & dat$date >= as.Date("2018-08-01")),
+      ,
+      drop = FALSE
+    ]
+  }
+
   # 1.x published transported counts in thousands; 2.0 counts passengers.
   if (dataset == "line_transported_monthly") {
     dat$value <- dat$value * 1000
@@ -212,7 +225,7 @@ normalize_published_dataset <- function(dat, dataset) {
     names(dat)[names(dat) == "passengers"] <- "value"
   }
 
-  if (dataset == "station_entries_monthly" && !"metric" %in% names(dat)) {
+  if (dataset == "station_transported_monthly" && !"metric" %in% names(dat)) {
     dat$metric <- "mdu"
     dat$metric_name <- "Average on Business Days"
     dat$metric_name_pt <- "M\u00e9dia dos Dias \u00dateis"
@@ -248,7 +261,7 @@ normalize_published_dataset <- function(dat, dataset) {
       "metric_name_pt",
       "value"
     ),
-    station_entries_monthly = c(
+    station_transported_monthly = c(
       "date",
       "year",
       "line_number",

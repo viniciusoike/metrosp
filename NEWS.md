@@ -8,7 +8,7 @@ The exported datasets now use a consistent `<grain>_<measure>_<frequency>` conve
 |---|---|
 | `passengers_entrance` | `line_entries_monthly` |
 | `passengers_transported` | `line_transported_monthly` |
-| `station_averages` | `station_entries_monthly` |
+| `station_averages` | `station_transported_monthly` |
 | `station_daily` | `station_entries_daily` |
 | `lines` | `rail_lines` |
 | `stations` | `rail_stations` |
@@ -16,7 +16,13 @@ The exported datasets now use a consistent `<grain>_<measure>_<frequency>` conve
 | `calendar_spo` | Unchanged |
 | `metro_colors` | Unchanged |
 
-* Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure; sum entry counts across lines when a network total is needed, but do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
+* Removed the published `line_number = 99` system rows from `line_entries_monthly` and `line_transported_monthly`. They did not provide a consistent whole-network measure. No clean network total exists across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only. Do not sum transported counts because interchange journeys are counted on every line used. Corrected the operator for Line 5 in `rail_lines` and `rail_stations` to ViaMobilidade (#22).
+
+* Renamed the station monthly dataset to `station_transported_monthly`: METRO's file measures transported passengers (boardings plus transfers), not turnstile entries. Summed over a line's stations its `mdu` equals the line's `mdu` in `line_transported_monthly`.
+
+* Dropped Line 5 rows from August 2018 onward from `station_transported_monthly`. The Dataverse feed records turnstiles only after the ViaMobilidade handover, so those rows are neither measure; station data for that era stays in `station_entries_daily`. METRO-era Line 5 (January 2016 to July 2018) is unchanged.
+
+* Added Line 4 to `line_transported_monthly` from January 2012 with all five metrics, summing turnstile entries and transfers from the Dataverse feed. Line 5 stays absent after August 2018: its feed records no transfers.
 
 * `line_transported_monthly` now counts individual passengers, like the other demand datasets. METRO publishes transported counts in thousands, and 1.x kept that unit; `value` is now multiplied by 1000. `read_metro_demand()` rescales 1.x release assets the same way.
 
@@ -28,7 +34,7 @@ The exported datasets now use a consistent `<grain>_<measure>_<frequency>` conve
 
 * Added a stable, opaque `station_id` to both station-demand datasets and the station geometry table. Named station members retain their official `station_name`, while officially documented physical interchange complexes share an ID across lines and modes. Complex membership comes from a committed, source-backed crosswalk rather than name or distance inference (#24).
 
-* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_entries_monthly` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
+* Standardized the four demand datasets on `value`, renamed the metric columns to `metric`, `metric_name`, and `metric_name_pt`, made `station_transported_monthly` explicitly use the `mdu` metric, and made `year` and `line_number` integer columns. `calendar_spo` now uses `is_optional_holiday` and `is_long_weekend` (#23).
 
 ### Migrating from 1.x
 
@@ -44,7 +50,7 @@ The measure columns `passengers` and `avg_passenger` are now consistently named 
 
 `line_transported_monthly$value` is 1000 times its 1.x value. Remove any `* 1000` your code applied before comparing it with the entry counts.
 
-Code that previously used `line_number == 99` should sum lines for entry counts. Do not sum transported counts: a passenger is counted on every line used, so interchange journeys would be counted more than once.
+Code that previously used `line_number == 99` has no replacement network total: METRO line entries include transfers from Lines 4 and 5 while those lines count turnstiles only, and transported counts double-count interchange journeys. Do not sum transported counts: a passenger is counted on every line used, so interchange journeys would be counted more than once.
 
 Only vintages that were actually published can be pinned. The first dated archive is `data-2026-09`; earlier year-month tags do not exist.
 

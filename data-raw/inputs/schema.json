@@ -89,7 +89,7 @@
       "value": "double"
     }
   },
-  "station_entries_monthly": {
+  "station_transported_monthly": {
     "kind": "data.frame",
     "columns": {
       "date": "Date",

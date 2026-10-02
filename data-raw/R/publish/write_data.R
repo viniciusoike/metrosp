@@ -12,7 +12,7 @@
 write_all_data <- function(
   line_entries_monthly,
   line_transported_monthly,
-  station_entries_monthly,
+  station_transported_monthly,
   station_entries_daily,
   rail_lines,
   rail_stations,
@@ -21,7 +21,7 @@ write_all_data <- function(
 ) {
   usethis::use_data(line_entries_monthly, overwrite = TRUE)
   usethis::use_data(line_transported_monthly, overwrite = TRUE)
-  usethis::use_data(station_entries_monthly, overwrite = TRUE)
+  usethis::use_data(station_transported_monthly, overwrite = TRUE)
   usethis::use_data(station_entries_daily, overwrite = TRUE)
   usethis::use_data(rail_lines, overwrite = TRUE)
   usethis::use_data(rail_stations, overwrite = TRUE)
@@ -31,7 +31,7 @@ write_all_data <- function(
   c(
     "line_entries_monthly",
     "line_transported_monthly",
-    "station_entries_monthly",
+    "station_transported_monthly",
     "station_entries_daily",
     "rail_lines",
     "rail_stations",

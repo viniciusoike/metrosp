@@ -64,7 +64,7 @@ install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'ht
 ## Datasets
 
 Four datasets carry the demand data: `line_entries_monthly`,
-`line_transported_monthly`, `station_entries_monthly`, and
+`line_transported_monthly`, `station_transported_monthly`, and
 `station_entries_daily`. The rest are auxiliary tables that support
 analysis and visualization.
 
@@ -72,7 +72,7 @@ analysis and visualization.
 |----|----|----|----|
 | `line_entries_monthly` | Monthly passenger entries by line and day-type metric | Monthly | No |
 | `line_transported_monthly` | Monthly passengers transported by line | Monthly | No |
-| `station_entries_monthly` | Average weekday passenger entries by station | Monthly | No |
+| `station_transported_monthly` | Average weekday passengers transported by station | Monthly | No |
 | `station_entries_daily` | Daily passenger entries by station | Daily | No |
 | `calendar_spo` | São Paulo holiday and business-day calendar | Daily | No |
 | `metro_colors` | Named vector of official metro line colors | — | No |
@@ -130,7 +130,7 @@ library(dplyr)
 line_entries_monthly
 
 # Station-level weekday averages
-station_entries_monthly
+station_transported_monthly
 
 # Spatial line routes
 rail_lines

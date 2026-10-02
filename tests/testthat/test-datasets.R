@@ -8,7 +8,7 @@
 test_that("all datasets load as data frames", {
   expect_s3_class(metrosp::line_entries_monthly, "data.frame")
   expect_s3_class(metrosp::line_transported_monthly, "data.frame")
-  expect_s3_class(metrosp::station_entries_monthly, "data.frame")
+  expect_s3_class(metrosp::station_transported_monthly, "data.frame")
   expect_s3_class(metrosp::station_entries_daily, "data.frame")
 })
 
@@ -40,25 +40,28 @@ test_that("line_transported_monthly satisfies its structural invariants", {
   )
 })
 
-test_that("transported counts share the entry counts' unit", {
-  # Transported adds transfers to turnstile entries, so it can only run above
-  # entries. Left in thousands, it would sit about 1000 times below them.
-  keys <- c("date", "line_number", "metric")
-  paired <- merge(
-    metrosp::line_entries_monthly[c(keys, "value")],
-    metrosp::line_transported_monthly[c(keys, "value")],
-    by = keys,
-    suffixes = c("_entries", "_transported")
+test_that("line_transported_monthly covers Line 4 with all five metrics", {
+  line4 <- metrosp::line_transported_monthly[
+    metrosp::line_transported_monthly$line_number == 4L,
+    ,
+    drop = FALSE
+  ]
+  expect_gt(nrow(line4), 0)
+  expect_setequal(
+    unique(line4$metric),
+    c("total", "mdu", "msa", "mdo", "max")
   )
-  # August 2018 transported covers only the days before Line 5's handover.
-  partial <- paired$line_number == 5L & paired$date == as.Date("2018-08-01")
-  paired <- paired[paired$metric == "total" & !partial, ]
+  expect_equal(min(line4$date), as.Date("2012-01-01"))
+})
 
-  expect_gt(nrow(paired), 0)
-  expect_true(all(
-    paired$value_transported >= paired$value_entries,
-    na.rm = TRUE
-  ))
+test_that("transported counts share the entry counts' unit", {
+  expect_equal(
+    check_transported_gte_entries(
+      metrosp::line_entries_monthly,
+      metrosp::line_transported_monthly
+    ),
+    character(0)
+  )
 })
 
 test_that("demand checks enforce the 2.0 metric and type contract", {
@@ -76,10 +79,10 @@ test_that("demand checks enforce the 2.0 metric and type contract", {
     "unexpected type"
   )
 
-  missing_year <- metrosp::station_entries_monthly |>
+  missing_year <- metrosp::station_transported_monthly |>
     dplyr::select(-year)
   expect_match(
-    check_station_entries_monthly(missing_year)[[1]],
+    check_station_transported_monthly(missing_year)[[1]],
     "missing column"
   )
 })
@@ -98,9 +101,58 @@ test_that("line checks reject system totals without fixing the line roster", {
   )
 })
 
-test_that("station_entries_monthly satisfies its structural invariants", {
+test_that("station_transported_monthly satisfies its structural invariants", {
   expect_equal(
-    check_station_entries_monthly(metrosp::station_entries_monthly),
+    check_station_transported_monthly(metrosp::station_transported_monthly),
+    character(0)
+  )
+})
+
+test_that("station_transported_monthly holds no post-handover Line 5 rows", {
+  transported <- metrosp::station_transported_monthly
+  expect_false(any(
+    transported$line_number == 5L & transported$date >= as.Date("2018-08-01")
+  ))
+
+  bad <- transported
+  bad <- rbind(
+    bad,
+    data.frame(
+      date = as.Date("2020-01-01"),
+      year = 2020L,
+      line_number = 5L,
+      station_id = "chacara-klabin",
+      station_name = "Chácara Klabin",
+      line_name = "Lilac",
+      line_name_pt = "Lilás",
+      metric = "mdu",
+      metric_name = "Average on Business Days",
+      metric_name_pt = "Média dos Dias Úteis",
+      value = 1000
+    )
+  )
+  expect_match(
+    check_station_transported_monthly(bad)[[1]],
+    "Line 5"
+  )
+})
+
+test_that("station transported sums approximate line transported mdu", {
+  expect_equal(
+    check_station_transported_agreement(
+      metrosp::station_transported_monthly,
+      metrosp::line_transported_monthly
+    ),
+    character(0)
+  )
+})
+
+test_that("station daily sums equal line entries totals", {
+  expect_equal(
+    check_daily_entries_agreement(
+      metrosp::station_entries_daily,
+      metrosp::line_entries_monthly
+    ),
     character(0)
   )
 })
@@ -113,24 +165,32 @@ test_that("station_entries_daily satisfies its structural invariants", {
 })
 
 test_that("station identities are stable across demand grains", {
-  monthly <- metrosp::station_entries_monthly |>
+  monthly <- metrosp::station_transported_monthly |>
     dplyr::distinct(station_id, station_name)
   daily <- metrosp::station_entries_daily |>
     dplyr::distinct(station_id, station_name)
 
+  # Every daily station appears in the monthly table, except Line 5's
+  # post-handover stations: the monthly transported table drops Line 5 from
+  # Aug 2018 onward while the daily table starts there.
+  missing <- setdiff(daily$station_id, monthly$station_id)
+  missing_lines <- metrosp::station_entries_daily |>
+    dplyr::filter(station_id %in% missing) |>
+    dplyr::distinct(line_number)
+  expect_true(all(missing_lines$line_number == 5L))
   expect_setequal(
     intersect(monthly$station_id, daily$station_id),
-    unique(daily$station_id)
+    setdiff(unique(daily$station_id), missing)
   )
   expect_identical(
-    unique(metrosp::station_entries_monthly$station_id[
-      metrosp::station_entries_monthly$station_name == "República"
+    unique(metrosp::station_transported_monthly$station_id[
+      metrosp::station_transported_monthly$station_name == "República"
     ]),
     "republica"
   )
   expect_setequal(
-    unique(metrosp::station_entries_monthly$line_number[
-      metrosp::station_entries_monthly$station_name == "República"
+    unique(metrosp::station_transported_monthly$line_number[
+      metrosp::station_transported_monthly$station_name == "República"
     ]),
     c(3L, 4L)
   )
@@ -142,11 +202,11 @@ test_that("station identities are stable across demand grains", {
   )
 })
 
-test_that("station_entries_monthly names all resolve to a current metro geometry", {
+test_that("station_transported_monthly names all resolve to a current metro geometry", {
   geo <- sf::st_drop_geometry(metrosp::rail_stations)
   geo_current_metro <- geo[geo$status == "current" & geo$type == "metro", ]
   unmatched <- setdiff(
-    unique(metrosp::station_entries_monthly$station_name),
+    unique(metrosp::station_transported_monthly$station_name),
     unique(geo_current_metro$station_name)
   )
   expect_equal(unmatched, character(0))

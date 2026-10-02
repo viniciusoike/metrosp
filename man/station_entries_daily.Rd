@@ -38,6 +38,12 @@ Data covers January 2012 through 2026 for Line 4 and August 2018 through
 3, and 15 (METRO SP transparency portal).
 }
 \details{
+This is an entries measure — METRO's \emph{Entrada de Passageiros por
+Estação}: turnstile entries plus transfers arriving from other operators
+(CPTM, Line 4, Line 5), excluding transfers between METRO lines. Station
+sums equal the line's \code{total} in
+\code{\link{line_entries_monthly}} exactly.
+
 Station coverage and date range by line:
 \itemize{
 \item Line 1 (Azul/Blue): 23 stations, 2020–2026 (METRO SP portal).
@@ -74,7 +80,7 @@ rebuilt data is published on every pipeline run at
 }
 
 \seealso{
-\code{\link{station_entries_monthly}} for monthly weekday averages,
+\code{\link{station_transported_monthly}} for monthly weekday averages,
 \code{\link{line_entries_monthly}} for monthly line-level totals.
 }
 \keyword{datasets}

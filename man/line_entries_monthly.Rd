@@ -60,10 +60,11 @@ that name repeats the transported figures. Lines 1, 2, 3, 5, and 15
 therefore carry no value for that month; Line 4 comes from the Dataverse
 and is unaffected.
 
-Summing \code{total}, \code{mdu}, \code{msa}, or \code{mdo} across lines
-gives the corresponding network entry figure. Do not sum \code{max}:
-individual lines may peak on different days. See the Metro Demand Data
-article for details:
+Summing across lines does not give a clean network total. METRO line entries
+include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count
+turnstiles only, so a Line 4 → Line 1 journey counts twice. Do not sum
+\code{max}: individual lines may peak on different days. See the Metro Demand
+Data article for details:
 \url{https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html}.
 
 Metrics:
@@ -98,6 +99,6 @@ rebuilt data is published on every pipeline run at
 
 \seealso{
 \code{\link{line_transported_monthly}} for transported counts,
-\code{\link{station_entries_monthly}} for station-level weekday averages.
+\code{\link{station_transported_monthly}} for station-level weekday averages.
 }
 \keyword{datasets}

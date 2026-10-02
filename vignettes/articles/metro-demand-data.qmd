@@ -30,13 +30,13 @@ The package ships four demand datasets. Two measure passengers at the line level
 | Dataset | Description | Unit | Time span | Frequency | Package name |
 |------------|------------|------------|------------|------------|------------|
 | Passenger entries by line | Passenger entries, measured by the station's turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly | `line_entries_monthly` |
-| Transported passengers per line | Number of transported passengers, measured by the station's turnstiles plus transfers between lines at interchange stations. | Passengers | 2016--2026 | Monthly | `line_transported_monthly` |
-| Station-level averages | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly | `station_entries_monthly` |
+| Transported passengers per line | Number of transported passengers, measured by boardings plus transfers between lines at interchange stations. | Passengers | 2012--2026 | Monthly | `line_transported_monthly` |
+| Station-level transported | Average business day passengers transported per station, aggregated by month. | Passengers | 2012--2026 | Monthly | `station_transported_monthly` |
 | Station-level daily | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily | `station_entries_daily` |
 
-All four datasets count **individual passengers**. Three cover every metro line; `line_transported_monthly` has no data for Line 4 and covers Line 5 only through August 2018.
+All four datasets count **individual passengers**. `line_transported_monthly` covers Line 4 from 2012 and Line 5 only through August 2018; `station_transported_monthly` covers Line 5 only through July 2018.
 
-A "passenger entry" is a passenger who crossed the station's turnstile gates. A "transported passenger" is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.
+A "passenger entry" (*entrada de passageiros*) is a passenger who crossed the station's turnstile gates (*linha de bloqueios*). A "transported passenger" (*passageiro transportado*) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts. No clean network total exists across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only.
 
 The table simplifies in two ways. First, the time span varies by line; each dataset section below gives the window per line. Second, the producer changes over time: METRO ran Line 5 at first and later handed it to ViaMobilidade.
 
@@ -75,8 +75,8 @@ I use the term **data producer** rather than source to emphasize the processing 
 | Dataset | Granularity | Producer | Time span | Line Coverage |
 |---------------|---------------|---------------|---------------|---------------|
 | `line_entries_monthly` | line $\times$ month $\times$ metric | METRO + Dataverse | 2012--2026 | All |
-| `line_transported_monthly` | line $\times$ month $\times$ metric | METRO | 2016--2026 | Lines 1, 2, 3, 5, and 15 |
-| `station_entries_monthly` | station $\times$ month | METRO + Dataverse | 2012--2026 | All |
+| `line_transported_monthly` | line $\times$ month $\times$ metric | METRO + Dataverse | 2012--2026 | Lines 1, 2, 3, 4, 5, and 15 |
+| `station_transported_monthly` | station $\times$ month | METRO + Dataverse | 2012--2026 | Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15 |
 | `station_entries_daily` | station $\times$ day | METRO + Dataverse | 2012--2026 | All |
 | `rail_lines` | line (spatial) | GeoSampa | Last updated: 2026/04/10 | All |
 | `rail_stations` | station (spatial) | GeoSampa | Last updated: 2026/04/10 | All |
@@ -85,7 +85,7 @@ I use the term **data producer** rather than source to emphasize the processing 
 
 The Companhia do Metropolitano de São Paulo (a.k.a. METRÔ) publishes monthly demand reports at its [data transparency portal](https://transparencia.metrosp.com.br/dataset/demanda). Reports cover Lines 1 (Azul/Blue), 2 (Verde/Green), 3 (Vermelha/Red), 5 (Lilás/Lilac, until Jul 2018), and 15 (Prata/Silver), and are available from January 2016 onward. Values are reported in thousands (*milhares*).
 
-Before 2020, these monthly reports were published as monthly PDF and `csv` files. The `csv` files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see [2017 source formats](#source-formats-2017)). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of entries in each station, on business days (`station_entries_monthly`); 2) the number of passenger entries per line (`line_entries_monthly`); and 3) the number of transported passengers per line (`line_transported_monthly`).
+Before 2020, these monthly reports were published as monthly PDF and `csv` files. The `csv` files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see [2017 source formats](#source-formats-2017)). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of transported passengers in each station, on business days (`station_transported_monthly`); 2) the number of passenger entries per line (`line_entries_monthly`); and 3) the number of transported passengers per line (`line_transported_monthly`).
 
 From 2020 onwards, the monthly reports started to be published in annual PDF and `csv` files that are updated monthly. Also, a new report was published that contained the daily number of entrances per station (`station_entries_daily`).
 
@@ -99,13 +99,13 @@ Finally, METRO produces data for lines 1, 2, 3, 5, and 15. Line 5 was initially 
 
 ## Insper Dataverse {#source-dataverse}
 
-Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 (Line 4) and August 2018 (Line 5). Transported counts are **not available** for Lines 4 or 5.
+Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 (Line 4) and August 2018 (Line 5). The Dataverse feed records two boarding types: `Bloqueio` (turnstile) and `Integracao` (transfer). Only Line 4 records transfers, so line-level transported counts exist for Line 4 but not for Line 5 after the handover.
 
-Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset reports individual passengers, including `line_transported_monthly`, which draws on METRO alone.
+Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset reports individual passengers.
 
-The `station_entries_monthly` dataset for Lines 4 and 5 is derived from `station_entries_daily` using the `bizdays` package with the "Brazil/ANBIMA" calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city's business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships `calendar_spo`, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction.
+The `station_transported_monthly` dataset for Line 4 is derived from `station_entries_daily` using the `bizdays` package with the "Brazil/ANBIMA" calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city's business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships `calendar_spo`, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction. Line 5's Dataverse feed records turnstiles only, so its post-handover rows are dropped from the transported station table; they remain in `station_entries_daily`.
 
-República appears on Lines 3 and 4 in `station_entries_monthly`, but only on
+República appears on Lines 3 and 4 in `station_transported_monthly`, but only on
 Line 3 in `station_entries_daily`. The Line 4 daily feed does not publish the
 station; this is a source coverage gap, not a station-name mismatch.
 
@@ -158,7 +158,7 @@ The Dataverse source lags METRO, so Lines 4 and 5 end earlier than the rest. Eve
 
 ## `line_transported_monthly`
 
-This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers entering the station through the turnstile gates plus passengers changing between lines. METRO publishes it in thousands; the package multiplies by 1000, so values count individual passengers like every other dataset.
+This table shows the number of monthly passengers transported, aggregated by metro line and day-type metric. It counts passengers boarding a train on that line, whether through the turnstile gates or by transferring from another line. METRO publishes it in thousands; the package multiplies by 1000, so values count individual passengers like every other dataset. Line 4 comes from the Dataverse in individual passengers, summing turnstile entries and transfers.
 
 ```{r}
 dplyr::glimpse(line_transported_monthly)
@@ -170,34 +170,7 @@ This dataset uses the same day-type metrics as `line_entries_monthly` (see Metri
 
 The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
 
-![Time coverage by line for the line_transported_monthly dataset](../man/figures/timespan_line_transported_monthly.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the line_transported_monthly dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 5 covers January 2016 to August 2018 only. Line 4 has no bar at all, showing it is entirely absent from this dataset."}
-
-| Line | Source | From | To |
-|------------------|------------------|------------------|------------------|
-| 1 -- Blue | METRO portal | Jan 2016 | Jul 2026 |
-| 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
-| 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
-| 5 -- Lilac | METRO portal | Jan 2016 | Aug 2018 |
-| 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
-: Time coverage by line
-
-Line 4 is absent entirely. The Dataverse source does not include transported counts for Lines 4 or 5.
-
-## `station_entries_monthly`
-
-Monthly average weekday passenger entries per station.
-
-```{r}
-dplyr::glimpse(station_entries_monthly)
-```
-
-Only the weekday average metric is available at the station level. For line-level data with all five metrics, see `line_entries_monthly`.
-
-### Time coverage by line
-
-The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
-
-![Time coverage by line for the station_entries_monthly dataset](../man/figures/timespan_station_entries_monthly.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_entries_monthly dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 5 runs from January 2016 to April 2026; Line 4 runs from January 2012 to March 2026."}
+![Time coverage by line for the line_transported_monthly dataset](../man/figures/timespan_line_transported_monthly.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the line_transported_monthly dataset. Lines 1, 2, 3, and 15 run from January 2016 to July 2026. Line 4 runs from January 2012 to March 2026. Line 5 covers January 2016 to August 2018 only."}
 
 | Line | Source | From | To |
 |------------------|------------------|------------------|------------------|
@@ -205,15 +178,43 @@ The time coverage of this dataset varies by line. End dates below are those of t
 | 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
 | 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
 | 4 -- Yellow | Dataverse | Jan 2012 | Mar 2026 |
-| 5 -- Lilac | METRO (Jan 2016--Jul 2018), Dataverse (Aug 2018+) | Jan 2016 | Apr 2026 |
+| 5 -- Lilac | METRO portal | Jan 2016 | Aug 2018 |
 | 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
 : Time coverage by line
 
-February through June 2016 carries a defect in the Line 1 values. Across those five months the station figures fall well short of what the surrounding months and the Line 1 total in `line_entries_monthly` imply, and they are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO's retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.
+Line 5 ends in August 2018, when the line passed to ViaMobilidade. The Dataverse feed records turnstiles only, so no transported measure exists for it afterward.
+
+## `station_transported_monthly`
+
+Monthly average weekday passengers transported per station: boardings on that line plus transfers from the other lines. Summed over a line's stations it equals the line's `mdu` in `line_transported_monthly`.
+
+```{r}
+dplyr::glimpse(station_transported_monthly)
+```
+
+Only the weekday average metric is available at the station level. For line-level data with all five metrics, see `line_transported_monthly`. Grouping by `station_id` gives boardings across a complex's platforms, not people entering it.
+
+### Time coverage by line
+
+The time coverage of this dataset varies by line. End dates below are those of the shipped snapshot, not of the upstream source.
+
+![Time coverage by line for the station_transported_monthly dataset](../man/figures/timespan_station_transported_monthly.png){fig-alt="Horizontal bar chart showing each metro line's data coverage window in the station_transported_monthly dataset, aggregated by line. Lines 1, 2, 3, and 15 run from January 2016 to July 2026; Line 4 runs from January 2012 to March 2026; Line 5 runs from January 2016 to July 2018."}
+
+| Line | Source | From | To |
+|------------------|------------------|------------------|------------------|
+| 1 -- Blue | METRO portal | Jan 2016 | Jul 2026 |
+| 2 -- Green | METRO portal | Jan 2016 | Jul 2026 |
+| 3 -- Red | METRO portal | Jan 2016 | Jul 2026 |
+| 4 -- Yellow | Dataverse | Jan 2012 | Mar 2026 |
+| 5 -- Lilac | METRO portal | Jan 2016 | Jul 2018 |
+| 15 -- Silver | METRO portal | Jan 2016 | Jul 2026 |
+: Time coverage by line
+
+February through June 2016 carries a defect in the Line 1 values. Across those five months the station sum runs about 14% below the transported `mdu` in `line_transported_monthly`, and the figures are misallocated across stations: Santa Cruz and Sé take too large a share, São Bento and Portuguesa-Tietê too small a one. The defect comes from METRO's retroactive publication of 2016 and is not corrected here, so exclude those five months from station-level baselines.
 
 ## `station_entries_daily`
 
-Daily passenger entries at each station.
+Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Station sums equal the line's `total` in `line_entries_monthly`.
 
 ```{r}
 dplyr::glimpse(station_entries_daily)
@@ -268,8 +269,8 @@ Line numbers and their Portuguese/English names are already included as columns 
 
 The METRO source files define these terms as:
 
-- **Entrada de passageiros** (*passenger entries*): passengers entering through the turnstile gates (*linha de bloqueios*). The `total`, `mdu`, `msa`, and `mdo` metrics can be summed across lines. The `max` metric cannot because individual lines may peak on different days.
-- **Passageiros transportados** (*passengers transported*): the sum of turnstile entries **plus** transfer passengers between lines at interchange stations (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). It measures demand carried by each line. Summing lines double-counts interchange journeys and does not give a count of unique network passengers.
+- **Entrada de passageiros** (*passenger entries*): passengers entering through the turnstile gates (*linha de bloqueios*). METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only, so no clean network total exists across operators. The `max` metric cannot be summed because individual lines may peak on different days.
+- **Passageiros transportados** (*passengers transported*): boardings on that line, whether through the turnstile gates or by transferring from another line at an interchange station (e.g. Sé, Paraíso, Ana Rosa, and Vila Prudente). It measures demand carried by each line. Summing lines double-counts interchange journeys and does not give a count of unique network passengers.
 
 The original Portuguese footnote reads:
 
@@ -307,7 +308,7 @@ This means station-level totals at interchange stations are **not** double-count
 Line 5 (Lilás) was originally operated by METRO SP. On August 4, 2018, it was handed over to ViaMobilidade under a concession contract. This affects the data in two ways:
 
 1.  **Source switch**: from January 2016 through July 2018, Line 5 data comes from the METRO transparency portal. From August 2018 onward, it comes from the Insper Dataverse (ViaMobilidade/Insper partnership).
-2.  **Transported counts end**: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse does not provide transported counts, so `line_transported_monthly` has no Line 5 data afterward. The August 2018 row covers only the days before the handover: its `total` is a partial month, and `msa` and `mdo` are `NA`.
+2.  **Transported counts end**: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse feed records turnstiles only, so `line_transported_monthly` has no Line 5 data afterward and `station_transported_monthly` drops Line 5 from August 2018 onward (station data for that era lives in `station_entries_daily`). The August 2018 row covers only the days before the handover: its `total` is a partial month, and `msa` and `mdo` are `NA`.
 
 ### Line 15 Sunday closures
 

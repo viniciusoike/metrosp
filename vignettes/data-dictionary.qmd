@@ -27,14 +27,14 @@ The package ships four demand datasets. Two measure passengers at the line level
 | Dataset | Description | Unit | Time span | Frequency |
 |------------|------------|------------|------------|------------|
 | `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
-| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2016--2026 | Monthly |
-| `station_entries_monthly` | Average business day passenger entries per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
+| `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2012--2026 | Monthly |
+| `station_transported_monthly` | Average business day passengers transported per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
 | `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily |
 : Demand datasets
 
-A **passenger entry** is a passenger who crossed the station's turnstile gates. A **transported passenger** is one who either crossed the turnstile gates or changed between lines at an interchange station, so transported counts are always equal to or greater than entry counts.
+A **passenger entry** (*entrada de passageiros*) is a passenger who crossed the station's turnstile gates (*linha de bloqueios*). A **transported passenger** (*passageiro transportado*) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts.
 
-All four datasets count individual passengers. Three cover every metro line. `line_transported_monthly` has no data for Line 4 and covers Line 5 only through August 2018.
+All four datasets count individual passengers. `line_transported_monthly` covers Line 4 from 2012 and Line 5 only through August 2018; `station_transported_monthly` covers Line 5 only through July 2018.
 
 Four further datasets support analysis. `rail_lines` and `rail_stations` carry
 route and station geometries; `calendar_spo` and `metro_colors` are lookup
@@ -65,8 +65,8 @@ Three producers stand behind these datasets.
 | Dataset | Granularity | Producer | Line coverage |
 |---------------|---------------|---------------|---------------|
 | `line_entries_monthly` | line $\times$ month $\times$ metric | METRO + Dataverse | All |
-| `line_transported_monthly` | line $\times$ month $\times$ metric | METRO | Lines 1, 2, 3, 5, and 15 |
-| `station_entries_monthly` | station $\times$ month | METRO + Dataverse | All |
+| `line_transported_monthly` | line $\times$ month $\times$ metric | METRO + Dataverse | Lines 1, 2, 3, 4, 5, and 15 |
+| `station_transported_monthly` | station $\times$ month | METRO + Dataverse | Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15 |
 | `station_entries_daily` | station $\times$ day | METRO + Dataverse | All |
 | `rail_lines` | line (spatial) | GeoSampa | All |
 | `rail_stations` | station (spatial) | GeoSampa | All |
@@ -105,7 +105,7 @@ Monthly passenger entries by metro line and day-type metric, in individual passe
 | `value` | numeric | Passenger count |
 : `line_entries_monthly` columns
 
-The `total`, `mdu`, `msa`, and `mdo` metrics can be summed across lines. The `max` metric cannot: individual lines may peak on different days.
+The `total`, `mdu`, `msa`, and `mdo` metrics cannot be summed into a clean network total across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only. The `max` metric cannot be summed either: individual lines may peak on different days.
 
 ### Day-type metrics
 
@@ -128,7 +128,7 @@ Monthly passengers transported by metro line and day-type metric.
 |------------------------|------------------------|------------------------|
 | `date` | Date | First day of the month |
 | `year` | integer | Calendar year |
-| `line_number` | integer | Line identifier (1, 2, 3, 5, or 15) |
+| `line_number` | integer | Line identifier (1, 2, 3, 4, 5, or 15) |
 | `line_name` | character | Line color in English |
 | `line_name_pt` | character | Line color in Portuguese |
 | `metric` | character | Metric code: `total`, `mdu`, `msa`, `mdo`, `max` |
@@ -139,9 +139,9 @@ Monthly passengers transported by metro line and day-type metric.
 
 Transported counts cannot be summed into a unique network count: a journey using multiple lines is counted once on each line.
 
-## `station_entries_monthly`
+## `station_transported_monthly`
 
-Monthly average weekday passenger entries per station. Only the weekday average is available at the station level; `line_entries_monthly` carries all five metrics at the line level.
+Monthly average weekday passengers transported per station. Only the weekday average is available at the station level; `line_transported_monthly` carries all five metrics at the line level. Grouping by `station_id` gives boardings across a complex's platforms, not people entering it. Line 5 covers January 2016–July 2018 only.
 
 | Column          | Type      | Description                            |
 |-----------------|-----------|----------------------------------------|
@@ -155,12 +155,12 @@ Monthly average weekday passenger entries per station. Only the weekday average 
 | `metric` | character | Metric code, always `mdu` |
 | `metric_name` | character | Metric label in English |
 | `metric_name_pt` | character | Metric label in Portuguese |
-| `value` | numeric | Average weekday (business day) entries |
-: `station_entries_monthly` columns
+| `value` | numeric | Average weekday (business day) transported passengers |
+: `station_transported_monthly` columns
 
 ## `station_entries_daily`
 
-Daily passenger entries at each station.
+Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Station sums equal the line's `total` in `line_entries_monthly`.
 
 | Column | Type | Description |
 |------------------------|------------------------|------------------------|

@@ -6,7 +6,7 @@
 \usage{
 read_metro_demand(
   dataset = c("line_entries_monthly", "line_transported_monthly",
-    "station_entries_monthly", "station_entries_daily"),
+    "station_transported_monthly", "station_entries_daily"),
   source = c("auto", "cache", "remote", "bundled"),
   vintage = "latest",
   cache = TRUE,
@@ -15,7 +15,7 @@ read_metro_demand(
 }
 \arguments{
 \item{dataset}{Dataset to read. One of \code{"line_entries_monthly"},
-\code{"line_transported_monthly"}, \code{"station_entries_monthly"}, or
+\code{"line_transported_monthly"}, \code{"station_transported_monthly"}, or
 \code{"station_entries_daily"}.}
 
 \item{source}{Where to read from.
@@ -38,7 +38,7 @@ release; a year-month string such as \code{"2026-09"} pins an immutable batch.}
 }
 \value{
 A data frame. See \link{line_entries_monthly}, \link{line_transported_monthly},
-\link{station_entries_monthly}, and \link{station_entries_daily} for the column
+\link{station_transported_monthly}, and \link{station_entries_daily} for the column
 definitions, which are identical across sources.
 }
 \description{

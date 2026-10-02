@@ -350,11 +350,11 @@ check_line_transported_monthly <- function(
   )
 }
 
-check_station_entries_monthly <- function(
+check_station_transported_monthly <- function(
   df,
-  name = "station_entries_monthly"
+  name = "station_transported_monthly"
 ) {
-  c(
+  problems <- c(
     check_columns(
       df,
       c(
@@ -396,6 +396,27 @@ check_station_entries_monthly <- function(
     check_rows(df, 1L, name),
     check_station_names(df$station_name, name)
   )
+
+  # Line 5's post-handover rows are turnstile-only and live in the daily
+  # table; the monthly transported table must not carry them.
+  if (all(c("line_number", "date") %in% names(df))) {
+    n_bad <- sum(
+      df$line_number %in% 5L & df$date >= as.Date("2018-08-01"),
+      na.rm = TRUE
+    )
+    if (n_bad > 0) {
+      problems <- c(
+        problems,
+        sprintf(
+          "%s: %d Line 5 row(s) from Aug 2018 or later",
+          name,
+          n_bad
+        )
+      )
+    }
+  }
+
+  problems
 }
 
 check_station_entries_daily <- function(df, name = "station_entries_daily") {
@@ -474,7 +495,7 @@ check_all_datasets <- function(datasets) {
   checkers <- list(
     line_entries_monthly = check_line_entries_monthly,
     line_transported_monthly = check_line_transported_monthly,
-    station_entries_monthly = check_station_entries_monthly,
+    station_transported_monthly = check_station_transported_monthly,
     station_entries_daily = check_station_entries_daily,
     rail_lines = check_rail_lines,
     rail_stations = check_rail_stations
@@ -486,5 +507,265 @@ check_all_datasets <- function(datasets) {
       out[[nm]] <- checkers[[nm]](datasets[[nm]])
     }
   }
+
+  # Cross-dataset reconciliation: station sums against line totals.
+  if (
+    !is.null(datasets$station_transported_monthly) &&
+      !is.null(datasets$line_transported_monthly)
+  ) {
+    out$station_transported_monthly <- c(
+      out$station_transported_monthly,
+      check_station_transported_agreement(
+        datasets$station_transported_monthly,
+        datasets$line_transported_monthly
+      )
+    )
+  }
+  if (
+    !is.null(datasets$station_entries_daily) &&
+      !is.null(datasets$line_entries_monthly)
+  ) {
+    out$station_entries_daily <- c(
+      out$station_entries_daily,
+      check_daily_entries_agreement(
+        datasets$station_entries_daily,
+        datasets$line_entries_monthly
+      )
+    )
+  }
+  if (
+    !is.null(datasets$line_entries_monthly) &&
+      !is.null(datasets$line_transported_monthly)
+  ) {
+    out$line_transported_monthly <- c(
+      out$line_transported_monthly,
+      check_transported_gte_entries(
+        datasets$line_entries_monthly,
+        datasets$line_transported_monthly
+      )
+    )
+  }
+
   out
+}
+
+# --- Reconciliation ----------------------------------------------------------
+
+# Station transported mdu summed by line should approximate line transported
+# mdu: both measure boardings plus transfers. Compares the median ratio per
+# line (robust to isolated source months such as Line 2 May 2022 and Line 5
+# November 2017, each ~5% off with exact neighbors). Excludes Line 15
+# (station values rounded to the thousand) and Feb–Jun 2016 Line 1 (known
+# source defect where the station sum runs ~14% below the line mdu).
+check_station_transported_agreement <- function(
+  station_df,
+  line_df,
+  name = "station_transported_monthly",
+  tol = 0.02
+) {
+  needed_station <- c("date", "line_number", "metric", "value")
+  needed_line <- c("date", "line_number", "metric", "value")
+  if (
+    !all(needed_station %in% names(station_df)) ||
+      !all(needed_line %in% names(line_df))
+  ) {
+    return(character(0))
+  }
+
+  station_mdu <- station_df[station_df$metric == "mdu", , drop = FALSE]
+  line_mdu <- line_df[line_df$metric == "mdu", , drop = FALSE]
+  if (nrow(station_mdu) == 0 || nrow(line_mdu) == 0) {
+    return(character(0))
+  }
+
+  station_sum <- stats::aggregate(
+    station_mdu$value,
+    by = list(
+      date = station_mdu$date,
+      line_number = station_mdu$line_number
+    ),
+    FUN = sum,
+    na.rm = TRUE
+  )
+  names(station_sum)[3] <- "station_value"
+
+  merged <- merge(
+    station_sum,
+    line_mdu[, c("date", "line_number", "value")],
+    by = c("date", "line_number"),
+    all = FALSE
+  )
+  names(merged)[names(merged) == "value"] <- "line_value"
+  if (nrow(merged) == 0) {
+    return(character(0))
+  }
+
+  # Known exclusions: Line 15 rounding, Feb–Jun 2016 Line 1 defect.
+  excluded <- merged$line_number == 15L |
+    (merged$line_number == 1L &
+      merged$date >= as.Date("2016-02-01") &
+      merged$date <= as.Date("2016-06-01"))
+  merged <- merged[!excluded, , drop = FALSE]
+  if (nrow(merged) == 0) {
+    return(character(0))
+  }
+
+  merged <- merged[
+    !is.na(merged$station_value) & !is.na(merged$line_value),
+    ,
+    drop = FALSE
+  ]
+  merged <- merged[merged$line_value > 0, , drop = FALSE]
+  if (nrow(merged) == 0) {
+    return(character(0))
+  }
+
+  merged$ratio <- merged$station_value / merged$line_value
+  medians <- tapply(
+    merged$ratio,
+    merged$line_number,
+    stats::median,
+    na.rm = TRUE
+  )
+  bad <- abs(medians - 1) > tol
+  bad <- bad[!is.na(bad)]
+  if (!any(bad)) {
+    return(character(0))
+  }
+
+  worst_line <- names(medians)[which.max(abs(medians - 1))]
+  sprintf(
+    "%s: line(s) %s have a median station-to-line mdu ratio outside %.0f%% (worst: line %s, %.3f)",
+    name,
+    paste(names(medians)[bad], collapse = ", "),
+    tol * 100,
+    worst_line,
+    medians[[worst_line]]
+  )
+}
+
+# Station daily summed by line-month should equal line entries total. METRO
+# station values are rounded to the thousand, so allow 1%.
+check_daily_entries_agreement <- function(
+  daily_df,
+  entries_df,
+  name = "station_entries_daily",
+  tol = 0.01
+) {
+  if (
+    !all(c("date", "line_number", "value") %in% names(daily_df)) ||
+      !all(c("date", "line_number", "metric", "value") %in% names(entries_df))
+  ) {
+    return(character(0))
+  }
+
+  daily_df$month <- as.Date(format(daily_df$date, "%Y-%m-01"))
+  daily_sum <- stats::aggregate(
+    daily_df$value,
+    by = list(date = daily_df$month, line_number = daily_df$line_number),
+    FUN = sum,
+    na.rm = TRUE
+  )
+  names(daily_sum)[3] <- "daily_value"
+
+  entries_total <- entries_df[entries_df$metric == "total", , drop = FALSE]
+  if (nrow(entries_total) == 0) {
+    return(character(0))
+  }
+
+  merged <- merge(
+    daily_sum,
+    entries_total[, c("date", "line_number", "value")],
+    by = c("date", "line_number"),
+    all = FALSE
+  )
+  names(merged)[names(merged) == "value"] <- "line_value"
+  if (nrow(merged) == 0) {
+    return(character(0))
+  }
+
+  merged <- merged[
+    !is.na(merged$daily_value) & !is.na(merged$line_value),
+    ,
+    drop = FALSE
+  ]
+  merged <- merged[merged$line_value > 0, , drop = FALSE]
+  if (nrow(merged) == 0) {
+    return(character(0))
+  }
+
+  rel <- abs(merged$daily_value - merged$line_value) / merged$line_value
+  bad <- rel > tol
+  if (!any(bad)) {
+    return(character(0))
+  }
+
+  worst <- merged[which.max(rel), , drop = FALSE]
+  sprintf(
+    "%s: %d line-month(s) differ by more than %.0f%% from line entries total (worst: line %s at %s, %.1f%%)",
+    name,
+    sum(bad),
+    tol * 100,
+    worst$line_number,
+    format(worst$date),
+    max(rel, na.rm = TRUE) * 100
+  )
+}
+
+# Transported adds transfers to turnstile entries, so it can only run above
+# entries. August 2018 Line 5 transported covers only the days before the
+# ViaMobilidade handover and is excluded.
+check_transported_gte_entries <- function(
+  entries_df,
+  transported_df,
+  name = "line_transported_monthly"
+) {
+  keys <- c("date", "line_number", "metric")
+  if (
+    !all(keys %in% names(entries_df)) ||
+      !all(keys %in% names(transported_df))
+  ) {
+    return(character(0))
+  }
+
+  paired <- merge(
+    entries_df[c(keys, "value")],
+    transported_df[c(keys, "value")],
+    by = keys,
+    suffixes = c("_entries", "_transported")
+  )
+  if (nrow(paired) == 0) {
+    return(character(0))
+  }
+
+  partial <- paired$line_number == 5L & paired$date == as.Date("2018-08-01")
+  paired <- paired[paired$metric == "total" & !partial, , drop = FALSE]
+  if (nrow(paired) == 0) {
+    return(character(0))
+  }
+
+  paired <- paired[
+    !is.na(paired$value_entries) & !is.na(paired$value_transported),
+    ,
+    drop = FALSE
+  ]
+  bad <- paired$value_transported < paired$value_entries
+  if (!any(bad)) {
+    return(character(0))
+  }
+
+  worst <- paired[
+    which.min(
+      paired$value_transported - paired$value_entries
+    ),
+    ,
+    drop = FALSE
+  ]
+  sprintf(
+    "%s: %d month(s) with transported below entries (worst: line %s at %s)",
+    name,
+    sum(bad),
+    worst$line_number,
+    format(worst$date)
+  )
 }

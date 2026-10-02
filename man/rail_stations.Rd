@@ -44,6 +44,6 @@ run above ground as commuter rail, though exceptions exist.
 }
 \seealso{
 \code{\link{rail_lines}} for line route geometries,
-\code{\link{station_entries_monthly}} for passenger data by station.
+\code{\link{station_transported_monthly}} for passenger data by station.
 }
 \keyword{datasets}

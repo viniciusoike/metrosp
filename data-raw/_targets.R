@@ -147,6 +147,14 @@ list(
     format = "file"
   ),
   tar_target(
+    transported_4_5_csv,
+    {
+      dataverse_refresh
+      proc("metro_sp_passengers_transported_lines_4_5.csv")
+    },
+    format = "file"
+  ),
+  tar_target(
     averages_4_5_csv,
     {
       dataverse_refresh
@@ -248,6 +256,10 @@ list(
     readr::read_csv(entrance_4_5_csv, show_col_types = FALSE)
   ),
   tar_target(
+    transported_4_5,
+    readr::read_csv(transported_4_5_csv, show_col_types = FALSE)
+  ),
+  tar_target(
     averages_4_5,
     readr::read_csv(averages_4_5_csv, show_col_types = FALSE)
   ),
@@ -270,10 +282,10 @@ list(
   ),
   tar_target(
     line_transported_monthly,
-    assemble_transported(psg_historic, transported_current)
+    assemble_transported(psg_historic, transported_current, transported_4_5)
   ),
   tar_target(
-    station_entries_monthly,
+    station_transported_monthly,
     assemble_averages(
       stations_historic,
       averages_current,
@@ -308,7 +320,7 @@ list(
     list(
       line_entries_monthly = line_entries_monthly,
       line_transported_monthly = line_transported_monthly,
-      station_entries_monthly = station_entries_monthly,
+      station_transported_monthly = station_transported_monthly,
       station_entries_daily = station_entries_daily,
       rail_lines = rail_lines,
       rail_stations = rail_stations,
@@ -348,7 +360,7 @@ list(
         write_all_data(
           line_entries_monthly = line_entries_monthly,
           line_transported_monthly = line_transported_monthly,
-          station_entries_monthly = station_entries_monthly,
+          station_transported_monthly = station_transported_monthly,
           station_entries_daily = station_entries_daily,
           rail_lines = rail_lines,
           rail_stations = rail_stations,

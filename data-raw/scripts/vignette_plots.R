@@ -124,19 +124,19 @@ plot_line_transported_monthly <- plot_line_timespan(
 
 plot_line_transported_monthly
 
-# station_entries_monthly ----
+# station_transported_monthly ----
 
-timespan_station_entries_monthly <- compute_line_timespan(
-  station_entries_monthly
+timespan_station_transported_monthly <- compute_line_timespan(
+  station_transported_monthly
 )
 
-plot_station_entries_monthly <- plot_line_timespan(
-  timespan_station_entries_monthly,
+plot_station_transported_monthly <- plot_line_timespan(
+  timespan_station_transported_monthly,
   "Station averages by line: time coverage",
-  "Time coverage aggregated by line for the <b>station_entries_monthly</b> dataset (station-level weekday averages)"
+  "Time coverage aggregated by line for the <b>station_transported_monthly</b> dataset (station-level weekday averages)"
 )
 
-plot_station_entries_monthly
+plot_station_transported_monthly
 
 # station_entries_daily ----
 
@@ -167,8 +167,8 @@ ggsave(
   dpi = 300
 )
 ggsave(
-  "man/figures/timespan_station_entries_monthly.png",
-  plot_station_entries_monthly,
+  "man/figures/timespan_station_transported_monthly.png",
+  plot_station_transported_monthly,
   width = 8,
   height = 4.5,
   dpi = 300

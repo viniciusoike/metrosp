@@ -4,7 +4,7 @@
 # the Insper Dataverse (doi:10.60873/FK2/UTGQ0I).
 #
 # import_dataverse() fetches the raw daily-gate-entries data frame from the
-# network. The clean_*_4_5() functions transform it into the three intermediate
+# network. The clean_*_4_5() functions transform it into the four intermediate
 # schemas. refresh_dataverse() is the gated side-effecting step that rewrites
 # the committed processed CSVs (data-raw/outputs/processed/metro_sp_*_lines_4_5.csv),
 # which the assemble_*() functions then read — mirroring the historical data
@@ -110,7 +110,7 @@ entrance_to_long <- function(monthly) {
     left_join(dim_metric, by = join_by(metric_abb)) |>
     rename(date = date_month) |>
     mutate(year = lubridate::year(date)) |>
-    select(all_of(.cols_passengers_entrance)) |>
+    select(all_of(.cols_psg_entrance)) |>
     arrange(date, line_number, metric_abb)
 }
 
@@ -118,6 +118,29 @@ entrance_to_long <- function(monthly) {
 clean_entrance_4_5 <- function(dat) {
   dat |>
     entrance_line_daily() |>
+    entrance_tag_days() |>
+    entrance_monthly_metrics() |>
+    entrance_to_long()
+}
+
+# Produces: date, line_number, metric_abb, metric, value, year (Line 4 only)
+#
+# Transported counts sum both `tipo_embarque` values (Bloqueio turnstile
+# entries plus Integracao transfers) for ViaQuatro, then reuse the entrance
+# monthly-metrics chain. Line 5 stays absent: its Dataverse feed records
+# Bloqueio only, so no transported measure exists for it.
+transported_line_daily_4 <- function(dat) {
+  prep_data_4_5(dat, type = "transportado") |>
+    filter(line_number == 4L) |>
+    summarise(
+      value = sum(value, na.rm = TRUE),
+      .by = c(date, line_number)
+    )
+}
+
+clean_transported_4_5 <- function(dat) {
+  dat |>
+    transported_line_daily_4() |>
     entrance_tag_days() |>
     entrance_monthly_metrics() |>
     entrance_to_long()
@@ -153,7 +176,7 @@ clean_averages_4_5 <- function(dat) {
   dat <- dat |>
     rename(date = date_month) |>
     mutate(year = lubridate::year(date)) |>
-    select(all_of(.cols_st_averages)) |>
+    select(all_of(.cols_stn_avg)) |>
     arrange(date, line_number, station_name)
 
   return(dat)
@@ -171,7 +194,7 @@ clean_daily_4_5 <- function(dat) {
       station_name = fix_station_names_line5(station_name),
       passengers = value
     ) |>
-    select(all_of(.cols_st_daily)) |>
+    select(all_of(.cols_stn_daily)) |>
     arrange(date, line_number, station_name)
 
   return(dat)
@@ -179,7 +202,7 @@ clean_daily_4_5 <- function(dat) {
 
 # --- Gated refresh: rewrite the committed Lines 4/5 processed CSVs ------------
 
-#' Fetch from Dataverse and regenerate the three Lines 4/5 processed CSVs.
+#' Fetch from Dataverse and regenerate the four Lines 4/5 processed CSVs.
 #' Returns the path of the directory written (so a target can depend on it).
 refresh_dataverse <- function(
   proc_dir = here::here("data-raw/outputs/processed")
@@ -191,6 +214,10 @@ refresh_dataverse <- function(
     file.path(proc_dir, "metro_sp_passengers_entrance_lines_4_5.csv")
   )
   readr::write_csv(
+    clean_transported_4_5(raw),
+    file.path(proc_dir, "metro_sp_passengers_transported_lines_4_5.csv")
+  )
+  readr::write_csv(
     clean_averages_4_5(raw),
     file.path(proc_dir, "metro_sp_station_averages_lines_4_5.csv")
   )
@@ -200,5 +227,5 @@ refresh_dataverse <- function(
   )
 
   cli::cli_alert_success("Lines 4/5 CSVs refreshed in {.path {proc_dir}}.")
-  invisible(proc_dir)
+  return(invisible(proc_dir))
 }

@@ -189,7 +189,7 @@ test_that("the baseline adapter renames 1.x datasets before comparing", {
   expect_true(all(
     c(
       "line_entries_monthly",
-      "station_entries_monthly",
+      "station_transported_monthly",
       "rail_lines",
       "rail_stations"
     ) %in%
@@ -202,7 +202,7 @@ test_that("the baseline adapter renames 1.x datasets before comparing", {
   expect_identical(out$line_entries_monthly$metric, "total")
   expect_identical(out$line_entries_monthly$value, 10)
   expect_false(99 %in% out$line_entries_monthly$line_number)
-  expect_identical(out$station_entries_monthly$value, 5)
+  expect_identical(out$station_transported_monthly$value, 5)
 
   # 1.x published transported counts in thousands; 2.0 counts passengers.
   expect_identical(out$line_transported_monthly$value, 26500)
@@ -224,4 +224,65 @@ test_that("a demand dataset missing from the baseline fails validation", {
 
   expect_false(result$ok)
   expect_true(any(grepl("absent from the baseline", result$failures)))
+})
+
+test_that("the baseline adapter drops post-handover Line 5 station rows", {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "publish", "validate_refresh.R"), env)
+  )
+
+  baseline <- list(
+    station_averages = data.frame(
+      date = as.Date(c("2018-07-01", "2018-08-01")),
+      line_number = c(5L, 5L),
+      avg_passenger = c(10, 12)
+    )
+  )
+
+  out <- env$normalize_baseline_schema(baseline)
+
+  expect_true("station_transported_monthly" %in% names(out))
+  expect_equal(nrow(out$station_transported_monthly), 1L)
+  expect_equal(out$station_transported_monthly$date, as.Date("2018-07-01"))
+})
+
+test_that("clean_transported_4_5 sums both boarding types for Line 4 only", {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+  skip_if_not_installed("dplyr")
+  skip_if_not_installed("bizdays")
+  bizdays::load_builtin_calendars()
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(sys.source(file.path(pipeline_dir, "build", "dims.R"), env))
+  suppressWarnings(sys.source(file.path(pipeline_dir, "helpers.R"), env))
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "import", "import_dataverse.R"), env)
+  )
+
+  raw <- data.frame(
+    business_unit = c("ViaQuatro", "ViaQuatro", "ViaMobilidade - Linha 5"),
+    tipo_embarque = c("Bloqueio", "Integracao", "Bloqueio"),
+    embarques = c(100, 50, 999),
+    data = as.Date("2025-06-02"),
+    station_name = c("Luz", "Luz", "Chácara Klabin")
+  )
+
+  daily <- env$transported_line_daily_4(raw)
+
+  # ViaQuatro Bloqueio + Integracao summed; Line 5 excluded entirely.
+  expect_equal(nrow(daily), 1L)
+  expect_equal(daily$line_number, 4L)
+  expect_equal(daily$value, 150)
+
+  monthly <- env$clean_transported_4_5(raw)
+  expect_setequal(
+    unique(monthly$metric_abb),
+    c("total", "mdu", "msa", "mdo", "max")
+  )
+  expect_true(all(monthly$line_number == 4L))
 })

@@ -84,7 +84,7 @@ test_that("the bundled source never reaches the network", {
     fetch_url = function(...) stop("network access attempted")
   )
   expect_s3_class(
-    read_metro_demand("station_entries_monthly", source = "bundled"),
+    read_metro_demand("station_transported_monthly", source = "bundled"),
     "data.frame"
   )
 })
@@ -258,7 +258,7 @@ test_that("legacy station assets receive stable station ids", {
   local_release_source(release)
 
   out <- read_metro_demand(
-    "station_entries_monthly",
+    "station_transported_monthly",
     source = "remote",
     quiet = TRUE
   )
@@ -266,6 +266,29 @@ test_that("legacy station assets receive stable station ids", {
   expect_identical(out$station_id, "consolacao-paulista")
   expect_identical(out$metric, "mdu")
   expect_identical(out$value, 42)
+})
+
+test_that("a legacy station asset drops post-handover Line 5 rows", {
+  payload <- data.frame(
+    date = as.Date(c("2018-07-01", "2018-08-01")),
+    year = c(2026, 2026),
+    line_number = c(5L, 5L),
+    station_name = c("Chácara Klabin", "Chácara Klabin"),
+    avg_passenger = c(10, 12),
+    line_name = c("Lilac", "Lilac"),
+    line_name_pt = c("Lilás", "Lilás")
+  )
+  release <- local_fake_release(list(station_averages = payload))
+  local_release_source(release)
+
+  out <- read_metro_demand(
+    "station_transported_monthly",
+    source = "remote",
+    quiet = TRUE
+  )
+
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$date, as.Date("2018-07-01"))
 })
 
 test_that("a warm cache serves the asset without downloading again", {
