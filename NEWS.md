@@ -1,3 +1,7 @@
+# metrosp (development version)
+
+* Fixed archived station-name lookup when `sf` is attached: stations with multiple geometries but one `station_id` now resolve correctly. Names that map to different IDs remain ambiguous.
+
 # metrosp 2.0.0
 
 ## Breaking changes
