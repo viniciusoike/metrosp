@@ -245,11 +245,13 @@ test_that("the rolling vintage reads a legacy asset when necessary", {
 })
 
 test_that("legacy station assets receive stable station ids", {
+  skip_if_not_installed("sf")
+  suppressWarnings(withr::local_package("sf"))
   payload <- data.frame(
     date = as.Date("2026-07-01"),
     year = 2026,
     line_number = 2,
-    station_name = "Consolação",
+    station_name = "Faria Lima",
     avg_passenger = 42,
     line_name = "Green",
     line_name_pt = "Verde"
@@ -260,12 +262,20 @@ test_that("legacy station assets receive stable station ids", {
   out <- read_metro_demand(
     "station_transported_monthly",
     source = "remote",
+    vintage = "2026-09",
     quiet = TRUE
   )
 
-  expect_identical(out$station_id, "consolacao-paulista")
+  expect_identical(out$station_id, "faria-lima")
   expect_identical(out$metric, "mdu")
   expect_identical(out$value, 42)
+})
+
+test_that("legacy station names with different ids remain ambiguous", {
+  expect_error(
+    station_ids_from_names("Santo Antônio"),
+    "Archived station names do not resolve to station_id"
+  )
 })
 
 test_that("a legacy station asset drops post-handover Line 5 rows", {
