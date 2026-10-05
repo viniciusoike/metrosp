@@ -424,21 +424,21 @@ match_dataset <- function(dataset) {
   dataset
 }
 
+# The tag becomes a cache path that metrosp_cache_clear() unlinks recursively,
+# so only the exact published shapes pass; anything else (`..`, separators,
+# other `data-` names) never reaches the filesystem.
 vintage_tag <- function(vintage) {
-  if (is.null(vintage) || identical(vintage, "latest")) {
+  if (is.null(vintage)) {
     return("data-latest")
   }
 
-  if (!is.character(vintage) || length(vintage) != 1) {
+  if (!is.character(vintage) || length(vintage) != 1 || is.na(vintage)) {
     cli::cli_abort("{.arg vintage} must be a single string.")
   }
 
-  if (grepl("^\\d{4}-\\d{2}$", vintage)) {
-    return(paste0("data-", vintage))
-  }
-
-  if (grepl("^data-", vintage)) {
-    return(vintage)
+  tag <- sub("^data-", "", vintage)
+  if (grepl("^(?:latest|[0-9]{4}-(?:0[1-9]|1[0-2]))$", tag, perl = TRUE)) {
+    return(paste0("data-", tag))
   }
 
   cli::cli_abort(c(

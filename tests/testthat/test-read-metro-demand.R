@@ -119,6 +119,47 @@ test_that("vintage strings map to release tags", {
   expect_error(vintage_tag("august"), "Unrecognised")
   expect_error(vintage_tag("2026"), "Unrecognised")
   expect_error(vintage_tag(c("2026-08", "2026-09")), "single string")
+  expect_identical(vintage_tag("data-latest"), "data-latest")
+  expect_identical(vintage_tag("2026-12"), "data-2026-12")
+})
+
+test_that("unsafe or unsupported vintages are rejected", {
+  bad <- list(
+    "data-latest/..",
+    "../data-2026-08",
+    "data-2026-08/../x",
+    "data-2026-08\\..",
+    "data-personal",
+    "data-2026-13",
+    "2026-00",
+    "data-",
+    NA_character_,
+    NA,
+    1,
+    character(0)
+  )
+
+  for (vintage in bad) {
+    expect_error(vintage_tag(vintage), class = "rlang_error")
+  }
+})
+
+test_that("an unsafe vintage fails before any network or filesystem access", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+  local_mocked_bindings(fetch_url = function(...) stop("network touched"))
+
+  for (source in c("auto", "cache", "remote")) {
+    expect_error(
+      read_metro_demand(
+        "line_entries_monthly",
+        source = source,
+        vintage = "data-latest/.."
+      ),
+      "Unrecognised"
+    )
+  }
+  expect_identical(list.files(dir, all.files = TRUE, no.. = TRUE), character(0))
 })
 
 test_that("asset URLs point at the release download endpoint", {

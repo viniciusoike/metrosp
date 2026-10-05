@@ -102,6 +102,47 @@ test_that("clearing all vintages preserves unrelated files", {
   expect_false(dir.exists(file.path(dir, "data-latest")))
 })
 
+test_that("clearing rejects traversal and keeps unrelated files", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+
+  dir.create(file.path(dir, "data-latest"))
+  saveRDS(1, file.path(dir, "data-latest", "line_entries_monthly.rds"))
+  unrelated <- file.path(dir, "keep-me.txt")
+  writeLines("not owned by metrosp", unrelated)
+  personal <- file.path(dir, "data-personal")
+  dir.create(personal)
+
+  for (vintage in c(
+    "data-latest/..",
+    "data-latest/../keep-me.txt",
+    "data-personal"
+  )) {
+    expect_error(metrosp_cache_clear(vintage), "Unrecognised")
+  }
+
+  expect_true(file.exists(unrelated))
+  expect_true(dir.exists(personal))
+  expect_true(file.exists(file.path(
+    dir,
+    "data-latest",
+    "line_entries_monthly.rds"
+  )))
+})
+
+test_that("clearing accepts every supported vintage spelling", {
+  dir <- withr::local_tempdir()
+  withr::local_options(metrosp.cache_dir = dir)
+
+  for (vintage in c("latest", "data-latest", "2026-08", "data-2026-09")) {
+    tag <- vintage_tag(vintage)
+    dir.create(file.path(dir, tag), showWarnings = FALSE)
+    saveRDS(1, file.path(dir, tag, "line_entries_monthly.rds"))
+    expect_message(metrosp_cache_clear(vintage), "Removed 1 cached file")
+    expect_false(dir.exists(file.path(dir, tag)))
+  }
+})
+
 test_that("clearing an uncached vintage is not an error", {
   withr::local_options(metrosp.cache_dir = withr::local_tempdir())
 
