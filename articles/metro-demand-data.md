@@ -143,11 +143,9 @@ average on Sundays, and daily peak (maximum within the month). These are
 aggregated by METRO.
 
 Daily station-level data (one row per station per day) is available from
-2020 onwards. Stations with integrations to other lines always present
-the total daily entrance plus the transfers from other lines. For
-example, Paraíso from Line 1 presents all station entries plus transfers
-from Line 2. Paraíso from Line 2 presents all entries in the station
-plus transfers from Line 1.
+2020 onwards. It counts turnstile entries plus transfers arriving from
+other operators, such as CPTM, Line 4, and Line 5. It excludes transfers
+between METRO lines, such as Lines 1 and 2 at Paraíso.
 
 Finally, METRO produces data for lines 1, 2, 3, 5, and 15. Line 5 was
 initially operated by METRO SP and later passed on to ViaMobilidade (see
@@ -168,16 +166,16 @@ Unlike the METRO data, Dataverse counts are not rounded to the nearest
 thousand. The ETL therefore multiplies METRO values by 1,000, so every
 dataset reports individual passengers.
 
-The `station_transported_monthly` dataset for Line 4 is derived from
-`station_entries_daily` using the `bizdays` package with the
-“Brazil/ANBIMA” calendar, which tracks days when the B3 stock exchange
-operates in São Paulo. That calendar closely mirrors the city’s
-business-day schedule, with one caveat: since 2022 B3 closes only for
-national holidays, not for municipal or state ones such as the 9th of
-July. The package ships `calendar_spo`, a São Paulo calendar that does
-mark those holidays, for analyses that need the finer distinction. Line
-5’s Dataverse feed records turnstiles only, so its post-handover rows
-are dropped from the transported station table; they remain in
+The `station_transported_monthly` dataset for Line 4 averages daily
+`Bloqueio` and `Integracao` counts on business days, using the `bizdays`
+package with the “Brazil/ANBIMA” calendar, which tracks days when the B3
+stock exchange operates in São Paulo. That calendar closely mirrors the
+city’s business-day schedule, with one caveat: since 2022 B3 closes only
+for national holidays, not for municipal or state ones such as the 9th
+of July. The package ships `calendar_spo`, a São Paulo calendar that
+does mark those holidays, for analyses that need the finer distinction.
+Line 5’s Dataverse feed records turnstiles only, so its post-handover
+rows are dropped from the transported station table; they remain in
 `station_entries_daily`.
 
 República appears on Lines 3 and 4 in `station_transported_monthly`, but

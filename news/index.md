@@ -11,6 +11,11 @@
 
 - Fixed archived station-name lookup failing when `sf` is attached.
 
+- Fixed the package description and the data article describing station
+  demand as entries. `station_transported_monthly` reports average
+  weekday passengers transported, and `station_entries_daily` counts
+  transfers from other operators but not transfers between METRO lines.
+
 - Fixed
   [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
   and
