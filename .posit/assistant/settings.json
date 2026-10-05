@@ -1,0 +1,22 @@
+{
+  "permission": {
+    "executeCode": {
+      "*": "allow"
+    },
+    "bash": {
+      "cat *": "allow",
+      "head *": "allow",
+      "echo *": "allow",
+      "git ls-files *": "allow",
+      "git check-ignore *": "allow",
+      "gh auth status *": "allow",
+      "gh repo view *": "allow",
+      "gh run list *": "allow",
+      "gh api repos/viniciusoike/metrosp/actions/runs *": "allow",
+      "gh pr list *": "allow"
+    },
+    "edit": {
+      "*/.gitignore": "allow"
+    }
+  }
+}

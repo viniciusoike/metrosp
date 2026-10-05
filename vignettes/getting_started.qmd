@@ -192,7 +192,7 @@ This dataset is identified by month (`date`), line (`line_number`, `line_name`),
 glimpse(station_transported_monthly)
 ```
 
-The plot below shows the daily average (business days) passengers entering each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.
+The plot below shows the average business-day passengers transported at each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.
 
 ```{r}
 #| code-fold: true
