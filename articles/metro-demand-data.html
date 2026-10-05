@@ -445,7 +445,7 @@ table {
 </section></section><section class="level2"><h3 id="station_transported_monthly">
 <code>station_transported_monthly</code><a class="anchor" aria-label="anchor" href="#station_transported_monthly"></a>
 </h3>
-<p>Monthly average weekday passengers transported per station: boardings on that line plus transfers from the other lines. Summed over a line’s stations it equals the line’s <code>mdu</code> in <code>line_transported_monthly</code>.</p>
+<p>Monthly average weekday passengers transported per station: boardings on that line plus transfers from the other lines. Summed over a line’s stations it usually comes within 2% of the line’s <code>mdu</code> in <code>line_transported_monthly</code>. Line 15 station values are rounded to the thousand, and a few source months differ by more, notably Line 1 from February to June 2016.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">station_transported_monthly</span><span class="op">)</span></span>

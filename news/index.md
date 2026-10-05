@@ -1,37 +1,5 @@
 # Changelog
 
-## metrosp (development version)
-
-- Fixed
-  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
-  keeping a dated vintage’s cached manifest forever. Dated manifests now
-  expire on `metrosp.cache_ttl` like `data-latest`, so a month
-  republished after the first read is picked up. Monthly vintages are
-  revisable within their month, not immutable.
-
-- Fixed archived station-name lookup failing when `sf` is attached.
-
-- Fixed the package description and the data article describing station
-  demand as entries. `station_transported_monthly` reports average
-  weekday passengers transported, and `station_entries_daily` counts
-  transfers from other operators but not transfers between METRO lines.
-
-- Fixed
-  [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
-  and
-  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
-  accepting `vintage` values such as `"data-latest/.."` that resolve
-  outside the cache’s vintage directories. `vintage` now accepts only
-  `"latest"` or a year-month, with or without the `data-` prefix.
-
-- Corrected the `station_entries_daily` docs: monthly station sums
-  usually match line totals in `line_entries_monthly` but can differ by
-  a fraction of a percent
-  ([\#43](https://github.com/viniciusoike/metrosp/issues/43)).
-
-- Excluded `.posit/` from source package builds
-  ([\#42](https://github.com/viniciusoike/metrosp/issues/42)).
-
 ## metrosp 2.0.0
 
 ### Breaking changes
@@ -64,7 +32,8 @@ The exported datasets now use a consistent
 - Renamed the station monthly dataset to `station_transported_monthly`:
   METRO’s file measures transported passengers (boardings plus
   transfers), not turnstile entries. Summed over a line’s stations its
-  `mdu` equals the line’s `mdu` in `line_transported_monthly`.
+  `mdu` usually comes within 2% of the line’s `mdu` in
+  `line_transported_monthly`.
 
 - Dropped Line 5 rows from August 2018 onward from
   `station_transported_monthly`. The Dataverse feed records turnstiles
@@ -155,6 +124,38 @@ more than once.
 
 Only vintages that were actually published can be pinned. The first
 dated archive is `data-2026-09`; earlier year-month tags do not exist.
+
+### Minor improvements and fixes
+
+- Fixed
+  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+  keeping a dated vintage’s cached manifest forever. Dated manifests now
+  expire on `metrosp.cache_ttl` like `data-latest`, so a month
+  republished after the first read is picked up. Monthly vintages are
+  revisable within their month, not immutable.
+
+- Fixed archived station-name lookup failing when `sf` is attached.
+
+- Fixed the package description and the data article describing station
+  demand as entries. `station_transported_monthly` reports average
+  weekday passengers transported, and `station_entries_daily` counts
+  transfers from other operators but not transfers between METRO lines.
+
+- Fixed
+  [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
+  and
+  [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+  accepting `vintage` values such as `"data-latest/.."` that resolve
+  outside the cache’s vintage directories. `vintage` now accepts only
+  `"latest"` or a year-month, with or without the `data-` prefix.
+
+- Corrected the `station_entries_daily` docs: monthly station sums
+  usually match line totals in `line_entries_monthly` but can differ by
+  a fraction of a percent
+  ([\#43](https://github.com/viniciusoike/metrosp/issues/43)).
+
+- Excluded `.posit/` from source package builds
+  ([\#42](https://github.com/viniciusoike/metrosp/issues/42)).
 
 ## metrosp 1.3.0
 

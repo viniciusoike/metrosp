@@ -323,7 +323,10 @@ for it afterward.
 
 Monthly average weekday passengers transported per station: boardings on
 that line plus transfers from the other lines. Summed over a line’s
-stations it equals the line’s `mdu` in `line_transported_monthly`.
+stations it usually comes within 2% of the line’s `mdu` in
+`line_transported_monthly`. Line 15 station values are rounded to the
+thousand, and a few source months differ by more, notably Line 1 from
+February to June 2016.
 
 ``` r
 
