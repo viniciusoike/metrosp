@@ -2,7 +2,7 @@
 
 ## Test environments
 
-* Local: macOS aarch64 (Apple M), R 4.5.1
+* Local: macOS aarch64 (Apple M), R 4.5.1, `R CMD check --as-cran`
 * GitHub Actions: macOS, Windows, and Ubuntu (R release), Ubuntu (R devel
   and oldrel-1)
 
@@ -11,6 +11,9 @@
 0 errors | 0 warnings | 0 notes
 
 ## Changes in this version
+
+The current CRAN version is 1.2.1. Version 1.3.0 was released only on
+GitHub and R-universe, so this submission carries both; NEWS.md lists each.
 
 This is a major release with breaking changes. The exported datasets are
 renamed to one naming convention, the demand datasets share one column
