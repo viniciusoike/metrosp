@@ -551,12 +551,9 @@ check_all_datasets <- function(datasets) {
 
 # --- Reconciliation ----------------------------------------------------------
 
-# Station transported mdu summed by line should approximate line transported
-# mdu: both measure boardings plus transfers. Compares the median ratio per
-# line (robust to isolated source months such as Line 2 May 2022 and Line 5
-# November 2017, each ~5% off with exact neighbors). Excludes Line 15
-# (station values rounded to the thousand) and Feb–Jun 2016 Line 1 (known
-# source defect where the station sum runs ~14% below the line mdu).
+# Station sums should match line transported mdu within 2% in each month.
+# Exclude Line 15 rounding and the known source defects: Line 1 Feb–Jun
+# 2016 (~14% short), Line 5 November 2017 and Line 2 May 2022 (~5% high).
 check_station_transported_agreement <- function(
   station_df,
   line_df,
@@ -600,11 +597,13 @@ check_station_transported_agreement <- function(
     return(character(0))
   }
 
-  # Known exclusions: Line 15 rounding, Feb–Jun 2016 Line 1 defect.
+  # Exempt only the known source months, leaving neighboring months checked.
   excluded <- merged$line_number == 15L |
     (merged$line_number == 1L &
       merged$date >= as.Date("2016-02-01") &
-      merged$date <= as.Date("2016-06-01"))
+      merged$date <= as.Date("2016-06-01")) |
+    (merged$line_number == 5L & merged$date == as.Date("2017-11-01")) |
+    (merged$line_number == 2L & merged$date == as.Date("2022-05-01"))
   merged <- merged[!excluded, , drop = FALSE]
   if (nrow(merged) == 0) {
     return(character(0))
@@ -620,28 +619,22 @@ check_station_transported_agreement <- function(
     return(character(0))
   }
 
-  merged$ratio <- merged$station_value / merged$line_value
-  medians <- tapply(
-    merged$ratio,
-    merged$line_number,
-    stats::median,
-    na.rm = TRUE
-  )
-  bad <- abs(medians - 1) > tol
-  bad <- bad[!is.na(bad)]
+  rel <- abs(merged$station_value / merged$line_value - 1)
+  bad <- rel > tol
   if (!any(bad)) {
     return(character(0))
   }
 
-  worst_line <- names(medians)[which.max(abs(medians - 1))]
-  sprintf(
-    "%s: line(s) %s have a median station-to-line mdu ratio outside %.0f%% (worst: line %s, %.3f)",
+  worst <- merged[which.max(rel), , drop = FALSE]
+  return(sprintf(
+    "%s: %d line-month(s) differ by more than %.0f%% from line transported mdu (worst: line %s at %s, %.1f%%)",
     name,
-    paste(names(medians)[bad], collapse = ", "),
+    sum(bad),
     tol * 100,
-    worst_line,
-    medians[[worst_line]]
-  )
+    worst$line_number,
+    format(worst$date),
+    max(rel) * 100
+  ))
 }
 
 # Station daily summed by line-month should equal line entries total. METRO

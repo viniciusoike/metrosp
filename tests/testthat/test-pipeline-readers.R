@@ -425,3 +425,22 @@ test_that("a valid baseline loads under its published names", {
   expect_named(out, c("passengers_entrance", "line_entries_monthly"))
   expect_identical(out$line_entries_monthly$value, 2)
 })
+
+# Build gate -------------------------------------------------------------------
+
+test_that("the build gate rejects inconsistent fresh data", {
+  env <- local_publish_env()
+  env$checks_helper <- function() test_path("helper-checks.R")
+
+  datasets <- list(
+    line_transported_monthly = metrosp::line_transported_monthly,
+    station_transported_monthly = metrosp::station_transported_monthly
+  )
+  expect_equal(env$check_built_datasets(datasets), TRUE)
+  changed <- datasets$station_transported_monthly$line_number == 1L &
+    datasets$station_transported_monthly$date == as.Date("2025-06-01")
+  datasets$station_transported_monthly$value[changed] <- 0
+  condition <- tryCatch(env$check_built_datasets(datasets), error = identity)
+  expect_s3_class(condition, "error")
+  expect_match(conditionMessage(condition), "2025-06-01")
+})

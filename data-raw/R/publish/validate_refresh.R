@@ -19,6 +19,19 @@
 
 checks_helper <- function() here::here("tests/testthat/helper-checks.R")
 
+# Gate freshly built values before staging or refreezing.
+check_built_datasets <- function(datasets) {
+  source(checks_helper(), local = TRUE)
+  problems <- unlist(check_all_datasets(datasets), use.names = FALSE)
+  if (length(problems) > 0) {
+    cli::cli_abort(c(
+      "Built datasets failed validation; refusing to stage or freeze.",
+      stats::setNames(problems, rep("x", length(problems)))
+    ))
+  }
+  return(invisible(TRUE))
+}
+
 # Join keys per dataset, used for the retroactive-drift comparison.
 .drift_keys <- list(
   line_entries_monthly = c("date", "line_number", "metric"),

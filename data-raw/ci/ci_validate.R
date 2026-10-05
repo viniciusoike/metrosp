@@ -9,7 +9,8 @@
 # compares it against the fresh build, writes the markdown report that becomes
 # the PR body, and exits non-zero if any blocking check failed.
 #
-# Structural + schema checks already ran inside the graph (schema_ok target);
+# Structural + schema checks already ran inside the graph (values_ok and
+# schema_ok targets);
 # what happens here is everything that needs the baseline.
 # -----------------------------------------------------------------------------
 

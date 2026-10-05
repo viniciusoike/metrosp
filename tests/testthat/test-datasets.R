@@ -211,3 +211,32 @@ test_that("station_transported_monthly names all resolve to a current metro geom
   )
   expect_equal(unmatched, character(0))
 })
+
+
+test_that("transported reconciliation detects one corrupt line-month", {
+  station <- metrosp::station_transported_monthly
+  changed <- station$line_number == 1L &
+    station$date == as.Date("2025-06-01")
+  station$value[changed] <- station$value[changed] / 2
+
+  problems <- check_station_transported_agreement(
+    station,
+    metrosp::line_transported_monthly
+  )
+  expect_length(problems, 1L)
+  expect_match(problems, "2025-06-01")
+})
+
+test_that("known transported source defects do not exempt neighboring months", {
+  station <- metrosp::station_transported_monthly
+  changed <- station$line_number == 2L &
+    station$date == as.Date("2022-06-01")
+  station$value[changed] <- station$value[changed] / 2
+
+  problems <- check_station_transported_agreement(
+    station,
+    metrosp::line_transported_monthly
+  )
+  expect_length(problems, 1L)
+  expect_match(problems, "2022-06-01")
+})
