@@ -198,8 +198,9 @@ not people entering it. Line 5 covers January 2016–July 2018 only.
 
 Daily passenger entries at each station: turnstile entries plus
 transfers arriving from other operators, excluding transfers between
-METRO lines. Station sums equal the line’s `total` in
-`line_entries_monthly`.
+METRO lines. Monthly station sums usually match the line’s `total` in
+`line_entries_monthly`; when they differ, the gap is a fraction of a
+percent.
 
 | Column | Type | Description |
 |----|----|----|

@@ -64,10 +64,10 @@ Companhia do Metropolitano de São Paulo (METRO SP).
 
 This is an entries measure — METRO's *Entrada de Passageiros por
 Estação*: turnstile entries plus transfers arriving from other operators
-(CPTM, Line 4, Line 5), excluding transfers between METRO lines. Station
-sums equal the line's `total` in
-[`line_entries_monthly`](https://viniciusoike.github.io/metrosp/reference/line_entries_monthly.md)
-exactly.
+(CPTM, Line 4, Line 5), excluding transfers between METRO lines. Monthly
+station sums usually match the line's `total` in
+[`line_entries_monthly`](https://viniciusoike.github.io/metrosp/reference/line_entries_monthly.md);
+when they differ, the gap is a fraction of a percent.
 
 Station coverage and date range by line:
 

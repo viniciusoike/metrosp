@@ -8,7 +8,9 @@
   expire on `metrosp.cache_ttl` like `data-latest`, so a month
   republished after the first read is picked up. Monthly vintages are
   revisable within their month, not immutable.
+
 - Fixed archived station-name lookup failing when `sf` is attached.
+
 - Fixed
   [`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
   and
@@ -16,6 +18,14 @@
   accepting `vintage` values such as `"data-latest/.."` that resolve
   outside the cache’s vintage directories. `vintage` now accepts only
   `"latest"` or a year-month, with or without the `data-` prefix.
+
+- Corrected the `station_entries_daily` docs: monthly station sums
+  usually match line totals in `line_entries_monthly` but can differ by
+  a fraction of a percent
+  ([\#43](https://github.com/viniciusoike/metrosp/issues/43)).
+
+- Excluded `.posit/` from source package builds
+  ([\#42](https://github.com/viniciusoike/metrosp/issues/42)).
 
 ## metrosp 2.0.0
 
