@@ -12,26 +12,15 @@
 
 ## Changes in this version
 
-The current CRAN version is 1.2.1. Version 1.3.0 was released only on
-GitHub and R-universe, so this submission carries both; NEWS.md lists each.
+The current CRAN version is 1.2.1. Version 1.3.0 was released only on GitHub and R-universe, so this submission carries both; NEWS.md lists each.
 
-This is a major release with breaking changes. The exported datasets are
-renamed to one naming convention, the demand datasets share one column
-contract, and two data errors are fixed: METRO's network-total rows are
-removed and the Line 5 operator is corrected. NEWS.md carries a migration
-table from the 1.x names and columns.
+This is a major release with breaking changes. The exported datasets are renamed and their schema was migrated to a new common convention. Also, two data errors are fixed: METRO's network-total rows are removed (line 99) and the Line 5 operator is corrected. NEWS.md carries a migration table from the 1.x names and columns.
 
-The bundled datasets are a fixed snapshot. `read_metro_demand()` reads newer
-data from the package's GitHub releases, so new months no longer require a
-CRAN submission.
+The bundled datasets are now a fixed snapshot and will no longer be updated. The new `read_metro_demand()` function reads data from the package's GitHub releases, that are weekly updated via a targets pipeline so new months no longer require a CRAN submission.
 
 ## Cache
 
-`read_metro_demand()` caches downloads under `tools::R_user_dir("metrosp",
-"cache")`. The cache holds a few small `.rds` files per monthly batch. Each
-read deletes batches left unused for 90 days, and `metrosp_cache_clear()`
-removes the rest. Examples, vignettes, and tests point the cache at a
-temporary directory or do not download.
+`read_metro_demand()` caches downloads under `tools::R_user_dir("metrosp", "cache")`. The cache holds a few small `.rds` files per monthly batch. Each read deletes batches left unused for 90 days, and `metrosp_cache_clear()` removes the rest. Examples, vignettes, and tests point the cache at a temporary directory or do not download.
 
 ## URLs
 

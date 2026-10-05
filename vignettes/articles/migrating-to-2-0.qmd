@@ -1,0 +1,66 @@
+---
+title: "Migrating from 1.x to 2.0"
+---
+
+metrosp 2.0 renames most datasets, several columns, and the cache helpers.
+The tables below map each 1.x name to its 2.0 name. See the
+[changelog](../news/index.html) for the reasons behind each change.
+
+## Datasets
+
+| 1.x | 2.0 |
+|---|---|
+| `passengers_entrance` | `line_entries_monthly` |
+| `passengers_transported` | `line_transported_monthly` |
+| `station_averages` | `station_transported_monthly` |
+| `station_daily` | `station_entries_daily` |
+| `lines` | `rail_lines` |
+| `stations` | `rail_stations` |
+| `station_inauguration` | Removed |
+
+`calendar_spo` and `metro_colors` keep their names.
+
+## Columns
+
+| 1.x | 2.0 | Datasets |
+|---|---|---|
+| `metric_abb` | `metric` | Demand datasets |
+| `metric` | `metric_name` | Demand datasets |
+| `metric_pt` | `metric_name_pt` | Demand datasets |
+| `passengers`, `avg_passenger` | `value` | Demand datasets |
+| `is_ponto_facultativo` | `is_optional_holiday` | `calendar_spo` |
+| `is_feriadao` | `is_long_weekend` | `calendar_spo` |
+
+`metric` changed meaning: it held the English label in 1.x and holds the
+short code (`total`, `mdu`, ...) in 2.0. Code that filters on `metric` needs
+the new codes.
+
+## Functions
+
+| 1.x | 2.0 |
+|---|---|
+| `metrosp_cache_dir()` | `metrosp_cache()` |
+| `metrosp_cache_list()` | `metrosp_cache()` |
+| `metrosp_cache_enable()` | Removed; caching is on by default |
+
+`read_metro_demand()` and `metrosp_cache_clear()` keep their names.
+
+## Values
+
+- `line_transported_monthly$value` now counts passengers, not thousands.
+  Drop any `* 1000` your code applied.
+- The `line_number == 99` network rows are gone, with no replacement.
+
+## Example
+
+```r
+# 1.x
+passengers_entrance |>
+  dplyr::filter(metric_abb == "total") |>
+  dplyr::select(date, line_number, passengers)
+
+# 2.0
+line_entries_monthly |>
+  dplyr::filter(metric == "total") |>
+  dplyr::select(date, line_number, value)
+```
