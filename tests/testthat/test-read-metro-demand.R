@@ -451,13 +451,104 @@ test_that("remote propagates the failure instead of falling back", {
 
 # Manifest freshness ----------------------------------------------------------
 
-test_that("only the rolling tag goes stale", {
+test_that("rolling and dated manifests go stale after the TTL", {
   path <- withr::local_tempfile()
   file.create(path)
-  withr::local_options(metrosp.cache_ttl = -1)
 
-  expect_true(manifest_stale(path, "data-latest"))
-  expect_false(manifest_stale(path, "data-2026-08"))
+  withr::local_options(metrosp.cache_ttl = 3600)
+  expect_false(manifest_stale(path))
+
+  withr::local_options(metrosp.cache_ttl = -1)
+  expect_true(manifest_stale(path))
+})
+
+test_that("a dated manifest is reused within the TTL", {
+  release <- local_fake_release()
+  local_release_source(release)
+  withr::local_options(metrosp.cache_ttl = 3600)
+
+  read_metro_demand("line_entries_monthly", vintage = "2026-09", quiet = TRUE)
+  unlink(file.path(release, "manifest.json"))
+
+  expect_no_warning(
+    out <- read_metro_demand(
+      "line_entries_monthly",
+      vintage = "2026-09",
+      quiet = TRUE
+    )
+  )
+  expect_identical(out$value, 1)
+})
+
+test_that("a republished dated vintage is picked up after the TTL", {
+  release <- local_fake_release(list(
+    line_entries_monthly = data.frame(date = as.Date("2026-01-01"), value = 1),
+    station_entries_daily = data.frame(date = as.Date("2026-01-01"), value = 2)
+  ))
+  local_release_source(release)
+  withr::local_options(metrosp.cache_ttl = 3600)
+
+  read_metro_demand("line_entries_monthly", vintage = "2026-09", quiet = TRUE)
+  read_metro_demand("station_entries_daily", vintage = "2026-09", quiet = TRUE)
+
+  # Republish the same month: one asset changes, the other is byte-identical.
+  update <- local_fake_release(list(
+    line_entries_monthly = data.frame(date = as.Date("2026-01-01"), value = 10),
+    station_entries_daily = data.frame(date = as.Date("2026-01-01"), value = 2)
+  ))
+  file.copy(
+    list.files(update, full.names = TRUE),
+    release,
+    overwrite = TRUE
+  )
+
+  # Within the TTL the cached manifest still wins.
+  expect_identical(
+    read_metro_demand(
+      "line_entries_monthly",
+      vintage = "2026-09",
+      quiet = TRUE
+    )$value,
+    1
+  )
+
+  withr::local_options(metrosp.cache_ttl = -1)
+  expect_identical(
+    read_metro_demand(
+      "line_entries_monthly",
+      vintage = "2026-09",
+      quiet = TRUE
+    )$value,
+    10
+  )
+
+  # The unchanged asset is served from the cache: removing it from the release
+  # would make any re-download fail and fall back to the bundled snapshot.
+  unlink(file.path(release, "station_entries_daily.rds"))
+  expect_no_warning(
+    out <- read_metro_demand(
+      "station_entries_daily",
+      vintage = "2026-09",
+      quiet = TRUE
+    )
+  )
+  expect_identical(out$value, 2)
+})
+
+test_that("the cache source reads a stale dated manifest offline", {
+  release <- local_fake_release()
+  local_release_source(release)
+  read_metro_demand("line_entries_monthly", vintage = "2026-09", quiet = TRUE)
+
+  withr::local_options(metrosp.cache_ttl = -1)
+  local_mocked_bindings(fetch_url = function(...) stop("no network"))
+
+  out <- read_metro_demand(
+    "line_entries_monthly",
+    source = "cache",
+    vintage = "2026-09"
+  )
+  expect_identical(out$value, 1)
 })
 
 test_that("a fresh manifest is not re-fetched", {
@@ -478,20 +569,42 @@ test_that("a stale manifest that cannot be refreshed falls back to the cached co
   release <- local_fake_release()
   local_release_source(release)
 
-  read_metro_demand("line_entries_monthly", source = "auto", quiet = TRUE)
+  for (vintage in c("latest", "2026-09")) {
+    read_metro_demand("line_entries_monthly", vintage = vintage, quiet = TRUE)
+  }
 
   withr::local_options(metrosp.cache_ttl = -1)
   unlink(file.path(release, "manifest.json"))
 
-  expect_warning(
-    out <- read_metro_demand(
+  for (vintage in c("latest", "2026-09")) {
+    expect_warning(
+      out <- read_metro_demand(
+        "line_entries_monthly",
+        source = "auto",
+        vintage = vintage,
+        quiet = TRUE
+      ),
+      "using the cached copy"
+    )
+    expect_s3_class(out, "data.frame")
+  }
+})
+
+test_that("remote does not fall back to a stale cached manifest", {
+  release <- local_fake_release()
+  local_release_source(release)
+  read_metro_demand("line_entries_monthly", vintage = "2026-09", quiet = TRUE)
+
+  unlink(file.path(release, "manifest.json"))
+
+  expect_error(
+    read_metro_demand(
       "line_entries_monthly",
-      source = "auto",
-      quiet = TRUE
+      source = "remote",
+      vintage = "2026-09"
     ),
-    "using the cached copy"
+    "Could not download the manifest"
   )
-  expect_s3_class(out, "data.frame")
 })
 
 # Helpers ---------------------------------------------------------------------

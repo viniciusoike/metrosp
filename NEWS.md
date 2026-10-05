@@ -1,5 +1,6 @@
 # metrosp (development version)
 
+* Fixed `read_metro_demand()` keeping a dated vintage's cached manifest forever. Dated manifests now expire on `metrosp.cache_ttl` like `data-latest`, so a month republished after the first read is picked up. Monthly vintages are revisable within their month, not immutable.
 * Fixed archived station-name lookup failing when `sf` is attached.
 * Fixed `metrosp_cache_clear()` and `read_metro_demand()` accepting `vintage` values such as `"data-latest/.."` that resolve outside the cache's vintage directories. `vintage` now accepts only `"latest"` or a year-month, with or without the `data-` prefix.
 

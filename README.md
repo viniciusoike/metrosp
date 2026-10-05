@@ -97,13 +97,14 @@ years, so these numbers drift from the source over time.
 `read_metro_demand()` reads the newer data. Every pipeline run publishes
 a fresh build of the four demand datasets to the rolling [`data-latest`
 release](https://github.com/viniciusoike/metrosp/releases), plus a dated
-tag that pins that month’s batch.
+tag for that month. A later run in the same month replaces the dated
+batch, so monthly vintages are revisable.
 
 ``` r
 # Latest published data
 entrance <- read_metro_demand("line_entries_monthly")
 
-# A pinned monthly batch, so an analysis can name the vintage it used
+# A monthly batch, so an analysis can name the vintage it used
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 
