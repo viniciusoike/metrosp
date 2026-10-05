@@ -214,7 +214,7 @@ February through June 2016 carries a defect in the Line 1 values. Across those f
 
 ## `station_entries_daily`
 
-Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Station sums equal the line's `total` in `line_entries_monthly`.
+Daily passenger entries at each station: turnstile entries plus transfers arriving from other operators, excluding transfers between METRO lines. Monthly station sums usually match the line's `total` in `line_entries_monthly`; when they differ, the gap is a fraction of a percent.
 
 ```{r}
 dplyr::glimpse(station_entries_daily)

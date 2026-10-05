@@ -24,6 +24,7 @@
 ^_targets$
 ^CITATION\.cff$
 ^\.positai$
+^\.posit$
 ^vignettes/\.quarto$
 ^vignettes/articles$
 ^dev$

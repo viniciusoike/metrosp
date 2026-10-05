@@ -4,6 +4,10 @@
 * Fixed archived station-name lookup failing when `sf` is attached.
 * Fixed `metrosp_cache_clear()` and `read_metro_demand()` accepting `vintage` values such as `"data-latest/.."` that resolve outside the cache's vintage directories. `vintage` now accepts only `"latest"` or a year-month, with or without the `data-` prefix.
 
+* Corrected the `station_entries_daily` docs: monthly station sums usually match line totals in `line_entries_monthly` but can differ by a fraction of a percent (#43).
+
+* Excluded `.posit/` from source package builds (#42).
+
 # metrosp 2.0.0
 
 ## Breaking changes
