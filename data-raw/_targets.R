@@ -334,6 +334,14 @@ list(
   # is the one condition that invalidates the frozen data/*.rda snapshot.
   # Everything downstream depends on it, so a drifted build publishes nothing.
   tar_target(schema_ok, check_schema(datasets)),
+  tar_target(checks_file, checks_helper(), format = "file"),
+  tar_target(
+    values_ok,
+    {
+      checks_file
+      check_built_datasets(datasets)
+    }
+  ),
 
   # --- Routine terminal step: stage the release payload -----------------------
   # Runs every refresh. Writes data-raw/cache/*.rds + manifest.json for the
@@ -342,6 +350,7 @@ list(
     release_payload,
     {
       schema_ok
+      values_ok
       write_release_payload(datasets)
     },
     cue = tar_cue(mode = "always")
@@ -356,6 +365,7 @@ list(
     write_rda,
     {
       schema_ok
+      values_ok
       if (refresh_flag("METROSP_FREEZE")) {
         write_all_data(
           line_entries_monthly = line_entries_monthly,
