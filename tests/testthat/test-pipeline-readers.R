@@ -444,3 +444,42 @@ test_that("the build gate rejects inconsistent fresh data", {
   expect_s3_class(condition, "error")
   expect_match(conditionMessage(condition), "2025-06-01")
 })
+
+# Calendar ---------------------------------------------------------------------
+
+local_calendar_env <- function() {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+  for (pkg in c("dplyr", "lubridate", "purrr", "tibble", "tidyr")) {
+    skip_if_not_installed(pkg)
+  }
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "build", "build_calendar_spo.R"), env)
+  )
+  env
+}
+
+test_that("calendar weekdays ignore the lubridate week-start option", {
+  env <- local_calendar_env()
+  withr::local_options(lubridate.week.start = 1)
+
+  # Thursday holiday, Friday, Saturday, Sunday, Monday.
+  calendar <- env$build_calendar_spo("2026-01-01", "2026-01-05")
+
+  expect_equal(calendar$weekday, c(5L, 6L, 7L, 1L, 2L))
+  expect_equal(calendar$is_weekend, c(FALSE, FALSE, TRUE, TRUE, FALSE))
+  expect_equal(calendar$is_business_day, c(FALSE, TRUE, FALSE, FALSE, TRUE))
+  expect_equal(calendar$is_long_weekend, c(TRUE, FALSE, FALSE, FALSE, FALSE))
+})
+
+test_that("the default calendar build matches the frozen snapshot", {
+  env <- local_calendar_env()
+
+  expect_equal(
+    as.data.frame(env$build_calendar_spo()),
+    as.data.frame(metrosp::calendar_spo),
+    ignore_attr = TRUE
+  )
+})

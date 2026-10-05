@@ -121,9 +121,8 @@ build_calendar_spo <- function(
     left_join(holidays, by = "date") |>
     mutate(
       year = year(date),
-      weekday = wday(date),
-      weekday_label = wday(date, label = TRUE),
-      weekday_label_pt = wday(date, label = TRUE, locale = "pt_BR"),
+      # Pin Sunday = 1 so lubridate.week.start cannot shift the numbering.
+      weekday = wday(date, week_start = 7),
       is_weekend = weekday %in% c(1L, 7L),
       is_holiday = !is.na(holiday_name),
       is_ponto_facultativo = tidyr::replace_na(is_ponto_facultativo, FALSE),
