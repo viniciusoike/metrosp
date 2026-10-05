@@ -49,7 +49,9 @@ run_gh <- function(args, allow_failure = FALSE) {
 #'
 #' @param tag Release tag, such as `"data-latest"`.
 #' @param repo Repository in `owner/name` form.
-#' @return `TRUE` when the tag resolves to a release, `FALSE` otherwise.
+#' @return `TRUE` when the tag resolves to a release, `FALSE` when gh reports
+#'   the release missing. Any other gh failure (authentication, network, rate
+#'   limit, server error) aborts, so it never reads as a first publication.
 release_exists <- function(tag, repo = github_repo()) {
   out <- run_gh(
     c(
@@ -64,7 +66,17 @@ release_exists <- function(tag, repo = github_repo()) {
     allow_failure = TRUE
   )
 
-  return(!isTRUE(attr(out, "failed")))
+  if (!isTRUE(attr(out, "failed"))) {
+    return(TRUE)
+  }
+  if (any(grepl("^release not found$", out))) {
+    return(FALSE)
+  }
+
+  cli::cli_abort(c(
+    "{.code gh} could not check release {.val {tag}}.",
+    "x" = paste(out, collapse = "\n")
+  ))
 }
 
 #' Create a release, unless the tag already has one.

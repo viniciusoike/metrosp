@@ -135,8 +135,10 @@ add_baseline_station_ids <- function(baseline, dim_station, dim_station_alias) {
 #' Validate a rebuilt batch against the previously published one.
 #'
 #' @param new Named list of freshly built datasets.
-#' @param baseline Named list of previously published datasets, or NULL for the
-#'   first run (differential checks are skipped, structural ones still run).
+#' @param baseline Named list of previously published datasets, or NULL for a
+#'   confirmed first publication (differential checks are skipped, structural
+#'   ones still run). Use fetch_baseline(), which never returns NULL for a
+#'   release it failed to load.
 #' @param magnitude_tol Relative deviation from a line's trailing 12-month
 #'   median above which a month is flagged.
 #' @return A list with `ok` (logical), `failures`, `warnings`, and `report`
@@ -168,7 +170,10 @@ validate_refresh <- function(
   }
 
   if (is.null(baseline)) {
-    notes <- c(notes, "No baseline available; differential checks skipped.")
+    notes <- c(
+      notes,
+      "No baseline: first publication; differential checks skipped."
+    )
     return(validation_result(failures, warnings, notes, list()))
   }
 
@@ -488,19 +493,46 @@ render_report <- function(failures, warnings, notes, drift) {
 
 # --- Baseline loading --------------------------------------------------------
 
-#' Load the previously published batch from a directory of release assets.
-#' Returns NULL when the directory has no manifest (first run).
-load_baseline <- function(dir) {
-  if (!file.exists(file.path(dir, "manifest.json"))) {
+#' Download and load the previously published batch.
+#'
+#' NULL means only one thing: gh confirmed the release does not exist, so this
+#' is the first publication. A release that exists but cannot be loaded aborts,
+#' because skipping the differential checks on a broken download would let the
+#' batch through having compared nothing.
+#'
+#' @param tag Release tag holding the baseline.
+#' @param dir Directory to download the assets into.
+#' @return Named list of baseline datasets, or NULL for a first publication.
+fetch_baseline <- function(tag, dir) {
+  if (!release_exists(tag)) {
+    cli::cli_alert_info("No {.val {tag}} release yet; this is a first publish.")
     return(NULL)
   }
-  manifest <- read_manifest(dir)
+
+  if (length(release_asset_names(tag)) == 0) {
+    cli::cli_abort("Release {.val {tag}} exists but carries no assets.")
+  }
+
+  download_release_assets(tag, dir)
+  return(load_baseline(dir))
+}
+
+#' Load the previously published batch from a directory of release assets.
+#' Aborts when the manifest or any asset it lists cannot be read.
+load_baseline <- function(dir) {
+  manifest <- tryCatch(read_manifest(dir), error = function(e) {
+    cli::cli_abort("Could not read the baseline manifest.", parent = e)
+  })
+  if (!is.list(manifest$datasets) || length(manifest$datasets) == 0) {
+    cli::cli_abort("The baseline manifest lists no datasets.")
+  }
+
   out <- list()
   for (nm in names(manifest$datasets)) {
     path <- file.path(dir, manifest$datasets[[nm]]$file)
-    if (file.exists(path)) {
-      out[[nm]] <- readRDS(path)
-    }
+    out[[nm]] <- tryCatch(readRDS(path), error = function(e) {
+      cli::cli_abort("Could not read baseline asset {.val {nm}}.", parent = e)
+    })
   }
-  out
+  return(out)
 }
