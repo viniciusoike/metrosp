@@ -40,6 +40,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="metrosp-development-version">metrosp (development version)<a class="anchor" aria-label="anchor" href="#metrosp-development-version"></a></h2>
 <ul><li>Fixed archived station-name lookup failing when <code>sf</code> is attached.</li>
+<li>Fixed <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> and <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> accepting <code>vintage</code> values such as <code>"data-latest/.."</code> that resolve outside the cache’s vintage directories. <code>vintage</code> now accepts only <code>"latest"</code> or a year-month, with or without the <code>data-</code> prefix.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="metrosp-200">metrosp 2.0.0<a class="anchor" aria-label="anchor" href="#metrosp-200"></a></h2>
