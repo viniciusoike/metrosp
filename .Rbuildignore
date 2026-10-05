@@ -11,6 +11,7 @@
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^\.claude$
+^\.omx$
 ^AGENTS\.md$
 ^\.vscode$
 ^pkgdown$
