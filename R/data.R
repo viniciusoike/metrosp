@@ -179,8 +179,10 @@
 #' station in the São Paulo metro system. This is METRO's transported
 #' measure — \emph{Demanda de Passageiros por Estação}: boardings on that
 #' line plus transfers from the other lines — not turnstile entries. Summed
-#' over a line's stations it equals the line's \code{mdu} in
-#' \code{\link{line_transported_monthly}}. Data covers January 2016 through
+#' over a line's stations it usually comes within 2\% of the line's
+#' \code{mdu} in \code{\link{line_transported_monthly}}. Line 15 station
+#' values are rounded to the thousand, and a few source months differ by
+#' more, notably Line 1 from February to June 2016. Data covers January 2016 through
 #' 2026 for Lines 1, 2, 3, and 15; Line 4 from January 2012; Line 5 from
 #' January 2016 through July 2018. Sourced from the METRO SP transparency
 #' portal and the Insper Dataverse.
