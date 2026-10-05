@@ -2,6 +2,10 @@
 
 * Fixed archived station-name lookup failing when `sf` is attached.
 
+* Corrected the `station_entries_daily` docs: monthly station sums usually match line totals in `line_entries_monthly` but can differ by a fraction of a percent (#43).
+
+* Excluded `.posit/` from source package builds (#42).
+
 # metrosp 2.0.0
 
 ## Breaking changes

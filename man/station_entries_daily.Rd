@@ -40,9 +40,10 @@ Data covers January 2012 through 2026 for Line 4 and August 2018 through
 \details{
 This is an entries measure — METRO's \emph{Entrada de Passageiros por
 Estação}: turnstile entries plus transfers arriving from other operators
-(CPTM, Line 4, Line 5), excluding transfers between METRO lines. Station
-sums equal the line's \code{total} in
-\code{\link{line_entries_monthly}} exactly.
+(CPTM, Line 4, Line 5), excluding transfers between METRO lines. Monthly
+station sums usually match the line's \code{total} in
+\code{\link{line_entries_monthly}}; when they differ, the gap is a
+fraction of a percent.
 
 Station coverage and date range by line:
 \itemize{
