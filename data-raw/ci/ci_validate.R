@@ -29,35 +29,10 @@ BASELINE_TAG <- "data-latest"
 baseline_dir <- file.path(tempdir(), "metrosp-baseline")
 dir.create(baseline_dir, showWarnings = FALSE, recursive = TRUE)
 
-# "No baseline" used to cover both a genuine first publish and any failure on
-# the way to one, so a broken download read as business as usual and the
-# baseline-dependent checks below quietly did nothing. The three cases are now
-# reported separately.
-baseline <- NULL
-
-if (!release_exists(BASELINE_TAG)) {
-  cli::cli_alert_info(
-    "No {.val {BASELINE_TAG}} release yet; this is a first publish."
-  )
-} else if (length(release_asset_names(BASELINE_TAG)) == 0) {
-  cli::cli_alert_warning(
-    "Release {.val {BASELINE_TAG}} exists but carries no assets."
-  )
-} else {
-  baseline <- tryCatch(
-    {
-      download_release_assets(BASELINE_TAG, baseline_dir)
-      load_baseline(baseline_dir)
-    },
-    error = function(e) {
-      cli::cli_alert_warning(
-        "Could not load the {.val {BASELINE_TAG}} baseline:
-         {conditionMessage(e)}"
-      )
-      return(NULL)
-    }
-  )
-}
+# NULL only for a confirmed first publication. Any failure to reach or load an
+# existing baseline aborts here, before the report is written, so a broken
+# download cannot pass as a run with nothing to compare against.
+baseline <- fetch_baseline(BASELINE_TAG, baseline_dir)
 
 if (is.null(baseline)) {
   cli::cli_alert_warning(

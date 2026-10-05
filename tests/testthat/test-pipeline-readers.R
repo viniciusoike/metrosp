@@ -286,3 +286,142 @@ test_that("clean_transported_4_5 sums both boarding types for Line 4 only", {
   )
   expect_true(all(monthly$line_number == 4L))
 })
+
+# Baseline retrieval -----------------------------------------------------------
+
+local_publish_env <- function() {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+
+  env <- new.env(parent = globalenv())
+  for (file in c("gh_release.R", "release_payload.R", "validate_refresh.R")) {
+    suppressWarnings(
+      sys.source(file.path(pipeline_dir, "publish", file), env)
+    )
+  }
+  env
+}
+
+# A fake `gh` that answers like the real CLI: output lines with a `status`
+# attribute on failure.
+stub_gh <- function(env, output, status = 1L) {
+  env$system2 <- function(...) {
+    structure(output, status = status)
+  }
+}
+
+write_baseline <- function(dir, datasets) {
+  entries <- list()
+  for (nm in names(datasets)) {
+    saveRDS(datasets[[nm]], file.path(dir, paste0(nm, ".rds")))
+    entries[[nm]] <- list(file = paste0(nm, ".rds"))
+  }
+  jsonlite::write_json(
+    list(datasets = entries),
+    file.path(dir, "manifest.json"),
+    auto_unbox = TRUE
+  )
+}
+
+test_that("only a confirmed missing release counts as absent", {
+  env <- local_publish_env()
+
+  stub_gh(env, "release not found")
+  expect_false(env$release_exists("data-latest"))
+
+  stub_gh(env, character(0), status = 0L)
+  expect_true(env$release_exists("data-latest"))
+
+  operational <- c(
+    "HTTP 401: Bad credentials (https://api.github.com/graphql)",
+    "error connecting to api.github.com",
+    "HTTP 403: API rate limit exceeded for installation ID 1.",
+    "HTTP 502: Bad Gateway (https://api.github.com/repos/x/y/releases)"
+  )
+  for (message in operational) {
+    stub_gh(env, message)
+    expect_error(env$release_exists("data-latest"), "gh")
+  }
+})
+
+test_that("a confirmed first publication proceeds without a baseline", {
+  env <- local_publish_env()
+  env$release_exists <- function(...) FALSE
+  env$download_release_assets <- function(...) stop("should not download")
+
+  expect_message(
+    out <- env$fetch_baseline("data-latest", withr::local_tempdir()),
+    "first publish"
+  )
+  expect_null(out)
+})
+
+test_that("an existing release with no assets fails", {
+  env <- local_publish_env()
+  env$release_exists <- function(...) TRUE
+  env$release_asset_names <- function(...) character(0)
+
+  expect_error(
+    env$fetch_baseline("data-latest", withr::local_tempdir()),
+    "no assets"
+  )
+})
+
+test_that("a failed baseline download fails", {
+  env <- local_publish_env()
+  env$release_exists <- function(...) TRUE
+  env$release_asset_names <- function(...) "manifest.json"
+  stub_gh(env, "HTTP 503: Service Unavailable")
+
+  expect_error(
+    env$fetch_baseline("data-latest", withr::local_tempdir()),
+    "503"
+  )
+})
+
+test_that("an unloadable baseline directory fails", {
+  env <- local_publish_env()
+
+  # No manifest.
+  expect_error(env$load_baseline(withr::local_tempdir()), "manifest")
+
+  # Malformed manifest.
+  dir <- withr::local_tempdir()
+  writeLines("{not json", file.path(dir, "manifest.json"))
+  expect_error(env$load_baseline(dir), "manifest")
+
+  # Manifest without datasets.
+  dir <- withr::local_tempdir()
+  jsonlite::write_json(list(built_at = "x"), file.path(dir, "manifest.json"))
+  expect_error(env$load_baseline(dir), "manifest")
+
+  # Listed asset missing.
+  dir <- withr::local_tempdir()
+  write_baseline(dir, list(line_entries_monthly = data.frame(value = 1)))
+  unlink(file.path(dir, "line_entries_monthly.rds"))
+  expect_error(env$load_baseline(dir), "line_entries_monthly")
+
+  # Listed asset unreadable.
+  dir <- withr::local_tempdir()
+  write_baseline(dir, list(line_entries_monthly = data.frame(value = 1)))
+  writeLines("garbage", file.path(dir, "line_entries_monthly.rds"))
+  expect_error(env$load_baseline(dir), "line_entries_monthly")
+})
+
+test_that("a valid baseline loads under its published names", {
+  env <- local_publish_env()
+
+  dir <- withr::local_tempdir()
+  write_baseline(
+    dir,
+    list(
+      passengers_entrance = data.frame(value = 1),
+      line_entries_monthly = data.frame(value = 2)
+    )
+  )
+
+  out <- env$load_baseline(dir)
+
+  expect_named(out, c("passengers_entrance", "line_entries_monthly"))
+  expect_identical(out$line_entries_monthly$value, 2)
+})
