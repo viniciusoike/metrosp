@@ -1,6 +1,7 @@
 # metrosp (development version)
 
 * Fixed archived station-name lookup failing when `sf` is attached.
+* Fixed `metrosp_cache_clear()` and `read_metro_demand()` accepting `vintage` values such as `"data-latest/.."` that resolve outside the cache's vintage directories. `vintage` now accepts only `"latest"` or a year-month, with or without the `data-` prefix.
 
 # metrosp 2.0.0
 
