@@ -76,7 +76,8 @@ rebuilt from the upstream sources on every pipeline run.</p>
 <dt id="arg-source">source<a class="anchor" aria-label="anchor" href="#arg-source"></a></dt>
 <dd><p>Where to read from.</p><ul><li><p><code>"auto"</code> (default) uses the cache, downloads when it is stale or empty,
 and falls back to the bundled snapshot with a warning if the download
-fails.</p></li>
+fails. When a stale manifest cannot be refreshed, it reads the cached
+copy with a warning instead.</p></li>
 <li><p><code>"cache"</code> reads only what is already on disk and errors otherwise.</p></li>
 <li><p><code>"remote"</code> downloads and errors if that fails.</p></li>
 <li><p><code>"bundled"</code> reads the frozen snapshot and never touches the network.</p></li>
@@ -85,7 +86,9 @@ fails.</p></li>
 
 <dt id="arg-vintage">vintage<a class="anchor" aria-label="anchor" href="#arg-vintage"></a></dt>
 <dd><p>Which published batch to read. <code>"latest"</code> tracks the rolling
-release; a year-month string such as <code>"2026-09"</code> pins an immutable batch.</p></dd>
+release; a year-month string such as <code>"2026-09"</code> reads the last batch
+published in that month. A month's batch can be republished until the
+month ends, so a monthly vintage is revisable rather than an exact pin.</p></dd>
 
 
 <dt id="arg-cache">cache<a class="anchor" aria-label="anchor" href="#arg-cache"></a></dt>
@@ -108,6 +111,11 @@ definitions, which are identical across sources.</p>
     <p>Only the demand datasets are published separately. The reference datasets
 (<a href="rail_lines.html">rail_lines</a>, <a href="rail_stations.html">rail_stations</a>, <a href="calendar_spo.html">calendar_spo</a>, and <a href="metro_colors.html">metro_colors</a>) do not
 change with new months, so read them directly.</p>
+<p>Each vintage's <code>manifest.json</code> is cached and checked again once it is older
+than <code>getOption("metrosp.cache_ttl")</code> seconds (six hours by default). This
+applies to dated vintages too, so a month republished after your first read
+is picked up; cached assets whose checksum is unchanged are not downloaded
+again.</p>
 <p>Downloads verify the manifest's SHA-256 when the <span class="pkg">digest</span> package is
 installed and skip verification otherwise.</p>
     </div>
@@ -139,7 +147,7 @@ installed and skip verification otherwise.</p>
 <span class="r-in"><span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Downloading <span style="color: #0000BB;">line_entries_monthly.rds</span> (12.1 KB).</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># A pinned vintage, so an analysis can name the batch it used.</span></span></span>
+<span class="r-in"><span><span class="co"># A monthly vintage, so an analysis can name the batch it used.</span></span></span>
 <span class="r-in"><span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu">read_metro_demand</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"line_entries_monthly"</span>,</span></span>
 <span class="r-in"><span>  vintage <span class="op">=</span> <span class="st">"2026-09"</span></span></span>

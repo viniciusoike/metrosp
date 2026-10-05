@@ -165,7 +165,7 @@
 <code class="sourceCode R"><span><span class="co"># Latest published data</span></span>
 <span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># A pinned monthly batch, named in the analysis that used it</span></span>
+<span><span class="co"># The month's published batch, named in the analysis that used it</span></span>
 <span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. <code><a href="../reference/metrosp_cache.html">metrosp_cache()</a></code> lists its contents and <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> removes them; set <code>cache = FALSE</code> to keep a download only for the current session. Columns match the bundled datasets, so code written against one works with the other.</p>

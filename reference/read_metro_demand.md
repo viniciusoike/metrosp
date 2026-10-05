@@ -32,7 +32,8 @@ read_metro_demand(
 
   - `"auto"` (default) uses the cache, downloads when it is stale or
     empty, and falls back to the bundled snapshot with a warning if the
-    download fails.
+    download fails. When a stale manifest cannot be refreshed, it reads
+    the cached copy with a warning instead.
 
   - `"cache"` reads only what is already on disk and errors otherwise.
 
@@ -43,7 +44,9 @@ read_metro_demand(
 - vintage:
 
   Which published batch to read. `"latest"` tracks the rolling release;
-  a year-month string such as `"2026-09"` pins an immutable batch.
+  a year-month string such as `"2026-09"` reads the last batch published
+  in that month. A month's batch can be republished until the month
+  ends, so a monthly vintage is revisable rather than an exact pin.
 
 - cache:
 
@@ -74,6 +77,12 @@ datasets
 and
 [metro_colors](https://viniciusoike.github.io/metrosp/reference/metro_colors.md))
 do not change with new months, so read them directly.
+
+Each vintage's `manifest.json` is cached and checked again once it is
+older than `getOption("metrosp.cache_ttl")` seconds (six hours by
+default). This applies to dated vintages too, so a month republished
+after your first read is picked up; cached assets whose checksum is
+unchanged are not downloaded again.
 
 Downloads verify the manifest's SHA-256 when the digest package is
 installed and skip verification otherwise.
@@ -109,7 +118,7 @@ old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
 entrance <- read_metro_demand("line_entries_monthly")
 #> ℹ Downloading line_entries_monthly.rds (12.1 KB).
 
-# A pinned vintage, so an analysis can name the batch it used.
+# A monthly vintage, so an analysis can name the batch it used.
 entrance_sep <- read_metro_demand(
   "line_entries_monthly",
   vintage = "2026-09"

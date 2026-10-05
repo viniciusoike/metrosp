@@ -215,12 +215,12 @@
 <h2 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h2>
 <p>The bundled data is a fixed snapshot, current through July 2026. It is regenerated when the column schema changes, not when new months are published, so examples and analyses stay reproducible across package versions. METRÔ publishes on an irregular schedule and revises past years, so these numbers drift from the source over time.</p>
-<p><code><a href="reference/read_metro_demand.html">read_metro_demand()</a></code> reads the newer data. Every pipeline run publishes a fresh build of the four demand datasets to the rolling <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link"><code>data-latest</code> release</a>, plus a dated tag that pins that month’s batch.</p>
+<p><code><a href="reference/read_metro_demand.html">read_metro_demand()</a></code> reads the newer data. Every pipeline run publishes a fresh build of the four demand datasets to the rolling <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link"><code>data-latest</code> release</a>, plus a dated tag for that month. A later run in the same month replaces the dated batch, so monthly vintages are revisable.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest published data</span></span>
 <span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># A pinned monthly batch, so an analysis can name the vintage it used</span></span>
+<span><span class="co"># A monthly batch, so an analysis can name the vintage it used</span></span>
 <span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
 <p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. Use <code><a href="reference/metrosp_cache.html">metrosp_cache()</a></code> to inspect it, <code><a href="reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> to remove files, or <code>cache = FALSE</code> to keep a download only for the current session. Columns match the bundled datasets, so the same code works with either.</p>
 </div>

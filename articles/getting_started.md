@@ -115,7 +115,7 @@ reads from there.
 # Latest published data
 entrance <- read_metro_demand("line_entries_monthly")
 
-# A pinned monthly batch, named in the analysis that used it
+# The month's published batch, named in the analysis that used it
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 

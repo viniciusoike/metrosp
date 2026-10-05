@@ -50,14 +50,18 @@ bundled figures drift from the source over time.
 reads the published data instead. Every pipeline run writes a fresh
 build to the rolling `data-latest` [GitHub
 release](https://github.com/viniciusoike/metrosp/releases) and to a
-dated tag that pins that month’s batch.
+dated tag for that month. A later run in the same month replaces the
+dated batch, so a monthly vintage is revisable rather than an exact pin;
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+re-checks its manifest every few hours and downloads only the assets
+that changed.
 
 ``` r
 
 # Latest published data, downloaded once and cached afterwards
 entrance <- read_metro_demand("line_entries_monthly")
 
-# A pinned batch, so an analysis can name the vintage it used
+# A monthly batch, so an analysis can name the vintage it used
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 
 # The bundled snapshot, with no network access

@@ -145,13 +145,13 @@ table {
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
 <p>The bundled datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the bundled figures drift from the source over time.</p>
-<p><code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads the published data instead. Every pipeline run writes a fresh build to the rolling <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a> and to a dated tag that pins that month’s batch.</p>
+<p><code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads the published data instead. Every pipeline run writes a fresh build to the rolling <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a> and to a dated tag for that month. A later run in the same month replaces the dated batch, so a monthly vintage is revisable rather than an exact pin; <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> re-checks its manifest every few hours and downloads only the assets that changed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest published data, downloaded once and cached afterwards</span></span>
 <span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># A pinned batch, so an analysis can name the vintage it used</span></span>
+<span><span class="co"># A monthly batch, so an analysis can name the vintage it used</span></span>
 <span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># The bundled snapshot, with no network access</span></span>
