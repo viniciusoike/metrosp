@@ -292,7 +292,10 @@ normalize_published_dataset <- function(dat, dataset) {
 
 station_ids_from_names <- function(station_names) {
   stations <- getExportedValue("metrosp", "rail_stations")
-  mapping <- unique(stations[c("station_name", "station_id")])
+  mapping <- unique(data.frame(
+    station_name = stations$station_name,
+    station_id = stations$station_id
+  ))
   counts <- table(mapping$station_name)
   mapping <- mapping[counts[mapping$station_name] == 1L, ]
   station_ids <- unname(mapping$station_id[match(

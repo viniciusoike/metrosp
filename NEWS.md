@@ -1,3 +1,7 @@
+# metrosp (development version)
+
+* Fixed archived station-name lookup failing when `sf` is attached.
+
 # metrosp 2.0.0
 
 ## Breaking changes

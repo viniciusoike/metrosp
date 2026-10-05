@@ -268,6 +268,12 @@ test_that("legacy station assets receive stable station ids", {
   expect_identical(out$value, 42)
 })
 
+test_that("station lookup ignores geometry when sf is attached", {
+  skip_if_not_installed("sf")
+  suppressWarnings(withr::local_package("sf"))
+  expect_identical(station_ids_from_names("Faria Lima"), "faria-lima")
+})
+
 test_that("a legacy station asset drops post-handover Line 5 rows", {
   payload <- data.frame(
     date = as.Date(c("2018-07-01", "2018-08-01")),
