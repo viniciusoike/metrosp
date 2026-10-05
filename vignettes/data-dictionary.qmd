@@ -52,7 +52,7 @@ library(metrosp)
 # Latest published data
 entrance <- read_metro_demand("line_entries_monthly")
 
-# A pinned monthly batch
+# The month's published batch
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
 

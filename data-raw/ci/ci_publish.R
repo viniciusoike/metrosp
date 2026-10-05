@@ -37,9 +37,10 @@ cli::cli_alert_info(
 repo <- github_repo()
 
 # Every batch goes to two tags. `data-latest` is the rolling pointer and is
-# overwritten on every run; the dated tag is the immutable copy, so an analysis
-# can name the batch it used. A second publish inside the same month overwrites
-# that month's tag with the more complete batch.
+# overwritten on every run; the dated tag lets an analysis name the month of the
+# batch it used. A second publish inside the same month overwrites that month's
+# tag with the more complete batch, so a dated tag is revisable, not immutable.
+# read_metro_demand() re-checks dated manifests on its TTL to pick that up.
 VINTAGE_TAG <- format(Sys.Date(), "data-%Y-%m")
 
 # Publishing is create-then-upload, and for five runs the upload half failed
@@ -90,11 +91,11 @@ publish(
   paste("Data batch", format(Sys.Date(), "%Y-%m")),
   paste(
     sprintf(
-      "Pinned copy of the metrosp data batch published in %s.",
+      "The last metrosp data batch published in %s. A later run in the same month replaces it.",
       format(Sys.Date(), "%B %Y")
     ),
     "",
-    "Use this tag to hold an analysis to one batch while `data-latest` moves on:",
+    "Use this tag to name the month of the batch an analysis used while `data-latest` moves on:",
     sprintf(
       "`metrosp::read_metro_demand(\"<dataset>\", vintage = \"%s\")`.",
       format(Sys.Date(), "%Y-%m")

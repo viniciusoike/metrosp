@@ -22,14 +22,17 @@ read_metro_demand(
 \itemize{
 \item \code{"auto"} (default) uses the cache, downloads when it is stale or empty,
 and falls back to the bundled snapshot with a warning if the download
-fails.
+fails. When a stale manifest cannot be refreshed, it reads the cached
+copy with a warning instead.
 \item \code{"cache"} reads only what is already on disk and errors otherwise.
 \item \code{"remote"} downloads and errors if that fails.
 \item \code{"bundled"} reads the frozen snapshot and never touches the network.
 }}
 
 \item{vintage}{Which published batch to read. \code{"latest"} tracks the rolling
-release; a year-month string such as \code{"2026-09"} pins an immutable batch.}
+release; a year-month string such as \code{"2026-09"} reads the last batch
+published in that month. A month's batch can be republished until the
+month ends, so a monthly vintage is revisable rather than an exact pin.}
 
 \item{cache}{Whether to store downloads in the persistent cache. Set to
 \code{FALSE} to use session-temporary storage instead.}
@@ -52,6 +55,12 @@ Only the demand datasets are published separately. The reference datasets
 (\link{rail_lines}, \link{rail_stations}, \link{calendar_spo}, and \link{metro_colors}) do not
 change with new months, so read them directly.
 
+Each vintage's \code{manifest.json} is cached and checked again once it is older
+than \code{getOption("metrosp.cache_ttl")} seconds (six hours by default). This
+applies to dated vintages too, so a month republished after your first read
+is picked up; cached assets whose checksum is unchanged are not downloaded
+again.
+
 Downloads verify the manifest's SHA-256 when the \pkg{digest} package is
 installed and skip verification otherwise.
 }
@@ -66,7 +75,7 @@ old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
 # The most recently published data, cached between calls.
 entrance <- read_metro_demand("line_entries_monthly")
 
-# A pinned vintage, so an analysis can name the batch it used.
+# A monthly vintage, so an analysis can name the batch it used.
 entrance_sep <- read_metro_demand(
   "line_entries_monthly",
   vintage = "2026-09"
