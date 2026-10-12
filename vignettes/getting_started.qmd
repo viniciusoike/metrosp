@@ -19,7 +19,7 @@ knitr:
 
 The `metrosp` package provides access to the [Metro de São Paulo](https://transparencia.metrosp.com.br/) public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a "lazy" format. All data comes prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through July 2026. `read_metro_demand()` reads newer data, published separately on every pipeline run (see [Newer data](#newer-data)).
+The bundled demand data is a fixed snapshot through July 2026; bundled service data reaches August 2026. `read_metro_demand()` and `read_metro_service()` read newer data published separately on every pipeline run (see [Newer data](#newer-data)).
 
 ```{r}
 #| label: setup
@@ -42,12 +42,13 @@ library(sf)
 rail_lines
 ```
 
-The package also provides a named vector of colors for each line of the metro
-system (`metro_colors`) and a São Paulo holiday and business-day calendar
-(`calendar_spo`).
+The package also provides monthly train service for METRO-operated lines
+(`line_service_monthly`), a named vector of line colors (`metro_colors`), and
+a São Paulo holiday and business-day calendar (`calendar_spo`).
 
 ```{r}
 metro_colors
+glimpse(line_service_monthly)
 ```
 
 Using the datasets is straightforward, just call the dataset name.
@@ -56,11 +57,12 @@ Using the datasets is straightforward, just call the dataset name.
 glimpse(line_entries_monthly)
 ```
 
-All datasets are returned as `tibble` so using the `dplyr` package is recommended.
+Demand, service, and calendar datasets are tibbles. The spatial datasets are
+`sf` objects, and `metro_colors` is a named vector.
 
 ## Newer data {#newer-data}
 
-The bundled snapshot stays put across package versions, so examples and analyses remain reproducible. Fresh data goes somewhere else: every pipeline run publishes the four demand datasets to a GitHub release. `read_metro_demand()` reads from there.
+Routine refreshes leave the bundled snapshot unchanged. Every pipeline run publishes the four demand datasets and `line_service_monthly` to a GitHub release. Use `read_metro_demand()` for demand and `read_metro_service()` for service.
 
 ```{r}
 #| eval: false
@@ -69,6 +71,9 @@ entrance <- read_metro_demand("line_entries_monthly")
 
 # The month's published batch, named in the analysis that used it
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
+
+# Latest train service
+service <- read_metro_service()
 ```
 
 Downloads use the platform-specific user cache returned by `tools::R_user_dir()`.
@@ -106,7 +111,7 @@ theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
 
 ## Entrance and Transported
 
-Both `line_entries_monthly` and `line_transported_monthly` are monthly series by line. An entry is a passenger crossing a turnstile; a transported passenger is a turnstile entry plus a transfer between lines at an interchange station, so transported counts run above entry counts for the same line and month.
+Both `line_entries_monthly` and `line_transported_monthly` are monthly series by line. METRO entries include turnstile entries and transfers arriving from other operators; Lines 4 and 5 count turnstiles only. Transported passengers include transfers between lines, so those counts usually exceed entries for comparable line and month coverage. Line 5's transported data for August 2018 covers only the days before its handover.
 
 The data is aggregated into metrics:
 

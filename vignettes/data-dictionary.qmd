@@ -26,13 +26,13 @@ The package ships four demand datasets. Two measure passengers at the line level
 
 | Dataset | Description | Unit | Time span | Frequency |
 |------------|------------|------------|------------|------------|
-| `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
+| `line_entries_monthly` | Passenger entries by line, aggregated by day-type metrics. | Passengers | 2012--2026 | Monthly |
 | `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2012--2026 | Monthly |
 | `station_transported_monthly` | Average business day passengers transported per station, aggregated by month. | Passengers | 2012--2026 | Monthly |
 | `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012--2026 | Daily |
 : Demand datasets
 
-A **passenger entry** (*entrada de passageiros*) is a passenger who crossed the station's turnstile gates (*linha de bloqueios*). A **transported passenger** (*passageiro transportado*) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts.
+A **passenger entry** (*entrada de passageiros*) includes a turnstile entry; METRO also counts transfers arriving from other operators, while Lines 4 and 5 count turnstiles only. A **transported passenger** (*passageiro transportado*) boarded a train on that line, whether through a turnstile or by transferring from another line.
 
 All four datasets count individual passengers. `line_transported_monthly` covers Line 4 from 2012 and Line 5 only through August 2018; `station_transported_monthly` covers Line 5 only through July 2018.
 
@@ -44,7 +44,7 @@ tables.
 
 ## Data vintage
 
-The bundled datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, never because new months were published upstream, so results computed from a given package version stay reproducible.
+The bundled demand datasets are a fixed snapshot through July 2026; bundled service data reaches August 2026. The snapshot moves when the column schema changes or a release deliberately carries new data, not on routine monthly refreshes.
 
 `read_metro_demand()` reads the most recently published data instead, from the rolling `data-latest` GitHub release the pipeline writes on every run.
 
