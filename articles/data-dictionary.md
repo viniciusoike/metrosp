@@ -13,24 +13,29 @@ line level, and two at the station level.
 
 | Dataset | Description | Unit | Time span | Frequency |
 |----|----|----|----|----|
-| `line_entries_monthly` | Passenger entries, measured at the station turnstiles, aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly |
+| `line_entries_monthly` | Passenger entries by line, aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly |
 | `line_transported_monthly` | Passengers transported, measured at the turnstiles plus transfers between lines at interchange stations. | Passengers | 2012–2026 | Monthly |
 | `station_transported_monthly` | Average business day passengers transported per station, aggregated by month. | Passengers | 2012–2026 | Monthly |
 | `station_entries_daily` | Daily passenger entries at each station. | Passengers | 2012–2026 | Daily |
 
 Demand datasets {.table .caption-top}
 
-A **passenger entry** (*entrada de passageiros*) is a passenger who
-crossed the station’s turnstile gates (*linha de bloqueios*). A
-**transported passenger** (*passageiro transportado*) is one who boarded
-a train on that line, whether through a turnstile or by transferring
-from another line at an interchange station, so transported counts are
-always equal to or greater than entry counts.
+A **passenger entry** (*entrada de passageiros*) includes a turnstile
+entry; METRO also counts transfers arriving from other operators, while
+Lines 4 and 5 count turnstiles only. A **transported passenger**
+(*passageiro transportado*) boarded a train on that line, whether
+through a turnstile or by transferring from another line.
 
 All four datasets count individual passengers.
 `line_transported_monthly` covers Line 4 from 2012 and Line 5 only
 through August 2018; `station_transported_monthly` covers Line 5 only
 through July 2018.
+
+`line_service_monthly` describes the supply side: the minimum interval
+between trains and the commercial speed of each METRO-operated line,
+from 2021.
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md)
+reads its published version.
 
 Four further datasets support analysis. `rail_lines` and `rail_stations`
 carry route and station geometries; `calendar_spo` and `metro_colors`
@@ -38,11 +43,10 @@ are lookup tables.
 
 ### Data vintage
 
-The bundled datasets are a fixed snapshot, current through July 2026.
-The snapshot moves when the column schema changes or when a release
-deliberately carries new data, never because new months were published
-upstream, so results computed from a given package version stay
-reproducible.
+The bundled demand datasets are a fixed snapshot through July 2026;
+bundled service data reaches August 2026. The snapshot moves when the
+column schema changes or a release deliberately carries new data, not on
+routine monthly refreshes.
 
 [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
 reads the most recently published data instead, from the rolling
@@ -72,6 +76,7 @@ Three producers stand behind these datasets.
 | `line_transported_monthly` | line $`\times`$ month $`\times`$ metric | METRO + Dataverse | Lines 1, 2, 3, 4, 5, and 15 |
 | `station_transported_monthly` | station $`\times`$ month | METRO + Dataverse | Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15 |
 | `station_entries_daily` | station $`\times`$ day | METRO + Dataverse | All |
+| `line_service_monthly` | line $`\times`$ month $`\times`$ metric | METRO | Lines 1, 2, 3, and 15 |
 | `rail_lines` | line (spatial) | GeoSampa | All |
 | `rail_stations` | station (spatial) | GeoSampa | All |
 
@@ -215,6 +220,37 @@ percent.
 | `value` | numeric | Daily passenger entries |
 
 `station_entries_daily` columns {.table .caption-top}
+
+## Service dataset
+
+### `line_service_monthly`
+
+Monthly train service by METRO-operated line, from METRO’s [*oferta*
+tables](https://transparencia.metrosp.com.br/dataset/oferta). Lines 4
+and 5 are run by concessionaires and are absent. METRO states each
+measure’s title and unit and nothing more. It marks every month of 2021
+and 2022 as affected by the COVID-19 pandemic.
+
+| Column           | Type      | Description                               |
+|------------------|-----------|-------------------------------------------|
+| `date`           | Date      | First day of the month                    |
+| `year`           | integer   | Calendar year                             |
+| `line_number`    | integer   | Line identifier (1, 2, 3, or 15)          |
+| `line_name`      | character | Line color in English                     |
+| `line_name_pt`   | character | Line color in Portuguese                  |
+| `metric`         | character | Metric code: `headway`, `speed`           |
+| `metric_name`    | character | Metric label in English, with its unit    |
+| `metric_name_pt` | character | Metric label in Portuguese, with its unit |
+| `value`          | numeric   | Seconds for `headway`, km/h for `speed`   |
+
+`line_service_monthly` columns {.table .caption-top}
+
+| Code | English | Portuguese |
+|----|----|----|
+| `headway` | Minimum interval between trains (seconds) | Intervalo mínimo entre trens (segundos) |
+| `speed` | Commercial speed (km/h) | Velocidade comercial (km/h) |
+
+Service metrics {.table .caption-top}
 
 ## Spatial datasets
 

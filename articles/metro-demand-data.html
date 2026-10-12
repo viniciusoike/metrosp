@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,7 @@
 <li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
     <li><a class="dropdown-item" href="../articles/metro-demand-data.html">Metro Demand Data</a></li>
+    <li><a class="dropdown-item" href="../articles/migrating-to-2-0.html">Migrating from 1.x to 2.0</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -107,7 +108,7 @@ table {
 <tbody>
 <tr class="odd">
 <td>Passenger entries by line</td>
-<td>Passenger entries, measured by the station’s turnstiles, aggregated by day-type metrics.</td>
+<td>Passenger entries aggregated by day-type metrics.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
@@ -140,11 +141,11 @@ table {
 </tbody>
 </table>
 <p>All four datasets count <strong>individual passengers</strong>. <code>line_transported_monthly</code> covers Line 4 from 2012 and Line 5 only through August 2018; <code>station_transported_monthly</code> covers Line 5 only through July 2018.</p>
-<p>A “passenger entry” (<em>entrada de passageiros</em>) is a passenger who crossed the station’s turnstile gates (<em>linha de bloqueios</em>). A “transported passenger” (<em>passageiro transportado</em>) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts. No clean network total exists across operators: METRO line entries include transfers arriving from Lines 4 and 5, while Lines 4 and 5 count turnstiles only.</p>
+<p>A “passenger entry” (<em>entrada de passageiros</em>) includes a turnstile entry. METRO also counts transfers arriving from other operators, while Lines 4 and 5 count turnstiles only. A “transported passenger” (<em>passageiro transportado</em>) boarded a train on that line, whether through a turnstile or by transferring from another line. No clean network total exists across operators.</p>
 <p>The table simplifies in two ways. First, the time span varies by line; each dataset section below gives the window per line. Second, the producer changes over time: METRO ran Line 5 at first and later handed it to ViaMobilidade.</p>
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
-<p>The bundled datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, not when new months are published upstream, so results computed from a given package version stay reproducible. METRO publishes irregularly and revises past years, so the bundled figures drift from the source over time.</p>
+<p>The bundled demand datasets are a fixed snapshot through July 2026; bundled service data reaches August 2026. The snapshot moves when the column schema changes or a release deliberately carries new data, not on routine monthly refreshes. METRO publishes irregularly and revises past years, so the bundled figures drift from the source over time.</p>
 <p><code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads the published data instead. Every pipeline run writes a fresh build to the rolling <code>data-latest</code> <a href="https://github.com/viniciusoike/metrosp/releases" class="external-link">GitHub release</a> and to a dated tag for that month. A later run in the same month replaces the dated batch, so a monthly vintage is revisable rather than an exact pin; <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> re-checks its manifest every few hours and downloads only the assets that changed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
@@ -158,7 +159,7 @@ table {
 <span><span class="va">entrance_bundled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, source <span class="op">=</span> <span class="st">"bundled"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. <code><a href="../reference/metrosp_cache.html">metrosp_cache()</a></code> shows what is on disk and <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> removes package-managed vintage directories without deleting unrelated files; set <code>cache = FALSE</code> to keep a download only for the current session. Columns are identical across sources, so the definitions below hold for both.</p>
-<p>Only the four demand datasets are published separately. The reference datasets do not change with new months, so read them from the package.</p>
+<p>The four demand datasets and <code>line_service_monthly</code> are published separately. Read service data with <code><a href="../reference/read_metro_service.html">read_metro_service()</a></code>. The spatial and reference datasets do not change with new months, so read them from the package.</p>
 </section></section><section class="section level2"><h2 id="data-producers">Data producers<a class="anchor" aria-label="anchor" href="#data-producers"></a>
 </h2>
 <p>This package aggregates and harmonizes data from three different data producers: 1) the METRO transparency website; 2) Insper’s Dataverse; and 3) São Paulo’s public geodata repository, GeoSampa.</p>
@@ -208,13 +209,20 @@ table {
 <td>All</td>
 </tr>
 <tr class="odd">
+<td><code>line_service_monthly</code></td>
+<td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
+<td>METRO</td>
+<td>2021–2026</td>
+<td>Lines 1, 2, 3, and 15</td>
+</tr>
+<tr class="even">
 <td><code>rail_lines</code></td>
 <td>line (spatial)</td>
 <td>GeoSampa</td>
 <td>Last updated: 2026/04/10</td>
 <td>All</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>rail_stations</code></td>
 <td>station (spatial)</td>
 <td>GeoSampa</td>
@@ -228,6 +236,7 @@ table {
 <p>The Companhia do Metropolitano de São Paulo (a.k.a. METRÔ) publishes monthly demand reports at its <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">data transparency portal</a>. Reports cover Lines 1 (Azul/Blue), 2 (Verde/Green), 3 (Vermelha/Red), 5 (Lilás/Lilac, until Jul 2018), and 15 (Prata/Silver), and are available from January 2016 onward. Values are reported in thousands (<em>milhares</em>).</p>
 <p>Before 2020, these monthly reports were published as monthly PDF and <code>csv</code> files. The <code>csv</code> files start in October 2017; the first nine months of 2017 exist only as PDFs and were transcribed by hand for this package (see <a href="#source-formats-2017">2017 source formats</a>). Each individual file contains a table (metric) from a specific year-month. There were three pieces of information available for each month: 1) the average number of transported passengers in each station, on business days (<code>station_transported_monthly</code>); 2) the number of passenger entries per line (<code>line_entries_monthly</code>); and 3) the number of transported passengers per line (<code>line_transported_monthly</code>).</p>
 <p>From 2020 onwards, the monthly reports started to be published in annual PDF and <code>csv</code> files that are updated monthly. Also, a new report was published that contained the daily number of entrances per station (<code>station_entries_daily</code>).</p>
+<p>METRO publishes minimum train interval and commercial speed separately in its <a href="https://transparencia.metrosp.com.br/dataset/oferta" class="external-link">service supply tables</a>. <code>line_service_monthly</code> covers Lines 1, 2, 3, and 15 from 2021; the <a href="https://viniciusoike.github.io/metrosp/articles/data-dictionary.html#line_service_monthly">Data Dictionary</a> defines its columns and units.</p>
 <p>Both the PDF and <code>csv</code> files are poorly structured, which is part of why <code>metrosp</code> exists. The data is public but hard to use: the format, encoding, and layout of the <code>csv</code> files shift from release to release, so each year and report needs its own import strategy. That fragility has produced processing errors in the past. The pipeline now runs a set of checks on every build, but errors may still slip through — if you find one, please open an issue on the <a href="https://github.com/viniciusoike/metrosp/issues" class="external-link">GitHub repository</a>.</p>
 <p>Going back to the datasets, it’s important to note that each monthly passenger report breaks demand into five day-type metrics: total (monthly aggregate), average on business days, average on Saturdays, average on Sundays, and daily peak (maximum within the month). These are aggregated by METRO.</p>
 <p>Daily station-level data (one row per station per day) is available from 2020 onwards. It counts turnstile entries plus transfers arriving from other operators, such as CPTM, Line 4, and Line 5. It excludes transfers between METRO lines, such as Lines 1 and 2 at Paraíso.</p>
@@ -757,7 +766,7 @@ table {
 </blockquote>
 </section><section class="level2"><h3 id="lines-4-and-5-station-codes">Lines 4 and 5: station codes<a class="anchor" aria-label="anchor" href="#lines-4-and-5-station-codes"></a>
 </h3>
-<p>The <code>station_code</code> column (three-letter abbreviation) is only available for METRO-operated lines (1, 2, 3, 15). Lines 4 and 5 have <code>station_code = NA</code> because these abbreviations are internal to METRO SP and not used by ViaQuatro/ViaMobilidade.</p>
+<p>The <code>station_code</code> column in <code>station_entries_daily</code> and <code>rail_stations</code> holds three-letter abbreviations for METRO-operated lines (1, 2, 3, 15). Lines 4 and 5 have <code>station_code = NA</code> because these abbreviations are internal to METRO SP and not used by ViaQuatro/ViaMobilidade.</p>
 </section><section class="level2"><h3 id="source-formats-2017">2017 source formats<a class="anchor" aria-label="anchor" href="#source-formats-2017"></a>
 </h3>
 <p>The METRO transparency portal publishes January through September 2017 only as PDFs; machine-readable CSVs begin in October 2017. The PDFs carry no text layer, so those nine months were transcribed from the rendered pages and reconciled against the published totals.</p>

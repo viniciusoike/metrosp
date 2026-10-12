@@ -69,8 +69,11 @@ for the column definitions, which are identical across sources.
 
 ## Details
 
-Only the demand datasets are published separately. The reference
-datasets
+Only the demand datasets and
+[line_service_monthly](https://viniciusoike.github.io/metrosp/reference/line_service_monthly.md)
+(read with
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md))
+are published separately. The reference datasets
 ([rail_lines](https://viniciusoike.github.io/metrosp/reference/rail_lines.md),
 [rail_stations](https://viniciusoike.github.io/metrosp/reference/rail_stations.md),
 [calendar_spo](https://viniciusoike.github.io/metrosp/reference/calendar_spo.md),

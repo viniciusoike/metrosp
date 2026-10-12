@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,7 @@
 <li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
     <li><a class="dropdown-item" href="../articles/metro-demand-data.html">Metro Demand Data</a></li>
+    <li><a class="dropdown-item" href="../articles/migrating-to-2-0.html">Migrating from 1.x to 2.0</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -81,7 +82,7 @@
     <section class="section level2"><h2 id="metrosp">metrosp<a class="anchor" aria-label="anchor" href="#metrosp"></a>
 </h2>
 <p>The <code>metrosp</code> package provides access to the <a href="https://transparencia.metrosp.com.br/" class="external-link">Metro de São Paulo</a> public transportation data. The datasets are compact and the sources publish irregularly, so the package ships the data in a “lazy” format. All data comes prepackaged and is called directly, with no download or import step.</p>
-<p>The bundled data is a fixed snapshot, current through July 2026. <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads newer data, published separately on every pipeline run (see <a href="#newer-data">Newer data</a>).</p>
+<p>The bundled demand data is a fixed snapshot through July 2026; bundled service data reaches August 2026. <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> and <code><a href="../reference/read_metro_service.html">read_metro_service()</a></code> read newer data published separately on every pipeline run (see <a href="#newer-data">Newer data</a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
@@ -133,12 +134,24 @@
 <span><span class="co">#&gt; 9  LINESTRING (-46.7015 -23.54...</span></span>
 <span><span class="co">#&gt; 10 LINESTRING (-46.46899 -23.5...</span></span></code></pre></div>
 </div>
-<p>The package also provides a named vector of colors for each line of the metro system (<code>metro_colors</code>) and a São Paulo holiday and business-day calendar (<code>calendar_spo</code>).</p>
+<p>The package also provides monthly train service for METRO-operated lines (<code>line_service_monthly</code>), a named vector of line colors (<code>metro_colors</code>), and a São Paulo holiday and business-day calendar (<code>calendar_spo</code>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">metro_colors</span></span>
 <span><span class="co">#&gt;      Blue     Green       Red    Yellow     Lilac    Silver </span></span>
-<span><span class="co">#&gt; "#171796" "#007A5E" "#ED2E38" "#FFD525" "#874ABF" "#8F8F8C"</span></span></code></pre></div>
+<span><span class="co">#&gt; "#171796" "#007A5E" "#ED2E38" "#FFD525" "#874ABF" "#8F8F8C"</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">line_service_monthly</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 544</span></span>
+<span><span class="co">#&gt; Columns: 9</span></span>
+<span><span class="co">#&gt; $ date           &lt;date&gt; 2021-01-01, 2021-01-01, 2021-01-01, 2021-01-01, 2021-0…</span></span>
+<span><span class="co">#&gt; $ year           &lt;int&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2…</span></span>
+<span><span class="co">#&gt; $ line_number    &lt;int&gt; 1, 1, 2, 2, 3, 3, 15, 15, 1, 1, 2, 2, 3, 3, 15, 15, 1, …</span></span>
+<span><span class="co">#&gt; $ line_name      &lt;chr&gt; "Blue", "Blue", "Green", "Green", "Red", "Red", "Silver…</span></span>
+<span><span class="co">#&gt; $ line_name_pt   &lt;chr&gt; "Azul", "Azul", "Verde", "Verde", "Vermelha", "Vermelha…</span></span>
+<span><span class="co">#&gt; $ metric         &lt;chr&gt; "headway", "speed", "headway", "speed", "headway", "spe…</span></span>
+<span><span class="co">#&gt; $ metric_name    &lt;chr&gt; "Minimum Interval Between Trains (seconds)", "Commercia…</span></span>
+<span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Intervalo Mínimo entre Trens (segundos)", "Velocidade …</span></span>
+<span><span class="co">#&gt; $ value          &lt;dbl&gt; 125, 33, 174, 32, 120, 38, 235, 33, 125, 33, 174, 32, 1…</span></span></code></pre></div>
 </div>
 <p>Using the datasets is straightforward, just call the dataset name.</p>
 <div class="cell" data-layout-align="center">
@@ -156,17 +169,20 @@
 <span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Máxima Diária", "Média dos Domingos", "Média dos Dias …</span></span>
 <span><span class="co">#&gt; $ value          &lt;dbl&gt; 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 13…</span></span></code></pre></div>
 </div>
-<p>All datasets are returned as <code>tibble</code> so using the <code>dplyr</code> package is recommended.</p>
+<p>Demand, service, and calendar datasets are tibbles. The spatial datasets are <code>sf</code> objects, and <code>metro_colors</code> is a named vector.</p>
 <section class="level2"><h3 id="newer-data">Newer data<a class="anchor" aria-label="anchor" href="#newer-data"></a>
 </h3>
-<p>The bundled snapshot stays put across package versions, so examples and analyses remain reproducible. Fresh data goes somewhere else: every pipeline run publishes the four demand datasets to a GitHub release. <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads from there.</p>
+<p>Routine refreshes leave the bundled snapshot unchanged. Every pipeline run publishes the four demand datasets and <code>line_service_monthly</code> to a GitHub release. Use <code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> for demand and <code><a href="../reference/read_metro_service.html">read_metro_service()</a></code> for service.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Latest published data</span></span>
 <span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># The month's published batch, named in the analysis that used it</span></span>
-<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Latest train service</span></span>
+<span><span class="va">service</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_service.html">read_metro_service</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>Downloads use the platform-specific user cache returned by <code><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">tools::R_user_dir()</a></code>. <code><a href="../reference/metrosp_cache.html">metrosp_cache()</a></code> lists its contents and <code><a href="../reference/metrosp_cache_clear.html">metrosp_cache_clear()</a></code> removes them; set <code>cache = FALSE</code> to keep a download only for the current session. Columns match the bundled datasets, so code written against one works with the other.</p>
 <p>The rest of this tutorial uses the bundled data, which needs no download.</p>
@@ -197,7 +213,7 @@
 </div>
 <section class="level2"><h3 id="entrance-and-transported">Entrance and Transported<a class="anchor" aria-label="anchor" href="#entrance-and-transported"></a>
 </h3>
-<p>Both <code>line_entries_monthly</code> and <code>line_transported_monthly</code> are monthly series by line. An entry is a passenger crossing a turnstile; a transported passenger is a turnstile entry plus a transfer between lines at an interchange station, so transported counts run above entry counts for the same line and month.</p>
+<p>Both <code>line_entries_monthly</code> and <code>line_transported_monthly</code> are monthly series by line. METRO entries include turnstile entries and transfers arriving from other operators; Lines 4 and 5 count turnstiles only. Transported passengers include transfers between lines, so those counts usually exceed entries for comparable line and month coverage. Line 5’s transported data for August 2018 covers only the days before its handover.</p>
 <p>The data is aggregated into metrics:</p>
 <ul>
 <li>
@@ -324,7 +340,7 @@
 <span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Média dos Dias Úteis", "Média dos Dias Úteis", "Média …</span></span>
 <span><span class="co">#&gt; $ value          &lt;dbl&gt; 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 991…</span></span></code></pre></div>
 </div>
-<p>The plot below shows the daily average (business days) passengers entering each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.</p>
+<p>The plot below shows the average business-day passengers transported at each station of line 4. Note that the temporal range of the data is unequal across stations, since not all of them were inaugurated at the same time.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">line4st</span> <span class="op">&lt;-</span> <span class="va">station_transported_monthly</span> <span class="op">|&gt;</span></span>

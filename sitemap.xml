@@ -6,12 +6,14 @@
 <url><loc>https://viniciusoike.github.io/metrosp/articles/getting_started.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/articles/index.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/articles/metro-demand-data.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/articles/migrating-to-2-0.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/authors.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/index.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/news/index.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/calendar_spo.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/index.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/line_entries_monthly.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/line_service_monthly.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/line_transported_monthly.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/metro_colors.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/metrosp_cache.html</loc></url>
@@ -19,6 +21,7 @@
 <url><loc>https://viniciusoike.github.io/metrosp/reference/rail_lines.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/rail_stations.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/read_metro_demand.html</loc></url>
+<url><loc>https://viniciusoike.github.io/metrosp/reference/read_metro_service.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/station_entries_daily.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/reference/station_transported_monthly.html</loc></url>
 <url><loc>https://viniciusoike.github.io/metrosp/release-v1.0.0.html</loc></url>

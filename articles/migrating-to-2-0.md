@@ -1,0 +1,85 @@
+# Migrating from 1.x to 2.0
+
+metrosp 2.0 renames most datasets, several columns, and the cache
+helpers. The tables below map each 1.x name to its 2.0 name. See the
+[changelog](https://viniciusoike.github.io/metrosp/news/index.md) for
+the reasons behind each change.
+
+## Datasets
+
+| 1.x                      | 2.0                           |
+|--------------------------|-------------------------------|
+| `passengers_entrance`    | `line_entries_monthly`        |
+| `passengers_transported` | `line_transported_monthly`    |
+| `station_averages`       | `station_transported_monthly` |
+| `station_daily`          | `station_entries_daily`       |
+| `lines`                  | `rail_lines`                  |
+| `stations`               | `rail_stations`               |
+| `station_inauguration`   | Removed                       |
+
+`calendar_spo` and `metro_colors` keep their names.
+
+## Columns
+
+| 1.x                           | 2.0                   | Datasets        |
+|-------------------------------|-----------------------|-----------------|
+| `metric_abb`                  | `metric`              | Demand datasets |
+| `metric`                      | `metric_name`         | Demand datasets |
+| `metric_pt`                   | `metric_name_pt`      | Demand datasets |
+| `passengers`, `avg_passenger` | `value`               | Demand datasets |
+| `is_ponto_facultativo`        | `is_optional_holiday` | `calendar_spo`  |
+| `is_feriadao`                 | `is_long_weekend`     | `calendar_spo`  |
+
+The station datasets and `rail_stations` now have `station_id`, a
+stable, opaque identifier shared by members of the same physical station
+complex. Keep `station_name` for display. Grouping
+`station_transported_monthly` by `station_id` adds boardings across its
+platforms, not unique entrants. `station_transported_monthly` also has
+`metric = "mdu"`, `metric_name`, and `metric_name_pt`;
+`station_entries_daily` has no metric columns. The `year` and
+`line_number` columns are integers in the demand datasets.
+
+`metric` changed meaning: it held the English label in 1.x and holds the
+short code (`total`, `mdu`, …) in 2.0. Code that filters on `metric`
+needs the new codes.
+
+## Functions
+
+| 1.x | 2.0 |
+|----|----|
+| `metrosp_cache_dir()` | [`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md) |
+| `metrosp_cache_list()` | [`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md) |
+| `metrosp_cache_enable()` | Removed; caching is on by default |
+
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+and
+[`metrosp_cache_clear()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache_clear.md)
+keep their names.
+[`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md)
+lists cached files and prints the cache location; it does not return
+only a directory path. Use `attr(metrosp_cache(), "directory")` to get
+that path. Set `cache = FALSE` on a read to use session-temporary
+storage. Version 2.1 also adds
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md)
+for `line_service_monthly`.
+
+## Values
+
+- `line_transported_monthly$value` now counts passengers, not thousands.
+  Drop any `* 1000` your code applied.
+- The `line_number == 99` network rows are gone, with no replacement.
+
+## Example
+
+``` r
+
+# 1.x
+passengers_entrance |>
+  dplyr::filter(metric_abb == "total") |>
+  dplyr::select(date, line_number, passengers)
+
+# 2.0
+line_entries_monthly |>
+  dplyr::filter(metric == "total") |>
+  dplyr::select(date, line_number, value)
+```

@@ -8,9 +8,12 @@ data. The datasets are compact and the sources publish irregularly, so
 the package ships the data in a “lazy” format. All data comes
 prepackaged and is called directly, with no download or import step.
 
-The bundled data is a fixed snapshot, current through July 2026.
+The bundled demand data is a fixed snapshot through July 2026; bundled
+service data reaches August 2026.
 [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
-reads newer data, published separately on every pipeline run (see [Newer
+and
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md)
+read newer data published separately on every pipeline run (see [Newer
 data](#newer-data)).
 
 ``` r
@@ -70,15 +73,28 @@ rail_lines
 #> 10 LINESTRING (-46.46899 -23.5...
 ```
 
-The package also provides a named vector of colors for each line of the
-metro system (`metro_colors`) and a São Paulo holiday and business-day
-calendar (`calendar_spo`).
+The package also provides monthly train service for METRO-operated lines
+(`line_service_monthly`), a named vector of line colors
+(`metro_colors`), and a São Paulo holiday and business-day calendar
+(`calendar_spo`).
 
 ``` r
 
 metro_colors
 #>      Blue     Green       Red    Yellow     Lilac    Silver 
 #> "#171796" "#007A5E" "#ED2E38" "#FFD525" "#874ABF" "#8F8F8C"
+glimpse(line_service_monthly)
+#> Rows: 544
+#> Columns: 9
+#> $ date           <date> 2021-01-01, 2021-01-01, 2021-01-01, 2021-01-01, 2021-0…
+#> $ year           <int> 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2…
+#> $ line_number    <int> 1, 1, 2, 2, 3, 3, 15, 15, 1, 1, 2, 2, 3, 3, 15, 15, 1, …
+#> $ line_name      <chr> "Blue", "Blue", "Green", "Green", "Red", "Red", "Silver…
+#> $ line_name_pt   <chr> "Azul", "Azul", "Verde", "Verde", "Vermelha", "Vermelha…
+#> $ metric         <chr> "headway", "speed", "headway", "speed", "headway", "spe…
+#> $ metric_name    <chr> "Minimum Interval Between Trains (seconds)", "Commercia…
+#> $ metric_name_pt <chr> "Intervalo Mínimo entre Trens (segundos)", "Velocidade …
+#> $ value          <dbl> 125, 33, 174, 32, 120, 38, 235, 33, 125, 33, 174, 32, 1…
 ```
 
 Using the datasets is straightforward, just call the dataset name.
@@ -99,16 +115,18 @@ glimpse(line_entries_monthly)
 #> $ value          <dbl> 122637.00, 24663.40, 99339.64, 48876.25, 2504294.00, 13…
 ```
 
-All datasets are returned as `tibble` so using the `dplyr` package is
-recommended.
+Demand, service, and calendar datasets are tibbles. The spatial datasets
+are `sf` objects, and `metro_colors` is a named vector.
 
 ### Newer data
 
-The bundled snapshot stays put across package versions, so examples and
-analyses remain reproducible. Fresh data goes somewhere else: every
-pipeline run publishes the four demand datasets to a GitHub release.
+Routine refreshes leave the bundled snapshot unchanged. Every pipeline
+run publishes the four demand datasets and `line_service_monthly` to a
+GitHub release. Use
 [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
-reads from there.
+for demand and
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md)
+for service.
 
 ``` r
 
@@ -117,6 +135,9 @@ entrance <- read_metro_demand("line_entries_monthly")
 
 # The month's published batch, named in the analysis that used it
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
+
+# Latest train service
+service <- read_metro_service()
 ```
 
 Downloads use the platform-specific user cache returned by
@@ -164,10 +185,12 @@ theme_series <- theme_minimal(base_family = "Avenir", base_size = 10) +
 ### Entrance and Transported
 
 Both `line_entries_monthly` and `line_transported_monthly` are monthly
-series by line. An entry is a passenger crossing a turnstile; a
-transported passenger is a turnstile entry plus a transfer between lines
-at an interchange station, so transported counts run above entry counts
-for the same line and month.
+series by line. METRO entries include turnstile entries and transfers
+arriving from other operators; Lines 4 and 5 count turnstiles only.
+Transported passengers include transfers between lines, so those counts
+usually exceed entries for comparable line and month coverage. Line 5’s
+transported data for August 2018 covers only the days before its
+handover.
 
 The data is aggregated into metrics:
 
@@ -325,10 +348,10 @@ glimpse(station_transported_monthly)
 #> $ value          <dbl> 37066.82, 31989.09, 100889.32, 127844.59, 97537.45, 991…
 ```
 
-The plot below shows the daily average (business days) passengers
-entering each station of line 4. Note that the temporal range of the
-data is unequal across stations, since not all of them were inaugurated
-at the same time.
+The plot below shows the average business-day passengers transported at
+each station of line 4. Note that the temporal range of the data is
+unequal across stations, since not all of them were inaugurated at the
+same time.
 
 Code
 

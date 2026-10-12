@@ -13,7 +13,7 @@ rebuilt from the upstream sources on every pipeline run."><meta property="og:ima
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,7 @@ rebuilt from the upstream sources on every pipeline run."><meta property="og:ima
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
     <li><a class="dropdown-item" href="../articles/metro-demand-data.html">Metro Demand Data</a></li>
+    <li><a class="dropdown-item" href="../articles/migrating-to-2-0.html">Migrating from 1.x to 2.0</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -108,7 +109,8 @@ definitions, which are identical across sources.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Only the demand datasets are published separately. The reference datasets
+    <p>Only the demand datasets and <a href="line_service_monthly.html">line_service_monthly</a> (read with
+<code><a href="read_metro_service.html">read_metro_service()</a></code>) are published separately. The reference datasets
 (<a href="rail_lines.html">rail_lines</a>, <a href="rail_stations.html">rail_stations</a>, <a href="calendar_spo.html">calendar_spo</a>, and <a href="metro_colors.html">metro_colors</a>) do not
 change with new months, so read them directly.</p>
 <p>Each vintage's <code>manifest.json</code> is cached and checked again once it is older

@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metrosp</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,7 @@
 <li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/data-dictionary.html">Data Dictionary</a></li>
     <li><a class="dropdown-item" href="../articles/metro-demand-data.html">Metro Demand Data</a></li>
+    <li><a class="dropdown-item" href="../articles/migrating-to-2-0.html">Migrating from 1.x to 2.0</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -106,7 +107,7 @@ table {
 <tbody>
 <tr class="odd">
 <td><code>line_entries_monthly</code></td>
-<td>Passenger entries, measured at the station turnstiles, aggregated by day-type metrics.</td>
+<td>Passenger entries by line, aggregated by day-type metrics.</td>
 <td>Passengers</td>
 <td>2012–2026</td>
 <td>Monthly</td>
@@ -134,12 +135,13 @@ table {
 </tr>
 </tbody>
 </table>
-<p>A <strong>passenger entry</strong> (<em>entrada de passageiros</em>) is a passenger who crossed the station’s turnstile gates (<em>linha de bloqueios</em>). A <strong>transported passenger</strong> (<em>passageiro transportado</em>) is one who boarded a train on that line, whether through a turnstile or by transferring from another line at an interchange station, so transported counts are always equal to or greater than entry counts.</p>
+<p>A <strong>passenger entry</strong> (<em>entrada de passageiros</em>) includes a turnstile entry; METRO also counts transfers arriving from other operators, while Lines 4 and 5 count turnstiles only. A <strong>transported passenger</strong> (<em>passageiro transportado</em>) boarded a train on that line, whether through a turnstile or by transferring from another line.</p>
 <p>All four datasets count individual passengers. <code>line_transported_monthly</code> covers Line 4 from 2012 and Line 5 only through August 2018; <code>station_transported_monthly</code> covers Line 5 only through July 2018.</p>
+<p><code>line_service_monthly</code> describes the supply side: the minimum interval between trains and the commercial speed of each METRO-operated line, from 2021. <code><a href="../reference/read_metro_service.html">read_metro_service()</a></code> reads its published version.</p>
 <p>Four further datasets support analysis. <code>rail_lines</code> and <code>rail_stations</code> carry route and station geometries; <code>calendar_spo</code> and <code>metro_colors</code> are lookup tables.</p>
 <section class="level2"><h3 id="data-vintage">Data vintage<a class="anchor" aria-label="anchor" href="#data-vintage"></a>
 </h3>
-<p>The bundled datasets are a fixed snapshot, current through July 2026. The snapshot moves when the column schema changes or when a release deliberately carries new data, never because new months were published upstream, so results computed from a given package version stay reproducible.</p>
+<p>The bundled demand datasets are a fixed snapshot through July 2026; bundled service data reaches August 2026. The snapshot moves when the column schema changes or a release deliberately carries new data, not on routine monthly refreshes.</p>
 <p><code><a href="../reference/read_metro_demand.html">read_metro_demand()</a></code> reads the most recently published data instead, from the rolling <code>data-latest</code> GitHub release the pipeline writes on every run.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/viniciusoike/metrosp" class="external-link">metrosp</a></span><span class="op">)</span></span>
@@ -193,12 +195,18 @@ table {
 <td>All</td>
 </tr>
 <tr class="odd">
+<td><code>line_service_monthly</code></td>
+<td>line <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> month <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>×</mi><annotation encoding="application/x-tex">\times</annotation></semantics></math> metric</td>
+<td>METRO</td>
+<td>Lines 1, 2, 3, and 15</td>
+</tr>
+<tr class="even">
 <td><code>rail_lines</code></td>
 <td>line (spatial)</td>
 <td>GeoSampa</td>
 <td>All</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>rail_stations</code></td>
 <td>station (spatial)</td>
 <td>GeoSampa</td>
@@ -521,6 +529,99 @@ table {
 <td><code>value</code></td>
 <td>numeric</td>
 <td>Daily passenger entries</td>
+</tr>
+</tbody>
+</table></section></section><section class="section level2"><h2 id="service-dataset">Service dataset<a class="anchor" aria-label="anchor" href="#service-dataset"></a>
+</h2>
+<section class="level2"><h3 id="line_service_monthly">
+<code>line_service_monthly</code><a class="anchor" aria-label="anchor" href="#line_service_monthly"></a>
+</h3>
+<p>Monthly train service by METRO-operated line, from METRO’s <a href="https://transparencia.metrosp.com.br/dataset/oferta" class="external-link"><em>oferta</em> tables</a>. Lines 4 and 5 are run by concessionaires and are absent. METRO states each measure’s title and unit and nothing more. It marks every month of 2021 and 2022 as affected by the COVID-19 pandemic.</p>
+<table class="table caption-top">
+<caption>
+<code>line_service_monthly</code> columns</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date</td>
+<td>First day of the month</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>integer</td>
+<td>Calendar year</td>
+</tr>
+<tr class="odd">
+<td><code>line_number</code></td>
+<td>integer</td>
+<td>Line identifier (1, 2, 3, or 15)</td>
+</tr>
+<tr class="even">
+<td><code>line_name</code></td>
+<td>character</td>
+<td>Line color in English</td>
+</tr>
+<tr class="odd">
+<td><code>line_name_pt</code></td>
+<td>character</td>
+<td>Line color in Portuguese</td>
+</tr>
+<tr class="even">
+<td><code>metric</code></td>
+<td>character</td>
+<td>Metric code: <code>headway</code>, <code>speed</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>metric_name</code></td>
+<td>character</td>
+<td>Metric label in English, with its unit</td>
+</tr>
+<tr class="even">
+<td><code>metric_name_pt</code></td>
+<td>character</td>
+<td>Metric label in Portuguese, with its unit</td>
+</tr>
+<tr class="odd">
+<td><code>value</code></td>
+<td>numeric</td>
+<td>Seconds for <code>headway</code>, km/h for <code>speed</code>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table caption-top">
+<caption>Service metrics</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 43%">
+<col style="width: 40%">
+</colgroup>
+<thead><tr class="header">
+<th>Code</th>
+<th>English</th>
+<th>Portuguese</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>headway</code></td>
+<td>Minimum interval between trains (seconds)</td>
+<td>Intervalo mínimo entre trens (segundos)</td>
+</tr>
+<tr class="even">
+<td><code>speed</code></td>
+<td>Commercial speed (km/h)</td>
+<td>Velocidade comercial (km/h)</td>
 </tr>
 </tbody>
 </table></section></section><section class="section level2"><h2 id="spatial-datasets">Spatial datasets<a class="anchor" aria-label="anchor" href="#spatial-datasets"></a>

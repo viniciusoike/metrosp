@@ -13,6 +13,13 @@ Passenger counts by line and by station.
 - [`station_entries_daily`](https://viniciusoike.github.io/metrosp/reference/station_entries_daily.md)
   : Daily Passenger Entries by Metro SP Station
 
+## Service datasets
+
+Train frequency and speed by line.
+
+- [`line_service_monthly`](https://viniciusoike.github.io/metrosp/reference/line_service_monthly.md)
+  : Train Service by Metro SP Line
+
 ## Spatial and reference datasets
 
 Geometries and lookup tables.
@@ -33,6 +40,8 @@ cache.
 
 - [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
   : Read Metro SP demand data
+- [`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md)
+  : Read Metro SP service data
 - [`metrosp_cache()`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md)
   [`print(`*`<metrosp_cache>`*`)`](https://viniciusoike.github.io/metrosp/reference/metrosp_cache.md)
   : Inspect cached Metro SP data

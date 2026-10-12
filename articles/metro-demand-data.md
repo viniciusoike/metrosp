@@ -13,7 +13,7 @@ line level, and two at the station level.
 
 | Dataset | Description | Unit | Time span | Frequency | Package name |
 |----|----|----|----|----|----|
-| Passenger entries by line | Passenger entries, measured by the station’s turnstiles, aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly | `line_entries_monthly` |
+| Passenger entries by line | Passenger entries aggregated by day-type metrics. | Passengers | 2012–2026 | Monthly | `line_entries_monthly` |
 | Transported passengers per line | Number of transported passengers, measured by boardings plus transfers between lines at interchange stations. | Passengers | 2012–2026 | Monthly | `line_transported_monthly` |
 | Station-level transported | Average business day passengers transported per station, aggregated by month. | Passengers | 2012–2026 | Monthly | `station_transported_monthly` |
 | Station-level daily | Daily passenger entries at each station. | Passengers | 2012–2026 | Daily | `station_entries_daily` |
@@ -23,14 +23,12 @@ All four datasets count **individual passengers**.
 through August 2018; `station_transported_monthly` covers Line 5 only
 through July 2018.
 
-A “passenger entry” (*entrada de passageiros*) is a passenger who
-crossed the station’s turnstile gates (*linha de bloqueios*). A
-“transported passenger” (*passageiro transportado*) is one who boarded a
-train on that line, whether through a turnstile or by transferring from
-another line at an interchange station, so transported counts are always
-equal to or greater than entry counts. No clean network total exists
-across operators: METRO line entries include transfers arriving from
-Lines 4 and 5, while Lines 4 and 5 count turnstiles only.
+A “passenger entry” (*entrada de passageiros*) includes a turnstile
+entry. METRO also counts transfers arriving from other operators, while
+Lines 4 and 5 count turnstiles only. A “transported passenger”
+(*passageiro transportado*) boarded a train on that line, whether
+through a turnstile or by transferring from another line. No clean
+network total exists across operators.
 
 The table simplifies in two ways. First, the time span varies by line;
 each dataset section below gives the window per line. Second, the
@@ -39,12 +37,11 @@ it to ViaMobilidade.
 
 ### Data vintage
 
-The bundled datasets are a fixed snapshot, current through July 2026.
-The snapshot moves when the column schema changes or when a release
-deliberately carries new data, not when new months are published
-upstream, so results computed from a given package version stay
-reproducible. METRO publishes irregularly and revises past years, so the
-bundled figures drift from the source over time.
+The bundled demand datasets are a fixed snapshot through July 2026;
+bundled service data reaches August 2026. The snapshot moves when the
+column schema changes or a release deliberately carries new data, not on
+routine monthly refreshes. METRO publishes irregularly and revises past
+years, so the bundled figures drift from the source over time.
 
 [`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
 reads the published data instead. Every pipeline run writes a fresh
@@ -78,8 +75,11 @@ files; set `cache = FALSE` to keep a download only for the current
 session. Columns are identical across sources, so the definitions below
 hold for both.
 
-Only the four demand datasets are published separately. The reference
-datasets do not change with new months, so read them from the package.
+The four demand datasets and `line_service_monthly` are published
+separately. Read service data with
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md).
+The spatial and reference datasets do not change with new months, so
+read them from the package.
 
 ## Data producers
 
@@ -99,6 +99,7 @@ repository](https://github.com/viniciusoike/metrosp/tree/main/data-raw).
 | `line_transported_monthly` | line $`\times`$ month $`\times`$ metric | METRO + Dataverse | 2012–2026 | Lines 1, 2, 3, 4, 5, and 15 |
 | `station_transported_monthly` | station $`\times`$ month | METRO + Dataverse | 2012–2026 | Lines 1, 2, 3, 4, 5 (to Jul 2018), and 15 |
 | `station_entries_daily` | station $`\times`$ day | METRO + Dataverse | 2012–2026 | All |
+| `line_service_monthly` | line $`\times`$ month $`\times`$ metric | METRO | 2021–2026 | Lines 1, 2, 3, and 15 |
 | `rail_lines` | line (spatial) | GeoSampa | Last updated: 2026/04/10 | All |
 | `rail_stations` | station (spatial) | GeoSampa | Last updated: 2026/04/10 | All |
 
@@ -126,6 +127,13 @@ From 2020 onwards, the monthly reports started to be published in annual
 PDF and `csv` files that are updated monthly. Also, a new report was
 published that contained the daily number of entrances per station
 (`station_entries_daily`).
+
+METRO publishes minimum train interval and commercial speed separately
+in its [service supply
+tables](https://transparencia.metrosp.com.br/dataset/oferta).
+`line_service_monthly` covers Lines 1, 2, 3, and 15 from 2021; the [Data
+Dictionary](https://viniciusoike.github.io/metrosp/articles/data-dictionary.html#line_service_monthly)
+defines its columns and units.
 
 Both the PDF and `csv` files are poorly structured, which is part of why
 `metrosp` exists. The data is public but hard to use: the format,
@@ -589,10 +597,10 @@ this rounding. The original note states:
 
 ### Lines 4 and 5: station codes
 
-The `station_code` column (three-letter abbreviation) is only available
-for METRO-operated lines (1, 2, 3, 15). Lines 4 and 5 have
-`station_code = NA` because these abbreviations are internal to METRO SP
-and not used by ViaQuatro/ViaMobilidade.
+The `station_code` column in `station_entries_daily` and `rail_stations`
+holds three-letter abbreviations for METRO-operated lines (1, 2, 3, 15).
+Lines 4 and 5 have `station_code = NA` because these abbreviations are
+internal to METRO SP and not used by ViaQuatro/ViaMobilidade.
 
 ### 2017 source formats
 

@@ -1,7 +1,9 @@
 # Inspect cached Metro SP data
 
 Lists the files downloaded by
-[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md).
+[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
+and
+[`read_metro_service()`](https://viniciusoike.github.io/metrosp/reference/read_metro_service.md).
 The cache directory is resolved from the `metrosp.cache_dir` option,
 then the `METROSP_CACHE_DIR` environment variable, and finally
 [`tools::R_user_dir()`](https://rdrr.io/r/tools/userdir.html). Printing
@@ -37,9 +39,7 @@ empty.
 ## Details
 
 Each read marks its vintage as used. A vintage left unused for 90 days
-is deleted the next time
-[`read_metro_demand()`](https://viniciusoike.github.io/metrosp/reference/read_metro_demand.md)
-touches the cache.
+is deleted the next time either reader touches the cache.
 
 ## See also
 
