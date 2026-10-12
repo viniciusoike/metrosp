@@ -565,3 +565,29 @@ test_that("a service block without twelve month rows fails visibly", {
 
   expect_error(env$read_service(path), "month rows")
 })
+
+test_that("a service file missing a metric block fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(raw[seq_len(grep("^Velocidade", raw) - 1L)], path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "speed")
+})
+
+test_that("a service block missing a line column fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(sub(";[^;]*$", "", raw, useBytes = TRUE), path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "15")
+})

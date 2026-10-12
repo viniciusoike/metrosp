@@ -269,3 +269,28 @@ test_that("service checks catch a unit change and a foreign line", {
     all = FALSE
   )
 })
+
+test_that("service checks catch a missing metric or line", {
+  service <- metrosp::line_service_monthly
+
+  expect_match(
+    check_line_service_monthly(service[service$metric == "headway", ]),
+    "incomplete",
+    all = FALSE
+  )
+  expect_match(
+    check_line_service_monthly(service[service$line_number != 15L, ]),
+    "incomplete",
+    all = FALSE
+  )
+})
+
+test_that("service checks accept unpublished months as blanks", {
+  service <- metrosp::line_service_monthly
+
+  blank <- service[service$date == max(service$date), ]
+  blank$date <- seq(max(service$date), by = "month", length.out = 2)[2]
+  blank$value <- NA_real_
+
+  expect_equal(check_line_service_monthly(rbind(service, blank)), character(0))
+})

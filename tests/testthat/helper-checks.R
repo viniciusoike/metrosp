@@ -495,6 +495,35 @@ check_service_ranges <- function(df, name) {
   problems
 }
 
+# A published month carries every line and both metrics. Months METRO has not
+# published yet are all blank and pass.
+check_service_complete <- function(df, name) {
+  if (!all(c("date", "line_number", "metric", "value") %in% names(df))) {
+    return(character(0))
+  }
+  published <- df[!is.na(df$value), ]
+  expected <- length(.service_lines_expected) *
+    length(.service_metrics_expected)
+  counts <- tapply(
+    paste(published$line_number, published$metric),
+    published$date,
+    \(x) length(unique(x))
+  )
+  short <- names(counts)[counts < expected]
+  if (length(short) == 0) {
+    return(character(0))
+  }
+  sprintf(
+    "%s: %d published month(s) incomplete (missing a line or metric), e.g. %s",
+    name,
+    length(short),
+    short[1]
+  )
+}
+
+.service_lines_expected <- c(1L, 2L, 3L, 15L)
+.service_metrics_expected <- c("headway", "speed")
+
 check_line_service_monthly <- function(df, name = "line_service_monthly") {
   c(
     check_columns(
@@ -529,8 +558,9 @@ check_line_service_monthly <- function(df, name = "line_service_monthly") {
       name
     ),
     # METRO publishes service for the lines it operates; Lines 4/5 are absent.
-    check_values(df, "line_number", c(1L, 2L, 3L, 15L), name),
-    check_values(df, "metric", c("headway", "speed"), name),
+    check_values(df, "line_number", .service_lines_expected, name),
+    check_values(df, "metric", .service_metrics_expected, name),
+    check_service_complete(df, name),
     check_service_ranges(df, name),
     check_no_duplicates(df, c("date", "line_number", "metric"), name),
     check_rows(df, 1L, name)

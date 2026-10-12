@@ -200,6 +200,11 @@ build_stn_daily_current <- function(years = get_available_years()) {
 # rows. The rows above the first block vary between files, so blocks are found
 # by their titles.
 
+# The lines METRO operates and publishes service for. A file without all of
+# them, or without both metrics, is a layout change, not a data gap.
+.service_lines <- c(1L, 2L, 3L, 15L)
+.service_metrics <- c("headway", "speed")
+
 #' Map a service block title to its metric, checking the unit it states.
 service_metric <- function(title) {
   title <- stringi::stri_trans_general(title, "Latin-ASCII")
@@ -227,9 +232,22 @@ read_service <- function(path) {
   }
 
   metrics <- service_metric(stringr::str_remove(raw_lines[titles], ";.*$"))
+  if (!setequal(metrics, .service_metrics) || anyDuplicated(metrics)) {
+    cli::cli_abort(c(
+      "Service file {.path {path}} must hold one block per metric.",
+      "i" = "Expected {.val {(.service_metrics)}}.",
+      "x" = "Found {.val {metrics}}."
+    ))
+  }
 
   blocks <- purrr::map2(titles, metrics, \(row, metric) {
     lines <- label_line_number(split_line_labels(raw_lines[row + 1L])[-1])
+    missing <- setdiff(.service_lines, lines)
+    if (length(missing) > 0) {
+      cli::cli_abort(
+        "Service block {.val {metric}} in {.path {path}} lacks line{?s} {.val {missing}}."
+      )
+    }
     body <- raw_lines[row + 1L + seq_len(nrow(dim_month))]
     cells <- stringr::str_split_fixed(body, ";", length(lines) + 2L)
 
