@@ -1,6 +1,6 @@
-# Reading published demand data ----------------------------------------------
+# Reading published data ------------------------------------------------------
 #
-# The four demand datasets grow every month and are restated retroactively, so
+# The demand and service datasets grow every month and are restated retroactively, so
 # the copies in data/*.rda are a frozen snapshot rather than a live mirror. The
 # pipeline publishes each fresh build to a GitHub release as .rds assets plus a
 # manifest.json carrying row counts, date coverage, and a SHA-256 per asset.
@@ -9,7 +9,8 @@
 # cheap: freshness is a timestamp comparison and integrity is a hash check, so
 # a warm cache re-downloads nothing.
 #
-# read_metro_demand() is exported; everything below it is internal. fetch_url()
+# read_metro_demand() and read_metro_service() are exported; everything else is
+# internal. fetch_url()
 # is the single network seam, so the tests mock it and never reach GitHub.
 
 demand_datasets <- c(
@@ -18,6 +19,8 @@ demand_datasets <- c(
   "station_transported_monthly",
   "station_entries_daily"
 )
+
+service_datasets <- "line_service_monthly"
 
 legacy_demand_datasets <- c(
   line_entries_monthly = "passengers_entrance",
@@ -57,7 +60,8 @@ legacy_demand_datasets <- c(
 #'   definitions, which are identical across sources.
 #'
 #' @details
-#' Only the demand datasets are published separately. The reference datasets
+#' Only the demand datasets and [line_service_monthly] (read with
+#' [read_metro_service()]) are published separately. The reference datasets
 #' ([rail_lines], [rail_stations], [calendar_spo], and [metro_colors]) do not
 #' change with new months, so read them directly.
 #'
@@ -107,7 +111,56 @@ read_metro_demand <- function(
 ) {
   dataset <- match_dataset(dataset)
   source <- match.arg(source)
+  read_dataset(dataset, source, vintage, cache, quiet)
+}
 
+#' Read Metro SP service data
+#'
+#' Reads [line_service_monthly], the minimum interval between trains and the
+#' commercial speed of each METRO-operated line, preferring the most recently
+#' published version over the frozen snapshot bundled with the package. It
+#' reads from the same GitHub releases and cache as [read_metro_demand()].
+#'
+#' @inheritParams read_metro_demand
+#'
+#' @return A data frame. See [line_service_monthly] for the column definitions,
+#'   which are identical across sources.
+#'
+#' @details
+#' Vintages published before metrosp 2.1.0 do not contain service data, and
+#' reading one is an error.
+#'
+#' @seealso [read_metro_demand()] for passenger demand, and [metrosp_cache()]
+#'   and [metrosp_cache_clear()] for cache management.
+#'
+#' @examples
+#' # The bundled snapshot, read without touching the network.
+#' head(read_metro_service(source = "bundled"))
+#'
+#' \donttest{
+#' # Keep this example's downloads out of your persistent cache.
+#' old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
+#'
+#' # The most recently published data, cached between calls.
+#' service <- read_metro_service()
+#'
+#' options(old)
+#' }
+#'
+#' @export
+read_metro_service <- function(
+  source = c("auto", "cache", "remote", "bundled"),
+  vintage = "latest",
+  cache = TRUE,
+  quiet = FALSE
+) {
+  source <- match.arg(source)
+  read_dataset("line_service_monthly", source, vintage, cache, quiet)
+}
+
+# Sources ---------------------------------------------------------------------
+
+read_dataset <- function(dataset, source, vintage, cache, quiet) {
   if (identical(source, "bundled")) {
     return(read_bundled(dataset))
   }
@@ -137,8 +190,6 @@ read_metro_demand <- function(
   read_published(dataset, vintage, source, cache, quiet)
 }
 
-# Sources ---------------------------------------------------------------------
-
 read_bundled <- function(dataset) {
   getExportedValue("metrosp", dataset)
 }
@@ -153,10 +204,12 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
 
   entry <- release_dataset_entry(manifest, dataset)
   if (is.null(entry)) {
-    legacy_name <- unname(legacy_demand_datasets[[dataset]])
+    legacy_name <- unname(legacy_demand_datasets[dataset])
     cli::cli_abort(c(
       "Vintage {.val {vintage}} does not contain {.val {dataset}}.",
-      "i" = "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
+      "i" = if (!is.na(legacy_name)) {
+        "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
+      }
     ))
   }
 
@@ -186,7 +239,11 @@ release_dataset_entry <- function(manifest, dataset) {
     return(entry)
   }
 
-  legacy_name <- unname(legacy_demand_datasets[[dataset]])
+  # Datasets added after 1.x have no legacy asset to fall back on.
+  legacy_name <- unname(legacy_demand_datasets[dataset])
+  if (is.na(legacy_name)) {
+    return(NULL)
+  }
   entry <- manifest$datasets[[legacy_name]]
   if (!is.null(entry)) {
     attr(entry, "legacy") <- TRUE
@@ -420,6 +477,7 @@ match_dataset <- function(dataset) {
   if (!is.character(dataset) || !dataset %in% demand_datasets) {
     cli::cli_abort(c(
       "{.arg dataset} must be one of {.val {demand_datasets}}.",
+      "i" = "Read {.val {service_datasets}} with {.fn read_metro_service}.",
       "i" = "Reference datasets such as {.code rail_lines} and
              {.code rail_stations} are bundled with the package; use them
              directly."

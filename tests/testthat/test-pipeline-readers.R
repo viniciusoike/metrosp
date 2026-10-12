@@ -483,3 +483,85 @@ test_that("the default calendar build matches the frozen snapshot", {
     ignore_attr = TRUE
   )
 })
+
+# Service (oferta) -------------------------------------------------------------
+
+local_service_env <- function() {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(sys.source(file.path(pipeline_dir, "build", "dims.R"), env))
+  suppressWarnings(sys.source(file.path(pipeline_dir, "helpers.R"), env))
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "import", "import_metro_current.R"), env)
+  )
+  env
+}
+
+test_that("the service reader parses both blocks of a published file", {
+  env <- local_service_env()
+
+  result <- env$clean_service(
+    env$read_service(test_path("fixtures", "oferta_2021.csv")),
+    year = 2021L
+  )
+
+  expect_named(result, c("date", "year", "line_number", "metric", "value"))
+  expect_equal(nrow(result), 12L * 4L * 2L)
+  expect_setequal(result$line_number, c(1L, 2L, 3L, 15L))
+  expect_setequal(result$metric, c("headway", "speed"))
+  expect_false(anyNA(result$value))
+
+  # Spot values from the source file, including a footnoted month ("Jan*").
+  pick <- function(month, line, metric) {
+    result$value[
+      result$date == as.Date(month) &
+        result$line_number == line &
+        result$metric == metric
+    ]
+  }
+  expect_equal(pick("2021-01-01", 1L, "headway"), 125)
+  expect_equal(pick("2021-12-01", 15L, "headway"), 184)
+  expect_equal(pick("2021-09-01", 3L, "speed"), 37)
+})
+
+test_that("unpublished months reach the processed data as NA", {
+  env <- local_service_env()
+
+  result <- env$clean_service(
+    env$read_service(test_path("fixtures", "oferta_2026.csv")),
+    year = 2026L
+  )
+
+  published <- result[!is.na(result$value), ]
+  expect_equal(max(published$date), as.Date("2026-08-01"))
+  expect_equal(sum(is.na(result$value)), 4L * 4L * 2L)
+})
+
+test_that("a service block with an unexpected unit fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  raw <- sub("(segundos)", "(minutos)", raw, fixed = TRUE)
+  writeLines(raw, path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "Unrecognized service block")
+})
+
+test_that("a service block without twelve month rows fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(raw[!grepl("^Mar;", raw)], path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "month rows")
+})

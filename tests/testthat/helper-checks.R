@@ -465,6 +465,78 @@ check_station_entries_daily <- function(df, name = "station_entries_daily") {
   problems
 }
 
+# Bounds wide enough for any real timetable, narrow enough to catch a unit
+# change: the source states the unit only in a block title.
+.service_ranges <- list(headway = c(60, 600), speed = c(15, 80))
+
+check_service_ranges <- function(df, name) {
+  if (!all(c("metric", "value") %in% names(df))) {
+    return(character(0))
+  }
+  problems <- character(0)
+  for (metric in names(.service_ranges)) {
+    range <- .service_ranges[[metric]]
+    x <- df$value[df$metric %in% metric]
+    n <- sum(x < range[1] | x > range[2], na.rm = TRUE)
+    if (n > 0) {
+      problems <- c(
+        problems,
+        sprintf(
+          "%s: %d %s value(s) outside the plausible range %g-%g",
+          name,
+          n,
+          metric,
+          range[1],
+          range[2]
+        )
+      )
+    }
+  }
+  problems
+}
+
+check_line_service_monthly <- function(df, name = "line_service_monthly") {
+  c(
+    check_columns(
+      df,
+      c(
+        "date",
+        "year",
+        "line_number",
+        "line_name",
+        "line_name_pt",
+        "metric",
+        "metric_name",
+        "metric_name_pt",
+        "value"
+      ),
+      name
+    ),
+    check_types(
+      df,
+      list(
+        date = function(x) inherits(x, "Date"),
+        year = is.integer,
+        line_number = is.integer,
+        value = is.double,
+        metric = is.character
+      ),
+      name
+    ),
+    check_no_na(
+      df,
+      c("date", "line_number", "metric", "metric_name", "metric_name_pt"),
+      name
+    ),
+    # METRO publishes service for the lines it operates; Lines 4/5 are absent.
+    check_values(df, "line_number", c(1L, 2L, 3L, 15L), name),
+    check_values(df, "metric", c("headway", "speed"), name),
+    check_service_ranges(df, name),
+    check_no_duplicates(df, c("date", "line_number", "metric"), name),
+    check_rows(df, 1L, name)
+  )
+}
+
 check_line_5_operator <- function(df, name) {
   needed <- c("type", "line_number", "company_name")
   if (!all(needed %in% names(df))) {
@@ -497,6 +569,7 @@ check_all_datasets <- function(datasets) {
     line_transported_monthly = check_line_transported_monthly,
     station_transported_monthly = check_station_transported_monthly,
     station_entries_daily = check_station_entries_daily,
+    line_service_monthly = check_line_service_monthly,
     rail_lines = check_rail_lines,
     rail_stations = check_rail_stations
   )

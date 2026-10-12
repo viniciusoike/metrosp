@@ -37,14 +37,16 @@ check_built_datasets <- function(datasets) {
   line_entries_monthly = c("date", "line_number", "metric"),
   line_transported_monthly = c("date", "line_number", "metric"),
   station_transported_monthly = c("date", "line_number", "station_id"),
-  station_entries_daily = c("date", "line_number", "station_id")
+  station_entries_daily = c("date", "line_number", "station_id"),
+  line_service_monthly = c("date", "line_number", "metric")
 )
 
 .drift_values <- list(
   line_entries_monthly = "value",
   line_transported_monthly = "value",
   station_transported_monthly = "value",
-  station_entries_daily = "value"
+  station_entries_daily = "value",
+  line_service_monthly = "value"
 )
 
 # 1.x published each dataset under a different name, so the adapter has to

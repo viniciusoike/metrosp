@@ -22,6 +22,11 @@ reference:
   - station_transported_monthly
   - station_entries_daily
 
+- title: Service datasets
+  desc: Train frequency and speed by line.
+  contents:
+  - line_service_monthly
+
 - title: Spatial and reference datasets
   desc: Geometries and lookup tables.
   contents:
@@ -34,6 +39,7 @@ reference:
   desc: Read data newer than the bundled snapshot, and manage the download cache.
   contents:
   - read_metro_demand
+  - read_metro_service
   - metrosp_cache
   - metrosp_cache_clear
 

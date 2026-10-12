@@ -92,7 +92,8 @@ get_path_csv <- function(
     "stations_daily" = "estacao_diaria",
     "stations" = "estacao_media_dias_uteis",
     "transport" = "transportados_por_linha",
-    "entrance" = "passageiros_por_linha"
+    "entrance" = "passageiros_por_linha",
+    "service" = "oferta"
   )
 
   available_variables <- names(var_pattern)

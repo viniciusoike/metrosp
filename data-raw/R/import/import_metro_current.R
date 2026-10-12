@@ -193,6 +193,101 @@ build_stn_daily_current <- function(years = get_available_years()) {
   dplyr::bind_rows(purrr::map(results, "result"))
 }
 
+# --- Service (oferta) by line -------------------------------------------------
+# A separate portal dataset (/dataset/oferta), one file per year from 2021. Two
+# stacked blocks, each a title row naming the measure and its unit, a header row
+# ("Mês;Linha 1-Azul ;...") and twelve month rows. Unpublished months are empty
+# rows. The rows above the first block vary between files, so blocks are found
+# by their titles.
+
+#' Map a service block title to its metric, checking the unit it states.
+service_metric <- function(title) {
+  title <- stringi::stri_trans_general(title, "Latin-ASCII")
+  metric <- dplyr::case_when(
+    grepl("^Intervalo minimo entre trens \\(segundos\\)", title) ~ "headway",
+    grepl("^Velocidade comercial \\(km/h\\)", title, ignore.case = TRUE) ~
+      "speed"
+  )
+  if (anyNA(metric)) {
+    cli::cli_abort(
+      "Unrecognized service block{?s}: {.val {title[is.na(metric)]}}."
+    )
+  }
+  metric
+}
+
+#' Read a raw annual service CSV into one wide frame: one row per month and
+#' block, one column per line, tagged with the block's metric.
+read_service <- function(path) {
+  raw_lines <- readLines(path, encoding = "latin1")
+  titles <- grep("^(Intervalo|Velocidade)", raw_lines)
+
+  if (length(titles) == 0L) {
+    cli::cli_abort("No service blocks found in {.path {path}}.")
+  }
+
+  metrics <- service_metric(stringr::str_remove(raw_lines[titles], ";.*$"))
+
+  blocks <- purrr::map2(titles, metrics, \(row, metric) {
+    lines <- label_line_number(split_line_labels(raw_lines[row + 1L])[-1])
+    body <- raw_lines[row + 1L + seq_len(nrow(dim_month))]
+    cells <- stringr::str_split_fixed(body, ";", length(lines) + 2L)
+
+    months <- stringr::str_squish(stringr::str_remove(cells[, 1], "\\*"))
+    if (!identical(months, dim_month$month_abb)) {
+      cli::cli_abort(c(
+        "Service block {.val {metric}} in {.path {path}} does not hold twelve month rows.",
+        "x" = "Found {.val {months}}."
+      ))
+    }
+
+    out <- tibble::as_tibble(
+      cells[, seq_len(length(lines) + 1L), drop = FALSE],
+      .name_repair = "minimal"
+    )
+    names(out) <- c("month_abb", lines)
+    # Drop the "*" footnote markers ("Jan*") the 2021-2022 files carry.
+    out$month_abb <- months
+    dplyr::mutate(out, metric = metric, .before = 1)
+  })
+
+  dplyr::bind_rows(blocks)
+}
+
+#' Reshape a wide annual service frame into the long import schema.
+clean_service <- function(dat, year) {
+  dat |>
+    tidyr::pivot_longer(
+      -c(metric, month_abb),
+      names_to = "line_number",
+      names_transform = as.integer,
+      values_to = "value",
+      values_transform = as_numeric_pt
+    ) |>
+    dplyr::left_join(dim_month, by = dplyr::join_by(month_abb)) |>
+    dplyr::mutate(
+      year = as.integer(local(year)),
+      date = as.Date(paste(year, month_num, "01", sep = "-"))
+    ) |>
+    dplyr::select(dplyr::all_of(.cols_service)) |>
+    dplyr::arrange(date, line_number, metric)
+}
+
+import_service_current <- function(year) {
+  path <- get_path_csv(year, "service")
+  if (length(path) != 1L) {
+    cli::cli_abort("Expected one service CSV for {year}, found {length(path)}.")
+  }
+  clean_service(read_service(path), year = year)
+}
+
+#' Build current-era service by line (2021-present), lines 1/2/3/15.
+#' Schema: date, year, line_number, metric, value.
+build_service_current <- function(years = 2021:max(get_available_years())) {
+  purrr::map(years, import_service_current) |>
+    dplyr::bind_rows()
+}
+
 # --- Gated refresh: rewrite the committed current-era processed CSVs ----------
 
 # Filenames carry no year range: the current era is open-ended, and a hardcoded
@@ -202,10 +297,11 @@ build_stn_daily_current <- function(years = get_available_years()) {
   entrance = "metro_sp_passengers_entrance_current.csv",
   transported = "metro_sp_passengers_transported_current.csv",
   averages = "metro_sp_station_averages_current.csv",
-  daily = "metro_sp_station_daily_current.csv"
+  daily = "metro_sp_station_daily_current.csv",
+  service = "metro_sp_service_current.csv"
 )
 
-#' Rebuild the four current-era processed CSVs from the raw portal files.
+#' Rebuild the five current-era processed CSVs from the raw portal files.
 #' Returns the path of the directory written (so a target can depend on it).
 refresh_metro_current <- function(
   proc_dir = here::here("data-raw/outputs/processed")
@@ -225,6 +321,10 @@ refresh_metro_current <- function(
   readr::write_csv(
     build_stn_daily_current(),
     file.path(proc_dir, .current_csv_names[["daily"]])
+  )
+  readr::write_csv(
+    build_service_current(),
+    file.path(proc_dir, .current_csv_names[["service"]])
   )
 
   cli::cli_alert_success("Current-era CSVs refreshed in {.path {proc_dir}}.")

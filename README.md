@@ -74,6 +74,7 @@ analysis and visualization.
 | `line_transported_monthly` | Monthly passengers transported by line | Monthly | No |
 | `station_transported_monthly` | Average weekday passengers transported by station | Monthly | No |
 | `station_entries_daily` | Daily passenger entries by station | Daily | No |
+| `line_service_monthly` | Minimum interval between trains and commercial speed by line | Monthly | No |
 | `calendar_spo` | São Paulo holiday and business-day calendar | Daily | No |
 | `metro_colors` | Named vector of official metro line colors | — | No |
 | `rail_lines` | Metro and train line routes (current + planned) | — | Yes |
@@ -107,6 +108,8 @@ entrance <- read_metro_demand("line_entries_monthly")
 # A monthly batch, so an analysis can name the vintage it used
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
 ```
+
+`read_metro_service()` does the same for `line_service_monthly`.
 
 Downloads use the platform-specific user cache returned by
 `tools::R_user_dir()`. Use `metrosp_cache()` to inspect it,

@@ -24,18 +24,25 @@ str_simplify <- function(x) {
   return(y)
 }
 
-# Minimum plausible number of resource links on the portal page. The dataset
-# has carried 28+ files for years; anything near zero means the page markup
-# moved, not that METRO deleted its data.
-.min_expected_links <- 20L
+# Minimum plausible number of resource links per portal dataset. `demanda` has
+# carried 28+ files for years and `oferta` 12 (a CSV and a PDF per year from
+# 2021); anything near zero means the page markup moved, not that METRO
+# deleted its data.
+.min_expected_links <- c(demanda = 20L, oferta = 10L)
 
+#' @param dataset Portal dataset slug: `"demanda"` or `"oferta"`. Both pages
+#'   share one layout and their files land in the same raw directories.
 #' @param force_all Re-download every file, including older years already on
 #'   disk. METRO restates already-published years (the 2026-07-29 batch revised
 #'   "Demanda - 2016"), and the default incremental logic below would never
 #'   notice. CI starts from an empty gitignored raw dir so it always fetches
 #'   everything; set this to get the same guarantee locally.
-download_metro <- function(force_all = FALSE) {
-  url <- "https://transparencia.metrosp.com.br/dataset/demanda"
+download_metro <- function(
+  dataset = c("demanda", "oferta"),
+  force_all = FALSE
+) {
+  dataset <- match.arg(dataset)
+  url <- paste0("https://transparencia.metrosp.com.br/dataset/", dataset)
 
   # Large yearly CSVs regularly exceed the 60s default.
   old_timeout <- getOption("timeout")
@@ -64,7 +71,7 @@ download_metro <- function(force_all = FALSE) {
   # an unattended pipeline.
   n_links <- length(link_download)
   # Local copy: cli treats a `{.name}` expression as a style, not a value.
-  min_links <- .min_expected_links
+  min_links <- .min_expected_links[[dataset]]
 
   if (n_links < min_links) {
     cli::cli_abort(c(

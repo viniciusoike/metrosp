@@ -318,6 +318,63 @@
 #'   \code{\link{line_entries_monthly}} for monthly line-level totals.
 "station_entries_daily"
 
+#' Train Service by Metro SP Line
+#'
+#' Monthly minimum interval between trains and commercial speed for the lines
+#' METRO SP operates: Lines 1, 2, 3, and 15, from January 2021. Sourced from
+#' the "oferta" (service supply) tables on the METRO SP transparency portal.
+#'
+#' @format A data frame with the following columns:
+#' \describe{
+#'   \item{date}{First day of the month (Date).}
+#'   \item{year}{Calendar year (integer).}
+#'   \item{line_number}{Metro line number: 1, 2, 3, or 15 (integer).}
+#'   \item{line_name}{English name of the metro line (character).}
+#'   \item{line_name_pt}{Portuguese name of the metro line (character).}
+#'   \item{metric}{Metric code (character). One of \code{"headway"} or
+#'     \code{"speed"}.}
+#'   \item{metric_name}{Measurement type in English, with its unit
+#'     (character). One of
+#'     \code{"Minimum Interval Between Trains (seconds)"} or
+#'     \code{"Commercial Speed (km/h)"}.}
+#'   \item{metric_name_pt}{Measurement type in Portuguese, with its unit
+#'     (character). One of
+#'     \code{"Intervalo Mínimo entre Trens (segundos)"} or
+#'     \code{"Velocidade Comercial (km/h)"}.}
+#'   \item{value}{Seconds for \code{headway}, km/h for \code{speed}
+#'     (numeric).}
+#' }
+#'
+#' @details
+#' Metrics:
+#' \itemize{
+#'   \item \code{headway}: Minimum interval between trains, in seconds
+#'     (Intervalo mínimo entre trens).
+#'   \item \code{speed}: Commercial speed, in km/h (Velocidade comercial).
+#' }
+#'
+#' METRO publishes these figures with their titles and units only; the source
+#' gives no further definition. Speed is published as a whole number.
+#'
+#' Lines 4 and 5 are run by concessionaires and do not appear in METRO's
+#' tables. METRO marks every month of 2021 and 2022 as affected by the
+#' COVID-19 pandemic.
+#'
+#' Months beyond the last published data point for each line are trimmed
+#' during assembly.
+#'
+#' @section Data vintage:
+#' This dataset is a fixed snapshot, current through August 2026. Freshly
+#' rebuilt data is published with the demand datasets and read with
+#' [read_metro_service()].
+#'
+#' @source Companhia do Metropolitano de São Paulo (METRO SP).
+#'   \url{https://transparencia.metrosp.com.br/dataset/oferta}
+#'
+#' @seealso \code{\link{line_transported_monthly}} for passengers transported
+#'   by line.
+"line_service_monthly"
+
 #' Metro and Train Line Routes
 #'
 #' Spatial line geometries for São Paulo metro (METRO SP) and commuter train
