@@ -136,6 +136,28 @@ assemble_transported <- function(
   line_transported_monthly
 }
 
+# --- line_service_monthly -----------------------------------------------------
+
+#' @param service_current Current-era service tibble (committed CSV).
+assemble_service <- function(service_current) {
+  line_service_monthly <- service_current |>
+    mutate(year = as.integer(year), line_number = as.integer(line_number)) |>
+    drop_trailing_na(value) |>
+    left_join(metro_lines, by = join_by(line_number)) |>
+    left_join(dim_service_metric, by = join_by(metric)) |>
+    select(all_of(.cols_psg)) |>
+    arrange(date, line_number, metric)
+
+  stopifnot(
+    "NA dates in line_service_monthly" = !anyNA(line_service_monthly$date),
+    "Unlabelled line or metric in line_service_monthly" = !anyNA(
+      line_service_monthly[c("line_name", "metric_name", "metric_name_pt")]
+    )
+  )
+
+  line_service_monthly
+}
+
 # --- station_transported_monthly --------------------------------------------------------
 
 #' @param stations_historic Raw historic station-averages tibble (committed CSV).

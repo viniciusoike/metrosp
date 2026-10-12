@@ -79,8 +79,9 @@ publish(
     "current data. See `manifest.json` for the vintage, row counts, date",
     "coverage, and SHA-256 of every asset.",
     "",
-    "Read these from R with `metrosp::read_metro_demand(\"<dataset>\")`,",
-    "which checks the manifest and caches the download. Each `.rds` asset",
+    "Read these from R with `metrosp::read_metro_demand(\"<dataset>\")`",
+    "or `metrosp::read_metro_service()`,",
+    "which check the manifest and cache the download. Each `.rds` asset",
     "also reads with `readRDS()` once downloaded.",
     sep = "\n"
   )

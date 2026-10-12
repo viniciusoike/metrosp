@@ -14,6 +14,7 @@ write_all_data <- function(
   line_transported_monthly,
   station_transported_monthly,
   station_entries_daily,
+  line_service_monthly,
   rail_lines,
   rail_stations,
   metro_colors,
@@ -23,6 +24,7 @@ write_all_data <- function(
   usethis::use_data(line_transported_monthly, overwrite = TRUE)
   usethis::use_data(station_transported_monthly, overwrite = TRUE)
   usethis::use_data(station_entries_daily, overwrite = TRUE)
+  usethis::use_data(line_service_monthly, overwrite = TRUE)
   usethis::use_data(rail_lines, overwrite = TRUE)
   usethis::use_data(rail_stations, overwrite = TRUE)
   usethis::use_data(metro_colors, overwrite = TRUE)
@@ -33,6 +35,7 @@ write_all_data <- function(
     "line_transported_monthly",
     "station_transported_monthly",
     "station_entries_daily",
+    "line_service_monthly",
     "rail_lines",
     "rail_stations",
     "metro_colors",

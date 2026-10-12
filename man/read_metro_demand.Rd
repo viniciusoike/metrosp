@@ -51,7 +51,8 @@ package. Published data lives in the repository's GitHub releases and is
 rebuilt from the upstream sources on every pipeline run.
 }
 \details{
-Only the demand datasets are published separately. The reference datasets
+Only the demand datasets and \link{line_service_monthly} (read with
+\code{\link[=read_metro_service]{read_metro_service()}}) are published separately. The reference datasets
 (\link{rail_lines}, \link{rail_stations}, \link{calendar_spo}, and \link{metro_colors}) do not
 change with new months, so read them directly.
 

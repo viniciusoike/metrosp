@@ -113,6 +113,20 @@ dim_metric_public <- dim_metric |>
     metric_name_pt = metric_pt
   )
 
+# Service metrics (METRO's "oferta" tables). The names carry the unit because
+# the source states it only in the block title.
+dim_service_metric <- tibble(
+  metric = c("headway", "speed"),
+  metric_name = c(
+    "Minimum Interval Between Trains (seconds)",
+    "Commercial Speed (km/h)"
+  ),
+  metric_name_pt = c(
+    "Intervalo Mínimo entre Trens (segundos)",
+    "Velocidade Comercial (km/h)"
+  )
+)
+
 # Map the Portuguese metric label printed in the raw files to its abbreviation.
 # Keys are accent-stripped ASCII on purpose. R stores the names of a named
 # vector in the native encoding, so accented keys parsed under a non-UTF-8
@@ -303,6 +317,8 @@ metro_colors <- c(
   "value",
   "year"
 )
+
+.cols_service <- c("date", "year", "line_number", "metric", "value")
 
 .cols_stn_avg <- c(
   "date",

@@ -31,6 +31,14 @@ The tables below map each 1.x name to its 2.0 name. See the
 | `is_ponto_facultativo` | `is_optional_holiday` | `calendar_spo` |
 | `is_feriadao` | `is_long_weekend` | `calendar_spo` |
 
+The station datasets and `rail_stations` now have `station_id`, a stable,
+opaque identifier shared by members of the same physical station complex.
+Keep `station_name` for display. Grouping `station_transported_monthly` by
+`station_id` adds boardings across its platforms, not unique entrants.
+`station_transported_monthly` also has `metric = "mdu"`, `metric_name`, and
+`metric_name_pt`; `station_entries_daily` has no metric columns. The `year`
+and `line_number` columns are integers in the demand datasets.
+
 `metric` changed meaning: it held the English label in 1.x and holds the
 short code (`total`, `mdu`, ...) in 2.0. Code that filters on `metric` needs
 the new codes.
@@ -44,6 +52,11 @@ the new codes.
 | `metrosp_cache_enable()` | Removed; caching is on by default |
 
 `read_metro_demand()` and `metrosp_cache_clear()` keep their names.
+`metrosp_cache()` lists cached files and prints the cache location; it does
+not return only a directory path. Use `attr(metrosp_cache(), "directory")` to
+get that path. Set `cache = FALSE` on a read to use
+session-temporary storage. Version 2.1 also adds `read_metro_service()` for
+`line_service_monthly`.
 
 ## Values
 

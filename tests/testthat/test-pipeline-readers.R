@@ -226,6 +226,32 @@ test_that("a demand dataset missing from the baseline fails validation", {
   expect_true(any(grepl("absent from the baseline", result$failures)))
 })
 
+test_that("a baseline predating the service dataset notes, not fails, it", {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+  skip_if_not_installed("dplyr")
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "publish", "validate_refresh.R"), env)
+  )
+
+  entries <- metrosp::line_entries_monthly
+  new <- list(
+    line_entries_monthly = entries,
+    line_service_monthly = metrosp::line_service_monthly
+  )
+  result <- env$validate_refresh(
+    new,
+    baseline = list(line_entries_monthly = entries)
+  )
+
+  expect_true(result$ok)
+  expect_false(any(grepl("line_service_monthly", result$failures)))
+  expect_match(result$report, "line_service_monthly", all = FALSE)
+  expect_match(result$report, "no baseline comparison", all = FALSE)
+})
+
 test_that("the baseline adapter drops post-handover Line 5 station rows", {
   pipeline_dir <- test_path("..", "..", "data-raw", "R")
   skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
@@ -482,4 +508,140 @@ test_that("the default calendar build matches the frozen snapshot", {
     as.data.frame(metrosp::calendar_spo),
     ignore_attr = TRUE
   )
+})
+
+# Service (oferta) -------------------------------------------------------------
+
+local_service_env <- function() {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(sys.source(file.path(pipeline_dir, "build", "dims.R"), env))
+  suppressWarnings(sys.source(file.path(pipeline_dir, "helpers.R"), env))
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "import", "import_metro_current.R"), env)
+  )
+  env
+}
+
+test_that("the service reader parses both blocks of a published file", {
+  env <- local_service_env()
+
+  result <- env$clean_service(
+    env$read_service(test_path("fixtures", "oferta_2021.csv")),
+    year = 2021L
+  )
+
+  expect_named(result, c("date", "year", "line_number", "metric", "value"))
+  expect_equal(nrow(result), 12L * 4L * 2L)
+  expect_setequal(result$line_number, c(1L, 2L, 3L, 15L))
+  expect_setequal(result$metric, c("headway", "speed"))
+  expect_false(anyNA(result$value))
+
+  # Spot values from the source file, including a footnoted month ("Jan*").
+  pick <- function(month, line, metric) {
+    result$value[
+      result$date == as.Date(month) &
+        result$line_number == line &
+        result$metric == metric
+    ]
+  }
+  expect_equal(pick("2021-01-01", 1L, "headway"), 125)
+  expect_equal(pick("2021-12-01", 15L, "headway"), 184)
+  expect_equal(pick("2021-09-01", 3L, "speed"), 37)
+})
+
+test_that("unpublished months reach the processed data as NA", {
+  env <- local_service_env()
+
+  result <- env$clean_service(
+    env$read_service(test_path("fixtures", "oferta_2026.csv")),
+    year = 2026L
+  )
+
+  published <- result[!is.na(result$value), ]
+  expect_equal(max(published$date), as.Date("2026-08-01"))
+  expect_equal(sum(is.na(result$value)), 4L * 4L * 2L)
+})
+
+test_that("a service block with an unexpected unit fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  raw <- sub("(segundos)", "(minutos)", raw, fixed = TRUE)
+  writeLines(raw, path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "Unrecognized service block")
+})
+
+test_that("a service block without twelve month rows fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(raw[!grepl("^Mar;", raw)], path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "month rows")
+})
+
+test_that("a service file missing a metric block fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(raw[seq_len(grep("^Velocidade", raw) - 1L)], path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "speed")
+})
+
+test_that("a service block missing a line column fails visibly", {
+  env <- local_service_env()
+
+  path <- withr::local_tempfile(fileext = ".csv")
+  raw <- readLines(
+    test_path("fixtures", "oferta_2026.csv"),
+    encoding = "latin1"
+  )
+  writeLines(sub(";[^;]*$", "", raw, useBytes = TRUE), path, useBytes = TRUE)
+
+  expect_error(env$read_service(path), "15")
+})
+
+test_that("demand and service discover their years independently", {
+  env <- local_service_env()
+
+  local_raw_dir <- function(files) {
+    dir <- withr::local_tempdir(.local_envir = parent.frame())
+    file.create(file.path(dir, files))
+    dir
+  }
+
+  # Demand publishes a new year before service does.
+  dir <- local_raw_dir(c(
+    "entrada_de_passageiros_por_linha_2026.csv",
+    "entrada_de_passageiros_por_linha_2027.csv",
+    "oferta_2026.csv"
+  ))
+  expect_equal(env$get_available_years("entrance", dir), 2026:2027)
+  expect_equal(env$get_available_years("service", dir), 2026L)
+
+  # Service publishes a new year before demand does.
+  dir <- local_raw_dir(c(
+    "entrada_de_passageiros_por_linha_2026.csv",
+    "oferta_2026.csv",
+    "oferta_2027.csv"
+  ))
+  expect_equal(env$get_available_years("entrance", dir), 2026L)
+  expect_equal(env$get_available_years("service", dir), 2026:2027)
 })

@@ -7,13 +7,13 @@
 
 #' Inspect cached Metro SP data
 #'
-#' Lists the files downloaded by [read_metro_demand()]. The cache directory is
+#' Lists the files downloaded by [read_metro_demand()] and [read_metro_service()]. The cache directory is
 #' resolved from the `metrosp.cache_dir` option, then the `METROSP_CACHE_DIR`
 #' environment variable, and finally [tools::R_user_dir()]. Printing the
 #' result also shows the resolved directory.
 #'
 #' Each read marks its vintage as used. A vintage left unused for 90 days is
-#' deleted the next time [read_metro_demand()] touches the cache.
+#' deleted the next time either reader touches the cache.
 #'
 #' @return A data frame with one row per cached file, holding the vintage tag,
 #'   file name, size in bytes, and modification time. Zero rows when the cache

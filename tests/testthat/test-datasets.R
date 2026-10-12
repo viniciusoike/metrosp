@@ -8,6 +8,7 @@
 test_that("all datasets load as data frames", {
   expect_s3_class(metrosp::line_entries_monthly, "data.frame")
   expect_s3_class(metrosp::line_transported_monthly, "data.frame")
+  expect_s3_class(metrosp::line_service_monthly, "data.frame")
   expect_s3_class(metrosp::station_transported_monthly, "data.frame")
   expect_s3_class(metrosp::station_entries_daily, "data.frame")
 })
@@ -239,4 +240,57 @@ test_that("known transported source defects do not exempt neighboring months", {
   )
   expect_length(problems, 1L)
   expect_match(problems, "2022-06-01")
+})
+
+test_that("line_service_monthly satisfies its structural invariants", {
+  expect_equal(
+    check_line_service_monthly(metrosp::line_service_monthly),
+    character(0)
+  )
+})
+
+test_that("service checks catch a unit change and a foreign line", {
+  service <- metrosp::line_service_monthly
+
+  minutes <- service
+  headway <- minutes$metric == "headway"
+  minutes$value[headway] <- minutes$value[headway] / 60
+  expect_match(
+    check_line_service_monthly(minutes),
+    "outside the plausible range",
+    all = FALSE
+  )
+
+  line_4 <- service[1, ]
+  line_4$line_number <- 4L
+  expect_match(
+    check_line_service_monthly(rbind(service, line_4)),
+    "unexpected value",
+    all = FALSE
+  )
+})
+
+test_that("service checks catch a missing metric or line", {
+  service <- metrosp::line_service_monthly
+
+  expect_match(
+    check_line_service_monthly(service[service$metric == "headway", ]),
+    "incomplete",
+    all = FALSE
+  )
+  expect_match(
+    check_line_service_monthly(service[service$line_number != 15L, ]),
+    "incomplete",
+    all = FALSE
+  )
+})
+
+test_that("service checks accept unpublished months as blanks", {
+  service <- metrosp::line_service_monthly
+
+  blank <- service[service$date == max(service$date), ]
+  blank$date <- seq(max(service$date), by = "month", length.out = 2)[2]
+  blank$value <- NA_real_
+
+  expect_equal(check_line_service_monthly(rbind(service, blank)), character(0))
 })

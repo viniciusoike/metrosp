@@ -22,14 +22,14 @@ is empty.
 \code{x}, invisibly.
 }
 \description{
-Lists the files downloaded by \code{\link[=read_metro_demand]{read_metro_demand()}}. The cache directory is
+Lists the files downloaded by \code{\link[=read_metro_demand]{read_metro_demand()}} and \code{\link[=read_metro_service]{read_metro_service()}}. The cache directory is
 resolved from the \code{metrosp.cache_dir} option, then the \code{METROSP_CACHE_DIR}
 environment variable, and finally \code{\link[tools:userdir]{tools::R_user_dir()}}. Printing the
 result also shows the resolved directory.
 }
 \details{
 Each read marks its vintage as used. A vintage left unused for 90 days is
-deleted the next time \code{\link[=read_metro_demand]{read_metro_demand()}} touches the cache.
+deleted the next time either reader touches the cache.
 }
 \examples{
 metrosp_cache()

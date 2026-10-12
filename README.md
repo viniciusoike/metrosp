@@ -22,9 +22,9 @@ METRÔ publishes lines 1, 2, 3, 15, and line 5 through July 2018 on its
 open data portal. Line 4, and line 5 from August 2018 onward, come from
 the Insper Dataverse.
 
-All datasets are `tibble` objects bundled with the package, so they load
-without a download. The data is cleaned and standardized to make it
-easier to work with.
+All datasets are bundled with the package, so they load without a
+download. Demand, service, and calendar data are tibbles; routes and
+stations are `sf` objects, and `metro_colors` is a named vector.
 
 ## Line coverage
 
@@ -65,8 +65,8 @@ install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'ht
 
 Four datasets carry the demand data: `line_entries_monthly`,
 `line_transported_monthly`, `station_transported_monthly`, and
-`station_entries_daily`. The rest are auxiliary tables that support
-analysis and visualization.
+`station_entries_daily`. `line_service_monthly` reports train service;
+the remaining datasets support analysis and visualization.
 
 | Dataset | Description | Frequency | Spatial |
 |----|----|----|----|
@@ -74,6 +74,7 @@ analysis and visualization.
 | `line_transported_monthly` | Monthly passengers transported by line | Monthly | No |
 | `station_transported_monthly` | Average weekday passengers transported by station | Monthly | No |
 | `station_entries_daily` | Daily passenger entries by station | Daily | No |
+| `line_service_monthly` | Minimum interval between trains and commercial speed by line | Monthly | No |
 | `calendar_spo` | São Paulo holiday and business-day calendar | Daily | No |
 | `metro_colors` | Named vector of official metro line colors | — | No |
 | `rail_lines` | Metro and train line routes (current + planned) | — | Yes |
@@ -88,24 +89,34 @@ behind the numbers.
 
 ## Data vintage
 
-The bundled data is a fixed snapshot, current through July 2026. It is
-regenerated when the column schema changes, not when new months are
-published, so examples and analyses stay reproducible across package
-versions. METRÔ publishes on an irregular schedule and revises past
-years, so these numbers drift from the source over time.
+The bundled demand data is a fixed snapshot, current through July 2026;
+bundled service data reaches August 2026. The snapshot changes when the
+column schema changes or a release deliberately carries new data, not on
+routine monthly refreshes. METRÔ publishes on an irregular schedule and
+revises past years, so these numbers drift from the source over time.
 
-`read_metro_demand()` reads the newer data. Every pipeline run publishes
-a fresh build of the four demand datasets to the rolling [`data-latest`
+`read_metro_demand()` reads newer demand data. Every pipeline run
+publishes a fresh build of the four demand datasets and
+`line_service_monthly` to the rolling [`data-latest`
 release](https://github.com/viniciusoike/metrosp/releases), plus a dated
 tag for that month. A later run in the same month replaces the dated
 batch, so monthly vintages are revisable.
 
 ``` r
+library(metrosp)
+
 # Latest published data
 entrance <- read_metro_demand("line_entries_monthly")
 
 # A monthly batch, so an analysis can name the vintage it used
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
+```
+
+`read_metro_service()` does the same for `line_service_monthly`.
+
+``` r
+# Minimum train interval and commercial speed by line
+service <- read_metro_service(source = "bundled")
 ```
 
 Downloads use the platform-specific user cache returned by
@@ -124,9 +135,6 @@ its name.
 library(metrosp)
 # To work with spatial datasets (rail lines and stations)
 library(sf)
-# For better tables load dplyr or tibble
-library(dplyr)
-
 # Passenger entries by line
 line_entries_monthly
 

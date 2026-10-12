@@ -73,11 +73,26 @@ drop_trailing_na <- function(data, value_col) {
 
 # --- Path helpers ------------------------------------------------------------
 
-#' List years available in the raw CSV directory.
+# Filename stem of each current-era portal file. Each source publishes on its
+# own schedule, so years are discovered per variable, never across the folder.
+.csv_var_pattern <- c(
+  "stations_daily" = "estacao_diaria",
+  "stations" = "estacao_media_dias_uteis",
+  "transport" = "transportados_por_linha",
+  "entrance" = "passageiros_por_linha",
+  "service" = "oferta"
+)
+
+#' List years available in the raw CSV directory for one variable.
 get_available_years <- function(
+  variable,
   datadir = here::here("data-raw/metro_sp/metro/csv")
 ) {
+  if (!variable %in% names(.csv_var_pattern)) {
+    cli::cli_abort("Variable {variable} not available.")
+  }
   files <- list.files(datadir, pattern = "\\.csv$")
+  files <- files[stringr::str_detect(files, .csv_var_pattern[[variable]])]
   years <- suppressWarnings(as.integer(stringr::str_extract(files, "\\d{4}")))
   sort(unique(years[!is.na(years) & years >= 2020]))
 }
@@ -88,20 +103,7 @@ get_path_csv <- function(
   variable = "stations",
   datadir = here::here("data-raw/metro_sp/metro/csv")
 ) {
-  var_pattern <- c(
-    "stations_daily" = "estacao_diaria",
-    "stations" = "estacao_media_dias_uteis",
-    "transport" = "transportados_por_linha",
-    "entrance" = "passageiros_por_linha"
-  )
-
-  available_variables <- names(var_pattern)
-
-  if (!variable %in% available_variables) {
-    cli::cli_abort("Variable {variable} not available.")
-  }
-
-  valid_years <- get_available_years(datadir)
+  valid_years <- get_available_years(variable, datadir)
   if (
     length(year) > 0 && length(valid_years) > 0 && !any(year %in% valid_years)
   ) {
@@ -110,7 +112,7 @@ get_path_csv <- function(
     )
   }
 
-  pat <- var_pattern[variable]
+  pat <- .csv_var_pattern[variable]
   pat <- paste0(pat, "_", as.character(year))
 
   path_csv <- list.files(datadir, pattern = "\\.csv$", full.names = TRUE)

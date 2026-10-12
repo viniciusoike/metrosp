@@ -92,7 +92,8 @@ list(
     metro_current_refresh,
     {
       if (refresh_flag("METROSP_DOWNLOAD")) {
-        download_metro()
+        download_metro("demanda")
+        download_metro("oferta")
         refresh_metro_current()
       }
       TRUE
@@ -203,6 +204,14 @@ list(
     format = "file"
   ),
   tar_target(
+    service_current_csv,
+    {
+      metro_current_refresh
+      proc("metro_sp_service_current.csv")
+    },
+    format = "file"
+  ),
+  tar_target(
     dim_station_csv,
     here::here("data-raw/inputs/dim_station.csv"),
     format = "file"
@@ -242,6 +251,10 @@ list(
       col_types = readr::cols(station_code = readr::col_character()),
       show_col_types = FALSE
     )
+  ),
+  tar_target(
+    service_current,
+    readr::read_csv(service_current_csv, show_col_types = FALSE)
   ),
   tar_target(
     psg_historic,
@@ -303,6 +316,7 @@ list(
       dim_station_alias
     )
   ),
+  tar_target(line_service_monthly, assemble_service(service_current)),
   # --- Calendar ---------------------------------------------------------------
   tar_target(calendar_spo, build_calendar_spo()),
 
@@ -322,6 +336,7 @@ list(
       line_transported_monthly = line_transported_monthly,
       station_transported_monthly = station_transported_monthly,
       station_entries_daily = station_entries_daily,
+      line_service_monthly = line_service_monthly,
       rail_lines = rail_lines,
       rail_stations = rail_stations,
       metro_colors = metro_colors_out,
@@ -372,6 +387,7 @@ list(
           line_transported_monthly = line_transported_monthly,
           station_transported_monthly = station_transported_monthly,
           station_entries_daily = station_entries_daily,
+          line_service_monthly = line_service_monthly,
           rail_lines = rail_lines,
           rail_stations = rail_stations,
           metro_colors = metro_colors_out,
