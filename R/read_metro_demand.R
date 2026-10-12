@@ -176,6 +176,12 @@ read_dataset <- function(dataset, source, vintage, cache, quiet) {
     out <- tryCatch(
       read_published(dataset, vintage, "auto", cache, quiet),
       error = function(e) {
+        # A manifest that loaded and lacks a dataset added after 1.x is an
+        # answer, not a failed download: the snapshot would hand back newer
+        # data than the vintage asked for.
+        if (inherits(e, "metrosp_dataset_absent")) {
+          stop(e)
+        }
         cli::cli_warn(c(
           "Could not read the published {.val {vintage}} data; using the bundled snapshot.",
           "x" = conditionMessage(e),
@@ -205,12 +211,15 @@ read_published <- function(dataset, vintage, mode, cache, quiet) {
   entry <- release_dataset_entry(manifest, dataset)
   if (is.null(entry)) {
     legacy_name <- unname(legacy_demand_datasets[dataset])
-    cli::cli_abort(c(
-      "Vintage {.val {vintage}} does not contain {.val {dataset}}.",
-      "i" = if (!is.na(legacy_name)) {
-        "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
-      }
-    ))
+    cli::cli_abort(
+      c(
+        "Vintage {.val {vintage}} does not contain {.val {dataset}}.",
+        "i" = if (!is.na(legacy_name)) {
+          "Looked for both {.file {dataset}.rds} and the 1.x asset {.file {legacy_name}.rds}."
+        }
+      ),
+      class = if (is.na(legacy_name)) "metrosp_dataset_absent"
+    )
   }
 
   path <- file.path(dir, entry$file)

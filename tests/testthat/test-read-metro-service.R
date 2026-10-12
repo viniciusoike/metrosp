@@ -30,6 +30,16 @@ test_that("a vintage without service data is reported by name", {
   )
 })
 
+test_that("auto reports a vintage without service data instead of falling back", {
+  release <- local_fake_release()
+  local_release_source(release)
+
+  expect_error(
+    read_metro_service(vintage = "2026-09", quiet = TRUE),
+    "does not contain"
+  )
+})
+
 test_that("auto falls back to the bundled snapshot when the release is unreachable", {
   local_release_source(withr::local_tempdir())
 

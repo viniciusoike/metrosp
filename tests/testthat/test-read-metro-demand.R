@@ -626,3 +626,14 @@ test_that("a failed download still falls back to the bundled snapshot", {
   )
   expect_identical(out, metrosp::line_entries_monthly)
 })
+
+test_that("auto falls back when a demand dataset is missing from the vintage", {
+  release <- local_fake_release()
+  local_release_source(release)
+
+  expect_warning(
+    out <- read_metro_demand("station_entries_daily", quiet = TRUE),
+    "bundled snapshot"
+  )
+  expect_identical(out, metrosp::station_entries_daily)
+})
