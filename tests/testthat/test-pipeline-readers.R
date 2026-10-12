@@ -591,3 +591,31 @@ test_that("a service block missing a line column fails visibly", {
 
   expect_error(env$read_service(path), "15")
 })
+
+test_that("demand and service discover their years independently", {
+  env <- local_service_env()
+
+  local_raw_dir <- function(files) {
+    dir <- withr::local_tempdir(.local_envir = parent.frame())
+    file.create(file.path(dir, files))
+    dir
+  }
+
+  # Demand publishes a new year before service does.
+  dir <- local_raw_dir(c(
+    "entrada_de_passageiros_por_linha_2026.csv",
+    "entrada_de_passageiros_por_linha_2027.csv",
+    "oferta_2026.csv"
+  ))
+  expect_equal(env$get_available_years("entrance", dir), 2026:2027)
+  expect_equal(env$get_available_years("service", dir), 2026L)
+
+  # Service publishes a new year before demand does.
+  dir <- local_raw_dir(c(
+    "entrada_de_passageiros_por_linha_2026.csv",
+    "oferta_2026.csv",
+    "oferta_2027.csv"
+  ))
+  expect_equal(env$get_available_years("entrance", dir), 2026L)
+  expect_equal(env$get_available_years("service", dir), 2026:2027)
+})

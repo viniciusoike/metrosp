@@ -25,13 +25,15 @@ import_psg_line_current <- function(year, variable) {
 
 #' Build current-era passengers entrance (2020-present).
 #' Schema: date, line_number, metric_abb, metric, value, year.
-build_entrance_current <- function(years = get_available_years()) {
+build_entrance_current <- function(years = get_available_years("entrance")) {
   purrr::map(years, \(y) import_psg_line_current(y, "entrance")) |>
     dplyr::bind_rows()
 }
 
 #' Build current-era passengers transported (2020-present).
-build_transported_current <- function(years = get_available_years()) {
+build_transported_current <- function(
+  years = get_available_years("transport")
+) {
   purrr::map(years, \(y) import_psg_line_current(y, "transport")) |>
     dplyr::bind_rows()
 }
@@ -53,7 +55,7 @@ import_stn_avg_current <- function(
 
 #' Build current-era station averages (2020-present), lines 1/2/3/15.
 #' Schema: date, line_number, station_name, avg_passenger, year.
-build_stn_avg_current <- function(years = get_available_years()) {
+build_stn_avg_current <- function(years = get_available_years("stations")) {
   purrr::map(years, import_stn_avg_current) |>
     dplyr::bind_rows()
 }
@@ -175,7 +177,9 @@ import_stn_daily_current <- function(year = 2020) {
 
 #' Build current-era daily station entries (2020-present), lines 1/2/3/15.
 #' Schema: date, year, line_number, station_code, station_name, passengers.
-build_stn_daily_current <- function(years = get_available_years()) {
+build_stn_daily_current <- function(
+  years = get_available_years("stations_daily")
+) {
   safe_import <- purrr::safely(import_stn_daily_current)
   results <- purrr::map(years, safe_import)
 
@@ -301,7 +305,7 @@ import_service_current <- function(year) {
 
 #' Build current-era service by line (2021-present), lines 1/2/3/15.
 #' Schema: date, year, line_number, metric, value.
-build_service_current <- function(years = 2021:max(get_available_years())) {
+build_service_current <- function(years = get_available_years("service")) {
   purrr::map(years, import_service_current) |>
     dplyr::bind_rows()
 }
