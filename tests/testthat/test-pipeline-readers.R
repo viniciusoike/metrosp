@@ -226,32 +226,6 @@ test_that("a demand dataset missing from the baseline fails validation", {
   expect_true(any(grepl("absent from the baseline", result$failures)))
 })
 
-test_that("a baseline predating the service dataset notes, not fails, it", {
-  pipeline_dir <- test_path("..", "..", "data-raw", "R")
-  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
-  skip_if_not_installed("dplyr")
-
-  env <- new.env(parent = globalenv())
-  suppressWarnings(
-    sys.source(file.path(pipeline_dir, "publish", "validate_refresh.R"), env)
-  )
-
-  entries <- metrosp::line_entries_monthly
-  new <- list(
-    line_entries_monthly = entries,
-    line_service_monthly = metrosp::line_service_monthly
-  )
-  result <- env$validate_refresh(
-    new,
-    baseline = list(line_entries_monthly = entries)
-  )
-
-  expect_true(result$ok)
-  expect_false(any(grepl("line_service_monthly", result$failures)))
-  expect_match(result$report, "line_service_monthly", all = FALSE)
-  expect_match(result$report, "no baseline comparison", all = FALSE)
-})
-
 test_that("the baseline adapter drops post-handover Line 5 station rows", {
   pipeline_dir <- test_path("..", "..", "data-raw", "R")
   skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")

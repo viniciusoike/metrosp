@@ -49,12 +49,6 @@ check_built_datasets <- function(datasets) {
   line_service_monthly = "value"
 )
 
-# Datasets newer than the published baseline. The first refresh after one is
-# added validates against a data-latest that predates it, so its absence there
-# is the expected transition, not a contract mismatch. Remove an entry once
-# data-latest carries the dataset.
-.new_datasets <- c("line_service_monthly")
-
 # 1.x published each dataset under a different name, so the adapter has to
 # rename before anything keyed on the 2.0 names can find the baseline.
 .legacy_dataset_names <- c(
@@ -210,16 +204,6 @@ validate_refresh <- function(
     # contracts disagree -- a rename the adapter above does not cover. Skipping
     # it quietly is how a batch reports "validation passed" having compared
     # nothing, so fail instead.
-    if (is.null(baseline[[nm]]) && nm %in% .new_datasets) {
-      notes <- c(
-        notes,
-        sprintf(
-          "%s: not yet in the baseline (first publication); no baseline comparison was possible.",
-          nm
-        )
-      )
-      next
-    }
     if (is.null(baseline[[nm]])) {
       failures <- c(
         failures,
