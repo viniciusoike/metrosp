@@ -71,7 +71,7 @@
 </div>
 <!-- badges: start -->
 
-<p>This package distributes demand data from the São Paulo metro system inside R. The data covers 2012 to 2026 and comes from several operators. Most of it is already <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">public</a>, but it is scattered across poorly structured CSV and PDF files.</p>
+<p>This package distributes demand and train service data from the São Paulo metro system inside R. The data covers 2012 to 2026 and comes from several operators. Most of it is already <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">public</a>, but it is scattered across poorly structured CSV and PDF files.</p>
 <p>METRÔ publishes lines 1, 2, 3, 15, and line 5 through July 2018 on its open data portal. Line 4, and line 5 from August 2018 onward, come from the Insper Dataverse.</p>
 <p>All datasets are bundled with the package, so they load without a download. Demand, service, and calendar data are tibbles; routes and stations are <code>sf</code> objects, and <code>metro_colors</code> is a named vector.</p>
 <div class="section level2">
@@ -251,6 +251,9 @@
 <span><span class="co"># Station-level weekday averages</span></span>
 <span><span class="va">station_transported_monthly</span></span>
 <span></span>
+<span><span class="co"># Minimum train interval and commercial speed by line</span></span>
+<span><span class="va">line_service_monthly</span></span>
+<span></span>
 <span><span class="co"># Spatial line routes</span></span>
 <span><span class="va">rail_lines</span></span></code></pre></div>
 </div>
@@ -263,7 +266,7 @@
 <h2 id="data-sources">Data sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
 </h2>
 <ul>
-<li>METRÔ: <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">Companhia do Metropolitano de São Paulo (METRO)</a>.</li>
+<li>METRÔ: <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">Companhia do Metropolitano de São Paulo (METRO)</a>, demand and <a href="https://transparencia.metrosp.com.br/dataset/oferta" class="external-link">train service</a>.</li>
 <li>Lines 4/5 data: <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a> (ViaQuatro / ViaMobilidade).</li>
 <li>Spatial data: <a href="https://geosampa.prefeitura.sp.gov.br/" class="external-link">GeoSampa, Prefeitura de São Paulo</a>.</li>
 </ul>

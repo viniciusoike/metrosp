@@ -1,8 +1,8 @@
 # metrosp: metro ridership in São Paulo
 
-This package distributes demand data from the São Paulo metro system
-inside R. The data covers 2012 to 2026 and comes from several operators.
-Most of it is already
+This package distributes demand and train service data from the São
+Paulo metro system inside R. The data covers 2012 to 2026 and comes from
+several operators. Most of it is already
 [public](https://transparencia.metrosp.com.br/dataset/demanda), but it
 is scattered across poorly structured CSV and PDF files.
 
@@ -139,6 +139,9 @@ line_entries_monthly
 # Station-level weekday averages
 station_transported_monthly
 
+# Minimum train interval and commercial speed by line
+line_service_monthly
+
 # Spatial line routes
 rail_lines
 ```
@@ -152,7 +155,9 @@ lives in a separate repository:
 ## Data sources
 
 - METRÔ: [Companhia do Metropolitano de São Paulo
-  (METRO)](https://transparencia.metrosp.com.br/dataset/demanda).
+  (METRO)](https://transparencia.metrosp.com.br/dataset/demanda), demand
+  and [train
+  service](https://transparencia.metrosp.com.br/dataset/oferta).
 - Lines 4/5 data: [Insper
   Dataverse](https://doi.org/10.60873/FK2/UTGQ0I) (ViaQuatro /
   ViaMobilidade).

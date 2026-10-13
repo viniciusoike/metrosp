@@ -32,9 +32,9 @@ to inspect cached files.
 old <- options(metrosp.cache_dir = tempfile("metrosp-cache"))
 
 metrosp_cache_clear("2026-09")
-#> ℹ Nothing cached in /tmp/RtmpCZM1sr/metrosp-cache1e4d7b13867d.
+#> ℹ Nothing cached in /tmp/RtmpGWRHJs/metrosp-cache1f0d838e7e2.
 metrosp_cache_clear()
-#> ℹ Nothing cached in /tmp/RtmpCZM1sr/metrosp-cache1e4d7b13867d.
+#> ℹ Nothing cached in /tmp/RtmpGWRHJs/metrosp-cache1f0d838e7e2.
 
 options(old)
 ```

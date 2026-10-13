@@ -150,7 +150,10 @@ table {
 <span><span class="va">entrance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># The month's published batch</span></span>
-<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">entrance_sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_demand.html">read_metro_demand</a></span><span class="op">(</span><span class="st">"line_entries_monthly"</span>, vintage <span class="op">=</span> <span class="st">"2026-09"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Latest train service</span></span>
+<span><span class="va">service</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_metro_service.html">read_metro_service</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Columns are identical across sources, so everything below applies to both the bundled snapshot and the published data.</p>
 </section></section><section class="section level2"><h2 id="data-producers">Data producers<a class="anchor" aria-label="anchor" href="#data-producers"></a>
 </h2>
@@ -214,7 +217,7 @@ table {
 </tr>
 </tbody>
 </table>
-<p><strong>METRO SP transparency portal.</strong> The Companhia do Metropolitano de São Paulo publishes monthly demand reports at its <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">transparency portal</a>, covering Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in thousands.</p>
+<p><strong>METRO SP transparency portal.</strong> The Companhia do Metropolitano de São Paulo publishes monthly demand reports at its <a href="https://transparencia.metrosp.com.br/dataset/demanda" class="external-link">transparency portal</a>, covering Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in thousands. Its <a href="https://transparencia.metrosp.com.br/dataset/oferta" class="external-link"><em>oferta</em> tables</a> supply <code>line_service_monthly</code>.</p>
 <p><strong>Insper Dataverse.</strong> Line 4 (ViaQuatro) and Line 5 from August 2018 (ViaMobilidade) come from the <a href="https://doi.org/10.60873/FK2/UTGQ0I" class="external-link">Insper Dataverse</a>, starting January 2012 and August 2018 respectively. Counts are not rounded to the nearest thousand, so the pipeline multiplies METRO values by 1,000 before combining the two.</p>
 <p><strong>GeoSampa.</strong> Line and station geometries come from <a href="https://geosampa.prefeitura.sp.gov.br/" class="external-link">GeoSampa</a>, the City of São Paulo’s open geospatial platform. Both currently operating and planned infrastructure are included.</p>
 <p><strong>Station identity.</strong> <code>station_id</code> identifies a physical station complex, while <code>station_name</code> retains the official name used by each station member. Complex membership is maintained in a committed crosswalk from official network sources; it is not inferred from name similarity or distance. Thus Consolação and Paulista retain different names but share one <code>station_id</code>.</p>

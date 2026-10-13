@@ -409,6 +409,49 @@
 </div>
 </div>
 </div>
+</section><section class="level2"><h3 id="train-service">Train Service<a class="anchor" aria-label="anchor" href="#train-service"></a>
+</h3>
+<p><code>line_service_monthly</code> describes the supply side for the four METRO-operated lines (1, 2, 3, and 15) from January 2021. It has two metrics: <code>headway</code>, the minimum interval between trains in seconds, and <code>speed</code>, the commercial speed in km/h. Lines 4 and 5 are run by concessionaires and are absent.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">line_service_monthly</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 544</span></span>
+<span><span class="co">#&gt; Columns: 9</span></span>
+<span><span class="co">#&gt; $ date           &lt;date&gt; 2021-01-01, 2021-01-01, 2021-01-01, 2021-01-01, 2021-0…</span></span>
+<span><span class="co">#&gt; $ year           &lt;int&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2…</span></span>
+<span><span class="co">#&gt; $ line_number    &lt;int&gt; 1, 1, 2, 2, 3, 3, 15, 15, 1, 1, 2, 2, 3, 3, 15, 15, 1, …</span></span>
+<span><span class="co">#&gt; $ line_name      &lt;chr&gt; "Blue", "Blue", "Green", "Green", "Red", "Red", "Silver…</span></span>
+<span><span class="co">#&gt; $ line_name_pt   &lt;chr&gt; "Azul", "Azul", "Verde", "Verde", "Vermelha", "Vermelha…</span></span>
+<span><span class="co">#&gt; $ metric         &lt;chr&gt; "headway", "speed", "headway", "speed", "headway", "spe…</span></span>
+<span><span class="co">#&gt; $ metric_name    &lt;chr&gt; "Minimum Interval Between Trains (seconds)", "Commercia…</span></span>
+<span><span class="co">#&gt; $ metric_name_pt &lt;chr&gt; "Intervalo Mínimo entre Trens (segundos)", "Velocidade …</span></span>
+<span><span class="co">#&gt; $ value          &lt;dbl&gt; 125, 33, 174, 32, 120, 38, 235, 33, 125, 33, 174, 32, 1…</span></span></code></pre></div>
+</div>
+<p>The plot below shows the minimum interval between trains by line, in minutes.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">headway</span> <span class="op">&lt;-</span> <span class="va">line_service_monthly</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric</span> <span class="op">==</span> <span class="st">"headway"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">headway</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span> <span class="op">/</span> <span class="fl">60</span>, color <span class="op">=</span> <span class="va">line_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">line_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">metro_colors</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Minimum Interval Between Trains"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Monthly minimum headway by metro line"</span>,</span>
+<span>    x <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Minutes"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">theme_series</span></span></code></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img src="getting_started_files/figure-html/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
 </section></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);

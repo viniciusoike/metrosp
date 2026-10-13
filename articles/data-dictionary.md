@@ -61,6 +61,9 @@ entrance <- read_metro_demand("line_entries_monthly")
 
 # The month's published batch
 entrance_sep <- read_metro_demand("line_entries_monthly", vintage = "2026-09")
+
+# Latest train service
+service <- read_metro_service()
 ```
 
 Columns are identical across sources, so everything below applies to
@@ -86,7 +89,9 @@ Producer and granularity by dataset {.table .caption-top}
 Paulo publishes monthly demand reports at its [transparency
 portal](https://transparencia.metrosp.com.br/dataset/demanda), covering
 Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in
-thousands.
+thousands. Its [*oferta*
+tables](https://transparencia.metrosp.com.br/dataset/oferta) supply
+`line_service_monthly`.
 
 **Insper Dataverse.** Line 4 (ViaQuatro) and Line 5 from August 2018
 (ViaMobilidade) come from the [Insper

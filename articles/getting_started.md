@@ -426,3 +426,53 @@ ggplot(line4st_daily, aes(x = date, y = value)) +
 ```
 
 ![](getting_started_files/figure-html/unnamed-chunk-15-1.png)
+
+### Train Service
+
+`line_service_monthly` describes the supply side for the four
+METRO-operated lines (1, 2, 3, and 15) from January 2021. It has two
+metrics: `headway`, the minimum interval between trains in seconds, and
+`speed`, the commercial speed in km/h. Lines 4 and 5 are run by
+concessionaires and are absent.
+
+``` r
+
+glimpse(line_service_monthly)
+#> Rows: 544
+#> Columns: 9
+#> $ date           <date> 2021-01-01, 2021-01-01, 2021-01-01, 2021-01-01, 2021-0…
+#> $ year           <int> 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2…
+#> $ line_number    <int> 1, 1, 2, 2, 3, 3, 15, 15, 1, 1, 2, 2, 3, 3, 15, 15, 1, …
+#> $ line_name      <chr> "Blue", "Blue", "Green", "Green", "Red", "Red", "Silver…
+#> $ line_name_pt   <chr> "Azul", "Azul", "Verde", "Verde", "Vermelha", "Vermelha…
+#> $ metric         <chr> "headway", "speed", "headway", "speed", "headway", "spe…
+#> $ metric_name    <chr> "Minimum Interval Between Trains (seconds)", "Commercia…
+#> $ metric_name_pt <chr> "Intervalo Mínimo entre Trens (segundos)", "Velocidade …
+#> $ value          <dbl> 125, 33, 174, 32, 120, 38, 235, 33, 125, 33, 174, 32, 1…
+```
+
+The plot below shows the minimum interval between trains by line, in
+minutes.
+
+Code
+
+``` r
+
+headway <- line_service_monthly |>
+  filter(metric == "headway")
+
+ggplot(headway, aes(x = date, y = value / 60, color = line_name)) +
+  geom_line(lwd = 0.8) +
+  facet_wrap(vars(line_name)) +
+  scale_color_manual(values = metro_colors) +
+  guides(color = "none") +
+  labs(
+    title = "Minimum Interval Between Trains",
+    subtitle = "Monthly minimum headway by metro line",
+    x = NULL,
+    y = "Minutes"
+  ) +
+  theme_series
+```
+
+![](getting_started_files/figure-html/unnamed-chunk-17-1.png)
