@@ -36,7 +36,7 @@ line_transported_monthly
 \description{
 Monthly count of passengers transported by São Paulo metro, aggregated
 by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
-and 15; January 2016 through August 2018 for Line 5; and January 2012
+and 15; January 2016 through July 2018 for Line 5; and January 2012
 through 2026 for Line 4. Sourced from the METRO SP transparency portal
 and the Insper Dataverse.
 }
@@ -53,13 +53,12 @@ counted once on each line. See the Metro Demand Data article for details:
 Line 4 (Amarela/ViaQuatro) comes from the Insper Dataverse, January
 2012–2026, all five metrics, summing both \code{Bloqueio} (turnstile) and
 \code{Integracao} (transfer) boarding types. Line 5 (Lilás) is available
-from the METRO portal only for January 2016–August 2018: the line was
+from the METRO portal only for January 2016–July 2018: the line was
 handed over to ViaMobilidade in August 2018 and the portal stopped
-reporting its transported counts afterwards. The Dataverse feed for Line 5
-records turnstiles only, so no transported measure exists for it after the
-handover. August 2018 covers only the days before the handover: its
-\code{total} is a partial month, and \code{msa} and \code{mdo} are
-\code{NA}.
+reporting its transported counts afterwards. METRO's August 2018 figures
+cover only the days before the handover, so that month is dropped. The
+Dataverse feed for Line 5 records turnstiles only, so no transported
+measure exists for it after the handover.
 
 METRO SP publishes these counts in thousands of passengers. They are
 multiplied by 1000 here, so \code{value} counts individual passengers like

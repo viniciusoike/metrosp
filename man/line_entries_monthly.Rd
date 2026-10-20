@@ -37,8 +37,9 @@ line_entries_monthly
 Monthly count of passengers entering São Paulo metro stations, aggregated
 by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
 and 15; Line 4 from January 2012; Line 5 from January 2016. July 2017 is
-the one missing month, absent for every line the METRO portal covers.
-Sourced from the METRO SP transparency portal and the Insper Dataverse.
+absent for every line the METRO portal covers, and Line 5 also lacks
+August 2018 and May 2019. Sourced from the METRO SP transparency portal
+and the Insper Dataverse.
 }
 \details{
 Data by source and line:
@@ -49,8 +50,13 @@ January 2016–2026, except July 2017.
 January 2012–2026.
 \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
 January 2016–July 2018, except July 2017; Insper Dataverse,
-August 2018–2026.
+September 2018–2026, except May 2019.
 }
+
+The Insper Dataverse feed is daily. A Line 4 or Line 5 month appears only
+when the feed covers every day of it, so the latest month arrives once it
+is complete. Line 5 misses days in August 2018, the month ViaMobilidade
+took over, and in May 2019, so both months are absent.
 
 METRO published January–September 2017 only as PDFs, with no
 machine-readable equivalent. Those months were transcribed from the

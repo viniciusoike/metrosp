@@ -399,11 +399,6 @@ date,line_number,metric_abb,metric,value,year
 2018-08-01,4,mdu,Average on Business Days,227728.47826086957,2018
 2018-08-01,4,msa,Average on Saturdays,110104.75,2018
 2018-08-01,4,total,Total,5927296,2018
-2018-08-01,5,max,Daily Peak,321822,2018
-2018-08-01,5,mdo,Average on Sundays,85497,2018
-2018-08-01,5,mdu,Average on Business Days,308772,2018
-2018-08-01,5,msa,Average on Saturdays,175560.5,2018
-2018-08-01,5,total,Total,7219670,2018
 2018-09-01,4,max,Daily Peak,237203,2018
 2018-09-01,4,mdo,Average on Sundays,33106.6,2018
 2018-09-01,4,mdu,Average on Business Days,228583.1052631579,2018
@@ -489,11 +484,6 @@ date,line_number,metric_abb,metric,value,year
 2019-05-01,4,mdu,Average on Business Days,274559.63636363635,2019
 2019-05-01,4,msa,Average on Saturdays,129883.75,2019
 2019-05-01,4,total,Total,6965737,2019
-2019-05-01,5,max,Daily Peak,605861,2019
-2019-05-01,5,mdo,Average on Sundays,171189,2019
-2019-05-01,5,mdu,Average on Business Days,584106.4090909091,2019
-2019-05-01,5,msa,Average on Saturdays,308826,2019
-2019-05-01,5,total,Total,14799611,2019
 2019-06-01,4,max,Daily Peak,277762,2019
 2019-06-01,4,mdo,Average on Sundays,79465,2019
 2019-06-01,4,mdu,Average on Business Days,256680.7894736842,2019
@@ -1314,8 +1304,3 @@ date,line_number,metric_abb,metric,value,year
 2026-03-01,5,mdu,Average on Business Days,617927.6363636364,2026
 2026-03-01,5,msa,Average on Saturdays,339719.5,2026
 2026-03-01,5,total,Total,15874203,2026
-2026-04-01,5,max,Daily Peak,640805,2026
-2026-04-01,5,mdo,Average on Sundays,176865,2026
-2026-04-01,5,mdu,Average on Business Days,626541.2,2026
-2026-04-01,5,msa,Average on Saturdays,312193,2026
-2026-04-01,5,total,Total,7458145,2026

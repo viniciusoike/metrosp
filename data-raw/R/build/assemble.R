@@ -86,7 +86,11 @@ assemble_transported <- function(
     left_join(
       select(dim_metric, metric_abb, metric, metric_pt),
       by = "metric_abb"
-    )
+    ) |>
+    # METRO's August 2018 row for Line 5 covers only the days before the
+    # ViaMobilidade handover. A partial month is not comparable with the rest,
+    # so Line 5 transported ends in July 2018.
+    filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
   transported_20 <- transported_current |>
     left_join(select(dim_metric, metric_abb, metric_pt), by = "metric_abb") |>
