@@ -170,6 +170,13 @@ boarding types: `Bloqueio` (turnstile) and `Integracao` (transfer). Only
 Line 4 records transfers, so line-level transported counts exist for
 Line 4 but not for Line 5 after the handover.
 
+The feed is daily and updates on a rolling basis, so its latest month is
+often incomplete. The monthly datasets keep a Line 4 or Line 5 month
+only when the feed covers every day of it; the latest month appears once
+it is complete. Line 5 misses days in August 2018 and May 2019, so both
+months are absent from `line_entries_monthly`. The daily rows stay in
+`station_entries_daily`.
+
 Unlike the METRO data, Dataverse counts are not rounded to the nearest
 thousand. The ETL therefore multiplies METRO values by 1,000, so every
 dataset reports individual passengers.
@@ -570,14 +577,16 @@ affects the data in two ways:
     comes from the METRO transparency portal. From August 2018 onward,
     it comes from the Insper Dataverse (ViaMobilidade/Insper
     partnership).
-2.  **Transported counts end**: the METRO portal has Line 5 transported
-    data through August 2018, the month of the ownership handover. The
-    Dataverse feed records turnstiles only, so
-    `line_transported_monthly` has no Line 5 data afterward and
-    `station_transported_monthly` drops Line 5 from August 2018 onward
-    (station data for that era lives in `station_entries_daily`). The
-    August 2018 row covers only the days before the handover: its
-    `total` is a partial month, and `msa` and `mdo` are `NA`.
+2.  **Transported counts end**: `line_transported_monthly` has Line 5
+    data through July 2018. METRO’s August 2018 figures cover only the
+    days before the handover, so that month is dropped. The Dataverse
+    feed records turnstiles only, so `line_transported_monthly` has no
+    Line 5 data afterward and `station_transported_monthly` drops Line 5
+    from August 2018 onward (station data for that era lives in
+    `station_entries_daily`).
+3.  **Entries skip the handover month**: the Dataverse feed starts on
+    August 4, 2018, so `line_entries_monthly` has no Line 5 row for
+    August 2018.
 
 #### Line 15 Sunday closures
 

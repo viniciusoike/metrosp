@@ -2,7 +2,7 @@
 
 Monthly count of passengers transported by São Paulo metro, aggregated
 by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
-and 15; January 2016 through August 2018 for Line 5; and January 2012
+and 15; January 2016 through July 2018 for Line 5; and January 2012
 through 2026 for Line 4. Sourced from the METRO SP transparency portal
 and the Insper Dataverse.
 
@@ -77,12 +77,12 @@ article for details:
 Line 4 (Amarela/ViaQuatro) comes from the Insper Dataverse, January
 2012–2026, all five metrics, summing both `Bloqueio` (turnstile) and
 `Integracao` (transfer) boarding types. Line 5 (Lilás) is available from
-the METRO portal only for January 2016–August 2018: the line was handed
+the METRO portal only for January 2016–July 2018: the line was handed
 over to ViaMobilidade in August 2018 and the portal stopped reporting
-its transported counts afterwards. The Dataverse feed for Line 5 records
-turnstiles only, so no transported measure exists for it after the
-handover. August 2018 covers only the days before the handover: its
-`total` is a partial month, and `msa` and `mdo` are `NA`.
+its transported counts afterwards. METRO's August 2018 figures cover
+only the days before the handover, so that month is dropped. The
+Dataverse feed for Line 5 records turnstiles only, so no transported
+measure exists for it after the handover.
 
 METRO SP publishes these counts in thousands of passengers. They are
 multiplied by 1000 here, so `value` counts individual passengers like
@@ -124,6 +124,12 @@ METRO SP publishes on an irregular schedule and revises
 already-published years, so the numbers here will drift from the source
 over time. Freshly rebuilt data is published on every pipeline run at
 <https://github.com/viniciusoike/metrosp/releases>.
+
+The coverage described above matches the published data. The bundled
+snapshot predates the rule that drops incomplete Lines 4/5 months, so it
+still has partial Line 5 months: August 2018, May 2019, and April 2026
+in `line_entries_monthly`, and August 2018 in
+`line_transported_monthly`.
 
 ## See also
 

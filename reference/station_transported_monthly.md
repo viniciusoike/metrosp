@@ -132,6 +132,12 @@ already-published years, so the numbers here will drift from the source
 over time. Freshly rebuilt data is published on every pipeline run at
 <https://github.com/viniciusoike/metrosp/releases>.
 
+The coverage described above matches the published data. The bundled
+snapshot predates the rule that drops incomplete Lines 4/5 months, so it
+still has partial Line 5 months: August 2018, May 2019, and April 2026
+in `line_entries_monthly`, and August 2018 in
+`line_transported_monthly`.
+
 ## See also
 
 [`station_entries_daily`](https://viniciusoike.github.io/metrosp/reference/station_entries_daily.md)

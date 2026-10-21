@@ -28,7 +28,7 @@ through a turnstile or by transferring from another line.
 
 All four datasets count individual passengers.
 `line_transported_monthly` covers Line 4 from 2012 and Line 5 only
-through August 2018; `station_transported_monthly` covers Line 5 only
+through July 2018; `station_transported_monthly` covers Line 5 only
 through July 2018.
 
 `line_service_monthly` describes the supply side: the minimum interval
@@ -98,7 +98,8 @@ tables](https://transparencia.metrosp.com.br/dataset/oferta) supply
 Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012
 and August 2018 respectively. Counts are not rounded to the nearest
 thousand, so the pipeline multiplies METRO values by 1,000 before
-combining the two.
+combining the two. The feed is daily, and a month enters the monthly
+datasets only when the feed covers every day of it.
 
 **GeoSampa.** Line and station geometries come from
 [GeoSampa](https://geosampa.prefeitura.sp.gov.br/), the City of São

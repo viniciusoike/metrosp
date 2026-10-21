@@ -189,8 +189,8 @@ series by line. METRO entries include turnstile entries and transfers
 arriving from other operators; Lines 4 and 5 count turnstiles only.
 Transported passengers include transfers between lines, so those counts
 usually exceed entries for comparable line and month coverage. Line 5’s
-transported data for August 2018 covers only the days before its
-handover.
+transported data ends in July 2018: METRO’s August 2018 figures cover
+only the days before the handover, so that month is dropped.
 
 The data is aggregated into metrics:
 
@@ -265,7 +265,7 @@ METRÔ publishes it in thousands, so values are rounded to the thousand;
 Line 4 comes from the Dataverse in individual passengers.
 
 Line 4 runs from January 2012 with all five metrics, summing turnstile
-entries and transfers. Line 5 stops in August 2018, when the line passed
+entries and transfers. Line 5 stops in July 2018, before the line passed
 to ViaMobilidade: the Dataverse feed records turnstiles only, so no
 transported measure exists for it afterward.
 
