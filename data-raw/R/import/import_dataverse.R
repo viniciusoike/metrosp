@@ -65,8 +65,10 @@ fix_station_names_line5 <- function(x) {
 
 # Keep only the line-months the feed covers day by day. The feed publishes on a
 # rolling basis, so its last month is often half-filled, and a few older months
-# miss a day. Monthly totals and averages over those months are not comparable
-# with the rest, so they are dropped rather than published. Works on line-day
+# miss a day. A missing day biases the total and the average for its day type,
+# so the whole month is dropped rather than published with some metrics NA.
+# Business-day metrics in a month that misses only a weekend day are lost too;
+# that is the price of one rule for every table. Works on line-day
 # and station-day rows alike: coverage counts the distinct days per line.
 drop_incomplete_months <- function(dat) {
   coverage <- dat |>

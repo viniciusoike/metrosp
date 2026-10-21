@@ -810,7 +810,8 @@ check_daily_entries_agreement <- function(
 
 # Transported adds transfers to turnstile entries, so it can only run above
 # entries. August 2018 Line 5 transported covers only the days before the
-# ViaMobilidade handover and is excluded.
+# ViaMobilidade handover and is excluded. The pipeline no longer builds that
+# row, but the bundled snapshot keeps it until the next refreeze.
 check_transported_gte_entries <- function(
   entries_df,
   transported_df,

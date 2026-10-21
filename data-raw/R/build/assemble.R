@@ -26,6 +26,9 @@ assemble_entrance <- function(psg_historic, entrance_current, entrance_4_5) {
       select(dim_metric, metric_abb, metric, metric_pt),
       by = "metric_abb"
     ) |>
+    # METRO's August 2018 row for Line 5 covers only the days before the
+    # ViaMobilidade handover. A partial month is not comparable with the rest,
+    # so Line 5 entries from METRO end in July 2018.
     filter_out(line_number == 5L & date >= as.Date("2018-08-01"))
 
   entrance_20 <- entrance_current |>

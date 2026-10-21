@@ -271,9 +271,12 @@ test_that("clean_transported_4_5 sums both boarding types for Line 4 only", {
       c("ViaQuatro", "ViaQuatro", "ViaMobilidade - Linha 5"),
       each = length(days)
     ),
-    tipo_embarque = rep(c("Bloqueio", "Integracao", "Bloqueio"), each = 30),
-    embarques = rep(c(100, 50, 999), each = 30),
-    station_name = rep(c("Luz", "Luz", "Chácara Klabin"), each = 30),
+    tipo_embarque = rep(
+      c("Bloqueio", "Integracao", "Bloqueio"),
+      each = length(days)
+    ),
+    embarques = rep(c(100, 50, 999), each = length(days)),
+    station_name = rep(c("Luz", "Luz", "Chácara Klabin"), each = length(days)),
     data = rep(days, times = 3)
   )
 
@@ -308,10 +311,11 @@ local_dataverse_env <- function() {
   env
 }
 
-# Line 4 covers June and July 2025 in full. Line 5 misses one day in June and
-# stops halfway through July, like a month the feed has not finished.
+# Line 4 covers May to July 2025 in full. Line 5 covers May in full, misses one
+# day in June and stops halfway through July, like a month the feed has not
+# finished.
 raw_with_gaps <- function() {
-  days <- seq(as.Date("2025-06-01"), as.Date("2025-07-31"), by = "day")
+  days <- seq(as.Date("2025-05-01"), as.Date("2025-07-31"), by = "day")
   line_4 <- data.frame(
     business_unit = "ViaQuatro",
     tipo_embarque = "Bloqueio",
@@ -336,10 +340,10 @@ test_that("Lines 4/5 monthly entrance drops months with missing days", {
   env <- local_dataverse_env()
 
   monthly <- suppressMessages(env$clean_entrance_4_5(raw_with_gaps()))
-  months <- unique(monthly[c("line_number", "date")])
-
-  expect_setequal(months$line_number, 4L)
-  expect_setequal(months$date, as.Date(c("2025-06-01", "2025-07-01")))
+  expect_setequal(
+    paste(monthly$line_number, monthly$date),
+    c("4 2025-05-01", "4 2025-06-01", "4 2025-07-01", "5 2025-05-01")
+  )
 })
 
 test_that("dropping incomplete months reports which ones", {
@@ -356,8 +360,10 @@ test_that("Lines 4/5 station averages drop months with missing days", {
 
   averages <- suppressMessages(env$clean_averages_4_5(raw_with_gaps()))
 
-  expect_setequal(averages$line_number, 4L)
-  expect_setequal(averages$date, as.Date(c("2025-06-01", "2025-07-01")))
+  expect_setequal(
+    paste(averages$line_number, averages$date),
+    c("4 2025-05-01", "4 2025-06-01", "4 2025-07-01", "5 2025-05-01")
+  )
 })
 
 test_that("Line 5 transported ends before the partial handover month", {
