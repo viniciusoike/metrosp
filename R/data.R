@@ -88,6 +88,12 @@
 #' rebuilt data is published on every pipeline run at
 #' \url{https://github.com/viniciusoike/metrosp/releases}.
 #'
+#' The coverage described above matches the published data. The bundled
+#' snapshot predates the rule that drops incomplete Lines 4/5 months, so it
+#' still has partial Line 5 months: August 2018, May 2019, and April 2026 in
+#' \code{line_entries_monthly}, and August 2018 in
+#' \code{line_transported_monthly}.
+#'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
