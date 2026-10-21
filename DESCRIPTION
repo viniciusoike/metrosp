@@ -41,6 +41,7 @@ Suggests:
     ggplot2,
     knitr,
     quarto,
+    readr,
     rmarkdown,
     sf,
     tarchetypes,

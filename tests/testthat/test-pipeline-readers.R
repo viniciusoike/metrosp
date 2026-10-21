@@ -264,20 +264,28 @@ test_that("clean_transported_4_5 sums both boarding types for Line 4 only", {
     sys.source(file.path(pipeline_dir, "import", "import_dataverse.R"), env)
   )
 
+  # A full month, so the monthly builder keeps it.
+  days <- seq(as.Date("2025-06-01"), as.Date("2025-06-30"), by = "day")
   raw <- data.frame(
-    business_unit = c("ViaQuatro", "ViaQuatro", "ViaMobilidade - Linha 5"),
-    tipo_embarque = c("Bloqueio", "Integracao", "Bloqueio"),
-    embarques = c(100, 50, 999),
-    data = as.Date("2025-06-02"),
-    station_name = c("Luz", "Luz", "Chácara Klabin")
+    business_unit = rep(
+      c("ViaQuatro", "ViaQuatro", "ViaMobilidade - Linha 5"),
+      each = length(days)
+    ),
+    tipo_embarque = rep(
+      c("Bloqueio", "Integracao", "Bloqueio"),
+      each = length(days)
+    ),
+    embarques = rep(c(100, 50, 999), each = length(days)),
+    station_name = rep(c("Luz", "Luz", "Chácara Klabin"), each = length(days)),
+    data = rep(days, times = 3)
   )
 
   daily <- env$transported_line_daily_4(raw)
 
   # ViaQuatro Bloqueio + Integracao summed; Line 5 excluded entirely.
-  expect_equal(nrow(daily), 1L)
-  expect_equal(daily$line_number, 4L)
-  expect_equal(daily$value, 150)
+  expect_equal(nrow(daily), 30L)
+  expect_true(all(daily$line_number == 4L))
+  expect_true(all(daily$value == 150))
 
   monthly <- env$clean_transported_4_5(raw)
   expect_setequal(
@@ -285,6 +293,104 @@ test_that("clean_transported_4_5 sums both boarding types for Line 4 only", {
     c("total", "mdu", "msa", "mdo", "max")
   )
   expect_true(all(monthly$line_number == 4L))
+})
+
+local_dataverse_env <- function() {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  skip_if_not(dir.exists(pipeline_dir), "data-raw pipeline code not available")
+  skip_if_not_installed("dplyr")
+  skip_if_not_installed("bizdays")
+  bizdays::load_builtin_calendars()
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(sys.source(file.path(pipeline_dir, "build", "dims.R"), env))
+  suppressWarnings(sys.source(file.path(pipeline_dir, "helpers.R"), env))
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "import", "import_dataverse.R"), env)
+  )
+  env
+}
+
+# Line 4 covers May to July 2025 in full. Line 5 covers May in full, misses one
+# day in June and stops halfway through July, like a month the feed has not
+# finished.
+raw_with_gaps <- function() {
+  days <- seq(as.Date("2025-05-01"), as.Date("2025-07-31"), by = "day")
+  line_4 <- data.frame(
+    business_unit = "ViaQuatro",
+    tipo_embarque = "Bloqueio",
+    embarques = 100,
+    station_name = "Luz",
+    data = days
+  )
+  line_5_days <- days[
+    days != as.Date("2025-06-15") & days <= as.Date("2025-07-15")
+  ]
+  line_5 <- data.frame(
+    business_unit = "ViaMobilidade - Linha 5",
+    tipo_embarque = "Bloqueio",
+    embarques = 200,
+    station_name = "Chácara Klabin",
+    data = line_5_days
+  )
+  rbind(line_4, line_5)
+}
+
+test_that("Lines 4/5 monthly entrance drops months with missing days", {
+  env <- local_dataverse_env()
+
+  monthly <- suppressMessages(env$clean_entrance_4_5(raw_with_gaps()))
+  expect_setequal(
+    paste(monthly$line_number, monthly$date),
+    c("4 2025-05-01", "4 2025-06-01", "4 2025-07-01", "5 2025-05-01")
+  )
+})
+
+test_that("dropping incomplete months reports which ones", {
+  env <- local_dataverse_env()
+
+  expect_message(
+    env$clean_entrance_4_5(raw_with_gaps()),
+    "2025-07"
+  )
+})
+
+test_that("Lines 4/5 station averages drop months with missing days", {
+  env <- local_dataverse_env()
+
+  averages <- suppressMessages(env$clean_averages_4_5(raw_with_gaps()))
+
+  expect_setequal(
+    paste(averages$line_number, averages$date),
+    c("4 2025-05-01", "4 2025-06-01", "4 2025-07-01", "5 2025-05-01")
+  )
+})
+
+test_that("Line 5 transported ends before the partial handover month", {
+  pipeline_dir <- test_path("..", "..", "data-raw", "R")
+  processed <- test_path("..", "..", "data-raw", "outputs", "processed")
+  skip_if_not(dir.exists(processed), "processed pipeline inputs not available")
+  skip_if_not_installed("dplyr")
+  skip_if_not_installed("readr")
+
+  env <- new.env(parent = globalenv())
+  suppressWarnings(sys.source(file.path(pipeline_dir, "build", "dims.R"), env))
+  suppressWarnings(sys.source(file.path(pipeline_dir, "helpers.R"), env))
+  suppressWarnings(
+    sys.source(file.path(pipeline_dir, "build", "assemble.R"), env)
+  )
+  read <- function(file) {
+    readr::read_csv(file.path(processed, file), show_col_types = FALSE)
+  }
+
+  transported <- env$assemble_transported(
+    read("metro_sp_passengers_historic.csv"),
+    read("metro_sp_passengers_transported_current.csv"),
+    read("metro_sp_passengers_transported_lines_4_5.csv")
+  )
+  line_5 <- transported[transported$line_number == 5L, ]
+
+  expect_equal(max(line_5$date), as.Date("2018-07-01"))
 })
 
 # Baseline retrieval -----------------------------------------------------------

@@ -4,6 +4,8 @@
 
 * Added `read_metro_service()`, which reads the published version of `line_service_monthly` from the same releases and cache as `read_metro_demand()`.
 
+* Lines 4 and 5 monthly data now keep only months the Insper Dataverse feed covers day by day. The feed's latest month is often incomplete, and Line 5 misses days in August 2018 and May 2019; those months are dropped from `line_entries_monthly` rather than published as partial totals, and `station_transported_monthly` now withholds Line 4's latest month until the feed completes it. Line 5 in `line_transported_monthly` now ends in July 2018, because METRO's August 2018 figures cover only the days before the handover. The bundled snapshot keeps these months until the next refreeze (#56).
+
 # metrosp 2.0.0
 
 ## Breaking changes

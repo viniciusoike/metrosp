@@ -104,6 +104,8 @@ Finally, METRO produces data for lines 1, 2, 3, 5, and 15. Line 5 was initially 
 
 Lines 4 (Amarela/Yellow, operated by ViaQuatro) and 5 (Lilás/Lilac, operated by ViaMobilidade from August 2018) are not published on the METRO portal. Ridership data for these lines comes from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 (Line 4) and August 2018 (Line 5). The Dataverse feed records two boarding types: `Bloqueio` (turnstile) and `Integracao` (transfer). Only Line 4 records transfers, so line-level transported counts exist for Line 4 but not for Line 5 after the handover.
 
+The feed is daily and updates on a rolling basis, so its latest month is often incomplete. The monthly datasets keep a Line 4 or Line 5 month only when the feed covers every day of it; the latest month appears once it is complete. Line 5 misses days in August 2018 and May 2019, so both months are absent from `line_entries_monthly`. The daily rows stay in `station_entries_daily`.
+
 Unlike the METRO data, Dataverse counts are not rounded to the nearest thousand. The ETL therefore multiplies METRO values by 1,000, so every dataset reports individual passengers.
 
 The `station_transported_monthly` dataset for Line 4 averages daily `Bloqueio` and `Integracao` counts on business days, using the `bizdays` package with the "Brazil/ANBIMA" calendar, which tracks days when the B3 stock exchange operates in São Paulo. That calendar closely mirrors the city's business-day schedule, with one caveat: since 2022 B3 closes only for national holidays, not for municipal or state ones such as the 9th of July. The package ships `calendar_spo`, a São Paulo calendar that does mark those holidays, for analyses that need the finer distinction. Line 5's Dataverse feed records turnstiles only, so its post-handover rows are dropped from the transported station table; they remain in `station_entries_daily`.
@@ -311,7 +313,8 @@ This means station-level totals at interchange stations are **not** double-count
 Line 5 (Lilás) was originally operated by METRO SP. On August 4, 2018, it was handed over to ViaMobilidade under a concession contract. This affects the data in two ways:
 
 1.  **Source switch**: from January 2016 through July 2018, Line 5 data comes from the METRO transparency portal. From August 2018 onward, it comes from the Insper Dataverse (ViaMobilidade/Insper partnership).
-2.  **Transported counts end**: the METRO portal has Line 5 transported data through August 2018, the month of the ownership handover. The Dataverse feed records turnstiles only, so `line_transported_monthly` has no Line 5 data afterward and `station_transported_monthly` drops Line 5 from August 2018 onward (station data for that era lives in `station_entries_daily`). The August 2018 row covers only the days before the handover: its `total` is a partial month, and `msa` and `mdo` are `NA`.
+2.  **Transported counts end**: `line_transported_monthly` has Line 5 data through July 2018. METRO's August 2018 figures cover only the days before the handover, so that month is dropped. The Dataverse feed records turnstiles only, so `line_transported_monthly` has no Line 5 data afterward and `station_transported_monthly` drops Line 5 from August 2018 onward (station data for that era lives in `station_entries_daily`).
+3.  **Entries skip the handover month**: the Dataverse feed starts on August 4, 2018, so `line_entries_monthly` has no Line 5 row for August 2018.
 
 ### Line 15 Sunday closures
 

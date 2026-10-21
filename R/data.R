@@ -3,8 +3,9 @@
 #' Monthly count of passengers entering São Paulo metro stations, aggregated
 #' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
 #' and 15; Line 4 from January 2012; Line 5 from January 2016. July 2017 is
-#' the one missing month, absent for every line the METRO portal covers.
-#' Sourced from the METRO SP transparency portal and the Insper Dataverse.
+#' absent for every line the METRO portal covers, and Line 5 also lacks
+#' August 2018 and May 2019. Sourced from the METRO SP transparency portal
+#' and the Insper Dataverse.
 #'
 #' @format A data frame with the following columns:
 #' \describe{
@@ -36,8 +37,13 @@
 #'     January 2012–2026.
 #'   \item Line 5 (Lilás/ViaMobilidade): METRO SP transparency portal,
 #'     January 2016–July 2018, except July 2017; Insper Dataverse,
-#'     August 2018–2026.
+#'     September 2018–2026, except May 2019.
 #' }
+#'
+#' The Insper Dataverse feed is daily. A Line 4 or Line 5 month appears only
+#' when the feed covers every day of it, so the latest month arrives once it
+#' is complete. Line 5 misses days in August 2018, the month ViaMobilidade
+#' took over, and in May 2019, so both months are absent.
 #'
 #' METRO published January–September 2017 only as PDFs, with no
 #' machine-readable equivalent. Those months were transcribed from the
@@ -82,6 +88,12 @@
 #' rebuilt data is published on every pipeline run at
 #' \url{https://github.com/viniciusoike/metrosp/releases}.
 #'
+#' The coverage described above matches the published data. The bundled
+#' snapshot predates the rule that drops incomplete Lines 4/5 months, so it
+#' still has partial Line 5 months: August 2018, May 2019, and April 2026 in
+#' \code{line_entries_monthly}, and August 2018 in
+#' \code{line_transported_monthly}.
+#'
 #' @source Companhia do Metropolitano de São Paulo (METRO SP).
 #'   \url{https://transparencia.metrosp.com.br/dataset/demanda}
 #'
@@ -93,7 +105,7 @@
 #'
 #' Monthly count of passengers transported by São Paulo metro, aggregated
 #' by metro line. Data covers January 2016 through 2026 for Lines 1, 2, 3,
-#' and 15; January 2016 through August 2018 for Line 5; and January 2012
+#' and 15; January 2016 through July 2018 for Line 5; and January 2012
 #' through 2026 for Line 4. Sourced from the METRO SP transparency portal
 #' and the Insper Dataverse.
 #'
@@ -131,13 +143,12 @@
 #' Line 4 (Amarela/ViaQuatro) comes from the Insper Dataverse, January
 #' 2012–2026, all five metrics, summing both \code{Bloqueio} (turnstile) and
 #' \code{Integracao} (transfer) boarding types. Line 5 (Lilás) is available
-#' from the METRO portal only for January 2016–August 2018: the line was
+#' from the METRO portal only for January 2016–July 2018: the line was
 #' handed over to ViaMobilidade in August 2018 and the portal stopped
-#' reporting its transported counts afterwards. The Dataverse feed for Line 5
-#' records turnstiles only, so no transported measure exists for it after the
-#' handover. August 2018 covers only the days before the handover: its
-#' \code{total} is a partial month, and \code{msa} and \code{mdo} are
-#' \code{NA}.
+#' reporting its transported counts afterwards. METRO's August 2018 figures
+#' cover only the days before the handover, so that month is dropped. The
+#' Dataverse feed for Line 5 records turnstiles only, so no transported
+#' measure exists for it after the handover.
 #'
 #' METRO SP publishes these counts in thousands of passengers. They are
 #' multiplied by 1000 here, so \code{value} counts individual passengers like

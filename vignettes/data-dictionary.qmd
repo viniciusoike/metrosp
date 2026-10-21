@@ -34,7 +34,7 @@ The package ships four demand datasets. Two measure passengers at the line level
 
 A **passenger entry** (*entrada de passageiros*) includes a turnstile entry; METRO also counts transfers arriving from other operators, while Lines 4 and 5 count turnstiles only. A **transported passenger** (*passageiro transportado*) boarded a train on that line, whether through a turnstile or by transferring from another line.
 
-All four datasets count individual passengers. `line_transported_monthly` covers Line 4 from 2012 and Line 5 only through August 2018; `station_transported_monthly` covers Line 5 only through July 2018.
+All four datasets count individual passengers. `line_transported_monthly` covers Line 4 from 2012 and Line 5 only through July 2018; `station_transported_monthly` covers Line 5 only through July 2018.
 
 `line_service_monthly` describes the supply side: the minimum interval between trains and the commercial speed of each METRO-operated line, from 2021. `read_metro_service()` reads its published version.
 
@@ -80,7 +80,7 @@ Three producers stand behind these datasets.
 
 **METRO SP transparency portal.** The Companhia do Metropolitano de São Paulo publishes monthly demand reports at its [transparency portal](https://transparencia.metrosp.com.br/dataset/demanda), covering Lines 1, 2, 3, 15, and Line 5 through July 2018. Values are reported in thousands. Its [*oferta* tables](https://transparencia.metrosp.com.br/dataset/oferta) supply `line_service_monthly`.
 
-**Insper Dataverse.** Line 4 (ViaQuatro) and Line 5 from August 2018 (ViaMobilidade) come from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 and August 2018 respectively. Counts are not rounded to the nearest thousand, so the pipeline multiplies METRO values by 1,000 before combining the two.
+**Insper Dataverse.** Line 4 (ViaQuatro) and Line 5 from August 2018 (ViaMobilidade) come from the [Insper Dataverse](https://doi.org/10.60873/FK2/UTGQ0I), starting January 2012 and August 2018 respectively. Counts are not rounded to the nearest thousand, so the pipeline multiplies METRO values by 1,000 before combining the two. The feed is daily, and a month enters the monthly datasets only when the feed covers every day of it.
 
 **GeoSampa.** Line and station geometries come from [GeoSampa](https://geosampa.prefeitura.sp.gov.br/), the City of São Paulo's open geospatial platform. Both currently operating and planned infrastructure are included.
 

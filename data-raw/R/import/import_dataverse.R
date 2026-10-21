@@ -63,6 +63,42 @@ fix_station_names_line5 <- function(x) {
   )
 }
 
+# Keep only the line-months the feed covers day by day. The feed publishes on a
+# rolling basis, so its last month is often half-filled, and a few older months
+# miss a day. A missing day biases the total and the average for its day type,
+# so the whole month is dropped rather than published with some metrics NA.
+# Business-day metrics in a month that misses only a weekend day are lost too;
+# that is the price of one rule for every table. Works on line-day
+# and station-day rows alike: coverage counts the distinct days per line.
+drop_incomplete_months <- function(dat) {
+  coverage <- dat |>
+    distinct(date, line_number) |>
+    mutate(date_month = lubridate::floor_date(date, "month")) |>
+    summarise(n_days = n(), .by = c(date_month, line_number))
+
+  incomplete <- coverage |>
+    filter(n_days < lubridate::days_in_month(date_month)) |>
+    arrange(line_number, date_month)
+
+  if (nrow(incomplete) > 0) {
+    dropped <- sprintf(
+      "Line %s, %s (%d days)",
+      incomplete$line_number,
+      format(incomplete$date_month, "%Y-%m"),
+      incomplete$n_days
+    )
+    cli::cli_inform(c(
+      "Dropping incomplete months from the Lines 4/5 monthly data:",
+      stats::setNames(dropped, rep("*", length(dropped)))
+    ))
+  }
+
+  dat |>
+    mutate(date_month = lubridate::floor_date(date, "month")) |>
+    anti_join(incomplete, by = join_by(date_month, line_number)) |>
+    select(-date_month)
+}
+
 # --- Cleaning functions ------------------------------------------------------
 
 # Collapse station-level gate entries to one value per line-day. Every metric
@@ -118,6 +154,7 @@ entrance_to_long <- function(monthly) {
 clean_entrance_4_5 <- function(dat) {
   dat |>
     entrance_line_daily() |>
+    drop_incomplete_months() |>
     entrance_tag_days() |>
     entrance_monthly_metrics() |>
     entrance_to_long()
@@ -141,6 +178,7 @@ transported_line_daily_4 <- function(dat) {
 clean_transported_4_5 <- function(dat) {
   dat |>
     transported_line_daily_4() |>
+    drop_incomplete_months() |>
     entrance_tag_days() |>
     entrance_monthly_metrics() |>
     entrance_to_long()
@@ -148,7 +186,8 @@ clean_transported_4_5 <- function(dat) {
 
 # Produces: date, line_number, station_name, avg_passenger, year
 clean_averages_4_5 <- function(dat) {
-  dat <- prep_data_4_5(dat, type = "transportado")
+  dat <- prep_data_4_5(dat, type = "transportado") |>
+    drop_incomplete_months()
 
   dat <- dat |>
     mutate(station_name = fix_station_names_line5(station_name)) |>
