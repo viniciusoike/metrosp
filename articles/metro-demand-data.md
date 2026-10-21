@@ -19,9 +19,8 @@ line level, and two at the station level.
 | Station-level daily | Daily passenger entries at each station. | Passengers | 2012–2026 | Daily | `station_entries_daily` |
 
 All four datasets count **individual passengers**.
-`line_transported_monthly` covers Line 4 from 2012 and Line 5 only
-through August 2018; `station_transported_monthly` covers Line 5 only
-through July 2018.
+`line_transported_monthly` covers Line 4 from 2012. Both transported
+datasets cover Line 5 only through July 2018.
 
 A “passenger entry” (*entrada de passageiros*) includes a turnstile
 entry. METRO also counts transfers arriving from other operators, while
@@ -330,9 +329,12 @@ Time coverage by line for the line_transported_monthly dataset
 
 Time coverage by line {.table .caption-top}
 
-Line 5 ends in August 2018, when the line passed to ViaMobilidade. The
-Dataverse feed records turnstiles only, so no transported measure exists
-for it afterward.
+Line 5 ends in July 2018, the month before the line passed to
+ViaMobilidade. METRO’s August 2018 figures cover only the days before
+the handover, so the published data drops that month; the bundled
+snapshot predates the rule and still holds it. The Dataverse feed
+records turnstiles only, so no transported measure exists for Line 5
+afterward.
 
 ### `station_transported_monthly`
 
