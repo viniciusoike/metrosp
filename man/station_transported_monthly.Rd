@@ -85,11 +85,9 @@ those five months from station-level baselines.
 }
 \section{Data vintage}{
 
-This dataset is a fixed snapshot, current through July 2026. It ships with
-the package so examples, vignettes, and offline analysis always have data
-to hand. The snapshot moves only when the column schema changes or a
-release deliberately carries new data, not when new months are published
-upstream.
+This dataset is a fixed snapshot, current through July 2026. The snapshot
+moves only when the column schema changes or a release deliberately
+carries new data, not when new months are published upstream.
 
 METRO SP publishes on an irregular schedule and revises already-published
 years, so the numbers here will drift from the source over time. Freshly

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
-title: "metrosp: São Paulo Metro Passenger Demand Data"
+title: "metrosp: São Paulo Metro System Data"
 type: software
 authors:
   - family-names: Oike
