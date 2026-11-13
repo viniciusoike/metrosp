@@ -28,6 +28,14 @@ The current CRAN version is 2.0.0. This release adds:
   `line_transported_monthly`. The bundled snapshot keeps these months until
   its next refreeze. NEWS.md lists each change.
 
+## Title and Description
+
+The Title changed from "São Paulo Metro Passenger Demand Data" to "São Paulo
+Metro System Data". Until 2.0.0 the package held passenger demand only. This
+release adds train service data (headway and commercial speed), which the old
+title did not cover. The Description now names both and no longer lists each
+dataset or a year range.
+
 ## Cache
 
 `read_metro_demand()` and `read_metro_service()` cache downloads under

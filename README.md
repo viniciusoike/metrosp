@@ -13,8 +13,8 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 <!-- badges: end -->
 
 This package distributes demand and train service data from the São
-Paulo metro system inside R. The data covers 2012 to 2026 and comes from
-several operators. Most of it is already
+Paulo metro system inside R. The data comes from several operators. Most
+of it is already
 [public](https://transparencia.metrosp.com.br/dataset/demanda), but it
 is scattered across poorly structured CSV and PDF files.
 
