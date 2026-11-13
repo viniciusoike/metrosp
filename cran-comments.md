@@ -31,7 +31,7 @@ The current CRAN version is 2.0.0. This release adds:
 ## Title and Description
 
 The Title changed from "São Paulo Metro Passenger Demand Data" to "São Paulo
-Metro System Data". Until 2.0.0 the package held passenger demand only. This
+Metro System Data". Through 2.0.0 the package held passenger demand only. This
 release adds train service data (headway and commercial speed), which the old
 title did not cover. The Description now names both and no longer lists each
 dataset or a year range.
