@@ -1,5 +1,7 @@
 # metrosp 2.1.0
 
+* Changed the package title from "São Paulo Metro Passenger Demand Data" to "São Paulo Metro System Data" and rewrote the `DESCRIPTION` `Description` to cover both demand and service data. No data or behavior changed.
+
 * Added `line_service_monthly`, the monthly minimum interval between trains and commercial speed for Lines 1, 2, 3, and 15 from January 2021, sourced from METRO's *oferta* tables (#3).
 
 * Added `read_metro_service()`, which reads the published version of `line_service_monthly` from the same releases and cache as `read_metro_demand()`.
