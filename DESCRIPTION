@@ -11,10 +11,10 @@ Authors@R: c(
     )
   )
 Description: Passenger demand and train service data for the São Paulo
-    metro system, by line and by station, with spatial geometries for metro
-    and commuter train lines and stations. The bundled datasets are a fixed
-    snapshot. read_metro_demand() and read_metro_service() download and
-    cache more recent data from 'GitHub' releases.
+    metro system, by line and by station, come with spatial geometries for
+    metro and commuter train lines and stations. The bundled datasets are a
+    fixed snapshot. read_metro_demand() and read_metro_service() download
+    and cache more recent data from 'GitHub' releases.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
