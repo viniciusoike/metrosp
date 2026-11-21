@@ -44,11 +44,12 @@ Install the released version from CRAN.
 install.packages("metrosp")
 ```
 
-The development version is on R-universe.
+The development version is on GitHub.
 
 ``` r
 
-install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
+# install.packages("pak")
+pak::pak("viniciusoike/metrosp")
 ```
 
 ## Datasets
