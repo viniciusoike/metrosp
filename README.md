@@ -5,7 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-universe](https://viniciusoike.r-universe.dev/badges/metrosp)](https://viniciusoike.r-universe.dev/metrosp)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metrosp)](https://CRAN.R-project.org/package=metrosp)
 [![License:
@@ -55,10 +54,11 @@ Install the released version from CRAN.
 install.packages("metrosp")
 ```
 
-The development version is on R-universe.
+The development version is on GitHub.
 
 ``` r
-install.packages('metrosp', repos = c('https://viniciusoike.r-universe.dev', 'https://cloud.r-project.org'))
+# install.packages("pak")
+pak::pak("viniciusoike/metrosp")
 ```
 
 ## Datasets

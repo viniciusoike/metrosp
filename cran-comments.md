@@ -9,11 +9,19 @@
 
 0 errors | 0 warnings | 1 note
 
-The note is from the incoming feasibility check: the URL
-<https://transparencia.metrosp.com.br/dataset/demanda> returned HTTP 503 when
-the check ran. The portal was showing a maintenance page at that time. It is the METRO transparency portal, the upstream source of the
-demand data, and the same URL appears in the help pages for the four demand
-datasets and in README.md.
+The note is from the incoming feasibility check. Several URLs on the METRO
+transparency portal (transparencia.metrosp.com.br) returned HTTP 503 when the
+check ran:
+
+* <https://transparencia.metrosp.com.br/> (vignette `getting_started`)
+* <https://transparencia.metrosp.com.br/dataset/demanda> (help pages for the
+  four demand datasets, the `data-dictionary` vignette, and README.md)
+* <https://transparencia.metrosp.com.br/dataset/oferta> (help page for
+  `line_service_monthly`, the `data-dictionary` vignette, and README.md)
+
+The portal serves a maintenance page at those times. It is the upstream source
+of the demand and service data; the URLs are citations, not downloads, and the
+package itself does not fetch from them at check time.
 
 ## Changes in this version
 
